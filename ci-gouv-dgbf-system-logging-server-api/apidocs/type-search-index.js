@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ci.gouv.dgbf.system.logging.server.api","l":"LogService.CreationDto"},{"p":"ci.gouv.dgbf.system.logging.server.api","l":"LogDto"},{"p":"ci.gouv.dgbf.system.logging.server.api","l":"LogService"}];updateSearchResults();
