@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ci.gouv.dgbf.system.logging.server.impl"},{"l":"ci.gouv.dgbf.system.logging.server.impl.business"},{"l":"ci.gouv.dgbf.system.logging.server.impl.persistence"},{"l":"ci.gouv.dgbf.system.logging.server.impl.service"}];updateSearchResults();

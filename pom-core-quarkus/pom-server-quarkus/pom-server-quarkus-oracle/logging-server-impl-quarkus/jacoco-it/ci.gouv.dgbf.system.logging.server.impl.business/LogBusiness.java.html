@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogBusiness.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Serveur du module de logging basé sur Quarkus</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.logging.server.impl.business</a> &gt; <span class="el_source">LogBusiness.java</span></div><h1>LogBusiness.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.logging.server.impl.business;
+
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
+import java.util.function.Supplier;
+import java.util.logging.Logger;
+
+import org.eclipse.microprofile.faulttolerance.Asynchronous;
+import org.eclipse.microprofile.faulttolerance.Retry;
+
+import ci.gouv.dgbf.extension.server.impl.Helper;
+import ci.gouv.dgbf.extension.server.impl.Messages;
+import ci.gouv.dgbf.system.logging.server.impl.Configuration;
+import ci.gouv.dgbf.system.logging.server.impl.persistence.Log;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.json.bind.JsonbBuilder;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+
+@ApplicationScoped
+<span class="fc" id="L27">public class LogBusiness {</span>
+
+<span class="fc" id="L29">	private static final Logger LOGGER = Logger.getLogger(LogBusiness.class.getName());	</span>
+	
+	@Inject LogCreationEmitter creationEmitter;
+	@Inject EntityManagerFactory entityManagerFactory;
+	@Inject EntityManager entityManager;
+	@Inject Configuration configuration;
+	@Inject Helper helper;
+	
+	/**
+	 * Valide les entrées. Les règles sont les suivantes :&lt;br/&gt;
+	 * environmentIdentifier ne doit pas être blanc&lt;br/&gt;
+	 * processIdentifier ne doit pas être blanc&lt;br/&gt;
+	 * levelIdentifier ne doit pas être blanc&lt;br/&gt;
+	 * message ne doit pas être blanc&lt;br/&gt;Une exception est générée s'il existe au moins une règle non respectée
+	 * @param environmentIdentifier identifiant de l'environnement
+	 * @param processIdentifier identifiant du processus
+	 * @param sessionIdentifier identifiant de la session
+	 * @param levelIdentifier identifiant du niveau
+	 * @param userIdentifier identifiant de l'utilisateur
+	 * @param message message
+	 */
+	void validateCreateInputs(String environmentIdentifier, String processIdentifier, String sessionIdentifier,String levelIdentifier,String userIdentifier,String message) {
+<span class="fc" id="L51">		Messages messages = new Messages();</span>
+<span class="fc" id="L52">		messages.addIfBlank(environmentIdentifier, &quot;L'identifiant de l'environnement est obligatoire&quot;);</span>
+<span class="fc" id="L53">		messages.addIfBlank(processIdentifier, &quot;L'identifiant du processus est obligatoire&quot;);</span>
+<span class="fc" id="L54">		messages.addIfBlank(levelIdentifier, &quot;L'identifiant du niveau est obligatoire&quot;);</span>
+<span class="fc" id="L55">		messages.addIfBlank(message, &quot;Le message est obligatoire&quot;);</span>
+<span class="fc" id="L56">		messages.throwRuntimeExceptionIfListNotEmpty();</span>
+<span class="fc" id="L57">		LOGGER.finer(String.format(&quot;Entrées validées. %s&quot;,JsonbBuilder.create().toJson(helper.instantiateMapFromStrings(Log.FIELD_ENVIRONMENT_IDENTIFIER,environmentIdentifier,Log.FIELD_PROCESS_IDENTIFIER,processIdentifier</span>
+				,Log.FIELD_SESSION_IDENTIFIER,sessionIdentifier,Log.FIELD_LEVEL_IDENTIFIER,levelIdentifier,Log.FIELD_USER_IDENTIFIER,userIdentifier,Log.FIELD_MESSAGE,message))));
+<span class="fc" id="L59">	}</span>
+	
+	/**
+	 * Crée un log. Le mode peut être bloquant ou pas.
+	 * @param environmentIdentifier identifiant de l'environnement
+	 * @param processIdentifier identifiant du processus
+	 * @param sessionIdentifier identifiant de la session
+	 * @param levelIdentifier identifiant du niveau
+	 * @param userIdentifier identifiant de l'utilisateur
+	 * @param message message
+	 * @param blockable bloquant
+	 * @return résultat
+	 */
+	public CreateResult create(String environmentIdentifier, String processIdentifier, String sessionIdentifier,String levelIdentifier,String userIdentifier,String message,Boolean blockable) {
+		/*
+		 * Calcul de la valeur qui identifiera le log
+		 */
+<span class="fc" id="L76">		String identifier = UUID.randomUUID().toString();</span>
+		/*
+		 * Initialisation de la date de création pour maintenir l'ordre dans lequel les messages sont arrivés.
+		 * Cela est nécessaire dans le cas ou nous avons un mode non bloquant.
+		 */
+<span class="fc" id="L81">		LocalDateTime creationDate = LocalDateTime.now();</span>
+<span class="fc" id="L82">		CreateResult result = null;</span>
+<span class="fc bfc" id="L83" title="All 4 branches covered.">		if(blockable == null || blockable)</span>
+			/*
+			 * Création du log en mode bloquant
+			 */
+<span class="fc" id="L87">			result = create(identifier,environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate);</span>
+		else {
+			/*
+			 * Création du log en mode non bloquant
+			 */
+<span class="fc" id="L92">			createAsync(identifier, environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate);</span>
+<span class="fc" id="L93">			result = new CreateResult(identifier,CreateResult.SUCCESS_NOT_BLOCKABLE_MESSAGE,Boolean.FALSE,null);</span>
+		}
+<span class="fc" id="L95">		return result;</span>
+	}
+	
+	@Asynchronous
+	@Retry(maxRetries = 3,delay = 1,delayUnit = ChronoUnit.MINUTES)
+	CompletionStage&lt;CreateResult&gt; createAsync(String identifier,String environmentIdentifier, String processIdentifier, String sessionIdentifier,String levelIdentifier,String userIdentifier,String message,LocalDateTime creationDate) {
+<span class="fc" id="L101">		CompletionStage&lt;CreateResult&gt; completionStage = CompletableFuture.supplyAsync(new Supplier&lt;CreateResult&gt;() {</span>
+			@Override
+			public CreateResult get() {
+<span class="fc" id="L104">				return create(identifier, environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate, Boolean.FALSE, CreateResult.SUCCESS_NOT_BLOCKABLE_MESSAGE);</span>
+			}
+		});
+		
+<span class="fc" id="L108">		completionStage.thenApplyAsync((result) -&gt; {</span>
+<span class="fc" id="L109">			creationEmitter.send(result.log);</span>
+<span class="fc" id="L110">			return null;</span>
+		});
+		
+<span class="fc" id="L113">		completionStage.exceptionallyAsync(exception -&gt; {</span>
+<span class="fc" id="L114">			LOGGER.severe(String.format(&quot;Erreur lors de la création du log. Ci dessous le message et JSON\r\n\t %s\r\n\t%s&quot;,exception.getMessage().replaceAll(&quot;\r\n&quot;, &quot;\r\n\t&quot;),JsonbBuilder.create().toJson(helper.instantiateMapFromStrings(Log.FIELD_IDENTIFIER,identifier,Log.FIELD_ENVIRONMENT_IDENTIFIER,environmentIdentifier</span>
+					,Log.FIELD_PROCESS_IDENTIFIER,processIdentifier,Log.FIELD_SESSION_IDENTIFIER,sessionIdentifier,Log.FIELD_LEVEL_IDENTIFIER,levelIdentifier,Log.FIELD_USER_IDENTIFIER,userIdentifier,Log.FIELD_MESSAGE,message
+<span class="fc" id="L116">					,Log.FIELD_CREATION_DATE,creationDate.toString()))));</span>
+<span class="fc" id="L117">			creationEmitter.send(identifier, environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate, exception);</span>
+<span class="fc" id="L118">			return null;</span>
+		});
+<span class="fc" id="L120">		return completionStage;</span>
+	}
+	
+	@Transactional
+	CreateResult create(String identifier,String environmentIdentifier, String processIdentifier, String sessionIdentifier,String levelIdentifier,String userIdentifier,String message,LocalDateTime creationDate) {
+<span class="fc" id="L125">		CreateResult result = create(identifier, environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate, Boolean.TRUE, CreateResult.SUCCESS_BLOCKABLE_MESSAGE);</span>
+<span class="fc" id="L126">		creationEmitter.send(result.log);</span>
+<span class="fc" id="L127">		return result;</span>
+	}
+	
+	CreateResult create(String identifier,String environmentIdentifier, String processIdentifier, String sessionIdentifier,String levelIdentifier,String userIdentifier,String message,LocalDateTime creationDate,Boolean blockable,String successMessage) {
+<span class="fc" id="L131">		validateCreateInputs(environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message);</span>
+<span class="fc" id="L132">		Log log = instantiateLog(identifier, environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate);</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">		if(blockable) {</span>
+			/*
+			 * Transaction gérée par le serveur
+			 */
+<span class="fc" id="L137">			entityManager.persist(log);</span>
+		}else {
+			/*
+			 * Transaction gérée par l'utilisateur
+			 */
+<span class="fc" id="L142">			EntityManager entityManager = entityManagerFactory.createEntityManager();</span>
+<span class="fc" id="L143">			entityManager.getTransaction().begin();</span>
+<span class="fc" id="L144">			entityManager.persist(log);</span>
+<span class="fc" id="L145">			entityManager.getTransaction().commit();</span>
+		}
+<span class="fc" id="L147">		LOGGER.fine(String.format(&quot;Log créé. %s&quot;,JsonbBuilder.create().toJson(helper.instantiateMapFromStrings(Log.FIELD_IDENTIFIER,identifier))));</span>
+<span class="fc" id="L148">		return new CreateResult(log.identifier,successMessage,blockable,log);</span>
+	}
+	
+	/**
+	 * Instantie un log.
+	 * @param identifier identifiant du log
+	 * @param environmentIdentifier identifiant de l'environnement dans lequel le processus s'exécute
+	 * @param processIdentifier l'identifiant du processus
+	 * @param sessionIdentifier l'identifiant de la session
+	 * @param levelIdentifier l'identifiant du niveau
+	 * @param userIdentifier l'identifiant de l'utlisateur
+	 * @param message le message
+	 * @param creationDate la date de création
+	 * @return log
+	 */
+	Log instantiateLog(String identifier,String environmentIdentifier, String processIdentifier, String sessionIdentifier,String levelIdentifier,String userIdentifier,String message,LocalDateTime creationDate) {
+<span class="fc" id="L164">		Log log = Log.instantiate(identifier, environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate);</span>
+<span class="fc" id="L165">		LOGGER.finer(String.format(&quot;Log instantié. %s&quot;,JsonbBuilder.create().toJson(helper.instantiateMapFromStrings(Log.FIELD_IDENTIFIER,identifier,Log.FIELD_ENVIRONMENT_IDENTIFIER,environmentIdentifier,Log.FIELD_PROCESS_IDENTIFIER,processIdentifier</span>
+<span class="fc" id="L166">				,Log.FIELD_SESSION_IDENTIFIER,sessionIdentifier,Log.FIELD_LEVEL_IDENTIFIER,levelIdentifier,Log.FIELD_USER_IDENTIFIER,userIdentifier,Log.FIELD_MESSAGE,message,Log.FIELD_CREATION_DATE,creationDate.toString()))));</span>
+<span class="fc" id="L167">		return log;</span>
+	}
+	
+	/**/
+	
+<span class="fc" id="L172">	@AllArgsConstructor</span>
+	public static class CreateResult {
+		public String identifier;
+		public String message;
+		public Boolean blocked;
+		public Log log;
+		
+		public static final String SUCCESS_BLOCKABLE_MESSAGE = &quot;Log a été créé&quot;;
+		public static final String SUCCESS_NOT_BLOCKABLE_MESSAGE = &quot;Log est en cours de création&quot;;
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

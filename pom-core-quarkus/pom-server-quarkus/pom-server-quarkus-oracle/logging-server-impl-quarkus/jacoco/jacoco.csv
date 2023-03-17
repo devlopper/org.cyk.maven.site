@@ -1,0 +1,10 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl.service,LogServiceImpl,0,39,0,2,0,7,0,3,0,2
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl.persistence,Log,0,80,0,2,0,23,0,5,0,4
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl.business,LogBusiness.CreateResult,0,15,0,0,0,1,0,1,0,1
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl.business,LogBusiness.new Supplier() {...},0,52,0,0,0,2,0,2,0,2
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl.business,LogCreationEmitter,0,104,0,4,0,24,0,8,0,6
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl.business,LogBusiness,0,474,0,6,0,45,0,13,0,10
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl.business,LogCreationEmitter.new Executable() {...},0,22,0,0,0,5,0,5,0,5
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl,ApplicationLifeCycleListener,0,5,0,0,0,3,0,3,0,3
+Serveur du module de logging basé sur Quarkus,ci.gouv.dgbf.system.logging.server.impl,Application,0,13,0,0,0,4,0,2,0,2

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LogCreationEmitter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Serveur du module de logging basé sur Quarkus</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.logging.server.impl.business</a> &gt; <span class="el_source">LogCreationEmitter.java</span></div><h1>LogCreationEmitter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.logging.server.impl.business;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.logging.Logger;
+
+import org.eclipse.microprofile.reactive.messaging.Channel;
+import org.eclipse.microprofile.reactive.messaging.Emitter;
+
+import ci.gouv.dgbf.extension.environment.Executable;
+import ci.gouv.dgbf.system.logging.server.api.LogService.CreationDto;
+import ci.gouv.dgbf.system.logging.server.impl.persistence.Log;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+import jakarta.json.bind.JsonbBuilder;
+
+@ApplicationScoped
+<span class="fc" id="L18">public class LogCreationEmitter implements Serializable {</span>
+
+<span class="fc" id="L20">	private static final Logger LOGGER = Logger.getLogger(LogCreationEmitter.class.getName());	</span>
+	
+	private static final String CHANNEL_SUFFIX = &quot;-logging-log-creation&quot;;
+	
+	public static final String DEV_CHANNEL = &quot;dev&quot;+CHANNEL_SUFFIX;
+	public static final String PREPROD_CHANNEL = &quot;preprod&quot;+CHANNEL_SUFFIX;
+	public static final String PROD_CHANNEL = &quot;prod&quot;+CHANNEL_SUFFIX;
+	public static final String DEBUG_CHANNEL = &quot;debug&quot;+CHANNEL_SUFFIX;
+		
+	@Inject @Channel(DEV_CHANNEL) Emitter&lt;String&gt; devEmitter;
+	@Inject @Channel(PREPROD_CHANNEL) Emitter&lt;String&gt; preprodEmitter;
+	@Inject @Channel(PROD_CHANNEL) Emitter&lt;String&gt; prodEmitter;
+	@Inject @Channel(DEBUG_CHANNEL) Emitter&lt;String&gt; debugEmitter;
+	
+	public void send(Log log,Throwable throwable) {
+<span class="fc" id="L35">		CreationDto dto = new CreationDto();</span>
+<span class="fc" id="L36">		dto.setLog(log.instantiateDto());</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">		if(throwable == null)</span>
+<span class="fc" id="L38">			dto.setCreated(Boolean.TRUE);</span>
+		else {
+<span class="fc" id="L40">			dto.setCreated(Boolean.FALSE);</span>
+<span class="fc" id="L41">			dto.setMessage(throwable.getMessage());</span>
+		}
+<span class="fc" id="L43">		String message = JsonbBuilder.create().toJson(dto);</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">		if(log.environmentIdentifier == null) {</span>
+<span class="fc" id="L45">			LOGGER.severe(String.format(&quot;Environnement requis pour la publication de la création du log. %s&quot;, message));</span>
+<span class="fc" id="L46">			return;</span>
+		}
+		try {
+<span class="fc" id="L49">			getEmitter(log.environmentIdentifier).send(message);</span>
+<span class="fc" id="L50">			LOGGER.fine(String.format(&quot;La création du log a été publiée. %s&quot;, message));</span>
+<span class="fc" id="L51">		} catch (Exception exception) {</span>
+<span class="fc" id="L52">			LOGGER.severe(String.format(&quot;Erreur lors de la publication de la création du log. %s&quot;, exception));</span>
+<span class="fc" id="L53">		}</span>
+		
+<span class="fc" id="L55">	}</span>
+	
+	public void send(Log log) {
+<span class="fc" id="L58">		send(log, null);</span>
+<span class="fc" id="L59">	}</span>
+	
+	public void send(String identifier,String environmentIdentifier, String processIdentifier, String sessionIdentifier,String levelIdentifier,String userIdentifier,String message
+			,LocalDateTime creationDate,Throwable throwable) {
+<span class="fc" id="L63">		send(Log.instantiate(identifier, environmentIdentifier, processIdentifier, sessionIdentifier, levelIdentifier, userIdentifier, message, creationDate),throwable);</span>
+<span class="fc" id="L64">	}</span>
+	
+	Emitter&lt;String&gt; getEmitter(String environmentIdentifier) {
+<span class="fc" id="L67">		return new Executable&lt;Emitter&lt;String&gt;&gt;() {</span>
+			@Override
+			public Emitter&lt;String&gt; executeWhenDev() {
+<span class="fc" id="L70">				return devEmitter;</span>
+			}
+			
+			@Override
+			public Emitter&lt;String&gt; executeWhenPreprod() {
+<span class="fc" id="L75">				return preprodEmitter;</span>
+			}
+			
+			@Override
+			public Emitter&lt;String&gt; executeWhenProd() {
+<span class="fc" id="L80">				return prodEmitter;</span>
+			}
+			
+			@Override
+			public Emitter&lt;String&gt; executeWhenDebug() {
+<span class="fc" id="L85">				return debugEmitter;</span>
+			}
+<span class="fc" id="L87">		}.execute(environmentIdentifier,&quot;Impossible d'obtenir la chaine de publication&quot;);</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
