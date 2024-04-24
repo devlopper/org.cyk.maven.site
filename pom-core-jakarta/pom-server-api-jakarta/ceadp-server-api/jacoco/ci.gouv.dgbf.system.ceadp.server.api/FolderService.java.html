@@ -85,11 +85,16 @@ public interface FolderService extends SpecificService {
       FolderCreateRequestDto.FIELD_DESCRIPTION, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
 <span class="fc" id="L87">  class FolderCreateRequestDto extends AbstractAuditedRequestJsonDto implements NamableByString {</span>
+    
     @JsonbProperty(JSON_NAME)
     private String name;
+    
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
 
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+    
     /**
      * Identifiant java champ nom.
      */
@@ -98,7 +103,11 @@ public interface FolderService extends SpecificService {
      * Identifiant java champ description.
      */
     public static final String FIELD_DESCRIPTION = &quot;description&quot;;
-
+    /**
+     * Identifiant java champ identifiant du type.
+     */
+    public static final String FIELD_TYPE_IDENTIFIER = &quot;typeIdentifier&quot;;
+    
     /**
      * Identifiant json champ nom.
      */
@@ -107,6 +116,10 @@ public interface FolderService extends SpecificService {
      * Identifiant json champ description.
      */
     public static final String JSON_DESCRIPTION = FolderDto.JSON_DESCRIPTION;
+    /**
+     * Identifiant json champ identifiant du type.
+     */
+    public static final String JSON_TYPE_IDENTIFIER = FolderDto.JSON_TYPE_IDENTIFIER;
   }
 
   /**
@@ -143,7 +156,7 @@ public interface FolderService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FolderDto&gt; {</span>
+<span class="fc" id="L159">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FolderDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FolderDto&gt; datas;
@@ -239,12 +252,16 @@ public interface FolderService extends SpecificService {
       FolderUpdateRequestDto.FIELD_NAME,
       FolderUpdateRequestDto.FIELD_DESCRIPTION, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L242">  class FolderUpdateRequestDto extends ByIdentifierRequestDto implements NamableByString {</span>
+<span class="fc" id="L255">  class FolderUpdateRequestDto extends ByIdentifierRequestDto implements NamableByString {</span>
     @JsonbProperty(JSON_NAME)
     private String name;
+    
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
 
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+    
     /**
      * Identifiant java champ nom.
      */
@@ -253,7 +270,11 @@ public interface FolderService extends SpecificService {
      * Identifiant java champ description.
      */
     public static final String FIELD_DESCRIPTION = &quot;description&quot;;
-
+    /**
+     * Identifiant java champ identifiant du type.
+     */
+    public static final String FIELD_TYPE_IDENTIFIER = &quot;typeIdentifier&quot;;
+    
     /**
      * Identifiant json champ nom.
      */
@@ -262,6 +283,10 @@ public interface FolderService extends SpecificService {
      * Identifiant json champ description.
      */
     public static final String JSON_DESCRIPTION = FolderDto.JSON_DESCRIPTION;
+    /**
+     * Identifiant json champ identifiant du type.
+     */
+    public static final String JSON_TYPE_IDENTIFIER = FolderDto.JSON_TYPE_IDENTIFIER;
   }
 
   /**

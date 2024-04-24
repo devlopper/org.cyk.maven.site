@@ -20,14 +20,27 @@ import lombok.Setter;
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
   
+  @JsonbProperty(JSON_TYPE_IDENTIFIER)
+  private String typeIdentifier;
+  
   /**
    * Identifiant java champ description.
    */
   public static final String FIELD_DESCRIPTION = &quot;description&quot;;
   
   /**
+   * Identifiant java champ identifiant du type.
+   */
+  public static final String FIELD_TYPE_IDENTIFIER = &quot;typeIdentifier&quot;;
+  
+  /**
    * Identifiant json champ description.
    */
   public static final String JSON_DESCRIPTION = &quot;description&quot;;
+  
+  /**
+   * Identifiant json champ identifiant du type.
+   */
+  public static final String JSON_TYPE_IDENTIFIER = &quot;idType&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
