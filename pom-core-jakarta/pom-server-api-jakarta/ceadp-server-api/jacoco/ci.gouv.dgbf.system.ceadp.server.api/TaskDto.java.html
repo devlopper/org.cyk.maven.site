@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,10 +16,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class TaskDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L19">public class TaskDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
      
   @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
   private String activityIdentifier;
+  
+  @JsonbProperty(JSON_AGENT_IDENTIFIER)
+  private String agentIdentifier;
+  
+  @JsonbProperty(JSON_FROM_DATE)
+  private LocalDateTime fromDate;
+  
+  @JsonbProperty(JSON_TO_DATE)
+  private LocalDateTime toDate;
   
   /**
    * Identifiant java champ identifiant du dossier.
@@ -26,9 +36,39 @@ import lombok.Setter;
   public static final String FIELD_ACTIVITY_IDENTIFIER = &quot;activityIdentifier&quot;;
   
   /**
+   * Identifiant java champ identifiant de l'agent.
+   */
+  public static final String FIELD_AGENT_IDENTIFIER = &quot;agentIdentifier&quot;;
+  
+  /**
+   * Identifiant java champ date début.
+   */
+  public static final String FIELD_FROM_DATE = &quot;fromDate&quot;;
+  
+  /**
+   * Identifiant java champ date fin.
+   */
+  public static final String FIELD_TO_DATE = &quot;toDate&quot;;
+  
+  /**
    * Identifiant json champ identifiant du dossier.
    */
-  public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActiviter&quot;;
+  public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
+  
+  /**
+   * Identifiant json champ identifiant de l'agent.
+   */
+  public static final String JSON_AGENT_IDENTIFIER = &quot;idAgent&quot;;
+  
+  /**
+   * Identifiant json champ date début.
+   */
+  public static final String JSON_FROM_DATE = &quot;dateDebut&quot;;
+  
+  /**
+   * Identifiant json champ date fin.
+   */
+  public static final String JSON_TO_DATE = &quot;dateFin&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
