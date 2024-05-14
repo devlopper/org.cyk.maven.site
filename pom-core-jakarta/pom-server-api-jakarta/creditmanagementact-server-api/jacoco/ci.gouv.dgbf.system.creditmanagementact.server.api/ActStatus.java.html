@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'acte de gestion de crédits</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.creditmanagementact.server.api</a> &gt; <span class="el_source">ActStatus.java</span></div><h1>ActStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.creditmanagementact.server.api;
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les statuts de {@link ActDto}.
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L16">@Getter</span>
+public enum ActStatus {
+
+  /**
+   * Acte créé.
+   */
+<span class="fc" id="L22">  CREATED(ActStatusCode.CREATED, &quot;Créé&quot;),</span>
+  /**
+   * Acte modifié.
+   */
+<span class="fc" id="L26">  UPDATED(ActStatusCode.UPDATED, &quot;Modifié&quot;),</span>
+  /**
+   * Acte annulé.
+   */
+<span class="fc" id="L30">  CANCELLED(ActStatusCode.CANCELLED, &quot;Annulé&quot;),</span>
+  /**
+   * Acte transmis.
+   */
+<span class="fc" id="L34">  TRANSMITTED(ActStatusCode.TRANSMITTED, &quot;Transmis&quot;),</span>
+  /**
+   * Acte corrigé.
+   */
+<span class="fc" id="L38">  CORRECTED(ActStatusCode.CORRECTED, &quot;Corrigé&quot;),</span>
+  /**
+   * Acte rejeté.
+   */
+<span class="fc" id="L42">  REJECTED(ActStatusCode.REJECTED, &quot;Rejeté&quot;),</span>
+  /**
+   * Acte signé.
+   */
+<span class="fc" id="L46">  SIGNED(ActStatusCode.SIGNED, &quot;Signé&quot;),</span>
+  /**
+   * Acte appliqué.
+   */
+<span class="fc" id="L50">  APPLIED(ActStatusCode.APPLIED, &quot;Appliqué&quot;),</span>
+  /**
+   * Acte refusé.
+   */
+<span class="fc" id="L54">  REFUSED(ActStatusCode.REFUSED, &quot;Refusé&quot;)</span>
+
+  ;
+
+<span class="fc" id="L58">  private ActStatus(String code, String name) {</span>
+<span class="fc" id="L59">    this.code = code;</span>
+<span class="fc" id="L60">    this.name = name;</span>
+<span class="fc" id="L61">  }</span>
+
+  private String code;
+  private String name;
+  private Set&lt;ActStatus&gt; previous;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L69">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le statut par code.
+   *
+   * @param code code
+   * @return statut
+   */
+  public static ActStatus getByCode(String code) {
+<span class="fc" id="L79">    return Stream.of(ActStatus.values()).filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L80">        .orElseThrow(IllegalArgumentException::new);</span>
+  }
+
+  static {
+<span class="fc" id="L84">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L85">    UPDATED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
+<span class="fc" id="L86">    CANCELLED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
+<span class="fc" id="L87">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
+<span class="fc" id="L88">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
