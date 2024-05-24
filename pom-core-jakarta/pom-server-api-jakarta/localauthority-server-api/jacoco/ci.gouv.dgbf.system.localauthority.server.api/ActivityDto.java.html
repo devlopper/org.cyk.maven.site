@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActivityDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ActivityDto.java</span></div><h1>ActivityDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Cette classe représente une activité.
@@ -8,8 +12,118 @@ import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCoda
  * @author Christian
  *
  */
-<span class="fc" id="L11">public class ActivityDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class ActivityDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
+  /**
+   * Identifiant {@link ActivityNatureDto}.
+   */
+  @JsonbProperty(JSON_NATURE_IDENTIFIER)
+  private String natureIdentifier;
+  
+  /**
+   * Identifiant {@link EconomicAccountDto}.
+   */
+  @JsonbProperty(JSON_ECONOMIC_ACCOUNT_IDENTIFIER)
+  private String economicAccountIdentifier;
+  
+  /**
+   * Identifiant {@link WealthAccountDto}.
+   */
+  @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
+  private String wealthAccountIdentifier;
+  
+  /**
+   * Identifiant {@link ServiceDto}.
+   */
+  @JsonbProperty(JSON_SERVICE_IDENTIFIER)
+  private String serviceIdentifier;
+  
+  /**
+   * Identifiant de la localité.
+   */
+  @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
+  private String localityIdentifier;
+  
+  /**
+   * Identifiant du compte fonctionnel.
+   */
+  @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
+  private String functionalAccountIdentifier;
+  
+  /**
+   * Montant.
+   */
+  @JsonbProperty(JSON_AMOUNT)
+  private Long amount;
+  
+  /**
+   * Identifiant java {@link ActivityDto#natureIdentifier}.
+   */
+  public static final String FIELD_NATURE_IDENTIFIER = &quot;natureIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link ActivityDto#economicAccountIdentifier}.
+   */
+  public static final String FIELD_ECONOMIC_ACCOUNT_IDENTIFIER = &quot;economicAccountIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link ActivityDto#wealthAccountIdentifier}.
+   */
+  public static final String FIELD_WEALTH_ACCOUNT_IDENTIFIER = &quot;economicAccountIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link ActivityDto#serviceIdentifier}.
+   */
+  public static final String FIELD_SERVICE_IDENTIFIER = &quot;serviceIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link ActivityDto#localityIdentifier}.
+   */
+  public static final String FIELD_LOCALITY_IDENTIFIER = &quot;localityIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link ActivityDto#functionalAccountIdentifier}.
+   */
+  public static final String FIELD_FUNCTIONAL_ACCOUNT_IDENTIFIER = &quot;functionalAccountIdentifier&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#natureIdentifier}.
+   */
+  public static final String JSON_NATURE_IDENTIFIER = &quot;idNature&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#economicAccountIdentifier}.
+   */
+  public static final String JSON_ECONOMIC_ACCOUNT_IDENTIFIER = &quot;idCompteEconomique&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#wealthAccountIdentifier}.
+   */
+  public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER = &quot;idComptePatrimonial&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#serviceIdentifier}.
+   */
+  public static final String JSON_SERVICE_IDENTIFIER = &quot;idService&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#localityIdentifier}.
+   */
+  public static final String JSON_LOCALITY_IDENTIFIER = &quot;idLocalite&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#functionalAccountIdentifier}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER = &quot;idCompteFonctionnel&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#amount}.
+   */
+  public static final String JSON_AMOUNT = &quot;montant&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

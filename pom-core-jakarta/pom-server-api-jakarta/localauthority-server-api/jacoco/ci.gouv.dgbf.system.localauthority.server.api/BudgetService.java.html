@@ -2,7 +2,6 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
@@ -82,11 +81,22 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L88">  class BudgetCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L84">  class BudgetCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+    /**
+     * {@link BudgetDto#exerciseIdentifier}.
+     */
+    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+    private String exerciseIdentifier;
 
+    /**
+     * {@link BudgetDto#FIELD_EXERCISE_IDENTIFIER}.
+     */
+    public static final String FIELD_EXERCISE_IDENTIFIER = &quot;exerciseIdentifier&quot;;
+
+    /**
+     * {@link BudgetDto#JSON_EXERCISE_IDENTIFIER}.
+     */
+    public static final String JSON_EXERCISE_IDENTIFIER = BudgetDto.JSON_EXERCISE_IDENTIFIER;
   }
 
   /**
@@ -123,7 +133,7 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
+<span class="fc" id="L136">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;BudgetDto&gt; datas;
@@ -219,7 +229,7 @@ public interface BudgetService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L222">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L232">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

@@ -2,7 +2,6 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
@@ -82,11 +81,75 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L88">  class ActivityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L84">  class ActivityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+    /**
+     * {@link ActivityDto#getNatureIdentifier()}.
+     */
+    @JsonbProperty(JSON_NATURE_IDENTIFIER)
+    private String natureIdentifier;
 
+    /**
+     * {@link ActivityDto#getEconomicAccountIdentifier()}.
+     */
+    @JsonbProperty(JSON_ECONOMIC_ACCOUNT_IDENTIFIER)
+    private String economicAccountIdentifier;
+
+    /**
+     * {@link ActivityDto#getWealthAccountIdentifier()}.
+     */
+    @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
+    private String wealthAccountIdentifier;
+
+    /**
+     * {@link ActivityDto#getServiceIdentifier()}.
+     */
+    @JsonbProperty(JSON_SERVICE_IDENTIFIER)
+    private String serviceIdentifier;
+
+    /**
+     * {@link ActivityDto#getLocalityIdentifier()}.
+     */
+    @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
+    private String localityIdentifier;
+
+    /**
+     * {@link ActivityDto#getFunctionalAccountIdentifier()}.
+     */
+    @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
+    private String functionalAccountIdentifier;
+
+    /**
+     * {@link ActivityDto#JSON_NATURE_IDENTIFIER}.
+     */
+    public static final String JSON_NATURE_IDENTIFIER = ActivityDto.JSON_NATURE_IDENTIFIER;
+
+    /**
+     * {@link ActivityDto#JSON_ECONOMIC_ACCOUNT_IDENTIFIER}.
+     */
+    public static final String JSON_ECONOMIC_ACCOUNT_IDENTIFIER =
+        ActivityDto.JSON_ECONOMIC_ACCOUNT_IDENTIFIER;
+
+    /**
+     * {@link ActivityDto#JSON_WEALTH_ACCOUNT_IDENTIFIER}.
+     */
+    public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER =
+        ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
+
+    /**
+     * {@link ActivityDto#JSON_SERVICE_IDENTIFIER}.
+     */
+    public static final String JSON_SERVICE_IDENTIFIER = ActivityDto.JSON_SERVICE_IDENTIFIER;
+
+    /**
+     * {@link ActivityDto#JSON_LOCALITY_IDENTIFIER}.
+     */
+    public static final String JSON_LOCALITY_IDENTIFIER = ActivityDto.JSON_LOCALITY_IDENTIFIER;
+
+    /**
+     * {@link ActivityDto#JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER}.
+     */
+    public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER =
+        ActivityDto.JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER;
   }
 
   /**
@@ -123,7 +186,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L189">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -219,7 +282,7 @@ public interface ActivityService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L222">  class ActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L285">  class ActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

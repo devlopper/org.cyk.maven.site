@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FundingDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">FundingDto.java</span></div><h1>FundingDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Cette classe représente un financement.
@@ -8,8 +12,91 @@ import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAudi
  * @author Christian
  *
  */
-<span class="fc" id="L11">public class FundingDto extends AbstractIdentifiableAuditableDto {</span>
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class FundingDto extends AbstractIdentifiableAuditableDto {</span>
 
+  /**
+   * Identifiant {@link FundingModeDto}.
+   */
+  @JsonbProperty(JSON_FUNDING_MODE_IDENTIFIER)
+  private String fundingModeIdentifier;
+  
+  /**
+   * Identifiant {@link LessorDto}.
+   */
+  @JsonbProperty(JSON_LESSOR_IDENTIFIER)
+  private String lessorIdentifier;
+  
+  /**
+   * Montant 1.
+   */
+  @JsonbProperty(JSON_AMOUNT_1)
+  private Long amount1;
+  
+  /**
+   * Montant 2.
+   */
+  @JsonbProperty(JSON_AMOUNT_2)
+  private Long amount2;
+  
+  /**
+   * Montant 3.
+   */
+  @JsonbProperty(JSON_AMOUNT_3)
+  private Long amount3;
+  
+  /**
+   * Identifiant java {@link FundingDto#fundingModeIdentifier}.
+   */
+  public static final String FIELD_FUNDING_MODE_IDENTIFIER = &quot;fundingModeIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link FundingDto#lessorIdentifier}.
+   */
+  public static final String FIELD_LESSOR_IDENTIFIER = &quot;lessorIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link FundingDto#amount1}.
+   */
+  public static final String FIELD_AMOUNT_1 = &quot;amount1&quot;;
+  
+  /**
+   * Identifiant java {@link FundingDto#amount2}.
+   */
+  public static final String FIELD_AMOUNT_2 = &quot;amount2&quot;;
+  
+  /**
+   * Identifiant java {@link FundingDto#amount3}.
+   */
+  public static final String FIELD_AMOUNT_3 = &quot;amount3&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#fundingModeIdentifier}.
+   */
+  public static final String JSON_FUNDING_MODE_IDENTIFIER = &quot;idModeFinancement&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#lessorIdentifier}.
+   */
+  public static final String JSON_LESSOR_IDENTIFIER = &quot;idBailleur&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#amount1}.
+   */
+  public static final String JSON_AMOUNT_1 = &quot;montant1&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#amount2}.
+   */
+  public static final String JSON_AMOUNT_2 = &quot;montant2&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#amount3}.
+   */
+  public static final String JSON_AMOUNT_3 = &quot;montant3&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */
