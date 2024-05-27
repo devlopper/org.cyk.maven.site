@@ -29,6 +29,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_ACTIVITY_AS_STRING)
   private String activityAsString;
   
+  /**
+   * Description.
+   */
+  @JsonbProperty(JSON_DESCRIPTION)
+  private String description;
+  
   /* Processing */
   
   /**
@@ -94,6 +100,11 @@ import lombok.Setter;
   private LocalDateTime toDate;
   
   /**
+   * Identifiant java champ {@link TaskDto#description}.
+   */
+  public static final String FIELD_DESCRIPTION = &quot;description&quot;;
+  
+  /**
    * Identifiant java champ {@link TaskDto#activityIdentifier}.
    */
   public static final String FIELD_ACTIVITY_IDENTIFIER = &quot;activityIdentifier&quot;;
@@ -152,6 +163,11 @@ import lombok.Setter;
    * Identifiant java champ date fin.
    */
   public static final String FIELD_TO_DATE = &quot;toDate&quot;;
+  
+  /**
+   * Identifiant json champ {@link TaskDto#description}.
+   */
+  public static final String JSON_DESCRIPTION = &quot;description&quot;;
   
   /**
    * Identifiant json champ {@link TaskDto#activityIdentifier}.
