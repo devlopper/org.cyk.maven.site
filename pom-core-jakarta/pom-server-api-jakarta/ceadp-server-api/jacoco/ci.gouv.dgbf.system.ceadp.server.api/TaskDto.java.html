@@ -17,23 +17,126 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L19">public class TaskDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
-     
+  /**
+   * Identifiant de {@link ActivityDto}.
+   */
   @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
   private String activityIdentifier;
   
+  /**
+   * Réprésentation chaine de caractère de {@link ActivityDto}.
+   */
+  @JsonbProperty(JSON_ACTIVITY_AS_STRING)
+  private String activityAsString;
+  
+  /* Processing */
+  
+  /**
+   * Identifiant traitement.
+   */
+  @JsonbProperty(JSON_PROCESSING_IDENTIFIER)
+  private String processingIdentifier;
+  
+  /**
+   * Statut traitement au format chaine de caractères.
+   */
+  @JsonbProperty(JSON_PROCESSING_STATUS_AS_STRING)
+  private String processingStatusAsString;
+  
+  /**
+   * Oui ou non si traitement démarrable.
+   */
+  @JsonbProperty(JSON_PROCESSING_STARTABLE)
+  private Boolean processingStartable;
+  
+  /**
+   * Oui ou non si traitement stoppable.
+   */
+  @JsonbProperty(JSON_PROCESSING_STOPPABLE)
+  private Boolean processingStoppable;
+  
+  /**
+   * Oui ou non si traitement annuable.
+   */
+  @JsonbProperty(JSON_PROCESSING_CANCELABLE)
+  private Boolean processingCancelable;
+  
+  /**
+   * Oui ou non si traitement terminable.
+   */
+  @JsonbProperty(JSON_PROCESSING_TERMINATABLE)
+  private Boolean processingTerminatable;
+  
+  /* Files */
+  
+  /**
+   * Identifiant groupe de fichiers.
+   */
+  @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+  private String filesGroupIdentifier;
+  
+  /**
+   * Identifiant de l'agent.
+   */
   @JsonbProperty(JSON_AGENT_IDENTIFIER)
   private String agentIdentifier;
   
+  /**
+   * Date de début.
+   */
   @JsonbProperty(JSON_FROM_DATE)
   private LocalDateTime fromDate;
   
+  /**
+   * Date de fin.
+   */
   @JsonbProperty(JSON_TO_DATE)
   private LocalDateTime toDate;
   
   /**
-   * Identifiant java champ identifiant du dossier.
+   * Identifiant java champ {@link TaskDto#activityIdentifier}.
    */
   public static final String FIELD_ACTIVITY_IDENTIFIER = &quot;activityIdentifier&quot;;
+  
+  /**
+   * Identifiant java champ {@link TaskDto#activityAsString}.
+   */
+  public static final String FIELD_ACTIVITY_AS_STRING = &quot;activityAsString&quot;;
+  
+  /**
+   * Identifiant java champ {@link TaskDto#processingIdentifier}.
+   */
+  public static final String FIELD_PROCESSING_IDENTIFIER = &quot;processingIdentifier&quot;;
+    
+  /**
+   * Identifiant java champ chaine du statut du traitement.
+   */
+  public static final String FIELD_PROCESSING_STATUS_AS_STRING = &quot;processingStatusAsString&quot;;
+  
+  /**
+   * Identifiant java champ démmarable du traitement.
+   */
+  public static final String FIELD_PROCESSING_STARTABLE = &quot;processingStartable&quot;;
+  
+  /**
+   * Identifiant java champ stoppable du traitement.
+   */
+  public static final String FIELD_PROCESSING_STOPPABLE = &quot;processingStoppable&quot;;
+  
+  /**
+   * Identifiant java champ annulable du traitement.
+   */
+  public static final String FIELD_PROCESSING_CANCELABLE = &quot;processingCancelable&quot;;
+  
+  /**
+   * Identifiant java champ terminable du traitement.
+   */
+  public static final String FIELD_PROCESSING_TERMINATABLE = &quot;processingTerminatable&quot;;
+  
+  /**
+   * Identifiant java champ identifiant du groupe de fichiers.
+   */
+  public static final String FIELD_FILES_GROUP_IDENTIFIER = &quot;filesGroupIdentifier&quot;;
   
   /**
    * Identifiant java champ identifiant de l'agent.
@@ -51,9 +154,49 @@ import lombok.Setter;
   public static final String FIELD_TO_DATE = &quot;toDate&quot;;
   
   /**
-   * Identifiant json champ identifiant du dossier.
+   * Identifiant json champ {@link TaskDto#activityIdentifier}.
    */
   public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
+  
+  /**
+   * Identifiant json champ {@link TaskDto#activityAsString}.
+   */
+  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link TaskDto#processingIdentifier}.
+   */
+  public static final String JSON_PROCESSING_IDENTIFIER = &quot;idTraitement&quot;;
+  
+  /**
+   * Identifiant json champ chaine du statut du traitement.
+   */
+  public static final String JSON_PROCESSING_STATUS_AS_STRING = &quot;statutTraitementChaine&quot;;
+  
+  /**
+   * Identifiant json champ chaine de traitement démmarable.
+   */
+  public static final String JSON_PROCESSING_STARTABLE = &quot;traitementDemarrable&quot;;
+  
+  /**
+   * Identifiant json champ chaine de traitement arrêtable.
+   */
+  public static final String JSON_PROCESSING_STOPPABLE = &quot;traitementStoppable&quot;;
+  
+  /**
+   * Identifiant json champ chaine de traitement annulable.
+   */
+  public static final String JSON_PROCESSING_CANCELABLE = &quot;traitementAnnulable&quot;;
+  
+  /**
+   * Identifiant json champ chaine de traitement terminable.
+   */
+  public static final String JSON_PROCESSING_TERMINATABLE = &quot;traitementTerminable&quot;;
+  
+  /**
+   * Identifiant json champ identifiant du groupe de fichiers.
+   */
+  public static final String JSON_FILES_GROUP_IDENTIFIER = &quot;idGroupeFichiers&quot;;
   
   /**
    * Identifiant json champ identifiant de l'agent.

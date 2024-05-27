@@ -24,14 +24,26 @@ import lombok.Setter;
   @JsonbProperty(JSON_FOLDER_IDENTIFIER)
   private String folderIdentifier;
   
+  @JsonbProperty(JSON_FOLDER_AS_STRING)
+  private String folderAsString;
+  
   @JsonbProperty(JSON_TEAM_IDENTIFIER)
   private String teamIdentifier;
+  
+  @JsonbProperty(JSON_TEAM_AS_STRING)
+  private String teamAsString;
   
   @JsonbProperty(JSON_FROM_DATE)
   private LocalDateTime fromDate;
   
+  @JsonbProperty(JSON_FROM_DATE_AS_STRING)
+  private String fromDateAsString;
+  
   @JsonbProperty(JSON_TO_DATE)
   private LocalDateTime toDate;
+  
+  @JsonbProperty(JSON_TO_DATE_AS_STRING)
+  private String toDateAsString;
   
   /**
    * Identifiant java champ identifiant du type.
@@ -69,9 +81,19 @@ import lombok.Setter;
   public static final String JSON_FOLDER_IDENTIFIER = &quot;idDossier&quot;;
   
   /**
+   * Identifiant json champ réprésentation du dossier en chaine de caractères.
+   */
+  public static final String JSON_FOLDER_AS_STRING = &quot;dossierChaine&quot;;
+  
+  /**
    * Identifiant json champ identifiant de l'équipe.
    */
   public static final String JSON_TEAM_IDENTIFIER = &quot;idEquipe&quot;;
+  
+  /**
+   * Identifiant json champ réprésentation de l'équipe en chaine de caratères.
+   */
+  public static final String JSON_TEAM_AS_STRING = &quot;equipeChaine&quot;;
   
   /**
    * Identifiant json champ date début.
@@ -79,9 +101,19 @@ import lombok.Setter;
   public static final String JSON_FROM_DATE = &quot;dateDebut&quot;;
   
   /**
+   * Identifiant json champ réprésentation date début en chaine de caratères.
+   */
+  public static final String JSON_FROM_DATE_AS_STRING = &quot;dateDebutChaine&quot;;
+  
+  /**
    * Identifiant json champ date fin.
    */
   public static final String JSON_TO_DATE = &quot;dateFin&quot;;
+  
+  /**
+   * Identifiant json champ réprésentation date fin en chaine de caratères.
+   */
+  public static final String JSON_TO_DATE_AS_STRING = &quot;dateFinChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
