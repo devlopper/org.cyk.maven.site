@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AgentDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module ceadp</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ceadp.server.api</a> &gt; <span class="el_source">AgentDto.java</span></div><h1>AgentDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ceadp.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,16 +15,79 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L17">public class AgentDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L18">public class AgentDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+
+  /**
+   * Adresse email.
+   */
+  @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+  private String emailAddress;
+
+  /**
+   * Nom.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME)
+  private String firstName;
+
+  /**
+   * Prénoms.
+   */
+  @JsonbProperty(value = JSON_LAST_NAMES)
+  private String lastNames;
+
+  /**
+   * Le genre est masculin.
+   */
+  @JsonbProperty(value = JSON_IS_MASCULINE)
+  private Boolean isGenderMasculine;
+
+  /**
+   * Identifiant java champ {@link AgentDto#emailAddress}.
+   */
+  public static final String FIELD_EMAIL_ADDRESS = &quot;emailAddress&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#firstName}.
+   */
+  public static final String FIELD_FIRST_NAME = &quot;firstName&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#lastNames}.
+   */
+  public static final String FIELD_LAST_NAMES = &quot;lastNames&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#isGenderMasculine}.
+   */
+  public static final String FIELD_IS_GENDER_MASCULINE = &quot;isGenderMasculine&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#emailAddress}.
+   */
+  public static final String JSON_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
+  /**
+   * Identifiant json champ {@link AgentDto#firstName}.
+   */
+  public static final String JSON_FIRST_NAME = &quot;nom&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#lastNames}.
+   */
+  public static final String JSON_LAST_NAMES = &quot;prenoms&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#isGenderMasculine}.
+   */
+  public static final String JSON_IS_MASCULINE = &quot;estMasculin&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;agent&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
-  public static final String PLURAL_NAME = &quot;agents&quot;;
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -2,8 +2,6 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -82,11 +80,50 @@ public interface AgentService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L88">  class AgentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L83">  class AgentCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
+    /**
+     * {@link AgentDto#getEmailAddress()}.
+     */
+    @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+    private String emailAddress;
 
+    /**
+     * {@link AgentDto#getFirstName()}.
+     */
+    @JsonbProperty(value = JSON_FIRST_NAME)
+    private String firstName;
+
+    /**
+     * {@link AgentDto#getLastNames()}.
+     */
+    @JsonbProperty(value = JSON_LAST_NAMES)
+    private String lastNames;
+
+    /**
+     * {@link AgentDto#getIsGenderMasculine()}.
+     */
+    @JsonbProperty(value = JSON_IS_MASCULINE)
+    private boolean isGenderMasculine;
+
+    /**
+     * {@link AgentDto#JSON_EMAIL_ADDRESS}.
+     */
+    public static final String JSON_EMAIL_ADDRESS = AgentDto.JSON_EMAIL_ADDRESS;
+    
+    /**
+     * {@link AgentDto#JSON_FIRST_NAME}.
+     */
+    public static final String JSON_FIRST_NAME = AgentDto.JSON_NAME;
+    
+    /**
+     * {@link AgentDto#JSON_LAST_NAMES}.
+     */
+    public static final String JSON_LAST_NAMES = AgentDto.JSON_LAST_NAMES;
+    
+    /**
+     * {@link AgentDto#JSON_IS_MASCULINE}.
+     */
+    public static final String JSON_IS_MASCULINE = AgentDto.JSON_IS_MASCULINE;
   }
 
   /**
@@ -123,7 +160,7 @@ public interface AgentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;AgentDto&gt; {</span>
+<span class="fc" id="L163">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;AgentDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;AgentDto&gt; datas;
@@ -219,8 +256,50 @@ public interface AgentService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L222">  class AgentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L259">  class AgentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+    /**
+     * {@link AgentDto#getEmailAddress()}.
+     */
+    @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+    private String emailAddress;
 
+    /**
+     * {@link AgentDto#getFirstName()}.
+     */
+    @JsonbProperty(value = JSON_FIRST_NAME)
+    private String firstName;
+
+    /**
+     * {@link AgentDto#getLastNames()}.
+     */
+    @JsonbProperty(value = JSON_LAST_NAMES)
+    private String lastNames;
+
+    /**
+     * {@link AgentDto#getIsGenderMasculine()}.
+     */
+    @JsonbProperty(value = JSON_IS_MASCULINE)
+    private boolean isGenderMasculine;
+
+    /**
+     * {@link AgentDto#JSON_EMAIL_ADDRESS}.
+     */
+    public static final String JSON_EMAIL_ADDRESS = AgentDto.JSON_EMAIL_ADDRESS;
+    
+    /**
+     * {@link AgentDto#JSON_FIRST_NAME}.
+     */
+    public static final String JSON_FIRST_NAME = AgentDto.JSON_FIRST_NAME;
+    
+    /**
+     * {@link AgentDto#JSON_LAST_NAMES}.
+     */
+    public static final String JSON_LAST_NAMES = AgentDto.JSON_LAST_NAMES;
+    
+    /**
+     * {@link AgentDto#JSON_IS_MASCULINE}.
+     */
+    public static final String JSON_IS_MASCULINE = AgentDto.JSON_IS_MASCULINE;
   }
 
   /**
