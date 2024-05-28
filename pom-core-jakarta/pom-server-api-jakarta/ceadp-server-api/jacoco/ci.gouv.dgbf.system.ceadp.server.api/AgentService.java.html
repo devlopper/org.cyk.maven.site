@@ -113,7 +113,7 @@ public interface AgentService extends SpecificService {
     /**
      * {@link AgentDto#JSON_FIRST_NAME}.
      */
-    public static final String JSON_FIRST_NAME = AgentDto.JSON_NAME;
+    public static final String JSON_FIRST_NAME = AgentDto.JSON_FIRST_NAME;
     
     /**
      * {@link AgentDto#JSON_LAST_NAMES}.
@@ -256,7 +256,7 @@ public interface AgentService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L259">  class AgentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L259">  class AgentUpdateRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * {@link AgentDto#getEmailAddress()}.
      */
