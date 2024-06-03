@@ -83,22 +83,45 @@ public interface ActService extends SpecificService {
   @Setter
 <span class="fc" id="L84">  class ActCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
     /**
+     * {@link ActDto#getExerciseIdentifier()}.
+     */
+    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+    private String exerciseIdentifier;
+
+    /**
      * {@link ActDto#getStatus()}.
      */
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
     private String typeIdentifier;
-    
+
+    /**
+     * {@link ActDto#getBudgetCategoryIdentifier()}.
+     */
+    @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
+    private String budgetCategoryIdentifier;
+
     /**
      * {@link ActDto#getMovementNature()}.
      */
     @JsonbProperty(JSON_MOVEMENT_NATURE)
-    private String movementNature;
-    
+    private MovementNature movementNature;
+
+    /**
+     * {@link ActDto#JSON_EXERCISE_IDENTIFIER}.
+     */
+    public static final String JSON_EXERCISE_IDENTIFIER = ActDto.JSON_EXERCISE_IDENTIFIER;
+
+    /**
+     * {@link ActDto#JSON_BUDGET_CATEGORY_IDENTIFIER}.
+     */
+    public static final String JSON_BUDGET_CATEGORY_IDENTIFIER =
+        ActDto.JSON_BUDGET_CATEGORY_IDENTIFIER;
+
     /**
      * {@link ActDto#JSON_TYPE_IDENTIFIER}.
      */
     public static final String JSON_TYPE_IDENTIFIER = ActDto.JSON_TYPE_IDENTIFIER;
-    
+
     /**
      * {@link ActDto#JSON_MOVEMENT_NATURE}.
      */
@@ -109,7 +132,7 @@ public interface ActService extends SpecificService {
    * Identifiant du service d'annulation.
    */
   String CANCEL_IDENTIFIER = &quot;ANNULATION_ACTE&quot;;
-  
+
   /**
    * Chemin du service d'annulation.
    */
@@ -126,12 +149,12 @@ public interface ActService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response cancel(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de transmission.
    */
   String TRANSMIT_IDENTIFIER = &quot;TRANSMISSION_ACTE&quot;;
-  
+
   /**
    * Chemin du service de transmission.
    */
@@ -148,12 +171,12 @@ public interface ActService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response transmit(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de correction.
    */
   String CORRECT_IDENTIFIER = &quot;CORRECTION_ACTE&quot;;
-  
+
   /**
    * Chemin du service de correction.
    */
@@ -170,12 +193,12 @@ public interface ActService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response correct(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de rejet.
    */
   String REJECT_IDENTIFIER = &quot;REJET_ACTE&quot;;
-  
+
   /**
    * Chemin du service de rejet.
    */
@@ -192,12 +215,12 @@ public interface ActService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response reject(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de signature.
    */
   String SIGN_IDENTIFIER = &quot;SIGNATURE_ACTE&quot;;
-  
+
   /**
    * Chemin du service de signature.
    */
@@ -214,12 +237,12 @@ public interface ActService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response sign(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service d'application.
    */
   String APPLY_IDENTIFIER = &quot;APPLICATION_ACTE&quot;;
-  
+
   /**
    * Chemin du service d'application.
    */
@@ -236,12 +259,12 @@ public interface ActService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response apply(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de refus.
    */
   String REFUSE_IDENTIFIER = &quot;REFUS_ACTE&quot;;
-  
+
   /**
    * Chemin du service de refus.
    */
@@ -258,7 +281,7 @@ public interface ActService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response refuse(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
@@ -293,7 +316,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L296">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
+<span class="fc" id="L319">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActDto&gt; datas;
@@ -319,8 +342,7 @@ public interface ActService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir un acte&quot;)
+  @Operation(operationId = GET_ONE_IDENTIFIER, description = &quot;Ce service permet d'obtenir un acte&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = ActDto.class))})
   Response getOne(GetOneRequestDto request);
@@ -389,8 +411,51 @@ public interface ActService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L392">  class ActUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L414">  class ActUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+    /**
+     * {@link ActDto#getExerciseIdentifier()}.
+     */
+    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+    private String exerciseIdentifier;
 
+    /**
+     * {@link ActDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
+    /**
+     * {@link ActDto#getBudgetCategoryIdentifier()}.
+     */
+    @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
+    private String budgetCategoryIdentifier;
+
+    /**
+     * {@link ActDto#getMovementNature()}.
+     */
+    @JsonbProperty(JSON_MOVEMENT_NATURE)
+    private MovementNature movementNature;
+
+    /**
+     * {@link ActDto#JSON_EXERCISE_IDENTIFIER}.
+     */
+    public static final String JSON_EXERCISE_IDENTIFIER = ActDto.JSON_EXERCISE_IDENTIFIER;
+
+    /**
+     * {@link ActDto#JSON_BUDGET_CATEGORY_IDENTIFIER}.
+     */
+    public static final String JSON_BUDGET_CATEGORY_IDENTIFIER =
+        ActDto.JSON_BUDGET_CATEGORY_IDENTIFIER;
+
+    /**
+     * {@link ActDto#JSON_TYPE_IDENTIFIER}.
+     */
+    public static final String JSON_TYPE_IDENTIFIER = ActDto.JSON_TYPE_IDENTIFIER;
+
+    /**
+     * {@link ActDto#JSON_MOVEMENT_NATURE}.
+     */
+    public static final String JSON_MOVEMENT_NATURE = ActDto.JSON_MOVEMENT_NATURE;
   }
 
   /**

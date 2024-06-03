@@ -18,6 +18,18 @@ import lombok.Setter;
 <span class="fc" id="L18">public class ActDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
+   * Identifiant de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  private String exerciseIdentifier;
+  
+  /**
+   * Identifiant de catégorie de budget.
+   */
+  @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
+  private String budgetCategoryIdentifier;
+  
+  /**
    * Nature de mouvement.
    */
   @JsonbProperty(JSON_MOVEMENT_NATURE)
@@ -72,6 +84,16 @@ import lombok.Setter;
    * Identifiant java champ {@link ActDto#administrationStatusAsString}.
    */
   public static final String FIELD_ADMINISTRATION_STATUS_AS_STRING = &quot;administrationStatusAsString&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#budgetCategoryIdentifier}.
+   */
+  public static final String JSON_BUDGET_CATEGORY_IDENTIFIER = &quot;idCategorieBudget&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
   
   /**
    * Identifiant json champ {@link ActDto#movementNature}.
