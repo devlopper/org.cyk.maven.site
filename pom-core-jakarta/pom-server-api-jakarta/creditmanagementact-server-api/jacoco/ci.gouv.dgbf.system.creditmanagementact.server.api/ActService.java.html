@@ -2,7 +2,6 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
@@ -82,25 +81,28 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L88">  class ActCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L84">  class ActCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
     /**
-     * {@link ActDto#status}.
+     * {@link ActDto#getStatus()}.
      */
-    @JsonbProperty(JSON_STATUS)
-    private ActStatus status;
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
     
     /**
-     * Identifiant java champ {@link ActCreateRequestDto#status}.
+     * {@link ActDto#getMovementNature()}.
      */
-    public static final String FIELD_STATUS = &quot;status&quot;;
+    @JsonbProperty(JSON_MOVEMENT_NATURE)
+    private String movementNature;
     
     /**
-     * Identifiant json champ {@link ActCreateRequestDto#status}.
+     * {@link ActDto#JSON_TYPE_IDENTIFIER}.
      */
-    public static final String JSON_STATUS = ActDto.JSON_STATUS;
+    public static final String JSON_TYPE_IDENTIFIER = ActDto.JSON_TYPE_IDENTIFIER;
+    
+    /**
+     * {@link ActDto#JSON_MOVEMENT_NATURE}.
+     */
+    public static final String JSON_MOVEMENT_NATURE = ActDto.JSON_MOVEMENT_NATURE;
   }
 
   /**
@@ -163,7 +165,7 @@ public interface ActService extends SpecificService {
    * @param request requête
    * @return réponse
    */
-  @Path(TRANSMIT_PATH)
+  @Path(CORRECT_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
@@ -291,7 +293,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L294">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
+<span class="fc" id="L296">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActDto&gt; datas;
@@ -387,7 +389,7 @@ public interface ActService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L390">  class ActUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L392">  class ActUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

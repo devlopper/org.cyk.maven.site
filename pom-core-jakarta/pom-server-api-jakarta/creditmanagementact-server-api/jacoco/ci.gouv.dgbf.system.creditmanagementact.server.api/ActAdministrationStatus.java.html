@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActAdministrationStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'acte de gestion de crédits</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.creditmanagementact.server.api</a> &gt; <span class="el_source">ActAdministrationStatus.java</span></div><h1>ActAdministrationStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.creditmanagementact.server.api;
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les statuts d'administratrion de {@link ActDto}.
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L15">@Getter</span>
+public enum ActAdministrationStatus {
+
+  /**
+   * Acte désactivé.
+   */
+<span class="fc" id="L21">  DISABLED(ActAdministrationStatusCode.DISABLED, &quot;Désactivé&quot;),</span>
+  /**
+   * Acte activé.
+   */
+<span class="fc" id="L25">  ENABLED(ActAdministrationStatusCode.ENABLED, &quot;Activé&quot;),</span>
+  /**
+   * Acte annulé.
+   */
+<span class="fc" id="L29">  CANCELLED(ActAdministrationStatusCode.CANCELLED, &quot;Annulé&quot;)</span>
+
+  ;
+
+<span class="fc" id="L33">  private ActAdministrationStatus(String code, String name) {</span>
+<span class="fc" id="L34">    this.code = code;</span>
+<span class="fc" id="L35">    this.name = name;</span>
+<span class="fc" id="L36">  }</span>
+
+  private String code;
+  private String name;
+  private Set&lt;ActAdministrationStatus&gt; previous;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L44">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le statut d'administration par code.
+   *
+   * @param code code
+   * @return statut
+   */
+  public static ActAdministrationStatus getByCode(String code) {
+<span class="fc" id="L54">    return Stream.of(ActAdministrationStatus.values())</span>
+<span class="fc" id="L55">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L56">        .orElseThrow(IllegalArgumentException::new);</span>
+  }
+
+  static {
+<span class="fc" id="L60">    DISABLED.previous = Core.getSet(List.of(ENABLED));</span>
+<span class="fc" id="L61">    ENABLED.previous = Core.getSet(List.of(DISABLED));</span>
+<span class="fc" id="L62">    CANCELLED.previous = Core.getSet(List.of(ENABLED, DISABLED));</span>
+<span class="fc" id="L63">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

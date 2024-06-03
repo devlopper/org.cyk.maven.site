@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceMovementClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'acte de gestion de crédits</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.creditmanagementact.server.api</a> &gt; <span class="el_source">ResourceMovementClient.java</span></div><h1>ResourceMovementClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.creditmanagementact.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.creditmanagementact.server.api.ResourceMovementService.GetManyResponseDto;
+import ci.gouv.dgbf.system.creditmanagementact.server.api.ResourceMovementService.ResourceMovementCreateRequestDto;
+import ci.gouv.dgbf.system.creditmanagementact.server.api.ResourceMovementService.ResourceMovementUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link ResourceMovementService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L35">public class ResourceMovementClient extends AbstractClient&lt;ResourceMovementService&gt;</span>
+    implements GetByIdentifier&lt;ResourceMovementDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public ResourceMovementClient service(ResourceMovementService service) {
+<span class="fc" id="L41">    return (ResourceMovementClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(ResourceMovementCreateRequestDto request) {
+<span class="fc" id="L51">    return new CreateExecutor(ResourceMovementService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#create}.
+   *
+   * @param actIdentifier identifiant de l'acte
+   * @param resourceIdentifier identifiant de la ressource
+   * @param amount montant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String actIdentifier, String resourceIdentifier, long amount,
+      String auditWho, String auditSession) {
+<span class="fc" id="L67">    ResourceMovementCreateRequestDto request = new ResourceMovementCreateRequestDto();</span>
+<span class="fc" id="L68">    request.setActIdentifier(actIdentifier);</span>
+<span class="fc" id="L69">    request.setResourceIdentifier(resourceIdentifier);</span>
+<span class="fc" id="L70">    request.setAmount(amount);</span>
+<span class="fc" id="L71">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L72">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L73">    return create(request);</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public GetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L83">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+<span class="fc" id="L84">        ResourceMovementService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
+<span class="fc" id="L100">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L101">    request.setProjection(projection);</span>
+<span class="fc" id="L102">    request.setFilter(filter);</span>
+<span class="fc" id="L103">    request.setPage(page);</span>
+<span class="fc" id="L104">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L105">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L106">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ResourceMovementDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L116">    return new GetOneExecutor&lt;ResourceMovementDto&gt;(ResourceMovementDto.class,</span>
+<span class="fc" id="L117">        ResourceMovementService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ResourceMovementDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L131">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L132">    request.setProjection(projection);</span>
+<span class="fc" id="L133">    request.setFilter(filter);</span>
+<span class="fc" id="L134">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L135">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L136">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public ResourceMovementDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L146">    return new GetOneExecutor&lt;ResourceMovementDto&gt;(ResourceMovementDto.class,</span>
+        ResourceMovementService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L148">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public ResourceMovementDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L163">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L164">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L165">    request.setProjection(projection);</span>
+<span class="fc" id="L166">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L167">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L168">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(ResourceMovementUpdateRequestDto request) {
+<span class="fc" id="L178">    return new IdentifiableExecutor(ResourceMovementService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L179">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#update}.
+   *
+   * @param identifier identifiant
+   * @param actIdentifier identifiant de l'acte
+   * @param resourceIdentifier identifiant de la ressource
+   * @param amount montant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(String identifier, String actIdentifier,
+      String resourceIdentifier, long amount, String auditWho, String auditSession) {
+<span class="fc" id="L195">    ResourceMovementUpdateRequestDto request = new ResourceMovementUpdateRequestDto();</span>
+<span class="fc" id="L196">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L197">    request.setActIdentifier(actIdentifier);</span>
+<span class="fc" id="L198">    request.setResourceIdentifier(resourceIdentifier);</span>
+<span class="fc" id="L199">    request.setAmount(amount);</span>
+<span class="fc" id="L200">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L201">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L202">    return update(request);</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L212">    return new IdentifiableExecutor(ResourceMovementService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L213">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link ResourceMovementService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L227">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L228">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L229">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L230">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L231">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

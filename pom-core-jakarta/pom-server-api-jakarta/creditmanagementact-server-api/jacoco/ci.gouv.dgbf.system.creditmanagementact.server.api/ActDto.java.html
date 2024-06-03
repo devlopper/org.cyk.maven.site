@@ -18,16 +18,40 @@ import lombok.Setter;
 <span class="fc" id="L18">public class ActDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
+   * Nature de mouvement.
+   */
+  @JsonbProperty(JSON_MOVEMENT_NATURE)
+  private MovementNature movementNature;
+  
+  /**
+   * Identifiant {@link ActTypeDto}.
+   */
+  @JsonbProperty(JSON_TYPE_IDENTIFIER)
+  private String typeIdentifier;
+  
+  /**
    * Statut de l'acte.
    */
   @JsonbProperty(JSON_STATUS)
   private ActStatus status;
   
   /**
-   * Statut e l'acte au format chaine de caractère.
+   * Statut de l'acte au format chaine de caractère.
    */
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
+  
+  /**
+   * Statut d'administration de l'acte.
+   */
+  @JsonbProperty(JSON_ADMINISTRATION_STATUS)
+  private ActAdministrationStatus administrationStatus;
+  
+  /**
+   * Statut d'administration de l'acte au format chaine de caractère.
+   */
+  @JsonbProperty(JSON_ADMINISTRATION_STATUS_AS_STRING)
+  private String administrationStatusAsString;
   
   /**
    * Identifiant java champ {@link ActDto#status}.
@@ -40,6 +64,26 @@ import lombok.Setter;
   public static final String FIELD_STATUS_AS_STRING = &quot;statusAsString&quot;;
   
   /**
+   * Identifiant java champ {@link ActDto#administrationStatus}.
+   */
+  public static final String FIELD_ADMINISTRATION_STATUS = &quot;administrationStatus&quot;;
+  
+  /**
+   * Identifiant java champ {@link ActDto#administrationStatusAsString}.
+   */
+  public static final String FIELD_ADMINISTRATION_STATUS_AS_STRING = &quot;administrationStatusAsString&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#movementNature}.
+   */
+  public static final String JSON_MOVEMENT_NATURE = &quot;natureMouvement&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#typeIdentifier}.
+   */
+  public static final String JSON_TYPE_IDENTIFIER = &quot;idType&quot;;
+  
+  /**
    * Identifiant json champ {@link ActDto#status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
@@ -48,6 +92,16 @@ import lombok.Setter;
    * Identifiant json champ {@link ActDto#statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#administrationStatus}.
+   */
+  public static final String JSON_ADMINISTRATION_STATUS = &quot;statutAdministration&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#administrationStatusAsString}.
+   */
+  public static final String JSON_ADMINISTRATION_STATUS_AS_STRING = &quot;statutAdministrationChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
