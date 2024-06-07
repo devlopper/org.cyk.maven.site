@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractExpenditureOrResourceItemFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de classification budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryclassification.server.api</a> &gt; <span class="el_source">AbstractExpenditureOrResourceItemFilter.java</span></div><h1>AbstractExpenditureOrResourceItemFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryclassification.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,102 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-<span class="fc" id="L15">public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractIdentifiableFilter {</span>
-  
+public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Identifiant de {@link ExerciseDto}.
+   */
+  String exerciseIdentifier;
+
+  /**
+   * Identifiant de {@link EconomicNatureDto}.
+   */
+  String economicNatureIdentifier;
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   */
+  protected AbstractExpenditureOrResourceItemFilter() {
+<span class="fc" id="L32">    super();</span>
+<span class="fc" id="L33">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   *
+   * @param dto filtre
+   */
+  protected AbstractExpenditureOrResourceItemFilter(FilterDto dto) {
+<span class="fc" id="L41">    super(dto);</span>
+<span class="fc" id="L42">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L46">    super.doInitialize(filter);</span>
+<span class="fc" id="L47">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
+<span class="fc" id="L48">    economicNatureIdentifier = getEconomicNatureIdentifier(filter);</span>
+<span class="fc" id="L49">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L53">    super.toDto(filter);</span>
+<span class="fc" id="L54">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
+<span class="fc" id="L55">    setEconomicNatureIdentifier(filter, economicNatureIdentifier);</span>
+<span class="fc" id="L56">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setExerciseIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L65">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L66">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L67">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link ExerciseDto}
+   */
+  public static String getExerciseIdentifier(FilterDto filter) {
+<span class="fc" id="L76">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link EconomicNatureDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setEconomicNatureIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L86">    set(filter, JSON_ECONOMIC_NATURE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L87">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L88">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link EconomicNatureDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link EconomicNatureDto}
+   */
+  public static String getEconomicNatureIdentifier(FilterDto filter) {
+<span class="fc" id="L97">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ECONOMIC_NATURE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Identifiant json champ {@link AbstractExpenditureOrResourceItemFilter#exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER =
+      AbstractExpenditureOrResourceItemDto.JSON_EXERCISE_IDENTIFIER;
+
+  /**
+   * Identifiant json champ
+   * {@link AbstractExpenditureOrResourceItemFilter#economicNatureIdentifier}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_IDENTIFIER =
+      AbstractExpenditureOrResourceItemDto.JSON_ECONOMIC_NATURE_IDENTIFIER;
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
