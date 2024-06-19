@@ -89,10 +89,10 @@ public interface ActService extends SpecificService {
     private String exerciseIdentifier;
 
     /**
-     * {@link ActDto#getStatus()}.
+     * {@link ActDto#getCategoryIdentifier()}.
      */
-    @JsonbProperty(JSON_TYPE_IDENTIFIER)
-    private String typeIdentifier;
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String categoryIdentifier;
 
     /**
      * {@link ActDto#getBudgetCategoryIdentifier()}.
@@ -118,9 +118,9 @@ public interface ActService extends SpecificService {
         ActDto.JSON_BUDGET_CATEGORY_IDENTIFIER;
 
     /**
-     * {@link ActDto#JSON_TYPE_IDENTIFIER}.
+     * {@link ActDto#JSON_CATEGORY_IDENTIFIER}.
      */
-    public static final String JSON_TYPE_IDENTIFIER = ActDto.JSON_TYPE_IDENTIFIER;
+    public static final String JSON_CATEGORY_IDENTIFIER = ActDto.JSON_CATEGORY_IDENTIFIER;
 
     /**
      * {@link ActDto#JSON_MOVEMENT_NATURE}.
@@ -419,9 +419,9 @@ public interface ActService extends SpecificService {
     private String exerciseIdentifier;
 
     /**
-     * {@link ActDto#getStatus()}.
+     * {@link ActDto#getCategoryIdentifier()}.
      */
-    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String typeIdentifier;
 
     /**
@@ -448,9 +448,9 @@ public interface ActService extends SpecificService {
         ActDto.JSON_BUDGET_CATEGORY_IDENTIFIER;
 
     /**
-     * {@link ActDto#JSON_TYPE_IDENTIFIER}.
+     * {@link ActDto#JSON_CATEGORY_IDENTIFIER}.
      */
-    public static final String JSON_TYPE_IDENTIFIER = ActDto.JSON_TYPE_IDENTIFIER;
+    public static final String JSON_CATEGORY_IDENTIFIER = ActDto.JSON_CATEGORY_IDENTIFIER;
 
     /**
      * {@link ActDto#JSON_MOVEMENT_NATURE}.

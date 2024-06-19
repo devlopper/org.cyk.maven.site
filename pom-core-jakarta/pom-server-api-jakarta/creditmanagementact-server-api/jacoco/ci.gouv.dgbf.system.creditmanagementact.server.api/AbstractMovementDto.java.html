@@ -24,10 +24,22 @@ import lombok.Setter;
   private String actIdentifier;
   
   /**
+   * Représentation en chaine de caractère de {@link ActDto}.
+   */
+  @JsonbProperty(JSON_ACT_AS_STRING)
+  private String actAsString;
+  
+  /**
    * montant.
    */
   @JsonbProperty(JSON_AMOUNT)
   private Long amount;
+  
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private String amountAsString;
   
   /**
    * Identifiant json {@link AbstractMovementDto#actIdentifier}.
@@ -35,8 +47,18 @@ import lombok.Setter;
   public static final String JSON_ACT_IDENTIFIER = &quot;idActe&quot;;
   
   /**
+   * Identifiant json {@link AbstractMovementDto#actAsString}.
+   */
+  public static final String JSON_ACT_AS_STRING = &quot;acteChaine&quot;;
+  
+  /**
    * Identifiant json {@link AbstractMovementDto#amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
+  
+  /**
+   * Identifiant json {@link AbstractMovementDto#amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

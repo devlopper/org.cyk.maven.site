@@ -24,10 +24,22 @@ import lombok.Setter;
   private String exerciseIdentifier;
   
   /**
-   * Identifiant de catégorie de budget.
+   * Représentation en chaine de caractères de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  private String exerciseAsString;
+  
+  /**
+   * Identifiant de la catégorie de budget.
    */
   @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
   private String budgetCategoryIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de la catégorie de budget.
+   */
+  @JsonbProperty(JSON_BUDGET_CATEGORY_AS_STRING)
+  private String budgetCategoryAsString;
   
   /**
    * Nature de mouvement.
@@ -36,10 +48,22 @@ import lombok.Setter;
   private MovementNature movementNature;
   
   /**
-   * Identifiant {@link ActTypeDto}.
+   * Représentation en chaine de caractères de la nature de mouvement.
    */
-  @JsonbProperty(JSON_TYPE_IDENTIFIER)
-  private String typeIdentifier;
+  @JsonbProperty(JSON_MOVEMENT_NATURE_AS_STRING)
+  private String movementNatureAsString;
+  
+  /**
+   * Identifiant de la catégorie de l'acte.
+   */
+  @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+  private String categoryIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de la catégorie.
+   */
+  @JsonbProperty(JSON_CATEGORY_AS_STRING)
+  private String categoryAsString;
   
   /**
    * Statut de l'acte.
@@ -91,9 +115,19 @@ import lombok.Setter;
   public static final String JSON_BUDGET_CATEGORY_IDENTIFIER = &quot;idCategorieBudget&quot;;
   
   /**
+   * Identifiant json champ {@link ActDto#budgetCategoryAsString}.
+   */
+  public static final String JSON_BUDGET_CATEGORY_AS_STRING = &quot;categorieBudgetChaine&quot;;
+  
+  /**
    * Identifiant json champ {@link ActDto#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = &quot;exerciceChaine&quot;;
   
   /**
    * Identifiant json champ {@link ActDto#movementNature}.
@@ -101,9 +135,19 @@ import lombok.Setter;
   public static final String JSON_MOVEMENT_NATURE = &quot;natureMouvement&quot;;
   
   /**
-   * Identifiant json champ {@link ActDto#typeIdentifier}.
+   * Identifiant json champ {@link ActDto#movementNatureAsString}.
    */
-  public static final String JSON_TYPE_IDENTIFIER = &quot;idType&quot;;
+  public static final String JSON_MOVEMENT_NATURE_AS_STRING = &quot;natureMouvementChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#categoryIdentifier}.
+   */
+  public static final String JSON_CATEGORY_IDENTIFIER = &quot;idCategorie&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#categoryAsString}.
+   */
+  public static final String JSON_CATEGORY_AS_STRING = &quot;categorieChaine&quot;;
   
   /**
    * Identifiant json champ {@link ActDto#status}.
