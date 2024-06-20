@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ci.gouv.dgbf.system.gateway.server.api"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ci.gouv.dgbf.system.gateway.server.api"},{"l":"ci.gouv.dgbf.system.gateway.server.api.drh"}];updateSearchResults();

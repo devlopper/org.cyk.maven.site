@@ -24,14 +24,52 @@ import lombok.Setter;
   private String exerciseIdentifier;
   
   /**
+   * Représentation en chaine de caractères de l'exercice budgétaire.
+   */
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  private String exerciseAsString;
+  
+  /**
+   * Identifiant de la collectivité.
+   */
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+  private String localAuthorityIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de la collectivité.
+   */
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
+  private String localAuthorityAsString;
+  
+  /**
    * Identifiant java {@link BudgetDto#exerciseIdentifier}.
    */
   public static final String FIELD_EXERCISE_IDENTIFIER = &quot;exerciseIdentifier&quot;;
   
   /**
+   * Identifiant java {@link BudgetDto#localAuthorityIdentifier}.
+   */
+  public static final String FIELD_LOCAL_AUTHORITY_IDENTIFIER = &quot;localAuthorityIdentifier&quot;;
+  
+  /**
    * Identifiant json {@link BudgetDto#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
+  
+  /**
+   * Identifiant json {@link BudgetDto#exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = &quot;exerciceChaine&quot;;
+  
+  /**
+   * Identifiant json {@link BudgetDto#localAuthorityIdentifier}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER = &quot;idCollectivite&quot;;
+  
+  /**
+   * Identifiant json {@link BudgetDto#localAuthorityAsString}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_AS_STRING = &quot;collectiviteChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.

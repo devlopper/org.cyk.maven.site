@@ -24,10 +24,22 @@ import lombok.Setter;
   private String natureIdentifier;
   
   /**
+   * Représentation en chaine de caractères {@link ActivityNatureDto}.
+   */
+  @JsonbProperty(JSON_NATURE_AS_STRING)
+  private String natureAsString;
+  
+  /**
    * Identifiant {@link EconomicAccountDto}.
    */
   @JsonbProperty(JSON_ECONOMIC_ACCOUNT_IDENTIFIER)
   private String economicAccountIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères {@link EconomicAccountDto}.
+   */
+  @JsonbProperty(JSON_ECONOMIC_ACCOUNT_AS_STRING)
+  private String economicAccountAsString;
   
   /**
    * Identifiant {@link WealthAccountDto}.
@@ -36,10 +48,22 @@ import lombok.Setter;
   private String wealthAccountIdentifier;
   
   /**
+   * Représentation en chaine de caractères {@link WealthAccountDto}.
+   */
+  @JsonbProperty(JSON_WEALTH_ACCOUNT_AS_STRING)
+  private String wealthAccountAsString;
+  
+  /**
    * Identifiant {@link ServiceDto}.
    */
   @JsonbProperty(JSON_SERVICE_IDENTIFIER)
   private String serviceIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères {@link ServiceDto}.
+   */
+  @JsonbProperty(JSON_SERVICE_AS_STRING)
+  private String serviceAsString;
   
   /**
    * Identifiant de la localité.
@@ -48,16 +72,34 @@ import lombok.Setter;
   private String localityIdentifier;
   
   /**
+   * Représentation en chaine de caractères de la localité.
+   */
+  @JsonbProperty(JSON_LOCALITY_AS_STRING)
+  private String localityAsString;
+  
+  /**
    * Identifiant du compte fonctionnel.
    */
   @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
   private String functionalAccountIdentifier;
   
   /**
+   * Représentation en chaine de caractères du compte fonctionnel.
+   */
+  @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_AS_STRING)
+  private String functionalAccountAsString;
+  
+  /**
    * Montant.
    */
   @JsonbProperty(JSON_AMOUNT)
   private Long amount;
+  
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private Long amountAsString;
   
   /**
    * Identifiant java {@link ActivityDto#natureIdentifier}.
@@ -95,9 +137,19 @@ import lombok.Setter;
   public static final String JSON_NATURE_IDENTIFIER = &quot;idNature&quot;;
   
   /**
+   * Identifiant json {@link ActivityDto#natureAsString}.
+   */
+  public static final String JSON_NATURE_AS_STRING = &quot;natureChaine&quot;;
+  
+  /**
    * Identifiant json {@link ActivityDto#economicAccountIdentifier}.
    */
   public static final String JSON_ECONOMIC_ACCOUNT_IDENTIFIER = &quot;idCompteEconomique&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#economicAccountAsString}.
+   */
+  public static final String JSON_ECONOMIC_ACCOUNT_AS_STRING = &quot;compteEconomiqueChaine&quot;;
   
   /**
    * Identifiant json {@link ActivityDto#wealthAccountIdentifier}.
@@ -105,9 +157,19 @@ import lombok.Setter;
   public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER = &quot;idComptePatrimonial&quot;;
   
   /**
+   * Identifiant json {@link ActivityDto#wealthAccountAsString}.
+   */
+  public static final String JSON_WEALTH_ACCOUNT_AS_STRING = &quot;comptePatrimonialChaine&quot;;
+  
+  /**
    * Identifiant json {@link ActivityDto#serviceIdentifier}.
    */
   public static final String JSON_SERVICE_IDENTIFIER = &quot;idService&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#serviceAsString}.
+   */
+  public static final String JSON_SERVICE_AS_STRING = &quot;serviceChaine&quot;;
   
   /**
    * Identifiant json {@link ActivityDto#localityIdentifier}.
@@ -115,14 +177,29 @@ import lombok.Setter;
   public static final String JSON_LOCALITY_IDENTIFIER = &quot;idLocalite&quot;;
   
   /**
+   * Identifiant json {@link ActivityDto#localityAsString}.
+   */
+  public static final String JSON_LOCALITY_AS_STRING = &quot;localiteChaine&quot;;
+  
+  /**
    * Identifiant json {@link ActivityDto#functionalAccountIdentifier}.
    */
   public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER = &quot;idCompteFonctionnel&quot;;
   
   /**
+   * Identifiant json {@link ActivityDto#functionalAccountAsString}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_AS_STRING = &quot;compteFonctionnelChaine&quot;;
+  
+  /**
    * Identifiant json {@link ActivityDto#amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.

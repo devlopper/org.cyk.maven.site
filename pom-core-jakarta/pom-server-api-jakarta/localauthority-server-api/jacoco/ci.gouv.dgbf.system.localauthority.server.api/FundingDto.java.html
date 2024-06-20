@@ -20,8 +20,14 @@ import lombok.Setter;
   /**
    * Identifiant {@link FundingModeDto}.
    */
-  @JsonbProperty(JSON_FUNDING_MODE_IDENTIFIER)
-  private String fundingModeIdentifier;
+  @JsonbProperty(JSON_MODE_IDENTIFIER)
+  private String modeIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link FundingModeDto}.
+   */
+  @JsonbProperty(JSON_MODE_AS_STRING)
+  private String modeAsString;
   
   /**
    * Identifiant {@link LessorDto}.
@@ -30,10 +36,40 @@ import lombok.Setter;
   private String lessorIdentifier;
   
   /**
+   * Représentation en chaine de caractères de {@link LessorDto}.
+   */
+  @JsonbProperty(JSON_LESSOR_AS_STRING)
+  private String lessorAsString;
+  
+  /**
+   * Identifiant {@link BudgetActivityDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+  private String budgetActivityIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_AS_STRING)
+  private String budgetAsString;
+  
+  /**
+   * Représentation en chaine de caractères de {@link ActivityDto}.
+   */
+  @JsonbProperty(JSON_ACTIVITY_AS_STRING)
+  private String activityAsString;
+  
+  /**
    * Montant 1.
    */
   @JsonbProperty(JSON_AMOUNT_1)
   private Long amount1;
+  
+  /**
+   * Représentation en chaine de caractères de Montant 1.
+   */
+  @JsonbProperty(JSON_AMOUNT_1_AS_STRING)
+  private Long amount1AsString;
   
   /**
    * Montant 2.
@@ -42,20 +78,37 @@ import lombok.Setter;
   private Long amount2;
   
   /**
+   * Représentation en chaine de caractères de Montant 2.
+   */
+  @JsonbProperty(JSON_AMOUNT_2_AS_STRING)
+  private Long amount2AsString;
+  
+  /**
    * Montant 3.
    */
   @JsonbProperty(JSON_AMOUNT_3)
   private Long amount3;
   
   /**
-   * Identifiant java {@link FundingDto#fundingModeIdentifier}.
+   * Représentation en chaine de caractères de Montant 3.
    */
-  public static final String FIELD_FUNDING_MODE_IDENTIFIER = &quot;fundingModeIdentifier&quot;;
+  @JsonbProperty(JSON_AMOUNT_3_AS_STRING)
+  private Long amount3AsString;
+  
+  /**
+   * Identifiant java {@link FundingDto#modeIdentifier}.
+   */
+  public static final String FIELD_MODE_IDENTIFIER = &quot;modeIdentifier&quot;;
   
   /**
    * Identifiant java {@link FundingDto#lessorIdentifier}.
    */
   public static final String FIELD_LESSOR_IDENTIFIER = &quot;lessorIdentifier&quot;;
+  
+  /**
+   * Identifiant java {@link FundingDto#budgetActivityIdentifier}.
+   */
+  public static final String FIELD_BUDGET_ACTIVITY_IDENTIFIER = &quot;budgetActivityIdentifier&quot;;
   
   /**
    * Identifiant java {@link FundingDto#amount1}.
@@ -73,9 +126,14 @@ import lombok.Setter;
   public static final String FIELD_AMOUNT_3 = &quot;amount3&quot;;
   
   /**
-   * Identifiant json {@link FundingDto#fundingModeIdentifier}.
+   * Identifiant json {@link FundingDto#modeIdentifier}.
    */
-  public static final String JSON_FUNDING_MODE_IDENTIFIER = &quot;idModeFinancement&quot;;
+  public static final String JSON_MODE_IDENTIFIER = &quot;idMode&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#modeAsString}.
+   */
+  public static final String JSON_MODE_AS_STRING = &quot;modeChaine&quot;;
   
   /**
    * Identifiant json {@link FundingDto#lessorIdentifier}.
@@ -83,9 +141,24 @@ import lombok.Setter;
   public static final String JSON_LESSOR_IDENTIFIER = &quot;idBailleur&quot;;
   
   /**
+   * Identifiant json {@link FundingDto#lessorAsString}.
+   */
+  public static final String JSON_LESSOR_AS_STRING = &quot;bailleurChaine&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#budgetActivityIdentifier}.
+   */
+  public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = &quot;idActiviteBudget&quot;;
+  
+  /**
    * Identifiant json {@link FundingDto#amount1}.
    */
   public static final String JSON_AMOUNT_1 = &quot;montant1&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#amount1AsString}.
+   */
+  public static final String JSON_AMOUNT_1_AS_STRING = &quot;montant1Chaine&quot;;
   
   /**
    * Identifiant json {@link FundingDto#amount2}.
@@ -93,9 +166,29 @@ import lombok.Setter;
   public static final String JSON_AMOUNT_2 = &quot;montant2&quot;;
   
   /**
+   * Identifiant json {@link FundingDto#amount2AsString}.
+   */
+  public static final String JSON_AMOUNT_2_AS_STRING = &quot;montant2Chaine&quot;;
+  
+  /**
    * Identifiant json {@link FundingDto#amount3}.
    */
   public static final String JSON_AMOUNT_3 = &quot;montant3&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#amount3AsString}.
+   */
+  public static final String JSON_AMOUNT_3_AS_STRING = &quot;montant3Chaine&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#budgetAsString}.
+   */
+  public static final String JSON_BUDGET_AS_STRING = &quot;budgetChaine&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#activityAsString}.
+   */
+  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.

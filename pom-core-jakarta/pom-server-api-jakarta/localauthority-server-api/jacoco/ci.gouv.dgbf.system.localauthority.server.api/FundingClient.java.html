@@ -55,7 +55,7 @@ import lombok.experimental.Accessors;
   /**
    * {@link FundingService#create}.
    *
-   * @param fundingModeIdentifier identifiant mode de financement
+   * @param modeIdentifier identifiant mode de financement
    * @param lessoridentifier identifiant bailleur
    * @param amount1 montant 1
    * @param amount2 montant 2
@@ -64,10 +64,10 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String fundingModeIdentifier, String lessoridentifier,
+  public CreateResponseDto create(String modeIdentifier, String lessoridentifier,
       long amount1, long amount2, long amount3, String auditWho, String auditSession) {
 <span class="fc" id="L69">    FundingCreateRequestDto request = new FundingCreateRequestDto();</span>
-<span class="fc" id="L70">    request.setFundingModeIdentifier(fundingModeIdentifier);</span>
+<span class="fc" id="L70">    request.setModeIdentifier(modeIdentifier);</span>
 <span class="fc" id="L71">    request.setLessorIdentifier(lessoridentifier);</span>
 <span class="fc" id="L72">    request.setAmount1(amount1);</span>
 <span class="fc" id="L73">    request.setAmount2(amount2);</span>

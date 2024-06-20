@@ -89,6 +89,12 @@ public interface BudgetService extends SpecificService {
     private String exerciseIdentifier;
 
     /**
+     * {@link BudgetDto#localAuthorityIdentifier}.
+     */
+    @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+    private String localAuthorityIdentifier;
+
+    /**
      * {@link BudgetDto#FIELD_EXERCISE_IDENTIFIER}.
      */
     public static final String FIELD_EXERCISE_IDENTIFIER = &quot;exerciseIdentifier&quot;;
@@ -97,6 +103,12 @@ public interface BudgetService extends SpecificService {
      * {@link BudgetDto#JSON_EXERCISE_IDENTIFIER}.
      */
     public static final String JSON_EXERCISE_IDENTIFIER = BudgetDto.JSON_EXERCISE_IDENTIFIER;
+
+    /**
+     * {@link BudgetDto#JSON_LOCAL_AUTHORITY_IDENTIFIER}.
+     */
+    public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+        BudgetDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
   }
 
   /**
@@ -133,7 +145,7 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L136">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
+<span class="fc" id="L148">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;BudgetDto&gt; datas;
@@ -229,7 +241,7 @@ public interface BudgetService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L232">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L244">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

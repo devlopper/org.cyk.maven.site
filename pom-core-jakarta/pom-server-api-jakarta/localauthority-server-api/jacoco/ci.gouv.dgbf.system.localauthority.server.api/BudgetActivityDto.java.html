@@ -24,10 +24,22 @@ import lombok.Setter;
   private String budgetIdentifier;
   
   /**
+   * Représentation en chaine de caractères de {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_AS_STRING)
+  private String budgetAsString;
+  
+  /**
    * Identifiant {@link ActivityDto}.
    */
   @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
   private String activityIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link ActivityDto}.
+   */
+  @JsonbProperty(JSON_ACTIVITY_AS_STRING)
+  private String activityAsString;
   
   /**
    * Montant.
@@ -67,9 +79,19 @@ import lombok.Setter;
   public static final String JSON_BUDGET_IDENTIFIER = &quot;idBudget&quot;;
   
   /**
+   * Identifiant json {@link BudgetActivityDto#budgetAsString}.
+   */
+  public static final String JSON_BUDGET_AS_STRING = &quot;budgetChaine&quot;;
+  
+  /**
    * Identifiant json {@link BudgetActivityDto#activityIdentifier}.
    */
   public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
+  
+  /**
+   * Identifiant json {@link BudgetActivityDto#activityAsString}.
+   */
+  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
   
   /**
    * Identifiant json {@link BudgetActivityDto#amount}.

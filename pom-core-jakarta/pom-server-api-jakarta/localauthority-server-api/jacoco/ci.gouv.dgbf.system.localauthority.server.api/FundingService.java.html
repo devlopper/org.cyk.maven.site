@@ -82,16 +82,22 @@ public interface FundingService extends SpecificService {
   @Setter
 <span class="fc" id="L83">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
     /**
-     * {@link FundingDto#getFundingModeIdentifier()}.
+     * {@link FundingDto#getModeIdentifier()}.
      */
-    @JsonbProperty(JSON_FUNDING_MODE_IDENTIFIER)
-    private String fundingModeIdentifier;
+    @JsonbProperty(JSON_MODE_IDENTIFIER)
+    private String modeIdentifier;
 
     /**
      * {@link FundingDto#getLessorIdentifier()}.
      */
     @JsonbProperty(JSON_LESSOR_IDENTIFIER)
     private String lessorIdentifier;
+
+    /**
+     * {@link FundingDto#getBudgetActivityIdentifier()}.
+     */
+    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    private String budgetActivityIdentifier;
 
     /**
      * {@link FundingDto#getAmount1()}.
@@ -112,15 +118,21 @@ public interface FundingService extends SpecificService {
     private long amount3;
 
     /**
-     * {@link FundingDto#JSON_FUNDING_MODE_IDENTIFIER}.
+     * {@link FundingDto#JSON_MODE_IDENTIFIER}.
      */
-    public static final String JSON_FUNDING_MODE_IDENTIFIER =
-        FundingDto.JSON_FUNDING_MODE_IDENTIFIER;
+    public static final String JSON_MODE_IDENTIFIER =
+        FundingDto.JSON_MODE_IDENTIFIER;
 
     /**
      * {@link FundingDto#JSON_LESSOR_IDENTIFIER}.
      */
     public static final String JSON_LESSOR_IDENTIFIER = FundingDto.JSON_LESSOR_IDENTIFIER;
+
+    /**
+     * {@link FundingDto#JSON_BUDGET_ACTIVITY_IDENTIFIER}.
+     */
+    public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER =
+        FundingDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
 
     /**
      * {@link FundingDto#JSON_AMOUNT_1}.
@@ -172,7 +184,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L175">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L187">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -268,7 +280,7 @@ public interface FundingService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L271">  class FundingUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L283">  class FundingUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 
