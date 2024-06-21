@@ -48,6 +48,12 @@ import lombok.Setter;
   private Long amount;
   
   /**
+   * Représentation en chaine de caractères de Montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private String amountAsString;
+  
+  /**
    * Justification.
    */
   @JsonbProperty(JSON_JUSTIFICATION)
@@ -97,6 +103,11 @@ import lombok.Setter;
    * Identifiant json {@link BudgetActivityDto#amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
+  
+  /**
+   * Identifiant json {@link BudgetActivityDto#amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
   
   /**
    * Identifiant json {@link BudgetActivityDto#justification}.

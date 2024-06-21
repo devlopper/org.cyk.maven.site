@@ -103,13 +103,13 @@ public interface BudgetActivityService extends SpecificService {
      */
     @JsonbProperty(JSON_AMOUNT)
     private Long amount;
-    
+
     /**
      * {@link BudgetActivityDto#getJustification()}.
      */
     @JsonbProperty(JSON_JUSTIFICATION)
     private String justification;
-    
+
     /**
      * {@link BudgetActivityDto#JSON_BUDGET_IDENTIFIER}.
      */
@@ -118,13 +118,14 @@ public interface BudgetActivityService extends SpecificService {
     /**
      * {@link BudgetActivityDto#JSON_ACTIVITY_IDENTIFIER}.
      */
-    public static final String JSON_ACTIVITY_IDENTIFIER = BudgetActivityDto.JSON_BUDGET_IDENTIFIER;
-    
+    public static final String JSON_ACTIVITY_IDENTIFIER =
+        BudgetActivityDto.JSON_ACTIVITY_IDENTIFIER;
+
     /**
      * {@link BudgetActivityDto#JSON_AMOUNT}.
      */
     public static final String JSON_AMOUNT = BudgetActivityDto.JSON_AMOUNT;
-    
+
     /**
      * {@link BudgetActivityDto#JSON_JUSTIFICATION}.
      */
@@ -165,7 +166,7 @@ public interface BudgetActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L168">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetActivityDto&gt; {</span>
+<span class="fc" id="L169">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;BudgetActivityDto&gt; datas;
@@ -261,7 +262,7 @@ public interface BudgetActivityService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L264">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L265">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 
