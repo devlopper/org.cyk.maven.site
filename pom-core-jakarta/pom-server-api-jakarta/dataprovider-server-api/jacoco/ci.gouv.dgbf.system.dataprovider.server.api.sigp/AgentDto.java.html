@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AgentDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de fournisseur de données</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.dataprovider.server.api.sigp</a> &gt; <span class="el_source">AgentDto.java</span></div><h1>AgentDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.dataprovider.server.api.sigp;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un agent.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class AgentDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+  
+  /**
+   * Nom.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME)
+  private String firstName;
+
+  /**
+   * Prénoms.
+   */
+  @JsonbProperty(value = JSON_LAST_NAMES)
+  private String lastNames;
+
+  /**
+   * Nom de jeune fille.
+   */
+  @JsonbProperty(value = JSON_MAIDEN_NAME)
+  private String maidenName;
+  
+  /**
+   * Nom et prénoms du conjoint.
+   */
+  @JsonbProperty(value = JSON_SPOUSE_NAME)
+  private String spouseName;
+  
+  /**
+   * Le genre.
+   */
+  @JsonbProperty(value = JSON_GENDER)
+  private String gender;
+
+  /**
+   * Identifiant java champ {@link AgentDto#registrationNumber}.
+   */
+  public static final String FIELD_REGISTRATION_NUMBER = &quot;registrationNumber&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#firstName}.
+   */
+  public static final String FIELD_FIRST_NAME = &quot;firstName&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#lastNames}.
+   */
+  public static final String FIELD_LAST_NAMES = &quot;lastNames&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#maidenName}.
+   */
+  public static final String FIELD_MAIDEN_NAME = &quot;maidenName&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#spouseName}.
+   */
+  public static final String FIELD_SPOUSE_NAME = &quot;spouseName&quot;;
+  
+  /**
+   * Identifiant java champ {@link AgentDto#gender}.
+   */
+  public static final String FIELD_GENDER = &quot;gender&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;agent_mat&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#firstName}.
+   */
+  public static final String JSON_FIRST_NAME = &quot;agent_nom&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#lastNames}.
+   */
+  public static final String JSON_LAST_NAMES = &quot;agent_prenoms&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#maidenName}.
+   */
+  public static final String JSON_MAIDEN_NAME = &quot;agent_nom_jf&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#spouseName}.
+   */
+  public static final String JSON_SPOUSE_NAME = &quot;agent_conjoint&quot;;
+  
+  /**
+   * Identifiant json champ {@link AgentDto#gender}.
+   */
+  public static final String JSON_GENDER = &quot;agent_genre&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;agent&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
