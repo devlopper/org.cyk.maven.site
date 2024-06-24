@@ -17,83 +17,83 @@ import lombok.Setter;
 <span class="fc" id="L17">public class ExpenditureMovementDto extends AbstractMovementDto {</span>
 
   /**
-   * Identifiant de la dépense.
+   * Identifiant du poste de dépense.
    */
-  @JsonbProperty(JSON_EXPENDITURE_IDENTIFIER)
-  private String expenditureIdentifier;
+  @JsonbProperty(JSON_ITEM_IDENTIFIER)
+  private String itemIdentifier;
 
   /**
-   * Représentation de la dépense en chaine de caractères.
+   * Représentation du poste de dépense en chaine de caractères.
    */
-  @JsonbProperty(JSON_EXPENDITURE_AS_STRING)
-  private String expenditureAsString;
+  @JsonbProperty(JSON_ITEM_AS_STRING)
+  private String itemAsString;
 
   /**
-   * Représentation de l'exercice de la dépense en chaine de caractères.
+   * Représentation de l'exercice du poste de dépense en chaine de caractères.
    */
-  @JsonbProperty(JSON_EXPENDITURE_EXERCISE_AS_STRING)
-  private String expenditureExerciseAsString;
+  @JsonbProperty(JSON_ITEM_EXERCISE_AS_STRING)
+  private String itemExerciseAsString;
 
   /**
-   * Représentation de l'activité de la dépense en chaine de caractères.
+   * Représentation de l'activité du poste de dépense en chaine de caractères.
    */
-  @JsonbProperty(JSON_EXPENDITURE_ACTIVITY_AS_STRING)
-  private String expenditureActivityAsString;
+  @JsonbProperty(JSON_ITEM_ACTIVITY_AS_STRING)
+  private String itemActivityAsString;
 
   /**
-   * Représentation de la nature économique de la dépense en chaine de caractères.
+   * Représentation de la nature économique du poste de dépense en chaine de caractères.
    */
-  @JsonbProperty(JSON_EXPENDITURE_ECONOMIC_NATURE_AS_STRING)
-  private String expenditureEconomicNatureAsString;
+  @JsonbProperty(JSON_ITEM_ECONOMIC_NATURE_AS_STRING)
+  private String itemEconomicNatureAsString;
 
   /**
-   * Représentation de la source de financement de la dépense en chaine de caractères.
+   * Représentation de la source de financement du poste de dépense en chaine de caractères.
    */
-  @JsonbProperty(JSON_EXPENDITURE_FUNDING_SOURCE_AS_STRING)
-  private String expenditureFundingSourceAsString;
+  @JsonbProperty(JSON_ITEM_FUNDING_SOURCE_AS_STRING)
+  private String itemFundingSourceAsString;
 
   /**
-   * Représentation du bailleur de la dépense en chaine de caractères.
+   * Représentation du bailleur du poste de dépense en chaine de caractères.
    */
-  @JsonbProperty(JSON_EXPENDITURE_LESSOR_AS_STRING)
-  private String expenditureLessorAsString;
+  @JsonbProperty(JSON_ITEM_LESSOR_AS_STRING)
+  private String itemLessorAsString;
 
   /**
-   * Identifiant json {@link ExpenditureMovementDto#expenditureIdentifier}.
+   * Identifiant json {@link ExpenditureMovementDto#itemIdentifier}.
    */
-  public static final String JSON_EXPENDITURE_IDENTIFIER = &quot;idDepense&quot;;
+  public static final String JSON_ITEM_IDENTIFIER = &quot;idDepense&quot;;
 
   /**
-   * Identifiant json {@link ExpenditureMovementDto#expenditureAsString}.
+   * Identifiant json {@link ExpenditureMovementDto#itemAsString}.
    */
-  public static final String JSON_EXPENDITURE_AS_STRING = &quot;depenseChaine&quot;;
+  public static final String JSON_ITEM_AS_STRING = &quot;depenseChaine&quot;;
 
   /**
-   * Identifiant json {@link ExpenditureMovementDto#expenditureExerciseAsString}.
+   * Identifiant json {@link ExpenditureMovementDto#itemExerciseAsString}.
    */
-  public static final String JSON_EXPENDITURE_EXERCISE_AS_STRING = &quot;exerciceDepenseChaine&quot;;
+  public static final String JSON_ITEM_EXERCISE_AS_STRING = &quot;exerciceDepenseChaine&quot;;
 
   /**
-   * Identifiant json {@link ExpenditureMovementDto#expenditureActivityAsString}.
+   * Identifiant json {@link ExpenditureMovementDto#itemActivityAsString}.
    */
-  public static final String JSON_EXPENDITURE_ACTIVITY_AS_STRING = &quot;activiteDepenseChaine&quot;;
+  public static final String JSON_ITEM_ACTIVITY_AS_STRING = &quot;activiteDepenseChaine&quot;;
 
   /**
-   * Identifiant json {@link ExpenditureMovementDto#expenditureEconomicNatureAsString}.
+   * Identifiant json {@link ExpenditureMovementDto#itemEconomicNatureAsString}.
    */
-  public static final String JSON_EXPENDITURE_ECONOMIC_NATURE_AS_STRING =
+  public static final String JSON_ITEM_ECONOMIC_NATURE_AS_STRING =
       &quot;natureEconomiqueDepenseChaine&quot;;
 
   /**
-   * Identifiant json {@link ExpenditureMovementDto#expenditureFundingSourceAsString}.
+   * Identifiant json {@link ExpenditureMovementDto#itemFundingSourceAsString}.
    */
-  public static final String JSON_EXPENDITURE_FUNDING_SOURCE_AS_STRING =
+  public static final String JSON_ITEM_FUNDING_SOURCE_AS_STRING =
       &quot;sourceFinancementDepenseChaine&quot;;
 
   /**
-   * Identifiant json {@link ExpenditureMovementDto#expenditureLessorAsString}.
+   * Identifiant json {@link ExpenditureMovementDto#itemLessorAsString}.
    */
-  public static final String JSON_EXPENDITURE_LESSOR_AS_STRING = &quot;bailleurDepenseChaine&quot;;
+  public static final String JSON_ITEM_LESSOR_AS_STRING = &quot;bailleurDepenseChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

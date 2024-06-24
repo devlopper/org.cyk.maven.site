@@ -56,17 +56,17 @@ import lombok.experimental.Accessors;
    * {@link ExpenditureMovementService#create}.
    *
    * @param actIdentifier identifiant de l'acte
-   * @param resourceIdentifier identifiant de la ressource
+   * @param itemIdentifier identifiant du poste de dépense
    * @param amount montant
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
-  public CreateResponseDto create(String actIdentifier, String resourceIdentifier, long amount,
+  public CreateResponseDto create(String actIdentifier, String itemIdentifier, long amount,
       String auditWho, String auditSession) {
 <span class="fc" id="L67">    ExpenditureMovementCreateRequestDto request = new ExpenditureMovementCreateRequestDto();</span>
 <span class="fc" id="L68">    request.setActIdentifier(actIdentifier);</span>
-<span class="fc" id="L69">    request.setExpenditureIdentifier(resourceIdentifier);</span>
+<span class="fc" id="L69">    request.setItemIdentifier(itemIdentifier);</span>
 <span class="fc" id="L70">    request.setAmount(amount);</span>
 <span class="fc" id="L71">    request.setAuditWho(auditWho);</span>
 <span class="fc" id="L72">    request.setAuditSession(auditSession);</span>
@@ -184,18 +184,18 @@ import lombok.experimental.Accessors;
    *
    * @param identifier identifiant
    * @param actIdentifier identifiant de l'acte
-   * @param resourceIdentifier identifiant de la ressource
+   * @param itemIdentifier identifiant du poste de dépense
    * @param amount montant
    * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public IdentifiableResponseDto update(String identifier, String actIdentifier,
-      String resourceIdentifier, long amount, String auditWho, String auditSession) {
+      String itemIdentifier, long amount, String auditWho, String auditSession) {
 <span class="fc" id="L195">    ExpenditureMovementUpdateRequestDto request = new ExpenditureMovementUpdateRequestDto();</span>
 <span class="fc" id="L196">    request.setIdentifier(identifier);</span>
 <span class="fc" id="L197">    request.setActIdentifier(actIdentifier);</span>
-<span class="fc" id="L198">    request.setExpenditureIdentifier(resourceIdentifier);</span>
+<span class="fc" id="L198">    request.setItemIdentifier(itemIdentifier);</span>
 <span class="fc" id="L199">    request.setAmount(amount);</span>
 <span class="fc" id="L200">    request.setAuditWho(auditWho);</span>
 <span class="fc" id="L201">    request.setAuditSession(auditSession);</span>
