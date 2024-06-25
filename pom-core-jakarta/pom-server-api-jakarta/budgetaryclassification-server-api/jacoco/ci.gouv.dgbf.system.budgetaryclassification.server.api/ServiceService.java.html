@@ -78,7 +78,17 @@ public interface ServiceService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L80">  class ServiceCreateRequestDto extends AbstractNamableCreateRequestJsonDto {</span>
+    /*
+     * {@link ServiceDto#administrativeUnitIdentifier}.
+     */
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    private String administrativeUnitIdentifier;
 
+    /**
+     * {@link ServiceDto#JSON_ADMINISTRATIVE_UNIT_IDENTIFIER}.
+     */
+    public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+        ServiceDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
   }
 
   /**
@@ -115,7 +125,7 @@ public interface ServiceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L118">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceDto&gt; {</span>
+<span class="fc" id="L128">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ServiceDto&gt; datas;
@@ -207,8 +217,18 @@ public interface ServiceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L210">  class ServiceUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L220">  class ServiceUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
+    /*
+     * {@link ServiceDto#administrativeUnitIdentifier}.
+     */
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    private String administrativeUnitIdentifier;
 
+    /**
+     * {@link ServiceDto#JSON_ADMINISTRATIVE_UNIT_IDENTIFIER}.
+     */
+    public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+        ServiceDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
   }
 
   /**
