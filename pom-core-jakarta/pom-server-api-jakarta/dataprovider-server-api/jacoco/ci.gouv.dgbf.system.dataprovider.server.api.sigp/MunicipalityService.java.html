@@ -32,12 +32,12 @@ public interface MunicipalityService extends SpecificService {
   /**
    * Chemin de base des services.
    */
-  String PATH = Constant.PATH + &quot;categories&quot;;
+  String PATH = Constant.PATH + &quot;communes&quot;;
 
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_CATEGORIE&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_COMMUNE&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -55,7 +55,7 @@ public interface MunicipalityService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir des catégories&quot;)
+      description = &quot;Ce service permet d'obtenir des communes&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
