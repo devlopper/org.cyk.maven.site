@@ -13,16 +13,26 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilter {
-  
+
   /**
    * Identifiant de {@link ExpenditureActivityDto}.
    */
   String activityIdentifier;
-  
+
+  /**
+   * Code de {@link ExpenditureActivityDto}.
+   */
+  String activityCode;
+
   /**
    * Identifiant de {@link FundingSourceDto}.
    */
   String fundingSourceIdentifier;
+
+  /**
+   * Code de {@link FundingSourceDto}.
+   */
+  String fundingSourceCode;
 
   /**
    * Identifiant de {@link LessorDto}.
@@ -30,37 +40,48 @@ public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilt
   String lessorIdentifier;
 
   /**
+   * Code de {@link LessorDto}.
+   */
+  String lessorCode;
+
+  /**
    * Cette méthode permet d'instancier un objet.
    */
-  protected ExpenditureItemFilter() {
-<span class="fc" id="L36">    super();</span>
-<span class="fc" id="L37">  }</span>
+  public ExpenditureItemFilter() {
+<span class="fc" id="L51">    super();</span>
+<span class="fc" id="L52">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
    *
    * @param dto filtre
    */
-  protected ExpenditureItemFilter(FilterDto dto) {
-<span class="fc" id="L45">    super(dto);</span>
-<span class="fc" id="L46">  }</span>
+  public ExpenditureItemFilter(FilterDto dto) {
+<span class="fc" id="L60">    super(dto);</span>
+<span class="fc" id="L61">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L50">    super.doInitialize(filter);</span>
-<span class="fc" id="L51">    activityIdentifier = getActivityIdentifier(filter);</span>
-<span class="fc" id="L52">    fundingSourceIdentifier = getFundingSourceIdentifier(filter);</span>
-<span class="fc" id="L53">    lessorIdentifier = getLessorIdentifier(filter);</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L65">    super.doInitialize(filter);</span>
+<span class="fc" id="L66">    activityIdentifier = getActivityIdentifier(filter);</span>
+<span class="fc" id="L67">    activityCode = getActivityCode(filter);</span>
+<span class="fc" id="L68">    fundingSourceIdentifier = getFundingSourceIdentifier(filter);</span>
+<span class="fc" id="L69">    fundingSourceCode = getFundingSourceCode(filter);</span>
+<span class="fc" id="L70">    lessorIdentifier = getLessorIdentifier(filter);</span>
+<span class="fc" id="L71">    lessorCode = getLessorCode(filter);</span>
+<span class="fc" id="L72">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L58">    super.toDto(filter);</span>
-<span class="fc" id="L59">    setActivityIdentifier(filter, activityIdentifier);</span>
-<span class="fc" id="L60">    setFundingSourceIdentifier(filter, fundingSourceIdentifier);</span>
-<span class="fc" id="L61">    setLessorIdentifier(filter, lessorIdentifier);</span>
-<span class="fc" id="L62">  }</span>
-  
+<span class="fc" id="L76">    super.toDto(filter);</span>
+<span class="fc" id="L77">    setActivityIdentifier(filter, activityIdentifier);</span>
+<span class="fc" id="L78">    setActivityCode(filter, activityCode);</span>
+<span class="fc" id="L79">    setFundingSourceIdentifier(filter, fundingSourceIdentifier);</span>
+<span class="fc" id="L80">    setFundingSourceCode(filter, fundingSourceCode);</span>
+<span class="fc" id="L81">    setLessorIdentifier(filter, lessorIdentifier);</span>
+<span class="fc" id="L82">    setLessorCode(filter, lessorCode);</span>
+<span class="fc" id="L83">  }</span>
+
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link ExpenditureActivityDto}.
    *
@@ -68,9 +89,9 @@ public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilt
    * @param identifier identifiant
    */
   public static void setActivityIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L71">    set(filter, JSON_ACTIVITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L72">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L73">  }</span>
+<span class="pc" id="L92">    set(filter, JSON_ACTIVITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L93">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L94">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ExpenditureActivityDto}.
@@ -79,7 +100,28 @@ public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilt
    * @return identifiant de {@link ExpenditureActivityDto}
    */
   public static String getActivityIdentifier(FilterDto filter) {
-<span class="fc" id="L82">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ACTIVITY_IDENTIFIER));</span>
+<span class="fc" id="L103">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ACTIVITY_IDENTIFIER));</span>
+  }
+  
+  /**
+   * Cette méthode permet d'assigner le code de {@link ExpenditureActivityDto}.
+   *
+   * @param filter filtre
+   * @param code code
+   */
+  public static void setActivityCode(FilterDto filter, String code) {
+<span class="pc" id="L113">    set(filter, JSON_ACTIVITY_CODE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L114">        f -&gt; f.setValueAsString(code));</span>
+<span class="fc" id="L115">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le code de {@link ExpenditureActivityDto}.
+   *
+   * @param filter filtre
+   * @return code de {@link ExpenditureActivityDto}
+   */
+  public static String getActivityCode(FilterDto filter) {
+<span class="fc" id="L124">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ACTIVITY_CODE));</span>
   }
 
   /**
@@ -89,10 +131,10 @@ public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilt
    * @param identifier identifiant
    */
   public static void setFundingSourceIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L92">    set(filter, JSON_FUNDING_SOURCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L93">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L94">  }</span>
-
+<span class="pc" id="L134">    set(filter, JSON_FUNDING_SOURCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L135">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L136">  }</span>
+  
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link FundingSourceDto}.
    *
@@ -100,9 +142,30 @@ public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilt
    * @return identifiant de {@link FundingSourceDto}
    */
   public static String getFundingSourceIdentifier(FilterDto filter) {
-<span class="fc" id="L103">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNDING_SOURCE_IDENTIFIER));</span>
+<span class="fc" id="L145">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNDING_SOURCE_IDENTIFIER));</span>
   }
+  
+  /**
+   * Cette méthode permet d'assigner le code de {@link FundingSourceDto}.
+   *
+   * @param filter filtre
+   * @param code code
+   */
+  public static void setFundingSourceCode(FilterDto filter, String code) {
+<span class="pc" id="L155">    set(filter, JSON_FUNDING_SOURCE_CODE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L156">        f -&gt; f.setValueAsString(code));</span>
+<span class="fc" id="L157">  }</span>
 
+  /**
+   * Cette méthode permet d'obtenir le code de {@link FundingSourceDto}.
+   *
+   * @param filter filtre
+   * @return code de {@link FundingSourceDto}
+   */
+  public static String getFundingSourceCode(FilterDto filter) {
+<span class="fc" id="L166">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNDING_SOURCE_CODE));</span>
+  }
+  
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link LessorDto}.
    *
@@ -110,9 +173,9 @@ public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilt
    * @param identifier identifiant
    */
   public static void setLessorIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L113">    set(filter, JSON_LESSOR_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L114">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L115">  }</span>
+<span class="pc" id="L176">    set(filter, JSON_LESSOR_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L177">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L178">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link LessorDto}.
@@ -121,23 +184,60 @@ public class ExpenditureItemFilter extends AbstractExpenditureOrResourceItemFilt
    * @return identifiant de {@link LessorDto}
    */
   public static String getLessorIdentifier(FilterDto filter) {
-<span class="fc" id="L124">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LESSOR_IDENTIFIER));</span>
+<span class="fc" id="L187">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LESSOR_IDENTIFIER));</span>
   }
   
+  /**
+   * Cette méthode permet d'assigner le code de {@link LessorDto}.
+   *
+   * @param filter filtre
+   * @param code code
+   */
+  public static void setLessorCode(FilterDto filter, String code) {
+<span class="pc" id="L197">    set(filter, JSON_LESSOR_CODE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L198">        f -&gt; f.setValueAsString(code));</span>
+<span class="fc" id="L199">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le code de {@link LessorDto}.
+   *
+   * @param filter filtre
+   * @return code de {@link LessorDto}
+   */
+  public static String getLessorCode(FilterDto filter) {
+<span class="fc" id="L208">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LESSOR_CODE));</span>
+  }
+
   /**
    * Identifiant json champ {@link ExpenditureItemFilter#activityIdentifier}.
    */
   public static final String JSON_ACTIVITY_IDENTIFIER = ResourceItemDto.JSON_ACTIVITY_IDENTIFIER;
 
   /**
+   * Identifiant json champ {@link ExpenditureItemFilter#activityCode}.
+   */
+  public static final String JSON_ACTIVITY_CODE = ResourceItemDto.JSON_ACTIVITY_CODE;
+
+  /**
    * Identifiant json champ {@link ExpenditureItemFilter#fundingSourceIdentifier}.
    */
   public static final String JSON_FUNDING_SOURCE_IDENTIFIER =
       ExpenditureItemDto.JSON_FUNDING_SOURCE_IDENTIFIER;
+  
+  /**
+   * Identifiant json champ {@link ExpenditureItemFilter#fundingSourceCode}.
+   */
+  public static final String JSON_FUNDING_SOURCE_CODE =
+      ExpenditureItemDto.JSON_FUNDING_SOURCE_CODE;
 
   /**
    * Identifiant json champ {@link ExpenditureItemFilter#lessorIdentifier}.
    */
   public static final String JSON_LESSOR_IDENTIFIER = ExpenditureItemDto.JSON_LESSOR_IDENTIFIER;
+  
+  /**
+   * Identifiant json champ {@link ExpenditureItemFilter#lessorCode}.
+   */
+  public static final String JSON_LESSOR_CODE = ExpenditureItemDto.JSON_LESSOR_CODE;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

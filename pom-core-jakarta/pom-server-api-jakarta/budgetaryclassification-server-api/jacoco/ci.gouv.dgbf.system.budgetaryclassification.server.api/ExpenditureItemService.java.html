@@ -3,6 +3,7 @@
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -69,7 +70,7 @@ public interface ExpenditureItemService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L72">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ExpenditureItemDto&gt; {</span>
+<span class="fc" id="L73">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ExpenditureItemDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ExpenditureItemDto&gt; datas;
@@ -96,9 +97,35 @@ public interface ExpenditureItemService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir par identifiant une dépense&quot;)
+      description = &quot;Ce service permet d'obtenir par identifiant un poste de dépense&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = ExpenditureItemDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_POSTE_DEPENSE&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link ExpenditureItemDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir un poste de dépense&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ExpenditureItemDto.class))})
+  Response getOne(GetOneRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

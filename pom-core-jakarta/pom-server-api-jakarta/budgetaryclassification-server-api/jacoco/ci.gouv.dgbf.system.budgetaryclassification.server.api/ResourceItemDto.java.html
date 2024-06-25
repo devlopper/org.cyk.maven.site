@@ -21,28 +21,42 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
   private String activityIdentifier;
-  
+
+  /*
+   * Code {@link ResourceActivityDto}.
+   */
+  @JsonbProperty(JSON_ACTIVITY_CODE)
+  private String activityCode;
+
   /*
    * Réprésentation en chaine de caractère {@link ResourceActivityDto}.
    */
   @JsonbProperty(JSON_ACTIVITY_AS_STRING)
   private String activityAsString;
-  
+
   /**
    * Identifiant json champ {@link ResourceItemDto#activityIdentifier}.
    */
-  public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
-  
+  public static final String JSON_ACTIVITY_IDENTIFIER =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ResourceItemDto#activityCode}.
+   */
+  public static final String JSON_ACTIVITY_CODE =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_CODE;
+
   /**
    * Identifiant json champ {@link ResourceItemDto#activityAsString}.
    */
-  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
-  
+  public static final String JSON_ACTIVITY_AS_STRING =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_AS_STRING;
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;poste de ressource&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */

@@ -21,13 +21,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
   private String activityIdentifier;
-  
+
+  /*
+   * Code {@link ExpenditureActivityDto}.
+   */
+  @JsonbProperty(JSON_ACTIVITY_CODE)
+  private String activityCode;
+
   /*
    * Réprésentation en chaine de caractère {@link ExpenditureActivityDto}.
    */
   @JsonbProperty(JSON_ACTIVITY_AS_STRING)
   private String activityAsString;
-  
+
   /*
    * Identifiant {@link FundingSourceDto}.
    */
@@ -35,11 +41,17 @@ import lombok.Setter;
   private String fundingSourceIdentifier;
   
   /*
+   * Code {@link FundingSourceDto}.
+   */
+  @JsonbProperty(JSON_FUNDING_SOURCE_CODE)
+  private String fundingSourceCode;
+
+  /*
    * Réprésentation en chaine de caractère {@link FundingSourceDto}.
    */
   @JsonbProperty(JSON_FUNDING_SOURCE_AS_STRING)
   private String fundingSourceAsString;
-  
+
   /*
    * Identifiant {@link LessorDto}.
    */
@@ -47,46 +59,70 @@ import lombok.Setter;
   private String lessorIdentifier;
   
   /*
+   * Code {@link LessorDto}.
+   */
+  @JsonbProperty(JSON_LESSOR_CODE)
+  private String lessorCode;
+
+  /*
    * Réprésentation en chaine de caractère {@link LessorDto}.
    */
   @JsonbProperty(JSON_LESSOR_AS_STRING)
   private String lessorAsString;
-  
+
   /**
    * Identifiant json champ {@link ExpenditureItemDto#activityIdentifier}.
    */
-  public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
-  
+  public static final String JSON_ACTIVITY_IDENTIFIER =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ExpenditureItemDto#activityCode}.
+   */
+  public static final String JSON_ACTIVITY_CODE =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_CODE;
+
   /**
    * Identifiant json champ {@link ExpenditureItemDto#activityAsString}.
    */
-  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
-  
+  public static final String JSON_ACTIVITY_AS_STRING =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_AS_STRING;
+
   /**
    * Identifiant json champ {@link ExpenditureItemDto#fundingSourceIdentifier}.
    */
   public static final String JSON_FUNDING_SOURCE_IDENTIFIER = &quot;idSourceFinancement&quot;;
+
+  /**
+   * Identifiant json champ {@link ExpenditureItemDto#fundingSourceCode}.
+   */
+  public static final String JSON_FUNDING_SOURCE_CODE = &quot;codeSourceFinancement&quot;;
   
   /**
    * Identifiant json champ {@link ExpenditureItemDto#fundingSourceAsString}.
    */
   public static final String JSON_FUNDING_SOURCE_AS_STRING = &quot;sourceFinancementChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link ExpenditureItemDto#lessorIdentifier}.
    */
   public static final String JSON_LESSOR_IDENTIFIER = &quot;idBailleur&quot;;
   
   /**
+   * Identifiant json champ {@link ExpenditureItemDto#lessorCode}.
+   */
+  public static final String JSON_LESSOR_CODE = &quot;codeBailleur&quot;;
+
+  /**
    * Identifiant json champ {@link ExpenditureItemDto#lessorAsString}.
    */
   public static final String JSON_LESSOR_AS_STRING = &quot;bailleurChaine&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;poste de dépense&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */

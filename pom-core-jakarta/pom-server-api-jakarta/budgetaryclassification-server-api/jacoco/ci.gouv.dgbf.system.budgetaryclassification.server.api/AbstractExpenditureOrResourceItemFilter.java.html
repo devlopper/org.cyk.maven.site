@@ -19,18 +19,28 @@ public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractId
    * Identifiant de {@link ExerciseDto}.
    */
   String exerciseIdentifier;
+  
+  /**
+   * Code de {@link ExerciseDto}.
+   */
+  String exerciseCode;
 
   /**
    * Identifiant de {@link EconomicNatureDto}.
    */
   String economicNatureIdentifier;
+  
+  /**
+   * Code de {@link EconomicNatureDto}.
+   */
+  String economicNatureCode;
 
   /**
    * Cette méthode permet d'instancier un objet.
    */
   protected AbstractExpenditureOrResourceItemFilter() {
-<span class="fc" id="L32">    super();</span>
-<span class="fc" id="L33">  }</span>
+<span class="fc" id="L42">    super();</span>
+<span class="fc" id="L43">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -38,22 +48,26 @@ public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractId
    * @param dto filtre
    */
   protected AbstractExpenditureOrResourceItemFilter(FilterDto dto) {
-<span class="fc" id="L41">    super(dto);</span>
-<span class="fc" id="L42">  }</span>
+<span class="fc" id="L51">    super(dto);</span>
+<span class="fc" id="L52">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L46">    super.doInitialize(filter);</span>
-<span class="fc" id="L47">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
-<span class="fc" id="L48">    economicNatureIdentifier = getEconomicNatureIdentifier(filter);</span>
-<span class="fc" id="L49">  }</span>
+<span class="fc" id="L56">    super.doInitialize(filter);</span>
+<span class="fc" id="L57">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
+<span class="fc" id="L58">    exerciseCode = getExerciseCode(filter);</span>
+<span class="fc" id="L59">    economicNatureIdentifier = getEconomicNatureIdentifier(filter);</span>
+<span class="fc" id="L60">    economicNatureCode = getEconomicNatureCode(filter);</span>
+<span class="fc" id="L61">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L53">    super.toDto(filter);</span>
-<span class="fc" id="L54">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
-<span class="fc" id="L55">    setEconomicNatureIdentifier(filter, economicNatureIdentifier);</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L65">    super.toDto(filter);</span>
+<span class="fc" id="L66">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
+<span class="fc" id="L67">    setExerciseCode(filter, exerciseCode);</span>
+<span class="fc" id="L68">    setEconomicNatureIdentifier(filter, economicNatureIdentifier);</span>
+<span class="fc" id="L69">    setEconomicNatureCode(filter, economicNatureCode);</span>
+<span class="fc" id="L70">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link ExerciseDto}.
@@ -62,10 +76,10 @@ public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractId
    * @param identifier identifiant
    */
   public static void setExerciseIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L65">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L66">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L67">  }</span>
-
+<span class="pc" id="L79">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L80">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L81">  }</span>
+  
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ExerciseDto}.
    *
@@ -73,7 +87,28 @@ public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractId
    * @return identifiant de {@link ExerciseDto}
    */
   public static String getExerciseIdentifier(FilterDto filter) {
-<span class="fc" id="L76">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
+<span class="fc" id="L90">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
+  }
+  
+  /**
+   * Cette méthode permet d'assigner le code de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @param code code
+   */
+  public static void setExerciseCode(FilterDto filter, String code) {
+<span class="pc" id="L100">    set(filter, JSON_EXERCISE_CODE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L101">        f -&gt; f.setValueAsString(code));</span>
+<span class="fc" id="L102">  }</span>
+  
+  /**
+   * Cette méthode permet d'obtenir le code de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @return code de {@link ExerciseDto}
+   */
+  public static String getExerciseCode(FilterDto filter) {
+<span class="fc" id="L111">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_CODE));</span>
   }
 
   /**
@@ -83,10 +118,10 @@ public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractId
    * @param identifier identifiant
    */
   public static void setEconomicNatureIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L86">    set(filter, JSON_ECONOMIC_NATURE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L87">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L88">  }</span>
-
+<span class="pc" id="L121">    set(filter, JSON_ECONOMIC_NATURE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L122">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L123">  }</span>
+  
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link EconomicNatureDto}.
    *
@@ -94,21 +129,67 @@ public abstract class AbstractExpenditureOrResourceItemFilter extends AbstractId
    * @return identifiant de {@link EconomicNatureDto}
    */
   public static String getEconomicNatureIdentifier(FilterDto filter) {
-<span class="fc" id="L97">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ECONOMIC_NATURE_IDENTIFIER));</span>
+<span class="fc" id="L132">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ECONOMIC_NATURE_IDENTIFIER));</span>
   }
+  
+  /**
+   * Cette méthode permet d'assigner le code de {@link EconomicNatureDto}.
+   *
+   * @param filter filtre
+   * @param code code
+   */
+  public static void setEconomicNatureCode(FilterDto filter, String code) {
+<span class="pc" id="L142">    set(filter, JSON_ECONOMIC_NATURE_CODE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L143">        f -&gt; f.setValueAsString(code));</span>
+<span class="fc" id="L144">  }</span>
 
+  /**
+   * Cette méthode permet d'obtenir le code de {@link EconomicNatureDto}.
+   *
+   * @param filter filtre
+   * @return code de {@link EconomicNatureDto}
+   */
+  public static String getEconomicNatureCode(FilterDto filter) {
+<span class="fc" id="L153">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ECONOMIC_NATURE_CODE));</span>
+  }
+  
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemFilter#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER =
       AbstractExpenditureOrResourceItemDto.JSON_EXERCISE_IDENTIFIER;
+  
+  /**
+   * Identifiant json champ {@link AbstractExpenditureOrResourceItemFilter#exerciseCode}.
+   */
+  public static final String JSON_EXERCISE_CODE =
+      AbstractExpenditureOrResourceItemDto.JSON_EXERCISE_CODE;
 
+  /**
+   * Identifiant json champ identifiant de l'activité.
+   */
+  public static final String JSON_ACTIVITY_IDENTIFIER =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_IDENTIFIER;
+  
+  /**
+   * Identifiant json champ code de l'activité.
+   */
+  public static final String JSON_ACTIVITY_CODE =
+      AbstractExpenditureOrResourceItemDto.JSON_ACTIVITY_CODE;
+  
   /**
    * Identifiant json champ
    * {@link AbstractExpenditureOrResourceItemFilter#economicNatureIdentifier}.
    */
   public static final String JSON_ECONOMIC_NATURE_IDENTIFIER =
       AbstractExpenditureOrResourceItemDto.JSON_ECONOMIC_NATURE_IDENTIFIER;
+  
+  /**
+   * Identifiant json champ
+   * {@link AbstractExpenditureOrResourceItemFilter#economicNatureCode}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_CODE =
+      AbstractExpenditureOrResourceItemDto.JSON_ECONOMIC_NATURE_CODE;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
