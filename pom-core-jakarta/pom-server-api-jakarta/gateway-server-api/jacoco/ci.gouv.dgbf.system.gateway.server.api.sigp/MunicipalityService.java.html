@@ -4,7 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -41,7 +41,7 @@ public interface MunicipalityService extends SpecificService {
   /**
    * Chemin du service d'obtention de plusieurs.
    */
-  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+  String GET_MANY_PATH = &quot;&quot;;
 
   /**
    * Cette méthode permet d'obtenir plusieurs {@link MunicipalityDto}.
@@ -49,7 +49,7 @@ public interface MunicipalityService extends SpecificService {
    * @return réponse
    */
   @Path(GET_MANY_PATH)
-  @POST
+  @GET
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
