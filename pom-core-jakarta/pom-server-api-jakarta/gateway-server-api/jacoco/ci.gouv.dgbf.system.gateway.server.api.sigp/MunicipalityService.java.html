@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MunicipalityService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de fournisseur de données</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.gateway.server.api.sigp</a> &gt; <span class="el_source">MunicipalityService.java</span></div><h1>MunicipalityService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.gateway.server.api.sigp;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -47,7 +46,6 @@ public interface MunicipalityService extends SpecificService {
   /**
    * Cette méthode permet d'obtenir plusieurs {@link MunicipalityDto}.
    *
-   * @param request requête
    * @return réponse
    */
   @Path(GET_MANY_PATH)
@@ -58,7 +56,7 @@ public interface MunicipalityService extends SpecificService {
       description = &quot;Ce service permet d'obtenir des communes&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
-  Response getMany(GetManyRequestDto request);
+  Response getMany();
 
   /**
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
@@ -68,7 +66,7 @@ public interface MunicipalityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;MunicipalityDto&gt; {</span>
+<span class="fc" id="L69">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;MunicipalityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;MunicipalityDto&gt; datas;
