@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcessingFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de traitement</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.processing.server.api</a> &gt; <span class="el_source">ProcessingFilter.java</span></div><h1>ProcessingFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.processing.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link ProcessingDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class ProcessingFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * {@link ProcessingStatus}.
+   */
+  ProcessingStatus status;
+
+  /**
+   * Cette méthode permet d'instancier.
+   *
+   * @param filter filtre
+   */
+  public ProcessingFilter(FilterDto filter) {
+<span class="fc" id="L29">    super(filter);</span>
+<span class="fc" id="L30">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier.
+   *
+   */
+<span class="fc" id="L36">  public ProcessingFilter() {}</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L40">    super.doInitialize(filter);</span>
+<span class="fc" id="L41">    status = getStatus(filter);</span>
+<span class="fc" id="L42">  }</span>
+  
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L46">    super.toDto(filter);</span>
+<span class="fc" id="L47">    setStatus(filter, status);</span>
+<span class="fc" id="L48">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link ProcessingStatus} au filtre.
+   *
+   * @param filter filtre
+   * @param status {@link ProcessingStatus}
+   */
+  public static void setStatus(FilterDto filter, ProcessingStatus status) {
+<span class="pc" id="L57">    set(filter, JSON_STATUS, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(status));</span>
+<span class="fc" id="L58">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link ProcessingStatus} du filtre.
+   *
+   * @param filter filtre
+   * @return {@link ProcessingStatus}
+   */
+  public static ProcessingStatus getStatus(FilterDto filter) {
+<span class="fc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_STATUS, ProcessingStatus.class));</span>
+  }
+
+  /**
+   * {@link ProcessingDto#JSON_STATUS}.
+   */
+  public static final String JSON_STATUS = ProcessingDto.JSON_STATUS;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

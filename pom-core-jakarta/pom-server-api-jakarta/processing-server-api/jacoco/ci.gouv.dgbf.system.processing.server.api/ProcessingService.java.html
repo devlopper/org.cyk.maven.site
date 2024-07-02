@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcessingService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de traitement</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.processing.server.api</a> &gt; <span class="el_source">ProcessingService.java</span></div><h1>ProcessingService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.processing.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.time.LocalDateTime;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les fonctionnalités de {@link ProcessingDto}.
+ *
+ * @author Christian
+ *
+ */
+@Path(value = ProcessingService.PATH)
+@Tag(name = &quot;Traitement&quot;, description = &quot;Gestion des traitements&quot;)
+public interface ProcessingService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;traitements&quot;;
+
+  /**
+   * Cette classe représente les données de création et de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveDataRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir la raison.
+     *
+     * @return raison
+     */
+    String getReason();
+
+    /**
+     * Cette méthode permet d'assifner la raison.
+     *
+     * @param reason raison
+     */
+    void setReason(String reason);
+
+    /**
+     * Cette méthode permet d'obtenir la date.
+     *
+     * @return date
+     */
+    LocalDateTime getDate();
+
+    /**
+     * Cette méthode permet d'assigner la date.
+     *
+     * @param date date
+     */
+    void setDate(LocalDateTime date);
+
+    /**
+     * {@link ProcessingDto#JSON_REASON}.
+     */
+    String JSON_REASON = ProcessingDto.JSON_REASON;
+    
+    /**
+     * {@link ProcessingDto#JSON_DATE}.
+     */
+    String JSON_DATE = ProcessingDto.JSON_DATE;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response create(ProcessingCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création de traitement.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L121">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SaveDataRequestDto {
+
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
+  }
+
+  /**
+   * Cette classe représente la réponse de traitement.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L139">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+    
+    /**
+     * {@link ProcessingDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private ProcessingStatus status;
+
+    /**
+     * {@link ProcessingDto#getStartable()}.
+     */
+    @JsonbProperty(JSON_STARTABLE)
+    private Boolean startable;
+
+    /**
+     * {@link ProcessingDto#getStoppable()}.
+     */
+    @JsonbProperty(JSON_STOPPABLE)
+    private Boolean stoppable;
+
+    /**
+     * {@link ProcessingDto#getCancelable()}.
+     */
+    @JsonbProperty(JSON_CANCELABLE)
+    private Boolean cancelable;
+
+    /**
+     * {@link ProcessingDto#getTerminatable()}.
+     */
+    @JsonbProperty(JSON_TERMINATABLE)
+    private Boolean terminatable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status statut
+     */
+    public void initialize(ProcessingStatus status) {
+<span class="fc" id="L177">      this.status = status;</span>
+<span class="fc" id="L178">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
+<span class="fc" id="L179">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
+<span class="fc" id="L180">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L181">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
+<span class="fc" id="L182">    }</span>
+
+    /**
+     * {@link ProcessingDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = ProcessingDto.JSON_STATUS;
+    
+    /**
+     * {@link ProcessingDto#JSON_STARTABLE}.
+     */
+    public static final String JSON_STARTABLE = ProcessingDto.JSON_STARTABLE;
+    
+    /**
+     * {@link ProcessingDto#JSON_STOPPABLE}.
+     */
+    public static final String JSON_STOPPABLE = ProcessingDto.JSON_STOPPABLE;
+    
+    /**
+     * {@link ProcessingDto#JSON_CANCELABLE}.
+     */
+    public static final String JSON_CANCELABLE = ProcessingDto.JSON_CANCELABLE;
+    
+    /**
+     * {@link ProcessingDto#JSON_TERMINATABLE}.
+     */
+    public static final String JSON_TERMINATABLE = ProcessingDto.JSON_TERMINATABLE;
+  }
+
+  /**
+   * Cette classe représente la requête de flux de traitement.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L218">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto</span>
+      implements SaveDataRequestDto {
+    
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+    
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
+  }
+  
+  /**
+   * Identifiant du service de démarrage.
+   */
+  String START_IDENTIFIER = &quot;DEMARRAGE_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service de démarrage.
+   */
+  String START_PATH = &quot;demarrage&quot;;
+
+  /**
+   * Cette méthode permet de démmarer un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(START_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response start(ProcessingProcessRequestDto request);
+
+  /**
+   * Identifiant du service d'arrêt.
+   */
+  String STOP_IDENTIFIER = &quot;ARRET_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service d'arrêt.
+   */
+  String STOP_PATH = &quot;arret&quot;;
+
+  /**
+   * Cette méthode permet d'arrêter un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(STOP_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response stop(ProcessingProcessRequestDto request);
+
+  /**
+   * Identifiant du service d'annulation.
+   */
+  String CANCEL_IDENTIFIER = &quot;ANNULATION_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service d'annulation.
+   */
+  String CANCEL_PATH = &quot;annulation&quot;;
+
+  /**
+   * Cette méthode permet d'annuler un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CANCEL_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response cancel(ProcessingProcessRequestDto request);
+
+  /**
+   * Identifiant du service de terminaison.
+   */
+  String TERMINATE_IDENTIFIER = &quot;TERMINAISON_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service de terminaison.
+   */
+  String TERMINATE_PATH = &quot;terminaison&quot;;
+
+  /**
+   * Cette méthode permet de terminer un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TERMINATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response terminate(ProcessingProcessRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir des traitements.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir des traitements&quot;)
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L348">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {</span>
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ProcessingDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir un traitement&quot;)
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identifiant un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir par identifiant un traitement&quot;)
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link ProcessingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      description = &quot;Ce service permet de supprimer un traitement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcessingClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de traitement</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.processing.server.api</a> &gt; <span class="el_source">ProcessingClient.java</span></div><h1>ProcessingClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.processing.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.Executor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.processing.server.api.ProcessingService.GetManyResponseDto;
+import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessResponseDto;
+import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessingCreateRequestDto;
+import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessingProcessRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de {@link ProcessingService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+<span class="fc" id="L33">public class ProcessingClient extends AbstractClient&lt;ProcessingService&gt;</span>
+    implements GetByIdentifier&lt;ProcessingDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public ProcessingClient service(ProcessingService service) {
+<span class="fc" id="L39">    return (ProcessingClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ProcessingService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(ProcessingCreateRequestDto request) {
+<span class="fc" id="L49">    return new CreateExecutor(ProcessingService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L50">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#create}.
+   *
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String auditWho, String auditSession) {
+<span class="fc" id="L61">    ProcessingCreateRequestDto request = new ProcessingCreateRequestDto();</span>
+<span class="fc" id="L62">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L63">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L64">    return create(request);</span>
+  }
+
+  /**
+   * {@link ProcessingService#start}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto start(ProcessingProcessRequestDto request) {
+<span class="fc" id="L74">    return new ProcessExecutor(ProcessingService.START_IDENTIFIER)</span>
+<span class="fc" id="L75">        .execute(() -&gt; service().start(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#start}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return message
+   */
+  public ProcessResponseDto start(String identifier, String auditWho, String auditSession) {
+<span class="fc" id="L87">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L88">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L89">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L90">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L91">    return start(request);</span>
+  }
+
+  /**
+   * {@link ProcessingService#stop}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto stop(ProcessingProcessRequestDto request) {
+<span class="fc" id="L101">    return new ProcessExecutor(ProcessingService.STOP_IDENTIFIER)</span>
+<span class="fc" id="L102">        .execute(() -&gt; service().stop(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#stop}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return message
+   */
+  public ProcessResponseDto stop(String identifier, String auditWho, String auditSession) {
+<span class="fc" id="L114">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L115">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L116">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L117">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L118">    return stop(request);</span>
+  }
+
+  /**
+   * {@link ProcessingService#cancel}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto cancel(ProcessingProcessRequestDto request) {
+<span class="fc" id="L128">    return new ProcessExecutor(ProcessingService.CANCEL_IDENTIFIER)</span>
+<span class="fc" id="L129">        .execute(() -&gt; service().cancel(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#cancel}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return message
+   */
+  public ProcessResponseDto cancel(String identifier, String auditWho, String auditSession) {
+<span class="fc" id="L141">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L142">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L143">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L144">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L145">    return cancel(request);</span>
+  }
+
+  /**
+   * {@link ProcessingService#terminate}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto terminate(ProcessingProcessRequestDto request) {
+<span class="fc" id="L155">    return new ProcessExecutor(ProcessingService.TERMINATE_IDENTIFIER)</span>
+<span class="fc" id="L156">        .execute(() -&gt; service().terminate(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#terminate}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return message
+   */
+  public ProcessResponseDto terminate(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L169">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L170">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L171">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L172">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L173">    return terminate(request);</span>
+  }
+
+  /**
+   * {@link ProcessingService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public GetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L183">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+<span class="fc" id="L184">        ProcessingService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
+<span class="fc" id="L199">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L200">    request.setProjection(projection);</span>
+<span class="fc" id="L201">    request.setFilter(filter);</span>
+<span class="fc" id="L202">    request.setPage(page);</span>
+<span class="fc" id="L203">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L204">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L205">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ProcessingService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessingDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L215">    return new GetOneExecutor&lt;ProcessingDto&gt;(ProcessingDto.class,</span>
+<span class="fc" id="L216">        ProcessingService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ProcessingDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L230">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L231">    request.setProjection(projection);</span>
+<span class="fc" id="L232">    request.setFilter(filter);</span>
+<span class="fc" id="L233">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L234">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L235">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link ProcessingService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessingDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L245">    return new GetOneExecutor&lt;ProcessingDto&gt;(ProcessingDto.class,</span>
+        ProcessingService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L247">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ProcessingDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
+<span class="fc" id="L261">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L262">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L263">    request.setProjection(projection);</span>
+<span class="fc" id="L264">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L265">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L266">    return getByIdentifier(request);</span>
+  }
+  
+  /**
+   * {@link ProcessingService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L276">    return new IdentifiableExecutor(ProcessingService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L277">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L291">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L292">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L293">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L294">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L295">    return delete(request);</span>
+  }
+  
+  /**
+   * Cette classe représente un exécuteur de traitement .
+   *
+   * @author Christian
+   *
+   */
+  public class ProcessExecutor extends Executor&lt;ProcessResponseDto&gt; {
+
+    /**
+     * Cette méthode permet d'instancier.
+     *
+     * @param identifier identifiant
+     */
+<span class="fc" id="L311">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L312">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L313">    }</span>
+
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

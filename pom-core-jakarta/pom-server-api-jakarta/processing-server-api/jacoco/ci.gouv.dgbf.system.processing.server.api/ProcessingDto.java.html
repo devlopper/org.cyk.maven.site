@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcessingDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de traitement</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.processing.server.api</a> &gt; <span class="el_source">ProcessingDto.java</span></div><h1>ProcessingDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.processing.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableAuditableDto;
+import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un traitement.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L20">public class ProcessingDto extends AbstractIdentifiableCodableAuditableDto {</span>
+
+  /**
+   * {@link ProcessingStatus}.
+   */
+  @JsonbProperty(JSON_STATUS)
+  private ProcessingStatus status;
+  
+  /**
+   * Représentation en chaine de caractères de {@link ProcessingStatus}.
+   */
+  @JsonbProperty(JSON_STATUS_AS_STRING)
+  private String statusAsString;
+  
+  /**
+   * Raison.
+   */
+  @JsonbProperty(JSON_REASON)
+  private String reason;
+  
+  /**
+   * Date.
+   */
+  @JsonbProperty(JSON_DATE)
+  private LocalDateTime date;
+  
+  /**
+   * Représentation en chaine de caractères de la date.
+   */
+  @JsonbProperty(JSON_DATE_AS_STRING)
+  private String dateAsString;
+  
+  /**
+   * Démarrable.
+   */
+  @JsonbProperty(JSON_STARTABLE)
+  private Boolean startable;
+  
+  /**
+   * Arrêtable.
+   */
+  @JsonbProperty(JSON_STOPPABLE)
+  private Boolean stoppable;
+  
+  /**
+   * Annulable.
+   */
+  @JsonbProperty(JSON_CANCELABLE)
+  private Boolean cancelable;
+  
+  /**
+   * Terminable.
+   */
+  @JsonbProperty(JSON_TERMINATABLE)
+  private Boolean terminatable;
+  
+  /**
+   * Cette méthode permet d'initialiser à partir d'une réponse.
+   *
+   * @param response résponse
+   */
+  public void initialize(ProcessResponseDto response) {
+<span class="fc" id="L82">    status = response.getStatus();</span>
+<span class="fc" id="L83">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L84">    startable = response.getStartable();</span>
+<span class="fc" id="L85">    stoppable = response.getStoppable();</span>
+<span class="fc" id="L86">    cancelable = response.getCancelable();</span>
+<span class="fc" id="L87">    terminatable = response.getTerminatable();</span>
+<span class="fc" id="L88">  }</span>
+  
+  /**
+   * champ json {@link ProcessingDto#status}.
+   */
+  public static final String JSON_STATUS = &quot;statut&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#statusAsString}.
+   */
+  public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#reason}.
+   */
+  public static final String JSON_REASON = &quot;raison&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#date}.
+   */
+  public static final String JSON_DATE = &quot;date&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#dateAsString}.
+   */
+  public static final String JSON_DATE_AS_STRING = &quot;dateChaine&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#startable}.
+   */
+  public static final String JSON_STARTABLE = &quot;demarrable&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#stoppable}.
+   */
+  public static final String JSON_STOPPABLE = &quot;stoppable&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#cancelable}.
+   */
+  public static final String JSON_CANCELABLE = &quot;annulable&quot;;
+  
+  /**
+   * champ json {@link ProcessingDto#terminatable}.
+   */
+  public static final String JSON_TERMINATABLE = &quot;terminable&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;traitement&quot;;
+  
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
