@@ -24,7 +24,7 @@ import lombok.Setter;
   @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
   @JsonbNillable
   private String registrationNumber;
-  
+
   /**
    * Nom.
    */
@@ -45,14 +45,14 @@ import lombok.Setter;
   @JsonbProperty(value = JSON_MAIDEN_NAME)
   @JsonbNillable
   private String maidenName;
-  
+
   /**
    * Nom et prénoms du conjoint.
    */
   @JsonbProperty(value = JSON_SPOUSE_NAME)
   @JsonbNillable
   private String spouseName;
-  
+
   /**
    * Le genre.
    */
@@ -61,64 +61,710 @@ import lombok.Setter;
   private String gender;
 
   /**
+   * Téléphone du conjoint.
+   */
+  @JsonbProperty(value = JSON_SPOUSE_PHONE)
+  @JsonbNillable
+  private String spousePhone;
+
+  /**
+   * Code de la situation matrimoniale.
+   */
+  @JsonbProperty(value = JSON_MARITAL_STATUS_CODE)
+  @JsonbNillable
+  private String maritalStatusCode;
+
+  /**
+   * Libellé de la situation matrimoniale.
+   */
+  @JsonbProperty(value = JSON_MARITAL_STATUS_LABEL)
+  @JsonbNillable
+  private String maritalStatusLabel;
+
+  /**
+   * Date de naissance.
+   */
+  @JsonbProperty(value = JSON_BIRTH_DATE)
+  @JsonbNillable
+  private String birthDate;
+
+  /**
+   * Lieu de naissance.
+   */
+  @JsonbProperty(value = JSON_BIRTH_PLACE)
+  @JsonbNillable
+  private String birthPlace;
+
+  /**
+   * Nom et prénoms du père.
+   */
+  @JsonbProperty(value = JSON_FATHER_NAME)
+  @JsonbNillable
+  private String fatherName;
+
+  /**
+   * Nom et prénoms de la mère.
+   */
+  @JsonbProperty(value = JSON_MOTHER_NAME)
+  @JsonbNillable
+  private String motherName;
+
+  /**
+   * Date de prise de service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_ENTRY_DATE)
+  @JsonbNillable
+  private String serviceEntryDate;
+
+  /**
+   * Date de première prise de service.
+   */
+  @JsonbProperty(value = JSON_FIRST_SERVICE_DATE)
+  @JsonbNillable
+  private String firstServiceDate;
+
+  /**
+   * Code de l'emploi.
+   */
+  @JsonbProperty(value = JSON_JOB_CODE)
+  @JsonbNillable
+  private String jobCode;
+
+  /**
+   * Libellé de l'emploi.
+   */
+  @JsonbProperty(value = JSON_JOB_LABEL)
+  @JsonbNillable
+  private String jobLabel;
+
+  /**
+   * Date de l'emploi.
+   */
+  @JsonbProperty(value = JSON_JOB_DATE)
+  @JsonbNillable
+  private String jobDate;
+
+  /**
+   * Code de la catégorie de l'agent.
+   */
+  @JsonbProperty(value = JSON_CATEGORY_CODE)
+  @JsonbNillable
+  private String categoryCode;
+
+  /**
+   * Libellé de la catégorie de l'agent.
+   */
+  @JsonbProperty(value = JSON_CATEGORY_LABEL)
+  @JsonbNillable
+  private String categoryLabel;
+
+  /**
+   * Code du grade de l'agent.
+   */
+  @JsonbProperty(value = JSON_GRADE_CODE)
+  @JsonbNillable
+  private String gradeCode;
+
+  /**
+   * Libellé du grade de l'agent.
+   */
+  @JsonbProperty(value = JSON_GRADE_LABEL)
+  @JsonbNillable
+  private String gradeLabel;
+
+  /**
+   * Référence de la fonction.
+   */
+  @JsonbProperty(value = JSON_FUNCTION_REFERENCE)
+  @JsonbNillable
+  private String functionReference;
+
+  /**
+   * Code direction générale.
+   */
+  @JsonbProperty(value = JSON_GENERAL_DIRECTION_CODE)
+  @JsonbNillable
+  private String generalDirectionCode;
+
+  /**
+   * Libellé direction générale.
+   */
+  @JsonbProperty(value = JSON_GENERAL_DIRECTION_LABEL)
+  @JsonbNillable
+  private String generalDirectionLabel;
+
+  /**
+   * Code direction.
+   */
+  @JsonbProperty(value = JSON_DIRECTION_CODE)
+  @JsonbNillable
+  private String directionCode;
+
+  /**
+   * Libellé direction.
+   */
+  @JsonbProperty(value = JSON_DIRECTION_LABEL)
+  @JsonbNillable
+  private String directionLabel;
+
+  /**
+   * Code sous-direction.
+   */
+  @JsonbProperty(value = JSON_SUBDIRECTION_CODE)
+  @JsonbNillable
+  private String subDirectionCode;
+
+  /**
+   * Libellé sous-direction.
+   */
+  @JsonbProperty(value = JSON_SUBDIRECTION_LABEL)
+  @JsonbNillable
+  private String subDirectionLabel;
+
+  /**
+   * Code du service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_CODE)
+  @JsonbNillable
+  private String serviceCode;
+
+  /**
+   * Libellé du service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_LABEL)
+  @JsonbNillable
+  private String serviceLabel;
+
+  /**
+   * Code du type d'acte justificatif dans le service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_ACT_TYPE_CODE)
+  @JsonbNillable
+  private String serviceActTypeCode;
+
+  /**
+   * Référence d'acte d'entrée dans le service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_ENTRY_REFERENCE)
+  @JsonbNillable
+  private String serviceEntryReference;
+
+  /**
+   * Code du lieu de service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_LOCATION_CODE)
+  @JsonbNillable
+  private String serviceLocationCode;
+
+  /**
+   * Libellé du lieu de service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_LOCATION_LABEL)
+  @JsonbNillable
+  private String serviceLocationLabel;
+
+  /**
+   * Date du lieu de service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_LOCATION_DATE)
+  @JsonbNillable
+  private String serviceLocationDate;
+
+  /**
+   * Code de la position administrative.
+   */
+  @JsonbProperty(value = JSON_ADMIN_POSITION_CODE)
+  @JsonbNillable
+  private String adminPositionCode;
+
+  /**
+   * Libellé de la position administrative.
+   */
+  @JsonbProperty(value = JSON_ADMIN_POSITION_LABEL)
+  @JsonbNillable
+  private String adminPositionLabel;
+
+  /**
+   * Téléphone cellulaire.
+   */
+  @JsonbProperty(value = JSON_CELL_PHONE)
+  @JsonbNillable
+  private String cellPhone;
+
+  /**
+   * Téléphone bureau.
+   */
+  @JsonbProperty(value = JSON_OFFICE_PHONE)
+  @JsonbNillable
+  private String officePhone;
+
+  /**
+   * Email.
+   */
+  @JsonbProperty(value = JSON_EMAIL)
+  @JsonbNillable
+  private String email;
+
+  /**
+   * Boîte postale.
+   */
+  @JsonbProperty(value = JSON_POSTAL_BOX)
+  @JsonbNillable
+  private String postalBox;
+
+  /**
+   * Code type agent.
+   */
+  @JsonbProperty(value = JSON_AGENT_TYPE_CODE)
+  @JsonbNillable
+  private String agentTypeCode;
+
+  /**
+   * Libellé type agent.
+   */
+  @JsonbProperty(value = JSON_AGENT_TYPE_LABEL)
+  @JsonbNillable
+  private String agentTypeLabel;
+
+  /**
    * Identifiant java champ {@link AgentDto#registrationNumber}.
    */
   public static final String FIELD_REGISTRATION_NUMBER = &quot;registrationNumber&quot;;
-  
+
   /**
    * Identifiant java champ {@link AgentDto#firstName}.
    */
   public static final String FIELD_FIRST_NAME = &quot;firstName&quot;;
-  
+
   /**
    * Identifiant java champ {@link AgentDto#lastNames}.
    */
   public static final String FIELD_LAST_NAMES = &quot;lastNames&quot;;
-  
+
   /**
    * Identifiant java champ {@link AgentDto#maidenName}.
    */
   public static final String FIELD_MAIDEN_NAME = &quot;maidenName&quot;;
-  
+
   /**
    * Identifiant java champ {@link AgentDto#spouseName}.
    */
   public static final String FIELD_SPOUSE_NAME = &quot;spouseName&quot;;
-  
+
   /**
    * Identifiant java champ {@link AgentDto#gender}.
    */
   public static final String FIELD_GENDER = &quot;gender&quot;;
-  
+
+  /**
+   * Identifiant java champ {@link AgentDto#spousePhone}.
+   */
+  public static final String FIELD_SPOUSE_PHONE = &quot;spousePhone&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#maritalStatusCode}.
+   */
+  public static final String FIELD_MARITAL_STATUS_CODE = &quot;maritalStatusCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#maritalStatusLabel}.
+   */
+  public static final String FIELD_MARITAL_STATUS_LABEL = &quot;maritalStatusLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#birthDate}.
+   */
+  public static final String FIELD_BIRTH_DATE = &quot;birthDate&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#birthPlace}.
+   */
+  public static final String FIELD_BIRTH_PLACE = &quot;birthPlace&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#fatherName}.
+   */
+  public static final String FIELD_FATHER_NAME = &quot;fatherName&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#motherName}.
+   */
+  public static final String FIELD_MOTHER_NAME = &quot;motherName&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#firstServiceDate}.
+   */
+  public static final String FIELD_FIRST_SERVICE_DATE = &quot;firstServiceDate&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#jobCode}.
+   */
+  public static final String FIELD_JOB_CODE = &quot;jobCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#jobLabel}.
+   */
+  public static final String FIELD_JOB_LABEL = &quot;jobLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#jobDate}.
+   */
+  public static final String FIELD_JOB_DATE = &quot;jobDate&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#categoryCode}.
+   */
+  public static final String FIELD_CATEGORY_CODE = &quot;categoryCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#categoryLabel}.
+   */
+  public static final String FIELD_CATEGORY_LABEL = &quot;categoryLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#gradeCode}.
+   */
+  public static final String FIELD_GRADE_CODE = &quot;gradeCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#gradeLabel}.
+   */
+  public static final String FIELD_GRADE_LABEL = &quot;gradeLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#functionReference}.
+   */
+  public static final String FIELD_FUNCTION_REFERENCE = &quot;functionReference&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#generalDirectionCode}.
+   */
+  public static final String FIELD_GENERAL_DIRECTION_CODE = &quot;generalDirectionCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#generalDirectionLabel}.
+   */
+  public static final String FIELD_GENERAL_DIRECTION_LABEL = &quot;generalDirectionLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#directionCode}.
+   */
+  public static final String FIELD_DIRECTION_CODE = &quot;directionCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#directionLabel}.
+   */
+  public static final String FIELD_DIRECTION_LABEL = &quot;directionLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#subDirectionCode}.
+   */
+  public static final String FIELD_SUBDIRECTION_CODE = &quot;subDirectionCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#subDirectionLabel}.
+   */
+  public static final String FIELD_SUBDIRECTION_LABEL = &quot;subDirectionLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceCode}.
+   */
+  public static final String FIELD_SERVICE_CODE = &quot;serviceCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceLabel}.
+   */
+  public static final String FIELD_SERVICE_LABEL = &quot;serviceLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceEntryDate}.
+   */
+  public static final String FIELD_SERVICE_ENTRY_DATE = &quot;serviceEntryDate&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceActTypeCode}.
+   */
+  public static final String FIELD_SERVICE_ACT_TYPE_CODE = &quot;serviceActTypeCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceEntryReference}.
+   */
+  public static final String FIELD_SERVICE_ENTRY_REFERENCE = &quot;serviceEntryReference&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceLocationCode}.
+   */
+  public static final String FIELD_SERVICE_LOCATION_CODE = &quot;serviceLocationCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceLocationLabel}.
+   */
+  public static final String FIELD_SERVICE_LOCATION_LABEL = &quot;serviceLocationLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#serviceLocationDate}.
+   */
+  public static final String FIELD_SERVICE_LOCATION_DATE = &quot;serviceLocationDate&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#adminPositionCode}.
+   */
+  public static final String FIELD_ADMIN_POSITION_CODE = &quot;adminPositionCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#adminPositionLabel}.
+   */
+  public static final String FIELD_ADMIN_POSITION_LABEL = &quot;adminPositionLabel&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#cellPhone}.
+   */
+  public static final String FIELD_CELL_PHONE = &quot;cellPhone&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#officePhone}.
+   */
+  public static final String FIELD_OFFICE_PHONE = &quot;officePhone&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#email}.
+   */
+  public static final String FIELD_EMAIL = &quot;email&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#postalBox}.
+   */
+  public static final String FIELD_POSTAL_BOX = &quot;postalBox&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#agentTypeCode}.
+   */
+  public static final String FIELD_AGENT_TYPE_CODE = &quot;agentTypeCode&quot;;
+
+  /**
+   * Identifiant java champ {@link AgentDto#agentTypeLabel}.
+   */
+  public static final String FIELD_AGENT_TYPE_LABEL = &quot;agentTypeLabel&quot;;
+
   /**
    * Identifiant json champ {@link AgentDto#registrationNumber}.
    */
   public static final String JSON_REGISTRATION_NUMBER = &quot;agent_mat&quot;;
-  
+
   /**
    * Identifiant json champ {@link AgentDto#firstName}.
    */
   public static final String JSON_FIRST_NAME = &quot;agent_nom&quot;;
-  
+
   /**
    * Identifiant json champ {@link AgentDto#lastNames}.
    */
   public static final String JSON_LAST_NAMES = &quot;agent_prenoms&quot;;
-  
+
   /**
    * Identifiant json champ {@link AgentDto#maidenName}.
    */
   public static final String JSON_MAIDEN_NAME = &quot;agent_nom_jf&quot;;
-  
+
   /**
    * Identifiant json champ {@link AgentDto#spouseName}.
    */
   public static final String JSON_SPOUSE_NAME = &quot;agent_conjoint&quot;;
-  
+
   /**
    * Identifiant json champ {@link AgentDto#gender}.
    */
   public static final String JSON_GENDER = &quot;agent_genre&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#spousePhone}.
+   */
+  public static final String JSON_SPOUSE_PHONE = &quot;agent_tel&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#maritalStatusCode}.
+   */
+  public static final String JSON_MARITAL_STATUS_CODE = &quot;agent_code_sitmat&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#maritalStatusLabel}.
+   */
+  public static final String JSON_MARITAL_STATUS_LABEL = &quot;agent_lib_sitmat&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#birthDate}.
+   */
+  public static final String JSON_BIRTH_DATE = &quot;agent_date_nais&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#birthPlace}.
+   */
+  public static final String JSON_BIRTH_PLACE = &quot;agent_lieu_nais&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#fatherName}.
+   */
+  public static final String JSON_FATHER_NAME = &quot;agent_pere&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#motherName}.
+   */
+  public static final String JSON_MOTHER_NAME = &quot;agent_mere&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#firstServiceDate}.
+   */
+  public static final String JSON_FIRST_SERVICE_DATE = &quot;agent_date_cps_min&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#jobCode}.
+   */
+  public static final String JSON_JOB_CODE = &quot;agent_code_emp&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#jobLabel}.
+   */
+  public static final String JSON_JOB_LABEL = &quot;agent_lib_emp&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#jobDate}.
+   */
+  public static final String JSON_JOB_DATE = &quot;agent_date_emp&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#categoryCode}.
+   */
+  public static final String JSON_CATEGORY_CODE = &quot;agent_code_cat&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#categoryLabel}.
+   */
+  public static final String JSON_CATEGORY_LABEL = &quot;agent_lib_cat&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#gradeCode}.
+   */
+  public static final String JSON_GRADE_CODE = &quot;agent_code_grade&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#gradeLabel}.
+   */
+  public static final String JSON_GRADE_LABEL = &quot;agent_lib_grade&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#functionReference}.
+   */
+  public static final String JSON_FUNCTION_REFERENCE = &quot;agent_ref_fonct&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#generalDirectionCode}.
+   */
+  public static final String JSON_GENERAL_DIRECTION_CODE = &quot;agent_code_dg&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#generalDirectionLabel}.
+   */
+  public static final String JSON_GENERAL_DIRECTION_LABEL = &quot;agent_lib_dg&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#directionCode}.
+   */
+  public static final String JSON_DIRECTION_CODE = &quot;agent_code_dir&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#directionLabel}.
+   */
+  public static final String JSON_DIRECTION_LABEL = &quot;agent_lib_dir&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#subDirectionCode}.
+   */
+  public static final String JSON_SUBDIRECTION_CODE = &quot;agent_code_sd&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#subDirectionLabel}.
+   */
+  public static final String JSON_SUBDIRECTION_LABEL = &quot;agent_lib_sd&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceCode}.
+   */
+  public static final String JSON_SERVICE_CODE = &quot;agent_code_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceLabel}.
+   */
+  public static final String JSON_SERVICE_LABEL = &quot;agent_lib_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceEntryDate}.
+   */
+  public static final String JSON_SERVICE_ENTRY_DATE = &quot;agent_date_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceActTypeCode}.
+   */
+  public static final String JSON_SERVICE_ACT_TYPE_CODE = &quot;agent_code_typact_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceEntryReference}.
+   */
+  public static final String JSON_SERVICE_ENTRY_REFERENCE = &quot;agent_ref_act_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceLocationCode}.
+   */
+  public static final String JSON_SERVICE_LOCATION_CODE = &quot;agent_code_lieu_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceLocationLabel}.
+   */
+  public static final String JSON_SERVICE_LOCATION_LABEL = &quot;agent_lib_lieu_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#serviceLocationDate}.
+   */
+  public static final String JSON_SERVICE_LOCATION_DATE = &quot;agent_date_lieu_sce&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#adminPositionCode}.
+   */
+  public static final String JSON_ADMIN_POSITION_CODE = &quot;agent_code_pos_adm&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#adminPositionLabel}.
+   */
+  public static final String JSON_ADMIN_POSITION_LABEL = &quot;agent_lib_pos_adm&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#cellPhone}.
+   */
+  public static final String JSON_CELL_PHONE = &quot;agent_cell&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#officePhone}.
+   */
+  public static final String JSON_OFFICE_PHONE = &quot;agent_tel_bur&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#email}.
+   */
+  public static final String JSON_EMAIL = &quot;agent_email&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#postalBox}.
+   */
+  public static final String JSON_POSTAL_BOX = &quot;agent_bp&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#agentTypeCode}.
+   */
+  public static final String JSON_AGENT_TYPE_CODE = &quot;agent_code_typ_agt&quot;;
+
+  /**
+   * Identifiant json champ {@link AgentDto#agentTypeLabel}.
+   */
+  public static final String JSON_AGENT_TYPE_LABEL = &quot;agent_lib_typ_agt&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
@@ -129,5 +775,6 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
