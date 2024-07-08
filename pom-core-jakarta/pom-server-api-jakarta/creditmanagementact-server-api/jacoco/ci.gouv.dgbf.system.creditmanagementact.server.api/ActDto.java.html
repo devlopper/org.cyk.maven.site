@@ -24,6 +24,12 @@ import lombok.Setter;
   private String exerciseIdentifier;
   
   /**
+   * Code de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_CODE)
+  private String exerciseCode;
+  
+  /**
    * Représentation en chaine de caractères de l'exercice.
    */
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
@@ -123,6 +129,11 @@ import lombok.Setter;
    * Identifiant json champ {@link ActDto#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#exerciseCode}.
+   */
+  public static final String JSON_EXERCISE_CODE = &quot;codeExercice&quot;;
   
   /**
    * Identifiant json champ {@link ActDto#exerciseAsString}.

@@ -85,6 +85,11 @@ public enum ActStatus {
 <span class="fc" id="L85">    UPDATED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
 <span class="fc" id="L86">    CANCELLED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
 <span class="fc" id="L87">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
-<span class="fc" id="L88">  }</span>
+<span class="fc" id="L88">    CORRECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
+<span class="fc" id="L89">    REJECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
+<span class="fc" id="L90">    SIGNED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
+<span class="fc" id="L91">    APPLIED.previous = Core.getSet(List.of(SIGNED));</span>
+<span class="fc" id="L92">    REFUSED.previous = Core.getSet(List.of(SIGNED));</span>
+<span class="fc" id="L93">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
