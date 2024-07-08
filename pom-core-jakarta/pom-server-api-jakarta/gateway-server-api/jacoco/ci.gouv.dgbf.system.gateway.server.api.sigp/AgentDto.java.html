@@ -23,7 +23,7 @@ import lombok.Setter;
    */
   @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
   private String registrationNumber;
-  
+
   /**
    * Nom.
    */
@@ -41,13 +41,13 @@ import lombok.Setter;
    */
   @JsonbProperty(value = JSON_MAIDEN_NAME)
   private String maidenName;
-  
+
   /**
    * Nom et prénoms du conjoint.
    */
   @JsonbProperty(value = JSON_SPOUSE_NAME)
   private String spouseName;
-  
+
   /**
    * Le genre.
    */
@@ -319,6 +319,230 @@ import lombok.Setter;
   @JsonbProperty(value = JSON_AGENT_TYPE_LABEL)
   @JsonbNillable
   private String agentTypeLabel;
+
+  /**
+   * Signe particulier de l'agent.
+   */
+  @JsonbProperty(value = JSON_DISTINGUISHING_MARK)
+  @JsonbNillable
+  private String distinguishMark;
+  
+  /**
+   * Date de prise de service dans la structure.
+   */
+  @JsonbProperty(value = JSON_ENTRY_STRUCTURE_DATE)
+  @JsonbNillable
+  private String entryStructureDate;
+
+  /**
+   * Code du diplome obténu par l'agent.
+   */
+  @JsonbProperty(value = JSON_DIPLOMA_CODE)
+  @JsonbNillable
+  private String diplomaCode;
+
+  /**
+   * Libellé du diplome obténu par l'agent.
+   */
+  @JsonbProperty(value = JSON_DIPLOMA_LABEL)
+  @JsonbNillable
+  private String diplomaLabel;
+
+  /**
+   * Année d'obtention du diplome obténu de l'agent.
+   */
+  @JsonbProperty(value = JSON_DIPLOMA_YEAR)
+  @JsonbNillable
+  private String diplomaYear;
+
+  /**
+   * code de l'école d'obtention du diplome de l'agent.
+   */
+  @JsonbProperty(value = JSON_SCHOOL_CODE)
+  @JsonbNillable
+  private String schoolCode;
+
+  /**
+   * Libellé de l'école d'obtention du diplome de l'agent.
+   */
+  @JsonbProperty(value = JSON_SCHOOL_LABEL)
+  @JsonbNillable
+  private String schoolLabel;
+
+  /**
+   * Reference de l'emploi de l'agent.
+   */
+  @JsonbProperty(value = JSON_JOB_REFERENCE)
+  @JsonbNillable
+  private String jobReference;
+
+  /**
+   * Code du type d'acte justificatif de l'emploi.
+   */
+  @JsonbProperty(value = JSON_JOB_ACT_TYPE_CODE)
+  @JsonbNillable
+  private String typeJobCode;
+
+  /**
+   * Code du type d'acte justificatif de l'emploi.
+   */
+  @JsonbProperty(value = JSON_JOB_ACT_TYPE_LABEL)
+  @JsonbNillable
+  private String typeJobLabel;
+
+  /**
+   * Code de la classe de l'agent.
+   */
+  @JsonbProperty(value = JSON_CLASS_CODE)
+  @JsonbNillable
+  private String classeCode;
+
+  /**
+   * Libellé de la classe de l'agent.
+   */
+  @JsonbProperty(value = JSON_CLASS_LABEL)
+  @JsonbNillable
+  private String classeLibelle;
+
+  /**
+   * Code de l'échelon de l'agent.
+   */
+  @JsonbProperty(value = JSON_LEVEL_CODE)
+  @JsonbNillable
+  private String levelCode;
+
+  /**
+   * Libellé de l'échelon de l'agent.
+   */
+  @JsonbProperty(value = JSON_LEVEL_LABEL)
+  @JsonbNillable
+  private String levelLabel;
+
+  /**
+   * Code de la fonction de l'agent.
+   */
+  @JsonbProperty(value = JSON_FUNCTION_CODE)
+  @JsonbNillable
+  private String functionCode;
+
+  /**
+   * Libellé de la fonction de l'agent.
+   */
+  @JsonbProperty(value = JSON_FUNCTION_LABEL)
+  @JsonbNillable
+  private String functionLabel;
+
+  /**
+   * Date de la fonction de l'agent.
+   */
+  @JsonbProperty(value = JSON_FUNCTION_DATE)
+  @JsonbNillable
+  private String functionDate;
+
+  /**
+   * Code du type de l'acte justificatif de la fonction.
+   */
+  @JsonbProperty(value = JSON_FUNCTION_ACT_TYPE_CODE)
+  @JsonbNillable
+  private String typeFunctionCode;
+
+  /**
+   * Libellé du type de l'acte justificatif de la fonction.
+   */
+  @JsonbProperty(value = JSON_FUNCTION_ACT_TYPE_LABEL)
+  @JsonbNillable
+  private String typeFunctionLabel;
+
+  /**
+   * Libellé du type de l'acte justificatif du service.
+   */
+  @JsonbProperty(value = JSON_SERVICE_ACT_TYPE_LABEL)
+  @JsonbNillable
+  private String typeServiceLabel;
+
+  /**
+   * Date de la position administrative.
+   */
+  @JsonbProperty(value = JSON_ADMIN_POSITION_DATE)
+  @JsonbNillable
+  private String positionDate;
+
+  /**
+   * Code du type d'acte justificatif de la position administrative.
+   */
+  @JsonbProperty(value = JSON_ADMIN_POSITION_ACT_TYPE_CODE)
+  @JsonbNillable
+  private String typePositionCode;
+
+  /**
+   * Libellé du type d'acte justificatif de la position administrative.
+   */
+  @JsonbProperty(value = JSON_ADMIN_POSITION_ACT_TYPE_LABEL)
+  @JsonbNillable
+  private String typePositionLabel;
+
+  /**
+   * Reférence d'acte de la position administrative.
+   */
+  @JsonbProperty(value = JSON_ADMIN_POSITION_REFERENCE)
+  @JsonbNillable
+  private String positionReference;
+
+  /**
+   * code de la cessation.
+   */
+  @JsonbProperty(value = JSON_CESSATION_CODE)
+  @JsonbNillable
+  private String cessationCode;
+
+  /**
+   * libellé de la cessation.
+   */
+  @JsonbProperty(value = JSON_CESSATION_LABEL)
+  @JsonbNillable
+  private String cessationLabel;
+
+  /**
+   * Date de la cessation.
+   */
+  @JsonbProperty(value = JSON_CESSATION_DATE)
+  @JsonbNillable
+  private String cessationDate;
+
+  /**
+   * Code du type d'acte justificatif de la cessation.
+   */
+  @JsonbProperty(value = JSON_CESSATION_ACT_TYPE_CODE)
+  @JsonbNillable
+  private String typeCessationCode;
+
+  /**
+   * Libellé du type d'acte justificatif de la cessation.
+   */
+  @JsonbProperty(value = JSON_CESSATION_ACT_TYPE_LABEL)
+  @JsonbNillable
+  private String typeCessationLabel;
+
+  /**
+   * Référence de la cessation.
+   */
+  @JsonbProperty(value = JSON_CESSATION_REFERENCE)
+  @JsonbNillable
+  private String cessationReference;
+
+  /**
+   * Nombre d'enfants.
+   */
+  @JsonbProperty(value = JSON_CHILDREN_COUNT)
+  @JsonbNillable
+  private String childrenCount;
+
+  /**
+   * Contact en cas d'urgence.
+   */
+  @JsonbProperty(value = JSON_EMERGENCY_CONTACT)
+  @JsonbNillable
+  private String urgenceTel;
 
   /**
    * Identifiant java champ {@link AgentDto#registrationNumber}.
@@ -733,7 +957,7 @@ import lombok.Setter;
   /**
    * Identifiant json champ {@link AgentDto#cellPhone}.
    */
-  public static final String JSON_CELL_PHONE = &quot;agent_cell&quot;;
+  public static final String JSON_CELL_PHONE = &quot;agent_cel&quot;;
 
   /**
    * Identifiant json champ {@link AgentDto#officePhone}.
@@ -761,6 +985,166 @@ import lombok.Setter;
   public static final String JSON_AGENT_TYPE_LABEL = &quot;agent_lib_typ_agt&quot;;
 
   /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_DISTINGUISHING_MARK = &quot;agent_signe_partic&quot;;
+  
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_ENTRY_STRUCTURE_DATE = &quot;agent_date_cps_struct&quot;;
+  
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_DIPLOMA_CODE = &quot;agent_code_dip&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_DIPLOMA_LABEL = &quot;agent_lib_dip&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_DIPLOMA_YEAR = &quot;agent_annee_dip&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_SCHOOL_CODE = &quot;agent_code_ecole&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_SCHOOL_LABEL = &quot;agent_lib_ecole&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_JOB_REFERENCE = &quot;agent_ref_emp&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_JOB_ACT_TYPE_CODE = &quot;agent_code_typact_emp&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_JOB_ACT_TYPE_LABEL = &quot;agent_lib_typact&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CLASS_CODE = &quot;agent_code_classe&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CLASS_LABEL = &quot;agent_lib_classe&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_LEVEL_CODE = &quot;agent_code_ech&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_LEVEL_LABEL = &quot;agent_lib_ech&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_FUNCTION_CODE = &quot;agent_code_fonct&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_FUNCTION_LABEL = &quot;agent_lib_fonct&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_FUNCTION_DATE = &quot;agent_date_fonct&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_FUNCTION_ACT_TYPE_CODE = &quot;agent_code_tyact_fonct&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_FUNCTION_ACT_TYPE_LABEL = &quot;agent_lib_typact_fonct&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_SERVICE_ACT_TYPE_LABEL = &quot;agent_lib_typact_sce&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_ADMIN_POSITION_DATE = &quot;agent_date_pos_adm&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_ADMIN_POSITION_ACT_TYPE_CODE = &quot;agent_code_typact_pos_adm&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_ADMIN_POSITION_ACT_TYPE_LABEL = &quot;agent_lib_typact_pos_adm&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_ADMIN_POSITION_REFERENCE = &quot;agent_ref_act_pos_adm&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CESSATION_CODE = &quot;agent_code_cess&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CESSATION_LABEL = &quot;agent_lib_cess&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CESSATION_DATE = &quot;agent_date_cess&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CESSATION_ACT_TYPE_CODE = &quot;agent_code_typact_cess&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CESSATION_ACT_TYPE_LABEL = &quot;agent_lib_typact_cess&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CESSATION_REFERENCE = &quot;agent_ref_act_cess&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_CHILDREN_COUNT = &quot;agent_nbre_enft&quot;;
+
+  /**
+   * Identifiant json champ.
+   */
+  public static final String JSON_EMERGENCY_CONTACT = &quot;agent_urgence_tel&quot;;
+
+  /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;agent&quot;;
@@ -769,5 +1153,6 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
