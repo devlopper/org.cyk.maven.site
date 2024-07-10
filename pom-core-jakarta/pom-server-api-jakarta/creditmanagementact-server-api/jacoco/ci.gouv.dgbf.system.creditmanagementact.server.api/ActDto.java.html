@@ -96,24 +96,44 @@ import lombok.Setter;
   private String administrationStatusAsString;
   
   /**
-   * Identifiant java champ {@link ActDto#status}.
+   * Modifiable.
    */
-  public static final String FIELD_STATUS = &quot;status&quot;;
+  private Boolean editable;
   
   /**
-   * Identifiant java champ {@link ActDto#statusAsString}.
+   * Annulable.
    */
-  public static final String FIELD_STATUS_AS_STRING = &quot;statusAsString&quot;;
+  private Boolean cancelable;
   
   /**
-   * Identifiant java champ {@link ActDto#administrationStatus}.
+   * Transmettable.
    */
-  public static final String FIELD_ADMINISTRATION_STATUS = &quot;administrationStatus&quot;;
+  private Boolean transmitable;
+  
+  /*
+   * Corrigeable.
+   */
+  private Boolean correctable;
   
   /**
-   * Identifiant java champ {@link ActDto#administrationStatusAsString}.
+   * Rejetable.
    */
-  public static final String FIELD_ADMINISTRATION_STATUS_AS_STRING = &quot;administrationStatusAsString&quot;;
+  private Boolean rejectable;
+  
+  /**
+   * Signable.
+   */
+  private Boolean signable;
+  
+  /**
+   * Applicable.
+   */
+  private Boolean applyable;
+  
+  /**
+   * Refusable.
+   */
+  private Boolean refusable;
   
   /**
    * Identifiant json champ {@link ActDto#budgetCategoryIdentifier}.
@@ -179,6 +199,46 @@ import lombok.Setter;
    * Identifiant json champ {@link ActDto#administrationStatusAsString}.
    */
   public static final String JSON_ADMINISTRATION_STATUS_AS_STRING = &quot;statutAdministrationChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#editable}.
+   */
+  public static final String JSON_EDITABLE = &quot;modifiable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#cancelable}.
+   */
+  public static final String JSON_CANCELABLE = &quot;annulable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#transmitable}.
+   */
+  public static final String JSON_TRANSMITABLE = &quot;transmettable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#correctable}.
+   */
+  public static final String JSON_CORRECTABLE = &quot;corrigeable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#rejectable}.
+   */
+  public static final String JSON_REJECTABLE = &quot;rejetable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#signable}.
+   */
+  public static final String JSON_SIGNABLE = &quot;signable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#applyable}.
+   */
+  public static final String JSON_APPLYABLE = &quot;appliquable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ActDto#refusable}.
+   */
+  public static final String JSON_REFUSABLE = &quot;refusable&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
