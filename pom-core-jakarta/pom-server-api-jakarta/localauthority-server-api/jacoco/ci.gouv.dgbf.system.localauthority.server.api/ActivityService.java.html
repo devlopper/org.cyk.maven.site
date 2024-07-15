@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActivityService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ActivityService.java</span></div><h1>ActivityService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -14,7 +11,6 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -74,6 +70,131 @@ public interface ActivityService extends SpecificService {
   Response create(ActivityCreateRequestDto request);
 
   /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link ActivityNatureDto}.
+     *
+     * @return identitant de {@link ActivityNatureDto}
+     */
+    String getNatureIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ActivityNatureDto}.
+     *
+     * @param identifier identifiant de {@link ActivityNatureDto}
+     */
+    void setNatureIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link ActivityCategoryDto}.
+     *
+     * @return identifiant de {@link ActivityCategoryDto}
+     */
+    String getCategoryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ActivityCategoryDto}.
+     *
+     * @param identifier identifiant de {@link ActivityCategoryDto}
+     */
+    void setCategoryIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link WealthAccountDto}.
+     *
+     * @return identifiant de {@link WealthAccountDto}
+     */
+    String getWealthAccountIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link WealthAccountDto}.
+     *
+     * @param identifier identifiant de {@link WealthAccountDto}
+     */
+    void setWealthAccountIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link FunctionalAccountDto}.
+     *
+     * @return identifiant de {@link FunctionalAccountDto}
+     */
+    String getFunctionalAccountIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link FunctionalAccountDto}.
+     *
+     * @param identifier identifiant de {@link FunctionalAccountDto}
+     */
+    void setFunctionalAccountIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link ServiceDto}.
+     *
+     * @return identifiant de {@link ServiceDto}
+     */
+    String getServiceIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ServiceDto}.
+     *
+     * @param identifier identifiant de {@link ServiceDto}
+     */
+    void setServiceIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    long getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(long amount);
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link ActivityNatureDto}.
+     */
+    public static final String JSON_NATURE_IDENTIFIER = ActivityDto.JSON_NATURE_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link ActivityCategoryDto}.
+     */
+    public static final String JSON_CATEGORY_IDENTIFIER = ActivityDto.JSON_CATEGORY_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link WealthAccountDto}.
+     */
+    public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER =
+        ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link FunctionalAccountDto}.
+     */
+    public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER =
+        ActivityDto.JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link ServiceDto}.
+     */
+    public static final String JSON_SERVICE_IDENTIFIER = ActivityDto.JSON_SERVICE_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ de montant.
+     */
+    public static final String JSON_AMOUNT = ActivityDto.JSON_AMOUNT;
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -81,75 +202,26 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L84">  class ActivityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
-    /**
-     * {@link ActivityDto#getNatureIdentifier()}.
-     */
+<span class="fc" id="L205">  class ActivityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements SaveRequestDto {
+
     @JsonbProperty(JSON_NATURE_IDENTIFIER)
     private String natureIdentifier;
 
-    /**
-     * {@link ActivityDto#getEconomicAccountIdentifier()}.
-     */
-    @JsonbProperty(JSON_ECONOMIC_ACCOUNT_IDENTIFIER)
-    private String economicAccountIdentifier;
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String categoryIdentifier;
 
-    /**
-     * {@link ActivityDto#getWealthAccountIdentifier()}.
-     */
     @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
     private String wealthAccountIdentifier;
 
-    /**
-     * {@link ActivityDto#getServiceIdentifier()}.
-     */
     @JsonbProperty(JSON_SERVICE_IDENTIFIER)
     private String serviceIdentifier;
 
-    /**
-     * {@link ActivityDto#getLocalityIdentifier()}.
-     */
-    @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
-    private String localityIdentifier;
-
-    /**
-     * {@link ActivityDto#getFunctionalAccountIdentifier()}.
-     */
     @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
     private String functionalAccountIdentifier;
 
-    /**
-     * {@link ActivityDto#JSON_NATURE_IDENTIFIER}.
-     */
-    public static final String JSON_NATURE_IDENTIFIER = ActivityDto.JSON_NATURE_IDENTIFIER;
-
-    /**
-     * {@link ActivityDto#JSON_ECONOMIC_ACCOUNT_IDENTIFIER}.
-     */
-    public static final String JSON_ECONOMIC_ACCOUNT_IDENTIFIER =
-        ActivityDto.JSON_ECONOMIC_ACCOUNT_IDENTIFIER;
-
-    /**
-     * {@link ActivityDto#JSON_WEALTH_ACCOUNT_IDENTIFIER}.
-     */
-    public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER =
-        ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
-
-    /**
-     * {@link ActivityDto#JSON_SERVICE_IDENTIFIER}.
-     */
-    public static final String JSON_SERVICE_IDENTIFIER = ActivityDto.JSON_SERVICE_IDENTIFIER;
-
-    /**
-     * {@link ActivityDto#JSON_LOCALITY_IDENTIFIER}.
-     */
-    public static final String JSON_LOCALITY_IDENTIFIER = ActivityDto.JSON_LOCALITY_IDENTIFIER;
-
-    /**
-     * {@link ActivityDto#JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER}.
-     */
-    public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER =
-        ActivityDto.JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER;
+    @JsonbProperty(JSON_AMOUNT)
+    private long amount;
   }
 
   /**
@@ -186,7 +258,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L189">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L261">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -278,12 +350,25 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L285">  class ActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L353">  class ActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements SaveRequestDto {
+    @JsonbProperty(JSON_NATURE_IDENTIFIER)
+    private String natureIdentifier;
 
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String categoryIdentifier;
+
+    @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
+    private String wealthAccountIdentifier;
+
+    @JsonbProperty(JSON_SERVICE_IDENTIFIER)
+    private String serviceIdentifier;
+
+    @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
+    private String functionalAccountIdentifier;
+
+    @JsonbProperty(JSON_AMOUNT)
+    private long amount;
   }
 
   /**
