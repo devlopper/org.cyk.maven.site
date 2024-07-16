@@ -22,85 +22,109 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_SERVICE_IDENTIFIER)
   private String serviceIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères du service.
    */
   @JsonbProperty(JSON_SERVICE_AS_STRING)
   private String serviceAsString;
+
+  /**
+   * Identifiant de l'unité administrative qui est la collectivité.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String administrativeUnitIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères l'unité administrative qui est la collectivité.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String administrativeUnitAsString;
   
   /**
    * Identifiant {@link ActivityNatureDto}.
    */
   @JsonbProperty(JSON_NATURE_IDENTIFIER)
   private String natureIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères {@link ActivityNatureDto}.
    */
   @JsonbProperty(JSON_NATURE_AS_STRING)
   private String natureAsString;
-  
+
   /**
    * Identifiant {@link ActivityCategoryDto}.
    */
   @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
   private String categoryIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères {@link ActivityCategoryDto}.
    */
   @JsonbProperty(JSON_CATEGORY_AS_STRING)
   private String categoryAsString;
-  
+
   /**
    * Identifiant {@link FunctionalAccountDto}.
    */
   @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
   private String functionalAccountIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères {@link FunctionalAccountDto}.
    */
   @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_AS_STRING)
   private String functionalAccountAsString;
-  
+
   /**
    * Identifiant {@link ExpenditureNatureDto}.
    */
   @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
   private String expenditureNatureIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères {@link ExpenditureNatureDto}.
    */
   @JsonbProperty(JSON_EXPENDITURE_NATURE_AS_STRING)
   private String expenditureNatureAsString;
-  
+
+  /**
+   * Identifiant {@link ExpenditureNatureCategoryDto}.
+   */
+  @JsonbProperty(JSON_EXPENDITURE_NATURE_CATEGORY_IDENTIFIER)
+  private String expenditureNatureCatgeoryIdentifier;
+
+  /**
+   * Représentation en chaine de caractères {@link ExpenditureNatureCategoryDto}.
+   */
+  @JsonbProperty(JSON_EXPENDITURE_NATURE_CATEGORY_AS_STRING)
+  private String expenditureNatureCategoryAsString;
+
   /**
    * Identifiant {@link WealthAccountDto}.
    */
   @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
   private String wealthAccountIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères {@link WealthAccountDto}.
    */
   @JsonbProperty(JSON_WEALTH_ACCOUNT_AS_STRING)
   private String wealthAccountAsString;
-  
+
   /**
    * Montant.
    */
   @JsonbProperty(JSON_AMOUNT)
   private Long amount;
-  
+
   /**
    * Représentation en chaine de caractères du montant.
    */
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private Long amountAsString;
-  
+
   /**
    * Identifiant json {@link ActivityDto#serviceIdentifier}.
    */
@@ -110,72 +134,94 @@ import lombok.Setter;
    * Identifiant json {@link ActivityDto#serviceAsString}.
    */
   public static final String JSON_SERVICE_AS_STRING = &quot;serviceChaine&quot;;
+
+  /**
+   * Identifiant json {@link ActivityDto#administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
+  
+  /**
+   * Identifiant json {@link ActivityDto#administrativeUnitAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
   
   /**
    * Identifiant json {@link ActivityDto#natureIdentifier}.
    */
   public static final String JSON_NATURE_IDENTIFIER = &quot;idNature&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#natureAsString}.
    */
   public static final String JSON_NATURE_AS_STRING = &quot;natureChaine&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#categoryIdentifier}.
    */
   public static final String JSON_CATEGORY_IDENTIFIER = &quot;idCategorie&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#categoryAsString}.
    */
   public static final String JSON_CATEGORY_AS_STRING = &quot;categorieChaine&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#functionalAccountIdentifier}.
    */
   public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER = &quot;idCompteFonctionnel&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#functionalAccountAsString}.
    */
   public static final String JSON_FUNCTIONAL_ACCOUNT_AS_STRING = &quot;compteFonctionnelChaine&quot;;
-  
+
   /**
-   * Identifiant json {@link ActivityDto#functionalAccountIdentifier}.
+   * Identifiant json {@link ActivityDto#expenditureNatureIdentifier}.
    */
   public static final String JSON_EXPENDITURE_NATURE_IDENTIFIER = &quot;idNatureDepense&quot;;
-  
+
   /**
-   * Identifiant json {@link ActivityDto#functionalAccountAsString}.
+   * Identifiant json {@link ActivityDto#expenditureNatureAsString}.
    */
   public static final String JSON_EXPENDITURE_NATURE_AS_STRING = &quot;natureDepenseChaine&quot;;
-  
+
+  /**
+   * Identifiant json {@link ActivityDto#expenditureNatureCatgeoryIdentifier}.
+   */
+  public static final String JSON_EXPENDITURE_NATURE_CATEGORY_IDENTIFIER =
+      &quot;idCategorieNatureDepense&quot;;
+
+  /**
+   * Identifiant json {@link ActivityDto#expenditureNatureCategoryAsString}.
+   */
+  public static final String JSON_EXPENDITURE_NATURE_CATEGORY_AS_STRING =
+      &quot;categorieNatureDepenseChaine&quot;;
+
   /**
    * Identifiant json {@link ActivityDto#wealthAccountIdentifier}.
    */
   public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER = &quot;idComptePatrimonial&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#wealthAccountAsString}.
    */
   public static final String JSON_WEALTH_ACCOUNT_AS_STRING = &quot;comptePatrimonialChaine&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityDto#amountAsString}.
    */
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;activité&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */

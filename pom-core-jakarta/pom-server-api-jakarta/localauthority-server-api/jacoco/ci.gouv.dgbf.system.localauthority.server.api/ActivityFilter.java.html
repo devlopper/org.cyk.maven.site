@@ -14,29 +14,160 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ActivityFilter extends AbstractIdentifiableFilter {
-  
+
+  /**
+   * Identifiant du service.
+   */
+  String serviceIdentifier;
+
+  /**
+   * Identifiant de l'unité administrative qui est la collectivité.
+   */
+  String administrativeUnitIdentifier;
+
+  /**
+   * Identifiant de {@link ActivityNatureDto}.
+   */
+  String natureIdentifier;
+
+  /**
+   * Identifiant de {@link ActivityCategoryDto}.
+   */
+  String categoryIdentifier;
+
+  /**
+   * Identifiant de {@link FunctionalAccountDto}.
+   */
+  String functionalAccountIdentifier;
+
+  /**
+   * Identifiant de {@link WealthAccountDto}.
+   */
+  String wealthAccountIdentifier;
+
+  /**
+   * Identifiant de {@link ExpenditureNatureDto}.
+   */
+  String expenditureNatureIdentifier;
+
+  /**
+   * Identifiant de {@link ExpenditureNatureCategoryDto}.
+   */
+  String expenditureNatureCategoryIdentifier;
+
   /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public ActivityFilter(FilterDto dto) {
-<span class="fc" id="L24">    super(dto);</span>
-<span class="fc" id="L25">  }</span>
+<span class="fc" id="L64">    super(dto);</span>
+<span class="fc" id="L65">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L30">  public ActivityFilter() {}</span>
-  
+<span class="fc" id="L70">  public ActivityFilter() {}</span>
+
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L34">    super.doInitialize(filter);</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L74">    super.doInitialize(filter);</span>
+<span class="fc" id="L75">    serviceIdentifier = getServiceIdentifier(filter);</span>
+<span class="fc" id="L76">    categoryIdentifier = getCategoryIdentifier(filter);</span>
+<span class="fc" id="L77">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L39">    super.toDto(filter);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L81">    super.toDto(filter);</span>
+<span class="fc" id="L82">    setServiceIdentifier(filter, serviceIdentifier);</span>
+<span class="fc" id="L83">    setCategoryIdentifier(filter, categoryIdentifier);</span>
+<span class="fc" id="L84">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant du service.
+   *
+   * @param filter filtre
+   * @param identifier identifiant du service
+   */
+  public static void setServiceIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L93">    set(filter, JSON_SERVICE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L94">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L95">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant du service.
+   *
+   * @param filter filtre
+   * @return identifiant du service
+   */
+  public static String getServiceIdentifier(FilterDto filter) {
+<span class="fc" id="L104">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SERVICE_IDENTIFIER));</span>
+  }
+  
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link ActivityCategoryDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant de {@link ActivityCategoryDto}
+   */
+  public static void setCategoryIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L114">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L115">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L116">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link ActivityCategoryDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link ActivityCategoryDto}
+   */
+  public static String getCategoryIdentifier(FilterDto filter) {
+<span class="fc" id="L125">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
+  }
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#serviceIdentifier}.
+   */
+  public static final String JSON_SERVICE_IDENTIFIER = ActivityDto.JSON_SERVICE_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      ActivityDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#natureIdentifier}.
+   */
+  public static final String JSON_NATURE_IDENTIFIER = ActivityDto.JSON_NATURE_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#categoryIdentifier}.
+   */
+  public static final String JSON_CATEGORY_IDENTIFIER = ActivityDto.JSON_CATEGORY_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#functionalAccountIdentifier}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER =
+      ActivityDto.JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#expenditureNatureIdentifier}.
+   */
+  public static final String JSON_EXPENDITURE_NATURE_IDENTIFIER =
+      ActivityDto.JSON_EXPENDITURE_NATURE_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#categoryIdentifier}.
+   */
+  public static final String JSON_EXPENDITURE_NATURE_CATEGORY_IDENTIFIER =
+      ActivityDto.JSON_EXPENDITURE_NATURE_CATEGORY_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#wealthAccountIdentifier}.
+   */
+  public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER =
+      ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
