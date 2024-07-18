@@ -56,32 +56,39 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
   String expenditureNatureCategoryIdentifier;
 
   /**
+   * {@link ActivityCategory}.
+   */
+  ActivityCategory category;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public ActivityFilter(FilterDto dto) {
-<span class="fc" id="L64">    super(dto);</span>
-<span class="fc" id="L65">  }</span>
+<span class="fc" id="L69">    super(dto);</span>
+<span class="fc" id="L70">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L70">  public ActivityFilter() {}</span>
+<span class="fc" id="L75">  public ActivityFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L74">    super.doInitialize(filter);</span>
-<span class="fc" id="L75">    serviceIdentifier = getServiceIdentifier(filter);</span>
-<span class="fc" id="L76">    categoryIdentifier = getCategoryIdentifier(filter);</span>
-<span class="fc" id="L77">  }</span>
+<span class="fc" id="L79">    super.doInitialize(filter);</span>
+<span class="fc" id="L80">    serviceIdentifier = getServiceIdentifier(filter);</span>
+<span class="fc" id="L81">    categoryIdentifier = getCategoryIdentifier(filter);</span>
+<span class="fc" id="L82">    category = getCategory(filter);</span>
+<span class="fc" id="L83">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L81">    super.toDto(filter);</span>
-<span class="fc" id="L82">    setServiceIdentifier(filter, serviceIdentifier);</span>
-<span class="fc" id="L83">    setCategoryIdentifier(filter, categoryIdentifier);</span>
-<span class="fc" id="L84">  }</span>
+<span class="fc" id="L87">    super.toDto(filter);</span>
+<span class="fc" id="L88">    setServiceIdentifier(filter, serviceIdentifier);</span>
+<span class="fc" id="L89">    setCategoryIdentifier(filter, categoryIdentifier);</span>
+<span class="fc" id="L90">    setCategory(filter, category);</span>
+<span class="fc" id="L91">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant du service.
@@ -90,9 +97,9 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant du service
    */
   public static void setServiceIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L93">    set(filter, JSON_SERVICE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L94">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L95">  }</span>
+<span class="pc" id="L100">    set(filter, JSON_SERVICE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L101">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L102">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du service.
@@ -101,9 +108,9 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @return identifiant du service
    */
   public static String getServiceIdentifier(FilterDto filter) {
-<span class="fc" id="L104">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SERVICE_IDENTIFIER));</span>
+<span class="fc" id="L111">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SERVICE_IDENTIFIER));</span>
   }
-  
+
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link ActivityCategoryDto}.
    *
@@ -111,9 +118,9 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant de {@link ActivityCategoryDto}
    */
   public static void setCategoryIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L114">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L115">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L116">  }</span>
+<span class="pc" id="L121">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L122">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L123">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ActivityCategoryDto}.
@@ -122,7 +129,27 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link ActivityCategoryDto}
    */
   public static String getCategoryIdentifier(FilterDto filter) {
-<span class="fc" id="L125">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
+<span class="fc" id="L132">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner la {@link ActivityCategory}.
+   *
+   * @param filter filtre
+   * @param category {@link ActivityCategory}
+   */
+  public static void setCategory(FilterDto filter, ActivityCategory category) {
+<span class="pc" id="L142">    set(filter, JSON_CATEGORY, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(category));</span>
+<span class="fc" id="L143">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link ActivityCategory}.
+   *
+   * @param filter filtre
+   * @return {@link ActivityCategory}
+   */
+  public static ActivityCategory getCategory(FilterDto filter) {
+<span class="fc" id="L152">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_CATEGORY, ActivityCategory.class));</span>
   }
 
   /**
@@ -169,5 +196,10 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    */
   public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER =
       ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link ActivityFilter#category}.
+   */
+  public static final String JSON_CATEGORY = ActivityDto.JSON_CATEGORY;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
