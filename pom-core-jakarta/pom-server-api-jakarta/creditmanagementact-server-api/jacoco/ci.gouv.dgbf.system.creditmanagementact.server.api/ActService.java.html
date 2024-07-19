@@ -130,6 +130,147 @@ public interface ActService extends SpecificService {
   }
 
   /**
+   * Cette classe représente la réponse de mise a jour du statut.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L140">  class ActStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
+    
+    /**
+     * {@link ActDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private ActStatus status;
+
+    /**
+     * {@link ActDto#getEditable()}.
+     */
+    private Boolean editable;
+    
+    /**
+     * {@link ActDto#getCancelable()}.
+     */
+    private Boolean cancelable;
+    
+    /**
+     * {@link ActDto#getCancelable()}.
+     */
+    private Boolean transmitable;
+    
+    /**
+     * {@link ActDto#getCorrectable()}.
+     */
+    private Boolean correctable;
+    
+    /**
+     * {@link ActDto#getRejectable()}.
+     */
+    private Boolean rejectable;
+    
+    /**
+     * {@link ActDto#getSignable()}.
+     */
+    private Boolean signable;
+    
+    /**
+     * {@link ActDto#getApplyable()}.
+     */
+    private Boolean applyable;
+    
+    /**
+     * {@link ActDto#getRefusable()}.
+     */
+    private Boolean refusable;
+    
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status statut
+     */
+    public void initialize(ActStatus status) {
+<span class="fc" id="L194">      this.status = status;</span>
+<span class="fc" id="L195">      editable = ActStatus.EDITED.getPrevious().contains(status);</span>
+<span class="fc" id="L196">      cancelable = ActStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L197">      transmitable = ActStatus.TRANSMITTED.getPrevious().contains(status);</span>
+<span class="fc" id="L198">      correctable = ActStatus.CORRECTED.getPrevious().contains(status);</span>
+<span class="fc" id="L199">      rejectable = ActStatus.REJECTED.getPrevious().contains(status);</span>
+<span class="fc" id="L200">      signable = ActStatus.SIGNED.getPrevious().contains(status);</span>
+<span class="fc" id="L201">      applyable = ActStatus.APPLIED.getPrevious().contains(status);</span>
+<span class="fc" id="L202">      refusable = ActStatus.REFUSED.getPrevious().contains(status);</span>
+<span class="fc" id="L203">    }</span>
+    
+    /**
+     * {@link ActDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = ActDto.JSON_STATUS;
+    
+    /**
+     * {@link ActDto#JSON_EDITABLE}.
+     */
+    public static final String JSON_EDITABLE = ActDto.JSON_EDITABLE;
+    
+    /**
+     * {@link ActDto#JSON_CANCELABLE}.
+     */
+    public static final String JSON_CANCELABLE = ActDto.JSON_CANCELABLE;
+    
+    /**
+     * {@link ActDto#JSON_TRANSMITABLE}.
+     */
+    public static final String JSON_TRANSMITABLE = ActDto.JSON_TRANSMITABLE;
+    
+    /**
+     * {@link ActDto#JSON_CORRECTABLE}.
+     */
+    public static final String JSON_CORRECTABLE = ActDto.JSON_CORRECTABLE;
+    
+    /**
+     * {@link ActDto#JSON_REJECTABLE}.
+     */
+    public static final String JSON_REJECTABLE = ActDto.JSON_REJECTABLE;
+    
+    /**
+     * {@link ActDto#JSON_SIGNABLE}.
+     */
+    public static final String JSON_SIGNABLE = ActDto.JSON_SIGNABLE;
+    
+    /**
+     * {@link ActDto#JSON_APPLYABLE}.
+     */
+    public static final String JSON_APPLYABLE = ActDto.JSON_APPLYABLE;
+    
+    /**
+     * {@link ActDto#JSON_REFUSABLE}.
+     */
+    public static final String JSON_REFUSABLE = ActDto.JSON_REFUSABLE;
+  }
+  
+  /**
+   * Identifiant du service de modification.
+   */
+  String EDIT_IDENTIFIER = &quot;MODIFICATION_ACTE&quot;;
+
+  /**
+   * Chemin du service de modification.
+   */
+  String EDIT_PATH = &quot;modification&quot;;
+
+  /**
+   * Cette méthode permet de modifier un acte.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EDIT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response edit(ByIdentifierRequestDto request);
+  
+  /**
    * Identifiant du service d'annulation.
    */
   String CANCEL_IDENTIFIER = &quot;ANNULATION_ACTE&quot;;
@@ -317,7 +458,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L320">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
+<span class="fc" id="L461">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActDto&gt; datas;
@@ -412,7 +553,7 @@ public interface ActService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L415">  class ActUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L556">  class ActUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
     /**
      * {@link ActDto#getExerciseIdentifier()}.
      */

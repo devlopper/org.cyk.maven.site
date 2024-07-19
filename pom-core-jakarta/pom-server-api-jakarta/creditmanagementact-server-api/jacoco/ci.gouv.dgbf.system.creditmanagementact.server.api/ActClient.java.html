@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.Executor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -18,6 +19,7 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.creditmanagementact.server.api.ActService.ActCreateRequestDto;
+import ci.gouv.dgbf.system.creditmanagementact.server.api.ActService.ActStatusUpdateResponseDto;
 import ci.gouv.dgbf.system.creditmanagementact.server.api.ActService.ActUpdateRequestDto;
 import ci.gouv.dgbf.system.creditmanagementact.server.api.ActService.GetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -33,13 +35,12 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L36">public class ActClient extends AbstractClient&lt;ActService&gt;</span>
-    implements GetByIdentifier&lt;ActDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
-    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+<span class="fc" id="L38">public class ActClient extends AbstractClient&lt;ActService&gt; implements GetByIdentifier&lt;ActDto&gt;,</span>
+    GetMany&lt;GetManyResponseDto&gt;, DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public ActClient service(ActService service) {
-<span class="fc" id="L42">    return (ActClient) super.service(service);</span>
+<span class="fc" id="L43">    return (ActClient) super.service(service);</span>
   }
 
   /**
@@ -49,19 +50,47 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(ActCreateRequestDto request) {
-<span class="fc" id="L52">    return new CreateExecutor(ActService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L53">    return new CreateExecutor(ActService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L54">        .execute(() -&gt; service().create(request));</span>
   }
 
+  /**
+   * {@link ActService#edit}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ActStatusUpdateResponseDto edit(ByIdentifierRequestDto request) {
+<span class="fc" id="L64">    return new ActStatusUpdateExecutor(ActService.EDIT_IDENTIFIER)</span>
+<span class="fc" id="L65">        .execute(() -&gt; service().edit(request));</span>
+  }
+
+  /**
+   * {@link ActService#edit}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return message
+   */
+  public ActStatusUpdateResponseDto edit(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L78">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L79">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L80">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L81">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L82">    return edit(request);</span>
+  }
+  
   /**
    * {@link ActService#cancel}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto cancel(ByIdentifierRequestDto request) {
-<span class="fc" id="L63">    return new IdentifiableExecutor(ActService.CANCEL_IDENTIFIER)</span>
-<span class="fc" id="L64">        .execute(() -&gt; service().cancel(request));</span>
+  public ActStatusUpdateResponseDto cancel(ByIdentifierRequestDto request) {
+<span class="fc" id="L92">    return new ActStatusUpdateExecutor(ActService.CANCEL_IDENTIFIER)</span>
+<span class="fc" id="L93">        .execute(() -&gt; service().cancel(request));</span>
   }
 
   /**
@@ -72,23 +101,24 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return message
    */
-  public IdentifiableResponseDto cancel(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L76">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
-<span class="fc" id="L77">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L78">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L79">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L80">    return cancel(request);</span>
+  public ActStatusUpdateResponseDto cancel(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L106">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L107">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L108">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L109">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L110">    return cancel(request);</span>
   }
-  
+
   /**
    * {@link ActService#transmit}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto transmit(ByIdentifierRequestDto request) {
-<span class="fc" id="L90">    return new IdentifiableExecutor(ActService.TRANSMIT_IDENTIFIER)</span>
-<span class="fc" id="L91">        .execute(() -&gt; service().transmit(request));</span>
+  public ActStatusUpdateResponseDto transmit(ByIdentifierRequestDto request) {
+<span class="fc" id="L120">    return new ActStatusUpdateExecutor(ActService.TRANSMIT_IDENTIFIER)</span>
+<span class="fc" id="L121">        .execute(() -&gt; service().transmit(request));</span>
   }
 
   /**
@@ -99,23 +129,24 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return message
    */
-  public IdentifiableResponseDto transmit(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L103">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
-<span class="fc" id="L104">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L105">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L106">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L107">    return transmit(request);</span>
+  public ActStatusUpdateResponseDto transmit(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L134">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L135">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L136">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L137">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L138">    return transmit(request);</span>
   }
-  
+
   /**
    * {@link ActService#correct}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto correct(ByIdentifierRequestDto request) {
-<span class="fc" id="L117">    return new IdentifiableExecutor(ActService.CORRECT_IDENTIFIER)</span>
-<span class="fc" id="L118">        .execute(() -&gt; service().correct(request));</span>
+  public ActStatusUpdateResponseDto correct(ByIdentifierRequestDto request) {
+<span class="fc" id="L148">    return new ActStatusUpdateExecutor(ActService.CORRECT_IDENTIFIER)</span>
+<span class="fc" id="L149">        .execute(() -&gt; service().correct(request));</span>
   }
 
   /**
@@ -126,23 +157,24 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return message
    */
-  public IdentifiableResponseDto correct(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L130">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
-<span class="fc" id="L131">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L132">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L133">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L134">    return correct(request);</span>
+  public ActStatusUpdateResponseDto correct(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L162">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L163">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L164">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L165">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L166">    return correct(request);</span>
   }
-  
+
   /**
    * {@link ActService#reject}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto reject(ByIdentifierRequestDto request) {
-<span class="fc" id="L144">    return new IdentifiableExecutor(ActService.REJECT_IDENTIFIER)</span>
-<span class="fc" id="L145">        .execute(() -&gt; service().reject(request));</span>
+  public ActStatusUpdateResponseDto reject(ByIdentifierRequestDto request) {
+<span class="fc" id="L176">    return new ActStatusUpdateExecutor(ActService.REJECT_IDENTIFIER)</span>
+<span class="fc" id="L177">        .execute(() -&gt; service().reject(request));</span>
   }
 
   /**
@@ -153,23 +185,24 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return message
    */
-  public IdentifiableResponseDto reject(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L157">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
-<span class="fc" id="L158">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L159">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L160">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L161">    return reject(request);</span>
+  public ActStatusUpdateResponseDto reject(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L190">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L191">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L192">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L193">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L194">    return reject(request);</span>
   }
-  
+
   /**
    * {@link ActService#sign}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto sign(ByIdentifierRequestDto request) {
-<span class="fc" id="L171">    return new IdentifiableExecutor(ActService.SIGN_IDENTIFIER)</span>
-<span class="fc" id="L172">        .execute(() -&gt; service().sign(request));</span>
+  public ActStatusUpdateResponseDto sign(ByIdentifierRequestDto request) {
+<span class="fc" id="L204">    return new ActStatusUpdateExecutor(ActService.SIGN_IDENTIFIER)</span>
+<span class="fc" id="L205">        .execute(() -&gt; service().sign(request));</span>
   }
 
   /**
@@ -180,23 +213,23 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return message
    */
-  public IdentifiableResponseDto sign(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L184">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
-<span class="fc" id="L185">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L186">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L187">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L188">    return sign(request);</span>
+  public ActStatusUpdateResponseDto sign(String identifier, String auditWho, String auditSession) {
+<span class="fc" id="L217">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L218">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L219">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L220">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L221">    return sign(request);</span>
   }
-  
+
   /**
    * {@link ActService#apply}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto apply(ByIdentifierRequestDto request) {
-<span class="fc" id="L198">    return new IdentifiableExecutor(ActService.APPLY_IDENTIFIER)</span>
-<span class="fc" id="L199">        .execute(() -&gt; service().apply(request));</span>
+  public ActStatusUpdateResponseDto apply(ByIdentifierRequestDto request) {
+<span class="fc" id="L231">    return new ActStatusUpdateExecutor(ActService.APPLY_IDENTIFIER)</span>
+<span class="fc" id="L232">        .execute(() -&gt; service().apply(request));</span>
   }
 
   /**
@@ -207,23 +240,23 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return message
    */
-  public IdentifiableResponseDto apply(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L211">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
-<span class="fc" id="L212">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L213">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L214">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L215">    return apply(request);</span>
+  public ActStatusUpdateResponseDto apply(String identifier, String auditWho, String auditSession) {
+<span class="fc" id="L244">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L245">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L246">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L247">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L248">    return apply(request);</span>
   }
-  
+
   /**
    * {@link ActService#refuse}.
    *
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto refuse(ByIdentifierRequestDto request) {
-<span class="fc" id="L225">    return new IdentifiableExecutor(ActService.REFUSE_IDENTIFIER)</span>
-<span class="fc" id="L226">        .execute(() -&gt; service().refuse(request));</span>
+  public ActStatusUpdateResponseDto refuse(ByIdentifierRequestDto request) {
+<span class="fc" id="L258">    return new ActStatusUpdateExecutor(ActService.REFUSE_IDENTIFIER)</span>
+<span class="fc" id="L259">        .execute(() -&gt; service().refuse(request));</span>
   }
 
   /**
@@ -234,14 +267,15 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return message
    */
-  public IdentifiableResponseDto refuse(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L238">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
-<span class="fc" id="L239">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L240">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L241">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L242">    return refuse(request);</span>
+  public ActStatusUpdateResponseDto refuse(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L272">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L273">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L274">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L275">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L276">    return refuse(request);</span>
   }
-  
+
   /**
    * {@link ActService#getMany}.
    *
@@ -249,8 +283,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L252">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
-<span class="fc" id="L253">        ActService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L286">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+<span class="fc" id="L287">        ActService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -266,13 +300,13 @@ import lombok.experimental.Accessors;
   @Override
   public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
-<span class="fc" id="L269">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L270">    request.setProjection(projection);</span>
-<span class="fc" id="L271">    request.setFilter(filter);</span>
-<span class="fc" id="L272">    request.setPage(page);</span>
-<span class="fc" id="L273">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L274">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L275">    return getMany(request);</span>
+<span class="fc" id="L303">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L304">    request.setProjection(projection);</span>
+<span class="fc" id="L305">    request.setFilter(filter);</span>
+<span class="fc" id="L306">    request.setPage(page);</span>
+<span class="fc" id="L307">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L308">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L309">    return getMany(request);</span>
   }
 
   /**
@@ -282,8 +316,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ActDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L285">    return new GetOneExecutor&lt;ActDto&gt;(ActDto.class,</span>
-<span class="fc" id="L286">        ActService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L319">    return new GetOneExecutor&lt;ActDto&gt;(ActDto.class, ActService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L320">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -297,12 +331,12 @@ import lombok.experimental.Accessors;
    */
   public ActDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L300">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L301">    request.setProjection(projection);</span>
-<span class="fc" id="L302">    request.setFilter(filter);</span>
-<span class="fc" id="L303">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L304">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L305">    return getOne(request);</span>
+<span class="fc" id="L334">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L335">    request.setProjection(projection);</span>
+<span class="fc" id="L336">    request.setFilter(filter);</span>
+<span class="fc" id="L337">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L338">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L339">    return getOne(request);</span>
   }
 
   /**
@@ -312,9 +346,8 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public ActDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L315">    return new GetOneExecutor&lt;ActDto&gt;(ActDto.class,</span>
-        ActService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L317">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L349">    return new GetOneExecutor&lt;ActDto&gt;(ActDto.class, ActService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
+<span class="fc" id="L350">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -327,14 +360,14 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public ActDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
-<span class="fc" id="L332">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L333">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L334">    request.setProjection(projection);</span>
-<span class="fc" id="L335">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L336">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L337">    return getByIdentifier(request);</span>
+  public ActDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
+<span class="fc" id="L365">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L366">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L367">    request.setProjection(projection);</span>
+<span class="fc" id="L368">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L369">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L370">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -344,8 +377,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(ActUpdateRequestDto request) {
-<span class="fc" id="L347">    return new IdentifiableExecutor(ActService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L348">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L380">    return new IdentifiableExecutor(ActService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L381">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -355,8 +388,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L358">    return new IdentifiableExecutor(ActService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L359">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L391">    return new IdentifiableExecutor(ActService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L392">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -370,11 +403,30 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L373">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L374">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L375">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L376">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L377">    return delete(request);</span>
+<span class="fc" id="L406">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L407">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L408">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L409">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L410">    return delete(request);</span>
+  }
+
+  /**
+   * Cette classe représente un exécuteur de mise à jour du statut .
+   *
+   * @author Christian
+   *
+   */
+  public class ActStatusUpdateExecutor extends Executor&lt;ActStatusUpdateResponseDto&gt; {
+
+    /**
+     * Cette méthode permet d'instancier.
+     *
+     * @param identifier identifiant
+     */
+<span class="fc" id="L426">    public ActStatusUpdateExecutor(String identifier) {</span>
+<span class="fc" id="L427">      super(ActStatusUpdateResponseDto.class, identifier);</span>
+<span class="fc" id="L428">    }</span>
+
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

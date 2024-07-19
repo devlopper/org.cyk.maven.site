@@ -23,7 +23,7 @@ public enum ActStatus {
   /**
    * Acte modifié.
    */
-<span class="fc" id="L26">  UPDATED(ActStatusCode.UPDATED, &quot;Modifié&quot;, &quot;Modification&quot;),</span>
+<span class="fc" id="L26">  EDITED(ActStatusCode.EDITED, &quot;Modifié&quot;, &quot;Modification&quot;),</span>
   /**
    * Acte annulé.
    */
@@ -84,9 +84,9 @@ public enum ActStatus {
 
   static {
 <span class="fc" id="L86">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L87">    UPDATED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
-<span class="fc" id="L88">    CANCELLED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
-<span class="fc" id="L89">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, UPDATED));</span>
+<span class="fc" id="L87">    EDITED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
+<span class="fc" id="L88">    CANCELLED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
+<span class="fc" id="L89">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
 <span class="fc" id="L90">    CORRECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
 <span class="fc" id="L91">    REJECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
 <span class="fc" id="L92">    SIGNED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
