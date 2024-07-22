@@ -24,5 +24,25 @@
 <span class="fc" id="L24">  OPERATION</span>
 
   ;
+  
+  /**
+   * Cette méthode permet de savoir si il y a une nature de dépense.
+   *
+   * @param category catégorie
+   * @return vrai ou faux
+   */
+  public static boolean hasExpenditureNature(ActivityCategory category) {
+<span class="fc bfc" id="L35" title="All 4 branches covered.">    return ACTION.equals(category) || FUNCTIONING.equals(category);</span>
+  }
+  
+  /**
+   * Cette méthode permet de savoir si il y a un compte patrimonial.
+   *
+   * @param category catégorie
+   * @return vrai ou faux
+   */
+  public static boolean hasWealthAccount(ActivityCategory category) {
+<span class="fc" id="L45">    return OPERATION.equals(category);</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
