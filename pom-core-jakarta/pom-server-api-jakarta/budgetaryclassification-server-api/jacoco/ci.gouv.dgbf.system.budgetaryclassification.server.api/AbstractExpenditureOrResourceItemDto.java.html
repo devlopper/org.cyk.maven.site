@@ -23,77 +23,83 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   private String exerciseIdentifier;
-  
+
   /*
    * Code {@link ExerciseDto}.
    */
   @JsonbProperty(JSON_EXERCISE_CODE)
   private String exerciseCode;
-  
+
   /*
    * Réprésentation en chaine de caractère {@link ExerciseDto}.
    */
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
   private String exerciseAsString;
-  
+
   /*
    * Identifiant {@link EconomicNatureDto}.
    */
   @JsonbProperty(JSON_ECONOMIC_NATURE_IDENTIFIER)
   private String economicNatureIdentifier;
-  
+
   /*
    * Code {@link EconomicNatureDto}.
    */
   @JsonbProperty(JSON_ECONOMIC_NATURE_CODE)
   private String economicNatureCode;
-  
+
   /*
    * Réprésentation en chaine de caractère {@link EconomicNatureDto}.
    */
   @JsonbProperty(JSON_ECONOMIC_NATURE_AS_STRING)
   private String economicNatureAsString;
-  
+
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
-  
+
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#exerciseCode}.
    */
   public static final String JSON_EXERCISE_CODE = &quot;codeExercice&quot;;
-  
+
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#exerciseAsString}.
    */
   public static final String JSON_EXERCISE_AS_STRING = &quot;exerciceChaine&quot;;
-  
+
   /**
    * Identifiant json champ identifiant activité.
    */
   public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
-  
+
   /**
    * Identifiant json champ code activité.
    */
   public static final String JSON_ACTIVITY_CODE = &quot;codeActivite&quot;;
-  
+
+  /**
+   * Identifiant json champ code activité et nature économique.
+   */
+  public static final String JSON_ACTIVITY_AND_ECONOMIC_NATURE_CODE =
+      &quot;codeActiviteEtNatureEconomique&quot;;
+
   /**
    * Identifiant json champ réprésentation en chaine de caractères d'activité.
    */
   public static final String JSON_ACTIVITY_AS_STRING = &quot;chaineActivite&quot;;
-  
+
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#economicNatureIdentifier}.
    */
   public static final String JSON_ECONOMIC_NATURE_IDENTIFIER = &quot;idNatureEconomique&quot;;
-  
+
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#economicNatureCode}.
    */
   public static final String JSON_ECONOMIC_NATURE_CODE = &quot;codeNatureEconomique&quot;;
-  
+
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#economicNatureAsString}.
    */
