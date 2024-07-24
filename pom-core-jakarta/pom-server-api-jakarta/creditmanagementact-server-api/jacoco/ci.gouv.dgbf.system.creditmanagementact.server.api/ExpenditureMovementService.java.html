@@ -2,8 +2,6 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -13,7 +11,6 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -22,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -73,6 +71,89 @@ public interface ExpenditureMovementService extends SpecificService {
   Response create(ExpenditureMovementCreateRequestDto request);
 
   /**
+   * Cette classe représente un mouvement de dépense.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L81">  public static class MovementDto {</span>
+    /**
+     * Identifiant du poste de dépense.
+     */
+    private String identifier;
+
+    /**
+     * Montant.
+     */
+    private long amount;
+  }
+
+  /**
+   * Cette classe représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ActDto}.
+     *
+     * @return identifiant {@link ActDto}
+     */
+    String getActIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ActDto}.
+     *
+     * @param identifier identifiant {@link ActDto}
+     */
+    void setActIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du poste de dépense.
+     *
+     * @return identifiant {@link ActDto}
+     */
+    String getItemIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du poste de dépense.
+     *
+     * @param identifier identifiant du poste de dépense
+     */
+    void setItemIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    long getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(long amount);
+
+    /**
+     * Identifiant json de l'identifiant de {@link ActDto}.
+     */
+    String JSON_ACT_IDENTIFIER = AbstractMovementDto.JSON_ACT_IDENTIFIER;
+    /**
+     * Identifiant json de l'identifiant du poste de dépense.
+     */
+    String JSON_ITEM_IDENTIFIER = ExpenditureMovementDto.JSON_ITEM_IDENTIFIER;
+    /**
+     * Identifiant json du montant.
+     */
+    String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -80,38 +161,116 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L83">  class ExpenditureMovementCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
-    /**
-     * {@link AbstractMovementDto#getActIdentifier()}.
-     */
+<span class="fc" id="L164">  class ExpenditureMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SaveRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
-    private String actIdentifier;
+    String actIdentifier;
 
-    /**
-     * {@link ExpenditureMovementDto#getItemIdentifier()}.
-     */
     @JsonbProperty(JSON_ITEM_IDENTIFIER)
-    private String itemIdentifier;
+    String itemIdentifier;
 
-    /**
-     * {@link AbstractMovementDto#getAmount()}.
-     */
     @JsonbProperty(JSON_AMOUNT)
-    private long amount;
+    long amount;
+  }
+
+  /**
+   * Identifiant du service de création de plusieurs.
+   */
+  String CREATE_MANY_IDENTIFIER = &quot;CREATION_PLUSIEURS_MOUVEMENT_DEPENSE&quot;;
+
+  /**
+   * Chemin du service de création de plusieurs.
+   */
+  String CREATE_MANY_PATH = &quot;creations&quot;;
+
+  /**
+   * Cette méthode permet de créer plusieurs {@link ExpenditureMovementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_MANY_IDENTIFIER, summary = &quot;Création des mouvements de dépense&quot;,
+      description = &quot;Ce service permet de créer des mouvements de dépense&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createMany(ExpenditureMovementCreateManyRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'enregistrement de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveManyRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ActDto}.
+     *
+     * @return identifiant {@link ActDto}
+     */
+    String getActIdentifier();
 
     /**
-     * {@link AbstractMovementDto#JSON_ACT_IDENTIFIER}.
+     * Cette méthode permet d'assigner l'identifiant de {@link ActDto}.
+     *
+     * @param identifier identifiant {@link ActDto}
      */
-    public static final String JSON_ACT_IDENTIFIER = AbstractMovementDto.JSON_ACT_IDENTIFIER;
+    void setActIdentifier(String identifier);
+
     /**
-     * {@link ExpenditureMovementDto#JSON_ITEM_IDENTIFIER}.
+     * Cette méthode permet d'obtenir les mouvements de dépenses.
+     *
+     * @return mouvements de dépenses
      */
-    public static final String JSON_ITEM_IDENTIFIER =
-        ExpenditureMovementDto.JSON_ITEM_IDENTIFIER;
+    List&lt;MovementDto&gt; getMovements();
+
     /**
-     * {@link AbstractMovementDto#JSON_AMOUNT}.
+     * Cette méthode permet d'assigner les mouvements de dépenses.
+     *
+     * @param movements mouvements de dépenses
      */
-    public static final String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+    void setMovements(List&lt;MovementDto&gt; movements);
+
+    /**
+     * Identifiant json de l'identifiant de {@link ActDto}.
+     */
+    String JSON_ACT_IDENTIFIER = AbstractMovementDto.JSON_ACT_IDENTIFIER;
+    /**
+     * Identifiant json des mouvements.
+     */
+    String JSON_MOVEMENTS = &quot;mouvements&quot;;
+  }
+
+  /**
+   * Cette classe représente la requête de création de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L255">  class ExpenditureMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SaveManyRequestDto {
+    @JsonbProperty(JSON_ACT_IDENTIFIER)
+    String actIdentifier;
+
+    @JsonbProperty(JSON_MOVEMENTS)
+    List&lt;MovementDto&gt; movements;
+
+    /**
+     * Cette méthode permet d'obtenir des mouvements.
+     *
+     * @return mouvements
+     */
+    public List&lt;MovementDto&gt; movements() {
+<span class="fc bfc" id="L269" title="All 2 branches covered.">      if (movements == null) {</span>
+<span class="fc" id="L270">        movements = new ArrayList&lt;&gt;();</span>
+      }
+<span class="fc" id="L272">      return movements;</span>
+    }
   }
 
   /**
@@ -148,7 +307,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L151">  public static class GetManyResponseDto</span>
+<span class="fc" id="L310">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -241,42 +400,16 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L248">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto {</span>
-    /**
-     * {@link AbstractMovementDto#getActIdentifier()}.
-     */
+<span class="fc" id="L403">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements SaveRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     private String actIdentifier;
 
-    /**
-     * {@link ExpenditureMovementDto#getItemIdentifier()}.
-     */
     @JsonbProperty(JSON_ITEM_IDENTIFIER)
     private String itemIdentifier;
 
-    /**
-     * {@link AbstractMovementDto#getAmount()}.
-     */
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
-
-    /**
-     * {@link AbstractMovementDto#JSON_ACT_IDENTIFIER}.
-     */
-    public static final String JSON_ACT_IDENTIFIER = AbstractMovementDto.JSON_ACT_IDENTIFIER;
-    /**
-     * {@link ExpenditureMovementDto#JSON_ITEM_IDENTIFIER}.
-     */
-    public static final String JSON_ITEM_IDENTIFIER =
-        ExpenditureMovementDto.JSON_ITEM_IDENTIFIER;
-    /**
-     * {@link AbstractMovementDto#JSON_AMOUNT}.
-     */
-    public static final String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
   }
 
   /**
