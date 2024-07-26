@@ -30,6 +30,18 @@ import lombok.Setter;
   private String categoryAsString;
 
   /**
+   * Identifiant de {@link ExpenditureNatureDomainDto}.
+   */
+  @JsonbProperty(value = JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de {@link ExpenditureNatureDomainDto}.
+   */
+  @JsonbProperty(value = JSON_DOMAIN_AS_STRING)
+  private String domainAsString;
+  
+  /**
    * Identifiant json de {@link ExpenditureNatureDto#categoryIdentifier}.
    */
   public static final String JSON_CATEGORY_IDENTIFIER = &quot;idCategorie&quot;;
@@ -39,6 +51,16 @@ import lombok.Setter;
    */
   public static final String JSON_CATEGORY_AS_STRING = &quot;categorieChaine&quot;;
 
+  /**
+   * Identifiant json de {@link ExpenditureNatureDto#domainIdentifier}.
+   */
+  public static final String JSON_DOMAIN_IDENTIFIER = &quot;idCategorie&quot;;
+  
+  /**
+   * Identifiant json de {@link ExpenditureNatureDto#domainAsString}.
+   */
+  public static final String JSON_DOMAIN_AS_STRING = &quot;categorieChaine&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

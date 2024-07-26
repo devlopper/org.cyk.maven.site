@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExpenditureNatureDomainClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ExpenditureNatureDomainClient.java</span></div><h1>ExpenditureNatureDomainClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.localauthority.server.api.ExpenditureNatureDomainService.ExpenditureNatureDomainCreateRequestDto;
+import ci.gouv.dgbf.system.localauthority.server.api.ExpenditureNatureDomainService.ExpenditureNatureDomainUpdateRequestDto;
+import ci.gouv.dgbf.system.localauthority.server.api.ExpenditureNatureDomainService.GetManyResponseDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link ExpenditureNatureDomainService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L35">public class ExpenditureNatureDomainClient</span>
+    extends AbstractClient&lt;ExpenditureNatureDomainService&gt;
+    implements GetByIdentifier&lt;ExpenditureNatureDomainDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public ExpenditureNatureDomainClient service(ExpenditureNatureDomainService service) {
+<span class="fc" id="L42">    return (ExpenditureNatureDomainClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(ExpenditureNatureDomainCreateRequestDto request) {
+<span class="fc" id="L52">    return new CreateExecutor(ExpenditureNatureDomainService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#create}.
+   *
+   * @param code code
+   * @param name nom
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
+<span class="fc" id="L66">    ExpenditureNatureDomainCreateRequestDto request =</span>
+        new ExpenditureNatureDomainCreateRequestDto();
+<span class="fc" id="L68">    request.setCode(code);</span>
+<span class="fc" id="L69">    request.setName(name);</span>
+<span class="fc" id="L70">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L71">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L72">    return create(request);</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public GetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L82">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+        ExpenditureNatureDomainService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L84">            .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
+<span class="fc" id="L100">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L101">    request.setProjection(projection);</span>
+<span class="fc" id="L102">    request.setFilter(filter);</span>
+<span class="fc" id="L103">    request.setPage(page);</span>
+<span class="fc" id="L104">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L105">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L106">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ExpenditureNatureDomainDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L116">    return new GetOneExecutor&lt;ExpenditureNatureDomainDto&gt;(ExpenditureNatureDomainDto.class,</span>
+        ExpenditureNatureDomainService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L118">            .execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ExpenditureNatureDomainDto getOne(ProjectionDto projection, FilterDto filter,
+      String auditWho, String auditSession) {
+<span class="fc" id="L132">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L133">    request.setProjection(projection);</span>
+<span class="fc" id="L134">    request.setFilter(filter);</span>
+<span class="fc" id="L135">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L136">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L137">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public ExpenditureNatureDomainDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L147">    return new GetOneExecutor&lt;ExpenditureNatureDomainDto&gt;(ExpenditureNatureDomainDto.class,</span>
+        ExpenditureNatureDomainService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L149">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public ExpenditureNatureDomainDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L164">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L165">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L166">    request.setProjection(projection);</span>
+<span class="fc" id="L167">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L168">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L169">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(ExpenditureNatureDomainUpdateRequestDto request) {
+<span class="fc" id="L179">    return new IdentifiableExecutor(ExpenditureNatureDomainService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L180">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#update}.
+   *
+   * @param identifier identifiant
+   * @param name nom
+   * @param code code
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(String identifier, String code, String name,
+      String auditWho, String auditSession) {
+<span class="fc" id="L195">    ExpenditureNatureDomainUpdateRequestDto request =</span>
+        new ExpenditureNatureDomainUpdateRequestDto();
+<span class="fc" id="L197">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L198">    request.setName(name);</span>
+<span class="fc" id="L199">    request.setCode(code);</span>
+<span class="fc" id="L200">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L201">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L202">    return update(request);</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L212">    return new IdentifiableExecutor(ExpenditureNatureDomainService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L213">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link ExpenditureNatureDomainService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L227">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L228">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L229">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L230">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L231">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

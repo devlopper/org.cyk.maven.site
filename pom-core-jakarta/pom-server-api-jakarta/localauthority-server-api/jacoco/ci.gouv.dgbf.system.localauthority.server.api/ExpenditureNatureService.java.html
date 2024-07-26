@@ -91,9 +91,28 @@ public interface ExpenditureNatureService extends SpecificService {
     void setCategoryIdentifier(String identifier);
 
     /**
+     * Cette méthode permet d'obtennir l'identifiant de {@link ExpenditureNatureDomainDto}.
+     *
+     * @return identifiant
+     */
+    String getDomainIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ExpenditureNatureDomainDto}.
+     *
+     * @param identifier identifiant
+     */
+    void setDomainIdentifier(String identifier);
+    
+    /**
      * Identifiant json du champ de l'identifiant de la catégorie.
      */
     String JSON_CATEGORY_IDENTIFIER = ExpenditureNatureDto.JSON_CATEGORY_IDENTIFIER;
+    
+    /**
+     * Identifiant json du champ de l'identifiant du domaine.
+     */
+    String JSON_DOMAIN_IDENTIFIER = ExpenditureNatureDto.JSON_DOMAIN_IDENTIFIER;
   }
 
   /**
@@ -104,10 +123,13 @@ public interface ExpenditureNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L107">  class ExpenditureNatureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L126">  class ExpenditureNatureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
+    
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
   }
 
   /**
@@ -144,7 +166,7 @@ public interface ExpenditureNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L147">  public static class GetManyResponseDto</span>
+<span class="fc" id="L169">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureNatureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -237,10 +259,13 @@ public interface ExpenditureNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class ExpenditureNatureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L262">  class ExpenditureNatureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
+    
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
   }
 
   /**

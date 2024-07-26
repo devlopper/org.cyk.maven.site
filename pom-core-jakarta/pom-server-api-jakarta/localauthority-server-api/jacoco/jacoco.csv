@@ -1,6 +1,8 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureService.ExpenditureNatureCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ServiceService.ServiceCreateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureDomainClient,0,242,0,0,0,51,0,20,0,20
+API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureDomainService.ExpenditureNatureDomainUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,FundingModeService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ServiceService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityCategoryService.ActivityCategoryUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -21,12 +23,14 @@ API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.loca
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,WealthAccountDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityCategoryDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureCategoryClient,0,242,0,0,0,51,0,20,0,20
+API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureDomainService.ExpenditureNatureDomainCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureService.ExpenditureNatureUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ServiceDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,FundingModeClient,0,242,0,0,0,51,0,20,0,20
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureCategoryService.ExpenditureNatureCategoryUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityService.ActivityUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,WealthAccountService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureDomainFilter,0,15,0,0,0,7,0,4,0,4
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ServiceClient,0,242,0,0,0,51,0,20,0,20
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,BudgetFilter,0,15,0,0,0,7,0,4,0,4
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityDto,0,3,0,0,0,1,0,1,0,1
@@ -43,6 +47,7 @@ API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.loca
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityService.ActivityCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureCategoryService.ExpenditureNatureCategoryCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,FunctionalAccountFilter,0,15,0,0,0,7,0,4,0,4
+API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureDomainService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityCategoryClient,0,242,0,0,0,51,0,20,0,20
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureClient,0,242,0,0,0,51,0,20,0,20
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,WealthAccountClient,0,242,0,0,0,51,0,20,0,20
@@ -76,6 +81,7 @@ API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.loca
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityNatureService.ActivityNatureCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ActivityService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,BudgetService.BudgetUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,ExpenditureNatureDomainDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,FunctionalAccountService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,FundingService.FundingCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de collectivité térritoriale,ci.gouv.dgbf.system.localauthority.server.api,LessorDto,0,3,0,0,0,1,0,1,0,1

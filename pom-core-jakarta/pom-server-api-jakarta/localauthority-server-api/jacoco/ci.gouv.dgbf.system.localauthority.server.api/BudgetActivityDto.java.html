@@ -60,24 +60,16 @@ import lombok.Setter;
   private String justification;
   
   /**
-   * Identifiant java {@link BudgetActivityDto#budgetIdentifier}.
+   * Représentation en chaine de caractères du numéro d'ordre.
    */
-  public static final String FIELD_BUDGET_IDENTIFIER = &quot;budgetIdentifier&quot;;
+  @JsonbProperty(JSON_ORDER_NUMBER)
+  private Long orderNumber;
   
   /**
-   * Identifiant java {@link BudgetActivityDto#activityIdentifier}.
+   * Numéro d'ordre.
    */
-  public static final String FIELD_ACTIVITY_IDENTIFIER = &quot;activityIdentifier&quot;;
-  
-  /**
-   * Identifiant java {@link BudgetActivityDto#amount}.
-   */
-  public static final String FIELD_AMOUNT = &quot;amount&quot;;
-  
-  /**
-   * Identifiant java {@link BudgetActivityDto#justification}.
-   */
-  public static final String FIELD_JUSTIFICATION = &quot;justification&quot;;
+  @JsonbProperty(JSON_ORDER_NUMBER_AS_STRING)
+  private String orderNumberAsString;
   
   /**
    * Identifiant json {@link BudgetActivityDto#budgetIdentifier}.
@@ -113,6 +105,16 @@ import lombok.Setter;
    * Identifiant json {@link BudgetActivityDto#justification}.
    */
   public static final String JSON_JUSTIFICATION = &quot;justification&quot;;
+  
+  /**
+   * Identifiant json {@link BudgetActivityDto#orderNumber}.
+   */
+  public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
+  
+  /**
+   * Identifiant json {@link BudgetActivityDto#orderNumberAsString}.
+   */
+  public static final String JSON_ORDER_NUMBER_AS_STRING = &quot;numeroOrdreChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
