@@ -159,35 +159,14 @@ import lombok.experimental.Accessors;
   }
 
   /**
-   * {@link FundingService#update}.
-   *
-   * @param identifier identifiant
-   * @param name nom
-   * @param code code
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public IdentifiableResponseDto update(String identifier, String code, String name,
-      String auditWho, String auditSession) {
-<span class="fc" id="L173">    FundingUpdateRequestDto request = new FundingUpdateRequestDto();</span>
-<span class="fc" id="L174">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L175">    request.setName(name);</span>
-<span class="fc" id="L176">    request.setCode(code);</span>
-<span class="fc" id="L177">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L178">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L179">    return update(request);</span>
-  }
-
-  /**
    * {@link FundingService#delete}.
    *
    * @param request requête
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L189">    return new IdentifiableExecutor(FundingService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L190">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L168">    return new IdentifiableExecutor(FundingService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L169">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -201,11 +180,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L204">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L205">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L206">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L207">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L208">    return delete(request);</span>
+<span class="fc" id="L183">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L184">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L185">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L186">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L187">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

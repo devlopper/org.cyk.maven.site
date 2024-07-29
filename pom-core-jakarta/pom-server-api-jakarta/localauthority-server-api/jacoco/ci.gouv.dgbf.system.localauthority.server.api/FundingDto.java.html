@@ -54,6 +54,18 @@ import lombok.Setter;
   private String budgetAsString;
   
   /**
+   * Identifiant {@link ExpenditureNatureDto}.
+   */
+  @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
+  private String expenditureNatureIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de  {@link ExpenditureNatureDto}.
+   */
+  @JsonbProperty(JSON_EXPENDITURE_NATURE_AS_STRING)
+  private String expenditureNatureAsString;
+  
+  /**
    * Représentation en chaine de caractères de {@link ActivityDto}.
    */
   @JsonbProperty(JSON_ACTIVITY_AS_STRING)
@@ -96,36 +108,6 @@ import lombok.Setter;
   private String amount3AsString;
   
   /**
-   * Identifiant java {@link FundingDto#modeIdentifier}.
-   */
-  public static final String FIELD_MODE_IDENTIFIER = &quot;modeIdentifier&quot;;
-  
-  /**
-   * Identifiant java {@link FundingDto#lessorIdentifier}.
-   */
-  public static final String FIELD_LESSOR_IDENTIFIER = &quot;lessorIdentifier&quot;;
-  
-  /**
-   * Identifiant java {@link FundingDto#budgetActivityIdentifier}.
-   */
-  public static final String FIELD_BUDGET_ACTIVITY_IDENTIFIER = &quot;budgetActivityIdentifier&quot;;
-  
-  /**
-   * Identifiant java {@link FundingDto#amount1}.
-   */
-  public static final String FIELD_AMOUNT_1 = &quot;amount1&quot;;
-  
-  /**
-   * Identifiant java {@link FundingDto#amount2}.
-   */
-  public static final String FIELD_AMOUNT_2 = &quot;amount2&quot;;
-  
-  /**
-   * Identifiant java {@link FundingDto#amount3}.
-   */
-  public static final String FIELD_AMOUNT_3 = &quot;amount3&quot;;
-  
-  /**
    * Identifiant json {@link FundingDto#modeIdentifier}.
    */
   public static final String JSON_MODE_IDENTIFIER = &quot;idMode&quot;;
@@ -139,6 +121,16 @@ import lombok.Setter;
    * Identifiant json {@link FundingDto#lessorIdentifier}.
    */
   public static final String JSON_LESSOR_IDENTIFIER = &quot;idBailleur&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#expenditureNatureIdentifier}.
+   */
+  public static final String JSON_EXPENDITURE_NATURE_IDENTIFIER = &quot;idNatureDepense&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#expenditureNatureAsString}.
+   */
+  public static final String JSON_EXPENDITURE_NATURE_AS_STRING = &quot;natureDepenseChaine&quot;;
   
   /**
    * Identifiant json {@link FundingDto#lessorAsString}.

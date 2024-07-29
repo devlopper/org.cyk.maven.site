@@ -2,8 +2,6 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -13,7 +11,6 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -73,6 +70,147 @@ public interface FundingService extends SpecificService {
   Response create(FundingCreateRequestDto request);
 
   /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface SaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link FundingModeDto}.
+     *
+     * @return identifiant {@link FundingModeDto}
+     */
+    String getModeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link FundingModeDto}.
+     *
+     * @param modeIdentifier identifiant {@link FundingModeDto}
+     */
+    void setModeIdentifier(String modeIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link LessorDto}.
+     *
+     * @return identifiant {@link LessorDto}
+     */
+    String getLessorIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link LessorDto}.
+     *
+     * @param lessorIdentifier identifiant {@link LessorDto}
+     */
+    void setLessorIdentifier(String lessorIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link BudgetActivityDto}.
+     *
+     * @return identifiant {@link BudgetActivityDto}
+     */
+    String getBudgetActivityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link BudgetActivityDto}.
+     *
+     * @param budgetActivityIdentifier identifiant {@link BudgetActivityDto}
+     */
+    void setBudgetActivityIdentifier(String budgetActivityIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link ExpenditureNatureDto}.
+     *
+     * @return identifiant {@link ExpenditureNatureDto}
+     */
+    String getExpenditureNatureIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link ExpenditureNatureDto}.
+     *
+     * @param expenditureNatureIdentifier identifiant {@link ExpenditureNatureDto}
+     */
+    void setExpenditureNatureIdentifier(String expenditureNatureIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir le montant 1.
+     *
+     * @return montant 1
+     */
+    long getAmount1();
+
+    /**
+     * Cette méthode permet d'assigner le montant 1.
+     *
+     * @param amount1 montant 1
+     */
+    void setAmount1(long amount1);
+
+    /**
+     * Cette méthode permet d'obtenir le montant 2.
+     *
+     * @return montant 2
+     */
+    long getAmount2();
+
+    /**
+     * Cette méthode permet d'assigner le montant 2.
+     *
+     * @param amount2 montant 2
+     */
+    void setAmount2(long amount2);
+
+    /**
+     * Cette méthode permet d'obtenir le montant 3.
+     *
+     * @return montant 3
+     */
+    long getAmount3();
+
+    /**
+     * Cette méthode permet d'assigner le montant 3.
+     *
+     * @param amount3 montant 3
+     */
+    void setAmount3(long amount3);
+
+    /**
+     * Identifiant champ json de {@link FundingModeDto}.
+     */
+    String JSON_MODE_IDENTIFIER = FundingDto.JSON_MODE_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link LessorDto}.
+     */
+    String JSON_LESSOR_IDENTIFIER = FundingDto.JSON_LESSOR_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link ExpenditureNatureDto}.
+     */
+    String JSON_EXPENDITURE_NATURE_IDENTIFIER = FundingDto.JSON_EXPENDITURE_NATURE_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link BudgetActivityDto}.
+     */
+    String JSON_BUDGET_ACTIVITY_IDENTIFIER = FundingDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
+
+    /**
+     * Identifiant champ json du montant 1.
+     */
+    String JSON_AMOUNT_1 = FundingDto.JSON_AMOUNT_1;
+
+    /**
+     * Identifiant champ json du montant 2.
+     */
+    String JSON_AMOUNT_2 = FundingDto.JSON_AMOUNT_2;
+
+    /**
+     * Identifiant champ json du montant 3.
+     */
+    String JSON_AMOUNT_3 = FundingDto.JSON_AMOUNT_3;
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -80,74 +218,27 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L83">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
-    /**
-     * {@link FundingDto#getModeIdentifier()}.
-     */
+<span class="fc" id="L221">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
-    /**
-     * {@link FundingDto#getLessorIdentifier()}.
-     */
     @JsonbProperty(JSON_LESSOR_IDENTIFIER)
     private String lessorIdentifier;
 
-    /**
-     * {@link FundingDto#getBudgetActivityIdentifier()}.
-     */
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
+    private String expenditureNatureIdentifier;
+
     @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
     private String budgetActivityIdentifier;
 
-    /**
-     * {@link FundingDto#getAmount1()}.
-     */
     @JsonbProperty(JSON_AMOUNT_1)
     private long amount1;
 
-    /**
-     * {@link FundingDto#getAmount2()}.
-     */
     @JsonbProperty(JSON_AMOUNT_2)
     private long amount2;
 
-    /**
-     * {@link FundingDto#getAmount3()}.
-     */
     @JsonbProperty(JSON_AMOUNT_3)
     private long amount3;
-
-    /**
-     * {@link FundingDto#JSON_MODE_IDENTIFIER}.
-     */
-    public static final String JSON_MODE_IDENTIFIER =
-        FundingDto.JSON_MODE_IDENTIFIER;
-
-    /**
-     * {@link FundingDto#JSON_LESSOR_IDENTIFIER}.
-     */
-    public static final String JSON_LESSOR_IDENTIFIER = FundingDto.JSON_LESSOR_IDENTIFIER;
-
-    /**
-     * {@link FundingDto#JSON_BUDGET_ACTIVITY_IDENTIFIER}.
-     */
-    public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER =
-        FundingDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
-
-    /**
-     * {@link FundingDto#JSON_AMOUNT_1}.
-     */
-    public static final String JSON_AMOUNT_1 = FundingDto.JSON_AMOUNT_1;
-
-    /**
-     * {@link FundingDto#JSON_AMOUNT_2}.
-     */
-    public static final String JSON_AMOUNT_2 = FundingDto.JSON_AMOUNT_2;
-
-    /**
-     * {@link FundingDto#JSON_AMOUNT_3}.
-     */
-    public static final String JSON_AMOUNT_3 = FundingDto.JSON_AMOUNT_3;
   }
 
   /**
@@ -184,7 +275,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L187">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L278">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -276,12 +367,27 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L283">  class FundingUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L370">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+    @JsonbProperty(JSON_MODE_IDENTIFIER)
+    private String modeIdentifier;
 
+    @JsonbProperty(JSON_LESSOR_IDENTIFIER)
+    private String lessorIdentifier;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
+    private String expenditureNatureIdentifier;
+
+    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    private String budgetActivityIdentifier;
+
+    @JsonbProperty(JSON_AMOUNT_1)
+    private long amount1;
+
+    @JsonbProperty(JSON_AMOUNT_2)
+    private long amount2;
+
+    @JsonbProperty(JSON_AMOUNT_3)
+    private long amount3;
   }
 
   /**
