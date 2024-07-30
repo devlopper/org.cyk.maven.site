@@ -138,6 +138,20 @@ public interface ExpenditureMovementService extends SpecificService {
      * @param amount montant
      */
     void setAmount(long amount);
+    
+    /**
+     * Cette méthode permet d'obtenir est crédit.
+     *
+     * @return est crédit
+     */
+    Boolean getIsCredit();
+
+    /**
+     * Cette méthode permet d'assigner est crédit.
+     *
+     * @param isCredit est crédit
+     */
+    void setIsCredit(Boolean isCredit);
 
     /**
      * Identifiant json de l'identifiant de {@link ActDto}.
@@ -151,6 +165,10 @@ public interface ExpenditureMovementService extends SpecificService {
      * Identifiant json du montant.
      */
     String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+    /**
+     * Identifiant json de est crédit.
+     */
+    String JSON_IS_CREDIT = AbstractMovementDto.JSON_IS_CREDIT;
   }
 
   /**
@@ -161,7 +179,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L164">  class ExpenditureMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L182">  class ExpenditureMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
@@ -171,6 +189,9 @@ public interface ExpenditureMovementService extends SpecificService {
 
     @JsonbProperty(JSON_AMOUNT)
     long amount;
+    
+    @JsonbProperty(JSON_IS_CREDIT)
+    Boolean isCredit;
   }
 
   /**
@@ -252,7 +273,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L255">  class ExpenditureMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L276">  class ExpenditureMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveManyRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
@@ -266,10 +287,10 @@ public interface ExpenditureMovementService extends SpecificService {
      * @return mouvements
      */
     public List&lt;MovementDto&gt; movements() {
-<span class="fc bfc" id="L269" title="All 2 branches covered.">      if (movements == null) {</span>
-<span class="fc" id="L270">        movements = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L290" title="All 2 branches covered.">      if (movements == null) {</span>
+<span class="fc" id="L291">        movements = new ArrayList&lt;&gt;();</span>
       }
-<span class="fc" id="L272">      return movements;</span>
+<span class="fc" id="L293">      return movements;</span>
     }
   }
 
@@ -307,7 +328,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L310">  public static class GetManyResponseDto</span>
+<span class="fc" id="L331">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -400,16 +421,19 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L403">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L424">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
-    private String actIdentifier;
+    String actIdentifier;
 
     @JsonbProperty(JSON_ITEM_IDENTIFIER)
-    private String itemIdentifier;
+    String itemIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
-    private long amount;
+    long amount;
+    
+    @JsonbProperty(JSON_IS_CREDIT)
+    Boolean isCredit;
   }
 
   /**
