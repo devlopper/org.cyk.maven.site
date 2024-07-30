@@ -42,6 +42,12 @@ import lombok.Setter;
   private String amountAsString;
   
   /**
+   * Est crédit.
+   */
+  @JsonbProperty(JSON_IS_CREDIT)
+  private Boolean isCredit;
+  
+  /**
    * Identifiant json {@link AbstractMovementDto#actIdentifier}.
    */
   public static final String JSON_ACT_IDENTIFIER = &quot;idActe&quot;;
@@ -60,5 +66,10 @@ import lombok.Setter;
    * Identifiant json {@link AbstractMovementDto#amountAsString}.
    */
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
+  
+  /**
+   * Identifiant json {@link AbstractMovementDto#isCredit}.
+   */
+  public static final String JSON_IS_CREDIT = &quot;estCredit&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
