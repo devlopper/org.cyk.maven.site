@@ -42,6 +42,30 @@ import lombok.Setter;
   private String amountAsString;
   
   /**
+   * Représentation en chaine de caractères du montant absolu.
+   */
+  @JsonbProperty(JSON_ABSOLUTE_AMOUNT_AS_STRING)
+  private String absoluteAmountAsString;
+  
+  /**
+   * Représentation en chaine de caractères du budget initial.
+   */
+  @JsonbProperty(JSON_INITIAL_BUDGET_AS_STRING)
+  private String initialBudgetAsString;
+  
+  /**
+   * Représentation en chaine de caractères du budget actuel.
+   */
+  @JsonbProperty(JSON_ACTUAL_BUDGET_AS_STRING)
+  private String actualBudgetAsString;
+  
+  /**
+   * Représentation en chaine de caractères du reste du budget exécuté.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_BUDGET_AS_STRING)
+  private String remainingExecutedBudgetAsString;
+  
+  /**
    * Est crédit.
    */
   @JsonbProperty(JSON_IS_CREDIT)
@@ -71,5 +95,25 @@ import lombok.Setter;
    * Identifiant json {@link AbstractMovementDto#isCredit}.
    */
   public static final String JSON_IS_CREDIT = &quot;estCredit&quot;;
+  
+  /**
+   * Identifiant json {@link AbstractMovementDto#absoluteAmountAsString}.
+   */
+  public static final String JSON_ABSOLUTE_AMOUNT_AS_STRING = &quot;montantAbsoluChaine&quot;;
+  
+  /**
+   * Identifiant json {@link AbstractMovementDto#initialBudgetAsString}.
+   */
+  public static final String JSON_INITIAL_BUDGET_AS_STRING = &quot;budgetInitialChaine&quot;;
+  
+  /**
+   * Identifiant json {@link AbstractMovementDto#actualBudgetAsString}.
+   */
+  public static final String JSON_ACTUAL_BUDGET_AS_STRING = &quot;budgetActuelChaine&quot;;
+  
+  /**
+   * Identifiant json {@link AbstractMovementDto#remainingExecutedBudgetAsString}.
+   */
+  public static final String JSON_REMAINING_EXECUTED_BUDGET_AS_STRING = &quot;resteBudgetExecute&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
