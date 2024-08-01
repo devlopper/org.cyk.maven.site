@@ -22,229 +22,272 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   private String exerciseIdentifier;
-  
+
   /**
    * Code de l'exercice.
    */
   @JsonbProperty(JSON_EXERCISE_CODE)
   private String exerciseCode;
-  
+
   /**
    * Représentation en chaine de caractères de l'exercice.
    */
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
   private String exerciseAsString;
-  
+
   /**
    * Identifiant de la catégorie de budget.
    */
   @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
   private String budgetCategoryIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de la catégorie de budget.
    */
   @JsonbProperty(JSON_BUDGET_CATEGORY_AS_STRING)
   private String budgetCategoryAsString;
-  
+
   /**
    * Nature de mouvement.
    */
   @JsonbProperty(JSON_MOVEMENT_NATURE)
   private MovementNature movementNature;
-  
+
   /**
    * Représentation en chaine de caractères de la nature de mouvement.
    */
   @JsonbProperty(JSON_MOVEMENT_NATURE_AS_STRING)
   private String movementNatureAsString;
-  
+
   /**
    * Identifiant de la catégorie de l'acte.
    */
   @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
   private String categoryIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de la catégorie.
    */
   @JsonbProperty(JSON_CATEGORY_AS_STRING)
   private String categoryAsString;
-  
+
   /**
    * Statut de l'acte.
    */
   @JsonbProperty(JSON_STATUS)
   private ActStatus status;
-  
+
   /**
    * Statut de l'acte au format chaine de caractère.
    */
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
-  
+
   /**
    * Statut d'administration de l'acte.
    */
   @JsonbProperty(JSON_ADMINISTRATION_STATUS)
   private ActAdministrationStatus administrationStatus;
-  
+
   /**
    * Statut d'administration de l'acte au format chaine de caractère.
    */
   @JsonbProperty(JSON_ADMINISTRATION_STATUS_AS_STRING)
   private String administrationStatusAsString;
-  
+
   /**
    * Modifiable.
    */
   private Boolean editable;
-  
+
   /**
    * Annulable.
    */
   private Boolean cancelable;
-  
+
   /**
    * Transmettable.
    */
   private Boolean transmitable;
-  
+
   /*
    * Corrigeable.
    */
   private Boolean correctable;
-  
+
   /**
    * Rejetable.
    */
   private Boolean rejectable;
-  
+
   /**
    * Signable.
    */
   private Boolean signable;
-  
+
   /**
    * Applicable.
    */
   private Boolean applyable;
-  
+
   /**
    * Refusable.
    */
   private Boolean refusable;
-  
+
+  /**
+   * Représentation en chaine de caractères du Total de {@link ExpenditureMovementDto}.
+   */
+  private String expenditureMovementAmountTotalAsString;
+
+  /**
+   * Représentation en chaine de caractères du Crédit de {@link ExpenditureMovementDto}.
+   */
+  private String expenditureMovementAmountCreditAsString;
+
+  /**
+   * Représentation en chaine de caractères du Débit de {@link ExpenditureMovementDto}.
+   */
+  private String expenditureMovementAmountDebitAsString;
+
+  /**
+   * Equilibré.
+   */
+  private Boolean balanced;
+
   /**
    * Identifiant json champ {@link ActDto#budgetCategoryIdentifier}.
    */
   public static final String JSON_BUDGET_CATEGORY_IDENTIFIER = &quot;idCategorieBudget&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#budgetCategoryAsString}.
    */
   public static final String JSON_BUDGET_CATEGORY_AS_STRING = &quot;categorieBudgetChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#exerciseCode}.
    */
   public static final String JSON_EXERCISE_CODE = &quot;codeExercice&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#exerciseAsString}.
    */
   public static final String JSON_EXERCISE_AS_STRING = &quot;exerciceChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#movementNature}.
    */
   public static final String JSON_MOVEMENT_NATURE = &quot;natureMouvement&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#movementNatureAsString}.
    */
   public static final String JSON_MOVEMENT_NATURE_AS_STRING = &quot;natureMouvementChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#categoryIdentifier}.
    */
   public static final String JSON_CATEGORY_IDENTIFIER = &quot;idCategorie&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#categoryAsString}.
    */
   public static final String JSON_CATEGORY_AS_STRING = &quot;categorieChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#administrationStatus}.
    */
   public static final String JSON_ADMINISTRATION_STATUS = &quot;statutAdministration&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#administrationStatusAsString}.
    */
   public static final String JSON_ADMINISTRATION_STATUS_AS_STRING = &quot;statutAdministrationChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#editable}.
    */
   public static final String JSON_EDITABLE = &quot;modifiable&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#cancelable}.
    */
   public static final String JSON_CANCELABLE = &quot;annulable&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#transmitable}.
    */
   public static final String JSON_TRANSMITABLE = &quot;transmettable&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#correctable}.
    */
   public static final String JSON_CORRECTABLE = &quot;corrigeable&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#rejectable}.
    */
   public static final String JSON_REJECTABLE = &quot;rejetable&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#signable}.
    */
   public static final String JSON_SIGNABLE = &quot;signable&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#applyable}.
    */
   public static final String JSON_APPLYABLE = &quot;appliquable&quot;;
-  
+
   /**
    * Identifiant json champ {@link ActDto#refusable}.
    */
   public static final String JSON_REFUSABLE = &quot;refusable&quot;;
-  
+
+  /**
+   * Identifiant json champ {@link ActDto#expenditureMovementAmountTotalAsString}.
+   */
+  public static final String JSON_EXPENDITURE_MOVEMENT_AMOUNT_TOTAL_AS_STRING =
+      &quot;expenditureMovementAmountTotalAsString&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#expenditureMovementAmountCreditAsString}.
+   */
+  public static final String JSON_EXPENDITURE_MOVEMENT_AMOUNT_CREDIT_AS_STRING =
+      &quot;expenditureMovementAmountCreditAsString&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#expenditureMovementAmountDebitAsString}.
+   */
+  public static final String JSON_EXPENDITURE_MOVEMENT_AMOUNT_DEBIT_AS_STRING =
+      &quot;expenditureMovementAmountDebitAsString&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#balanced}.
+   */
+  public static final String JSON_BALANCED = &quot;balanced&quot;;
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;acte&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
