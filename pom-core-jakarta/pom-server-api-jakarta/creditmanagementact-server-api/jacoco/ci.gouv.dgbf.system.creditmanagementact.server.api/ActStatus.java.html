@@ -13,53 +13,53 @@ import lombok.Getter;
  * @author Christian
  *
  */
-@Getter
+<span class="fc" id="L16">@Getter</span>
 public enum ActStatus {
 
-<span class="nc" id="L19">  /**</span>
+  /**
    * Acte créé.
    */
-<span class="nc" id="L22">  CREATED(ActStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
-<span class="nc" id="L23">  /**</span>
+<span class="fc" id="L22">  CREATED(ActStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+  /**
    * Acte modifié.
    */
-<span class="nc" id="L26">  EDITED(ActStatusCode.EDITED, &quot;Modifié&quot;, &quot;Modification&quot;),</span>
-<span class="nc" id="L27">  /**</span>
+<span class="fc" id="L26">  EDITED(ActStatusCode.EDITED, &quot;Modifié&quot;, &quot;Modification&quot;),</span>
+  /**
    * Acte annulé.
    */
-<span class="nc" id="L30">  CANCELLED(ActStatusCode.CANCELLED, &quot;Annulé&quot;, &quot;Annulation&quot;),</span>
-<span class="nc" id="L31">  /**</span>
+<span class="fc" id="L30">  CANCELLED(ActStatusCode.CANCELLED, &quot;Annulé&quot;, &quot;Annulation&quot;),</span>
+  /**
    * Acte transmis.
    */
-<span class="nc" id="L34">  TRANSMITTED(ActStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmission&quot;),</span>
-<span class="nc" id="L35">  /**</span>
+<span class="fc" id="L34">  TRANSMITTED(ActStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmission&quot;),</span>
+  /**
    * Acte corrigé.
    */
-<span class="nc" id="L38">  CORRECTED(ActStatusCode.CORRECTED, &quot;Corrigé&quot;, &quot;Correction&quot;),</span>
-<span class="nc" id="L39">  /**</span>
+<span class="fc" id="L38">  CORRECTED(ActStatusCode.CORRECTED, &quot;Corrigé&quot;, &quot;Correction&quot;),</span>
+  /**
    * Acte rejeté.
    */
-<span class="nc" id="L42">  REJECTED(ActStatusCode.REJECTED, &quot;Rejeté&quot;, &quot;Rejet&quot;),</span>
-<span class="nc" id="L43">  /**</span>
+<span class="fc" id="L42">  REJECTED(ActStatusCode.REJECTED, &quot;Rejeté&quot;, &quot;Rejet&quot;),</span>
+  /**
    * Acte signé.
    */
-<span class="nc" id="L46">  SIGNED(ActStatusCode.SIGNED, &quot;Signé&quot;, &quot;Signature&quot;),</span>
-<span class="nc" id="L47">  /**</span>
+<span class="fc" id="L46">  SIGNED(ActStatusCode.SIGNED, &quot;Signé&quot;, &quot;Signature&quot;),</span>
+  /**
    * Acte appliqué.
    */
-<span class="nc" id="L50">  APPLIED(ActStatusCode.APPLIED, &quot;Appliqué&quot;, &quot;Application&quot;),</span>
-<span class="nc" id="L51">  /**</span>
+<span class="fc" id="L50">  APPLIED(ActStatusCode.APPLIED, &quot;Appliqué&quot;, &quot;Application&quot;),</span>
+  /**
    * Acte refusé.
    */
-<span class="nc" id="L54">  REFUSED(ActStatusCode.REFUSED, &quot;Refusé&quot;, &quot;Refus&quot;)</span>
+<span class="fc" id="L54">  REFUSED(ActStatusCode.REFUSED, &quot;Refusé&quot;, &quot;Refus&quot;)</span>
 
   ;
 
-<span class="nc" id="L58">  private ActStatus(String code, String name, String action) {</span>
-<span class="nc" id="L59">    this.code = code;</span>
-<span class="nc" id="L60">    this.name = name;</span>
-<span class="nc" id="L61">    this.action = action;</span>
-<span class="nc" id="L62">  }</span>
+<span class="fc" id="L58">  private ActStatus(String code, String name, String action) {</span>
+<span class="fc" id="L59">    this.code = code;</span>
+<span class="fc" id="L60">    this.name = name;</span>
+<span class="fc" id="L61">    this.action = action;</span>
+<span class="fc" id="L62">  }</span>
 
   private String code;
   private String name;
@@ -68,7 +68,7 @@ public enum ActStatus {
 
   @Override
   public String toString() {
-<span class="nc" id="L71">    return name;</span>
+<span class="fc" id="L71">    return name;</span>
   }
 
   /**
@@ -78,20 +78,20 @@ public enum ActStatus {
    * @return statut
    */
   public static ActStatus getByCode(String code) {
-<span class="nc" id="L81">    return Stream.of(ActStatus.values()).filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="nc" id="L82">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L81">    return Stream.of(ActStatus.values()).filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L82">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="nc" id="L86">    CREATED.previous = Collections.emptySet();</span>
-<span class="nc" id="L87">    EDITED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
-<span class="nc" id="L88">    CANCELLED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
-<span class="nc" id="L89">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
-<span class="nc" id="L90">    CORRECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
-<span class="nc" id="L91">    REJECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
-<span class="nc" id="L92">    SIGNED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
-<span class="nc" id="L93">    APPLIED.previous = Core.getSet(List.of(SIGNED));</span>
-<span class="nc" id="L94">    REFUSED.previous = Core.getSet(List.of(SIGNED));</span>
-<span class="nc" id="L95">  }</span>
+<span class="fc" id="L86">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L87">    EDITED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
+<span class="fc" id="L88">    CANCELLED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
+<span class="fc" id="L89">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, EDITED));</span>
+<span class="fc" id="L90">    CORRECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
+<span class="fc" id="L91">    REJECTED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
+<span class="fc" id="L92">    SIGNED.previous = Core.getSet(List.of(TRANSMITTED, CORRECTED));</span>
+<span class="fc" id="L93">    APPLIED.previous = Core.getSet(List.of(SIGNED));</span>
+<span class="fc" id="L94">    REFUSED.previous = Core.getSet(List.of(SIGNED));</span>
+<span class="fc" id="L95">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

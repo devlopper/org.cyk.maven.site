@@ -12,28 +12,28 @@ import lombok.Getter;
  * @author Christian
  *
  */
-@Getter
+<span class="fc" id="L15">@Getter</span>
 public enum ActAdministrationStatus {
 
-<span class="nc" id="L18">  /**</span>
+  /**
    * Acte désactivé.
    */
-<span class="nc" id="L21">  DISABLED(ActAdministrationStatusCode.DISABLED, &quot;Désactivé&quot;),</span>
-<span class="nc" id="L22">  /**</span>
+<span class="fc" id="L21">  DISABLED(ActAdministrationStatusCode.DISABLED, &quot;Désactivé&quot;),</span>
+  /**
    * Acte activé.
    */
-<span class="nc" id="L25">  ENABLED(ActAdministrationStatusCode.ENABLED, &quot;Activé&quot;),</span>
-<span class="nc" id="L26">  /**</span>
+<span class="fc" id="L25">  ENABLED(ActAdministrationStatusCode.ENABLED, &quot;Activé&quot;),</span>
+  /**
    * Acte annulé.
    */
-<span class="nc" id="L29">  CANCELLED(ActAdministrationStatusCode.CANCELLED, &quot;Annulé&quot;)</span>
+<span class="fc" id="L29">  CANCELLED(ActAdministrationStatusCode.CANCELLED, &quot;Annulé&quot;)</span>
 
   ;
 
-<span class="nc" id="L33">  private ActAdministrationStatus(String code, String name) {</span>
-<span class="nc" id="L34">    this.code = code;</span>
-<span class="nc" id="L35">    this.name = name;</span>
-<span class="nc" id="L36">  }</span>
+<span class="fc" id="L33">  private ActAdministrationStatus(String code, String name) {</span>
+<span class="fc" id="L34">    this.code = code;</span>
+<span class="fc" id="L35">    this.name = name;</span>
+<span class="fc" id="L36">  }</span>
 
   private String code;
   private String name;
@@ -41,7 +41,7 @@ public enum ActAdministrationStatus {
 
   @Override
   public String toString() {
-<span class="nc" id="L44">    return name;</span>
+<span class="fc" id="L44">    return name;</span>
   }
 
   /**
@@ -51,15 +51,15 @@ public enum ActAdministrationStatus {
    * @return statut
    */
   public static ActAdministrationStatus getByCode(String code) {
-<span class="nc" id="L54">    return Stream.of(ActAdministrationStatus.values())</span>
-<span class="nc" id="L55">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="nc" id="L56">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L54">    return Stream.of(ActAdministrationStatus.values())</span>
+<span class="fc" id="L55">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L56">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="nc" id="L60">    DISABLED.previous = Core.getSet(List.of(ENABLED));</span>
-<span class="nc" id="L61">    ENABLED.previous = Core.getSet(List.of(DISABLED));</span>
-<span class="nc" id="L62">    CANCELLED.previous = Core.getSet(List.of(ENABLED, DISABLED));</span>
-<span class="nc" id="L63">  }</span>
+<span class="fc" id="L60">    DISABLED.previous = Core.getSet(List.of(ENABLED));</span>
+<span class="fc" id="L61">    ENABLED.previous = Core.getSet(List.of(DISABLED));</span>
+<span class="fc" id="L62">    CANCELLED.previous = Core.getSet(List.of(ENABLED, DISABLED));</span>
+<span class="fc" id="L63">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
