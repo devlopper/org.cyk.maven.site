@@ -98,61 +98,73 @@ import lombok.Setter;
   /**
    * Modifiable.
    */
+  @JsonbProperty(JSON_EDITABLE)
   private Boolean editable;
 
   /**
    * Annulable.
    */
+  @JsonbProperty(JSON_CANCELABLE)
   private Boolean cancelable;
 
   /**
    * Transmettable.
    */
+  @JsonbProperty(JSON_TRANSMITABLE)
   private Boolean transmitable;
 
   /*
    * Corrigeable.
    */
+  @JsonbProperty(JSON_CORRECTABLE)
   private Boolean correctable;
 
   /**
    * Rejetable.
    */
+  @JsonbProperty(JSON_REJECTABLE)
   private Boolean rejectable;
 
   /**
    * Signable.
    */
+  @JsonbProperty(JSON_SIGNABLE)
   private Boolean signable;
 
   /**
    * Applicable.
    */
+  @JsonbProperty(JSON_APPLYABLE)
   private Boolean applyable;
 
   /**
    * Refusable.
    */
+  @JsonbProperty(JSON_REFUSABLE)
   private Boolean refusable;
 
   /**
    * Représentation en chaine de caractères du Total de {@link ExpenditureMovementDto}.
    */
+  @JsonbProperty(JSON_EXPENDITURE_MOVEMENT_AMOUNT_TOTAL_AS_STRING)
   private String expenditureMovementAmountTotalAsString;
 
   /**
    * Représentation en chaine de caractères du Crédit de {@link ExpenditureMovementDto}.
    */
+  @JsonbProperty(JSON_EXPENDITURE_MOVEMENT_AMOUNT_CREDIT_AS_STRING)
   private String expenditureMovementAmountCreditAsString;
 
   /**
    * Représentation en chaine de caractères du Débit de {@link ExpenditureMovementDto}.
    */
+  @JsonbProperty(JSON_EXPENDITURE_MOVEMENT_AMOUNT_DEBIT_AS_STRING)
   private String expenditureMovementAmountDebitAsString;
 
   /**
    * Equilibré.
    */
+  @JsonbProperty(JSON_BALANCED)
   private Boolean balanced;
 
   /**
