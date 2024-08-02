@@ -9,7 +9,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.budgetaryclassification.server.api.AdministrativeUnitService.GetManyResponseDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.AdministrativeUnitService.AdministrativeUnitGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,8 +23,8 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L26">public class AdministrativeUnitClient extends AbstractClient&lt;AdministrativeUnitService&gt;</span>
-    implements GetByIdentifier&lt;AdministrativeUnitDto&gt;, GetMany&lt;GetManyResponseDto&gt; {
+<span class="fc" id="L26">public class AdministrativeUnitClient extends AbstractClient&lt;AdministrativeUnitService&gt; implements</span>
+    GetByIdentifier&lt;AdministrativeUnitDto&gt;, GetMany&lt;AdministrativeUnitGetManyResponseDto&gt; {
 
   @Override
   public AdministrativeUnitClient service(AdministrativeUnitService service) {
@@ -37,9 +37,10 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L41">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
-<span class="fc" id="L42">        AdministrativeUnitService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  public AdministrativeUnitGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L41">    return new GetOneExecutor&lt;AdministrativeUnitGetManyResponseDto&gt;(</span>
+        AdministrativeUnitGetManyResponseDto.class, AdministrativeUnitService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L43">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -53,15 +54,15 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
-<span class="fc" id="L58">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L59">    request.setProjection(projection);</span>
-<span class="fc" id="L60">    request.setFilter(filter);</span>
-<span class="fc" id="L61">    request.setPage(page);</span>
-<span class="fc" id="L62">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L63">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L64">    return getMany(request);</span>
+  public AdministrativeUnitGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L59">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L60">    request.setProjection(projection);</span>
+<span class="fc" id="L61">    request.setFilter(filter);</span>
+<span class="fc" id="L62">    request.setPage(page);</span>
+<span class="fc" id="L63">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L64">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L65">    return getMany(request);</span>
   }
 
   /**
@@ -71,9 +72,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public AdministrativeUnitDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L74">    return new GetOneExecutor&lt;AdministrativeUnitDto&gt;(AdministrativeUnitDto.class,</span>
+<span class="fc" id="L75">    return new GetOneExecutor&lt;AdministrativeUnitDto&gt;(AdministrativeUnitDto.class,</span>
         AdministrativeUnitService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L76">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L77">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -88,12 +89,12 @@ import lombok.experimental.Accessors;
   @Override
   public AdministrativeUnitDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L91">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L92">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L93">    request.setProjection(projection);</span>
-<span class="fc" id="L94">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L95">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L96">    return getByIdentifier(request);</span>
+<span class="fc" id="L92">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L93">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L94">    request.setProjection(projection);</span>
+<span class="fc" id="L95">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L96">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L97">    return getByIdentifier(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
