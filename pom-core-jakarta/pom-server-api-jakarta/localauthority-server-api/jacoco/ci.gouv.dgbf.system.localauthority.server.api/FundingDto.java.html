@@ -108,6 +108,12 @@ import lombok.Setter;
   private String amount3AsString;
   
   /**
+   * Catégorie d'activité.
+   */
+  @JsonbProperty(JSON_ACTIVITY_CATEGORY)
+  private ActivityCategory activityCategory;
+  
+  /**
    * Identifiant json {@link FundingDto#modeIdentifier}.
    */
   public static final String JSON_MODE_IDENTIFIER = &quot;idMode&quot;;
@@ -181,6 +187,11 @@ import lombok.Setter;
    * Identifiant json {@link FundingDto#activityAsString}.
    */
   public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
+  
+  /**
+   * Identifiant json {@link FundingDto#activityCategory}.
+   */
+  public static final String JSON_ACTIVITY_CATEGORY = &quot;categorieActivite&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
