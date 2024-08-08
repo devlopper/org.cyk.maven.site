@@ -114,7 +114,7 @@ public interface ServiceService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des services&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = ServiceGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -125,7 +125,7 @@ public interface ServiceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceDto&gt; {</span>
+<span class="fc" id="L128">  public static class ServiceGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ServiceDto&gt; datas;

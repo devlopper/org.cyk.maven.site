@@ -16,8 +16,8 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.budgetaryclassification.server.api.ServiceService.GetManyResponseDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.ServiceService.ServiceCreateRequestDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.ServiceService.ServiceGetManyResponseDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.ServiceService.ServiceUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L35">public class ServiceClient extends AbstractClient&lt;ServiceService&gt;</span>
-    implements GetByIdentifier&lt;ServiceDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    implements GetByIdentifier&lt;ServiceDto&gt;, GetMany&lt;ServiceGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
@@ -58,8 +58,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L62">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+  public ServiceGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L62">    return new GetOneExecutor&lt;ServiceGetManyResponseDto&gt;(ServiceGetManyResponseDto.class,</span>
 <span class="fc" id="L63">        ServiceService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
@@ -74,7 +74,7 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public ServiceGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
 <span class="fc" id="L79">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L80">    request.setProjection(projection);</span>
