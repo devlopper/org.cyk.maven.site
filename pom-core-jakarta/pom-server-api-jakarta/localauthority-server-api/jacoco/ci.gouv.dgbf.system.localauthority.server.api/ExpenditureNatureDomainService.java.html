@@ -78,8 +78,7 @@ public interface ExpenditureNatureDomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L81">  class ExpenditureNatureDomainCreateRequestDto</span>
-      extends AbstractCodableNamableCreateRequestJsonDto {
+<span class="fc" id="L81">  class ExpenditureNatureDomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
 
   }
 
@@ -105,8 +104,8 @@ public interface ExpenditureNatureDomainService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des domaines de nature de dépense&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ExpenditureNatureDomainGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -117,7 +116,7 @@ public interface ExpenditureNatureDomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L120">  public static class GetManyResponseDto</span>
+<span class="fc" id="L119">  public static class ExpenditureNatureDomainGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureNatureDomainDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -211,8 +210,7 @@ public interface ExpenditureNatureDomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L214">  class ExpenditureNatureDomainUpdateRequestDto</span>
-      extends AbstractCodableNamableUpdateRequestJsonDto {
+<span class="fc" id="L213">  class ExpenditureNatureDomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

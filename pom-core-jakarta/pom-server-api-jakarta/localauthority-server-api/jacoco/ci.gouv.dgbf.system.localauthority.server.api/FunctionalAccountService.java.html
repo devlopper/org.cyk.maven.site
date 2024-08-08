@@ -103,8 +103,8 @@ public interface FunctionalAccountService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des comptes fonctionnels&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = FunctionalAccountGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -115,7 +115,7 @@ public interface FunctionalAccountService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L118">  public static class GetManyResponseDto</span>
+<span class="fc" id="L118">  public static class FunctionalAccountGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;FunctionalAccountDto&gt; {
 
     @JsonbProperty(JSON_DATAS)

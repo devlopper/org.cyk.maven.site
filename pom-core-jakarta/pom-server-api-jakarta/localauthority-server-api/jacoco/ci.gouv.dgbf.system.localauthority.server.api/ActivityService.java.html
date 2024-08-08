@@ -75,7 +75,7 @@ public interface ActivityService extends SpecificService {
    * @author Christian
    *
    */
-  interface SaveRequestDto {
+  interface ActivitySaveRequestDto {
     
     /**
      * Cette méthode permet d'obtenir l'identitant de {@link ServiceDto}.
@@ -180,14 +180,14 @@ public interface ActivityService extends SpecificService {
      *
      * @return catégorie
      */
-    ActivityCategory getCategory();
+    ActivityCategory getCategoryEnum();
 
     /**
      * Cette méthode permet d'assigner la catégorie.
      *
-     * @param category catégorie
+     * @param categoryEnum catégorie
      */
-    void setCategory(ActivityCategory category);
+    void setCategoryEnum(ActivityCategory categoryEnum);
 
     /**
      * Identifiant json du champ de l'identitant de {@link ActivityNatureDto}.
@@ -242,7 +242,7 @@ public interface ActivityService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L244">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
-      implements SaveRequestDto {
+      implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_SERVICE_IDENTIFIER)
     private String serviceIdentifier;
@@ -266,7 +266,7 @@ public interface ActivityService extends SpecificService {
     private long amount;
     
     @JsonbProperty(JSON_CATEGORY)
-    private ActivityCategory category;
+    private ActivityCategory categoryEnum;
   }
 
   /**
@@ -396,7 +396,7 @@ public interface ActivityService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L398">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
-      implements SaveRequestDto {
+      implements ActivitySaveRequestDto {
     
     @JsonbProperty(JSON_SERVICE_IDENTIFIER)
     private String serviceIdentifier;
@@ -420,7 +420,7 @@ public interface ActivityService extends SpecificService {
     private long amount;
     
     @JsonbProperty(JSON_CATEGORY)
-    private ActivityCategory category;
+    private ActivityCategory categoryEnum;
   }
 
   /**

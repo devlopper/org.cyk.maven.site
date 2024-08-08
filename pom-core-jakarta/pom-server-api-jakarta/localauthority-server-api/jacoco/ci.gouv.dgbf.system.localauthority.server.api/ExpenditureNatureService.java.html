@@ -103,12 +103,12 @@ public interface ExpenditureNatureService extends SpecificService {
      * @param identifier identifiant
      */
     void setDomainIdentifier(String identifier);
-    
+
     /**
      * Identifiant json du champ de l'identifiant de la catégorie.
      */
     String JSON_CATEGORY_IDENTIFIER = ExpenditureNatureDto.JSON_CATEGORY_IDENTIFIER;
-    
+
     /**
      * Identifiant json du champ de l'identifiant du domaine.
      */
@@ -127,7 +127,7 @@ public interface ExpenditureNatureService extends SpecificService {
       implements SaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
-    
+
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
   }
@@ -154,8 +154,8 @@ public interface ExpenditureNatureService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des natures de dépense&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ExpenditureNatureGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -166,7 +166,7 @@ public interface ExpenditureNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L169">  public static class GetManyResponseDto</span>
+<span class="fc" id="L169">  public static class ExpenditureNatureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureNatureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -263,7 +263,7 @@ public interface ExpenditureNatureService extends SpecificService {
       implements SaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
-    
+
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
   }

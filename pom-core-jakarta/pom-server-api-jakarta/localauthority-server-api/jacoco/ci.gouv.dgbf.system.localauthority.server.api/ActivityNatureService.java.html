@@ -111,8 +111,8 @@ public interface ActivityNatureService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des natures d'activité&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ActivityNatureGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -123,7 +123,8 @@ public interface ActivityNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityNatureDto&gt; {</span>
+<span class="fc" id="L126">  public static class ActivityNatureGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ActivityNatureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityNatureDto&gt; datas;
@@ -219,7 +220,7 @@ public interface ActivityNatureService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L222">  class ActivityNatureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L223">  class ActivityNatureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

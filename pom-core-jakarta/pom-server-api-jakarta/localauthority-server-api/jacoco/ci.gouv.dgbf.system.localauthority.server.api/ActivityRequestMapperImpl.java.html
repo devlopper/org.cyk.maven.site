@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActivityRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ActivityRequestMapperImpl.java</span></div><h1>ActivityRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2024-08-08T16:20:37+0000&quot;,
+    comments = &quot;version: 1.5.5.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L12">public class ActivityRequestMapperImpl implements ActivityRequestMapper {</span>
+
+    @Override
+    public ActivityService.ActivityCreateRequestDto mapCreate(ActivityDto arg0) {
+<span class="fc bfc" id="L16" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L17">            return null;</span>
+        }
+
+<span class="fc" id="L20">        ActivityService.ActivityCreateRequestDto activityCreateRequestDto = new ActivityService.ActivityCreateRequestDto();</span>
+
+<span class="fc" id="L22">        activityCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L23">        activityCreateRequestDto.setServiceIdentifier( arg0.getServiceIdentifier() );</span>
+<span class="fc" id="L24">        activityCreateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
+<span class="fc" id="L25">        activityCreateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L26">        activityCreateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
+<span class="fc" id="L27">        activityCreateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
+<span class="fc" id="L28">        activityCreateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
+<span class="fc" id="L30">            activityCreateRequestDto.setAmount( arg0.getAmount() );</span>
+        }
+<span class="fc" id="L32">        activityCreateRequestDto.setCategoryEnum( arg0.getCategoryEnum() );</span>
+
+<span class="fc" id="L34">        return activityCreateRequestDto;</span>
+    }
+
+    @Override
+    public ActivityService.ActivityUpdateRequestDto mapUpdate(ActivityDto arg0) {
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
+        }
+
+<span class="fc" id="L43">        ActivityService.ActivityUpdateRequestDto activityUpdateRequestDto = new ActivityService.ActivityUpdateRequestDto();</span>
+
+<span class="fc" id="L45">        activityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        activityUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        activityUpdateRequestDto.setServiceIdentifier( arg0.getServiceIdentifier() );</span>
+<span class="fc" id="L48">        activityUpdateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
+<span class="fc" id="L49">        activityUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L50">        activityUpdateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
+<span class="fc" id="L51">        activityUpdateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
+<span class="fc" id="L52">        activityUpdateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
+<span class="fc" id="L54">            activityUpdateRequestDto.setAmount( arg0.getAmount() );</span>
+        }
+<span class="fc" id="L56">        activityUpdateRequestDto.setCategoryEnum( arg0.getCategoryEnum() );</span>
+
+<span class="fc" id="L58">        return activityUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

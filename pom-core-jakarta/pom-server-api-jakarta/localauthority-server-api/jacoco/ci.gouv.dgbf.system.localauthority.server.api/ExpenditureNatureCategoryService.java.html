@@ -105,8 +105,8 @@ public interface ExpenditureNatureCategoryService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des catégories de nature de dépense&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(
+      schema = @Schema(implementation = ExpenditureNatureCategoryGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -117,7 +117,7 @@ public interface ExpenditureNatureCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L120">  public static class GetManyResponseDto</span>
+<span class="fc" id="L120">  public static class ExpenditureNatureCategoryGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureNatureCategoryDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
