@@ -17,8 +17,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.localauthority.server.api.ActivityService.ActivityCreateRequestDto;
+import ci.gouv.dgbf.system.localauthority.server.api.ActivityService.ActivityGetManyResponseDto;
 import ci.gouv.dgbf.system.localauthority.server.api.ActivityService.ActivityUpdateRequestDto;
-import ci.gouv.dgbf.system.localauthority.server.api.ActivityService.GetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L35">public class ActivityClient extends AbstractClient&lt;ActivityService&gt;</span>
-    implements GetByIdentifier&lt;ActivityDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    implements GetByIdentifier&lt;ActivityDto&gt;, GetMany&lt;ActivityGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
@@ -58,8 +58,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L62">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+  public ActivityGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L62">    return new GetOneExecutor&lt;ActivityGetManyResponseDto&gt;(ActivityGetManyResponseDto.class,</span>
 <span class="fc" id="L63">        ActivityService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
@@ -74,8 +74,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public ActivityGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
 <span class="fc" id="L79">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L80">    request.setProjection(projection);</span>
 <span class="fc" id="L81">    request.setFilter(filter);</span>
@@ -92,8 +92,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ActivityDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L95">    return new GetOneExecutor&lt;ActivityDto&gt;(ActivityDto.class,</span>
-<span class="fc" id="L96">        ActivityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L95">    return new GetOneExecutor&lt;ActivityDto&gt;(ActivityDto.class, ActivityService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L96">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -137,8 +137,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public ActivityDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public ActivityDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
 <span class="fc" id="L142">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
 <span class="fc" id="L143">    request.setIdentifier(identifier);</span>
 <span class="fc" id="L144">    request.setProjection(projection);</span>

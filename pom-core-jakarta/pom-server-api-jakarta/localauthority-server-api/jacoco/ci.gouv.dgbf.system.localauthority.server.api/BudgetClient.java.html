@@ -17,8 +17,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.localauthority.server.api.BudgetService.BudgetCreateRequestDto;
+import ci.gouv.dgbf.system.localauthority.server.api.BudgetService.BudgetGetManyResponseDto;
 import ci.gouv.dgbf.system.localauthority.server.api.BudgetService.BudgetUpdateRequestDto;
-import ci.gouv.dgbf.system.localauthority.server.api.BudgetService.GetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L35">public class BudgetClient extends AbstractClient&lt;BudgetService&gt;</span>
-    implements GetByIdentifier&lt;BudgetDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    implements GetByIdentifier&lt;BudgetDto&gt;, GetMany&lt;BudgetGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
@@ -76,8 +76,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L80">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+  public BudgetGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L80">    return new GetOneExecutor&lt;BudgetGetManyResponseDto&gt;(BudgetGetManyResponseDto.class,</span>
 <span class="fc" id="L81">        BudgetService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
@@ -92,7 +92,7 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public BudgetGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
 <span class="fc" id="L97">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L98">    request.setProjection(projection);</span>
@@ -110,8 +110,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public BudgetDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L113">    return new GetOneExecutor&lt;BudgetDto&gt;(BudgetDto.class,</span>
-<span class="fc" id="L114">        BudgetService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L113">    return new GetOneExecutor&lt;BudgetDto&gt;(BudgetDto.class, BudgetService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L114">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -155,8 +155,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public BudgetDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
+  public BudgetDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
 <span class="fc" id="L160">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
 <span class="fc" id="L161">    request.setIdentifier(identifier);</span>
 <span class="fc" id="L162">    request.setProjection(projection);</span>

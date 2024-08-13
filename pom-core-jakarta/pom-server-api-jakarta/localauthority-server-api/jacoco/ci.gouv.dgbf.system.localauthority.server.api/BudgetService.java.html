@@ -134,7 +134,7 @@ public interface BudgetService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des budgets&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = BudgetGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -145,7 +145,7 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
+<span class="fc" id="L148">  public static class BudgetGetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;BudgetDto&gt; datas;

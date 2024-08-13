@@ -154,8 +154,8 @@ public interface BudgetActivityService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des activités de budget&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = BudgetActivityGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -166,7 +166,8 @@ public interface BudgetActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L169">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetActivityDto&gt; {</span>
+<span class="fc" id="L169">  public static class BudgetActivityGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;BudgetActivityDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;BudgetActivityDto&gt; datas;
@@ -262,7 +263,7 @@ public interface BudgetActivityService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L265">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L266">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 
