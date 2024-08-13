@@ -75,6 +75,16 @@ public interface BudgetActivityService extends SpecificService {
   Response create(BudgetActivityCreateRequestDto request);
 
   /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface BudgetActivitySaveRequestDto {
+    
+  }
+  
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -85,7 +95,7 @@ public interface BudgetActivityService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L88">  class BudgetActivityCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L98">  class BudgetActivityCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
     /**
      * {@link BudgetActivityDto#getBudgetIdentifier()}.
      */
@@ -166,7 +176,7 @@ public interface BudgetActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L169">  public static class BudgetActivityGetManyResponseDto</span>
+<span class="fc" id="L179">  public static class BudgetActivityGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;BudgetActivityDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -263,8 +273,51 @@ public interface BudgetActivityService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L266">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L276">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+    /**
+     * {@link BudgetActivityDto#getBudgetIdentifier()}.
+     */
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    private String budgetIdentifier;
 
+    /**
+     * {@link BudgetActivityDto#getActivityIdentifier()}.
+     */
+    @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
+    private String activityIdentifier;
+
+    /**
+     * {@link BudgetActivityDto#getAmount()}.
+     */
+    @JsonbProperty(JSON_AMOUNT)
+    private Long amount;
+
+    /**
+     * {@link BudgetActivityDto#getJustification()}.
+     */
+    @JsonbProperty(JSON_JUSTIFICATION)
+    private String justification;
+
+    /**
+     * {@link BudgetActivityDto#JSON_BUDGET_IDENTIFIER}.
+     */
+    public static final String JSON_BUDGET_IDENTIFIER = BudgetActivityDto.JSON_BUDGET_IDENTIFIER;
+
+    /**
+     * {@link BudgetActivityDto#JSON_ACTIVITY_IDENTIFIER}.
+     */
+    public static final String JSON_ACTIVITY_IDENTIFIER =
+        BudgetActivityDto.JSON_ACTIVITY_IDENTIFIER;
+
+    /**
+     * {@link BudgetActivityDto#JSON_AMOUNT}.
+     */
+    public static final String JSON_AMOUNT = BudgetActivityDto.JSON_AMOUNT;
+
+    /**
+     * {@link BudgetActivityDto#JSON_JUSTIFICATION}.
+     */
+    public static final String JSON_JUSTIFICATION = BudgetActivityDto.JSON_JUSTIFICATION;
   }
 
   /**

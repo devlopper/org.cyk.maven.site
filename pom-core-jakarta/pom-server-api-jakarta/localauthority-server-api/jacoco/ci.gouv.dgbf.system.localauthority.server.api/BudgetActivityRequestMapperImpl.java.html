@@ -5,7 +5,7 @@ import javax.annotation.processing.Generated;
 
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2024-08-13T15:20:05+0000&quot;,
+    date = &quot;2024-08-13T15:55:29+0000&quot;,
     comments = &quot;version: 1.5.5.Final, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -36,8 +36,12 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L36">        BudgetActivityService.BudgetActivityUpdateRequestDto budgetActivityUpdateRequestDto = new BudgetActivityService.BudgetActivityUpdateRequestDto();</span>
 
 <span class="fc" id="L38">        budgetActivityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L39">        budgetActivityUpdateRequestDto.setBudgetIdentifier( arg0.getBudgetIdentifier() );</span>
+<span class="fc" id="L40">        budgetActivityUpdateRequestDto.setActivityIdentifier( arg0.getActivityIdentifier() );</span>
+<span class="fc" id="L41">        budgetActivityUpdateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L42">        budgetActivityUpdateRequestDto.setJustification( arg0.getJustification() );</span>
 
-<span class="fc" id="L40">        return budgetActivityUpdateRequestDto;</span>
+<span class="fc" id="L44">        return budgetActivityUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
