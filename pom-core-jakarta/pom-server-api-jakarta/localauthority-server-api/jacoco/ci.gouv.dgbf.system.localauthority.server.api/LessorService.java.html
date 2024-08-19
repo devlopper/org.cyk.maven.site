@@ -112,7 +112,7 @@ public interface LessorService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des bailleurs&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = LessorGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -123,7 +123,7 @@ public interface LessorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;LessorDto&gt; {</span>
+<span class="fc" id="L126">  public static class LessorGetManyResponseDto extends AbstractGetByPageResponseDto&lt;LessorDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;LessorDto&gt; datas;

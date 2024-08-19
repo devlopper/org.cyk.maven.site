@@ -16,8 +16,8 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.localauthority.server.api.LessorService.GetManyResponseDto;
 import ci.gouv.dgbf.system.localauthority.server.api.LessorService.LessorCreateRequestDto;
+import ci.gouv.dgbf.system.localauthority.server.api.LessorService.LessorGetManyResponseDto;
 import ci.gouv.dgbf.system.localauthority.server.api.LessorService.LessorUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L35">public class LessorClient extends AbstractClient&lt;LessorService&gt;</span>
-    implements GetByIdentifier&lt;LessorDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    implements GetByIdentifier&lt;LessorDto&gt;, GetMany&lt;LessorGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
@@ -76,8 +76,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L80">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+  public LessorGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L80">    return new GetOneExecutor&lt;LessorGetManyResponseDto&gt;(LessorGetManyResponseDto.class,</span>
 <span class="fc" id="L81">        LessorService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
@@ -92,7 +92,7 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+  public LessorGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
 <span class="fc" id="L97">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L98">    request.setProjection(projection);</span>

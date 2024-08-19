@@ -112,7 +112,7 @@ public interface FundingModeService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des modes de financement&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = FundingModeGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -123,7 +123,8 @@ public interface FundingModeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingModeDto&gt; {</span>
+<span class="fc" id="L126">  public static class FundingModeGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;FundingModeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingModeDto&gt; datas;
@@ -219,7 +220,7 @@ public interface FundingModeService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L222">  class FundingModeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L223">  class FundingModeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

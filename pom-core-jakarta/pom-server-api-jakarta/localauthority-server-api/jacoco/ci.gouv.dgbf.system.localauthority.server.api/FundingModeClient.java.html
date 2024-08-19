@@ -17,8 +17,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.localauthority.server.api.FundingModeService.FundingModeCreateRequestDto;
+import ci.gouv.dgbf.system.localauthority.server.api.FundingModeService.FundingModeGetManyResponseDto;
 import ci.gouv.dgbf.system.localauthority.server.api.FundingModeService.FundingModeUpdateRequestDto;
-import ci.gouv.dgbf.system.localauthority.server.api.FundingModeService.GetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -33,7 +33,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L35">public class FundingModeClient extends AbstractClient&lt;FundingModeService&gt;</span>
-    implements GetByIdentifier&lt;FundingModeDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    implements GetByIdentifier&lt;FundingModeDto&gt;, GetMany&lt;FundingModeGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
@@ -76,8 +76,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L80">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+  public FundingModeGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L80">    return new GetOneExecutor&lt;FundingModeGetManyResponseDto&gt;(FundingModeGetManyResponseDto.class,</span>
 <span class="fc" id="L81">        FundingModeService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
@@ -92,8 +92,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public FundingModeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
 <span class="fc" id="L97">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L98">    request.setProjection(projection);</span>
 <span class="fc" id="L99">    request.setFilter(filter);</span>
