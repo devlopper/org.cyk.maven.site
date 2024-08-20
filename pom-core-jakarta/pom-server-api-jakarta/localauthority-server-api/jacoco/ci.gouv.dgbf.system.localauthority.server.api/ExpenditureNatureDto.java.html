@@ -42,6 +42,12 @@ import lombok.Setter;
   private String domainAsString;
   
   /**
+   * {@link ActivityCategory}.
+   */
+  @JsonbProperty(value = JSON_ACTIVITY_CATEGORY)
+  private ActivityCategory activityCategory;
+  
+  /**
    * Identifiant json de {@link ExpenditureNatureDto#categoryIdentifier}.
    */
   public static final String JSON_CATEGORY_IDENTIFIER = &quot;idCategorie&quot;;
@@ -60,6 +66,11 @@ import lombok.Setter;
    * Identifiant json de {@link ExpenditureNatureDto#domainAsString}.
    */
   public static final String JSON_DOMAIN_AS_STRING = &quot;domaineChaine&quot;;
+  
+  /**
+   * Identifiant json de {@link ExpenditureNatureDto#activityCategory}.
+   */
+  public static final String JSON_ACTIVITY_CATEGORY = &quot;categorieActivite&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
