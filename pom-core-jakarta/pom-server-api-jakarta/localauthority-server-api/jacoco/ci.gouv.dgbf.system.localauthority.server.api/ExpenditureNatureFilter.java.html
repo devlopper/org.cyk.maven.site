@@ -88,7 +88,7 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @param activityCategory {@link ActivityCategory}
    */
   public static void setActivityCategory(FilterDto filter, ActivityCategory activityCategory) {
-<span class="fc" id="L91">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="pc" id="L91">    set(filter, JSON_ACTIVITY_CATEGORY, f -&gt; f.getValueAsString(),</span>
 <span class="fc" id="L92">        f -&gt; f.setValueAsEnum(activityCategory));</span>
 <span class="fc" id="L93">  }</span>
 
@@ -100,7 +100,7 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    */
   public static ActivityCategory getActivityCategory(FilterDto filter) {
 <span class="fc" id="L102">    return get(filter,</span>
-<span class="fc" id="L103">        d -&gt; d.getFieldValueAsEnum(JSON_CATEGORY_IDENTIFIER, ActivityCategory.class));</span>
+<span class="fc" id="L103">        d -&gt; d.getFieldValueAsEnum(JSON_ACTIVITY_CATEGORY, ActivityCategory.class));</span>
   }
 
   /**
