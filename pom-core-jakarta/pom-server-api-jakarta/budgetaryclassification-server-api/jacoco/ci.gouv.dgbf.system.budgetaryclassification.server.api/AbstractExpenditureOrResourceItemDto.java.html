@@ -55,6 +55,30 @@ import lombok.Setter;
   private String economicNatureAsString;
 
   /**
+   * Représentation en chaine de caractères du budget initial.
+   */
+  @JsonbProperty(JSON_INITIAL_BUDGET_AS_STRING)
+  private String initialBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget actuel.
+   */
+  @JsonbProperty(JSON_ACTUAL_BUDGET_AS_STRING)
+  private String actualBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du reste du budget en AE exécuté.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_AE_BUDGET_AS_STRING)
+  private String remainingExecutedCommitmentAuthorityBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du reste du budget en CP exécuté.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_CP_BUDGET_AS_STRING)
+  private String remainingExecutedPaymentCreditBudgetAsString;
+
+  /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
@@ -104,5 +128,28 @@ import lombok.Setter;
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#economicNatureAsString}.
    */
   public static final String JSON_ECONOMIC_NATURE_AS_STRING = &quot;natureEconomiqueChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#initialBudgetAsString}.
+   */
+  public static final String JSON_INITIAL_BUDGET_AS_STRING = &quot;budgetInitialChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#actualBudgetAsString}.
+   */
+  public static final String JSON_ACTUAL_BUDGET_AS_STRING = &quot;budgetActuelChaine&quot;;
+
+  /**
+   * Identifiant json reste du budget en AE exécuté.
+   */
+  public static final String JSON_REMAINING_EXECUTED_AE_BUDGET_AS_STRING =
+      &quot;resteBudgetAEExecuteChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#remainingExecutedPaymentCreditBudgetAsString}.
+   */
+  public static final String JSON_REMAINING_EXECUTED_CP_BUDGET_AS_STRING =
+      &quot;resteBudgetCPExecuteChaine&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
