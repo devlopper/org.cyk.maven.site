@@ -67,6 +67,18 @@ import lombok.Setter;
   private String actualBudgetAsString;
 
   /**
+   * Représentation en chaine de caractères du budget actuel en AE.
+   */
+  @JsonbProperty(JSON_ACTUAL_AE_BUDGET_AS_STRING)
+  private String actualCommitmentAuthorityBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget actuel en CP.
+   */
+  @JsonbProperty(JSON_ACTUAL_CP_BUDGET_AS_STRING)
+  private String actualPaymentCreditBudgetAsString;
+
+  /**
    * Représentation en chaine de caractères du reste du budget en AE exécuté.
    */
   @JsonbProperty(JSON_REMAINING_EXECUTED_AE_BUDGET_AS_STRING)
@@ -138,6 +150,18 @@ import lombok.Setter;
    * Identifiant json {@link AbstractExpenditureOrResourceItemDto#actualBudgetAsString}.
    */
   public static final String JSON_ACTUAL_BUDGET_AS_STRING = &quot;budgetActuelChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#actualCommitmentAuthorityBudgetAsString}.
+   */
+  public static final String JSON_ACTUAL_AE_BUDGET_AS_STRING = &quot;budgetActuelAEChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#actualPaymentCreditBudgetAsString}.
+   */
+  public static final String JSON_ACTUAL_CP_BUDGET_AS_STRING = &quot;budgetActuelCPChaine&quot;;
 
   /**
    * Identifiant json reste du budget en AE exécuté.
