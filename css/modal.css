@@ -1,0 +1,92 @@
+
+
+body #createDialog .ui-dialog-titlebar {
+    background: #14c56b !important;
+    color: #fff;
+    font-weight: 700;
+    border-bottom: 0 none;
+    padding: 1.5rem;
+}
+
+body #createDialog .ui-dialog-titlebar .ui-icon-closethick{
+    color: #fff !important;
+}
+
+
+body #updateDialog .ui-dialog-titlebar .ui-icon-closethick{
+    color: #fff !important;
+}
+
+
+body .ui-confirm-dialog .ui-dialog-titlebar .ui-icon-closethick{
+    color: #fff !important;
+}
+
+body #updateDialog .ui-dialog-titlebar {
+    background: #FFA505 !important;
+    color: #FFF !important;
+    font-weight: 700;
+    border-bottom: 0 none;
+    padding: 1.5rem;
+}
+
+body .ui-confirm-dialog .ui-dialog-titlebar {
+    background: #f61011 !important;
+    color: #FFF !important;
+    font-weight: 700;
+    border-bottom: 0 none;
+    padding: 1.5rem;
+}
+
+#createDialog_content .crud-form-save-button{
+    background: #14c56b !important;
+    border: 1px solid #14c56b !important;
+}
+
+#updateDialog_content .crud-form-save-button{
+    background: #ffa503 !important;
+    border: 1px solid #ffa503 !important;
+}
+
+/* Styles généraux */
+/*#createDialog_content .ui-g, #updateDialog_content .ui-g {
+    max-width: 100% !important;
+}*/
+
+#createDialog, #updateDialog {
+    max-width: 60% !important;
+    
+
+}
+
+#createDialog_content, #updateDialog_content {
+    max-width: 100% !important;
+}
+
+/* Pour les écrans larges (desktop) */
+@media (min-width: 1200px) {
+    #createDialog, #updateDialog {
+        max-width: 50% !important;
+    }
+}
+
+/* Pour les écrans moyens (tablette en orientation paysage) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    #createDialog, #updateDialog {
+        max-width: 70% !important;
+    }
+}
+
+/* Pour les écrans moyens (tablette en orientation portrait) */
+@media (min-width: 768px) and (max-width: 991px) {
+    #createDialog, #updateDialog {
+        max-width: 80% !important;
+    }
+}
+
+/* Pour les petits écrans (smartphones) */
+@media (max-width: 767px) {
+    #createDialog, #updateDialog {
+        max-width: 90% !important;
+    }
+}
