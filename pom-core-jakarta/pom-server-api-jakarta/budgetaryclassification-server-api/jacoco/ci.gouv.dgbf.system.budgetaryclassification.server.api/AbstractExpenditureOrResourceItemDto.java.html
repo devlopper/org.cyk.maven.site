@@ -54,41 +54,81 @@ import lombok.Setter;
   @JsonbProperty(JSON_ECONOMIC_NATURE_AS_STRING)
   private String economicNatureAsString;
 
-  /**
-   * Représentation en chaine de caractères du budget initial.
+  /*
+   * Montants
    */
-  @JsonbProperty(JSON_INITIAL_BUDGET_AS_STRING)
-  private String initialBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du budget actuel.
+   * Représentation en chaine de caractères du budget initial plannifié.
    */
-  @JsonbProperty(JSON_ACTUAL_BUDGET_AS_STRING)
-  private String actualBudgetAsString;
+  @JsonbProperty(JSON_INITIAL_PLANNED_BUDGET_AS_STRING)
+  private String initialPlannedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du budget actuel en AE.
+   * Représentation en chaine de caractères du budget initial réalisé.
    */
-  @JsonbProperty(JSON_ACTUAL_AE_BUDGET_AS_STRING)
-  private String actualCommitmentAuthorityBudgetAsString;
+  @JsonbProperty(JSON_INITIAL_REALIZED_BUDGET_AS_STRING)
+  private String initialRealizedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du budget actuel en CP.
+   * Représentation en chaine de caractères du budget actuel plannifié.
    */
-  @JsonbProperty(JSON_ACTUAL_CP_BUDGET_AS_STRING)
-  private String actualPaymentCreditBudgetAsString;
+  @JsonbProperty(JSON_ACTUAL_PLANNED_BUDGET_AS_STRING)
+  private String actualPlannedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du reste du budget en AE exécuté.
+   * Représentation en chaine de caractères du budget actuel réalisé.
    */
-  @JsonbProperty(JSON_REMAINING_EXECUTED_AE_BUDGET_AS_STRING)
-  private String remainingExecutedCommitmentAuthorityBudgetAsString;
+  @JsonbProperty(JSON_ACTUAL_REALIZED_BUDGET_AS_STRING)
+  private String actualRealizedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du reste du budget en CP exécuté.
+   * Représentation en chaine de caractères du budget exécuté plannifié.
    */
-  @JsonbProperty(JSON_REMAINING_EXECUTED_CP_BUDGET_AS_STRING)
-  private String remainingExecutedPaymentCreditBudgetAsString;
+  @JsonbProperty(JSON_EXECUTED_PLANNED_BUDGET_AS_STRING)
+  private String executedPlannedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget exécuté réalisé.
+   */
+  @JsonbProperty(JSON_EXECUTED_REALIZED_BUDGET_AS_STRING)
+  private String executedRealizedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget réservé plannifié.
+   */
+  @JsonbProperty(JSON_RESERVED_PLANNED_BUDGET_AS_STRING)
+  private String reservedPlannedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget réservé réalisé.
+   */
+  @JsonbProperty(JSON_RESERVED_REALIZED_BUDGET_AS_STRING)
+  private String reservedRealizedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget préréservé plannifié.
+   */
+  @JsonbProperty(JSON_PRERESERVED_PLANNED_BUDGET_AS_STRING)
+  private String prereservedPlannedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget préréservé réalisé.
+   */
+  @JsonbProperty(JSON_PRERESERVED_REALIZED_BUDGET_AS_STRING)
+  private String prereservedRealizedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du reste du budget plannifié.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_PLANNED_BUDGET_AS_STRING)
+  private String remainingExecutedPlannedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du reste du budget réalisé.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_REALIZED_BUDGET_AS_STRING)
+  private String remainingExecutedRealizedBudgetAsString;
 
   /**
    * Identifiant json champ {@link AbstractExpenditureOrResourceItemDto#exerciseIdentifier}.
@@ -141,39 +181,75 @@ import lombok.Setter;
    */
   public static final String JSON_ECONOMIC_NATURE_AS_STRING = &quot;natureEconomiqueChaine&quot;;
 
-  /**
-   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#initialBudgetAsString}.
-   */
-  public static final String JSON_INITIAL_BUDGET_AS_STRING = &quot;budgetInitialChaine&quot;;
+  /* Montants */
 
   /**
-   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#actualBudgetAsString}.
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#initialPlannedBudgetAsString}.
    */
-  public static final String JSON_ACTUAL_BUDGET_AS_STRING = &quot;budgetActuelChaine&quot;;
+  public static final String JSON_INITIAL_PLANNED_BUDGET_AS_STRING = &quot;budgetInitialPlannifieChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#initialRealizedBudgetAsString}.
+   */
+  public static final String JSON_INITIAL_REALIZED_BUDGET_AS_STRING = &quot;budgetInitialRealiseChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#actualPlannedBudgetAsString}.
+   */
+  public static final String JSON_ACTUAL_PLANNED_BUDGET_AS_STRING = &quot;budgetActuelPlannifieChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#actualPlannedBudgetAsString}.
+   */
+  public static final String JSON_ACTUAL_REALIZED_BUDGET_AS_STRING = &quot;budgetActuelRealiseChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#executedPlannedBudgetAsString}.
+   */
+  public static final String JSON_EXECUTED_PLANNED_BUDGET_AS_STRING =
+      &quot;budgetExecutePlannifieChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#executedRealizedBudgetAsString}.
+   */
+  public static final String JSON_EXECUTED_REALIZED_BUDGET_AS_STRING = &quot;budgetExecuteRealiseChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#reservedPlannedBudgetAsString}.
+   */
+  public static final String JSON_RESERVED_PLANNED_BUDGET_AS_STRING =
+      &quot;budgetReservePlannifieChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#reservedRealizedBudgetAsString}.
+   */
+  public static final String JSON_RESERVED_REALIZED_BUDGET_AS_STRING = &quot;budgetReserveRealiseChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#prereservedPlannedBudgetAsString}.
+   */
+  public static final String JSON_PRERESERVED_PLANNED_BUDGET_AS_STRING =
+      &quot;budgetPrereservePlannifieChaine&quot;;
 
   /**
    * Identifiant json
-   * {@link AbstractExpenditureOrResourceItemDto#actualCommitmentAuthorityBudgetAsString}.
+   * {@link AbstractExpenditureOrResourceItemDto#prereservedRealizedBudgetAsString}.
    */
-  public static final String JSON_ACTUAL_AE_BUDGET_AS_STRING = &quot;budgetActuelAEChaine&quot;;
+  public static final String JSON_PRERESERVED_REALIZED_BUDGET_AS_STRING =
+      &quot;budgetPrereserveRealiseChaine&quot;;
 
   /**
    * Identifiant json
-   * {@link AbstractExpenditureOrResourceItemDto#actualPaymentCreditBudgetAsString}.
+   * {@link AbstractExpenditureOrResourceItemDto#remainingExecutedPlannedBudgetAsString}.
    */
-  public static final String JSON_ACTUAL_CP_BUDGET_AS_STRING = &quot;budgetActuelCPChaine&quot;;
-
-  /**
-   * Identifiant json reste du budget en AE exécuté.
-   */
-  public static final String JSON_REMAINING_EXECUTED_AE_BUDGET_AS_STRING =
-      &quot;resteBudgetAEExecuteChaine&quot;;
+  public static final String JSON_REMAINING_EXECUTED_PLANNED_BUDGET_AS_STRING =
+      &quot;resteBudgetPlannifieChaine&quot;;
 
   /**
    * Identifiant json
-   * {@link AbstractExpenditureOrResourceItemDto#remainingExecutedPaymentCreditBudgetAsString}.
+   * {@link AbstractExpenditureOrResourceItemDto#remainingExecutedRealizedBudgetAsString}.
    */
-  public static final String JSON_REMAINING_EXECUTED_CP_BUDGET_AS_STRING =
-      &quot;resteBudgetCPExecuteChaine&quot;;
+  public static final String JSON_REMAINING_EXECUTED_REALIZED_BUDGET_AS_STRING =
+      &quot;resteBudgetRealiseChaine&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
