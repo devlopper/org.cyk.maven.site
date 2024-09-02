@@ -83,16 +83,52 @@ import lombok.Setter;
   private String actualRealizedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du budget exécuté plannifié.
+   * Représentation en chaine de caractères du budget préréservé plannifié en exécution.
    */
-  @JsonbProperty(JSON_EXECUTED_PLANNED_BUDGET_AS_STRING)
-  private String executedPlannedBudgetAsString;
+  @JsonbProperty(JSON_EXECUTION_PRERESERVED_PLANNED_BUDGET_AS_STRING)
+  private String executionPrereservedPlannedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du budget exécuté réalisé.
+   * Représentation en chaine de caractères du budget préréservé réalisé en exécution.
    */
-  @JsonbProperty(JSON_EXECUTED_REALIZED_BUDGET_AS_STRING)
-  private String executedRealizedBudgetAsString;
+  @JsonbProperty(JSON_EXECUTION_PRERESERVED_REALIZED_BUDGET_AS_STRING)
+  private String executionPrereservedRealizedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget préréservé plannifié.
+   */
+  @JsonbProperty(JSON_PRERESERVED_PLANNED_BUDGET_AS_STRING)
+  private String prereservedPlannedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget préréservé réalisé.
+   */
+  @JsonbProperty(JSON_PRERESERVED_REALIZED_BUDGET_AS_STRING)
+  private String prereservedRealizedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget réservé plannifié en élaboration.
+   */
+  @JsonbProperty(JSON_ELABORATION_RESERVED_PLANNED_BUDGET_AS_STRING)
+  private String elaborationReservedPlannedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget réservé réalisé en élaboration.
+   */
+  @JsonbProperty(JSON_ELABORATION_RESERVED_REALIZED_BUDGET_AS_STRING)
+  private String elaborationReservedRealizedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget réservé plannifié en exécution.
+   */
+  @JsonbProperty(JSON_EXECUTION_RESERVED_PLANNED_BUDGET_AS_STRING)
+  private String executionReservedPlannedBudgetAsString;
+
+  /**
+   * Représentation en chaine de caractères du budget réservé réalisé en exécution.
+   */
+  @JsonbProperty(JSON_EXECUTION_RESERVED_REALIZED_BUDGET_AS_STRING)
+  private String executionReservedRealizedBudgetAsString;
 
   /**
    * Représentation en chaine de caractères du budget réservé plannifié.
@@ -107,16 +143,16 @@ import lombok.Setter;
   private String reservedRealizedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du budget préréservé plannifié.
+   * Représentation en chaine de caractères du budget exécuté plannifié.
    */
-  @JsonbProperty(JSON_PRERESERVED_PLANNED_BUDGET_AS_STRING)
-  private String prereservedPlannedBudgetAsString;
+  @JsonbProperty(JSON_EXECUTED_PLANNED_BUDGET_AS_STRING)
+  private String executedPlannedBudgetAsString;
 
   /**
-   * Représentation en chaine de caractères du budget préréservé réalisé.
+   * Représentation en chaine de caractères du budget exécuté réalisé.
    */
-  @JsonbProperty(JSON_PRERESERVED_REALIZED_BUDGET_AS_STRING)
-  private String prereservedRealizedBudgetAsString;
+  @JsonbProperty(JSON_EXECUTED_REALIZED_BUDGET_AS_STRING)
+  private String executedRealizedBudgetAsString;
 
   /**
    * Représentation en chaine de caractères du reste du budget plannifié.
@@ -204,26 +240,18 @@ import lombok.Setter;
   public static final String JSON_ACTUAL_REALIZED_BUDGET_AS_STRING = &quot;budgetActuelRealiseChaine&quot;;
 
   /**
-   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#executedPlannedBudgetAsString}.
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#executionPrereservedPlannedBudgetAsString}.
    */
-  public static final String JSON_EXECUTED_PLANNED_BUDGET_AS_STRING =
-      &quot;budgetExecutePlannifieChaine&quot;;
+  public static final String JSON_EXECUTION_PRERESERVED_PLANNED_BUDGET_AS_STRING =
+      &quot;executionBudgetPrereservePlannifieChaine&quot;;
 
   /**
-   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#executedRealizedBudgetAsString}.
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#executionPrereservedRealizedBudgetAsString}.
    */
-  public static final String JSON_EXECUTED_REALIZED_BUDGET_AS_STRING = &quot;budgetExecuteRealiseChaine&quot;;
-
-  /**
-   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#reservedPlannedBudgetAsString}.
-   */
-  public static final String JSON_RESERVED_PLANNED_BUDGET_AS_STRING =
-      &quot;budgetReservePlannifieChaine&quot;;
-
-  /**
-   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#reservedRealizedBudgetAsString}.
-   */
-  public static final String JSON_RESERVED_REALIZED_BUDGET_AS_STRING = &quot;budgetReserveRealiseChaine&quot;;
+  public static final String JSON_EXECUTION_PRERESERVED_REALIZED_BUDGET_AS_STRING =
+      &quot;executionBudgetPrereserveRealiseChaine&quot;;
 
   /**
    * Identifiant json {@link AbstractExpenditureOrResourceItemDto#prereservedPlannedBudgetAsString}.
@@ -237,6 +265,56 @@ import lombok.Setter;
    */
   public static final String JSON_PRERESERVED_REALIZED_BUDGET_AS_STRING =
       &quot;budgetPrereserveRealiseChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#elaborationReservedPlannedBudgetAsString}.
+   */
+  public static final String JSON_ELABORATION_RESERVED_PLANNED_BUDGET_AS_STRING =
+      &quot;elaborationBudgetReservePlannifieChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#elaborationReservedRealizedBudgetAsString}.
+   */
+  public static final String JSON_ELABORATION_RESERVED_REALIZED_BUDGET_AS_STRING =
+      &quot;elaborationBudgetReserveRealiseChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#executionReservedPlannedBudgetAsString}.
+   */
+  public static final String JSON_EXECUTION_RESERVED_PLANNED_BUDGET_AS_STRING =
+      &quot;executionBudgetReservePlannifieChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#executionReservedRealizedBudgetAsString}.
+   */
+  public static final String JSON_EXECUTION_RESERVED_REALIZED_BUDGET_AS_STRING =
+      &quot;executionBudgetReserveRealiseChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#reservedPlannedBudgetAsString}.
+   */
+  public static final String JSON_RESERVED_PLANNED_BUDGET_AS_STRING =
+      &quot;budgetReservePlannifieChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#reservedRealizedBudgetAsString}.
+   */
+  public static final String JSON_RESERVED_REALIZED_BUDGET_AS_STRING = &quot;budgetReserveRealiseChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#executedPlannedBudgetAsString}.
+   */
+  public static final String JSON_EXECUTED_PLANNED_BUDGET_AS_STRING =
+      &quot;budgetExecutePlannifieChaine&quot;;
+
+  /**
+   * Identifiant json {@link AbstractExpenditureOrResourceItemDto#executedRealizedBudgetAsString}.
+   */
+  public static final String JSON_EXECUTED_REALIZED_BUDGET_AS_STRING = &quot;budgetExecuteRealiseChaine&quot;;
 
   /**
    * Identifiant json
