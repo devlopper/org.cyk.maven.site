@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class ActDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L19">public class ActDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
    * Identifiant de l'exercice.
@@ -168,6 +169,30 @@ import lombok.Setter;
   private Boolean balanced;
 
   /**
+   * Reference.
+   */
+  @JsonbProperty(JSON_REFERENCE)
+  private String reference;
+
+  /**
+   * Reference.
+   */
+  @JsonbProperty(JSON_SIGNATORY)
+  private String signatory;
+
+  /**
+   * Reference.
+   */
+  @JsonbProperty(JSON_SIGNATURE_DATE)
+  private LocalDate signatureDate;
+
+  /**
+   * Motif de rejet ou de refus.
+   */
+  @JsonbProperty(JSON_REASON)
+  private String reason;
+
+  /**
    * Identifiant json champ {@link ActDto#budgetCategoryIdentifier}.
    */
   public static final String JSON_BUDGET_CATEGORY_IDENTIFIER = &quot;idCategorieBudget&quot;;
@@ -294,6 +319,26 @@ import lombok.Setter;
    * Identifiant json champ {@link ActDto#balanced}.
    */
   public static final String JSON_BALANCED = &quot;equilibre&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#reference}.
+   */
+  public static final String JSON_REFERENCE = &quot;reference&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#signatory}.
+   */
+  public static final String JSON_SIGNATORY = &quot;signatory&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#signatureDate}.
+   */
+  public static final String JSON_SIGNATURE_DATE = &quot;signatureDate&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#reason}.
+   */
+  public static final String JSON_REASON = &quot;reason&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
