@@ -71,26 +71,6 @@ public interface ExpenditureMovementService extends SpecificService {
   Response create(ExpenditureMovementCreateRequestDto request);
 
   /**
-   * Cette classe représente un mouvement de dépense.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L81">  public static class MovementDto {</span>
-    /**
-     * Identifiant du poste de dépense.
-     */
-    private String identifier;
-
-    /**
-     * Montant.
-     */
-    private long amount;
-  }
-
-  /**
    * Cette classe représente la requête d'enregistrement.
    *
    * @author Christian
@@ -179,7 +159,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L182">  class ExpenditureMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L162">  class ExpenditureMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
@@ -220,6 +200,31 @@ public interface ExpenditureMovementService extends SpecificService {
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
   Response createMany(ExpenditureMovementCreateManyRequestDto request);
 
+  /**
+   * Cette classe représente un mouvement de dépense.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L211">  public static class MovementDto {</span>
+    /**
+     * Identifiant du poste de dépense.
+     */
+    private String identifier;
+
+    /**
+     * Montant.
+     */
+    private long amount;
+    
+    /**
+     * Est crédit.
+     */
+    private Boolean isCredit;
+  }
+  
   /**
    * Cette classe représente la requête d'enregistrement de plusieurs.
    *
@@ -273,7 +278,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L276">  class ExpenditureMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L281">  class ExpenditureMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveManyRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
@@ -287,10 +292,10 @@ public interface ExpenditureMovementService extends SpecificService {
      * @return mouvements
      */
     public List&lt;MovementDto&gt; movements() {
-<span class="fc bfc" id="L290" title="All 2 branches covered.">      if (movements == null) {</span>
-<span class="fc" id="L291">        movements = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L295" title="All 2 branches covered.">      if (movements == null) {</span>
+<span class="fc" id="L296">        movements = new ArrayList&lt;&gt;();</span>
       }
-<span class="fc" id="L293">      return movements;</span>
+<span class="fc" id="L298">      return movements;</span>
     }
   }
 
@@ -328,7 +333,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L331">  public static class GetManyResponseDto</span>
+<span class="fc" id="L336">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -421,7 +426,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L424">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L429">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
