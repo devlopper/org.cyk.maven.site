@@ -58,6 +58,16 @@ public interface BudgetService extends SpecificService {
   String CREATE_PATH = &quot;&quot;;
 
   /**
+   * Identifiant du service d'initialisation.
+   */
+  String INITIALIZATION_IDENTIFIER = &quot;INITIALISATION_BUDGET&quot;;
+
+  /**
+   * Chemin du service d'initialisation.
+   */
+  String INITIALIZATION_PATH = &quot;initialisation&quot;;
+
+  /**
    * Cette méthode permet de créer {@link BudgetDto}.
    *
    * @param request requête
@@ -81,7 +91,7 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L84">  class BudgetCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L94">  class BudgetCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
     /**
      * {@link BudgetDto#exerciseIdentifier}.
      */
@@ -110,6 +120,24 @@ public interface BudgetService extends SpecificService {
     public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
         BudgetDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
   }
+
+
+  /**
+   * Cette méthode permet d'initialiser le budget {@link BudgetDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(INITIALIZATION_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = INITIALIZATION_IDENTIFIER, summary = &quot;Initialisation d'un budget&quot;,
+      description = &quot;Ce service permet d'initialiser un budget&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response initialize(ByIdentifierRequestDto request);
+
 
   /**
    * Identifiant du service d'obtention de plusieurs.
@@ -145,7 +173,7 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">  public static class BudgetGetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
+<span class="fc" id="L176">  public static class BudgetGetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;BudgetDto&gt; datas;
@@ -241,7 +269,7 @@ public interface BudgetService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L244">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L272">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 
@@ -270,5 +298,8 @@ public interface BudgetService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
