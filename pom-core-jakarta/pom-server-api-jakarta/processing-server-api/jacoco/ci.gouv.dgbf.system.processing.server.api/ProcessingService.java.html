@@ -42,12 +42,12 @@ public interface ProcessingService {
   String PATH = &quot;traitements&quot;;
 
   /**
-   * Cette classe représente les données de création et de mise à jour.
+   * Cette classe représente une requête d'enregistrement.
    *
    * @author Christian
    *
    */
-  interface SaveDataRequestDto {
+  interface ProcessingSaveDataRequestDto {
 
     /**
      * Cette méthode permet d'obtenir la raison.
@@ -57,7 +57,7 @@ public interface ProcessingService {
     String getReason();
 
     /**
-     * Cette méthode permet d'assifner la raison.
+     * Cette méthode permet d'assigner la raison.
      *
      * @param reason raison
      */
@@ -81,7 +81,7 @@ public interface ProcessingService {
      * {@link ProcessingDto#JSON_REASON}.
      */
     String JSON_REASON = ProcessingDto.JSON_REASON;
-    
+
     /**
      * {@link ProcessingDto#JSON_DATE}.
      */
@@ -119,7 +119,7 @@ public interface ProcessingService {
   @Getter
   @Setter
 <span class="fc" id="L121">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
-      implements SaveDataRequestDto {
+      implements ProcessingSaveDataRequestDto {
 
     @JsonbProperty(JSON_REASON)
     private String reason;
@@ -137,7 +137,7 @@ public interface ProcessingService {
   @Getter
   @Setter
 <span class="fc" id="L139">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
-    
+
     /**
      * {@link ProcessingDto#getStatus()}.
      */
@@ -185,22 +185,22 @@ public interface ProcessingService {
      * {@link ProcessingDto#JSON_STATUS}.
      */
     public static final String JSON_STATUS = ProcessingDto.JSON_STATUS;
-    
+
     /**
      * {@link ProcessingDto#JSON_STARTABLE}.
      */
     public static final String JSON_STARTABLE = ProcessingDto.JSON_STARTABLE;
-    
+
     /**
      * {@link ProcessingDto#JSON_STOPPABLE}.
      */
     public static final String JSON_STOPPABLE = ProcessingDto.JSON_STOPPABLE;
-    
+
     /**
      * {@link ProcessingDto#JSON_CANCELABLE}.
      */
     public static final String JSON_CANCELABLE = ProcessingDto.JSON_CANCELABLE;
-    
+
     /**
      * {@link ProcessingDto#JSON_TERMINATABLE}.
      */
@@ -216,15 +216,15 @@ public interface ProcessingService {
   @Getter
   @Setter
 <span class="fc" id="L218">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto</span>
-      implements SaveDataRequestDto {
-    
+      implements ProcessingSaveDataRequestDto {
+
     @JsonbProperty(JSON_REASON)
     private String reason;
-    
+
     @JsonbProperty(JSON_DATE)
     private LocalDateTime date;
   }
-  
+
   /**
    * Identifiant du service de démarrage.
    */
@@ -345,7 +345,8 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L348">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {</span>
+<span class="fc" id="L348">  public static class ProcessingGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ProcessingDto&gt; datas;
