@@ -3,63 +3,69 @@
 import jakarta.enterprise.context.ApplicationScoped;
 import javax.annotation.processing.Generated;
 
+/**
+* Cette interface représente le mapping de requête et {@link FundingDto}.
+*
+* @author Christian
+*
+*/
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2024-09-17T18:16:22+0000&quot;,
+    date = &quot;2024-09-26T09:30:39+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
-<span class="fc" id="L12">public class FundingRequestMapperImpl implements FundingRequestMapper {</span>
+<span class="fc" id="L18">public class FundingRequestMapperImpl implements FundingRequestMapper {</span>
 
     @Override
     public FundingService.FundingCreateRequestDto mapCreate(FundingDto arg0) {
-<span class="fc bfc" id="L16" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L17">            return null;</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
         }
 
-<span class="fc" id="L20">        FundingService.FundingCreateRequestDto fundingCreateRequestDto = new FundingService.FundingCreateRequestDto();</span>
+<span class="fc" id="L26">        FundingService.FundingCreateRequestDto fundingCreateRequestDto = new FundingService.FundingCreateRequestDto();</span>
 
-<span class="fc" id="L22">        fundingCreateRequestDto.setModeIdentifier( arg0.getModeIdentifier() );</span>
-<span class="fc" id="L23">        fundingCreateRequestDto.setLessorIdentifier( arg0.getLessorIdentifier() );</span>
-<span class="fc" id="L24">        fundingCreateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
-<span class="fc" id="L25">        fundingCreateRequestDto.setBudgetActivityIdentifier( arg0.getBudgetActivityIdentifier() );</span>
-<span class="fc bfc" id="L26" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
-<span class="fc" id="L27">            fundingCreateRequestDto.setAmount1( arg0.getAmount1() );</span>
+<span class="fc" id="L28">        fundingCreateRequestDto.setModeIdentifier( arg0.getModeIdentifier() );</span>
+<span class="fc" id="L29">        fundingCreateRequestDto.setLessorIdentifier( arg0.getLessorIdentifier() );</span>
+<span class="fc" id="L30">        fundingCreateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
+<span class="fc" id="L31">        fundingCreateRequestDto.setBudgetActivityIdentifier( arg0.getBudgetActivityIdentifier() );</span>
+<span class="fc bfc" id="L32" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
+<span class="fc" id="L33">            fundingCreateRequestDto.setAmount1( arg0.getAmount1() );</span>
         }
-<span class="fc bfc" id="L29" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
-<span class="fc" id="L30">            fundingCreateRequestDto.setAmount2( arg0.getAmount2() );</span>
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
+<span class="fc" id="L36">            fundingCreateRequestDto.setAmount2( arg0.getAmount2() );</span>
         }
-<span class="fc bfc" id="L32" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
-<span class="fc" id="L33">            fundingCreateRequestDto.setAmount3( arg0.getAmount3() );</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
+<span class="fc" id="L39">            fundingCreateRequestDto.setAmount3( arg0.getAmount3() );</span>
         }
 
-<span class="fc" id="L36">        return fundingCreateRequestDto;</span>
+<span class="fc" id="L42">        return fundingCreateRequestDto;</span>
     }
 
     @Override
     public FundingService.FundingUpdateRequestDto mapUpdate(FundingDto arg0) {
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L42">            return null;</span>
+<span class="fc bfc" id="L47" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L48">            return null;</span>
         }
 
-<span class="fc" id="L45">        FundingService.FundingUpdateRequestDto fundingUpdateRequestDto = new FundingService.FundingUpdateRequestDto();</span>
+<span class="fc" id="L51">        FundingService.FundingUpdateRequestDto fundingUpdateRequestDto = new FundingService.FundingUpdateRequestDto();</span>
 
-<span class="fc" id="L47">        fundingUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L48">        fundingUpdateRequestDto.setModeIdentifier( arg0.getModeIdentifier() );</span>
-<span class="fc" id="L49">        fundingUpdateRequestDto.setLessorIdentifier( arg0.getLessorIdentifier() );</span>
-<span class="fc" id="L50">        fundingUpdateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
-<span class="fc" id="L51">        fundingUpdateRequestDto.setBudgetActivityIdentifier( arg0.getBudgetActivityIdentifier() );</span>
-<span class="fc bfc" id="L52" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
-<span class="fc" id="L53">            fundingUpdateRequestDto.setAmount1( arg0.getAmount1() );</span>
+<span class="fc" id="L53">        fundingUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L54">        fundingUpdateRequestDto.setModeIdentifier( arg0.getModeIdentifier() );</span>
+<span class="fc" id="L55">        fundingUpdateRequestDto.setLessorIdentifier( arg0.getLessorIdentifier() );</span>
+<span class="fc" id="L56">        fundingUpdateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
+<span class="fc" id="L57">        fundingUpdateRequestDto.setBudgetActivityIdentifier( arg0.getBudgetActivityIdentifier() );</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
+<span class="fc" id="L59">            fundingUpdateRequestDto.setAmount1( arg0.getAmount1() );</span>
         }
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
-<span class="fc" id="L56">            fundingUpdateRequestDto.setAmount2( arg0.getAmount2() );</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
+<span class="fc" id="L62">            fundingUpdateRequestDto.setAmount2( arg0.getAmount2() );</span>
         }
-<span class="fc bfc" id="L58" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
-<span class="fc" id="L59">            fundingUpdateRequestDto.setAmount3( arg0.getAmount3() );</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
+<span class="fc" id="L65">            fundingUpdateRequestDto.setAmount3( arg0.getAmount3() );</span>
         }
 
-<span class="fc" id="L62">        return fundingUpdateRequestDto;</span>
+<span class="fc" id="L68">        return fundingUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
