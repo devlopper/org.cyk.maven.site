@@ -291,7 +291,7 @@ public interface ActService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  Response cancel(ByIdentifierRequestDto request);
+  Response cancel(ActRevokeRequestDto request);
 
   /**
    * Identifiant du service de transmission.
@@ -357,7 +357,7 @@ public interface ActService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  Response reject(ActRejectOrRefuseRequestDto request);
+  Response reject(ActRevokeRequestDto request);
 
 
   /**
@@ -469,7 +469,7 @@ public interface ActService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  Response refuse(ActRejectOrRefuseRequestDto request);
+  Response refuse(ActRevokeRequestDto request);
 
   /**
    * Identifiant du service d'obtention de plusieurs.
@@ -682,7 +682,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L685">  class ActRejectOrRefuseRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L685">  class ActRevokeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ActDto#getReason()}.
