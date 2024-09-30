@@ -1,5 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,EconomicNatureFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ServiceGroupService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ExpenditureItemService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,FunctionalAccountService.FunctionalAccountCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ActCategoryDto,0,3,0,0,0,1,0,1,0,1
@@ -28,7 +29,9 @@ API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budge
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,BudgetItemClient,0,242,0,0,0,51,0,20,0,20
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,AbstractExpenditureOrResourceItemFilter,12,127,0,0,0,31,4,20,4,20
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ExpenditureItemDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ServiceGroupFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ResourceItemFilter,6,71,0,0,0,19,2,12,2,12
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,SectionDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ServiceDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,AbstractExpenditureOrResourceItemDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ResourceItemClient,0,89,0,0,0,19,0,8,0,8
@@ -48,10 +51,13 @@ API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budge
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ExerciseClient,0,89,0,0,0,19,0,8,0,8
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,BudgetCategoryClient,0,89,0,0,0,19,0,8,0,8
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,FunctionalAccountClient,0,242,0,0,0,51,0,20,0,20
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ServiceGroupClient,0,89,0,0,0,19,0,8,0,8
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,LocalityService.LocalityUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,AdministrativeUnitService.AdministrativeUnitGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ExpenditureActivityDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,LessorFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,SectionClient,0,89,0,0,0,19,0,8,0,8
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,SectionService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,FundingSourceFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ActCategoryService.GetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,FundingSourceDto,0,3,0,0,0,1,0,1,0,1
@@ -66,6 +72,8 @@ API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budge
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,LocalityDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ActCategoryFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ServiceClient,0,195,0,0,0,38,0,18,0,18
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ServiceGroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,ExerciseFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,BudgetCategoryFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,LocalityClient,0,242,0,0,0,51,0,20,0,20
+API du serveur du module de classification budgétaire,ci.gouv.dgbf.system.budgetaryclassification.server.api,SectionFilter,0,3,0,0,0,1,0,1,0,1
