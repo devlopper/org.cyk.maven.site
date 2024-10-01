@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServiceGroupClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de classification budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryclassification.server.api</a> &gt; <span class="el_source">ServiceGroupClient.java</span></div><h1>ServiceGroupClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryclassification.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.ServiceGroupService.GetManyResponseDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.ServiceGroupService.ServiceGroupCreateRequestDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.ServiceGroupService.ServiceGroupUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,12 +32,43 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L26">public class ServiceGroupClient extends AbstractClient&lt;ServiceGroupService&gt;</span>
-    implements GetByIdentifier&lt;ServiceGroupDto&gt;, GetMany&lt;GetManyResponseDto&gt; {
+<span class="fc" id="L35">public class ServiceGroupClient extends AbstractClient&lt;ServiceGroupService&gt;</span>
+    implements GetByIdentifier&lt;ServiceGroupDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public ServiceGroupClient service(ServiceGroupService service) {
-<span class="fc" id="L31">    return (ServiceGroupClient) super.service(service);</span>
+<span class="fc" id="L41">    return (ServiceGroupClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(ServiceGroupCreateRequestDto request) {
+<span class="fc" id="L51">    return new CreateExecutor(ServiceGroupService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#create}.
+   *
+   * @param code code
+   * @param name nom
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String code, String name, String auditWho,
+      String auditSession) {
+<span class="fc" id="L66">    ServiceGroupCreateRequestDto request = new ServiceGroupCreateRequestDto();</span>
+<span class="fc" id="L67">    request.setCode(code);</span>
+<span class="fc" id="L68">    request.setName(name);</span>
+<span class="fc" id="L69">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L70">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L71">    return create(request);</span>
   }
 
   /**
@@ -38,8 +78,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L41">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
-<span class="fc" id="L42">        ServiceGroupService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L81">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+<span class="fc" id="L82">        ServiceGroupService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -55,13 +95,44 @@ import lombok.experimental.Accessors;
   @Override
   public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
-<span class="fc" id="L58">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L59">    request.setProjection(projection);</span>
-<span class="fc" id="L60">    request.setFilter(filter);</span>
-<span class="fc" id="L61">    request.setPage(page);</span>
-<span class="fc" id="L62">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L63">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L64">    return getMany(request);</span>
+<span class="fc" id="L98">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L99">    request.setProjection(projection);</span>
+<span class="fc" id="L100">    request.setFilter(filter);</span>
+<span class="fc" id="L101">    request.setPage(page);</span>
+<span class="fc" id="L102">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L103">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L104">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ServiceGroupDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L114">    return new GetOneExecutor&lt;ServiceGroupDto&gt;(ServiceGroupDto.class, </span>
+        ServiceGroupService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L116">        .execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ServiceGroupDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L130">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L131">    request.setProjection(projection);</span>
+<span class="fc" id="L132">    request.setFilter(filter);</span>
+<span class="fc" id="L133">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L134">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L135">    return getOne(request);</span>
   }
 
   /**
@@ -71,9 +142,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public ServiceGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L74">    return new GetOneExecutor&lt;ServiceGroupDto&gt;(ServiceGroupDto.class,</span>
+<span class="fc" id="L145">    return new GetOneExecutor&lt;ServiceGroupDto&gt;(ServiceGroupDto.class,</span>
         ServiceGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L76">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L147">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -88,12 +159,73 @@ import lombok.experimental.Accessors;
   @Override
   public ServiceGroupDto getByIdentifier(String identifier, ProjectionDto projection, 
       String auditWho, String auditSession) {
-<span class="fc" id="L91">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L92">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L93">    request.setProjection(projection);</span>
-<span class="fc" id="L94">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L95">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L96">    return getByIdentifier(request);</span>
+<span class="fc" id="L162">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L163">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L164">    request.setProjection(projection);</span>
+<span class="fc" id="L165">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L166">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L167">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(ServiceGroupUpdateRequestDto request) {
+<span class="fc" id="L177">    return new IdentifiableExecutor(ServiceGroupService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L178">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#update}.
+   *
+   * @param identifier identifiant
+   * @param code code
+   * @param name nom
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(String identifier, String code, String name,
+      String auditWho, String auditSession) {
+<span class="fc" id="L193">    ServiceGroupUpdateRequestDto request = new ServiceGroupUpdateRequestDto();</span>
+<span class="fc" id="L194">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L195">    request.setCode(code);</span>
+<span class="fc" id="L196">    request.setName(name);</span>
+<span class="fc" id="L197">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L198">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L199">    return update(request);</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L209">    return new IdentifiableExecutor(ServiceGroupService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L210">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link ServiceGroupService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L224">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L225">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L226">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L227">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L228">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

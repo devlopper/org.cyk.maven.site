@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ServiceGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de classification budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryclassification.server.api</a> &gt; <span class="el_source">ServiceGroupService.java</span></div><h1>ServiceGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryclassification.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -29,11 +42,51 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 @Path(value = ServiceGroupService.PATH)
 @Tag(name = &quot;Gestion des groupes de service&quot;)
 public interface ServiceGroupService extends SpecificService {
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;groupes de service&quot;;
 
   /**
-   * Chemin de base des groupes de service.
+   * Identifiant du service de création.
    */
-  String PATH = &quot;groupes-service&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_GROUPE_SERVICE&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link ServiceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Création d'un groupe de service&quot;,
+      description = &quot;Ce service permet de créer un groupe de service&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(ServiceGroupCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author stephane
+   *
+   */
+  @Getter
+  @Setter
+  @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
+      AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
+<span class="fc" id="L87">  class ServiceGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+    
+  }
 
   /**
    * Identifiant du service d'obtention de plusieurs.
@@ -69,11 +122,37 @@ public interface ServiceGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L72">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceGroupDto&gt; {</span>
+<span class="fc" id="L125">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceGroupDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ServiceGroupDto&gt; datas;
   }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_GROUPE_SERVICE&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link ServiceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir un groupe de service&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ServiceGroupDto.class))})
+  Response getOne(GetOneRequestDto request);
 
   /**
    * Identifiant du service d'obtention par identifiant de un.
@@ -86,7 +165,7 @@ public interface ServiceGroupService extends SpecificService {
   String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
 
   /**
-   * Cette méthode permet d'obtenir par identifiant {@link ServiceGroupDto}.
+   * Cette méthode permet d'obtenir par identrifiant {@link ServiceGroupDto}.
    *
    * @param request requête
    * @return réponse
@@ -100,5 +179,73 @@ public interface ServiceGroupService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = ServiceGroupDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_GROUPE_SERVICE&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link ServiceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour un groupe de service&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ServiceGroupUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author stephane
+   *
+   */
+  @Getter
+  @Setter
+  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
+      AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
+      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
+      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
+<span class="fc" id="L221">  class ServiceGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+    
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_GROUPE_SERVICE&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link ServiceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      description = &quot;Ce service permet de supprimer un groupe de service&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
