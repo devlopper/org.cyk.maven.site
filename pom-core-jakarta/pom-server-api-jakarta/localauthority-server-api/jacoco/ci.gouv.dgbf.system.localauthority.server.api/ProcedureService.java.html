@@ -43,6 +43,17 @@ public interface ProcedureService extends SpecificService {
    */
   String PATH = &quot;procedures&quot;;
 
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_PROCEDURE&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
   /**
    * Cette interface représente un enregistrement.
    *
@@ -50,6 +61,7 @@ public interface ProcedureService extends SpecificService {
    *
    */
   interface ProcedureSaveRequestDto {
+
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
@@ -68,15 +80,6 @@ public interface ProcedureService extends SpecificService {
     String JSON_WORKFLOW_IDENTIFIER = ProcedureDto.JSON_WORKFLOW_IDENTIFIER;
   }
 
-  /**
-   * Identifiant du service de création.
-   */
-  String CREATE_IDENTIFIER = &quot;CREATION_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service de création.
-   */
-  String CREATE_PATH = &quot;&quot;;
 
   /**
    * Cette méthode permet de créer.
@@ -101,7 +104,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L104">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L107">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
@@ -141,7 +144,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L144">  public static class ProcedureGetManyResponseDto</span>
+<span class="fc" id="L147">  public static class ProcedureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -231,7 +234,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L234">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L237">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)

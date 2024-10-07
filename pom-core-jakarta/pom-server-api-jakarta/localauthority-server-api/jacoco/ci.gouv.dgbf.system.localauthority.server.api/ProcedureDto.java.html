@@ -23,7 +23,21 @@ import lombok.Setter;
   @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
   private String workflowIdentifier;
 
+  /**
+   * Identifiant de {@link WorkflowDto}.
+   */
+  @JsonbProperty(JSON_WORKFLOW_AS_STRING)
+  private String workflowAsString;
+
+  /**
+   * Identitiant json {@link ProcedureDto#workflowIdentifier}.
+   */
   public static final String JSON_WORKFLOW_IDENTIFIER = &quot;idWorkflow&quot;;
+
+  /**
+   * Identitiant json {@link ProcedureDto#workflowAsString}.
+   */
+  public static final String JSON_WORKFLOW_AS_STRING = &quot;workflowChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
