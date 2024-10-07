@@ -12,6 +12,7 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -118,7 +119,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L121">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L122">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ProcessingSaveDataRequestDto {
 
     @JsonbProperty(JSON_REASON)
@@ -136,7 +137,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L139">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L140">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link ProcessingDto#getStatus()}.
@@ -174,12 +175,12 @@ public interface ProcessingService {
      * @param status statut
      */
     public void initialize(ProcessingStatus status) {
-<span class="fc" id="L177">      this.status = status;</span>
-<span class="fc" id="L178">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
-<span class="fc" id="L179">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
-<span class="fc" id="L180">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
-<span class="fc" id="L181">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
-<span class="fc" id="L182">    }</span>
+<span class="fc" id="L178">      this.status = status;</span>
+<span class="fc" id="L179">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
+<span class="fc" id="L180">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
+<span class="fc" id="L181">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L182">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
+<span class="fc" id="L183">    }</span>
 
     /**
      * {@link ProcessingDto#JSON_STATUS}.
@@ -215,7 +216,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L218">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L219">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto</span>
       implements ProcessingSaveDataRequestDto {
 
     @JsonbProperty(JSON_REASON)
@@ -345,7 +346,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L348">  public static class ProcessingGetManyResponseDto</span>
+<span class="fc" id="L349">  public static class ProcessingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -399,6 +400,50 @@ public interface ProcessingService {
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir par identifiant un traitement&quot;)
   Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link ProcessingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour un traitement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ProcessingUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L438">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements ProcessingSaveDataRequestDto {
+
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDateTime date;
+  }
 
   /**
    * Identifiant du service de suppression.
