@@ -42,15 +42,16 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 @Path(value = ServiceGroupService.PATH)
 @Tag(name = &quot;Gestion des groupes de service&quot;)
 public interface ServiceGroupService extends SpecificService {
+
   /**
-   * Chemin de base des services.
+   * Chemin de base des groupes de service.
    */
-  String PATH = &quot;groupes de service&quot;;
+  String PATH = &quot;groupes-service&quot;;
 
   /**
    * Identifiant du service de création.
    */
-  String CREATE_IDENTIFIER = &quot;CREATION_GROUPE_SERVICE&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_GROUPE_SECTION&quot;;
 
   /**
    * Chemin du service de création.
@@ -76,7 +77,7 @@ public interface ServiceGroupService extends SpecificService {
   /**
    * Cette classe représente la requête de création.
    *
-   * @author stephane
+   * @author Christian
    *
    */
   @Getter
@@ -84,14 +85,14 @@ public interface ServiceGroupService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L87">  class ServiceGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L88">  class ServiceGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
     
   }
 
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_GROUPE_SERVICE&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_GROUPE_SECTION&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -117,12 +118,12 @@ public interface ServiceGroupService extends SpecificService {
   /**
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
    *
-   * @author stephane
+   * @author Christian
    *
    */
   @Getter
   @Setter
-<span class="fc" id="L125">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceGroupDto&gt; {</span>
+<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ServiceGroupDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ServiceGroupDto&gt; datas;
@@ -131,7 +132,7 @@ public interface ServiceGroupService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_GROUPE_SERVICE&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_GROUPE_SECTION&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -157,7 +158,7 @@ public interface ServiceGroupService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_GROUPE_SERVICE&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_GROUPE_SECTION&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -183,7 +184,7 @@ public interface ServiceGroupService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_GROUPE_SERVICE&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_GROUPE_SECTION&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -209,7 +210,7 @@ public interface ServiceGroupService extends SpecificService {
   /**
    * Cette classe représente la requête de mise à jour.
    *
-   * @author stephane
+   * @author Christian
    *
    */
   @Getter
@@ -218,14 +219,14 @@ public interface ServiceGroupService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L221">  class ServiceGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L222">  class ServiceGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
     
   }
 
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_GROUPE_SERVICE&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_GROUPE_SECTION&quot;;
 
   /**
    * Chemin du service de suppression.
