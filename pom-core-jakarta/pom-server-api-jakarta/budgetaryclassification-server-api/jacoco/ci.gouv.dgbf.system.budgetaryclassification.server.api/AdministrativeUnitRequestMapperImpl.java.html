@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdministrativeUnitRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de classification budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryclassification.server.api</a> &gt; <span class="el_source">AdministrativeUnitRequestMapperImpl.java</span></div><h1>AdministrativeUnitRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryclassification.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link AdministrativeUnitDto}.
+*
+* @author stephane
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2024-10-10T15:49:11+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class AdministrativeUnitRequestMapperImpl implements AdministrativeUnitRequestMapper {</span>
+
+    @Override
+    public AdministrativeUnitService.AdministrativeUnitCreateRequestDto mapCreate(AdministrativeUnitDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        AdministrativeUnitService.AdministrativeUnitCreateRequestDto administrativeUnitCreateRequestDto = new AdministrativeUnitService.AdministrativeUnitCreateRequestDto();</span>
+
+<span class="fc" id="L28">        administrativeUnitCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L29">        administrativeUnitCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        administrativeUnitCreateRequestDto.setSectionIdentifier( arg0.getSectionIdentifier() );</span>
+<span class="fc" id="L31">        administrativeUnitCreateRequestDto.setLocalityIdentifier( arg0.getLocalityIdentifier() );</span>
+<span class="fc" id="L32">        administrativeUnitCreateRequestDto.setServiceGroupIdentifier( arg0.getServiceGroupIdentifier() );</span>
+<span class="fc" id="L33">        administrativeUnitCreateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
+
+<span class="fc" id="L35">        return administrativeUnitCreateRequestDto;</span>
+    }
+
+    @Override
+    public AdministrativeUnitService.AdministrativeUnitUpdateRequestDto mapUpdate(AdministrativeUnitDto arg0) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L41">            return null;</span>
+        }
+
+<span class="fc" id="L44">        AdministrativeUnitService.AdministrativeUnitUpdateRequestDto administrativeUnitUpdateRequestDto = new AdministrativeUnitService.AdministrativeUnitUpdateRequestDto();</span>
+
+<span class="fc" id="L46">        administrativeUnitUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        administrativeUnitUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L48">        administrativeUnitUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L49">        administrativeUnitUpdateRequestDto.setSectionIdentifier( arg0.getSectionIdentifier() );</span>
+<span class="fc" id="L50">        administrativeUnitUpdateRequestDto.setLocalityIdentifier( arg0.getLocalityIdentifier() );</span>
+<span class="fc" id="L51">        administrativeUnitUpdateRequestDto.setServiceGroupIdentifier( arg0.getServiceGroupIdentifier() );</span>
+<span class="fc" id="L52">        administrativeUnitUpdateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
+
+<span class="fc" id="L54">        return administrativeUnitUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

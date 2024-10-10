@@ -24,9 +24,97 @@ import lombok.Setter;
   private Boolean isLocalAuthority;
   
   /**
+   * Identifiant {@link SectionDto}.
+   */
+  @JsonbProperty(JSON_SECTION_IDENTIFIER)
+  private String sectionIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link SectionDto}.
+   */
+  @JsonbProperty(JSON_SECTION_AS_STRING)
+  private String sectionAsString;
+  
+  /**
+   * Identifiant {@link LocalityDto}.
+   */
+  @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
+  private String localityIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link LocalityDto}.
+   */
+  @JsonbProperty(JSON_LOCALITY_AS_STRING)
+  private String localityAsString;
+  
+  /**
+   * Identifiant {@link ServiceGroupDto}.
+   */
+  @JsonbProperty(JSON_SERVICE_GROUP_IDENTIFIER)
+  private String serviceGroupIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link ServiceGroupDto}.
+   */
+  @JsonbProperty(JSON_SERVICE_GROUP_AS_STRING)
+  private String serviceGroupAsString;
+  
+  /**
+   * Identifiant {@link CfapDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
+  private String functionalAccountIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link CfapDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_AS_STRING)
+  private String functionalAccountAsString;
+  
+  /**
    * Identifiant json champ {@link AdministrativeUnitDto#isLocalAuthority}.
    */
   public static final String JSON_IS_LOCAL_AUTHORITY = &quot;estCollectivite&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#sectionIdentifier}.
+   */
+  public static final String JSON_SECTION_IDENTIFIER = &quot;idSection&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#sectionAsString}.
+   */
+  public static final String JSON_SECTION_AS_STRING = &quot;sectionChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#localityIdentifier}.
+   */
+  public static final String JSON_LOCALITY_IDENTIFIER = &quot;idLocality&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#localityAsString}.
+   */
+  public static final String JSON_LOCALITY_AS_STRING = &quot;localityChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#localityIdentifier}.
+   */
+  public static final String JSON_SERVICE_GROUP_IDENTIFIER = &quot;idServiceGroup&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#serviceGroupAsString}.
+   */
+  public static final String JSON_SERVICE_GROUP_AS_STRING = &quot;serviceGroupChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#functionalAccountIdentifier}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER = &quot;idfunctionalAccount&quot;;
+  
+  /**
+   * Identifiant json champ {@link AdministrativeUnitDto#functionalAccountAsString}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_AS_STRING = &quot;functionalAccountChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
