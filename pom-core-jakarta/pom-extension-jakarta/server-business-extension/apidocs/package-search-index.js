@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ci.gouv.dgbf.extension.server.business"}];updateSearchResults();
