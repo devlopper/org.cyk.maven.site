@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcedureDetailDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ProcedureDetailDto.java</span></div><h1>ProcedureDetailDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.Date;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une procedure.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class ProcedureDetailDto extends AbstractIdentifiableNamableAuditableDto {</span>
+
+  /**
+   * Identifiant de {@link ProcedureDto}.
+   */
+  @JsonbProperty(JSON_PROCEDURE_IDENTIFIER)
+  private String procedureIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link ProcedureDto}.
+   */
+  @JsonbProperty(JSON_PROCEDURE_AS_STRING)
+  private String procedureAsString;
+
+  /**
+   * Ordre.
+   */
+  @JsonbProperty(JSON_ORDRE)
+  private int ordre;
+
+  /**
+   * Représentation en chaine de caractères d'ordre.
+   */
+  @JsonbProperty(JSON_ORDRE_AS_STRING)
+  private String ordreAsString;
+
+  /**
+   * Ordre.
+   */
+  @JsonbProperty(JSON_DETAIL_DATE)
+  private Date  detailDate;
+
+  /**
+   * Représentation en chaine de caractères de detailDate.
+   */
+  @JsonbProperty(JSON_DETAIL_DATE_AS_STRING)
+  private String detailDateAsString;
+
+  /**
+   * Identitiant json {@link ProcedureDetailDto#procedureIdentifier}.
+   */
+  public static final String JSON_PROCEDURE_IDENTIFIER = &quot;idProcedure&quot;;
+
+  /**
+   * Identitiant json {@link ProcedureDetailDto#procedureAsString}.
+   */
+  public static final String JSON_PROCEDURE_AS_STRING = &quot;procedureChaine&quot;;
+
+  /**
+   * Identifiant json {@link ProcedureDetailDto#ordre}.
+   */
+  public static final String JSON_ORDRE = &quot;ordre&quot;;
+
+
+  /**
+   * Identifiant json {@link ProcedureDetailDto#ordreAsString}.
+   */
+  public static final String JSON_ORDRE_AS_STRING = &quot;ordreChaine&quot;;
+
+  /**
+   * Identifiant json {@link ProcedureDetailDto#detailDate}.
+   */
+  public static final String JSON_DETAIL_DATE = &quot;detailDate&quot;;
+
+
+  /**
+   * Identifiant json {@link ProcedureDetailDto#detailDateAsString}.
+   */
+  public static final String JSON_DETAIL_DATE_AS_STRING  = &quot;detailDateChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;detail de procedure&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;details de procedure&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
