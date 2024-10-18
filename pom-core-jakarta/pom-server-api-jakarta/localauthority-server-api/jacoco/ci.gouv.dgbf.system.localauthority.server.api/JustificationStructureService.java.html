@@ -96,26 +96,26 @@ public interface JustificationStructureService extends SpecificService {
      *
      * @return order
      */
-    String getOrder();
+    Integer getOrder();
 
     /**
      * Cette méthode permet d'assigner l'ordre.
      *
      * @param order ordre
      */
-    void setOrder(String order);
+    void setOrder(Integer order);
 
 
     /**
      * Identifiant champ json du titre.
      */
-    String JSON_TITLE = JustificationStructureDto.JSON_JUSTIFICATION_STRUCTURE_TITLE;
+    String JSON_TITLE = JustificationStructureDto.JSON_TITLE;
 
 
     /**
      * Identifiant champ json de l'ordre.
      */
-    String JSON_ORDER = JustificationStructureDto.JSON_JUSTIFICATION_STRUCTURE_ORDER;
+    String JSON_ORDER = JustificationStructureDto.JSON_ORDER;
   }
 
   /**
@@ -133,7 +133,7 @@ public interface JustificationStructureService extends SpecificService {
     private String title;
 
     @JsonbProperty(JSON_ORDER)
-    private String order;
+    private Integer order;
   }
 
   /**
@@ -271,7 +271,7 @@ public interface JustificationStructureService extends SpecificService {
     private String title;
 
     @JsonbProperty(JSON_ORDER)
-    private String order;
+    private Integer order;
   }
 
   /**

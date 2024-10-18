@@ -19,26 +19,26 @@ import lombok.Setter;
   /**
    * Titre.
    */
-  @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_TITLE)
+  @JsonbProperty(JSON_TITLE)
   private String title;
 
   /**
    * Order.
    */
-  @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_ORDER)
-  private String order;
+  @JsonbProperty(JSON_ORDER)
+  private Integer order;
 
 
   /**
    * Identifiant json {@link JustificationStructureDto#title}.
    */
-  public static final String JSON_JUSTIFICATION_STRUCTURE_TITLE = &quot;titre&quot;;
+  public static final String JSON_TITLE = &quot;titre&quot;;
 
 
   /**
    * Identifiant json {@link JustificationStructureDto#order}.
    */
-  public static final String JSON_JUSTIFICATION_STRUCTURE_ORDER = &quot;ordre&quot;;
+  public static final String JSON_ORDER = &quot;ordre&quot;;
 
 
   /**
