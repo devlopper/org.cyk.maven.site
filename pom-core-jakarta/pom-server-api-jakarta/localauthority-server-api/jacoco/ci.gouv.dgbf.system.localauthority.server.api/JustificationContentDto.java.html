@@ -22,6 +22,13 @@ import lombok.Setter;
   @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER)
   private String justificationStructureIdentifier;
 
+
+  /**
+   * Représentation en chaine de caractères de {@link FundingModeDto}.
+   */
+  @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_AS_STRING)
+  private String justificationStructureAsString;
+
   /**
    * Titre.
    */
@@ -33,6 +40,13 @@ import lombok.Setter;
    * Identifiant json {@link JustificationContentDto#justificationStructureIdentifier}.
    */
   public static final String JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER = &quot;idJustificationStructure&quot;;
+
+
+  /**
+   * Identifiant json {@link JustificationContentDto#justificationStructureAsString}.
+   */
+  public static final String JSON_JUSTIFICATION_STRUCTURE_AS_STRING =
+      &quot;justificationStructureChaine&quot;;
 
   /**
    * Identifiant json {@link JustificationContentDto#description}.
