@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AmountService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de bulletin de salaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payslip.server.api</a> &gt; <span class="el_source">AmountService.java</span></div><h1>AmountService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payslip.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services concernant les montants.
+ *
+ * @author Christian
+ *
+ */
+@Path(AmountService.PATH)
+@Tag(name = &quot;Gestion des montants&quot;)
+public interface AmountService extends SpecificService {
+
+  /**
+   * Chemin de base.
+   */
+  String PATH = &quot;montants&quot;;
+
+  /**
+   * Identifiant du service de chargement de montants par année par mois et par type d'identifiant.
+   */
+  String LOAD_BY_YEAR_BY_MONTH_BY_TYPE_IDENTIFIER_IDENTIFIER =
+      &quot;CHARGEMENT_MONTANT_PAR_ANNEE_PAR_MOIS_PAR_IDENTIFIANT_TYPE&quot;;
+
+  /**
+   * Chemin du service de chargement de montants par année par mois et par type d'identifiant.
+   */
+  String LOAD_BY_YEAR_BY_MONTH_BY_TYPE_IDENTIFIER_PATH = &quot;chargement-par-annee-par-mois-par-type&quot;;
+
+  /**
+   * Cette méthode permet de charger les montants par année par mois et par type.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(LOAD_BY_YEAR_BY_MONTH_BY_TYPE_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = LOAD_BY_YEAR_BY_MONTH_BY_TYPE_IDENTIFIER_IDENTIFIER,
+      summary = &quot;Charger les montants par année par mois et par type&quot;,
+      description = &quot;Ce service permet de charger les montants par année par mois&quot; + &quot; et par type&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = AmountDto.class))})
+  Response loadByYearByMonthByTypeIdentifier(LoadByYearByMonthByTypeIdentifierRequestDto request);
+
+  /**
+   * Cette classe représente la requête de chargement de montants par année par mois et par type
+   * d'identifiant.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L74">  class LoadByYearByMonthByTypeIdentifierRequestDto extends AbstractAuditedRequestJsonDto {</span>
+
+    /**
+     * Année.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_YEAR)
+    private Integer year;
+
+    /**
+     * Mois.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_MONTH)
+    private Integer month;
+
+    /**
+     * Identifiant {@link AmountTypeDto}.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
+    /**
+     * Identifiant groupe de matricule.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER)
+    private String registrationNumberGroupIdentifier;
+
+    /**
+     * Identifiant JSON {@link #year}.
+     */
+    public static final String JSON_YEAR = &quot;annee&quot;;
+    
+    /**
+     * Identifiant JSON {@link #month}.
+     */
+    public static final String JSON_MONTH = &quot;mois&quot;;
+    
+    /**
+     * Identifiant JSON {@link #typeIdentifier}.
+     */
+    public static final String JSON_TYPE_IDENTIFIER = &quot;idTypeMontant&quot;;
+    
+    /**
+     * Identifiant JSON {@link #registrationNumberGroupIdentifier}.
+     */
+    public static final String JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER = &quot;idGroupMatricule&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse de chargement de montants par année par mois et par type
+   * d'identifiant.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L134">  class LoadByYearByMonthByTypeIdentifierResponseDto extends AbstractResponseDto {</span>
+
+    /**
+     * Nombre de montants à charger.
+     */
+    @JsonbProperty(JSON_LOADABLES_COUNT)
+    private int loadablesCount;
+
+    /**
+     * Nombre de montants chargés.
+     */
+    @JsonbProperty(JSON_LOADED_COUNT)
+    private int loadedCount;
+
+    /**
+     * Nombre de montants non valide.
+     */
+    @JsonbProperty(JSON_NOT_VALID_COUNT)
+    private int notValidCount;
+
+    /**
+     * Nombre de montants existants.
+     */
+    @JsonbProperty(JSON_EXISTING_COUNT)
+    private int existingCount;
+
+    /**
+     * Nombre de montants en doublon.
+     */
+    @JsonbProperty(JSON_DUPLICATE_COUNT)
+    private int duplicateCount;
+
+    /**
+     * Identifiant JSON {@link #loadablesCount}.
+     */
+    public static final String JSON_LOADABLES_COUNT = &quot;compteChargeable&quot;;
+    
+    /**
+     * Identifiant JSON {@link #loadedCount}.
+     */
+    public static final String JSON_LOADED_COUNT = &quot;compteCharge&quot;;
+    
+    /**
+     * Identifiant JSON {@link #notValidCount}.
+     */
+    public static final String JSON_NOT_VALID_COUNT = &quot;compteNonValide&quot;;
+    
+    /**
+     * Identifiant JSON {@link #existingCount}.
+     */
+    public static final String JSON_EXISTING_COUNT = &quot;compteExistant&quot;;
+    
+    /**
+     * Identifiant JSON {@link #duplicateCount}.
+     */
+    public static final String JSON_DUPLICATE_COUNT = &quot;compteDoublon&quot;;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

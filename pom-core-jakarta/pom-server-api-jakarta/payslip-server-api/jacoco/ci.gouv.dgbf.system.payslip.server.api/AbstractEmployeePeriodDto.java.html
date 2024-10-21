@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractEmployeePeriodDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de bulletin de salaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payslip.server.api</a> &gt; <span class="el_source">AbstractEmployeePeriodDto.java</span></div><h1>AbstractEmployeePeriodDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payslip.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une période d'un employé.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public abstract class AbstractEmployeePeriodDto extends AbstractIdentifiableCodableAuditableDto {</span>
+
+  /**
+   * Identifiant de l'employé.
+   */
+  @JsonbProperty(value = JSON_EMPLOYEE_IDENTIFIER)
+  protected String employeeIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de employé.
+   */
+  @JsonbProperty(value = JSON_EMPLOYEE_AS_STRING)
+  protected String employeeAsString;
+  
+  /**
+   * Matricule de l'employé.
+   */
+  @JsonbProperty(value = JSON_EMPLOYEE_REGISTRATION_NUMBER)
+  protected String employeeRegistrationNumber;
+  
+  /**
+   * Nom et prénoms de l'employé.
+   */
+  @JsonbProperty(value = JSON_EMPLOYEE_NAMES)
+  protected String employeeNames;
+  
+  /**
+   * Adresse email de l'employé.
+   */
+  @JsonbProperty(value = JSON_EMPLOYEE_EMAIL_ADDRESS)
+  protected String employeeEmailAddress;
+  
+  /**
+   * Identifiant de {@link PeriodDto}.
+   */
+  @JsonbProperty(value = JSON_PERIOD_IDENTIFIER)
+  protected String periodIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link PeriodDto}.
+   */
+  @JsonbProperty(value = JSON_PERIOD_AS_STRING)
+  protected String periodAsString;
+  
+  /**
+   * Année.
+   */
+  @JsonbProperty(value = JSON_PERIOD_YEAR)
+  protected Integer year;
+  
+  /**
+   * Mois.
+   */
+  @JsonbProperty(value = JSON_PERIOD_MONTH)
+  protected Integer month;
+  
+  /**
+   * Identifiant JSON {@link #employeeIdentifier}.
+   */
+  public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
+  
+  /**
+   * Identifiant JSON {@link #employeeAsString}.
+   */
+  public static final String JSON_EMPLOYEE_AS_STRING = &quot;employeChaine&quot;;
+  
+  /**
+   * Identifiant JSON {@link #employeeRegistrationNumber}.
+   */
+  public static final String JSON_EMPLOYEE_REGISTRATION_NUMBER = &quot;matricule&quot;;
+  
+  /**
+   * Identifiant JSON {@link #employeeNames}.
+   */
+  public static final String JSON_EMPLOYEE_NAMES = &quot;nomEtPrenoms&quot;;
+  
+  /**
+   * Identifiant JSON {@link #employeeEmailAddress}.
+   */
+  public static final String JSON_EMPLOYEE_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
+  
+  /**
+   * Identifiant JSON {@link #periodIdentifier}.
+   */
+  public static final String JSON_PERIOD_IDENTIFIER = &quot;idPeriode&quot;;
+  
+  /**
+   * Identifiant JSON {@link #periodAsString}.
+   */
+  public static final String JSON_PERIOD_AS_STRING = &quot;periodeChaine&quot;;
+  
+  /**
+   * Identifiant JSON {@link #year}.
+   */
+  public static final String JSON_PERIOD_YEAR = &quot;annee&quot;;
+  
+  /**
+   * Identifiant JSON {@link #month}.
+   */
+  public static final String JSON_PERIOD_MONTH = &quot;mois&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AmountTypeClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de bulletin de salaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payslip.server.api</a> &gt; <span class="el_source">AmountTypeClient.java</span></div><h1>AmountTypeClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payslip.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetStringExecutor;
+import ci.gouv.dgbf.system.payslip.server.api.AmountTypeService.GetArrearageIdentifierRequestDto;
+import ci.gouv.dgbf.system.payslip.server.api.AmountTypeService.GetPayslipIdentifierRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de GenderService.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+<span class="fc" id="L16">public class AmountTypeClient extends AbstractClient&lt;AmountTypeService&gt; {</span>
+
+  @Override
+  public AmountTypeClient service(AmountTypeService service) {
+<span class="fc" id="L20">    return (AmountTypeClient) super.service(service);</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de bulletin de salaire.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public String getPayslipIdentifier(GetPayslipIdentifierRequestDto request) {
+<span class="fc" id="L30">    return new GetStringExecutor(</span>
+        AmountTypeService.GET_PAYSLIP_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L32">            .execute(() -&gt; service().getPayslipIdentifier(request));</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de bulletin de salaire.
+   *
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return identifiant bulletin de salaire
+   */
+  public String getPayslipIdentifier(String auditWho, String auditSession) {
+<span class="fc" id="L43">    GetPayslipIdentifierRequestDto request = new GetPayslipIdentifierRequestDto();</span>
+<span class="fc" id="L44">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L45">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L46">    return getPayslipIdentifier(request);</span>
+  }
+  
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de arriéré de salaire.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public String getArrearageIdentifier(GetArrearageIdentifierRequestDto request) {
+<span class="fc" id="L56">    return new GetStringExecutor(</span>
+        AmountTypeService.GET_PAYSLIP_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L58">            .execute(() -&gt; service().getArrearageIdentifier(request));</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de arriéré de salaire.
+   *
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return identifiant arriéré de salaire
+   */
+  public String getArrearageIdentifier(String auditWho, String auditSession) {
+<span class="fc" id="L69">    GetArrearageIdentifierRequestDto request = new GetArrearageIdentifierRequestDto();</span>
+<span class="fc" id="L70">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L71">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L72">    return getArrearageIdentifier(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

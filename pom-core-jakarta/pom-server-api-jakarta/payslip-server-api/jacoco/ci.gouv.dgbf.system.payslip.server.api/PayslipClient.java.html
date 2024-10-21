@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de bulletin de salaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payslip.server.api</a> &gt; <span class="el_source">PayslipClient.java</span></div><h1>PayslipClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payslip.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateManyExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateManyResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payslip.server.api.PayslipService.PayslipGetManyResponseDto;
+import ci.gouv.dgbf.system.payslip.server.api.PayslipService.PayslipImportByFunctionaryRegistrationNumberRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente le client de {@link PayslipService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L27">public class PayslipClient extends AbstractClient&lt;PayslipService&gt;</span>
+    implements GetMany&lt;PayslipGetManyResponseDto&gt; {
+
+  @Override
+  public PayslipClient service(PayslipService service) {
+<span class="fc" id="L32">    return (PayslipClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link PayslipService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public PayslipGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L42">    return new GetOneExecutor&lt;PayslipGetManyResponseDto&gt;(PayslipGetManyResponseDto.class,</span>
+<span class="fc" id="L43">        PayslipService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link PayslipService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public PayslipGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
+<span class="fc" id="L59">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L60">    request.setProjection(projection);</span>
+<span class="fc" id="L61">    request.setFilter(filter);</span>
+<span class="fc" id="L62">    request.setPage(page);</span>
+<span class="fc" id="L63">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L64">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L65">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link PayslipService#importByFunctionaryRegistrationNumber}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateManyResponseDto importByFunctionaryRegistrationNumber(
+      PayslipImportByFunctionaryRegistrationNumberRequestDto request) {
+<span class="fc" id="L76">    return new CreateManyExecutor(PayslipService.IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_PATH)</span>
+<span class="fc" id="L77">        .execute(() -&gt; service().importByFunctionaryRegistrationNumber(request));</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
