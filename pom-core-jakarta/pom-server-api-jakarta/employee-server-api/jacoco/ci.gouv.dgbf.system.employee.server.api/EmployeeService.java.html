@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de gestion des employes</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.employee.server.api</a> &gt; <span class="el_source">EmployeeService.java</span></div><h1>EmployeeService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.employee.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette inteface représente les services de {@link EmployeeDto}.
+ *
+ * @author Christian
+ *
+ */
+@Path(EmployeeService.PATH)
+@Tag(name = &quot;Gestion des employés&quot;)
+public interface EmployeeService extends SpecificService {
+
+  /**
+   * Chemin du service de gestion des employés.
+   */
+  String PATH = &quot;employes&quot;;
+
+  /**
+   * Identifiant du service de création d'employé.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service de création d'employé.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette interface représente un enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface EmployeeSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe de numéro matricule.
+     *
+     * @return identifiant du groupe de numéro matricule
+     */
+    String getRegistrationNumberGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe de numéro matricule.
+     *
+     * @param registrationNumberGroupIdentifier identifiant du groupe de numéro matricule
+     */
+    void setRegistrationNumberGroupIdentifier(String registrationNumberGroupIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir vrai ou faux si groupe de numéro matricule est fonction
+     * publique.
+     *
+     * @return vrai ou faux si groupe de numéro matricule est fonction publique
+     */
+    Boolean getIsRegistrationNumberGroupPublicFunction();
+
+    /**
+     * Cette méthode permet d'assigner vrai ou faux si groupe de numéro matricule est fonction
+     * publique.
+     *
+     * @param isRegistrationNumberGroupPublicFunction vrai ou faux si groupe de numéro matricule est
+     *        fonction publique
+     */
+    void setIsRegistrationNumberGroupPublicFunction(
+        Boolean isRegistrationNumberGroupPublicFunction);
+
+    /**
+     * Cette méthode permet d'obtenir le numéro matricule.
+     *
+     * @return numéro matricule
+     */
+    String getRegistrationNumber();
+
+    /**
+     * Cette méthode permet d'assigner le numéro matricule.
+     *
+     * @param registrationNumber numéro matricule
+     */
+    void setRegistrationNumber(String registrationNumber);
+
+    /**
+     * Cette méthode permet d'obtenir le nom.
+     *
+     * @return nom
+     */
+    String getFirstName();
+
+    /**
+     * Cette méthode permet d'assigner le nom.
+     *
+     * @param firstName nom
+     */
+    void setFirstName(String firstName);
+
+    /**
+     * Cette méthode permet d'obtenir les prénoms.
+     *
+     * @return prénoms
+     */
+    String getLastNames();
+
+    /**
+     * Cette méthode permet d'assigner les prénoms.
+     *
+     * @param lastNames prénoms
+     */
+    void setLastNames(String lastNames);
+
+    /**
+     * Cette méthode permet d'obtenir l'adresse email.
+     *
+     * @return adresse email
+     */
+    String getEmailAddress();
+
+    /**
+     * Cette méthode permet d'assigner l'adresse email.
+     *
+     * @param emailAddress adresse email
+     */
+    void setEmailAddress(String emailAddress);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du genre.
+     *
+     * @return identifiant du genre
+     */
+    String getGenderIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du genre.
+     *
+     * @param genderIdentifier identifiant du genre
+     */
+    void setGenderIdentifier(String genderIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir la masculinité.
+     *
+     * @return masculinité
+     */
+    Boolean getIsGenderMasculine();
+
+    /**
+     * Cette méthode permet d'assigner la masculinité.
+     *
+     * @param isGenderMasculine masculinité
+     */
+    void setIsGenderMasculine(Boolean isGenderMasculine);
+
+    /**
+     * Cette méthode permet d'obtenir la date de naissance.
+     *
+     * @return date de naissance
+     */
+    LocalDate getBirthDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de naissance.
+     *
+     * @param birthDate date de naissance
+     */
+    void setBirthDate(LocalDate birthDate);
+
+    /**
+     * Cette méthode permet d'obtenir la date de prise de service.
+     *
+     * @return date de prise de service
+     */
+    LocalDate getFirstServiceStartDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de prise de service.
+     *
+     * @param firstServiceStartDate date de prise de service
+     */
+    void setFirstServiceStartDate(LocalDate firstServiceStartDate);
+
+    /**
+     * {@link EmployeeDto#JSON_REGISTRATION_NUMBER}.
+     */
+    String JSON_REGISTRATION_NUMBER = EmployeeDto.JSON_REGISTRATION_NUMBER;
+
+    /**
+     * {@link EmployeeDto#JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER}.
+     */
+    String JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER =
+        EmployeeDto.JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER;
+
+    /**
+     * {@link EmployeeDto#JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION}.
+     */
+    String JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION =
+        EmployeeDto.JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION;
+
+    /**
+     * {@link EmployeeDto#JSON_FIRST_NAME}.
+     */
+    String JSON_FIRST_NAME = EmployeeDto.JSON_FIRST_NAME;
+
+    /**
+     * {@link EmployeeDto#JSON_LAST_NAMES}.
+     */
+    String JSON_LAST_NAMES = EmployeeDto.JSON_LAST_NAMES;
+
+    /**
+     * {@link EmployeeDto#JSON_EMAIL_ADDRESS}.
+     */
+    String JSON_EMAIL_ADDRESS = EmployeeDto.JSON_EMAIL_ADDRESS;
+
+    /**
+     * {@link EmployeeDto#JSON_GENDER_IDENTIFIER}.
+     */
+    String JSON_GENDER_IDENTIFIER = EmployeeDto.JSON_GENDER_IDENTIFIER;
+
+    /**
+     * {@link EmployeeDto#JSON_IS_GENDER_MASCULINE}.
+     */
+    String JSON_IS_GENDER_MASCULINE = EmployeeDto.JSON_IS_GENDER_MASCULINE;
+
+    /**
+     * {@link EmployeeDto#JSON_BIRTH_DATE}.
+     */
+    String JSON_BIRTH_DATE = EmployeeDto.JSON_BIRTH_DATE;
+
+    /**
+     * {@link EmployeeDto#JSON_FIRST_SERVICE_START_DATE}.
+     */
+    String JSON_FIRST_SERVICE_START_DATE = EmployeeDto.JSON_FIRST_SERVICE_START_DATE;
+
+
+  }
+
+  /**
+   * Cette méthode permet de créer un employé.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Création d'un employé&quot;,
+      description = &quot;Ce service permet de créer un employé&quot;)
+  @APIResponse(responseCode = &quot;201&quot;, content = {@Content(schema = @Schema(
+      implementation = CreateResponseDto.class))})
+  @APIResponse(responseCode = &quot;400&quot;, content = {@Content(schema = @Schema(
+      implementation = String.class))})
+  Response create(EmployeeCreateRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la requête de création.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L290">  class EmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto implements</span>
+      EmployeeSaveRequestDto {
+
+    @JsonbProperty(value = JSON_FIRST_NAME)
+    private String firstName;
+
+    @JsonbProperty(value = JSON_LAST_NAMES)
+    private String lastNames;
+
+    @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+    private String emailAddress;
+
+    @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
+    private String genderIdentifier;
+
+    @JsonbProperty(value = JSON_IS_GENDER_MASCULINE)
+    private Boolean isGenderMasculine;
+
+    @JsonbProperty(value = JSON_BIRTH_DATE)
+    private LocalDate birthDate;
+
+    @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE)
+    private LocalDate firstServiceStartDate;
+
+    @JsonbProperty(value = JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER)
+    private String registrationNumberGroupIdentifier;
+
+    @JsonbProperty(value = JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION)
+    private Boolean isRegistrationNumberGroupPublicFunction;
+
+    @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+    private String registrationNumber;
+  }
+
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir des employés.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir des employés&quot;)
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L357">  public static class EmployeeGetManyResponseDto extends AbstractGetByPageResponseDto&lt;EmployeeDto&gt; {</span>
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;EmployeeDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir un employé.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir un employé&quot;)
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link EmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir par identifiant un employé&quot;)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(schema = @Schema(
+      implementation = EmployeeDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link EmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour un employé&quot;)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(schema = @Schema(
+      implementation = IdentifiableResponseDto.class))})
+  Response update(EmployeeUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L447">  class EmployeeUpdateRequestDto extends ByIdentifierRequestDto implements EmployeeSaveRequestDto {</span>
+
+    @JsonbProperty(value = JSON_FIRST_NAME)
+    private String firstName;
+
+    @JsonbProperty(value = JSON_LAST_NAMES)
+    private String lastNames;
+
+    @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+    private String emailAddress;
+
+    @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
+    private String genderIdentifier;
+
+    @JsonbProperty(value = JSON_IS_GENDER_MASCULINE)
+    private Boolean isGenderMasculine;
+
+    @JsonbProperty(value = JSON_BIRTH_DATE)
+    private LocalDate birthDate;
+
+    @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE)
+    private LocalDate firstServiceStartDate;
+
+    @JsonbProperty(value = JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER)
+    private String registrationNumberGroupIdentifier;
+
+    @JsonbProperty(value = JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION)
+    private Boolean isRegistrationNumberGroupPublicFunction;
+
+    @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+    private String registrationNumber;
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link EmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      description = &quot;Ce service permet de supprimer un employé&quot;)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(schema = @Schema(
+      implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service d'importation d'employé par matricule fonctionnaire.
+   */
+  String IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_IDENTIFIER =
+      &quot;IMPORTATION_PAR_MATRICULE_FONCTIONNAIRE_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service d'imporation d'employé par matricule fonctionnaire.
+   */
+  String IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_PATH = &quot;importation-par-matricule-fonctionnaire&quot;;
+
+  /**
+   * Cette méthode permet d'importer un employé par matricule fonctionnaire.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(schema = @Schema(
+      implementation = IdentifiableResponseDto.class))})
+  Response importByFunctionaryRegistrationNumber(
+      EmployeeImportByFunctionaryRegistrationNumberRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'importation d'employé par matricule fonctionnaire.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L541">  class EmployeeImportByFunctionaryRegistrationNumberRequestDto extends</span>
+      AbstractAuditedRequestJsonDto {
+
+    /**
+     * {@link EmployeeDto#getRegistrationNumber()}.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+    private String registrationNumber;
+
+    /**
+     * {@link EmployeeDto#JSON_REGISTRATION_NUMBER}.
+     */
+    public static final String JSON_REGISTRATION_NUMBER = EmployeeDto.JSON_REGISTRATION_NUMBER;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

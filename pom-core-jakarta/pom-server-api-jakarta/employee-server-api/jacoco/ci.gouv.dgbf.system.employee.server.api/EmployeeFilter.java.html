@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de gestion des employes</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.employee.server.api</a> &gt; <span class="el_source">EmployeeFilter.java</span></div><h1>EmployeeFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.employee.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link EmployeeDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+<span class="fc" id="L17">public class EmployeeFilter extends AbstractIdentifiableFilter {</span>
+
+  /**
+   * Adresse email.
+   */
+  @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+  String emailAddress;
+
+  /**
+   * Numéro matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  String registrationNumber;
+
+  /**
+   * Identifiant groupe de matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER)
+  String registrationNumberGroupIdentifier;
+
+  /**
+   * Nom.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME)
+  String firstName;
+
+  /**
+   * Prénoms.
+   */
+  @JsonbProperty(value = JSON_LAST_NAMES)
+  String lastNames;
+
+  /**
+   * Identifiant genre.
+   */
+  @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
+  String genderIdentifier;
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L57">    super.doInitialize(filter);</span>
+<span class="fc" id="L58">    emailAddress = getEmailAddress(filter);</span>
+<span class="fc" id="L59">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L60">    registrationNumberGroupIdentifier = getRegistrationNumberGroupIdentifier(filter);</span>
+<span class="fc" id="L61">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L65">    super.toDto(filter);</span>
+<span class="fc" id="L66">    setEmailAddress(filter, emailAddress);</span>
+<span class="fc" id="L67">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L68">    setRegistrationNumberGroupIdentifier(filter, registrationNumberGroupIdentifier);</span>
+<span class="fc" id="L69">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link #emailAddress}.
+   *
+   * @param filter filtre
+   * @param emailAddress {@link #emailAddress}
+   */
+  public static void setEmailAddress(FilterDto filter, String emailAddress) {
+<span class="pc" id="L78">    set(filter, JSON_EMAIL_ADDRESS, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(</span>
+        emailAddress));
+<span class="fc" id="L80">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #emailAddress}.
+   *
+   * @param filter filtre
+   * @return {@link #emailAddress}
+   */
+  public static String getEmailAddress(FilterDto filter) {
+<span class="fc" id="L89">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMAIL_ADDRESS));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner {@link #registrationNumber}.
+   *
+   * @param filter filtre
+   * @param registrationNumber {@link #registrationNumber}
+   */
+  public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
+<span class="pc" id="L99">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(</span>
+        registrationNumber));
+<span class="fc" id="L101">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #registrationNumber}.
+   *
+   * @param filter filtre
+   * @return {@link #registrationNumber}
+   */
+  public static String getRegistrationNumber(FilterDto filter) {
+<span class="fc" id="L110">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner {@link #registrationNumberGroupIdentifier}.
+   *
+   * @param filter filtre
+   * @param registrationNumberGroupIdentifier {@link #registrationNumberGroupIdentifier}
+   */
+  public static void setRegistrationNumberGroupIdentifier(FilterDto filter,
+      String registrationNumberGroupIdentifier) {
+<span class="pc" id="L121">    set(filter, JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(), f -&gt; f</span>
+<span class="fc" id="L122">        .setValueAsString(registrationNumberGroupIdentifier));</span>
+<span class="fc" id="L123">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #registrationNumberGroupIdentifier}.
+   *
+   * @param filter filtre
+   * @return {@link #registrationNumberGroupIdentifier}
+   */
+  public static String getRegistrationNumberGroupIdentifier(FilterDto filter) {
+<span class="fc" id="L132">    return get(filter, d -&gt; d.getFieldValueAsStringByName(</span>
+        JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER));
+  }
+
+  /**
+   * {@link EmployeeFilter#emailAddress}.
+   */
+  public static final String JSON_EMAIL_ADDRESS = EmployeeDto.JSON_EMAIL_ADDRESS;
+  /**
+   * {@link EmployeeFilter#registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = EmployeeDto.JSON_REGISTRATION_NUMBER;
+  /**
+   * {@link EmployeeFilter#registrationNumberGroupIdentifier}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER =
+      EmployeeDto.JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER;
+  /**
+   * {@link EmployeeFilter#firstName}.
+   */
+  public static final String JSON_FIRST_NAME = EmployeeDto.JSON_FIRST_NAME;
+  /**
+   * {@link EmployeeFilter#lastNames}.
+   */
+  public static final String JSON_LAST_NAMES = EmployeeDto.JSON_LAST_NAMES;
+  /**
+   * {@link EmployeeFilter#genderIdentifier}.
+   */
+  public static final String JSON_GENDER_IDENTIFIER = EmployeeDto.JSON_GENDER_IDENTIFIER;
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
