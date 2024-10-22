@@ -24,10 +24,26 @@ import lombok.Setter;
 
 
   /**
-   * Représentation en chaine de caractères de {@link FundingModeDto}.
+   * Représentation en chaine de caractères de {@link JustificationStructureDto}.
    */
   @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_AS_STRING)
   private String justificationStructureAsString;
+
+
+  /**
+   * Identifiant {@link BudgetActivityDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+  private String budgetActivityIdentifier;
+
+
+  /**
+   * Représentation en chaine de caractères de {@link FundingModeDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
+  private String budgetActivityAsString;
+
+
 
   /**
    * Titre.
@@ -47,6 +63,20 @@ import lombok.Setter;
    */
   public static final String JSON_JUSTIFICATION_STRUCTURE_AS_STRING =
       &quot;justificationStructureChaine&quot;;
+
+
+  /**
+   * Identifiant json {@link JustificationContentDto#budgetActivityIdentifier}.
+   */
+  public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = &quot;idBudgetActivity&quot;;
+
+
+  /**
+   * Identifiant json {@link JustificationContentDto#budgetActivityAsString}.
+   */
+  public static final String JSON_BUDGET_ACTIVITY_AS_STRING =
+      &quot;budgetActivityChaine&quot;;
+
 
   /**
    * Identifiant json {@link JustificationContentDto#description}.

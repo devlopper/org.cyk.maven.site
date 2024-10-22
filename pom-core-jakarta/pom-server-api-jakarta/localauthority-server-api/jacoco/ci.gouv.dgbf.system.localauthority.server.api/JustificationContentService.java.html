@@ -87,43 +87,58 @@ public interface JustificationContentService extends SpecificService {
     /**
      * Cette méthode permet d'assigner l'identifiant {@link JustificationStructureDto}.
      *
-     * @param modeIdentifier identifiant {@link JustificationStructureDto}
+     * @param justificationStructureIdentifier identifiant {@link JustificationStructureDto}
      */
-    void setJustificationStructureIdentifier(String modeIdentifier);
+    void setJustificationStructureIdentifier(String justificationStructureIdentifier);
 
 
     /**
-     * Cette méthode permet d'obtenir le titre.
+     * Cette méthode permet d'obtenir l'identifiant {@link BudgetActivityDto}.
      *
-     * @return title
+     * @return identifiant {@link BudgetActivityDto}
+     */
+    String getBudgetActivityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link BudgetActivityDto}.
+     *
+     * @param budgetActivityIdentifier identifiant {@link BudgetActivityDto}
+     */
+    void setBudgetActivityIdentifier(String budgetActivityIdentifier);
+
+
+    /**
+     * Cette méthode permet d'obtenir la description.
+     *
+     * @return description
      */
     String getDescription();
 
     /**
-     * Cette méthode permet d'assigner le titre.
+     * Cette méthode permet d'assigner le description.
      *
-     * @param description titre
+     * @param description contenu de la justification
      */
     void setDescription(String description);
 
 
     /**
-     * Identifiant champ json de {@link FundingModeDto}.
+     * Identifiant champ json de {@link JustificationStructureDto}.
      */
-    String JSON_STRUCTURE_JUSTIFICATION_IDENTIFIER =
+    String JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER =
         JustificationContentDto.JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link JustificationStructureDto}.
+     */
+    String JSON_BUDGET_ACTIVITY_IDENTIFIER =
+        JustificationContentDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
 
 
     /**
      * Identifiant champ json du titre.
      */
     String JSON_DESCRIPTION = JustificationContentDto.JSON_DESCRIPTION;
-
-
-    /**
-     * Identifiant champ json de {@link JustificationStructureDto}.
-     */
-    String JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER = JustificationStructureDto.JSON_IDENTIFIER;
 
   }
 
@@ -134,12 +149,16 @@ public interface JustificationContentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L137">  class JustificationContentCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L152">  class JustificationContentCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements
       SaveRequestDto {
 
     @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER)
     private String justificationStructureIdentifier;
+
+    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    private String budgetActivityIdentifier;
+
 
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
@@ -148,7 +167,7 @@ public interface JustificationContentService extends SpecificService {
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_STRUCTURE_JUSTIFICATION&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_CONTENUS_JUSTIFICATION&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -180,7 +199,7 @@ public interface JustificationContentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L183">  public static class GetManyResponseDto</span>
+<span class="fc" id="L202">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;JustificationContentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -190,7 +209,7 @@ public interface JustificationContentService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_STRUCTURE_JUSTIFICATION&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_CONTENU_JUSTIFICATION&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -216,7 +235,7 @@ public interface JustificationContentService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_STRUCTURE_JUSTIFICATION&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_CONTENU_JUSTIFICATION&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -242,7 +261,7 @@ public interface JustificationContentService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_STRUCTURE_JUSTIFICATION&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_CONTENU_JUSTIFICATION&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -272,12 +291,16 @@ public interface JustificationContentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L275">  class JustificationContentUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L294">  class JustificationContentUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements
       SaveRequestDto {
 
     @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER)
     private String justificationStructureIdentifier;
+
+
+    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    private String budgetActivityIdentifier;
 
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
@@ -286,7 +309,7 @@ public interface JustificationContentService extends SpecificService {
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_STRUCTURE_JUSTIFICATION&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_CONTENU_JUSTIFICATION&quot;;
 
   /**
    * Chemin du service de suppression.

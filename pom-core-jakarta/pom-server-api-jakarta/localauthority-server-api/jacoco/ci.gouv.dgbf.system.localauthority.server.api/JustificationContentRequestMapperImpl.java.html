@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2024-10-22T11:14:29+0000&quot;,
+    date = &quot;2024-10-22T13:21:45+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -26,24 +26,26 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L26">        JustificationContentService.JustificationContentCreateRequestDto justificationContentCreateRequestDto = new JustificationContentService.JustificationContentCreateRequestDto();</span>
 
 <span class="fc" id="L28">        justificationContentCreateRequestDto.setJustificationStructureIdentifier( arg0.getJustificationStructureIdentifier() );</span>
-<span class="fc" id="L29">        justificationContentCreateRequestDto.setDescription( arg0.getDescription() );</span>
+<span class="fc" id="L29">        justificationContentCreateRequestDto.setBudgetActivityIdentifier( arg0.getBudgetActivityIdentifier() );</span>
+<span class="fc" id="L30">        justificationContentCreateRequestDto.setDescription( arg0.getDescription() );</span>
 
-<span class="fc" id="L31">        return justificationContentCreateRequestDto;</span>
+<span class="fc" id="L32">        return justificationContentCreateRequestDto;</span>
     }
 
     @Override
     public JustificationContentService.JustificationContentUpdateRequestDto mapUpdate(JustificationContentDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L40">        JustificationContentService.JustificationContentUpdateRequestDto justificationContentUpdateRequestDto = new JustificationContentService.JustificationContentUpdateRequestDto();</span>
+<span class="fc" id="L41">        JustificationContentService.JustificationContentUpdateRequestDto justificationContentUpdateRequestDto = new JustificationContentService.JustificationContentUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        justificationContentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        justificationContentUpdateRequestDto.setJustificationStructureIdentifier( arg0.getJustificationStructureIdentifier() );</span>
-<span class="fc" id="L44">        justificationContentUpdateRequestDto.setDescription( arg0.getDescription() );</span>
+<span class="fc" id="L43">        justificationContentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        justificationContentUpdateRequestDto.setJustificationStructureIdentifier( arg0.getJustificationStructureIdentifier() );</span>
+<span class="fc" id="L45">        justificationContentUpdateRequestDto.setBudgetActivityIdentifier( arg0.getBudgetActivityIdentifier() );</span>
+<span class="fc" id="L46">        justificationContentUpdateRequestDto.setDescription( arg0.getDescription() );</span>
 
-<span class="fc" id="L46">        return justificationContentUpdateRequestDto;</span>
+<span class="fc" id="L48">        return justificationContentUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
