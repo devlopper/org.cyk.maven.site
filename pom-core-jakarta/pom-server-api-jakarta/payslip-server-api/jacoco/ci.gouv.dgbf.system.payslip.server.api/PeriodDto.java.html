@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PeriodDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de bulletin de salaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payslip.server.api</a> &gt; <span class="el_source">PeriodDto.java</span></div><h1>PeriodDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payslip.server.api;
 
+import ci.gouv.dgbf.extension.core.ArrayContainer;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Cette classe représente l'objet de transfert de données de période.
@@ -15,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class PeriodDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L20">public class PeriodDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
    * Identifiant du {@link PeriodGroupDto}.
@@ -59,5 +61,62 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+  
+  /**
+   * Cette méthode permet de construire la représentation en chaine de caractères de
+   * {@link PeriodDto}.
+   *
+   * @param arrayContainer {@link ArrayContainer}
+   * @return représentation en chaine de caractères de {@link PeriodDto}
+   */
+  public static String buildAsString(ArrayContainer arrayContainer) {
+<span class="fc" id="L73">    return asStringBuilder().arrayContainer(arrayContainer).build();</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir une instance de {@link AsStringBuilder}.
+   *
+   * @return instance de {@link AsStringBuilder}
+   */
+  public static AsStringBuilder asStringBuilder() {
+<span class="fc" id="L82">    return new AsStringBuilder();</span>
+  }
+
+  /**
+   * Cette classe représente un constructeur de représentation en chaine de caractères de
+   * {@link PeriodDto}.
+   *
+   * @author Christian
+   *
+   */
+  @Setter
+  @Accessors(chain = true, fluent = true)
+  static class AsStringBuilder extends ArrayContainer.AsStringBuilder {
+
+    /**
+     * Année.
+     */
+    Integer year;
+    
+    /**
+     * Nom de {@link PeriodGroupDto}.
+     */
+    String groupName;
+
+    /**
+     * Cette méthode permet d'instantier.
+     */
+<span class="fc" id="L109">    public AsStringBuilder() {</span>
+<span class="fc" id="L110">      arrayContainerConsumer = container -&gt; {</span>
+<span class="fc" id="L111">        year = container.getNextAsInteger();</span>
+<span class="fc" id="L112">        groupName = container.getNextAsString();</span>
+<span class="fc" id="L113">      };</span>
+<span class="fc" id="L114">    }</span>
+
+    @Override
+    protected String doBuild() {
+<span class="fc" id="L118">      return groupName + &quot; &quot; + year;</span>
+    }
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

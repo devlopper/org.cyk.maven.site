@@ -10,6 +10,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateManyResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.payslip.server.api.PayslipService.PayslipGetManyResponseDto;
+import ci.gouv.dgbf.system.payslip.server.api.PayslipService.PayslipImportByEmployeeIdentifierRequestDto;
 import ci.gouv.dgbf.system.payslip.server.api.PayslipService.PayslipImportByFunctionaryRegistrationNumberRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -24,12 +25,12 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L27">public class PayslipClient extends AbstractClient&lt;PayslipService&gt;</span>
+<span class="fc" id="L28">public class PayslipClient extends AbstractClient&lt;PayslipService&gt;</span>
     implements GetMany&lt;PayslipGetManyResponseDto&gt; {
 
   @Override
   public PayslipClient service(PayslipService service) {
-<span class="fc" id="L32">    return (PayslipClient) super.service(service);</span>
+<span class="fc" id="L33">    return (PayslipClient) super.service(service);</span>
   }
 
   /**
@@ -39,8 +40,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public PayslipGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L42">    return new GetOneExecutor&lt;PayslipGetManyResponseDto&gt;(PayslipGetManyResponseDto.class,</span>
-<span class="fc" id="L43">        PayslipService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L43">    return new GetOneExecutor&lt;PayslipGetManyResponseDto&gt;(PayslipGetManyResponseDto.class,</span>
+<span class="fc" id="L44">        PayslipService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -56,13 +57,25 @@ import lombok.experimental.Accessors;
   @Override
   public PayslipGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
-<span class="fc" id="L59">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L60">    request.setProjection(projection);</span>
-<span class="fc" id="L61">    request.setFilter(filter);</span>
-<span class="fc" id="L62">    request.setPage(page);</span>
-<span class="fc" id="L63">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L64">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L65">    return getMany(request);</span>
+<span class="fc" id="L60">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L61">    request.setProjection(projection);</span>
+<span class="fc" id="L62">    request.setFilter(filter);</span>
+<span class="fc" id="L63">    request.setPage(page);</span>
+<span class="fc" id="L64">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L65">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L66">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link PayslipService#importByEmployeeIdentifier}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateManyResponseDto importByEmployeeIdentifier(
+      PayslipImportByEmployeeIdentifierRequestDto request) {
+<span class="fc" id="L77">    return new CreateManyExecutor(PayslipService.IMPORT_BY_EMPLOYEE_IDENTIFIER_PATH)</span>
+<span class="fc" id="L78">        .execute(() -&gt; service().importByEmployeeIdentifier(request));</span>
   }
 
   /**
@@ -73,8 +86,8 @@ import lombok.experimental.Accessors;
    */
   public CreateManyResponseDto importByFunctionaryRegistrationNumber(
       PayslipImportByFunctionaryRegistrationNumberRequestDto request) {
-<span class="fc" id="L76">    return new CreateManyExecutor(PayslipService.IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_PATH)</span>
-<span class="fc" id="L77">        .execute(() -&gt; service().importByFunctionaryRegistrationNumber(request));</span>
+<span class="fc" id="L89">    return new CreateManyExecutor(PayslipService.IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_PATH)</span>
+<span class="fc" id="L90">        .execute(() -&gt; service().importByFunctionaryRegistrationNumber(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

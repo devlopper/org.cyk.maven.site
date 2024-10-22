@@ -70,13 +70,64 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L73">  public static class PayslipGetManyResponseDto</span>
-      extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {
+<span class="fc" id="L73">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
   }
-  
+
+  /**
+   * Identifiant du service d'importation de bulletins de salaires par identifiant
+   * {@link EmployeeDto}.
+   */
+  String IMPORT_BY_EMPLOYEE_IDENTIFIER_IDENTIFIER =
+      &quot;IMPORTATION_PAR_IDENTIFIANT_EMPLOYEE_BULLETIN_SALAIRE&quot;;
+
+  /**
+   * Chemin du service d'imporation de bulletins de salaires par identifiant {@link EmployeeDto}.
+   */
+  String IMPORT_BY_EMPLOYEE_IDENTIFIER_PATH = &quot;importation-par-identifiant-employe&quot;;
+
+  /**
+   * Cette méthode permet d'importer des bulletins de salaires par identifiant {@link EmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(IMPORT_BY_EMPLOYEE_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = IMPORT_BY_EMPLOYEE_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response importByEmployeeIdentifier(PayslipImportByEmployeeIdentifierRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'importation de bulletins de salaires par identifiant
+   * {@link EmployeeDto}.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L115">  class PayslipImportByEmployeeIdentifierRequestDto extends AbstractAuditedRequestJsonDto {</span>
+
+    /**
+     * {@link AbstractEmployeePeriodDto#getEmployeeIdentifier()}.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_EMPLOYEE_IDENTIFIER)
+    private String employeeIdentifier;
+
+    /**
+     * {@link AbstractEmployeePeriodDto#JSON_EMPLOYEE_IDENTIFIER}.
+     */
+    public static final String JSON_EMPLOYEE_IDENTIFIER =
+        AbstractEmployeePeriodDto.JSON_EMPLOYEE_IDENTIFIER;
+  }
+
   /**
    * Identifiant du service d'importation de bulletins de salaires par matricule fonctionnaire.
    */
@@ -113,7 +164,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L116">  class PayslipImportByFunctionaryRegistrationNumberRequestDto</span>
+<span class="fc" id="L167">  class PayslipImportByFunctionaryRegistrationNumberRequestDto</span>
       extends AbstractAuditedRequestJsonDto {
 
     /**
