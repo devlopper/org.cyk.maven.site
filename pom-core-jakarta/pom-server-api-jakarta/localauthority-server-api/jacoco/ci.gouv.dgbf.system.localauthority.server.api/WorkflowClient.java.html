@@ -61,7 +61,7 @@ import lombok.experimental.Accessors;
   public WorkflowGetManyResponseDto getMany(GetManyRequestDto request) {
 <span class="fc" id="L62">    return new GetOneExecutor&lt;WorkflowGetManyResponseDto&gt;(</span>
         WorkflowGetManyResponseDto.class, WorkflowService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L64">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L64">        .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -125,7 +125,7 @@ import lombok.experimental.Accessors;
   public WorkflowDto getByIdentifier(GetByIdentifierRequestDto request) {
 <span class="fc" id="L126">    return new GetOneExecutor&lt;WorkflowDto&gt;(WorkflowDto.class,</span>
         WorkflowService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L128">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L128">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**

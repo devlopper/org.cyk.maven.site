@@ -32,7 +32,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  * Cette interface représente les services de {@link WorkflowDto}.
  *
  * @author Christian Yao Komenan
- *
  */
 @Path(value = WorkflowService.PATH)
 @Tag(name = &quot;Gestion des workflow&quot;)
@@ -42,26 +41,54 @@ public interface WorkflowService extends SpecificService {
    * Chemin de base des services.
    */
   String PATH = &quot;workflows&quot;;
-
-  /**
-   * Cette interface représente un enregistrement.
-   *
-   * @author Christian
-   *
-   */
-  interface WorkflowSaveRequestDto {
-
-  }
-
   /**
    * Identifiant du service de création.
    */
   String CREATE_IDENTIFIER = &quot;CREATION_WORKFLOW&quot;;
-
   /**
    * Chemin du service de création.
    */
   String CREATE_PATH = &quot;&quot;;
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_WORKFLOW&quot;;
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_WORKFLOW&quot;;
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_WORKFLOW&quot;;
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_WORKFLOW&quot;;
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_WORKFLOW&quot;;
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
 
   /**
    * Cette méthode permet de créer.
@@ -79,29 +106,6 @@ public interface WorkflowService extends SpecificService {
   Response create(WorkflowCreateRequestDto request);
 
   /**
-   * Cette classe représente la requête de création.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L89">  class WorkflowCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
-      implements WorkflowSaveRequestDto {
-
-  }
-
-  /**
-   * Identifiant du service d'obtention de plusieurs.
-   */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_WORKFLOW&quot;;
-
-  /**
-   * Chemin du service d'obtention de plusieurs.
-   */
-  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
-
-  /**
    * Cette méthode permet d'obtenir plusieurs.
    *
    * @param request requête
@@ -115,31 +119,6 @@ public interface WorkflowService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;, content = {
       @Content(schema = @Schema(implementation = WorkflowGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
-
-  /**
-   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L127">  public static class WorkflowGetManyResponseDto</span>
-      extends AbstractGetByPageResponseDto&lt;WorkflowDto&gt; {
-
-    @JsonbProperty(JSON_DATAS)
-    private List&lt;WorkflowDto&gt; datas;
-  }
-
-  /**
-   * Identifiant du service d'obtention de un.
-   */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_WORKFLOW&quot;;
-
-  /**
-   * Chemin du service d'obtention de un.
-   */
-  String GET_ONE_PATH = &quot;obtention/un&quot;;
 
   /**
    * Cette méthode permet d'obtenir {@link WorkflowDto}.
@@ -157,16 +136,6 @@ public interface WorkflowService extends SpecificService {
   Response getOne(GetOneRequestDto request);
 
   /**
-   * Identifiant du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_WORKFLOW&quot;;
-
-  /**
-   * Chemin du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
-
-  /**
    * Cette méthode permet d'obtenir par identrifiant.
    *
    * @param request requête
@@ -180,16 +149,6 @@ public interface WorkflowService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = WorkflowDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
-
-  /**
-   * Identifiant du service de mise à jour.
-   */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_WORKFLOW&quot;;
-
-  /**
-   * Chemin du service de mise à jour.
-   */
-  String UPDATE_PATH = &quot;&quot;;
 
   /**
    * Cette méthode permet de mettre à jour.
@@ -207,29 +166,6 @@ public interface WorkflowService extends SpecificService {
   Response update(WorkflowUpdateRequestDto request);
 
   /**
-   * Cette classe représente la requête de mise à jour.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L217">  class WorkflowUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
-      implements WorkflowSaveRequestDto {
-
-  }
-
-  /**
-   * Identifiant du service de suppression.
-   */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_WORKFLOW&quot;;
-
-  /**
-   * Chemin du service de suppression.
-   */
-  String DELETE_PATH = &quot;&quot;;
-
-  /**
    * Cette méthode permet de supprimer {@link WorkflowDto}.
    *
    * @param request requête
@@ -243,5 +179,84 @@ public interface WorkflowService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Cette interface représente un enregistrement.
+   *
+   * @author Christian
+   */
+  interface WorkflowSaveRequestDto {
+    /**
+     * Identifiant JSON {@link BudgetDto}.
+     */
+    String JSON_BUDGET_IDENTIFIER = WorkflowDto.JSON_BUDGET_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ d'ordre.
+     */
+    public static final String JSON_ORDRE = WorkflowDto.JSON_ORDRE;
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetDto}.
+     *
+     * @return identifiant de {@link BudgetDto}
+     */
+    String getBudgetIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link BudgetDto}.
+     *
+     * @param budgetIdentifier identifiant de {@link BudgetDto}
+     */
+    void setBudgetIdentifier(String budgetIdentifier);
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L221">  class WorkflowCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements WorkflowSaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    private String budgetIdentifier;
+
+    @JsonbProperty(JSON_ORDRE)
+    private int ordre;
+  }
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L238">  public static class WorkflowGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;WorkflowDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;WorkflowDto&gt; datas;
+  }
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L252">  class WorkflowUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements WorkflowSaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    private String budgetIdentifier;
+
+    @JsonbProperty(JSON_ORDRE)
+    private int ordre;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
