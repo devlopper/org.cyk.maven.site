@@ -24,6 +24,12 @@ import lombok.Setter;
   private String employeeAsString;
 
   /**
+   * Matricule de {@link EmployeeDto}.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+  
+  /**
    * Représentation en chaine de caractères de {@link PeriodDto}.
    */
   @JsonbProperty(value = JSON_PERIOD_AS_STRING)
@@ -33,6 +39,11 @@ import lombok.Setter;
    * Identifiant JSON {@link #employeeAsString}.
    */
   public static final String JSON_EMPLOYEE_AS_STRING = &quot;employeChaine&quot;;
+  
+  /**
+   * Identifiant JSON {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
   
   /**
    * Identifiant JSON {@link #periodAsString}.
