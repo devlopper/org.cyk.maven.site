@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.Date;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -62,6 +63,10 @@ public interface ProcedureService extends SpecificService {
    */
   interface ProcedureSaveRequestDto {
 
+    /**
+     * Identifiant JSON {@link WorkflowDto}.
+     */
+    String JSON_WORKFLOW_IDENTIFIER = ProcedureDto.JSON_WORKFLOW_IDENTIFIER;
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
@@ -78,9 +83,20 @@ public interface ProcedureService extends SpecificService {
     void setWorkflowIdentifier(String workflowIdentifier);
 
     /**
-     * Identifiant JSON {@link WorkflowDto}.
+     * Identifiant json du champ d'ordre.
      */
-    String JSON_WORKFLOW_IDENTIFIER = ProcedureDto.JSON_WORKFLOW_IDENTIFIER;
+    public static final String JSON_ORDRE = ProcedureDto.JSON_ORDRE;
+
+    /**
+     * Identifiant json du champ de date .
+     */
+    public static final String JSON_DATE = ProcedureDto.JSON_DATE;
+
+    /**
+     * Identifiant json du champ de date .
+     */
+    public static final String JSON_OBSERVATION = ProcedureDto.JSON_OBSERVATION;
+
   }
 
 
@@ -107,11 +123,21 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L110">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L126">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
     private String workflowIdentifier;
+
+    @JsonbProperty(JSON_ORDRE)
+    private int ordre;
+
+    @JsonbProperty(JSON_DATE)
+    private Date date;
+
+    @JsonbProperty(JSON_OBSERVATION)
+    private String observation;
+
   }
 
   /**
@@ -147,7 +173,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class ProcedureGetManyResponseDto</span>
+<span class="fc" id="L176">  public static class ProcedureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -237,11 +263,21 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L266">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
     private String workflowIdentifier;
+
+    @JsonbProperty(JSON_ORDRE)
+    private int ordre;
+
+    @JsonbProperty(JSON_DATE)
+    private Date date;
+
+    @JsonbProperty(JSON_OBSERVATION)
+    private String observation;
+
   }
 
   /**
