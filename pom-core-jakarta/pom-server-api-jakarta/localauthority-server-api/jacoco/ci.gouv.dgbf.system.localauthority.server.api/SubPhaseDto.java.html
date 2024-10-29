@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubPhaseDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">SubPhaseDto.java</span></div><h1>SubPhaseDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Cette classe représente une sous phase.
@@ -8,8 +11,25 @@ import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCoda
  * @author stephane
  *
  */
-<span class="fc" id="L11">public class SubPhaseDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
-
+@Getter
+@Setter
+<span class="fc" id="L16">public class SubPhaseDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+  /**
+   * Identifiant {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_PHASE_IDENTIFIER)
+  private String phaseIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_PHASE_AS_STRING)
+  private String phaseAsString;
+  
+  public static final String JSON_PHASE_IDENTIFIER = &quot;idPhase&quot;;
+  
+  public static final String JSON_PHASE_AS_STRING = &quot;phaseChaine&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

@@ -50,7 +50,20 @@ public interface SubPhaseService extends SpecificService {
    *
    */
   interface SubPhaseSaveRequestDto {
-
+    public static final String JSON_PHASE_IDENTIFIER = &quot;idPhase&quot;;
+    
+    public static final String JSON_PHASE_AS_STRING = &quot;phaseChaine&quot;;
+    
+    /**
+     * Représentation en chaine de caractères de {@link PhaseDto}.
+     */
+    void setPhaseIdentifier(String phaseIdentifier);
+    
+    /**
+     * Identifiant {@link PhaseDto}.
+     */
+    String getPhaseIdentifier();
+    
   }
 
   /**
@@ -86,8 +99,11 @@ public interface SubPhaseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class SubPhaseCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L102">  class SubPhaseCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements SubPhaseSaveRequestDto {
+    
+    @JsonbProperty(JSON_PHASE_IDENTIFIER)
+    private String phaseIdentifier;
 
   }
 
@@ -124,7 +140,7 @@ public interface SubPhaseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  public static class SubPhaseGetManyResponseDto</span>
+<span class="fc" id="L143">  public static class SubPhaseGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;SubPhaseDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -214,8 +230,10 @@ public interface SubPhaseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L217">  class SubPhaseUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L233">  class SubPhaseUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SubPhaseSaveRequestDto {
+    @JsonbProperty(JSON_PHASE_IDENTIFIER)
+    private String phaseIdentifier;
 
   }
 
