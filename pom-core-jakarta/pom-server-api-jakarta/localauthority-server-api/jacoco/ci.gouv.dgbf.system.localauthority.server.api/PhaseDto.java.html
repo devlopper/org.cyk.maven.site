@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PhaseDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">PhaseDto.java</span></div><h1>PhaseDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une phase.
+ *
+ * @author stephane
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class PhaseDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+
+  /**
+   * Identifiant de {@link BudgetActivityDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+  private String budgetActivityIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link BudgetActivityDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
+  private String budgetActivityAsString;
+  
+  /**
+   * Numéro d'ordre {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_ORDER_NUMBER)
+  private Integer orderNumber;
+  
+  /**
+   * Numéro de la phase {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_PHASE_NUMBER)
+  private Integer phaseNumber;
+  
+  /**
+   * Commentaire {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_COMMENT)
+  private String comment;
+  
+  /**
+   * Date de début {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_START_DATE)
+  private LocalDate startDate;
+  
+  /**
+   * Date de fin {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_END_DATE)
+  private LocalDate endDate;
+
+  /**
+   * Identitiant json {@link PhaseDto#budgetActivityIdentifier}.
+   */
+  public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = &quot;idActiviteBudget&quot;;
+
+  /**
+   * Identitiant json {@link PhaseDto#budgetActivityAsString}.
+   */
+  public static final String JSON_BUDGET_ACTIVITY_AS_STRING = &quot;activiteBudgetChaine&quot;;
+  
+  /**
+   * Identitiant json {@link PhaseDto#orderNumber}.
+   */
+  public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
+  /**
+   * Identitiant json {@link PhaseDto#phaseNumber}.
+   */
+  public static final String JSON_PHASE_NUMBER = &quot;numeroPhase&quot;;
+  /**
+   * Identitiant json {@link PhaseDto#startDate}.
+   */
+  public static final String JSON_START_DATE = &quot;dateDebut&quot;;
+  /**
+   * Identitiant json {@link PhaseDto#endDate}.
+   */
+  public static final String JSON_END_DATE = &quot;dateFin&quot;;
+  /**
+   * Identitiant json {@link PhaseDto#comment}.
+   */
+  public static final String JSON_COMMENT = &quot;commentaire&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;phase&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;phases&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -194,7 +194,7 @@ public interface WorkflowService extends SpecificService {
     /**
      * Identifiant json du champ d'ordre.
      */
-    public static final String JSON_ORDRE = WorkflowDto.JSON_ORDRE;
+    public static final String JSON_ORDER = WorkflowDto.JSON_ORDER;
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link BudgetDto}.
@@ -224,8 +224,8 @@ public interface WorkflowService extends SpecificService {
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
     private String budgetIdentifier;
 
-    @JsonbProperty(JSON_ORDRE)
-    private int ordre;
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
   }
 
   /**
@@ -255,8 +255,8 @@ public interface WorkflowService extends SpecificService {
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
     private String budgetIdentifier;
 
-    @JsonbProperty(JSON_ORDRE)
-    private int ordre;
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

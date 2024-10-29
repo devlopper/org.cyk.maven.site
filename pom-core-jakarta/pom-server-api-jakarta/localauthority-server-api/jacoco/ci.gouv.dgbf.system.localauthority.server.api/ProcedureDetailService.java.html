@@ -200,7 +200,7 @@ public interface ProcedureDetailService extends SpecificService {
     /**
      * Identifiant json du champ d'ordre.
      */
-    public static final String JSON_ORDRE = ProcedureDetailDto.JSON_ORDRE;
+    public static final String JSON_ORDER = ProcedureDetailDto.JSON_ORDER;
 
     /**
      * Identifiant json du champ de date detail.
@@ -235,8 +235,8 @@ public interface ProcedureDetailService extends SpecificService {
     @JsonbProperty(JSON_PROCEDURE_IDENTIFIER)
     private String procedureIdentifier;
 
-    @JsonbProperty(JSON_ORDRE)
-    private int ordre;
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
 
     @JsonbProperty(JSON_DETAIL_DATE)
     private Date detailDate;
@@ -270,8 +270,8 @@ public interface ProcedureDetailService extends SpecificService {
     @JsonbProperty(JSON_PROCEDURE_IDENTIFIER)
     private String procedureIdentifier;
 
-    @JsonbProperty(JSON_ORDRE)
-    private int ordre;
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
 
     @JsonbProperty(JSON_DETAIL_DATE)
     private Date detailDate;

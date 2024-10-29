@@ -85,7 +85,7 @@ public interface ProcedureService extends SpecificService {
     /**
      * Identifiant json du champ d'ordre.
      */
-    public static final String JSON_ORDRE = ProcedureDto.JSON_ORDRE;
+    public static final String JSON_ORDER = ProcedureDto.JSON_ORDER;
 
     /**
      * Identifiant json du champ de date .
@@ -129,8 +129,8 @@ public interface ProcedureService extends SpecificService {
     @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
     private String workflowIdentifier;
 
-    @JsonbProperty(JSON_ORDRE)
-    private int ordre;
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
 
     @JsonbProperty(JSON_DATE)
     private Date date;
@@ -269,8 +269,8 @@ public interface ProcedureService extends SpecificService {
     @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
     private String workflowIdentifier;
 
-    @JsonbProperty(JSON_ORDRE)
-    private int ordre;
+    @JsonbProperty(JSON_ORDER)
+    private int order;
 
     @JsonbProperty(JSON_DATE)
     private Date date;

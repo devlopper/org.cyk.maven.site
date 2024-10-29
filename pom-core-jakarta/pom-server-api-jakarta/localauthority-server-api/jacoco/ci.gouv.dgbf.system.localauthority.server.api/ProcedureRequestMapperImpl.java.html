@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2024-10-24T21:05:39+0000&quot;,
+    date = &quot;2024-10-29T12:53:15+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -28,7 +28,7 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L28">        procedureCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        procedureCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L30">        procedureCreateRequestDto.setWorkflowIdentifier( arg0.getWorkflowIdentifier() );</span>
-<span class="fc" id="L31">        procedureCreateRequestDto.setOrdre( arg0.getOrdre() );</span>
+<span class="fc" id="L31">        procedureCreateRequestDto.setOrder( arg0.getOrder() );</span>
 <span class="fc" id="L32">        procedureCreateRequestDto.setDate( arg0.getDate() );</span>
 <span class="fc" id="L33">        procedureCreateRequestDto.setObservation( arg0.getObservation() );</span>
 
@@ -47,11 +47,13 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L47">        procedureUpdateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L48">        procedureUpdateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L49">        procedureUpdateRequestDto.setWorkflowIdentifier( arg0.getWorkflowIdentifier() );</span>
-<span class="fc" id="L50">        procedureUpdateRequestDto.setOrdre( arg0.getOrdre() );</span>
-<span class="fc" id="L51">        procedureUpdateRequestDto.setDate( arg0.getDate() );</span>
-<span class="fc" id="L52">        procedureUpdateRequestDto.setObservation( arg0.getObservation() );</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if ( arg0.getOrder() != null ) {</span>
+<span class="fc" id="L51">            procedureUpdateRequestDto.setOrder( arg0.getOrder() );</span>
+        }
+<span class="fc" id="L53">        procedureUpdateRequestDto.setDate( arg0.getDate() );</span>
+<span class="fc" id="L54">        procedureUpdateRequestDto.setObservation( arg0.getObservation() );</span>
 
-<span class="fc" id="L54">        return procedureUpdateRequestDto;</span>
+<span class="fc" id="L56">        return procedureUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

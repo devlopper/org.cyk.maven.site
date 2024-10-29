@@ -30,14 +30,14 @@ import lombok.Setter;
   /**
    * Ordre.
    */
-  @JsonbProperty(JSON_ORDRE)
-  private int ordre;
+  @JsonbProperty(JSON_ORDER)
+  private Integer order;
 
   /**
    * Représentation en chaine de caractères d'ordre.
    */
-  @JsonbProperty(JSON_ORDRE_AS_STRING)
-  private String ordreAsString;
+  @JsonbProperty(JSON_ORDER_AS_STRING)
+  private String orderAsString;
 
   /**
    * Identitiant json {@link WorkflowDto#budgetIdentifier}.
@@ -50,15 +50,15 @@ import lombok.Setter;
   public static final String JSON_BUDGET_AS_STRING = &quot;budgetChaine&quot;;
 
   /**
-   * Identifiant json {@link WorkflowDto#ordre}.
+   * Identifiant json {@link WorkflowDto#order}.
    */
-  public static final String JSON_ORDRE = &quot;ordre&quot;;
+  public static final String JSON_ORDER = &quot;order&quot;;
 
 
   /**
-   * Identifiant json {@link WorkflowDto#ordreAsString}.
+   * Identifiant json {@link WorkflowDto#orderAsString}.
    */
-  public static final String JSON_ORDRE_AS_STRING = &quot;ordreChaine&quot;;
+  public static final String JSON_ORDER_AS_STRING = &quot;orderChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
