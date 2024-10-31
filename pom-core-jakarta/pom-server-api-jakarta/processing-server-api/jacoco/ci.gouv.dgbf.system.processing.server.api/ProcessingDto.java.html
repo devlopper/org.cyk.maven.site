@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcessingDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de traitement</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.processing.server.api</a> &gt; <span class="el_source">ProcessingDto.java</span></div><h1>ProcessingDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.processing.server.api;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
 import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import java.time.LocalDateTime;
@@ -17,8 +17,38 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L20">public class ProcessingDto extends AbstractIdentifiableCodableAuditableDto {</span>
+<span class="fc" id="L20">public class ProcessingDto extends AbstractIdentifiableNamableAuditableDto {</span>
 
+  /**
+   * Descriptif.
+   */
+  @JsonbProperty(JSON_DESCRIPTIVE)
+  private String descriptive;
+  
+  /**
+   * Date de début.
+   */
+  @JsonbProperty(JSON_FROM_DATE)
+  private LocalDateTime fromDate;
+  
+  /**
+   * Représentation en chaine de caractères de la date de début.
+   */
+  @JsonbProperty(JSON_FROM_DATE_AS_STRING)
+  private String fromDateAsString;
+  
+  /**
+   * Date de fin.
+   */
+  @JsonbProperty(JSON_TO_DATE)
+  private LocalDateTime toDate;
+  
+  /**
+   * Représentation en chaine de caractères de la date de fin.
+   */
+  @JsonbProperty(JSON_TO_DATE_AS_STRING)
+  private String toDateAsString;
+  
   /**
    * {@link ProcessingStatus}.
    */
@@ -74,63 +104,143 @@ import lombok.Setter;
   private Boolean terminatable;
   
   /**
+   * Représentation en chaine de caractères de la date de création.
+   */
+  @JsonbProperty(JSON_CREATION_DATE_AS_STRING)
+  private String creationDateAsString;
+  
+  /**
+   * Représentation en chaine de caractères de la date de démmarage.
+   */
+  @JsonbProperty(JSON_START_DATE_AS_STRING)
+  private String startDateAsString;
+  
+  /**
+   * Représentation en chaine de caractères de la date d'arrêt.
+   */
+  @JsonbProperty(JSON_STOP_DATE_AS_STRING)
+  private String stopDateAsString;
+  
+  /**
+   * Représentation en chaine de caractères de la date d'annulation.
+   */
+  @JsonbProperty(JSON_CANCELLATION_DATE_AS_STRING)
+  private String cancellationDateAsString;
+  
+  /**
+   * Représentation en chaine de caractères de la date de terminaison.
+   */
+  @JsonbProperty(JSON_TERMINATION_DATE_AS_STRING)
+  private String terminationDateAsString;
+  
+  /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L82">    status = response.getStatus();</span>
-<span class="fc" id="L83">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L84">    startable = response.getStartable();</span>
-<span class="fc" id="L85">    stoppable = response.getStoppable();</span>
-<span class="fc" id="L86">    cancelable = response.getCancelable();</span>
-<span class="fc" id="L87">    terminatable = response.getTerminatable();</span>
-<span class="fc" id="L88">  }</span>
+<span class="fc" id="L142">    status = response.getStatus();</span>
+<span class="fc" id="L143">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L144">    startable = response.getStartable();</span>
+<span class="fc" id="L145">    stoppable = response.getStoppable();</span>
+<span class="fc" id="L146">    cancelable = response.getCancelable();</span>
+<span class="fc" id="L147">    terminatable = response.getTerminatable();</span>
+<span class="fc" id="L148">  }</span>
   
   /**
-   * champ json {@link ProcessingDto#status}.
+   * champ json {@link #descriptive}.
+   */
+  public static final String JSON_DESCRIPTIVE = &quot;descriptif&quot;;
+  
+  /**
+   * champ json {@link #fromDate}.
+   */
+  public static final String JSON_FROM_DATE = &quot;dateDebut&quot;;
+  
+  /**
+   * champ json {@link #fromDateAsString}.
+   */
+  public static final String JSON_FROM_DATE_AS_STRING = &quot;dateDebutChaine&quot;;
+  
+  /**
+   * champ json {@link #toDate}.
+   */
+  public static final String JSON_TO_DATE = &quot;dateFin&quot;;
+  
+  /**
+   * champ json {@link #toDateAsString}.
+   */
+  public static final String JSON_TO_DATE_AS_STRING = &quot;dateFinChaine&quot;;
+  
+  /**
+   * champ json {@link #status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
   
   /**
-   * champ json {@link ProcessingDto#statusAsString}.
+   * champ json {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
   
   /**
-   * champ json {@link ProcessingDto#reason}.
+   * champ json {@link #reason}.
    */
   public static final String JSON_REASON = &quot;raison&quot;;
   
   /**
-   * champ json {@link ProcessingDto#date}.
+   * champ json {@link #date}.
    */
   public static final String JSON_DATE = &quot;date&quot;;
   
   /**
-   * champ json {@link ProcessingDto#dateAsString}.
+   * champ json {@link #dateAsString}.
    */
   public static final String JSON_DATE_AS_STRING = &quot;dateChaine&quot;;
   
   /**
-   * champ json {@link ProcessingDto#startable}.
+   * champ json {@link #startable}.
    */
   public static final String JSON_STARTABLE = &quot;demarrable&quot;;
   
   /**
-   * champ json {@link ProcessingDto#stoppable}.
+   * champ json {@link #stoppable}.
    */
   public static final String JSON_STOPPABLE = &quot;stoppable&quot;;
   
   /**
-   * champ json {@link ProcessingDto#cancelable}.
+   * champ json {@link #cancelable}.
    */
   public static final String JSON_CANCELABLE = &quot;annulable&quot;;
   
   /**
-   * champ json {@link ProcessingDto#terminatable}.
+   * champ json {@link #terminatable}.
    */
   public static final String JSON_TERMINATABLE = &quot;terminable&quot;;
+  
+  /**
+   * champ json {@link #creationDateAsString}.
+   */
+  public static final String JSON_CREATION_DATE_AS_STRING = &quot;dateCreationChaine&quot;;
+  
+  /**
+   * champ json {@link #startDateAsString}.
+   */
+  public static final String JSON_START_DATE_AS_STRING = &quot;dateDemmarageChaine&quot;;
+  
+  /**
+   * champ json {@link #stopDateAsString}.
+   */
+  public static final String JSON_STOP_DATE_AS_STRING = &quot;dateArretChaine&quot;;
+  
+  /**
+   * champ json {@link #cancellationDateAsString}.
+   */
+  public static final String JSON_CANCELLATION_DATE_AS_STRING = &quot;dateAnnulationChaine&quot;;
+  
+  /**
+   * champ json {@link #terminationDateAsString}.
+   */
+  public static final String JSON_TERMINATION_DATE_AS_STRING = &quot;dateTerminaisonChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.

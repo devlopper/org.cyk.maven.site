@@ -48,8 +48,50 @@ public interface ProcessingService {
    * @author Christian
    *
    */
-  interface ProcessingSaveDataRequestDto {
+  interface ProcessingSaveRequestDto {
 
+    /**
+     * Cette méthode permet d'obtenir le descriptif.
+     *
+     * @return descriptif
+     */
+    String getDescriptive();
+
+    /**
+     * Cette méthode permet d'assigner le descriptif.
+     *
+     * @param descriptive descriptif
+     */
+    void setDescriptive(String descriptive);
+    
+    /**
+     * Cette méthode permet d'obtenir la date de début.
+     *
+     * @return date de début
+     */
+    LocalDateTime getFromDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de début.
+     *
+     * @param fromDate date de début
+     */
+    void setFromDate(LocalDateTime fromDate);
+    
+    /**
+     * Cette méthode permet d'obtenir la date de fin.
+     *
+     * @return date de fin
+     */
+    LocalDateTime getToDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de fin.
+     *
+     * @param toDate date de fin
+     */
+    void setToDate(LocalDateTime toDate);
+    
     /**
      * Cette méthode permet d'obtenir la raison.
      *
@@ -78,6 +120,21 @@ public interface ProcessingService {
      */
     void setDate(LocalDateTime date);
 
+    /**
+     * {@link ProcessingDto#JSON_DESCRIPTIVE}.
+     */
+    String JSON_DESCRIPTIVE = ProcessingDto.JSON_DESCRIPTIVE;
+    
+    /**
+     * {@link ProcessingDto#JSON_FROM_DATE}.
+     */
+    String JSON_FROM_DATE = ProcessingDto.JSON_FROM_DATE;
+    
+    /**
+     * {@link ProcessingDto#JSON_TO_DATE}.
+     */
+    String JSON_TO_DATE = ProcessingDto.JSON_TO_DATE;
+    
     /**
      * {@link ProcessingDto#JSON_REASON}.
      */
@@ -119,9 +176,18 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L122">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
-      implements ProcessingSaveDataRequestDto {
+<span class="fc" id="L179">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements ProcessingSaveRequestDto {
 
+    @JsonbProperty(JSON_DESCRIPTIVE)
+    private String descriptive;
+    
+    @JsonbProperty(JSON_FROM_DATE)
+    private LocalDateTime fromDate;
+    
+    @JsonbProperty(JSON_TO_DATE)
+    private LocalDateTime toDate;
+    
     @JsonbProperty(JSON_REASON)
     private String reason;
 
@@ -137,7 +203,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L140">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L206">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link ProcessingDto#getStatus()}.
@@ -175,12 +241,12 @@ public interface ProcessingService {
      * @param status statut
      */
     public void initialize(ProcessingStatus status) {
-<span class="fc" id="L178">      this.status = status;</span>
-<span class="fc" id="L179">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
-<span class="fc" id="L180">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
-<span class="fc" id="L181">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
-<span class="fc" id="L182">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
-<span class="fc" id="L183">    }</span>
+<span class="fc" id="L244">      this.status = status;</span>
+<span class="fc" id="L245">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
+<span class="fc" id="L246">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
+<span class="fc" id="L247">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L248">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
+<span class="fc" id="L249">    }</span>
 
     /**
      * {@link ProcessingDto#JSON_STATUS}.
@@ -216,14 +282,29 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto</span>
-      implements ProcessingSaveDataRequestDto {
+<span class="fc" id="L285">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
 
+    /**
+     * {@link ProcessingDto#getReason()}.
+     */
     @JsonbProperty(JSON_REASON)
     private String reason;
 
+    /**
+     * {@link ProcessingDto#getDate()}.
+     */
     @JsonbProperty(JSON_DATE)
     private LocalDateTime date;
+    
+    /**
+     * {@link ProcessingDto#JSON_REASON}.
+     */
+    public static final String JSON_REASON = ProcessingDto.JSON_REASON;
+
+    /**
+     * {@link ProcessingDto#JSON_DATE}.
+     */
+    public static final String JSON_DATE = ProcessingDto.JSON_DATE;
   }
 
   /**
@@ -346,7 +427,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L349">  public static class ProcessingGetManyResponseDto</span>
+<span class="fc" id="L430">  public static class ProcessingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -435,9 +516,18 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L438">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
-      implements ProcessingSaveDataRequestDto {
+<span class="fc" id="L519">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements ProcessingSaveRequestDto {
 
+    @JsonbProperty(JSON_DESCRIPTIVE)
+    private String descriptive;
+    
+    @JsonbProperty(JSON_FROM_DATE)
+    private LocalDateTime fromDate;
+    
+    @JsonbProperty(JSON_TO_DATE)
+    private LocalDateTime toDate;
+    
     @JsonbProperty(JSON_REASON)
     private String reason;
 
