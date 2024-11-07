@@ -48,10 +48,10 @@ import lombok.Setter;
   private String budgetActivityIdentifier;
   
   /**
-   * Représentation en chaine de caractères de {@link BudgetDto}.
+   * Représentation en chaine de caractères de {@link TriennialProgramDto}.
    */
-  @JsonbProperty(JSON_BUDGET_AS_STRING)
-  private String budgetAsString;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
+  private String triennialprogramAsString;
   
   /**
    * Identifiant {@link ExpenditureNatureDto}.
@@ -179,9 +179,9 @@ import lombok.Setter;
   public static final String JSON_AMOUNT_3_AS_STRING = &quot;montant3Chaine&quot;;
   
   /**
-   * Identifiant json {@link FundingDto#budgetAsString}.
+   * Identifiant json {@link FundingDto#triennialprogramAsString}.
    */
-  public static final String JSON_BUDGET_AS_STRING = &quot;budgetChaine&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING = &quot;triennialprogramChaine&quot;;
   
   /**
    * Identifiant json {@link FundingDto#activityAsString}.

@@ -32,7 +32,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  * Cette interface représente les services de {@link FundingDto}.
  *
  * @author Christian Yao Komenan
- *
  */
 @Path(value = FundingService.PATH)
 @Tag(name = &quot;Gestion des financements&quot;)
@@ -73,7 +72,6 @@ public interface FundingService extends SpecificService {
    * Cette interface représente la requête d'enregistrement.
    *
    * @author Christian
-   *
    */
   interface SaveRequestDto {
     /**
@@ -192,7 +190,8 @@ public interface FundingService extends SpecificService {
     /**
      * Identifiant champ json de {@link BudgetActivityDto}.
      */
-    String JSON_BUDGET_ACTIVITY_IDENTIFIER = FundingDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
+    String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER =
+        FundingDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
 
     /**
      * Identifiant champ json du montant 1.
@@ -214,11 +213,10 @@ public interface FundingService extends SpecificService {
    * Cette classe représente la requête de création.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L221">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
+<span class="fc" id="L219">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -228,7 +226,7 @@ public interface FundingService extends SpecificService {
     @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
     private String expenditureNatureIdentifier;
 
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
     private String budgetActivityIdentifier;
 
     @JsonbProperty(JSON_AMOUNT_1)
@@ -271,11 +269,10 @@ public interface FundingService extends SpecificService {
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L278">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L275">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -363,11 +360,10 @@ public interface FundingService extends SpecificService {
    * Cette classe représente la requête de mise à jour.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L370">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L366">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -377,7 +373,7 @@ public interface FundingService extends SpecificService {
     @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
     private String expenditureNatureIdentifier;
 
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
     private String budgetActivityIdentifier;
 
     @JsonbProperty(JSON_AMOUNT_1)

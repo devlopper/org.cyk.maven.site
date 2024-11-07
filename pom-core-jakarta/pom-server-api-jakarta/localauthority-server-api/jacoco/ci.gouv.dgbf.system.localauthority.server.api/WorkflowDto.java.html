@@ -16,16 +16,16 @@ import lombok.Setter;
 <span class="fc" id="L16">public class WorkflowDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
-   * Identifiant de {@link BudgetDto}.
+   * Identifiant de {@link TriennialProgramDto}.
    */
-  @JsonbProperty(JSON_BUDGET_IDENTIFIER)
-  private String budgetIdentifier;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+  private String triennialProgramIdentifier;
 
   /**
-   * Représentation en chaine de caractères de {@link BudgetDto}.
+   * Représentation en chaine de caractères de {@link TriennialProgramDto}.
    */
-  @JsonbProperty(JSON_BUDGET_AS_STRING)
-  private String budgetAsString;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
+  private String triennialProgramAsString;
 
   /**
    * Ordre.
@@ -40,14 +40,14 @@ import lombok.Setter;
   private String orderAsString;
 
   /**
-   * Identitiant json {@link WorkflowDto#budgetIdentifier}.
+   * Identitiant json {@link WorkflowDto#triennialProgramIdentifier}.
    */
-  public static final String JSON_BUDGET_IDENTIFIER = &quot;idBudget&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = &quot;idTriennialProgram&quot;;
 
   /**
-   * Identitiant json {@link WorkflowDto#budgetAsString}.
+   * Identitiant json {@link WorkflowDto#triennialProgramAsString}.
    */
-  public static final String JSON_BUDGET_AS_STRING = &quot;budgetChaine&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING = &quot;triennialProgramChaine&quot;;
 
   /**
    * Identifiant json {@link WorkflowDto#order}.

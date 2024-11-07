@@ -187,9 +187,9 @@ public interface WorkflowService extends SpecificService {
    */
   interface WorkflowSaveRequestDto {
     /**
-     * Identifiant JSON {@link BudgetDto}.
+     * Identifiant JSON {@link TriennialProgramDto}.
      */
-    String JSON_BUDGET_IDENTIFIER = WorkflowDto.JSON_BUDGET_IDENTIFIER;
+    String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = WorkflowDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
 
     /**
      * Identifiant json du champ d'ordre.
@@ -197,16 +197,16 @@ public interface WorkflowService extends SpecificService {
     public static final String JSON_ORDER = WorkflowDto.JSON_ORDER;
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link TriennialProgramDto}.
      *
-     * @return identifiant de {@link BudgetDto}
+     * @return identifiant de {@link TriennialProgramDto}
      */
     String getBudgetIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link BudgetDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link TriennialProgramDto}.
      *
-     * @param budgetIdentifier identifiant de {@link BudgetDto}
+     * @param budgetIdentifier identifiant de {@link TriennialProgramDto}
      */
     void setBudgetIdentifier(String budgetIdentifier);
   }
@@ -221,7 +221,7 @@ public interface WorkflowService extends SpecificService {
 <span class="fc" id="L221">  class WorkflowCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements WorkflowSaveRequestDto {
 
-    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String budgetIdentifier;
 
     @JsonbProperty(JSON_ORDER)
@@ -252,7 +252,7 @@ public interface WorkflowService extends SpecificService {
 <span class="fc" id="L252">  class WorkflowUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements WorkflowSaveRequestDto {
 
-    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String budgetIdentifier;
 
     @JsonbProperty(JSON_ORDER)

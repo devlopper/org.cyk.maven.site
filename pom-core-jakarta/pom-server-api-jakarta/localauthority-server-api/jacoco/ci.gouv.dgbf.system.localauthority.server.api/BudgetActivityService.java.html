@@ -37,10 +37,9 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  * Cette interface représente les services de {@link BudgetActivityDto}.
  *
  * @author Christian Yao Komenan
- *
  */
 @Path(value = BudgetActivityService.PATH)
-@Tag(name = &quot;Gestion des activités de budget&quot;)
+@Tag(name = &quot;Gestion des activités de programme triennal&quot;)
 public interface BudgetActivityService extends SpecificService {
 
   /**
@@ -51,7 +50,7 @@ public interface BudgetActivityService extends SpecificService {
   /**
    * Identifiant du service de création.
    */
-  String CREATE_IDENTIFIER = &quot;CREATION_ACTIVITE_BUDGET&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_ACTIVITE_PROGRAMME_TRIENNAL&quot;;
 
   /**
    * Chemin du service de création.
@@ -68,8 +67,9 @@ public interface BudgetActivityService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Création d'une activité de budget&quot;,
-      description = &quot;Ce service permet de créer une activité de budget&quot;)
+  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Création d'une activité de programme &quot;
+      + &quot;triennal&quot;,
+      description = &quot;Ce service permet de créer une activité de programme triennal&quot;)
   @APIResponse(responseCode = &quot;201&quot;,
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
   Response create(BudgetActivityCreateRequestDto request);
@@ -78,28 +78,26 @@ public interface BudgetActivityService extends SpecificService {
    * Cette interface représente la requête d'enregistrement.
    *
    * @author Christian
-   *
    */
   interface BudgetActivitySaveRequestDto {
-    
+
   }
-  
+
   /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L98">  class BudgetActivityCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L96">  class BudgetActivityCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
     /**
-     * {@link BudgetActivityDto#getBudgetIdentifier()}.
+     * {@link BudgetActivityDto#getTriennialProgramIdentifier()}.
      */
-    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String budgetIdentifier;
 
     /**
@@ -121,9 +119,10 @@ public interface BudgetActivityService extends SpecificService {
     private String justification;
 
     /**
-     * {@link BudgetActivityDto#JSON_BUDGET_IDENTIFIER}.
+     * {@link BudgetActivityDto#JSON_TRIENNIAL_PROGRAM_IDENTIFIER}.
      */
-    public static final String JSON_BUDGET_IDENTIFIER = BudgetActivityDto.JSON_BUDGET_IDENTIFIER;
+    public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+        BudgetActivityDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
 
     /**
      * {@link BudgetActivityDto#JSON_ACTIVITY_IDENTIFIER}.
@@ -145,7 +144,7 @@ public interface BudgetActivityService extends SpecificService {
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_ACTIVITE_BUDGET&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_ACTIVITE_PROGRAMME_TRIENNAL&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -163,7 +162,7 @@ public interface BudgetActivityService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir des activités de budget&quot;)
+      description = &quot;Ce service permet d'obtenir des activités de programme triennal&quot;)
   @APIResponse(responseCode = &quot;200&quot;, content = {
       @Content(schema = @Schema(implementation = BudgetActivityGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
@@ -172,11 +171,10 @@ public interface BudgetActivityService extends SpecificService {
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L179">  public static class BudgetActivityGetManyResponseDto</span>
+<span class="fc" id="L177">  public static class BudgetActivityGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;BudgetActivityDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -186,7 +184,7 @@ public interface BudgetActivityService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_ACTIVITE_BUDGET&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_ACTIVITE_PROGRAMME_TRIENNAL&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -204,7 +202,7 @@ public interface BudgetActivityService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir une activité de budget&quot;)
+      description = &quot;Ce service permet d'obtenir une activité de programme triennal&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = BudgetActivityDto.class))})
   Response getOne(GetOneRequestDto request);
@@ -212,7 +210,7 @@ public interface BudgetActivityService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_ACTIVITE_BUDGET&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_ACTIVITE_PROGRAMME_TRIENNAL&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -230,7 +228,8 @@ public interface BudgetActivityService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir par identifiant une activité de budget&quot;)
+      description = &quot;Ce service permet d'obtenir par identifiant une activité de programme &quot;
+          + &quot;triennal&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = BudgetActivityDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
@@ -238,7 +237,7 @@ public interface BudgetActivityService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_ACTIVITE_BUDGET&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_ACTIVITE_PROGRAMME_TRIENNAL&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -256,7 +255,7 @@ public interface BudgetActivityService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = UPDATE_IDENTIFIER,
-      description = &quot;Ce service permet de mettre à jour une activité de budget&quot;)
+      description = &quot;Ce service permet de mettre à jour une activité de programme triennal&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response update(BudgetActivityUpdateRequestDto request);
@@ -265,7 +264,6 @@ public interface BudgetActivityService extends SpecificService {
    * Cette classe représente la requête de mise à jour.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
@@ -273,11 +271,11 @@ public interface BudgetActivityService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L276">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L274">  class BudgetActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
     /**
-     * {@link BudgetActivityDto#getBudgetIdentifier()}.
+     * {@link BudgetActivityDto#getTriennialProgramIdentifier()}.
      */
-    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String budgetIdentifier;
 
     /**
@@ -299,9 +297,10 @@ public interface BudgetActivityService extends SpecificService {
     private String justification;
 
     /**
-     * {@link BudgetActivityDto#JSON_BUDGET_IDENTIFIER}.
+     * {@link BudgetActivityDto#JSON_TRIENNIAL_PROGRAM_IDENTIFIER}.
      */
-    public static final String JSON_BUDGET_IDENTIFIER = BudgetActivityDto.JSON_BUDGET_IDENTIFIER;
+    public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+        BudgetActivityDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
 
     /**
      * {@link BudgetActivityDto#JSON_ACTIVITY_IDENTIFIER}.
@@ -323,7 +322,7 @@ public interface BudgetActivityService extends SpecificService {
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_ACTIVITE_BUDGET&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_ACTIVITE_PROGRAMME_TRIENNAL&quot;;
 
   /**
    * Chemin du service de suppression.
@@ -341,7 +340,7 @@ public interface BudgetActivityService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = DELETE_IDENTIFIER,
-      description = &quot;Ce service permet de supprimer une activité de budget&quot;)
+      description = &quot;Ce service permet de supprimer une activité de programme triennal&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);

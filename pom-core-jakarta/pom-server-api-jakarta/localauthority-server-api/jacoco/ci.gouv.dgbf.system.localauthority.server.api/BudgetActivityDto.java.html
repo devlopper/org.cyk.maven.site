@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente une activité de budget.
+ * Cette classe représente une activité de triennialProgram.
  *
  * @author Christian
  *
@@ -18,16 +18,16 @@ import lombok.Setter;
 <span class="fc" id="L18">public class BudgetActivityDto extends AbstractIdentifiableAuditableDto {</span>
 
   /**
-   * Identifiant {@link BudgetDto}.
+   * Identifiant {@link TriennialProgramDto}.
    */
-  @JsonbProperty(JSON_BUDGET_IDENTIFIER)
-  private String budgetIdentifier;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+  private String triennialProgramIdentifier;
   
   /**
-   * Représentation en chaine de caractères de {@link BudgetDto}.
+   * Représentation en chaine de caractères de {@link TriennialProgramDto}.
    */
-  @JsonbProperty(JSON_BUDGET_AS_STRING)
-  private String budgetAsString;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
+  private String triennialProgramAsString;
   
   /**
    * Identifiant {@link ActivityDto}.
@@ -72,14 +72,14 @@ import lombok.Setter;
   private String orderNumberAsString;
   
   /**
-   * Identifiant json {@link BudgetActivityDto#budgetIdentifier}.
+   * Identifiant json {@link BudgetActivityDto#triennialProgramIdentifier}.
    */
-  public static final String JSON_BUDGET_IDENTIFIER = &quot;idBudget&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = &quot;idTriennialProgram&quot;;
   
   /**
-   * Identifiant json {@link BudgetActivityDto#budgetAsString}.
+   * Identifiant json {@link BudgetActivityDto#triennialProgramAsString}.
    */
-  public static final String JSON_BUDGET_AS_STRING = &quot;budgetChaine&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING = &quot;triennialProgramChaine&quot;;
   
   /**
    * Identifiant json {@link BudgetActivityDto#activityIdentifier}.
@@ -119,11 +119,11 @@ import lombok.Setter;
   /**
    * Nom pour lecture humaine de la classe.
    */
-  public static final String NAME = &quot;activité de budget&quot;;
+  public static final String NAME = &quot;activité de programme triennal&quot;;
   
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
-  public static final String PLURAL_NAME = &quot;activités de budget&quot;;
+  public static final String PLURAL_NAME = &quot;activités de programme triennal&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
