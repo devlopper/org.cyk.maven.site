@@ -21,17 +21,34 @@ import lombok.Setter;
    * Année.
    */
   @JsonbProperty(JSON_YEAR)
-  private Long year;
+  private Integer year;
   
   /**
-   * Identifiant java champ {@link ExerciseDto#year}.
+   * Élaborable.
    */
-  public static final String FIELD_YEAR = &quot;year&quot;;
+  @JsonbProperty(JSON_BUDGET_PREPARABLE)
+  private Boolean budgetPreparable;
   
+  /**
+   * Exécutable.
+   */
+  @JsonbProperty(JSON_BUDGET_EXECUTABLE)
+  private Boolean budgetExecutable;
+    
   /**
    * Identifiant json champ {@link ExerciseDto#year}.
    */
   public static final String JSON_YEAR = &quot;annee&quot;;
+  
+  /**
+   * Identifiant json champ {@link ExerciseDto#budgetPreparable}.
+   */
+  public static final String JSON_BUDGET_PREPARABLE = &quot;budgetPreparable&quot;;
+  
+  /**
+   * Identifiant json champ {@link ExerciseDto#budgetExecutable}.
+   */
+  public static final String JSON_BUDGET_EXECUTABLE = &quot;budgetExecutable&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
