@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TriennialProgramStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">TriennialProgramStatus.java</span></div><h1>TriennialProgramStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les statuts de {@link TriennialProgramDto}.
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L17">@Getter</span>
+public enum TriennialProgramStatus {
+
+  /**
+   * TriennalPrograme créé.
+   */
+<span class="fc" id="L23">  CREATED(TriennialProgramStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+
+
+  /**
+   * TriennalPrograme transmis.
+   */
+<span class="fc" id="L29">  TRANSMITTED(TriennialProgramStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmission&quot;),</span>
+  /**
+   * TriennalPrograme Accepté.
+   */
+<span class="fc" id="L33">  ACCEPTED(TriennialProgramStatusCode.ACCEPTED, &quot;Accepté&quot;, &quot;Validation&quot;),</span>
+  /**
+   * TriennalPrograme Retourné.
+   */
+<span class="fc" id="L37">  RETURNED(TriennialProgramStatusCode.RETURNED, &quot;Retourné&quot;, &quot;Rejet&quot;),</span>
+  /**
+   * TriennalPrograme corrigé.
+   */
+<span class="fc" id="L41">  CORRECTED(TriennialProgramStatusCode.CORRECTED, &quot;Corrigé&quot;, &quot;Correction&quot;),</span>
+  /**
+   * TriennalPrograme corrigé.
+   */
+<span class="fc" id="L45">  APPROVED(TriennialProgramStatusCode.APPROVED, &quot;Approuvé&quot;, &quot;Approbation&quot;),;</span>
+
+<span class="fc" id="L47">  private TriennialProgramStatus(String code, String name, String action) {</span>
+<span class="fc" id="L48">    this.code = code;</span>
+<span class="fc" id="L49">    this.name = name;</span>
+<span class="fc" id="L50">    this.action = action;</span>
+<span class="fc" id="L51">  }</span>
+
+  private String code;
+  private String name;
+  private String action;
+  private Set&lt;TriennialProgramStatus&gt; previous;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L60">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le statut par code.
+   *
+   * @param code code
+   * @return statut
+   */
+  public static TriennialProgramStatus getByCode(String code) {
+<span class="fc" id="L70">    return Stream.of(TriennialProgramStatus.values())</span>
+<span class="fc" id="L71">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L72">        .orElseThrow(IllegalArgumentException::new);</span>
+  }
+
+  static {
+<span class="fc" id="L76">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L77">    TRANSMITTED.previous = Core.getSet(List.of(CREATED));</span>
+<span class="fc" id="L78">    ACCEPTED.previous = Core.getSet(List.of(TRANSMITTED));</span>
+<span class="fc" id="L79">    RETURNED.previous = Core.getSet(List.of(ACCEPTED));</span>
+<span class="fc" id="L80">    CORRECTED.previous = Core.getSet(List.of(ACCEPTED));</span>
+<span class="fc" id="L81">    APPROVED.previous = Core.getSet(List.of(ACCEPTED));</span>
+<span class="fc" id="L82">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

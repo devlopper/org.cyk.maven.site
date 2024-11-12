@@ -53,56 +53,37 @@ import lombok.experimental.Accessors;
   }
 
   /**
-   * {@link TriennialProgramService#create}.
-   *
-   * @param code         code
-   * @param name         nom
-   * @param auditWho     audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
-<span class="fc" id="L65">    TriennialProgramCreateRequestDto request = new TriennialProgramCreateRequestDto();</span>
-<span class="fc" id="L66">    request.setCode(code);</span>
-<span class="fc" id="L67">    request.setName(name);</span>
-<span class="fc" id="L68">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L69">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L70">    return create(request);</span>
-  }
-
-  /**
    * {@link TriennialProgramService#getMany}.
    *
    * @param request requête
    * @return réponse
    */
   public TriennialProgramGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L80">    return new GetOneExecutor&lt;TriennialProgramGetManyResponseDto&gt;(</span>
-        TriennialProgramGetManyResponseDto.class,
-<span class="fc" id="L82">        TriennialProgramService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L62">    return new GetOneExecutor&lt;TriennialProgramGetManyResponseDto&gt;(</span>
+        TriennialProgramGetManyResponseDto.class, TriennialProgramService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L64">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
    * {@link TriennialProgramService#getMany}.
    *
-   * @param projection   projection
-   * @param filter       filtre
-   * @param page         page
-   * @param auditWho     audit acteur
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   @Override
   public TriennialProgramGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
-                                                    PageDto page,
-                                                    String auditWho, String auditSession) {
-<span class="fc" id="L99">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L100">    request.setProjection(projection);</span>
-<span class="fc" id="L101">    request.setFilter(filter);</span>
-<span class="fc" id="L102">    request.setPage(page);</span>
-<span class="fc" id="L103">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L104">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L105">    return getMany(request);</span>
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L80">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L81">    request.setProjection(projection);</span>
+<span class="fc" id="L82">    request.setFilter(filter);</span>
+<span class="fc" id="L83">    request.setPage(page);</span>
+<span class="fc" id="L84">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L85">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L86">    return getMany(request);</span>
   }
 
   /**
@@ -112,28 +93,27 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TriennialProgramDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L115">    return new GetOneExecutor&lt;TriennialProgramDto&gt;(TriennialProgramDto.class,</span>
-        TriennialProgramService.GET_ONE_IDENTIFIER)
-<span class="fc" id="L117">        .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L96">    return new GetOneExecutor&lt;TriennialProgramDto&gt;(TriennialProgramDto.class,</span>
+<span class="fc" id="L97">        TriennialProgramService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
    * {@link TriennialProgramService#getOne}.
    *
-   * @param projection   projection
-   * @param filter       filtre
-   * @param auditWho     audit acteur
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public TriennialProgramDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
-                                    String auditSession) {
-<span class="fc" id="L131">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L132">    request.setProjection(projection);</span>
-<span class="fc" id="L133">    request.setFilter(filter);</span>
-<span class="fc" id="L134">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L135">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L136">    return getOne(request);</span>
+      String auditSession) {
+<span class="fc" id="L111">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L112">    request.setProjection(projection);</span>
+<span class="fc" id="L113">    request.setFilter(filter);</span>
+<span class="fc" id="L114">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L115">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L116">    return getOne(request);</span>
   }
 
   /**
@@ -143,30 +123,29 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public TriennialProgramDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L146">    return new GetOneExecutor&lt;TriennialProgramDto&gt;(TriennialProgramDto.class,</span>
+<span class="fc" id="L126">    return new GetOneExecutor&lt;TriennialProgramDto&gt;(TriennialProgramDto.class,</span>
         TriennialProgramService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L148">        .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L128">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
    * {@link TriennialProgramService#getByIdentifier}.
    *
-   * @param identifier   identifiant
-   * @param projection   projection
-   * @param auditWho     audit acteur
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   @Override
   public TriennialProgramDto getByIdentifier(String identifier, ProjectionDto projection,
-                                             String auditWho,
-                                             String auditSession) {
-<span class="fc" id="L164">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L165">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L166">    request.setProjection(projection);</span>
-<span class="fc" id="L167">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L168">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L169">    return getByIdentifier(request);</span>
+      String auditWho, String auditSession) {
+<span class="fc" id="L143">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L144">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L145">    request.setProjection(projection);</span>
+<span class="fc" id="L146">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L147">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L148">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -176,29 +155,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(TriennialProgramUpdateRequestDto request) {
-<span class="fc" id="L179">    return new IdentifiableExecutor(TriennialProgramService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L180">        .execute(() -&gt; service().update(request));</span>
-  }
-
-  /**
-   * {@link TriennialProgramService#update}.
-   *
-   * @param identifier   identifiant
-   * @param name         nom
-   * @param code         code
-   * @param auditWho     audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public IdentifiableResponseDto update(String identifier, String code, String name,
-                                        String auditWho, String auditSession) {
-<span class="fc" id="L195">    TriennialProgramUpdateRequestDto request = new TriennialProgramUpdateRequestDto();</span>
-<span class="fc" id="L196">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L197">    request.setName(name);</span>
-<span class="fc" id="L198">    request.setCode(code);</span>
-<span class="fc" id="L199">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L200">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L201">    return update(request);</span>
+<span class="fc" id="L158">    return new IdentifiableExecutor(TriennialProgramService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L159">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -208,26 +166,26 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L211">    return new IdentifiableExecutor(TriennialProgramService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L212">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L169">    return new IdentifiableExecutor(TriennialProgramService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L170">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
    * {@link TriennialProgramService#delete}.
    *
-   * @param identifier   identifiant
-   * @param auditWho     audit acteur
+   * @param identifier identifiant
+   * @param auditWho audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
-                                                    String auditSession) {
-<span class="fc" id="L226">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L227">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L228">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L229">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L230">    return delete(request);</span>
+      String auditSession) {
+<span class="fc" id="L184">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L185">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L186">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L187">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L188">    return delete(request);</span>
   }
 
   /**
@@ -237,8 +195,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto initialize(ByIdentifierRequestDto request) {
-<span class="fc" id="L240">    return new IdentifiableExecutor(TriennialProgramService.INITIALIZATION_IDENTIFIER)</span>
-<span class="fc" id="L241">        .execute(() -&gt; service().initialize(request));</span>
+<span class="fc" id="L198">    return new IdentifiableExecutor(TriennialProgramService.INITIALIZATION_IDENTIFIER)</span>
+<span class="fc" id="L199">        .execute(() -&gt; service().initialize(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

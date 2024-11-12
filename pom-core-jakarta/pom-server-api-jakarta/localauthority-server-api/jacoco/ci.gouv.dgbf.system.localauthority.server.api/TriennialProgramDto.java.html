@@ -40,7 +40,58 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
   private String localAuthorityAsString;
-  
+
+
+  /**
+   * Statut du programme triennal.
+   */
+  @JsonbProperty(JSON_STATUS)
+  private TriennialProgramStatus status;
+
+
+  /**
+   * Statut du programme triennal au format chaine de caractère.
+   */
+  @JsonbProperty(JSON_STATUS_AS_STRING)
+  private String statusAsString;
+
+
+  /**
+   * Transmittable.
+   */
+  @JsonbProperty(JSON_TRANSMITABLE)
+  private Boolean transmitable;
+
+
+  /**
+   * Acceptable.
+   */
+  @JsonbProperty(JSON_ACCEPTABLE)
+  private Boolean acceptable;
+
+
+
+  /**
+   * Acceptable.
+   */
+  @JsonbProperty(JSON_RETURNABLE)
+  private Boolean returnable;
+
+
+  /**
+   * Correctable.
+   */
+  @JsonbProperty(JSON_CORRECTABLE)
+  private Boolean correctable;
+
+  /**
+   * Correctable.
+   */
+  @JsonbProperty(JSON_APPROVABLE)
+  private Boolean approvable;
+
+
+
   /**
    * Identifiant java {@link TriennialProgramDto#exerciseIdentifier}.
    */
@@ -70,7 +121,49 @@ import lombok.Setter;
    * Identifiant json {@link TriennialProgramDto#localAuthorityAsString}.
    */
   public static final String JSON_LOCAL_AUTHORITY_AS_STRING = &quot;collectiviteChaine&quot;;
-  
+
+
+  /**
+   * Identifiant json champ {@link TriennialProgramDto#status}.
+   */
+  public static final String JSON_STATUS = &quot;statut&quot;;
+
+  /**
+   * Identifiant json champ {@link TriennialProgramDto#statusAsString}.
+   */
+  public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+
+  /**
+   * Identifiant json champ {@link TriennialProgramDto#acceptable}.
+   */
+  public static final String JSON_ACCEPTABLE = &quot;acceptable&quot;;
+
+
+  /**
+   * Identifiant json champ {@link TriennialProgramDto#transmitable}.
+   */
+  public static final String JSON_TRANSMITABLE = &quot;transmitable&quot;;
+
+  /**
+   * Identifiant json champ {@link TriennialProgramDto#returnable}.
+   */
+  public static final String JSON_RETURNABLE = &quot;returnable&quot;;
+
+
+  /**
+   * Identifiant json champ {@link TriennialProgramDto#correctable}.
+   */
+  public static final String JSON_CORRECTABLE = &quot;correctable&quot;;
+
+
+  /**
+   * Identifiant json champ {@link TriennialProgramDto#correctable}.
+   */
+  public static final String JSON_APPROVABLE = &quot;approvable&quot;;
+
+
+
   /**
    * Nom pour lecture humaine de la classe.
    */

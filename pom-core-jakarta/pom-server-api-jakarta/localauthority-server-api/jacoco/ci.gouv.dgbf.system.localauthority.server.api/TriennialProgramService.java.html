@@ -44,7 +44,7 @@ public interface TriennialProgramService extends SpecificService {
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;programmes_triennaux&quot;;
+  String PATH = &quot;programmes-triennaux&quot;;
 
   /**
    * Identifiant du service de création.
@@ -270,6 +270,65 @@ public interface TriennialProgramService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
 <span class="fc" id="L272">  class TriennialProgramUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+
+    /**
+     * {@link TriennialProgramDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private TriennialProgramStatus status;
+
+    /**
+     * {@link TriennialProgramDto#getAcceptable()}.
+     */
+    private Boolean acceptable;
+
+    /**
+     * {@link TriennialProgramDto#getTransmitable()}.
+     */
+    private Boolean transmitable;
+
+
+    /**
+     * {@link TriennialProgramDto#getReturnable()}.
+     */
+    private Boolean returnable;
+
+    /**
+     * {@link TriennialProgramDto#getCorrectable()}.
+     */
+    private Boolean correctable;
+
+
+    /**
+     * {@link TriennialProgramDto#getApprovable()}.
+     */
+    private Boolean approvable;
+
+    /**
+     * {@link TriennialProgramDto#status}.
+     */
+    public static final String JSON_STATUS = TriennialProgramDto.JSON_STATUS;
+
+
+    /**
+     * {@link TriennialProgramDto#JSON_TRANSMITABLE}.
+     */
+    public static final String JSON_TRANSMITTABLE = TriennialProgramDto.JSON_TRANSMITABLE;
+
+    /**
+     * {@link TriennialProgramDto#JSON_RETURNABLE}.
+     */
+    public static final String JSON_RETURNABLE = TriennialProgramDto.JSON_RETURNABLE;
+
+    /**
+     * {@link TriennialProgramDto#JSON_APPROVABLE}.
+     */
+    public static final String JSON_APPROVABLE = TriennialProgramDto.JSON_APPROVABLE;
+
+    /**
+     * {@link TriennialProgramDto#JSON_CORRECTABLE}.
+     */
+    public static final String JSON_CORRECTABLE = TriennialProgramDto.JSON_CORRECTABLE;
 
   }
 
