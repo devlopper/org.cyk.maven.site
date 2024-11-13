@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractPayslipFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de bulletin de salaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payslip.server.api</a> &gt; <span class="el_source">AbstractPayslipFilter.java</span></div><h1>AbstractPayslipFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payslip.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente la base de filtre de bulletin de salaire.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public abstract class AbstractPayslipFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Identifiant de l'employé.
+   */
+  String employeeIdentifier;
+
+  /**
+   * Matricule fonctionnaire.
+   */
+  String functionaryRegistrationNumber;
+
+  /**
+   * Identifiant {@link PeriodDto}.
+   */
+  String periodIdentifier;
+
+  /**
+   * Nom utilisateur.
+   */
+  String userName;
+
+  /**
+   * Cette méthode permet de construire.
+   *
+   * @param dto dto
+   */
+  protected AbstractPayslipFilter(FilterDto dto) {
+<span class="fc" id="L44">    super(dto);</span>
+<span class="fc" id="L45">  }</span>
+
+  /**
+   * Cette méthode permet de construire.
+   */
+<span class="fc" id="L50">  protected AbstractPayslipFilter() {}</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L54">    super.doInitialize(filter);</span>
+<span class="fc" id="L55">    employeeIdentifier = getEmployeeIdentifier(filter);</span>
+<span class="fc" id="L56">    functionaryRegistrationNumber = getFunctionaryRegistrationNumber(filter);</span>
+<span class="fc" id="L57">    userName = getUserName(filter);</span>
+<span class="fc" id="L58">    periodIdentifier = getPeriodIdentifier(filter);</span>
+<span class="fc" id="L59">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L63">    super.toDto(filter);</span>
+<span class="fc" id="L64">    setEmployeeIdentifier(filter, employeeIdentifier);</span>
+<span class="fc" id="L65">    setFunctionaryRegistrationNumber(filter, functionaryRegistrationNumber);</span>
+<span class="fc" id="L66">    setUserName(filter, userName);</span>
+<span class="fc" id="L67">    setPeriodIdentifier(filter, periodIdentifier);</span>
+<span class="fc" id="L68">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de l'employé.
+   *
+   * @param filter filtre
+   * @param identifier identifiant de l'employé.
+   */
+  public static void setEmployeeIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L77">    set(filter, JSON_EMPLOYEE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L78">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L79">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de l'employé.
+   *
+   * @param filter filtre
+   * @return identifiant de l'employé.
+   */
+  public static String getEmployeeIdentifier(FilterDto filter) {
+<span class="fc" id="L88">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMPLOYEE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le matricule fonctionnaire.
+   *
+   * @param filter filtre
+   * @param functionaryRegistrationNumber matricule fonctionnaire.
+   */
+  public static void setFunctionaryRegistrationNumber(FilterDto filter,
+      String functionaryRegistrationNumber) {
+<span class="pc" id="L99">    set(filter, JSON_FUNCTIONARY_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L100">        f -&gt; f.setValueAsString(functionaryRegistrationNumber));</span>
+<span class="fc" id="L101">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir la matricule fonctionnaire.
+   *
+   * @param filter filtre
+   * @return matricule fonctionnaire.
+   */
+  public static String getFunctionaryRegistrationNumber(FilterDto filter) {
+<span class="fc" id="L110">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_REGISTRATION_NUMBER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link PeriodDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant de {@link PeriodDto}.
+   */
+  public static void setPeriodIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L120">    set(filter, JSON_PERIOD_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L121">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L122">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link PeriodDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link PeriodDto}.
+   */
+  public static String getPeriodIdentifier(FilterDto filter) {
+<span class="fc" id="L131">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PERIOD_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le nom utilisateur.
+   *
+   * @param filter filtre
+   * @param userName nom utilisateur.
+   */
+  public static void setUserName(FilterDto filter, String userName) {
+<span class="pc" id="L141">    set(filter, JSON_USER_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(userName));</span>
+<span class="fc" id="L142">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le nom utilisateur.
+   *
+   * @param filter filtre
+   * @return userName nom utilisateur.
+   */
+  public static String getUserName(FilterDto filter) {
+<span class="fc" id="L151">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_NAME));</span>
+  }
+
+  /**
+   * {@link AbstractEmployeePeriodDto#JSON_EMPLOYEE_IDENTIFIER}.
+   */
+  public static final String JSON_EMPLOYEE_IDENTIFIER =
+      AbstractEmployeePeriodDto.JSON_EMPLOYEE_IDENTIFIER;
+
+  /**
+   * {@link AbstractEmployeePeriodDto#JSON_FUNCTIONARY_REGISTRATION_NUMBER}.
+   */
+  public static final String JSON_FUNCTIONARY_REGISTRATION_NUMBER =
+      AbstractEmployeePeriodDto.JSON_FUNCTIONARY_REGISTRATION_NUMBER;
+
+  /**
+   * {@link AbstractEmployeePeriodDto#JSON_PERIOD_IDENTIFIER}.
+   */
+  public static final String JSON_PERIOD_IDENTIFIER =
+      AbstractEmployeePeriodDto.JSON_PERIOD_IDENTIFIER;
+
+  /**
+   * Identifiant JSON {@link #userName}.
+   */
+  public static final String JSON_USER_NAME = &quot;nomUtilisateur&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

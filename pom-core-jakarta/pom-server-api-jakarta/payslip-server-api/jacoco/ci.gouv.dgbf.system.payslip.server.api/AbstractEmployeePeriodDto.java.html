@@ -36,6 +36,12 @@ import lombok.Setter;
   protected String employeeRegistrationNumber;
   
   /**
+   * Matricule fonctionnaire.
+   */
+  @JsonbProperty(value = JSON_FUNCTIONARY_REGISTRATION_NUMBER)
+  protected String functionaryRegistrationNumber;
+  
+  /**
    * Nom et prénoms de l'employé.
    */
   @JsonbProperty(value = JSON_EMPLOYEE_NAMES)
@@ -85,6 +91,11 @@ import lombok.Setter;
    * Identifiant JSON {@link #employeeRegistrationNumber}.
    */
   public static final String JSON_EMPLOYEE_REGISTRATION_NUMBER = &quot;matricule&quot;;
+  
+  /**
+   * Identifiant JSON {@link #functionaryRegistrationNumber}.
+   */
+  public static final String JSON_FUNCTIONARY_REGISTRATION_NUMBER = &quot;matriculeFonctionnaire&quot;;
   
   /**
    * Identifiant JSON {@link #employeeNames}.
