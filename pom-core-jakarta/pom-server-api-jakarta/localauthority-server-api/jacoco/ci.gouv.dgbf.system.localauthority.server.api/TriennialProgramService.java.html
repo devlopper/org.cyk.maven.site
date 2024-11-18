@@ -2,9 +2,6 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -14,7 +11,6 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -47,6 +43,52 @@ public interface TriennialProgramService extends SpecificService {
   String PATH = &quot;programmes-triennaux&quot;;
 
   /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface TriennialProgramSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'exercice.
+     *
+     * @return identifiant de l'exercice
+     */
+    String getExerciseIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'exercice.
+     *
+     * @param exerciseIdentifier identifiant de l'exercice
+     */
+    void setExerciseIdentifier(String exerciseIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la collectivité.
+     *
+     * @return identifiant de la collectivité
+     */
+    String getLocalAuthorityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la collectivité.
+     *
+     * @param localAuthorityIdentifier identifiant de la collectivité
+     */
+    void setLocalAuthorityIdentifier(String localAuthorityIdentifier);
+
+    /**
+     * {@link TriennialProgramDto#JSON_EXERCISE_IDENTIFIER}.
+     */
+    String JSON_EXERCISE_IDENTIFIER = TriennialProgramDto.JSON_EXERCISE_IDENTIFIER;
+
+    /**
+     * {@link TriennialProgramDto#JSON_LOCAL_AUTHORITY_IDENTIFIER}.
+     */
+    String JSON_LOCAL_AUTHORITY_IDENTIFIER = TriennialProgramDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
+  }
+
+  /**
    * Identifiant du service de création.
    */
   String CREATE_IDENTIFIER = &quot;CREATION_PROGRAMME_TRIENNAL&quot;;
@@ -55,16 +97,6 @@ public interface TriennialProgramService extends SpecificService {
    * Chemin du service de création.
    */
   String CREATE_PATH = &quot;&quot;;
-
-  /**
-   * Identifiant du service d'initialisation.
-   */
-  String INITIALIZATION_IDENTIFIER = &quot;INITIALISATION_PROGRAMME_TRIENNAL&quot;;
-
-  /**
-   * Chemin du service d'initialisation.
-   */
-  String INITIALIZATION_PATH = &quot;initialisation&quot;;
 
   /**
    * Cette méthode permet de créer {@link TriennialProgramDto}.
@@ -89,37 +121,24 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L92">  class TriennialProgramCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
-    /**
-     * {@link TriennialProgramDto#exerciseIdentifier}.
-     */
+<span class="fc" id="L124">  class TriennialProgramCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
 
-    /**
-     * {@link TriennialProgramDto#localAuthorityIdentifier}.
-     */
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
     private String localAuthorityIdentifier;
-
-    /**
-     * {@link TriennialProgramDto#FIELD_EXERCISE_IDENTIFIER}.
-     */
-    public static final String FIELD_EXERCISE_IDENTIFIER = &quot;exerciseIdentifier&quot;;
-
-    /**
-     * {@link TriennialProgramDto#JSON_EXERCISE_IDENTIFIER}.
-     */
-    public static final String JSON_EXERCISE_IDENTIFIER =
-        TriennialProgramDto.JSON_EXERCISE_IDENTIFIER;
-
-    /**
-     * {@link TriennialProgramDto#JSON_LOCAL_AUTHORITY_IDENTIFIER}.
-     */
-    public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
-        TriennialProgramDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
   }
 
+  /**
+   * Identifiant du service d'initialisation.
+   */
+  String INITIALIZATION_IDENTIFIER = &quot;INITIALISATION_PROGRAMME_TRIENNAL&quot;;
+
+  /**
+   * Chemin du service d'initialisation.
+   */
+  String INITIALIZATION_PATH = &quot;initialisation&quot;;
 
   /**
    * Cette méthode permet d'initialiser le programme triennal {@link TriennialProgramDto}.
@@ -131,8 +150,8 @@ public interface TriennialProgramService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = INITIALIZATION_IDENTIFIER, summary = &quot;Initialisation d'un programme &quot;
-      + &quot;triennal&quot;,
+  @Operation(operationId = INITIALIZATION_IDENTIFIER,
+      summary = &quot;Initialisation d'un programme &quot; + &quot;triennal&quot;,
       description = &quot;Ce service permet d'initialiser un programme triennal&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
@@ -161,9 +180,8 @@ public interface TriennialProgramService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des programmes triennaux&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-          @Content(schema = @Schema(implementation = TriennialProgramGetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = TriennialProgramGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -173,7 +191,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L176">  public static class TriennialProgramGetManyResponseDto</span>
+<span class="fc" id="L194">  public static class TriennialProgramGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TriennialProgramDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -265,70 +283,13 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L272">  class TriennialProgramUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L286">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements TriennialProgramSaveRequestDto {
+    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+    private String exerciseIdentifier;
 
-    /**
-     * {@link TriennialProgramDto#getStatus()}.
-     */
-    @JsonbProperty(JSON_STATUS)
-    private TriennialProgramStatus status;
-
-    /**
-     * {@link TriennialProgramDto#getAcceptable()}.
-     */
-    private Boolean acceptable;
-
-    /**
-     * {@link TriennialProgramDto#getTransmitable()}.
-     */
-    private Boolean transmitable;
-
-
-    /**
-     * {@link TriennialProgramDto#getReturnable()}.
-     */
-    private Boolean returnable;
-
-    /**
-     * {@link TriennialProgramDto#getCorrectable()}.
-     */
-    private Boolean correctable;
-
-
-    /**
-     * {@link TriennialProgramDto#getApprovable()}.
-     */
-    private Boolean approvable;
-
-    /**
-     * {@link TriennialProgramDto#status}.
-     */
-    public static final String JSON_STATUS = TriennialProgramDto.JSON_STATUS;
-
-
-    /**
-     * {@link TriennialProgramDto#JSON_TRANSMITABLE}.
-     */
-    public static final String JSON_TRANSMITTABLE = TriennialProgramDto.JSON_TRANSMITABLE;
-
-    /**
-     * {@link TriennialProgramDto#JSON_RETURNABLE}.
-     */
-    public static final String JSON_RETURNABLE = TriennialProgramDto.JSON_RETURNABLE;
-
-    /**
-     * {@link TriennialProgramDto#JSON_APPROVABLE}.
-     */
-    public static final String JSON_APPROVABLE = TriennialProgramDto.JSON_APPROVABLE;
-
-    /**
-     * {@link TriennialProgramDto#JSON_CORRECTABLE}.
-     */
-    public static final String JSON_CORRECTABLE = TriennialProgramDto.JSON_CORRECTABLE;
+    @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+    private String localAuthorityIdentifier;
 
   }
 
