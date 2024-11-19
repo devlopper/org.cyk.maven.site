@@ -71,10 +71,28 @@ import lombok.Setter;
   private String lessorAsString;
 
   /*
+   * Identifiant {@link AdministrativeUnitDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String administrativeUnitIdentifier;
+
+  /*
+   * Code {@link AdministrativeUnitDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_CODE)
+  private String administrativeUnitCode;
+
+  /*
    * Réprésentation en chaine de caractères {@link AdministrativeUnitDto}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
   private String administrativeUnitAsString;
+
+  /*
+   * Identifiant {@link SectionDto}.
+   */
+  @JsonbProperty(JSON_SECTION_IDENTIFIER)
+  private String sectionIdentifier;
 
   /*
    * Réprésentation en chaine de caractères {@link SectionDto}.
@@ -131,15 +149,31 @@ import lombok.Setter;
   public static final String JSON_LESSOR_AS_STRING = LessorDto.JSON_THIS_AS_STRING;
 
   /**
+   * Identifiant json champ {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      AdministrativeUnitDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #administrativeUnitCode}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_CODE = AdministrativeUnitDto.JSON_THIS_CODE;
+
+  /**
    * Identifiant json champ {@link #administrativeUnitAsString}.
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING =
       AdministrativeUnitDto.JSON_THIS_AS_STRING;
 
   /**
+   * Identifiant json champ {@link #sectionIdentifier}.
+   */
+  public static final String JSON_SECTION_IDENTIFIER = SectionDto.JSON_THIS_IDENTIFIER;
+
+  /**
    * Identifiant json champ {@link #sectionAsString}.
    */
-  public static final String JSON_SECTION_AS_STRING = SectionDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_SECTION_AS_STRING = SectionDto.JSON_THIS_AS_STRING;
 
   /**
    * Nom pour lecture humaine de la classe.
