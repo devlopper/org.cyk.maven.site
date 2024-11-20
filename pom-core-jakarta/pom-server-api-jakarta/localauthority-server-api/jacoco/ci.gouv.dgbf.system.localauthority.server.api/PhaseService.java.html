@@ -76,70 +76,70 @@ public interface PhaseService extends SpecificService {
      * @param triennialProgramActivityIdentifier identifiant de {@link TriennialProgramActivityDto}
      */
     void setTriennialProgramActivityIdentifier(String triennialProgramActivityIdentifier);
-    
+
     /**
      * Cette méthode permet d'assigner le numero d'ordre.
      *
      * @param orderNumber numéro d'ordre
      */
     void setOrderNumber(Integer orderNumber);
-    
+
     /**
      * Cette méthode permet d'obténir le numero d'ordre.
      *
      * @return numero d'ordre
      */
     Integer getOrderNumber();
-    
+
     /**
      * Cette méthode permet d'assigner le numero de la phase.
      *
      * @param phaseNumber numéro de la phase
      */
     void setPhaseNumber(Integer phaseNumber);
-    
+
     /**
      * Cette méthode permet d'obténir le numero de la phase.
      *
      * @return numéro de la phase
      */
     Integer getPhaseNumber();
-    
+
     /**
      * Cette méthode permet d'assigner le commentaire.
      *
      * @param comment commentaire
      */
     void setComment(String comment);
-    
+
     /**
      * Cette méthode permet d'obténir le commentaire.
      *
      * @return commentaire
      */
     String getComment();
-    
+
     /**
      * Cette méthode permet d'assigner la date de début.
      *
      * @param startDate date de début
      */
     void setStartDate(LocalDate startDate);
-    
+
     /**
      * Cette méthode permet d'assigner la date de début.
      *
      * @return date de début
      */
     LocalDate getStartDate();
-    
+
     /**
      * Cette méthode permet d'assigner la date de fin.
      *
      * @param endDate date de fin
      */
     void setEndDate(LocalDate endDate);
-    
+
     /**
      * Cette méthode permet d'assigner la date de fin.
      *
@@ -150,15 +150,15 @@ public interface PhaseService extends SpecificService {
     /**
      * Identifiant JSON {@link TriennialProgramActivityDto}.
      */
-    public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = PhaseDto
-        .JSON_BUDGET_ACTIVITY_IDENTIFIER;
-    
+    public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER =
+        PhaseDto.JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER;
+
     /**
-     * Identitiant json {@link PhaseDto#budgetActivityAsString}.
+     * Identitiant json {@link PhaseDto#triennialProgramActivityAsString}.
      */
-    public static final String JSON_BUDGET_ACTIVITY_AS_STRING = PhaseDto
-        .JSON_BUDGET_ACTIVITY_AS_STRING;
-    
+    public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING =
+        PhaseDto.JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING;
+
     /**
      * Identitiant json {@link PhaseDto#orderNumber}.
      */
@@ -211,39 +211,39 @@ public interface PhaseService extends SpecificService {
     /**
      * Identifiant de {@link TriennialProgramActivityDto}.
      */
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
     private String triennialProgramActivityIdentifier;
 
     /**
      * Représentation en chaine de caractères de {@link TriennialProgramActivityDto}.
      */
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
-    private String budgetActivityAsString;
-    
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING)
+    private String triennialProgramActivityAsString;
+
     /**
      * Numéro d'ordre {@link PhaseDto}.
      */
     @JsonbProperty(JSON_ORDER_NUMBER)
     private Integer orderNumber;
-    
+
     /**
      * Numéro de la phase {@link PhaseDto}.
      */
     @JsonbProperty(JSON_PHASE_NUMBER)
     private Integer phaseNumber;
-    
+
     /**
      * Commentaire {@link PhaseDto}.
      */
     @JsonbProperty(JSON_COMMENT)
     private String comment;
-    
+
     /**
      * Date de début {@link PhaseDto}.
      */
     @JsonbProperty(JSON_START_DATE)
     private LocalDate startDate;
-    
+
     /**
      * Date de fin {@link PhaseDto}.
      */
@@ -285,8 +285,7 @@ public interface PhaseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L288">  public static class PhaseGetManyResponseDto</span>
-      extends AbstractGetByPageResponseDto&lt;PhaseDto&gt; {
+<span class="fc" id="L288">  public static class PhaseGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PhaseDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PhaseDto&gt; datas;
@@ -375,45 +374,45 @@ public interface PhaseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L378">  class PhaseUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L377">  class PhaseUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PhaseSaveRequestDto {
 
     /**
      * Identifiant de {@link TriennialProgramActivityDto}.
      */
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
     private String triennialProgramActivityIdentifier;
 
     /**
      * Représentation en chaine de caractères de {@link TriennialProgramActivityDto}.
      */
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
-    private String budgetActivityAsString;
-    
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING)
+    private String triennialProgramActivityAsString;
+
     /**
      * Numéro d'ordre {@link PhaseDto}.
      */
     @JsonbProperty(JSON_ORDER_NUMBER)
     private Integer orderNumber;
-    
+
     /**
      * Numéro de la phase {@link PhaseDto}.
      */
     @JsonbProperty(JSON_PHASE_NUMBER)
     private Integer phaseNumber;
-    
+
     /**
      * Commentaire {@link PhaseDto}.
      */
     @JsonbProperty(JSON_COMMENT)
     private String comment;
-    
+
     /**
      * Date de début {@link PhaseDto}.
      */
     @JsonbProperty(JSON_START_DATE)
     private LocalDate startDate;
-    
+
     /**
      * Date de fin {@link PhaseDto}.
      */

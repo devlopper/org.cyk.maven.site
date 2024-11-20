@@ -33,15 +33,15 @@ import lombok.Setter;
   /**
    * Identifiant {@link TriennialProgramActivityDto}.
    */
-  @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
-  private String budgetActivityIdentifier;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
+  private String triennialProgramActivityIdentifier;
 
 
   /**
    * Représentation en chaine de caractères de {@link TriennialProgramActivityDto}.
    */
-  @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
-  private String budgetActivityAsString;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING)
+  private String triennialProgramActivityAsString;
 
 
 
@@ -66,16 +66,17 @@ import lombok.Setter;
 
 
   /**
-   * Identifiant json {@link JustificationContentDto#budgetActivityIdentifier}.
+   * Identifiant json {@link JustificationContentDto#triennialProgramActivityIdentifier}.
    */
-  public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER =
+  public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER =
       TriennialProgramDto.JSON_THIS_IDENTIFIER;
 
 
   /**
-   * Identifiant json {@link JustificationContentDto#budgetActivityAsString}.
+   * Identifiant json {@link JustificationContentDto#triennialProgramActivityAsString}.
    */
-  public static final String JSON_BUDGET_ACTIVITY_AS_STRING = &quot;budgetActivityChaine&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING =
+      &quot;triennialProgramActivityChaine&quot;;
 
 
   /**

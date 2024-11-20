@@ -21,14 +21,14 @@ import lombok.Setter;
   /**
    * Identifiant de {@link TriennialProgramActivityDto}.
    */
-  @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
-  private String budgetActivityIdentifier;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
+  private String triennialProgramActivityIdentifier;
 
   /**
    * Représentation en chaine de caractères de {@link TriennialProgramActivityDto}.
    */
-  @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
-  private String budgetActivityAsString;
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING)
+  private String triennialProgramActivityAsString;
   
   /**
    * Numéro d'ordre {@link PhaseDto}.
@@ -61,14 +61,14 @@ import lombok.Setter;
   private LocalDate endDate;
 
   /**
-   * Identitiant json {@link PhaseDto#budgetActivityIdentifier}.
+   * Identitiant json {@link PhaseDto#triennialProgramActivityIdentifier}.
    */
-  public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = &quot;idActiviteBudget&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER = &quot;idActiviteBudget&quot;;
 
   /**
-   * Identitiant json {@link PhaseDto#budgetActivityAsString}.
+   * Identitiant json {@link PhaseDto#triennialProgramActivityAsString}.
    */
-  public static final String JSON_BUDGET_ACTIVITY_AS_STRING = &quot;activiteBudgetChaine&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING = &quot;activiteBudgetChaine&quot;;
   
   /**
    * Identitiant json {@link PhaseDto#orderNumber}.

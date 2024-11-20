@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2024-11-20T12:49:34+0000&quot;,
+    date = &quot;2024-11-20T14:08:51+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,35 +27,37 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        phaseCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        phaseCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        phaseCreateRequestDto.setBudgetActivityAsString( arg0.getBudgetActivityAsString() );</span>
-<span class="fc" id="L31">        phaseCreateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
-<span class="fc" id="L32">        phaseCreateRequestDto.setPhaseNumber( arg0.getPhaseNumber() );</span>
-<span class="fc" id="L33">        phaseCreateRequestDto.setComment( arg0.getComment() );</span>
-<span class="fc" id="L34">        phaseCreateRequestDto.setStartDate( arg0.getStartDate() );</span>
-<span class="fc" id="L35">        phaseCreateRequestDto.setEndDate( arg0.getEndDate() );</span>
+<span class="fc" id="L30">        phaseCreateRequestDto.setTriennialProgramActivityIdentifier( arg0.getTriennialProgramActivityIdentifier() );</span>
+<span class="fc" id="L31">        phaseCreateRequestDto.setTriennialProgramActivityAsString( arg0.getTriennialProgramActivityAsString() );</span>
+<span class="fc" id="L32">        phaseCreateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
+<span class="fc" id="L33">        phaseCreateRequestDto.setPhaseNumber( arg0.getPhaseNumber() );</span>
+<span class="fc" id="L34">        phaseCreateRequestDto.setComment( arg0.getComment() );</span>
+<span class="fc" id="L35">        phaseCreateRequestDto.setStartDate( arg0.getStartDate() );</span>
+<span class="fc" id="L36">        phaseCreateRequestDto.setEndDate( arg0.getEndDate() );</span>
 
-<span class="fc" id="L37">        return phaseCreateRequestDto;</span>
+<span class="fc" id="L38">        return phaseCreateRequestDto;</span>
     }
 
     @Override
     public PhaseService.PhaseUpdateRequestDto mapUpdate(PhaseDto arg0) {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L43">            return null;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L44">            return null;</span>
         }
 
-<span class="fc" id="L46">        PhaseService.PhaseUpdateRequestDto phaseUpdateRequestDto = new PhaseService.PhaseUpdateRequestDto();</span>
+<span class="fc" id="L47">        PhaseService.PhaseUpdateRequestDto phaseUpdateRequestDto = new PhaseService.PhaseUpdateRequestDto();</span>
 
-<span class="fc" id="L48">        phaseUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L49">        phaseUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L50">        phaseUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L51">        phaseUpdateRequestDto.setBudgetActivityAsString( arg0.getBudgetActivityAsString() );</span>
-<span class="fc" id="L52">        phaseUpdateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
-<span class="fc" id="L53">        phaseUpdateRequestDto.setPhaseNumber( arg0.getPhaseNumber() );</span>
-<span class="fc" id="L54">        phaseUpdateRequestDto.setComment( arg0.getComment() );</span>
-<span class="fc" id="L55">        phaseUpdateRequestDto.setStartDate( arg0.getStartDate() );</span>
-<span class="fc" id="L56">        phaseUpdateRequestDto.setEndDate( arg0.getEndDate() );</span>
+<span class="fc" id="L49">        phaseUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        phaseUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L51">        phaseUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L52">        phaseUpdateRequestDto.setTriennialProgramActivityIdentifier( arg0.getTriennialProgramActivityIdentifier() );</span>
+<span class="fc" id="L53">        phaseUpdateRequestDto.setTriennialProgramActivityAsString( arg0.getTriennialProgramActivityAsString() );</span>
+<span class="fc" id="L54">        phaseUpdateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
+<span class="fc" id="L55">        phaseUpdateRequestDto.setPhaseNumber( arg0.getPhaseNumber() );</span>
+<span class="fc" id="L56">        phaseUpdateRequestDto.setComment( arg0.getComment() );</span>
+<span class="fc" id="L57">        phaseUpdateRequestDto.setStartDate( arg0.getStartDate() );</span>
+<span class="fc" id="L58">        phaseUpdateRequestDto.setEndDate( arg0.getEndDate() );</span>
 
-<span class="fc" id="L58">        return phaseUpdateRequestDto;</span>
+<span class="fc" id="L60">        return phaseUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -131,8 +131,8 @@ public interface JustificationContentService extends SpecificService {
     /**
      * Identifiant champ json de {@link JustificationStructureDto}.
      */
-    String JSON_BUDGET_ACTIVITY_IDENTIFIER =
-        JustificationContentDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
+    String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER =
+        JustificationContentDto.JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER;
 
 
     /**
@@ -150,13 +150,12 @@ public interface JustificationContentService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L152">  class JustificationContentCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
-      implements
-      SaveRequestDto {
+      implements SaveRequestDto {
 
     @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER)
     private String justificationStructureIdentifier;
 
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
     private String triennialProgramActivityIdentifier;
 
 
@@ -187,9 +186,7 @@ public interface JustificationContentService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des contenus de justification&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-          @Content(schema =
-          @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -199,7 +196,7 @@ public interface JustificationContentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L202">  public static class GetManyResponseDto</span>
+<span class="fc" id="L199">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;JustificationContentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -291,15 +288,14 @@ public interface JustificationContentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L294">  class JustificationContentUpdateRequestDto extends ByIdentifierRequestDto</span>
-      implements
-      SaveRequestDto {
+<span class="fc" id="L291">  class JustificationContentUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements SaveRequestDto {
 
     @JsonbProperty(JSON_JUSTIFICATION_STRUCTURE_IDENTIFIER)
     private String justificationStructureIdentifier;
 
 
-    @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
     private String triennialProgramActivityIdentifier;
 
     @JsonbProperty(JSON_DESCRIPTION)
