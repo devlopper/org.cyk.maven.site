@@ -36,6 +36,12 @@ import lombok.Setter;
   private String administrativeUnitAsString;
 
   /*
+   * Identifiant {@link SectionDto}.
+   */
+  @JsonbProperty(JSON_SECTION_IDENTIFIER)
+  private String sectionIdentifier;
+  
+  /*
    * Réprésentation en chaine de caractère {@link SectionDto}.
    */
   @JsonbProperty(JSON_SECTION_AS_STRING)
@@ -60,10 +66,15 @@ import lombok.Setter;
       AdministrativeUnitDto.JSON_THIS_AS_STRING;
 
   /**
+   * Identifiant json champ {@link #sectionIdentifier}.
+   */
+  public static final String JSON_SECTION_IDENTIFIER = SectionDto.JSON_THIS_IDENTIFIER;
+
+  /**
    * Identifiant json champ {@link #sectionAsString}.
    */
-  public static final String JSON_SECTION_AS_STRING = SectionDto.JSON_THIS_IDENTIFIER;
-
+  public static final String JSON_SECTION_AS_STRING = SectionDto.JSON_THIS_AS_STRING;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */
