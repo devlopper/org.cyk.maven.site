@@ -15,7 +15,17 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L17">public class LocalAuthorityDto extends AbstractIdentifiableCodableNamableDto {</span>
-  
+
+  /**
+   * Identifiant json de identifiant de {@link LocalAuthorityDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idCollectivite&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de {@link LocalAuthorityDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;collectiviteChaine&quot;;
+
   /**
    * Nom pour lecture humaine de la classe.
    */

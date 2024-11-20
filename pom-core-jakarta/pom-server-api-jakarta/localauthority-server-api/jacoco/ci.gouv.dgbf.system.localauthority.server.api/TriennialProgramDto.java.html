@@ -22,19 +22,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   private String exerciseIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de l'exercice budgétaire.
    */
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
   private String exerciseAsString;
-  
+
   /**
    * Identifiant de la collectivité.
    */
   @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
   private String localAuthorityIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de la collectivité.
    */
@@ -90,75 +90,72 @@ import lombok.Setter;
   @JsonbProperty(JSON_APPROVABLE)
   private Boolean approvable;
 
-
-
   /**
-   * Identifiant java {@link TriennialProgramDto#exerciseIdentifier}.
+   * Identifiant json de identifiant de {@link TriennialProgramDto}.
    */
-  public static final String FIELD_EXERCISE_IDENTIFIER = &quot;exerciseIdentifier&quot;;
-  
+  public static final String JSON_THIS_IDENTIFIER = &quot;idProgrammeTriennal&quot;;
+
   /**
-   * Identifiant java {@link TriennialProgramDto#localAuthorityIdentifier}.
+   * Identifiant json de représentation en chaine de caractères de {@link TriennialProgramDto}.
    */
-  public static final String FIELD_LOCAL_AUTHORITY_IDENTIFIER = &quot;localAuthorityIdentifier&quot;;
-  
+  public static final String JSON_THIS_AS_STRING = &quot;programmeTriennalChaine&quot;;
+
   /**
-   * Identifiant json {@link TriennialProgramDto#exerciseIdentifier}.
+   * Identifiant json {@link #exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
-  
+
   /**
-   * Identifiant json {@link TriennialProgramDto#exerciseAsString}.
+   * Identifiant json {@link #exerciseAsString}.
    */
   public static final String JSON_EXERCISE_AS_STRING = &quot;exerciceChaine&quot;;
-  
-  /**
-   * Identifiant json {@link TriennialProgramDto#localAuthorityIdentifier}.
-   */
-  public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER = &quot;idCollectivite&quot;;
-  
-  /**
-   * Identifiant json {@link TriennialProgramDto#localAuthorityAsString}.
-   */
-  public static final String JSON_LOCAL_AUTHORITY_AS_STRING = &quot;collectiviteChaine&quot;;
-
 
   /**
-   * Identifiant json champ {@link TriennialProgramDto#status}.
+   * Identifiant json {@link #localAuthorityIdentifier}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+      LocalAuthorityDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #localAuthorityAsString}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_AS_STRING = LocalAuthorityDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
 
   /**
-   * Identifiant json champ {@link TriennialProgramDto#statusAsString}.
+   * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
 
 
   /**
-   * Identifiant json champ {@link TriennialProgramDto#acceptable}.
+   * Identifiant json champ {@link #acceptable}.
    */
   public static final String JSON_ACCEPTABLE = &quot;acceptable&quot;;
 
 
   /**
-   * Identifiant json champ {@link TriennialProgramDto#transmitable}.
+   * Identifiant json champ {@link #transmitable}.
    */
   public static final String JSON_TRANSMITABLE = &quot;transmitable&quot;;
 
   /**
-   * Identifiant json champ {@link TriennialProgramDto#returnable}.
+   * Identifiant json champ {@link #returnable}.
    */
   public static final String JSON_RETURNABLE = &quot;returnable&quot;;
 
-
   /**
-   * Identifiant json champ {@link TriennialProgramDto#correctable}.
+   * Identifiant json champ {@link #correctable}.
    */
   public static final String JSON_CORRECTABLE = &quot;correctable&quot;;
 
 
   /**
-   * Identifiant json champ {@link TriennialProgramDto#correctable}.
+   * Identifiant json champ {@link #correctable}.
    */
   public static final String JSON_APPROVABLE = &quot;approvable&quot;;
 
@@ -168,7 +165,7 @@ import lombok.Setter;
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;programme triennal&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */

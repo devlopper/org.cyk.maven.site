@@ -16,6 +16,11 @@ import lombok.Setter;
 public class FundingFilter extends AbstractIdentifiableFilter {
 
   /**
+   * Identifiant {@link TriennialProgramDto}.
+   */
+  String triennialProgramIdentifier;
+
+  /**
    * {@link ActivityCategory}.
    */
   ActivityCategory activityCategory;
@@ -26,25 +31,48 @@ public class FundingFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public FundingFilter(FilterDto dto) {
-<span class="fc" id="L29">    super(dto);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L34">    super(dto);</span>
+<span class="fc" id="L35">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L35">  public FundingFilter() {}</span>
+<span class="fc" id="L40">  public FundingFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    activityCategory = getActivityCategory(filter);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L44">    super.doInitialize(filter);</span>
+<span class="fc" id="L45">    triennialProgramIdentifier = getTriennialProgramIdentifier(filter);</span>
+<span class="fc" id="L46">    activityCategory = getActivityCategory(filter);</span>
+<span class="fc" id="L47">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    setActivityCategory(filter, activityCategory);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L51">    super.toDto(filter);</span>
+<span class="fc" id="L52">    setTriennialProgramIdentifier(filter, triennialProgramIdentifier);</span>
+<span class="fc" id="L53">    setActivityCategory(filter, activityCategory);</span>
+<span class="fc" id="L54">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant {@link TriennialProgramDto}.
+   *
+   * @param filter filtre
+   * @return identifiant {@link TriennialProgramDto}
+   */
+  public static String getTriennialProgramIdentifier(FilterDto filter) {
+<span class="fc" id="L63">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TRIENNIAL_PROGRAM_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant {@link TriennialProgramDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant {@link TriennialProgramDto}
+   */
+  public static void setTriennialProgramIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L73">    set(filter, JSON_TRIENNIAL_PROGRAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L74">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L75">  }</span>
 
   /**
    * Cette méthode permet d'assigner la {@link ActivityCategory}.
@@ -53,8 +81,8 @@ public class FundingFilter extends AbstractIdentifiableFilter {
    * @param category {@link ActivityCategory}
    */
   public static void setActivityCategory(FilterDto filter, ActivityCategory category) {
-<span class="pc" id="L56">    set(filter, JSON_ACTIVITY_CATEGORY, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(category));</span>
-<span class="fc" id="L57">  }</span>
+<span class="pc" id="L84">    set(filter, JSON_ACTIVITY_CATEGORY, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(category));</span>
+<span class="fc" id="L85">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ActivityCategory}.
@@ -63,8 +91,14 @@ public class FundingFilter extends AbstractIdentifiableFilter {
    * @return {@link ActivityCategory}
    */
   public static ActivityCategory getActivityCategory(FilterDto filter) {
-<span class="fc" id="L66">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_ACTIVITY_CATEGORY, ActivityCategory.class));</span>
+<span class="fc" id="L94">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_ACTIVITY_CATEGORY, ActivityCategory.class));</span>
   }
+
+  /**
+   * Identifiant json champ {@link #triennialProgramIdentifier}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+      FundingDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
 
   /**
    * Identifiant json champ {@link FundingFilter#activityCategory}.

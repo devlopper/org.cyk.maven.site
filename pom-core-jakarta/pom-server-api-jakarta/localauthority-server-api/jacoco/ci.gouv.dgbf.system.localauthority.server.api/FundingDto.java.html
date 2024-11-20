@@ -22,182 +22,195 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_MODE_IDENTIFIER)
   private String modeIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de {@link FundingModeDto}.
    */
   @JsonbProperty(JSON_MODE_AS_STRING)
   private String modeAsString;
-  
+
   /**
    * Identifiant {@link LessorDto}.
    */
   @JsonbProperty(JSON_LESSOR_IDENTIFIER)
   private String lessorIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de {@link LessorDto}.
    */
   @JsonbProperty(JSON_LESSOR_AS_STRING)
   private String lessorAsString;
-  
+
   /**
    * Identifiant {@link BudgetActivityDto}.
    */
   @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
   private String budgetActivityIdentifier;
-  
+
+  /**
+   * Identifiant de {@link TriennialProgramDto}.
+   */
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+  private String triennialProgramIdentifier;
+
   /**
    * Représentation en chaine de caractères de {@link TriennialProgramDto}.
    */
   @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
-  private String triennialprogramAsString;
-  
+  private String triennialProgramAsString;
+
   /**
    * Identifiant {@link ExpenditureNatureDto}.
    */
   @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
   private String expenditureNatureIdentifier;
-  
+
   /**
-   * Représentation en chaine de caractères de  {@link ExpenditureNatureDto}.
+   * Représentation en chaine de caractères de {@link ExpenditureNatureDto}.
    */
   @JsonbProperty(JSON_EXPENDITURE_NATURE_AS_STRING)
   private String expenditureNatureAsString;
-  
+
   /**
    * Représentation en chaine de caractères de {@link ActivityDto}.
    */
   @JsonbProperty(JSON_ACTIVITY_AS_STRING)
   private String activityAsString;
-  
+
   /**
    * Montant 1.
    */
   @JsonbProperty(JSON_AMOUNT_1)
   private Long amount1;
-  
+
   /**
    * Représentation en chaine de caractères de Montant 1.
    */
   @JsonbProperty(JSON_AMOUNT_1_AS_STRING)
   private String amount1AsString;
-  
+
   /**
    * Montant 2.
    */
   @JsonbProperty(JSON_AMOUNT_2)
   private Long amount2;
-  
+
   /**
    * Représentation en chaine de caractères de Montant 2.
    */
   @JsonbProperty(JSON_AMOUNT_2_AS_STRING)
   private String amount2AsString;
-  
+
   /**
    * Montant 3.
    */
   @JsonbProperty(JSON_AMOUNT_3)
   private Long amount3;
-  
+
   /**
    * Représentation en chaine de caractères de Montant 3.
    */
   @JsonbProperty(JSON_AMOUNT_3_AS_STRING)
   private String amount3AsString;
-  
+
   /**
    * Catégorie d'activité.
    */
   @JsonbProperty(JSON_ACTIVITY_CATEGORY)
   private ActivityCategory activityCategory;
-  
+
   /**
-   * Identifiant json {@link FundingDto#modeIdentifier}.
+   * Identifiant json {@link #modeIdentifier}.
    */
   public static final String JSON_MODE_IDENTIFIER = &quot;idMode&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#modeAsString}.
+   * Identifiant json {@link #modeAsString}.
    */
   public static final String JSON_MODE_AS_STRING = &quot;modeChaine&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#lessorIdentifier}.
+   * Identifiant json {@link #lessorIdentifier}.
    */
   public static final String JSON_LESSOR_IDENTIFIER = &quot;idBailleur&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#expenditureNatureIdentifier}.
+   * Identifiant json {@link #expenditureNatureIdentifier}.
    */
   public static final String JSON_EXPENDITURE_NATURE_IDENTIFIER = &quot;idNatureDepense&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#expenditureNatureAsString}.
+   * Identifiant json {@link #expenditureNatureAsString}.
    */
   public static final String JSON_EXPENDITURE_NATURE_AS_STRING = &quot;natureDepenseChaine&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#lessorAsString}.
+   * Identifiant json {@link #lessorAsString}.
    */
   public static final String JSON_LESSOR_AS_STRING = &quot;bailleurChaine&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#budgetActivityIdentifier}.
+   * Identifiant json {@link #budgetActivityIdentifier}.
    */
   public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = &quot;idActiviteBudget&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#amount1}.
+   * Identifiant json {@link #amount1}.
    */
   public static final String JSON_AMOUNT_1 = &quot;montant1&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#amount1AsString}.
+   * Identifiant json {@link #amount1AsString}.
    */
   public static final String JSON_AMOUNT_1_AS_STRING = &quot;montant1Chaine&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#amount2}.
+   * Identifiant json {@link #amount2}.
    */
   public static final String JSON_AMOUNT_2 = &quot;montant2&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#amount2AsString}.
+   * Identifiant json {@link #amount2AsString}.
    */
   public static final String JSON_AMOUNT_2_AS_STRING = &quot;montant2Chaine&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#amount3}.
+   * Identifiant json {@link #amount3}.
    */
   public static final String JSON_AMOUNT_3 = &quot;montant3&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#amount3AsString}.
+   * Identifiant json {@link #amount3AsString}.
    */
   public static final String JSON_AMOUNT_3_AS_STRING = &quot;montant3Chaine&quot;;
-  
+
   /**
-   * Identifiant json {@link FundingDto#triennialprogramAsString}.
+   * Identifiant json {@link #triennialProgramAsString}.
    */
-  public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING = &quot;triennialprogramChaine&quot;;
-  
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+      TriennialProgramDto.JSON_THIS_IDENTIFIER;
+
   /**
-   * Identifiant json {@link FundingDto#activityAsString}.
+   * Identifiant json {@link #triennialProgramAsString}.
    */
-  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
-  
+  public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING =
+      TriennialProgramDto.JSON_THIS_AS_STRING;
+
   /**
-   * Identifiant json {@link FundingDto#activityCategory}.
+   * Identifiant json {@link #activityAsString}.
+   */
+  public static final String JSON_ACTIVITY_AS_STRING = ActivityDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #activityCategory}.
    */
   public static final String JSON_ACTIVITY_CATEGORY = &quot;categorieActivite&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;financement&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
