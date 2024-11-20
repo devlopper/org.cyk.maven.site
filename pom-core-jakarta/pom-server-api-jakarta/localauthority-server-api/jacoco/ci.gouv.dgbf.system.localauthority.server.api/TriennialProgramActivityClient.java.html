@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TriennialProgramActivityClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">TriennialProgramActivityClient.java</span></div><h1>TriennialProgramActivityClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.localauthority.server.api.TriennialProgramActivityService.TriennialProgramActivityCreateRequestDto;
+import ci.gouv.dgbf.system.localauthority.server.api.TriennialProgramActivityService.TriennialProgramActivityGetManyResponseDto;
+import ci.gouv.dgbf.system.localauthority.server.api.TriennialProgramActivityService.TriennialProgramActivityUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link TriennialProgramActivityService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L35">public class TriennialProgramActivityClient extends AbstractClient&lt;TriennialProgramActivityService&gt;</span>
+    implements GetByIdentifier&lt;TriennialProgramActivityDto&gt;,
+    GetMany&lt;TriennialProgramActivityGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public TriennialProgramActivityClient service(TriennialProgramActivityService service) {
+<span class="fc" id="L42">    return (TriennialProgramActivityClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(TriennialProgramActivityCreateRequestDto request) {
+<span class="fc" id="L52">    return new CreateExecutor(TriennialProgramActivityService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#create}.
+   *
+   * @param budgetIdentifier identifiant budget
+   * @param activityIdentifier identifiant activité
+   * @param amount montant
+   * @param justification justification
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String budgetIdentifier, String activityIdentifier, long amount,
+      String justification, String auditWho, String auditSession) {
+<span class="fc" id="L69">    TriennialProgramActivityCreateRequestDto request =</span>
+        new TriennialProgramActivityCreateRequestDto();
+<span class="fc" id="L71">    request.setBudgetIdentifier(budgetIdentifier);</span>
+<span class="fc" id="L72">    request.setActivityIdentifier(activityIdentifier);</span>
+<span class="fc" id="L73">    request.setAmount(amount);</span>
+<span class="fc" id="L74">    request.setJustification(justification);</span>
+<span class="fc" id="L75">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L76">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L77">    return create(request);</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public TriennialProgramActivityGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L87">    return new GetOneExecutor&lt;TriennialProgramActivityGetManyResponseDto&gt;(</span>
+        TriennialProgramActivityGetManyResponseDto.class,
+        TriennialProgramActivityService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L90">            .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public TriennialProgramActivityGetManyResponseDto getMany(ProjectionDto projection,
+      FilterDto filter, PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L106">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L107">    request.setProjection(projection);</span>
+<span class="fc" id="L108">    request.setFilter(filter);</span>
+<span class="fc" id="L109">    request.setPage(page);</span>
+<span class="fc" id="L110">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L111">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L112">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public TriennialProgramActivityDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L122">    return new GetOneExecutor&lt;TriennialProgramActivityDto&gt;(TriennialProgramActivityDto.class,</span>
+        TriennialProgramActivityService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L124">            .execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public TriennialProgramActivityDto getOne(ProjectionDto projection, FilterDto filter,
+      String auditWho, String auditSession) {
+<span class="fc" id="L138">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L139">    request.setProjection(projection);</span>
+<span class="fc" id="L140">    request.setFilter(filter);</span>
+<span class="fc" id="L141">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L142">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L143">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public TriennialProgramActivityDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L153">    return new GetOneExecutor&lt;TriennialProgramActivityDto&gt;(TriennialProgramActivityDto.class,</span>
+        TriennialProgramActivityService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L155">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public TriennialProgramActivityDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L170">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L171">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L172">    request.setProjection(projection);</span>
+<span class="fc" id="L173">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L174">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L175">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(TriennialProgramActivityUpdateRequestDto request) {
+<span class="fc" id="L185">    return new IdentifiableExecutor(TriennialProgramActivityService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L186">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#update}.
+   *
+   * @param identifier identifiant
+   * @param name nom
+   * @param code code
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(String identifier, String code, String name,
+      String auditWho, String auditSession) {
+<span class="fc" id="L201">    TriennialProgramActivityUpdateRequestDto request =</span>
+        new TriennialProgramActivityUpdateRequestDto();
+<span class="fc" id="L203">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L204">    request.setName(name);</span>
+<span class="fc" id="L205">    request.setCode(code);</span>
+<span class="fc" id="L206">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L207">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L208">    return update(request);</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L218">    return new IdentifiableExecutor(TriennialProgramActivityService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L219">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link TriennialProgramActivityService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L233">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L234">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L235">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L236">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L237">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

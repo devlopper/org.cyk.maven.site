@@ -103,18 +103,18 @@ public interface FundingService extends SpecificService {
     void setLessorIdentifier(String lessorIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant {@link BudgetActivityDto}.
+     * Cette méthode permet d'obtenir l'identifiant {@link TriennialProgramActivityDto}.
      *
-     * @return identifiant {@link BudgetActivityDto}
+     * @return identifiant {@link TriennialProgramActivityDto}
      */
-    String getBudgetActivityIdentifier();
+    String getTriennialProgramActivityIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant {@link BudgetActivityDto}.
+     * Cette méthode permet d'assigner l'identifiant {@link TriennialProgramActivityDto}.
      *
-     * @param budgetActivityIdentifier identifiant {@link BudgetActivityDto}
+     * @param triennialProgramActivityIdentifier identifiant {@link TriennialProgramActivityDto}
      */
-    void setBudgetActivityIdentifier(String budgetActivityIdentifier);
+    void setTriennialProgramActivityIdentifier(String triennialProgramActivityIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant {@link ExpenditureNatureDto}.
@@ -188,10 +188,9 @@ public interface FundingService extends SpecificService {
     String JSON_EXPENDITURE_NATURE_IDENTIFIER = FundingDto.JSON_EXPENDITURE_NATURE_IDENTIFIER;
 
     /**
-     * Identifiant champ json de {@link BudgetActivityDto}.
+     * Identifiant champ json de {@link TriennialProgramActivityDto}.
      */
-    String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER =
-        FundingDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
+    String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER = FundingDto.JSON_BUDGET_ACTIVITY_IDENTIFIER;
 
     /**
      * Identifiant champ json du montant 1.
@@ -216,7 +215,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
+<span class="fc" id="L218">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -227,7 +226,7 @@ public interface FundingService extends SpecificService {
     private String expenditureNatureIdentifier;
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
-    private String budgetActivityIdentifier;
+    private String triennialProgramActivityIdentifier;
 
     @JsonbProperty(JSON_AMOUNT_1)
     private long amount1;
@@ -272,7 +271,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L275">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L274">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -363,7 +362,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L366">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L365">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -374,7 +373,7 @@ public interface FundingService extends SpecificService {
     private String expenditureNatureIdentifier;
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
-    private String budgetActivityIdentifier;
+    private String triennialProgramActivityIdentifier;
 
     @JsonbProperty(JSON_AMOUNT_1)
     private long amount1;

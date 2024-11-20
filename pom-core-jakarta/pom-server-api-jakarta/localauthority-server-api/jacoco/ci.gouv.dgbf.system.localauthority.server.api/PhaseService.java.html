@@ -64,18 +64,18 @@ public interface PhaseService extends SpecificService {
   interface PhaseSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetActivityDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link TriennialProgramActivityDto}.
      *
-     * @return identifiant de {@link BudgetActivityDto}
+     * @return identifiant de {@link TriennialProgramActivityDto}
      */
-    String getBudgetActivityIdentifier();
+    String getTriennialProgramActivityIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link BudgetActivityDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link TriennialProgramActivityDto}.
      *
-     * @param budgetActivityIdentifier identifiant de {@link BudgetActivityDto}
+     * @param triennialProgramActivityIdentifier identifiant de {@link TriennialProgramActivityDto}
      */
-    void setBudgetActivityIdentifier(String budgetActivityIdentifier);
+    void setTriennialProgramActivityIdentifier(String triennialProgramActivityIdentifier);
     
     /**
      * Cette méthode permet d'assigner le numero d'ordre.
@@ -148,7 +148,7 @@ public interface PhaseService extends SpecificService {
     LocalDate getEndDate();
 
     /**
-     * Identifiant JSON {@link BudgetActivityDto}.
+     * Identifiant JSON {@link TriennialProgramActivityDto}.
      */
     public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = PhaseDto
         .JSON_BUDGET_ACTIVITY_IDENTIFIER;
@@ -209,13 +209,13 @@ public interface PhaseService extends SpecificService {
       implements PhaseSaveRequestDto {
 
     /**
-     * Identifiant de {@link BudgetActivityDto}.
+     * Identifiant de {@link TriennialProgramActivityDto}.
      */
     @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
-    private String budgetActivityIdentifier;
+    private String triennialProgramActivityIdentifier;
 
     /**
-     * Représentation en chaine de caractères de {@link BudgetActivityDto}.
+     * Représentation en chaine de caractères de {@link TriennialProgramActivityDto}.
      */
     @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
     private String budgetActivityAsString;
@@ -379,13 +379,13 @@ public interface PhaseService extends SpecificService {
       implements PhaseSaveRequestDto {
 
     /**
-     * Identifiant de {@link BudgetActivityDto}.
+     * Identifiant de {@link TriennialProgramActivityDto}.
      */
     @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
-    private String budgetActivityIdentifier;
+    private String triennialProgramActivityIdentifier;
 
     /**
-     * Représentation en chaine de caractères de {@link BudgetActivityDto}.
+     * Représentation en chaine de caractères de {@link TriennialProgramActivityDto}.
      */
     @JsonbProperty(JSON_BUDGET_ACTIVITY_AS_STRING)
     private String budgetActivityAsString;

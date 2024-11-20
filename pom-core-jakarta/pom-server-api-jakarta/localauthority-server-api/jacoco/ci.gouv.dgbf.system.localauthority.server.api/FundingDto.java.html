@@ -42,10 +42,10 @@ import lombok.Setter;
   private String lessorAsString;
 
   /**
-   * Identifiant {@link BudgetActivityDto}.
+   * Identifiant {@link TriennialProgramActivityDto}.
    */
   @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
-  private String budgetActivityIdentifier;
+  private String triennialProgramActivityIdentifier;
 
   /**
    * Identifiant de {@link TriennialProgramDto}.
@@ -150,9 +150,10 @@ import lombok.Setter;
   public static final String JSON_LESSOR_AS_STRING = &quot;bailleurChaine&quot;;
 
   /**
-   * Identifiant json {@link #budgetActivityIdentifier}.
+   * Identifiant json {@link #triennialProgramActivityIdentifier}.
    */
-  public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER = &quot;idActiviteBudget&quot;;
+  public static final String JSON_BUDGET_ACTIVITY_IDENTIFIER =
+      TriennialProgramActivityDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json {@link #amount1}.

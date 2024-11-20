@@ -93,18 +93,18 @@ public interface JustificationContentService extends SpecificService {
 
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant {@link BudgetActivityDto}.
+     * Cette méthode permet d'obtenir l'identifiant {@link TriennialProgramActivityDto}.
      *
-     * @return identifiant {@link BudgetActivityDto}
+     * @return identifiant {@link TriennialProgramActivityDto}
      */
-    String getBudgetActivityIdentifier();
+    String getTriennialProgramActivityIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant {@link BudgetActivityDto}.
+     * Cette méthode permet d'assigner l'identifiant {@link TriennialProgramActivityDto}.
      *
-     * @param budgetActivityIdentifier identifiant {@link BudgetActivityDto}
+     * @param triennialProgramActivityIdentifier identifiant {@link TriennialProgramActivityDto}
      */
-    void setBudgetActivityIdentifier(String budgetActivityIdentifier);
+    void setTriennialProgramActivityIdentifier(String triennialProgramActivityIdentifier);
 
 
     /**
@@ -157,7 +157,7 @@ public interface JustificationContentService extends SpecificService {
     private String justificationStructureIdentifier;
 
     @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
-    private String budgetActivityIdentifier;
+    private String triennialProgramActivityIdentifier;
 
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -300,7 +300,7 @@ public interface JustificationContentService extends SpecificService {
 
 
     @JsonbProperty(JSON_BUDGET_ACTIVITY_IDENTIFIER)
-    private String budgetActivityIdentifier;
+    private String triennialProgramActivityIdentifier;
 
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
