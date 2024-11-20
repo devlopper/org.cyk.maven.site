@@ -387,6 +387,62 @@ public interface FundingService extends SpecificService {
   }
 
   /**
+   * Identifiant du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_IDENTIFIER = &quot;MISE_A_JOUR_MONTANT_FINANCEMENT&quot;;
+
+  /**
+   * Chemin du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_PATH = &quot;montant&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour montant de {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_AMOUNT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_AMOUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateAmount(FundingUpdateAmountRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour de montant.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L421">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+    /**
+     * Montant.
+     */
+    @JsonbProperty(JSON_AMOUNT)
+    private long amount;
+
+    /**
+     * Index.
+     */
+    @JsonbProperty(JSON_INDEX)
+    private int index;
+    
+    /**
+     * Identifiant json {@link #amount}.
+     */
+    public static final String JSON_AMOUNT = &quot;montant&quot;;
+    
+    /**
+     * Identifiant json {@link #index}.
+     */
+    public static final String JSON_INDEX = &quot;index&quot;;
+  }
+  
+  /**
    * Identifiant du service de suppression.
    */
   String DELETE_IDENTIFIER = &quot;SUPPRESSION_FINANCEMENT&quot;;
