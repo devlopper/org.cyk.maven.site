@@ -58,7 +58,7 @@ public interface ExerciseService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des exercices&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = ExerciseGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -69,7 +69,7 @@ public interface ExerciseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L72">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ExerciseDto&gt; {</span>
+<span class="fc" id="L72">  public static class ExerciseGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ExerciseDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ExerciseDto&gt; datas;

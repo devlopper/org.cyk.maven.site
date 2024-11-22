@@ -9,7 +9,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.budgetaryclassification.server.api.ExerciseService.GetManyResponseDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.ExerciseService.ExerciseGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L26">public class ExerciseClient extends AbstractClient&lt;ExerciseService&gt;</span>
-    implements GetByIdentifier&lt;ExerciseDto&gt;, GetMany&lt;GetManyResponseDto&gt; {
+    implements GetByIdentifier&lt;ExerciseDto&gt;, GetMany&lt;ExerciseGetManyResponseDto&gt; {
 
   @Override
   public ExerciseClient service(ExerciseService service) {
@@ -37,8 +37,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L41">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+  public ExerciseGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L41">    return new GetOneExecutor&lt;ExerciseGetManyResponseDto&gt;(ExerciseGetManyResponseDto.class,</span>
 <span class="fc" id="L42">        ExerciseService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
@@ -53,8 +53,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public ExerciseGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
 <span class="fc" id="L58">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L59">    request.setProjection(projection);</span>
 <span class="fc" id="L60">    request.setFilter(filter);</span>
