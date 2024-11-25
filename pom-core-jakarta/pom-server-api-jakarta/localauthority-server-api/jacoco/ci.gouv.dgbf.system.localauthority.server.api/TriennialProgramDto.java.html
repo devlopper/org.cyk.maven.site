@@ -18,11 +18,17 @@ import lombok.Setter;
 <span class="fc" id="L18">public class TriennialProgramDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
-   * Identifiant de l'exercice budgétaire.
+   * Identifiant {@link ExerciseDto}.
    */
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   private String exerciseIdentifier;
 
+  /**
+   * Année {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_EXERCISE_YEAR)
+  private Integer exerciseYear;
+  
   /**
    * Représentation en chaine de caractères de l'exercice budgétaire.
    */
@@ -105,6 +111,11 @@ import lombok.Setter;
    */
   public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
 
+  /**
+   * Identifiant json {@link #exerciseYear}.
+   */
+  public static final String JSON_EXERCISE_YEAR = ExerciseDto.JSON_THIS_YEAR;
+  
   /**
    * Identifiant json {@link #exerciseAsString}.
    */
