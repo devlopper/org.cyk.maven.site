@@ -28,7 +28,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXERCISE_YEAR)
   private Integer exerciseYear;
-  
+
   /**
    * Représentation en chaine de caractères de l'exercice budgétaire.
    */
@@ -47,6 +47,41 @@ import lombok.Setter;
   @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
   private String localAuthorityAsString;
 
+  /**
+   * Représentation en chaine de caractères du total des financements des actions en année N.
+   */
+  @JsonbProperty(JSON_TOTAL_ACTION_FUNDING_AMOUNT1_AS_STRING)
+  private String totalActionFundingAmount1AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements des actions en année N + 1.
+   */
+  @JsonbProperty(JSON_TOTAL_ACTION_FUNDING_AMOUNT2_AS_STRING)
+  private String totalActionFundingAmount2AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements des actions en année N + 2.
+   */
+  @JsonbProperty(JSON_TOTAL_ACTION_FUNDING_AMOUNT3_AS_STRING)
+  private String totalActionFundingAmount3AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements des opérations en année N.
+   */
+  @JsonbProperty(JSON_TOTAL_OPERATION_FUNDING_AMOUNT1_AS_STRING)
+  private String totalOperationFundingAmount1AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements des opérations en année N + 1.
+   */
+  @JsonbProperty(JSON_TOTAL_OPERATION_FUNDING_AMOUNT2_AS_STRING)
+  private String totalOperationFundingAmount2AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements des opérations en année N + 2.
+   */
+  @JsonbProperty(JSON_TOTAL_OPERATION_FUNDING_AMOUNT3_AS_STRING)
+  private String totalOperationFundingAmount3AsString;
 
   /**
    * Statut du programme triennal.
@@ -74,8 +109,6 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ACCEPTABLE)
   private Boolean acceptable;
-
-
 
   /**
    * Acceptable.
@@ -115,7 +148,7 @@ import lombok.Setter;
    * Identifiant json {@link #exerciseYear}.
    */
   public static final String JSON_EXERCISE_YEAR = ExerciseDto.JSON_THIS_YEAR;
-  
+
   /**
    * Identifiant json {@link #exerciseAsString}.
    */
@@ -143,10 +176,45 @@ import lombok.Setter;
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
 
   /**
+   * Identifiant json champ {@link #totalActionFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_ACTION_FUNDING_AMOUNT1_AS_STRING =
+      &quot;totalFinancementActionMontant1&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalActionFundingAmount2AsString}.
+   */
+  public static final String JSON_TOTAL_ACTION_FUNDING_AMOUNT2_AS_STRING =
+      &quot;totalFinancementActionMontant2&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalActionFundingAmount3AsString}.
+   */
+  public static final String JSON_TOTAL_ACTION_FUNDING_AMOUNT3_AS_STRING =
+      &quot;totalFinancementActionMontant3&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalOperationFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_OPERATION_FUNDING_AMOUNT1_AS_STRING =
+      &quot;totalFinancementOperationMontant1&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalOperationFundingAmount2AsString}.
+   */
+  public static final String JSON_TOTAL_OPERATION_FUNDING_AMOUNT2_AS_STRING =
+      &quot;totalFinancementOperationMontant2&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalOperationFundingAmount3AsString}.
+   */
+  public static final String JSON_TOTAL_OPERATION_FUNDING_AMOUNT3_AS_STRING =
+      &quot;totalFinancementOperationMontant3&quot;;
+
+  /**
    * Identifiant json champ {@link #acceptable}.
    */
   public static final String JSON_ACCEPTABLE = &quot;acceptable&quot;;
-
 
   /**
    * Identifiant json champ {@link #transmitable}.
