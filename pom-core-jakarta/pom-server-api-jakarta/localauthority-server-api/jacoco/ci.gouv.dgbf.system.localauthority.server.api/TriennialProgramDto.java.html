@@ -36,13 +36,19 @@ import lombok.Setter;
   private String exerciseAsString;
 
   /**
-   * Identifiant de la collectivité.
+   * Identifiant {@link LocalAuthorityDto}.
    */
   @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
   private String localAuthorityIdentifier;
 
   /**
-   * Représentation en chaine de caractères de la collectivité.
+   * Code {@link LocalAuthorityDto}.
+   */
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_CODE)
+  private String localAuthorityCode;
+  
+  /**
+   * Représentation en chaine de caractères de {@link LocalAuthorityDto}.
    */
   @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
   private String localAuthorityAsString;
@@ -160,6 +166,12 @@ import lombok.Setter;
   public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
       LocalAuthorityDto.JSON_THIS_IDENTIFIER;
 
+  /**
+   * Identifiant json {@link #localAuthorityCode}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_CODE =
+      LocalAuthorityDto.JSON_THIS_CODE;
+  
   /**
    * Identifiant json {@link #localAuthorityAsString}.
    */
