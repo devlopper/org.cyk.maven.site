@@ -46,12 +46,36 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_LOCAL_AUTHORITY_CODE)
   private String localAuthorityCode;
-  
+
   /**
    * Représentation en chaine de caractères de {@link LocalAuthorityDto}.
    */
   @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
   private String localAuthorityAsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements en année N.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT1_AS_STRING)
+  private String totalFundingAmount1AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements en année N + 1.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT2_AS_STRING)
+  private String totalFundingAmount2AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements en année N + 2.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING)
+  private String totalFundingAmount3AsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre d'actions.
+   */
+  @JsonbProperty(JSON_ACTION_COUNT_AS_STRING)
+  private String actionCountAsString;
 
   /**
    * Représentation en chaine de caractères du total des financements des actions en année N.
@@ -70,6 +94,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_TOTAL_ACTION_FUNDING_AMOUNT3_AS_STRING)
   private String totalActionFundingAmount3AsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre d'opérations.
+   */
+  @JsonbProperty(JSON_OPERATION_COUNT_AS_STRING)
+  private String operationCountAsString;
 
   /**
    * Représentation en chaine de caractères du total des financements des opérations en année N.
@@ -169,9 +199,8 @@ import lombok.Setter;
   /**
    * Identifiant json {@link #localAuthorityCode}.
    */
-  public static final String JSON_LOCAL_AUTHORITY_CODE =
-      LocalAuthorityDto.JSON_THIS_CODE;
-  
+  public static final String JSON_LOCAL_AUTHORITY_CODE = LocalAuthorityDto.JSON_THIS_CODE;
+
   /**
    * Identifiant json {@link #localAuthorityAsString}.
    */
@@ -186,6 +215,26 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #actionCountAsString}.
+   */
+  public static final String JSON_ACTION_COUNT_AS_STRING = &quot;nombreActionChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT1_AS_STRING = &quot;totalFinancementMontant1&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmount2AsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT2_AS_STRING = &quot;totalFinancementMontant2&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmount3AsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING = &quot;totalFinancementMontant3&quot;;
 
   /**
    * Identifiant json champ {@link #totalActionFundingAmount1AsString}.
@@ -204,6 +253,11 @@ import lombok.Setter;
    */
   public static final String JSON_TOTAL_ACTION_FUNDING_AMOUNT3_AS_STRING =
       &quot;totalFinancementActionMontant3&quot;;
+
+  /**
+   * Identifiant json champ {@link #operationCountAsString}.
+   */
+  public static final String JSON_OPERATION_COUNT_AS_STRING = &quot;nombreOperationChaine&quot;;
 
   /**
    * Identifiant json champ {@link #totalOperationFundingAmount1AsString}.
