@@ -54,6 +54,12 @@ import lombok.Setter;
   private String localAuthorityAsString;
 
   /**
+   * Représentation en chaine de caractères du nombre d'activités.
+   */
+  @JsonbProperty(JSON_ACTIVITY_COUNT_AS_STRING)
+  private String activityCountAsString;
+
+  /**
    * Représentation en chaine de caractères du total des financements en année N.
    */
   @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT1_AS_STRING)
@@ -215,6 +221,11 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #activityCountAsString}.
+   */
+  public static final String JSON_ACTIVITY_COUNT_AS_STRING = &quot;nombreActiviteChaine&quot;;
 
   /**
    * Identifiant json champ {@link #actionCountAsString}.
