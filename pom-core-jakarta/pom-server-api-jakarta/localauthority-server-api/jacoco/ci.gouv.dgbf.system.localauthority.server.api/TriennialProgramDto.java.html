@@ -145,7 +145,6 @@ import lombok.Setter;
   @JsonbProperty(JSON_TRANSMITABLE)
   private Boolean transmitable;
 
-
   /**
    * Acceptable.
    */
@@ -153,24 +152,23 @@ import lombok.Setter;
   private Boolean acceptable;
 
   /**
-   * Acceptable.
+   * Retournable.
    */
   @JsonbProperty(JSON_RETURNABLE)
   private Boolean returnable;
 
-
   /**
-   * Correctable.
-   */
-  @JsonbProperty(JSON_CORRECTABLE)
-  private Boolean correctable;
-
-  /**
-   * Correctable.
+   * Approuvable.
    */
   @JsonbProperty(JSON_APPROVABLE)
   private Boolean approvable;
 
+  /**
+   * Raison du statut.
+   */
+  @JsonbProperty(JSON_STATUS_REASON)
+  private String statusReason;
+  
   /**
    * Identifiant json de identifiant de {@link TriennialProgramDto}.
    */
@@ -296,26 +294,23 @@ import lombok.Setter;
   /**
    * Identifiant json champ {@link #transmitable}.
    */
-  public static final String JSON_TRANSMITABLE = &quot;transmitable&quot;;
+  public static final String JSON_TRANSMITABLE = &quot;transmettable&quot;;
 
   /**
    * Identifiant json champ {@link #returnable}.
    */
-  public static final String JSON_RETURNABLE = &quot;returnable&quot;;
+  public static final String JSON_RETURNABLE = &quot;retournable&quot;;
 
   /**
-   * Identifiant json champ {@link #correctable}.
+   * Identifiant json champ {@link #approvable}.
    */
-  public static final String JSON_CORRECTABLE = &quot;correctable&quot;;
-
+  public static final String JSON_APPROVABLE = &quot;approuvable&quot;;
 
   /**
-   * Identifiant json champ {@link #correctable}.
+   * Identifiant json champ {@link #statusReason}.
    */
-  public static final String JSON_APPROVABLE = &quot;approvable&quot;;
-
-
-
+  public static final String JSON_STATUS_REASON = &quot;raisonStatut&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

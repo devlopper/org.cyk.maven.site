@@ -22,33 +22,31 @@ public enum TriennialProgramStatus {
    */
 <span class="fc" id="L23">  CREATED(TriennialProgramStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
 
-
   /**
    * TriennalPrograme transmis.
    */
-<span class="fc" id="L29">  TRANSMITTED(TriennialProgramStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmission&quot;),</span>
+<span class="fc" id="L28">  TRANSMITTED(TriennialProgramStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmission&quot;),</span>
+  
   /**
    * TriennalPrograme Accepté.
    */
 <span class="fc" id="L33">  ACCEPTED(TriennialProgramStatusCode.ACCEPTED, &quot;Accepté&quot;, &quot;Validation&quot;),</span>
+  
   /**
    * TriennalPrograme Retourné.
    */
-<span class="fc" id="L37">  RETURNED(TriennialProgramStatusCode.RETURNED, &quot;Retourné&quot;, &quot;Rejet&quot;),</span>
-  /**
-   * TriennalPrograme corrigé.
-   */
-<span class="fc" id="L41">  CORRECTED(TriennialProgramStatusCode.CORRECTED, &quot;Corrigé&quot;, &quot;Correction&quot;),</span>
-  /**
-   * TriennalPrograme corrigé.
-   */
-<span class="fc" id="L45">  APPROVED(TriennialProgramStatusCode.APPROVED, &quot;Approuvé&quot;, &quot;Approbation&quot;),;</span>
+<span class="fc" id="L38">  RETURNED(TriennialProgramStatusCode.RETURNED, &quot;Retourné&quot;, &quot;Rejet&quot;),</span>
 
-<span class="fc" id="L47">  private TriennialProgramStatus(String code, String name, String action) {</span>
-<span class="fc" id="L48">    this.code = code;</span>
-<span class="fc" id="L49">    this.name = name;</span>
-<span class="fc" id="L50">    this.action = action;</span>
-<span class="fc" id="L51">  }</span>
+  /**
+   * TriennalPrograme corrigé.
+   */
+<span class="fc" id="L43">  APPROVED(TriennialProgramStatusCode.APPROVED, &quot;Approuvé&quot;, &quot;Approbation&quot;),;</span>
+
+<span class="fc" id="L45">  private TriennialProgramStatus(String code, String name, String action) {</span>
+<span class="fc" id="L46">    this.code = code;</span>
+<span class="fc" id="L47">    this.name = name;</span>
+<span class="fc" id="L48">    this.action = action;</span>
+<span class="fc" id="L49">  }</span>
 
   private String code;
   private String name;
@@ -57,7 +55,7 @@ public enum TriennialProgramStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L60">    return name;</span>
+<span class="fc" id="L58">    return name;</span>
   }
 
   /**
@@ -67,18 +65,17 @@ public enum TriennialProgramStatus {
    * @return statut
    */
   public static TriennialProgramStatus getByCode(String code) {
-<span class="fc" id="L70">    return Stream.of(TriennialProgramStatus.values())</span>
-<span class="fc" id="L71">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L72">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L68">    return Stream.of(TriennialProgramStatus.values())</span>
+<span class="fc" id="L69">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L70">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L76">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L77">    TRANSMITTED.previous = Core.getSet(List.of(CREATED));</span>
-<span class="fc" id="L78">    ACCEPTED.previous = Core.getSet(List.of(TRANSMITTED));</span>
-<span class="fc" id="L79">    RETURNED.previous = Core.getSet(List.of(ACCEPTED));</span>
-<span class="fc" id="L80">    CORRECTED.previous = Core.getSet(List.of(ACCEPTED));</span>
-<span class="fc" id="L81">    APPROVED.previous = Core.getSet(List.of(ACCEPTED));</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L74">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L75">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, RETURNED));</span>
+<span class="fc" id="L76">    ACCEPTED.previous = Core.getSet(List.of(TRANSMITTED));</span>
+<span class="fc" id="L77">    RETURNED.previous = Core.getSet(List.of(TRANSMITTED, ACCEPTED));</span>
+<span class="fc" id="L78">    APPROVED.previous = Core.getSet(List.of(ACCEPTED));</span>
+<span class="fc" id="L79">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -129,7 +129,192 @@ public interface TriennialProgramService extends SpecificService {
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
     private String localAuthorityIdentifier;
   }
+  
+  /**
+   * Cette classe représente la requête de retour.
+   *
+   * @author AKM
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L141">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
 
+    /**
+     * Raison.
+     */
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+
+    /**
+     * {@link #reason}.
+     */
+    public static final String JSON_REASON = &quot;raison&quot;;
+  }
+  
+  /**
+   * Cette classe représente la réponse de mise à jour du statut.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L163">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * {@link TriennialProgramDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private TriennialProgramStatus status;
+
+    /**
+     * {@link TriennialProgramDto#getTransmitable()}.
+     */
+    private Boolean transmitable;
+
+    /**
+     * {@link TriennialProgramDto#getAcceptable()}.
+     */
+    private Boolean acceptable;
+
+    /**
+     * {@link TriennialProgramDto#getReturnable()}.
+     */
+    private Boolean returnable;
+
+    /**
+     * {@link TriennialProgramDto#getApprovable()}.
+     */
+    private Boolean approvable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status statut
+     */
+    public void initialize(TriennialProgramStatus status) {
+<span class="fc" id="L197">      this.status = status;</span>
+<span class="fc" id="L198">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
+<span class="fc" id="L199">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L200">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
+<span class="fc" id="L201">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
+<span class="fc" id="L202">    }</span>
+
+    /**
+     * {@link TriennialProgramDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = TriennialProgramDto.JSON_STATUS;
+
+    /**
+     * {@link TriennialProgramDto#JSON_TRANSMITABLE}.
+     */
+    public static final String JSON_TRANSMITABLE = TriennialProgramDto.JSON_TRANSMITABLE;
+
+    /**
+     * {@link TriennialProgramDto#JSON_ACCEPTABLE}.
+     */
+    public static final String JSON_ACCEPTABLE = TriennialProgramDto.JSON_ACCEPTABLE;
+
+    /**
+     * {@link TriennialProgramDto#JSON_RETURNABLE}.
+     */
+    public static final String JSON_RETURNABLE = TriennialProgramDto.JSON_RETURNABLE;
+
+    /**
+     * {@link TriennialProgramDto#JSON_APPROVABLE}.
+     */
+    public static final String JSON_APPROVABLE = TriennialProgramDto.JSON_APPROVABLE;
+  }
+  
+  /**
+   * Identifiant du service de transmission.
+   */
+  String TRANSMIT_IDENTIFIER = &quot;TRANSMISSION_PROGRAMME_TRIENNAL&quot;;
+
+  /**
+   * Chemin du service de transmission.
+   */
+  String TRANSMIT_PATH = &quot;transmission&quot;;
+
+  /**
+   * Cette méthode permet de transmettre {@link TriennialProgramDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TRANSMIT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response transmit(ByIdentifierRequestDto request);
+  
+  /**
+   * Identifiant du service d'acceptation.
+   */
+  String ACCEPT_IDENTIFIER = &quot;ACCEPTATION_PROGRAMME_TRIENNAL&quot;;
+
+  /**
+   * Chemin du service d'acceptation.
+   */
+  String ACCEPT_PATH = &quot;acceptation&quot;;
+
+  /**
+   * Cette méthode permet d'accepter {@link TriennialProgramDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ACCEPT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response accept(ByIdentifierRequestDto request);
+  
+  /**
+   * Identifiant du service d'approbation.
+   */
+  String APPROVE_IDENTIFIER = &quot;APPROBATION_PROGRAMME_TRIENNAL&quot;;
+
+  /**
+   * Chemin du service d'approbation.
+   */
+  String APPROVE_PATH = &quot;approbation&quot;;
+
+  /**
+   * Cette méthode permet d'accepter {@link TriennialProgramDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(APPROVE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response approve(ByIdentifierRequestDto request);
+  
+  /**
+   * Identifiant du service de retour.
+   */
+  String RETURN_IDENTIFIER = &quot;RETOUR_PROGRAMME_TRIENNAL&quot;;
+
+  /**
+   * Chemin du service de retour.
+   */
+  String RETURN_PATH = &quot;retour&quot;;
+
+  /**
+   * Cette méthode permet de retourner {@link TriennialProgramDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(RETURN_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response returnBack(TriennialProgramReturnRequestDto request);
+  
   /**
    * Identifiant du service d'initialisation.
    */
@@ -156,7 +341,6 @@ public interface TriennialProgramService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response initialize(ByIdentifierRequestDto request);
-
 
   /**
    * Identifiant du service d'obtention de plusieurs.
@@ -191,7 +375,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L194">  public static class TriennialProgramGetManyResponseDto</span>
+<span class="fc" id="L378">  public static class TriennialProgramGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TriennialProgramDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -283,7 +467,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L286">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L470">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
