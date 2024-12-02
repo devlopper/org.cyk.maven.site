@@ -114,6 +114,18 @@ import lombok.Setter;
   private String amount3AsString;
 
   /**
+   * Représentation en chaine de caractères du montant exécuté.
+   */
+  @JsonbProperty(JSON_EXECUTED_AMOUNT_AS_STRING)
+  private String executedAmountAsString;
+  
+  /**
+   * Représentation en chaine de caractères du montant de l'activité.
+   */
+  @JsonbProperty(JSON_ACTIVITY_AMOUNT_AS_STRING)
+  private String activityAmountAsString;
+  
+  /**
    * Catégorie d'activité.
    */
   @JsonbProperty(JSON_ACTIVITY_CATEGORY)
@@ -185,6 +197,16 @@ import lombok.Setter;
    */
   public static final String JSON_AMOUNT_3_AS_STRING = &quot;montant3Chaine&quot;;
 
+  /**
+   * Identifiant json {@link #executedAmountAsString}.
+   */
+  public static final String JSON_EXECUTED_AMOUNT_AS_STRING = &quot;montantExecuteChaine&quot;;
+  
+  /**
+   * Identifiant json {@link #activityAmountAsString}.
+   */
+  public static final String JSON_ACTIVITY_AMOUNT_AS_STRING = &quot;montantActiviteChaine&quot;;
+  
   /**
    * Identifiant json {@link #triennialProgramAsString}.
    */
