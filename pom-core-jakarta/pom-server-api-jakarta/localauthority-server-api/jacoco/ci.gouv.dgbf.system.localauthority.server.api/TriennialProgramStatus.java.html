@@ -18,44 +18,52 @@ import lombok.Getter;
 public enum TriennialProgramStatus {
 
   /**
-   * TriennalPrograme créé.
+   * Créé.
    */
-<span class="fc" id="L23">  CREATED(TriennialProgramStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+<span class="fc" id="L23">  CREATED(TriennialProgramStatusCode.CREATED, &quot;Créé&quot;, &quot;Créer&quot;, &quot;Création&quot;, WorkflowStep.INPUT),</span>
 
   /**
-   * TriennalPrograme transmis.
+   * Transmis.
    */
-<span class="fc" id="L28">  TRANSMITTED(TriennialProgramStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmission&quot;),</span>
-  
-  /**
-   * TriennalPrograme Accepté.
-   */
-<span class="fc" id="L33">  ACCEPTED(TriennialProgramStatusCode.ACCEPTED, &quot;Accepté&quot;, &quot;Validation&quot;),</span>
-  
-  /**
-   * TriennalPrograme Retourné.
-   */
-<span class="fc" id="L38">  RETURNED(TriennialProgramStatusCode.RETURNED, &quot;Retourné&quot;, &quot;Rejet&quot;),</span>
+<span class="fc" id="L28">  TRANSMITTED(TriennialProgramStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmettre&quot;, &quot;Transmission&quot;,</span>
+      WorkflowStep.VALIDATION),
 
   /**
-   * TriennalPrograme corrigé.
+   * Accepté.
    */
-<span class="fc" id="L43">  APPROVED(TriennialProgramStatusCode.APPROVED, &quot;Approuvé&quot;, &quot;Approbation&quot;),;</span>
+<span class="fc" id="L34">  ACCEPTED(TriennialProgramStatusCode.ACCEPTED, &quot;Accepté&quot;, &quot;Accepter&quot;, &quot;Acceptation&quot;,</span>
+      WorkflowStep.APPROVAL),
 
-<span class="fc" id="L45">  private TriennialProgramStatus(String code, String name, String action) {</span>
-<span class="fc" id="L46">    this.code = code;</span>
-<span class="fc" id="L47">    this.name = name;</span>
-<span class="fc" id="L48">    this.action = action;</span>
-<span class="fc" id="L49">  }</span>
+  /**
+   * Retourné.
+   */
+<span class="fc" id="L40">  RETURNED(TriennialProgramStatusCode.RETURNED, &quot;Retourné&quot;, &quot;Retourner&quot;, &quot;Retour&quot;,</span>
+      WorkflowStep.INPUT),
+
+  /**
+   * Approuvé.
+   */
+<span class="fc" id="L46">  APPROVED(TriennialProgramStatusCode.APPROVED, &quot;Approuvé&quot;, &quot;Approuver&quot;, &quot;Approbation&quot;, null);</span>
+
+  private TriennialProgramStatus(String code, String name, String action, String actionName,
+<span class="fc" id="L49">      WorkflowStep workflowStep) {</span>
+<span class="fc" id="L50">    this.code = code;</span>
+<span class="fc" id="L51">    this.name = name;</span>
+<span class="fc" id="L52">    this.action = action;</span>
+<span class="fc" id="L53">    this.actionName = actionName;</span>
+<span class="fc" id="L54">    this.workflowStep = workflowStep;</span>
+<span class="fc" id="L55">  }</span>
 
   private String code;
   private String name;
   private String action;
+  private String actionName;
+  private WorkflowStep workflowStep;
   private Set&lt;TriennialProgramStatus&gt; previous;
 
   @Override
   public String toString() {
-<span class="fc" id="L58">    return name;</span>
+<span class="fc" id="L66">    return name;</span>
   }
 
   /**
@@ -65,17 +73,53 @@ public enum TriennialProgramStatus {
    * @return statut
    */
   public static TriennialProgramStatus getByCode(String code) {
-<span class="fc" id="L68">    return Stream.of(TriennialProgramStatus.values())</span>
-<span class="fc" id="L69">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L70">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L76">    return Stream.of(TriennialProgramStatus.values())</span>
+<span class="fc" id="L77">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L78">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L74">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L75">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, RETURNED));</span>
-<span class="fc" id="L76">    ACCEPTED.previous = Core.getSet(List.of(TRANSMITTED));</span>
-<span class="fc" id="L77">    RETURNED.previous = Core.getSet(List.of(TRANSMITTED, ACCEPTED));</span>
-<span class="fc" id="L78">    APPROVED.previous = Core.getSet(List.of(ACCEPTED));</span>
-<span class="fc" id="L79">  }</span>
+<span class="fc" id="L82">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L83">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, RETURNED));</span>
+<span class="fc" id="L84">    ACCEPTED.previous = Core.getSet(List.of(TRANSMITTED));</span>
+<span class="fc" id="L85">    RETURNED.previous = Core.getSet(List.of(TRANSMITTED, ACCEPTED));</span>
+<span class="fc" id="L86">    APPROVED.previous = Core.getSet(List.of(ACCEPTED));</span>
+<span class="fc" id="L87">  }</span>
+
+  /**
+   * Cette classe représente les étapes du circuit de travail.
+   *
+   * @author Christian
+   *
+   */
+<span class="fc" id="L95">  @Getter</span>
+  public enum WorkflowStep {
+    /**
+     * Saisie.
+     */
+<span class="fc" id="L100">    INPUT(&quot;Saisie&quot;,</span>
+        &quot;Saisir les montants des actions et opérations. &quot;
+        + &quot;Ensuite, veuillez transmettre pour validation&quot;),
+    /**
+     * Validation.
+     */
+<span class="fc" id="L106">    VALIDATION(&quot;Validation&quot;,</span>
+        &quot;Vérifier les montants des actions et opérations. &quot;
+        + &quot;Accepter si vous êtes d'accord sinon retouner à la saisie&quot;),
+    /**
+     * Approbation.
+     */
+<span class="fc" id="L112">    APPROVAL(&quot;Approbation&quot;,</span>
+        &quot;Vérifier les montants des actions et opérations. &quot;
+        + &quot;Approuver si vous êtes d'accord sinon retouner à la saisie&quot;);
+
+    String name;
+    String description;
+
+<span class="fc" id="L119">    private WorkflowStep(String name, String description) {</span>
+<span class="fc" id="L120">      this.name = name;</span>
+<span class="fc" id="L121">      this.description = description;</span>
+<span class="fc" id="L122">    }</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
