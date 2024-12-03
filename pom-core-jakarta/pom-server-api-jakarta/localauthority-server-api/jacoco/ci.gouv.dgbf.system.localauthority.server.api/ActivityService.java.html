@@ -76,20 +76,20 @@ public interface ActivityService extends SpecificService {
    *
    */
   interface ActivitySaveRequestDto {
-    
-    /**
-     * Cette méthode permet d'obtenir l'identitant de {@link ServiceDto}.
-     *
-     * @return identifiant de {@link ServiceDto}
-     */
-    String getServiceIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link ServiceDto}.
+     * Cette méthode permet d'obtenir l'identitant de {@link LocalAuthorityDto}.
      *
-     * @param identifier identifiant de {@link ServiceDto}
+     * @return identifiant de {@link LocalAuthorityDto}
      */
-    void setServiceIdentifier(String identifier);
+    String getLocalAuthorityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link LocalAuthorityDto}.
+     *
+     * @param identifier identifiant de {@link LocalAuthorityDto}
+     */
+    void setLocalAuthorityIdentifier(String identifier);
 
     /**
      * Cette méthode permet d'obtenir l'identitant de {@link ActivityNatureDto}.
@@ -132,7 +132,7 @@ public interface ActivityService extends SpecificService {
      * @param identifier identifiant de {@link FunctionalAccountDto}
      */
     void setFunctionalAccountIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identitant de {@link ExpenditureNatureDto}.
      *
@@ -146,7 +146,7 @@ public interface ActivityService extends SpecificService {
      * @param identifier identifiant de {@link ExpenditureNatureDto}
      */
     void setExpenditureNatureIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identitant de {@link WealthAccountDto}.
      *
@@ -174,7 +174,7 @@ public interface ActivityService extends SpecificService {
      * @param amount montant
      */
     void setAmount(long amount);
-    
+
     /**
      * Cette méthode permet d'obtenir la catégorie.
      *
@@ -204,13 +204,13 @@ public interface ActivityService extends SpecificService {
      */
     public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER =
         ActivityDto.JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER;
-    
+
     /**
      * Identifiant json du champ de l'identitant de {@link ExpenditureNatureDto}.
      */
     public static final String JSON_EXPENDITURE_NATURE_IDENTIFIER =
         ActivityDto.JSON_EXPENDITURE_NATURE_IDENTIFIER;
-    
+
     /**
      * Identifiant json du champ de l'identitant de {@link WealthAccountDto}.
      */
@@ -218,15 +218,16 @@ public interface ActivityService extends SpecificService {
         ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
 
     /**
-     * Identifiant json du champ de l'identitant de {@link ServiceDto}.
+     * Identifiant json du champ de l'identitant de {@link LocalAuthorityDto}.
      */
-    public static final String JSON_SERVICE_IDENTIFIER = ActivityDto.JSON_SERVICE_IDENTIFIER;
+    public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+        ActivityDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
 
     /**
      * Identifiant json du champ de montant.
      */
     public static final String JSON_AMOUNT = ActivityDto.JSON_AMOUNT;
-    
+
     /**
      * {@link ActivityCategory}.
      */
@@ -241,12 +242,12 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L244">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L245">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
-    @JsonbProperty(JSON_SERVICE_IDENTIFIER)
-    private String serviceIdentifier;
-    
+    @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+    private String localAuthorityIdentifier;
+
     @JsonbProperty(JSON_NATURE_IDENTIFIER)
     private String natureIdentifier;
 
@@ -255,16 +256,16 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
     private String functionalAccountIdentifier;
-    
+
     @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
     private String expenditureNatureIdentifier;
-    
+
     @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
     private String wealthAccountIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
-    
+
     @JsonbProperty(JSON_CATEGORY)
     private ActivityCategory categoryEnum;
   }
@@ -303,7 +304,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L306">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L307">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -395,12 +396,12 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L398">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L399">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
-    
-    @JsonbProperty(JSON_SERVICE_IDENTIFIER)
-    private String serviceIdentifier;
-    
+
+    @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+    private String localAuthorityIdentifier;
+
     @JsonbProperty(JSON_NATURE_IDENTIFIER)
     private String natureIdentifier;
 
@@ -409,16 +410,16 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
     private String functionalAccountIdentifier;
-    
+
     @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
     private String expenditureNatureIdentifier;
-    
+
     @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
     private String wealthAccountIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
-    
+
     @JsonbProperty(JSON_CATEGORY)
     private ActivityCategory categoryEnum;
   }

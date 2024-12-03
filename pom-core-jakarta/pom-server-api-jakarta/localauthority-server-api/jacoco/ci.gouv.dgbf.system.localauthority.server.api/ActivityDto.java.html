@@ -18,29 +18,17 @@ import lombok.Setter;
 <span class="fc" id="L18">public class ActivityDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
-   * Identifiant du service.
+   * Identifiant de {@link LocalAuthorityDto}.
    */
-  @JsonbProperty(JSON_SERVICE_IDENTIFIER)
-  private String serviceIdentifier;
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+  private String localAuthorityIdentifier;
 
   /**
-   * Représentation en chaine de caractères du service.
+   * Représentation en chaine de caractères de {@link LocalAuthorityDto}.
    */
-  @JsonbProperty(JSON_SERVICE_AS_STRING)
-  private String serviceAsString;
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
+  private String localAuthorityAsString;
 
-  /**
-   * Identifiant de l'unité administrative qui est la collectivité.
-   */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
-  private String administrativeUnitIdentifier;
-  
-  /**
-   * Représentation en chaine de caractères l'unité administrative qui est la collectivité.
-   */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
-  private String administrativeUnitAsString;
-  
   /**
    * Identifiant {@link ActivityNatureDto}.
    */
@@ -69,7 +57,7 @@ import lombok.Setter;
    * Catégorie.
    */
   private ActivityCategory categoryEnum;
-  
+
   /**
    * Identifiant {@link FunctionalAccountDto}.
    */
@@ -134,32 +122,23 @@ import lombok.Setter;
    * Identifiant json de identifiant de {@link ActivityDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idActivite&quot;;
-  
+
   /**
    * Identifiant json de représentation en chaine de caractères de {@link ActivityDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;activiteChaine&quot;;
-  
-  /**
-   * Identifiant json {@link #serviceIdentifier}.
-   */
-  public static final String JSON_SERVICE_IDENTIFIER = &quot;idService&quot;;
-  
-  /**
-   * Identifiant json {@link #serviceAsString}.
-   */
-  public static final String JSON_SERVICE_AS_STRING = &quot;serviceChaine&quot;;
 
   /**
-   * Identifiant json {@link #administrativeUnitIdentifier}.
+   * Identifiant json {@link #localAuthorityIdentifier}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
-  
+  public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+      LocalAuthorityDto.JSON_THIS_IDENTIFIER;
+
   /**
-   * Identifiant json {@link #administrativeUnitAsString}.
+   * Identifiant json {@link #localAuthorityAsString}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
-  
+  public static final String JSON_LOCAL_AUTHORITY_AS_STRING = LocalAuthorityDto.JSON_THIS_AS_STRING;
+
   /**
    * Identifiant json {@link #natureIdentifier}.
    */
@@ -179,7 +158,7 @@ import lombok.Setter;
    * Identifiant json {@link #categoryAsString}.
    */
   public static final String JSON_CATEGORY_AS_STRING = &quot;categorieChaine&quot;;
-  
+
   /**
    * Identifiant json {@link ActivityCategory}.
    */

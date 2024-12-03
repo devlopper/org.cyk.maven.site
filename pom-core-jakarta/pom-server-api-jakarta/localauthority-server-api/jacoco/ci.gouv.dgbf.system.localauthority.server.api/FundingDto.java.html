@@ -72,6 +72,12 @@ import lombok.Setter;
   private String expenditureNatureAsString;
 
   /**
+   * Identifiant de {@link ActivityDto}.
+   */
+  @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
+  private String activityIdentifier;
+
+  /**
    * Représentation en chaine de caractères de {@link ActivityDto}.
    */
   @JsonbProperty(JSON_ACTIVITY_AS_STRING)
@@ -118,13 +124,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXECUTED_AMOUNT_AS_STRING)
   private String executedAmountAsString;
-  
+
   /**
    * Représentation en chaine de caractères du montant de l'activité.
    */
   @JsonbProperty(JSON_ACTIVITY_AMOUNT_AS_STRING)
   private String activityAmountAsString;
-  
+
   /**
    * Catégorie d'activité.
    */
@@ -201,14 +207,14 @@ import lombok.Setter;
    * Identifiant json {@link #executedAmountAsString}.
    */
   public static final String JSON_EXECUTED_AMOUNT_AS_STRING = &quot;montantExecuteChaine&quot;;
-  
+
   /**
    * Identifiant json {@link #activityAmountAsString}.
    */
   public static final String JSON_ACTIVITY_AMOUNT_AS_STRING = &quot;montantActiviteChaine&quot;;
-  
+
   /**
-   * Identifiant json {@link #triennialProgramAsString}.
+   * Identifiant json {@link #triennialProgramIdentifier}.
    */
   public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
       TriennialProgramDto.JSON_THIS_IDENTIFIER;
@@ -218,6 +224,11 @@ import lombok.Setter;
    */
   public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING =
       TriennialProgramDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #activityIdentifier}.
+   */
+  public static final String JSON_ACTIVITY_IDENTIFIER = ActivityDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json {@link #activityAsString}.

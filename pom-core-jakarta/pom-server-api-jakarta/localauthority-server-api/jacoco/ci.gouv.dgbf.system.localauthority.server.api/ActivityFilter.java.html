@@ -16,14 +16,14 @@ import lombok.Setter;
 public class ActivityFilter extends AbstractIdentifiableFilter {
 
   /**
-   * Identifiant du service.
+   * Identifiant {@link TriennialProgramDto}.
    */
-  String serviceIdentifier;
+  String triennialProgramIdentifier;
 
   /**
-   * Identifiant de l'unité administrative qui est la collectivité.
+   * Identifiant de {@link LocalAuthorityDto}.
    */
-  String administrativeUnitIdentifier;
+  String localAuthorityIdentifier;
 
   /**
    * Identifiant de {@link ActivityNatureDto}.
@@ -77,38 +77,61 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
   @Override
   protected void doInitialize(FilterDto filter) {
 <span class="fc" id="L79">    super.doInitialize(filter);</span>
-<span class="fc" id="L80">    serviceIdentifier = getServiceIdentifier(filter);</span>
-<span class="fc" id="L81">    categoryIdentifier = getCategoryIdentifier(filter);</span>
-<span class="fc" id="L82">    category = getCategory(filter);</span>
-<span class="fc" id="L83">  }</span>
+<span class="fc" id="L80">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
+<span class="fc" id="L81">    triennialProgramIdentifier = getTriennialProgramIdentifier(filter);</span>
+<span class="fc" id="L82">    categoryIdentifier = getCategoryIdentifier(filter);</span>
+<span class="fc" id="L83">    category = getCategory(filter);</span>
+<span class="fc" id="L84">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L87">    super.toDto(filter);</span>
-<span class="fc" id="L88">    setServiceIdentifier(filter, serviceIdentifier);</span>
-<span class="fc" id="L89">    setCategoryIdentifier(filter, categoryIdentifier);</span>
-<span class="fc" id="L90">    setCategory(filter, category);</span>
-<span class="fc" id="L91">  }</span>
+<span class="fc" id="L88">    super.toDto(filter);</span>
+<span class="fc" id="L89">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
+<span class="fc" id="L90">    setTriennialProgramIdentifier(filter, triennialProgramIdentifier);</span>
+<span class="fc" id="L91">    setCategoryIdentifier(filter, categoryIdentifier);</span>
+<span class="fc" id="L92">    setCategory(filter, category);</span>
+<span class="fc" id="L93">  }</span>
 
   /**
-   * Cette méthode permet d'assigner l'identifiant du service.
+   * Cette méthode permet d'assigner l'identifiant de {@link LocalAuthorityDto}.
    *
    * @param filter filtre
-   * @param identifier identifiant du service
+   * @param identifier identifiant de {@link LocalAuthorityDto}
    */
-  public static void setServiceIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L100">    set(filter, JSON_SERVICE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L101">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L102">  }</span>
+  public static void setLocalAuthorityIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L102">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L103">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L104">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant du service.
+   * Cette méthode permet d'obtenir l'identifiant de {@link LocalAuthorityDto}.
    *
    * @param filter filtre
-   * @return identifiant du service
+   * @return identifiant de {@link LocalAuthorityDto}
    */
-  public static String getServiceIdentifier(FilterDto filter) {
-<span class="fc" id="L111">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SERVICE_IDENTIFIER));</span>
+  public static String getLocalAuthorityIdentifier(FilterDto filter) {
+<span class="fc" id="L113">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link TriennialProgramDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant de {@link TriennialProgramDto}
+   */
+  public static void setTriennialProgramIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L123">    set(filter, JSON_TRIENNIAL_PROGRAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L124">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L125">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link TriennialProgramDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link TriennialProgramDto}
+   */
+  public static String getTriennialProgramIdentifier(FilterDto filter) {
+<span class="fc" id="L134">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TRIENNIAL_PROGRAM_IDENTIFIER));</span>
   }
 
   /**
@@ -118,9 +141,9 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant de {@link ActivityCategoryDto}
    */
   public static void setCategoryIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L121">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L122">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L123">  }</span>
+<span class="pc" id="L144">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L145">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L146">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ActivityCategoryDto}.
@@ -129,7 +152,7 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link ActivityCategoryDto}
    */
   public static String getCategoryIdentifier(FilterDto filter) {
-<span class="fc" id="L132">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
+<span class="fc" id="L155">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
   }
 
   /**
@@ -139,8 +162,8 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @param category {@link ActivityCategory}
    */
   public static void setCategory(FilterDto filter, ActivityCategory category) {
-<span class="pc" id="L142">    set(filter, JSON_CATEGORY, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(category));</span>
-<span class="fc" id="L143">  }</span>
+<span class="pc" id="L165">    set(filter, JSON_CATEGORY, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(category));</span>
+<span class="fc" id="L166">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ActivityCategory}.
@@ -149,19 +172,20 @@ public class ActivityFilter extends AbstractIdentifiableFilter {
    * @return {@link ActivityCategory}
    */
   public static ActivityCategory getCategory(FilterDto filter) {
-<span class="fc" id="L152">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_CATEGORY, ActivityCategory.class));</span>
+<span class="fc" id="L175">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_CATEGORY, ActivityCategory.class));</span>
   }
 
   /**
-   * Identifiant json champ {@link ActivityFilter#serviceIdentifier}.
+   * Identifiant json champ {@link ActivityFilter#localAuthorityIdentifier}.
    */
-  public static final String JSON_SERVICE_IDENTIFIER = ActivityDto.JSON_SERVICE_IDENTIFIER;
+  public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+      LocalAuthorityDto.JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json champ {@link ActivityFilter#administrativeUnitIdentifier}.
+   * Identifiant json champ {@link ActivityFilter#triennialProgramIdentifier}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
-      ActivityDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+      TriennialProgramDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json champ {@link ActivityFilter#natureIdentifier}.

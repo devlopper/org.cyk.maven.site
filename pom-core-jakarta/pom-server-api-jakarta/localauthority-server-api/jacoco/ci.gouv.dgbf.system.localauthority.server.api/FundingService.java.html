@@ -240,6 +240,85 @@ public interface FundingService extends SpecificService {
   }
 
   /**
+   * Identifiant du service de création par {@link TriennialProgramDto} et {@link ActivityDto}.
+   */
+  String CREATE_BY_TRIENNIAL_PROGRAM_BY_ACTIVITY_IDENTIFIER =
+      &quot;CREATION_PAR_PROGRAMME_TRIENNAL_PAR_ACTIVITE_FINANCEMENT&quot;;
+
+  /**
+   * Chemin du service de création par {@link TriennialProgramDto} et {@link ActivityDto}.
+   */
+  String CREATE_BY_TRIENNIAL_PROGRAM_BY_ACTIVITY_PATH = &quot;par-programme-triennal-par-activite&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_BY_TRIENNIAL_PROGRAM_BY_ACTIVITY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_BY_TRIENNIAL_PROGRAM_BY_ACTIVITY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createByTriennialProgramByActivity(
+      FundingCreateByTriennialProgramByActivityRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création par {@link TriennialProgramDto} et
+   * {@link ActivityDto} .
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L277">  class FundingCreateByTriennialProgramByActivityRequestDto extends AbstractAuditedRequestJsonDto {</span>
+    @JsonbProperty(JSON_MODE_IDENTIFIER)
+    private String modeIdentifier;
+
+    @JsonbProperty(JSON_LESSOR_IDENTIFIER)
+    private String lessorIdentifier;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
+    private String expenditureNatureIdentifier;
+
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
+
+    @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
+    private String activityIdentifier;
+
+    /**
+     * Identifiant champ json de {@link FundingModeDto}.
+     */
+    public static final String JSON_MODE_IDENTIFIER = FundingDto.JSON_MODE_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link LessorDto}.
+     */
+    public static final String JSON_LESSOR_IDENTIFIER = FundingDto.JSON_LESSOR_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link ExpenditureNatureDto}.
+     */
+    public static final String JSON_EXPENDITURE_NATURE_IDENTIFIER =
+        FundingDto.JSON_EXPENDITURE_NATURE_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link TriennialProgramDto}.
+     */
+    public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+        FundingDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link ActivityDto}.
+     */
+    public static final String JSON_ACTIVITY_IDENTIFIER = FundingDto.JSON_ACTIVITY_IDENTIFIER;
+  }
+
+  /**
    * Identifiant du service d'obtention de plusieurs.
    */
   String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_FINANCEMENT&quot;;
@@ -272,7 +351,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L275">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L354">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -363,7 +442,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L366">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L445">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -418,7 +497,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L421">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L500">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Montant.
      */
@@ -430,18 +509,18 @@ public interface FundingService extends SpecificService {
      */
     @JsonbProperty(JSON_INDEX)
     private int index;
-    
+
     /**
      * Identifiant json {@link #amount}.
      */
     public static final String JSON_AMOUNT = &quot;montant&quot;;
-    
+
     /**
      * Identifiant json {@link #index}.
      */
     public static final String JSON_INDEX = &quot;index&quot;;
   }
-  
+
   /**
    * Identifiant du service de suppression.
    */
