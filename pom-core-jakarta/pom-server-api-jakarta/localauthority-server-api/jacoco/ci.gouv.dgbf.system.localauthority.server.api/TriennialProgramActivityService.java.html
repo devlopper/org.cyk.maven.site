@@ -3,8 +3,6 @@
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -13,7 +11,6 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.json.bind.annotation.JsonbPropertyOrder;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
@@ -43,7 +40,7 @@ public interface TriennialProgramActivityService extends SpecificService {
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;activites-budget&quot;;
+  String PATH = &quot;activites-programmes-triennaux&quot;;
 
   /**
    * Identifiant du service de création.
@@ -77,6 +74,54 @@ public interface TriennialProgramActivityService extends SpecificService {
    */
   interface TriennialProgramActivitySaveRequestDto {
 
+    /**
+     * Cette méthode permet d'obtenir identifiant {@link TriennialProgramDto}.
+     *
+     * @return identifiant {@link TriennialProgramDto}
+     */
+    String getTriennialProgramIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner identifiant {@link TriennialProgramDto}.
+     *
+     * @param triennialProgramIdentifier identifiant {@link TriennialProgramDto}
+     */
+    void setTriennialProgramIdentifier(String triennialProgramIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir identifiant {@link ActivityDto}.
+     *
+     * @return identifiant {@link ActivityDto}
+     */
+    String getActivityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner identifiant {@link ActivityDto}.
+     *
+     * @param activityIdentifier identifiant {@link ActivityDto}
+     */
+    void setActivityIdentifier(String activityIdentifier);
+
+    /**
+     * {@link TriennialProgramActivityDto#JSON_TRIENNIAL_PROGRAM_IDENTIFIER}.
+     */
+    String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+        TriennialProgramActivityDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
+
+    /**
+     * {@link TriennialProgramActivityDto#JSON_ACTIVITY_IDENTIFIER}.
+     */
+    String JSON_ACTIVITY_IDENTIFIER = TriennialProgramActivityDto.JSON_ACTIVITY_IDENTIFIER;
+
+    /**
+     * {@link TriennialProgramActivityDto#JSON_AMOUNT}.
+     */
+    String JSON_AMOUNT = TriennialProgramActivityDto.JSON_AMOUNT;
+
+    /**
+     * {@link TriennialProgramActivityDto#JSON_JUSTIFICATION}.
+     */
+    String JSON_JUSTIFICATION = TriennialProgramActivityDto.JSON_JUSTIFICATION;
   }
 
   /**
@@ -86,12 +131,13 @@ public interface TriennialProgramActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class TriennialProgramActivityCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L134">  class TriennialProgramActivityCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements TriennialProgramActivitySaveRequestDto {
     /**
      * {@link TriennialProgramActivityDto#getTriennialProgramIdentifier()}.
      */
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
-    private String budgetIdentifier;
+    private String triennialProgramIdentifier;
 
     /**
      * {@link TriennialProgramActivityDto#getActivityIdentifier()}.
@@ -110,28 +156,6 @@ public interface TriennialProgramActivityService extends SpecificService {
      */
     @JsonbProperty(JSON_JUSTIFICATION)
     private String justification;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_TRIENNIAL_PROGRAM_IDENTIFIER}.
-     */
-    public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
-        TriennialProgramActivityDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_ACTIVITY_IDENTIFIER}.
-     */
-    public static final String JSON_ACTIVITY_IDENTIFIER =
-        TriennialProgramActivityDto.JSON_ACTIVITY_IDENTIFIER;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_AMOUNT}.
-     */
-    public static final String JSON_AMOUNT = TriennialProgramActivityDto.JSON_AMOUNT;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_JUSTIFICATION}.
-     */
-    public static final String JSON_JUSTIFICATION = TriennialProgramActivityDto.JSON_JUSTIFICATION;
   }
 
   /**
@@ -166,7 +190,7 @@ public interface TriennialProgramActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L169">  public static class TriennialProgramActivityGetManyResponseDto</span>
+<span class="fc" id="L193">  public static class TriennialProgramActivityGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TriennialProgramActivityDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -255,17 +279,13 @@ public interface TriennialProgramActivityService extends SpecificService {
    */
   @Getter
   @Setter
-  @JsonbPropertyOrder(value = {ByIdentifierRequestDto.FIELD_IDENTIFIER,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
-      AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
-      AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L262">  class TriennialProgramActivityUpdateRequestDto</span>
-      extends AbstractCodableNamableUpdateRequestJsonDto {
+<span class="fc" id="L282">  class TriennialProgramActivityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements TriennialProgramActivitySaveRequestDto {
     /**
      * {@link TriennialProgramActivityDto#getTriennialProgramIdentifier()}.
      */
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
-    private String budgetIdentifier;
+    private String triennialProgramIdentifier;
 
     /**
      * {@link TriennialProgramActivityDto#getActivityIdentifier()}.
@@ -284,28 +304,6 @@ public interface TriennialProgramActivityService extends SpecificService {
      */
     @JsonbProperty(JSON_JUSTIFICATION)
     private String justification;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_TRIENNIAL_PROGRAM_IDENTIFIER}.
-     */
-    public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
-        TriennialProgramActivityDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_ACTIVITY_IDENTIFIER}.
-     */
-    public static final String JSON_ACTIVITY_IDENTIFIER =
-        TriennialProgramActivityDto.JSON_ACTIVITY_IDENTIFIER;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_AMOUNT}.
-     */
-    public static final String JSON_AMOUNT = TriennialProgramActivityDto.JSON_AMOUNT;
-
-    /**
-     * {@link TriennialProgramActivityDto#JSON_JUSTIFICATION}.
-     */
-    public static final String JSON_JUSTIFICATION = TriennialProgramActivityDto.JSON_JUSTIFICATION;
   }
 
   /**

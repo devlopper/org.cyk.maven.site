@@ -132,6 +132,12 @@ import lombok.Setter;
   private String activityAmountAsString;
 
   /**
+   * Montant modifiable.
+   */
+  @JsonbProperty(JSON_AMOUNTS_INPUTABLE)
+  private Boolean amountsInputable;
+  
+  /**
    * Catégorie d'activité.
    */
   @JsonbProperty(JSON_ACTIVITY_CATEGORY)
@@ -213,6 +219,11 @@ import lombok.Setter;
    */
   public static final String JSON_ACTIVITY_AMOUNT_AS_STRING = &quot;montantActiviteChaine&quot;;
 
+  /**
+   * Identifiant json {@link #amountsInputable}.
+   */
+  public static final String JSON_AMOUNTS_INPUTABLE = &quot;montantsModifiable&quot;;
+  
   /**
    * Identifiant json {@link #triennialProgramIdentifier}.
    */

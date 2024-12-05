@@ -30,6 +30,12 @@ import lombok.Setter;
   private String triennialProgramAsString;
 
   /**
+   * Année de {@link ExerciseDto} de {@link TriennialProgramDto}.
+   */
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_EXERCISE_YEAR)
+  private Integer triennialProgramExerciseYear;
+
+  /**
    * Identifiant {@link ActivityDto}.
    */
   @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
@@ -52,6 +58,36 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
+
+  /**
+   * Montants des {@link FundingDto} modifiable.
+   */
+  @JsonbProperty(JSON_FUNDINGS_AMOUNTS_UPDATABLE)
+  private Boolean fundingsAmountsUpdatable;
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link FundingDto}.
+   */
+  @JsonbProperty(JSON_FUNDING_COUNT_AS_STRING)
+  private String fundingCountAsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements en année N.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT1_AS_STRING)
+  private String totalFundingAmount1AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements en année N + 1.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT2_AS_STRING)
+  private String totalFundingAmount2AsString;
+
+  /**
+   * Représentation en chaine de caractères du total des financements en année N + 2.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING)
+  private String totalFundingAmount3AsString;
 
   /**
    * Justification.
@@ -83,47 +119,87 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;activiteProgrammeTriennalChaine&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#triennialProgramIdentifier}.
+   * Identifiant json {@link #triennialProgramIdentifier}.
    */
-  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = &quot;idTriennialProgram&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = &quot;idProgrammeTriennal&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#triennialProgramAsString}.
+   * Identifiant json {@link #triennialProgramAsString}.
    */
-  public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING = &quot;triennialProgramChaine&quot;;
+  public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING = &quot;programmeTriennalChaine&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#activityIdentifier}.
+   * Identifiant json {@link #triennialProgramExerciseYear}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_EXERCISE_YEAR =
+      &quot;anneeExerciceProgrammeTriennal&quot;;
+
+  /**
+   * Identifiant json {@link #activityIdentifier}.
    */
   public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#activityAsString}.
+   * Identifiant json {@link #activityAsString}.
    */
   public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#amount}.
+   * Identifiant json {@link #amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#amountAsString}.
+   * Identifiant json {@link #amountAsString}.
    */
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#justification}.
+   * Identifiant json {@link #fundingsAmountsUpdatable}.
+   */
+  public static final String JSON_FUNDINGS_AMOUNTS_UPDATABLE = &quot;montantsFinancemensModifiable&quot;;
+
+  /**
+   * Identifiant json champ {@link #fundingCountAsString}.
+   */
+  public static final String JSON_FUNDING_COUNT_AS_STRING = &quot;nombreFinancementChaine&quot;;
+
+  /**
+   * Format des identifiants json des champs de montants.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT_AS_STRING_FORMAT =
+      &quot;totalFinancementMontant%sChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT1_AS_STRING =
+      &quot;totalFinancementMontant1Chaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmount2AsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT2_AS_STRING =
+      &quot;totalFinancementMontant2Chaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmount3AsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING =
+      &quot;totalFinancementMontant3Chaine&quot;;
+
+  /**
+   * Identifiant json {@link #justification}.
    */
   public static final String JSON_JUSTIFICATION = &quot;justification&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#orderNumber}.
+   * Identifiant json {@link #orderNumber}.
    */
   public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
 
   /**
-   * Identifiant json {@link TriennialProgramActivityDto#orderNumberAsString}.
+   * Identifiant json {@link #orderNumberAsString}.
    */
   public static final String JSON_ORDER_NUMBER_AS_STRING = &quot;numeroOrdreChaine&quot;;
 
