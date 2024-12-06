@@ -161,15 +161,27 @@ public interface ExpenditureMovementService extends SpecificService {
   @Setter
 <span class="fc" id="L162">  class ExpenditureMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
+    /**
+     * Identifiant de {@link ActDto}.
+     */
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
 
+    /**
+     * Identifiant de la dépense.
+     */
     @JsonbProperty(JSON_ITEM_IDENTIFIER)
     String itemIdentifier;
 
+    /**
+     * Montant.
+     */
     @JsonbProperty(JSON_AMOUNT)
     long amount;
     
+    /**
+     * Est crédit.
+     */
     @JsonbProperty(JSON_IS_CREDIT)
     Boolean isCredit;
   }
@@ -208,7 +220,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L211">  public static class MovementDto {</span>
+<span class="fc" id="L223">  public static class MovementDto {</span>
     /**
      * Identifiant du poste de dépense.
      */
@@ -278,11 +290,17 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L281">  class ExpenditureMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L293">  class ExpenditureMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveManyRequestDto {
+    /**
+     * Identifier de {@link ActDto}.
+     */
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
 
+    /**
+     * Liste de {@link MovementDto}.
+     */
     @JsonbProperty(JSON_MOVEMENTS)
     List&lt;MovementDto&gt; movements;
 
@@ -292,10 +310,10 @@ public interface ExpenditureMovementService extends SpecificService {
      * @return mouvements
      */
     public List&lt;MovementDto&gt; movements() {
-<span class="fc bfc" id="L295" title="All 2 branches covered.">      if (movements == null) {</span>
-<span class="fc" id="L296">        movements = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L313" title="All 2 branches covered.">      if (movements == null) {</span>
+<span class="fc" id="L314">        movements = new ArrayList&lt;&gt;();</span>
       }
-<span class="fc" id="L298">      return movements;</span>
+<span class="fc" id="L316">      return movements;</span>
     }
   }
 
@@ -333,7 +351,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L336">  public static class GetManyResponseDto</span>
+<span class="fc" id="L354">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -426,7 +444,7 @@ public interface ExpenditureMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L429">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L447">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
