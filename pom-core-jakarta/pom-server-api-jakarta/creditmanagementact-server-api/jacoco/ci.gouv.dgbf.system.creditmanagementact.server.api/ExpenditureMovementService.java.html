@@ -446,15 +446,27 @@ public interface ExpenditureMovementService extends SpecificService {
   @Setter
 <span class="fc" id="L447">  class ExpenditureMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements SaveRequestDto {
+    /**
+     * Identifiant de {@link ActDto}.
+     */
     @JsonbProperty(JSON_ACT_IDENTIFIER)
     String actIdentifier;
 
+    /**
+     * Identifiant de la dépense.
+     */
     @JsonbProperty(JSON_ITEM_IDENTIFIER)
     String itemIdentifier;
 
+    /**
+     * Montant.
+     */
     @JsonbProperty(JSON_AMOUNT)
     long amount;
     
+    /**
+     * Est crédit.
+     */
     @JsonbProperty(JSON_IS_CREDIT)
     Boolean isCredit;
   }
