@@ -56,6 +56,12 @@ import lombok.Setter;
   private ProcessingStatus status;
   
   /**
+   * Code {@link ProcessingStatus}.
+   */
+  @JsonbProperty(JSON_STATUS_CODE)
+  private String statusCode;
+  
+  /**
    * Représentation en chaine de caractères de {@link ProcessingStatus}.
    */
   @JsonbProperty(JSON_STATUS_AS_STRING)
@@ -134,18 +140,24 @@ import lombok.Setter;
   private String terminationDateAsString;
   
   /**
+   * Est en retard.
+   */
+  @JsonbProperty(JSON_IS_LATE)
+  private Boolean isLate;
+  
+  /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L142">    status = response.getStatus();</span>
-<span class="fc" id="L143">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L144">    startable = response.getStartable();</span>
-<span class="fc" id="L145">    stoppable = response.getStoppable();</span>
-<span class="fc" id="L146">    cancelable = response.getCancelable();</span>
-<span class="fc" id="L147">    terminatable = response.getTerminatable();</span>
-<span class="fc" id="L148">  }</span>
+<span class="fc" id="L154">    status = response.getStatus();</span>
+<span class="fc" id="L155">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L156">    startable = response.getStartable();</span>
+<span class="fc" id="L157">    stoppable = response.getStoppable();</span>
+<span class="fc" id="L158">    cancelable = response.getCancelable();</span>
+<span class="fc" id="L159">    terminatable = response.getTerminatable();</span>
+<span class="fc" id="L160">  }</span>
   
   /**
    * champ json {@link #descriptive}.
@@ -176,6 +188,11 @@ import lombok.Setter;
    * champ json {@link #status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
+  
+  /**
+   * champ json {@link #statusCode}.
+   */
+  public static final String JSON_STATUS_CODE = &quot;codeStatut&quot;;
   
   /**
    * champ json {@link #statusAsString}.
@@ -241,6 +258,11 @@ import lombok.Setter;
    * champ json {@link #terminationDateAsString}.
    */
   public static final String JSON_TERMINATION_DATE_AS_STRING = &quot;dateTerminaisonChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link #isLate}.
+   */
+  public static final String JSON_IS_LATE = &quot;estEnRetard&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.

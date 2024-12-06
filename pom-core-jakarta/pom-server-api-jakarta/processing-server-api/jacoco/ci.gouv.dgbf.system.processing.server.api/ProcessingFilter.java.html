@@ -21,31 +21,45 @@ public class ProcessingFilter extends AbstractIdentifiableFilter {
   ProcessingStatus status;
 
   /**
+   * Code {@link ProcessingStatus}.
+   */
+  String statusCode;
+
+  /**
+   * Est en retard.
+   */
+  Boolean isLate;
+
+  /**
    * Cette méthode permet d'instancier.
    *
    * @param filter filtre
    */
   public ProcessingFilter(FilterDto filter) {
-<span class="fc" id="L29">    super(filter);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L39">    super(filter);</span>
+<span class="fc" id="L40">  }</span>
 
   /**
    * Cette méthode permet d'instancier.
    *
    */
-<span class="fc" id="L36">  public ProcessingFilter() {}</span>
+<span class="fc" id="L46">  public ProcessingFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L40">    super.doInitialize(filter);</span>
-<span class="fc" id="L41">    status = getStatus(filter);</span>
-<span class="fc" id="L42">  }</span>
-  
+<span class="fc" id="L50">    super.doInitialize(filter);</span>
+<span class="fc" id="L51">    status = getStatus(filter);</span>
+<span class="fc" id="L52">    statusCode = getStatusCode(filter);</span>
+<span class="fc" id="L53">    isLate = getIsLate(filter);</span>
+<span class="fc" id="L54">  }</span>
+
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L46">    super.toDto(filter);</span>
-<span class="fc" id="L47">    setStatus(filter, status);</span>
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L58">    super.toDto(filter);</span>
+<span class="fc" id="L59">    setStatus(filter, status);</span>
+<span class="fc" id="L60">    setStatusCode(filter, statusCode);</span>
+<span class="fc" id="L61">    setIsLate(filter, isLate);</span>
+<span class="fc" id="L62">  }</span>
 
   /**
    * Cette méthode permet d'assigner {@link ProcessingStatus} au filtre.
@@ -54,8 +68,8 @@ public class ProcessingFilter extends AbstractIdentifiableFilter {
    * @param status {@link ProcessingStatus}
    */
   public static void setStatus(FilterDto filter, ProcessingStatus status) {
-<span class="pc" id="L57">    set(filter, JSON_STATUS, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(status));</span>
-<span class="fc" id="L58">  }</span>
+<span class="pc" id="L71">    set(filter, JSON_STATUS, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(status));</span>
+<span class="fc" id="L72">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link ProcessingStatus} du filtre.
@@ -64,12 +78,62 @@ public class ProcessingFilter extends AbstractIdentifiableFilter {
    * @return {@link ProcessingStatus}
    */
   public static ProcessingStatus getStatus(FilterDto filter) {
-<span class="fc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_STATUS, ProcessingStatus.class));</span>
+<span class="fc" id="L81">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_STATUS, ProcessingStatus.class));</span>
   }
+
+  /**
+   * Cette méthode permet d'obtenir le code de {@link ProcessingStatus}.
+   *
+   * @param filter filtre
+   * @return le code de {@link ProcessingStatus}
+   */
+  public static String getStatusCode(FilterDto filter) {
+<span class="fc" id="L91">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_STATUS_CODE));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le code de {@link ProcessingStatus}.
+   *
+   * @param filter filtre
+   * @param statusCode code de {@link ProcessingStatus}
+   */
+  public static void setStatusCode(FilterDto filter, String statusCode) {
+<span class="pc" id="L101">    set(filter, JSON_STATUS_CODE, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(statusCode));</span>
+<span class="fc" id="L102">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir est en retard.
+   *
+   * @param filter filtre
+   * @return est en retard
+   */
+  public static Boolean getIsLate(FilterDto filter) {
+<span class="fc" id="L111">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_LATE));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner est en retard.
+   *
+   * @param filter filtre
+   * @param isLate est en retard
+   */
+  public static void setIsLate(FilterDto filter, Boolean isLate) {
+<span class="pc" id="L121">    set(filter, JSON_IS_LATE, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsBoolean(isLate));</span>
+<span class="fc" id="L122">  }</span>
 
   /**
    * {@link ProcessingDto#JSON_STATUS}.
    */
   public static final String JSON_STATUS = ProcessingDto.JSON_STATUS;
+
+  /**
+   * {@link ProcessingDto#JSON_STATUS_CODE}.
+   */
+  public static final String JSON_STATUS_CODE = ProcessingDto.JSON_STATUS_CODE;
+
+  /**
+   * Identifiant json champ {@link #isLate}.
+   */
+  public static final String JSON_IS_LATE = ProcessingDto.JSON_IS_LATE;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
