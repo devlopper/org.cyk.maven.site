@@ -41,10 +41,22 @@ import lombok.Setter;
   private String itemActivityAsString;
 
   /**
+   * Code de l'activité.
+   */
+  @JsonbProperty(JSON_ITEM_ACTIVITY_CODE)
+  private String itemActivityCode;
+
+  /**
    * Représentation de la nature économique du poste de dépense en chaine de caractères.
    */
   @JsonbProperty(JSON_ITEM_ECONOMIC_NATURE_AS_STRING)
   private String itemEconomicNatureAsString;
+
+  /**
+   * Code de la nature économique.
+   */
+  @JsonbProperty(JSON_ITEM_ECONOMIC_NATURE_CODE)
+  private String itemEconomicNatureCode;
 
   /**
    * Représentation de la source de financement du poste de dépense en chaine de caractères.
@@ -57,6 +69,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ITEM_LESSOR_AS_STRING)
   private String itemLessorAsString;
+
+  /**
+   * Identifiant de la section.
+   */
+  @JsonbProperty(JSON_ITEM_SECTION_IDENTIFIER)
+  private String itemSectionIdentifier;
 
   /**
    * Identifiant json {@link ExpenditureMovementDto#itemIdentifier}.
@@ -79,10 +97,21 @@ import lombok.Setter;
   public static final String JSON_ITEM_ACTIVITY_AS_STRING = &quot;activiteDepenseChaine&quot;;
 
   /**
+   * Identifiant json {@link ExpenditureMovementDto#itemActivityCode}.
+   */
+  public static final String JSON_ITEM_ACTIVITY_CODE = &quot;activiteDepenseCode&quot;;
+
+  /**
    * Identifiant json {@link ExpenditureMovementDto#itemEconomicNatureAsString}.
    */
   public static final String JSON_ITEM_ECONOMIC_NATURE_AS_STRING =
       &quot;natureEconomiqueDepenseChaine&quot;;
+
+  /**
+   * Identifiant json {@link ExpenditureMovementDto#itemEconomicNatureCode}.
+   */
+  public static final String JSON_ITEM_ECONOMIC_NATURE_CODE =
+      &quot;natureEconomiqueDepenseCode&quot;;
 
   /**
    * Identifiant json {@link ExpenditureMovementDto#itemFundingSourceAsString}.
@@ -94,6 +123,11 @@ import lombok.Setter;
    * Identifiant json {@link ExpenditureMovementDto#itemLessorAsString}.
    */
   public static final String JSON_ITEM_LESSOR_AS_STRING = &quot;bailleurDepenseChaine&quot;;
+
+  /**
+   * Identifiant json {@link ExpenditureMovementDto#itemSectionIdentifier}.
+   */
+  public static final String JSON_ITEM_SECTION_IDENTIFIER = &quot;idSection&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

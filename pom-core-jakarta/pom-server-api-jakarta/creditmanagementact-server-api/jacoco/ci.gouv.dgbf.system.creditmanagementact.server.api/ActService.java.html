@@ -101,6 +101,12 @@ public interface ActService extends SpecificService {
      */
     @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
     private String budgetCategoryIdentifier;
+    
+    /**
+     * {@link ActDto#sectionIdentifier()}.
+     */
+    @JsonbProperty(JSON_SECTION_IDENTIFIER)
+    private String sectionIdentifier;
 
     /**
      * {@link ActDto#getMovementNature()}.
@@ -120,6 +126,12 @@ public interface ActService extends SpecificService {
         ActDto.JSON_BUDGET_CATEGORY_IDENTIFIER;
 
     /**
+     * {@link ActDto#JSON_SECTION_IDENTIFIER}.
+     */
+    public static final String JSON_SECTION_IDENTIFIER =
+        ActDto.JSON_SECTION_IDENTIFIER;
+    
+    /**
      * {@link ActDto#JSON_CATEGORY_IDENTIFIER}.
      */
     public static final String JSON_CATEGORY_IDENTIFIER = ActDto.JSON_CATEGORY_IDENTIFIER;
@@ -138,7 +150,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L141">  class ActStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L153">  class ActStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link ActDto#getStatus()}.
@@ -192,16 +204,16 @@ public interface ActService extends SpecificService {
      * @param status statut
      */
     public void initialize(ActStatus status) {
-<span class="fc" id="L195">      this.status = status;</span>
-<span class="fc" id="L196">      editable = ActStatus.EDITED.getPrevious().contains(status);</span>
-<span class="fc" id="L197">      cancelable = ActStatus.CANCELLED.getPrevious().contains(status);</span>
-<span class="fc" id="L198">      transmitable = ActStatus.TRANSMITTED.getPrevious().contains(status);</span>
-<span class="fc" id="L199">      correctable = ActStatus.CORRECTED.getPrevious().contains(status);</span>
-<span class="fc" id="L200">      rejectable = ActStatus.REJECTED.getPrevious().contains(status);</span>
-<span class="fc" id="L201">      signable = ActStatus.SIGNED.getPrevious().contains(status);</span>
-<span class="fc" id="L202">      applyable = ActStatus.APPLIED.getPrevious().contains(status);</span>
-<span class="fc" id="L203">      refusable = ActStatus.REFUSED.getPrevious().contains(status);</span>
-<span class="fc" id="L204">    }</span>
+<span class="fc" id="L207">      this.status = status;</span>
+<span class="fc" id="L208">      editable = ActStatus.EDITED.getPrevious().contains(status);</span>
+<span class="fc" id="L209">      cancelable = ActStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L210">      transmitable = ActStatus.TRANSMITTED.getPrevious().contains(status);</span>
+<span class="fc" id="L211">      correctable = ActStatus.CORRECTED.getPrevious().contains(status);</span>
+<span class="fc" id="L212">      rejectable = ActStatus.REJECTED.getPrevious().contains(status);</span>
+<span class="fc" id="L213">      signable = ActStatus.SIGNED.getPrevious().contains(status);</span>
+<span class="fc" id="L214">      applyable = ActStatus.APPLIED.getPrevious().contains(status);</span>
+<span class="fc" id="L215">      refusable = ActStatus.REFUSED.getPrevious().contains(status);</span>
+<span class="fc" id="L216">    }</span>
 
     /**
      * {@link ActDto#JSON_STATUS}.
@@ -369,7 +381,7 @@ public interface ActService extends SpecificService {
 
   @Getter
   @Setter
-<span class="fc" id="L372">  class ActSignRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L384">  class ActSignRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ActDto#getReference()}.
@@ -505,7 +517,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L508">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
+<span class="fc" id="L520">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActDto&gt; datas;
@@ -600,7 +612,7 @@ public interface ActService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L603">  class ActUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L615">  class ActUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
     /**
      * {@link ActDto#getExerciseIdentifier()}.
      */
@@ -614,11 +626,23 @@ public interface ActService extends SpecificService {
     private String typeIdentifier;
 
     /**
+     * {@link ActDto#getCategoryIdentifier()}.
+     */
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String categoryIdentifier;
+
+    /**
      * {@link ActDto#getBudgetCategoryIdentifier()}.
      */
     @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
     private String budgetCategoryIdentifier;
-
+    
+    /**
+     * {@link ActDto#sectionIdentifier()}.
+     */
+    @JsonbProperty(JSON_SECTION_IDENTIFIER)
+    private String sectionIdentifier;
+    
     /**
      * {@link ActDto#getMovementNature()}.
      */
@@ -636,6 +660,12 @@ public interface ActService extends SpecificService {
     public static final String JSON_BUDGET_CATEGORY_IDENTIFIER =
         ActDto.JSON_BUDGET_CATEGORY_IDENTIFIER;
 
+    /**
+     * {@link ActDto#JSON_SECTION_IDENTIFIER}.
+     */
+    public static final String JSON_SECTION_IDENTIFIER =
+        ActDto.JSON_SECTION_IDENTIFIER;
+    
     /**
      * {@link ActDto#JSON_CATEGORY_IDENTIFIER}.
      */
@@ -682,7 +712,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L685">  class ActRevokeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L715">  class ActRevokeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ActDto#getReason()}.

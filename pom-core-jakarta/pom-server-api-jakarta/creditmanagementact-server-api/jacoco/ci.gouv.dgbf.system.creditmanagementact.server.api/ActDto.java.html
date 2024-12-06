@@ -71,7 +71,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_CATEGORY_AS_STRING)
   private String categoryAsString;
-
+  
+  /**
+   * Identifiant de la section.
+   */
+  @JsonbProperty(JSON_SECTION_IDENTIFIER)
+  private String sectionIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de la section.
+   */
+  @JsonbProperty(JSON_SECTION_AS_STRING)
+  private String sectionAsString;
+  
   /**
    * Statut de l'acte.
    */
@@ -237,6 +249,16 @@ import lombok.Setter;
    */
   public static final String JSON_CATEGORY_AS_STRING = &quot;categorieChaine&quot;;
 
+  /**
+   * Identifiant json champ {@link ActDto#sectionIdentifier}.
+   */
+  public static final String JSON_SECTION_IDENTIFIER = &quot;idSection&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#sectionAsString}.
+   */
+  public static final String JSON_SECTION_AS_STRING = &quot;sectionChaine&quot;;
+  
   /**
    * Identifiant json champ {@link ActDto#status}.
    */
