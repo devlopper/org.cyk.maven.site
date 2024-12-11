@@ -114,6 +114,12 @@ import lombok.Setter;
   private Long amount3;
 
   /**
+   * Commentaire.
+   */
+  @JsonbProperty(JSON_COMMENT)
+  private String comment;
+
+  /**
    * Représentation en chaine de caractères de Montant 3.
    */
   @JsonbProperty(JSON_AMOUNT_3_AS_STRING)
@@ -203,6 +209,14 @@ import lombok.Setter;
    * Identifiant json {@link #amount3}.
    */
   public static final String JSON_AMOUNT_3 = &quot;montant3&quot;;
+
+
+  /**
+   * Commentaire json {@link #comment}.
+   */
+  public static final String JSON_COMMENT = &quot;commentaire&quot;;
+
+
 
   /**
    * Identifiant json {@link #amount3AsString}.
