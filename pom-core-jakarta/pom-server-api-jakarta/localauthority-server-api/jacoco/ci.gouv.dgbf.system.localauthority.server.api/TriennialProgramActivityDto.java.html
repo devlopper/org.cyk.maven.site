@@ -48,6 +48,11 @@ import lombok.Setter;
   private String activityAsString;
 
   /**
+   * {@link ActivityCategory}.
+   */
+  private ActivityCategory activityCategoryEnum;
+  
+  /**
    * Montant.
    */
   @JsonbProperty(JSON_AMOUNT)
@@ -144,6 +149,11 @@ import lombok.Setter;
    */
   public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
 
+  /**
+   * Identifiant json {@link ActivityCategory}.
+   */
+  public static final String JSON_ACTIVITY_CATEGORY = &quot;categorieActivite&quot;;
+  
   /**
    * Identifiant json {@link #amount}.
    */
