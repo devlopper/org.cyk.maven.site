@@ -30,6 +30,18 @@ import lombok.Setter;
   private String triennialProgramAsString;
 
   /**
+   * Identifiant {@link LocalAuthorityDto}.
+   */
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+  private String localAuthorityIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link LocalAuthorityDto}.
+   */
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
+  private String localAuthorityAsString;
+
+  /**
    * Année de {@link ExerciseDto} de {@link TriennialProgramDto}.
    */
   @JsonbProperty(JSON_TRIENNIAL_PROGRAM_EXERCISE_YEAR)
@@ -52,7 +64,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ACTIVITY_CATEGORY)
   private ActivityCategory activityCategoryEnum;
-  
+
   /**
    * Montant.
    */
@@ -141,6 +153,17 @@ import lombok.Setter;
       &quot;anneeExerciceProgrammeTriennal&quot;;
 
   /**
+   * Identifiant json {@link #localAuthorityIdentifier}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+      LocalAuthorityDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #localAuthorityAsString}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_AS_STRING = LocalAuthorityDto.JSON_THIS_AS_STRING;
+
+  /**
    * Identifiant json {@link #activityIdentifier}.
    */
   public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
@@ -154,7 +177,7 @@ import lombok.Setter;
    * Identifiant json {@link ActivityCategory}.
    */
   public static final String JSON_ACTIVITY_CATEGORY = &quot;categorieActivite&quot;;
-  
+
   /**
    * Identifiant json {@link #amount}.
    */
