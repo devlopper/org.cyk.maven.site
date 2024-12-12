@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRe
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -242,7 +243,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L245">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L246">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -270,6 +271,31 @@ public interface ActivityService extends SpecificService {
     private ActivityCategory categoryEnum;
   }
 
+  /**
+   * Identifiant du service d'obtention du nombre.
+   */
+  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_ACTIVITE&quot;;
+
+  /**
+   * Chemin du service d'obtention du nombre.
+   */
+  String GET_COUNT_PATH = &quot;obtention/compte&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir le nombre de {@link ActivityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = GET_COUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = Long.class))})
+  Response getCount(GetCountRequestDto request);
+  
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
@@ -304,7 +330,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L307">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L333">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -396,7 +422,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L399">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L425">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
