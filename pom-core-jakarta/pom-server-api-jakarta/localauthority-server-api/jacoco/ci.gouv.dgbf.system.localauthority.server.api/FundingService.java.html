@@ -68,34 +68,6 @@ public interface FundingService extends SpecificService {
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
   Response create(FundingCreateRequestDto request);
 
-
-  /**
-   * Identifiant du service de mise à jour du commentaire d'un financement.
-   */
-  String UPDATE_COMMENT_IDENTIFIER = &quot;MISE_A_JOUR_COMMENTAIRE_FINANCEMENT&quot;;
-
-  /**
-   * Chemin du service de mise à jour du commentaire d'un financement.
-   */
-  String UPDATE_COMMENT_PATH = &quot;commentaire&quot;;
-
-  /**
-   * Cette méthode permet de mettre à jour le commentaire d'un {@link FundingDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(UPDATE_COMMENT_PATH)
-  @PUT
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = UPDATE_COMMENT_IDENTIFIER,
-      description = &quot;Ce service permet de mettre à jour le commentaire un financement&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response updateComment(FundingUpdateCommentRequestDto request);
-
-
   /**
    * Cette interface représente la requête d'enregistrement.
    *
@@ -244,7 +216,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L247">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
+<span class="fc" id="L219">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -302,7 +274,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L305">  class FundingCreateByTriennialProgramByActivityRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L277">  class FundingCreateByTriennialProgramByActivityRequestDto extends AbstractAuditedRequestJsonDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -379,7 +351,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L382">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L354">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -471,7 +443,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L474">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L446">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -502,7 +474,7 @@ public interface FundingService extends SpecificService {
   /**
    * Chemin du service de mise à jour de montant.
    */
-  String UPDATE_AMOUNT_PATH = &quot;montant&quot;;
+  String UPDATE_AMOUNT_PATH = FundingUpdateAmountRequestDto.JSON_AMOUNT;
 
   /**
    * Cette méthode permet de mettre à jour montant de {@link FundingDto}.
@@ -526,7 +498,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L529">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L501">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Montant.
      */
@@ -548,6 +520,52 @@ public interface FundingService extends SpecificService {
      * Identifiant json {@link #index}.
      */
     public static final String JSON_INDEX = &quot;index&quot;;
+  }
+
+  /**
+   * Identifiant du service de mise à jour du commentaire d'un financement.
+   */
+  String UPDATE_COMMENT_IDENTIFIER = &quot;MISE_A_JOUR_COMMENTAIRE_FINANCEMENT&quot;;
+
+  /**
+   * Chemin du service de mise à jour du commentaire d'un financement.
+   */
+  String UPDATE_COMMENT_PATH = FundingUpdateCommentRequestDto.JSON_COMMENT;
+
+  /**
+   * Cette méthode permet de mettre à jour le commentaire d'un {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_COMMENT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_COMMENT_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour le commentaire&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateComment(FundingUpdateCommentRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création du commentaire d'un financement.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L558">  class FundingUpdateCommentRequestDto extends ByIdentifierRequestDto {</span>
+    /**
+     * Commentaire.
+     */
+    @JsonbProperty(JSON_COMMENT)
+    private String comment;
+
+    /**
+     * Identifiant json {@link #comment}.
+     */
+    public static final String JSON_COMMENT = &quot;commentaire&quot;;
   }
 
   /**
@@ -575,26 +593,5 @@ public interface FundingService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
-
-
-  /**
-   * Cette classe représente la requête de création du commentaire d'un financement.
-   *
-   * @author Desysoft
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L587">  class FundingUpdateCommentRequestDto extends ByIdentifierRequestDto {</span>
-    /**
-     * Commentaire.
-     */
-    @JsonbProperty(JSON_COMMENT)
-    private String comment;
-
-    /**
-     * Identifiant json {@link #comment}.
-     */
-    public static final String JSON_COMMENT = &quot;commentaire&quot;;
-  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

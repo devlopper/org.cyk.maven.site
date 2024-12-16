@@ -108,6 +108,12 @@ import lombok.Setter;
   private String totalFundingAmount3AsString;
 
   /**
+   * Commentaires des {@link FundingDto} modifiable.
+   */
+  @JsonbProperty(JSON_FUNDINGS_COMMENTS_UPDATABLE)
+  private Boolean fundingsCommentsUpdatable;
+
+  /**
    * Justification.
    */
   @JsonbProperty(JSON_JUSTIFICATION)
@@ -191,7 +197,7 @@ import lombok.Setter;
   /**
    * Identifiant json {@link #fundingsAmountsUpdatable}.
    */
-  public static final String JSON_FUNDINGS_AMOUNTS_UPDATABLE = &quot;montantsFinancemensModifiable&quot;;
+  public static final String JSON_FUNDINGS_AMOUNTS_UPDATABLE = &quot;montantsFinancementsModifiable&quot;;
 
   /**
    * Identifiant json champ {@link #fundingCountAsString}.
@@ -221,6 +227,12 @@ import lombok.Setter;
    */
   public static final String JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING =
       &quot;totalFinancementMontant3Chaine&quot;;
+
+  /**
+   * Identifiant json {@link #fundingsCommentsUpdatable}.
+   */
+  public static final String JSON_FUNDINGS_COMMENTS_UPDATABLE =
+      &quot;commentairesFinancementsModifiable&quot;;
 
   /**
    * Identifiant json {@link #justification}.
