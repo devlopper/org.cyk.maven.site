@@ -26,32 +26,39 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
   String localAuthorityIdentifier;
 
   /**
+   * {@link TriennialProgramStatus}.
+   */
+  TriennialProgramStatus status;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public TriennialProgramFilter(FilterDto dto) {
-<span class="fc" id="L34">    super(dto);</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L39">    super(dto);</span>
+<span class="fc" id="L40">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L40">  public TriennialProgramFilter() {}</span>
+<span class="fc" id="L45">  public TriennialProgramFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L44">    super.doInitialize(filter);</span>
-<span class="fc" id="L45">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
-<span class="fc" id="L46">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L49">    super.doInitialize(filter);</span>
+<span class="fc" id="L50">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
+<span class="fc" id="L51">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
+<span class="fc" id="L52">    status = getStatus(filter);</span>
+<span class="fc" id="L53">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L51">    super.toDto(filter);</span>
-<span class="fc" id="L52">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
-<span class="fc" id="L53">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L57">    super.toDto(filter);</span>
+<span class="fc" id="L58">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
+<span class="fc" id="L59">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
+<span class="fc" id="L60">    setStatus(filter, status);</span>
+<span class="fc" id="L61">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant {@link ExerciseDto}.
@@ -60,7 +67,7 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @return identifiant {@link ExerciseDto}
    */
   public static String getExerciseIdentifier(FilterDto filter) {
-<span class="fc" id="L63">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
+<span class="fc" id="L70">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
   }
 
   /**
@@ -70,9 +77,9 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant {@link ExerciseDto}
    */
   public static void setExerciseIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L73">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L74">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L75">  }</span>
+<span class="pc" id="L80">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L81">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L82">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant {@link LocalAuthorityDto}.
@@ -81,7 +88,7 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @return identifiant {@link LocalAuthorityDto}
    */
   public static String getLocalAuthorityIdentifier(FilterDto filter) {
-<span class="fc" id="L84">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
+<span class="fc" id="L91">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
   }
 
   /**
@@ -91,9 +98,29 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant {@link LocalAuthorityDto}
    */
   public static void setLocalAuthorityIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L94">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L95">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L96">  }</span>
+<span class="pc" id="L101">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L102">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L103">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner le {@link TriennialProgramStatus}.
+   *
+   * @param filter filtre
+   * @param status {@link TriennialProgramStatus}
+   */
+  public static void setStatus(FilterDto filter, TriennialProgramStatus status) {
+<span class="pc" id="L112">    set(filter, JSON_STATUS, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(status));</span>
+<span class="fc" id="L113">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le {@link TriennialProgramStatus}.
+   *
+   * @param filter filtre
+   * @return {@link TriennialProgramStatus}
+   */
+  public static TriennialProgramStatus getStatus(FilterDto filter) {
+<span class="fc" id="L122">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_STATUS, TriennialProgramStatus.class));</span>
+  }
 
   /**
    * Identifiant json champ {@link #exerciseIdentifier}.
@@ -106,5 +133,10 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    */
   public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
       TriennialProgramDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #status}.
+   */
+  public static final String JSON_STATUS = TriennialProgramDto.JSON_STATUS;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
