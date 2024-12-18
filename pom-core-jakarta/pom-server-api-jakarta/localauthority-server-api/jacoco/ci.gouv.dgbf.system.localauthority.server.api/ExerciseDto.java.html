@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExerciseDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ExerciseDto.java</span></div><h1>ExerciseDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,52 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L17">public class ExerciseDto extends AbstractIdentifiableCodableNamableDto {</span>
+<span class="fc" id="L18">public class ExerciseDto extends AbstractIdentifiableCodableNamableDto {</span>
+
+  @JsonbProperty(JSON_YEAR)
+  private Integer year;
+
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING)
+  private String triennialProgramCountAsString;
+
+  @JsonbProperty(JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING)
+  private String totalTriennialProgramFundingAmount1AsString;
+
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_CREATED_COUNT_AS_STRING)
+  private String triennialProgramCreatedCountAsString;
+
+  @JsonbProperty(JSON_TOTAL_TRIENNIAL_PROGRAM_CREATED_FUNDING_AMOUNT1_AS_STRING)
+  private String totalTriennialProgramCreatedFundingAmount1AsString;
+
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_TRANSMITTED_COUNT_AS_STRING)
+  private String triennialProgramTransmittedCountAsString;
+
+  @JsonbProperty(JSON_TOTAL_TRIENNIAL_PROGRAM_TRANSMITTED_FUNDING_AMOUNT1_AS_STRING)
+  private String totalTriennialProgramTransmittedFundingAmount1AsString;
+
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_RETURNED_COUNT_AS_STRING)
+  private String triennialProgramReturnedCountAsString;
+
+  @JsonbProperty(JSON_TOTAL_TRIENNIAL_PROGRAM_RETURNED_FUNDING_AMOUNT1_AS_STRING)
+  private String totalTriennialProgramReturnedFundingAmount1AsString;
+
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_ACCEPTED_COUNT_AS_STRING)
+  private String triennialProgramAcceptedCountAsString;
+
+  @JsonbProperty(JSON_TOTAL_TRIENNIAL_PROGRAM_ACCEPTED_FUNDING_AMOUNT1_AS_STRING)
+  private String totalTriennialProgramAcceptedFundingAmount1AsString;
+
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_APPROVED_COUNT_AS_STRING)
+  private String triennialProgramApprovedCountAsString;
+
+  @JsonbProperty(JSON_TOTAL_TRIENNIAL_PROGRAM_APPROVED_FUNDING_AMOUNT1_AS_STRING)
+  private String totalTriennialProgramApprovedFundingAmount1AsString;
+
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_NOT_APPROVED_COUNT_AS_STRING)
+  private String triennialProgramNotApprovedCountAsString;
+
+  @JsonbProperty(JSON_TOTAL_TRIENNIAL_PROGRAM_NOT_APPROVED_FUNDING_AMOUNT1_AS_STRING)
+  private String totalTriennialProgramNotApprovedFundingAmount1AsString;
 
   /**
    * Identifiant json de identifiant de {@link ExerciseDto}.
@@ -25,11 +71,99 @@ import lombok.Setter;
    * Identifiant json de année de {@link ExerciseDto}.
    */
   public static final String JSON_THIS_YEAR = &quot;anneeExercice&quot;;
-  
+
   /**
    * Identifiant json de représentation en chaine de caractères de {@link ExerciseDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;exerciceChaine&quot;;
+
+  /**
+   * Identifiant json {@link #year}.
+   */
+  public static final String JSON_YEAR = &quot;annee&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING = &quot;nombreProgrammeTriennal&quot;;
+
+  /**
+   * Identifiant json {@link #totalTriennialProgramFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING =
+      &quot;totalMontant1FinancementProgrammeTriennal&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramCreatedCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_CREATED_COUNT_AS_STRING =
+      JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING + &quot;Cree&quot;;
+
+  /**
+   * Identifiant json {@link #totalTriennialProgramCreatedFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_TRIENNIAL_PROGRAM_CREATED_FUNDING_AMOUNT1_AS_STRING =
+      JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING + &quot;Cree&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramTransmittedCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_TRANSMITTED_COUNT_AS_STRING =
+      JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING + &quot;Transmis&quot;;
+
+  /**
+   * Identifiant json {@link #totalTriennialProgramTransmittedFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_TRIENNIAL_PROGRAM_TRANSMITTED_FUNDING_AMOUNT1_AS_STRING =
+      JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING + &quot;Transmis&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramReturnedCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_RETURNED_COUNT_AS_STRING =
+      JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING + &quot;Retourne&quot;;
+
+  /**
+   * Identifiant json {@link #totalTriennialProgramReturnedFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_TRIENNIAL_PROGRAM_RETURNED_FUNDING_AMOUNT1_AS_STRING =
+      JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING + &quot;Retourne&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramAcceptedCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_ACCEPTED_COUNT_AS_STRING =
+      JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING + &quot;Accepte&quot;;
+
+  /**
+   * Identifiant json {@link #totalTriennialProgramAcceptedFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_TRIENNIAL_PROGRAM_ACCEPTED_FUNDING_AMOUNT1_AS_STRING =
+      JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING + &quot;Accepte&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramApprovedCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_APPROVED_COUNT_AS_STRING =
+      JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING + &quot;Approuve&quot;;
+
+  /**
+   * Identifiant json {@link #totalTriennialProgramApprovedFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_TRIENNIAL_PROGRAM_APPROVED_FUNDING_AMOUNT1_AS_STRING =
+      JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING + &quot;Approuve&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramNotApprovedCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_NOT_APPROVED_COUNT_AS_STRING =
+      JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING + &quot;NonApprouve&quot;;
+
+  /**
+   * Identifiant json {@link #totalTriennialProgramNotApprovedFundingAmount1AsString}.
+   */
+  public static final String JSON_TOTAL_TRIENNIAL_PROGRAM_NOT_APPROVED_FUNDING_AMOUNT1_AS_STRING =
+      JSON_TOTAL_TRIENNIAL_PROGRAM_FUNDING_AMOUNT1_AS_STRING + &quot;NonApprouve&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
