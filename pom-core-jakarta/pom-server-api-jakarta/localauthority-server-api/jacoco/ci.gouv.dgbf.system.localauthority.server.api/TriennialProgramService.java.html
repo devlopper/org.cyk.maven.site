@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJ
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetChartRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -121,7 +122,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L124">  class TriennialProgramCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L125">  class TriennialProgramCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
@@ -138,7 +139,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L141">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L142">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Raison.
@@ -160,7 +161,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L163">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L164">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link TriennialProgramDto#getStatus()}.
@@ -209,14 +210,14 @@ public interface TriennialProgramService extends SpecificService {
      * @param reason raison
      */
     public void initialize(TriennialProgramStatus status, String statusAsString, String reason) {
-<span class="fc" id="L212">      this.status = status;</span>
-<span class="fc" id="L213">      this.statusAsString = statusAsString;</span>
-<span class="fc" id="L214">      this.reason = reason;</span>
-<span class="fc" id="L215">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
-<span class="fc" id="L216">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L217">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
-<span class="fc" id="L218">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
-<span class="fc" id="L219">    }</span>
+<span class="fc" id="L213">      this.status = status;</span>
+<span class="fc" id="L214">      this.statusAsString = statusAsString;</span>
+<span class="fc" id="L215">      this.reason = reason;</span>
+<span class="fc" id="L216">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
+<span class="fc" id="L217">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L218">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
+<span class="fc" id="L219">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
+<span class="fc" id="L220">    }</span>
 
     /**
      * {@link TriennialProgramDto#JSON_STATUS}.
@@ -402,7 +403,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L405">  public static class TriennialProgramGetManyResponseDto</span>
+<span class="fc" id="L406">  public static class TriennialProgramGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TriennialProgramDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -494,7 +495,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L497">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L498">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
@@ -530,6 +531,28 @@ public interface TriennialProgramService extends SpecificService {
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
 
+  /**
+   * Identifiant du service d'obtention de graphique.
+   */
+  String GET_CHART_IDENTIFIER = &quot;OBTENTION_GRAPHIQUE_DOSSIER&quot;;
 
+  /**
+   * Chemin du service d'obtention de graphique.
+   */
+  String GET_CHART_PATH = &quot;obtention/graphique&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir un graphique.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_CHART_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_CHART_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir un graphique&quot;)
+  Response getChart(GetChartRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
