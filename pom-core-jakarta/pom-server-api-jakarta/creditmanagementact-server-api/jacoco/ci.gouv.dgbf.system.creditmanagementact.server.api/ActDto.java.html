@@ -67,10 +67,22 @@ import lombok.Setter;
   private String categoryIdentifier;
 
   /**
+   * Code de la catégorie de l'acte.
+   */
+  @JsonbProperty(JSON_CATEGORY_CODE)
+  private String categoryCode;
+
+  /**
    * Représentation en chaine de caractères de la catégorie.
    */
   @JsonbProperty(JSON_CATEGORY_AS_STRING)
   private String categoryAsString;
+
+  /**
+   * Représentation en chaine de caractères du groupe de la catégorie.
+   */
+  @JsonbProperty(JSON_CATEGORY_GROUP)
+  private String categoryGroup;
   
   /**
    * Identifiant de la section.
@@ -175,6 +187,24 @@ import lombok.Setter;
   private String expenditureMovementAmountDebitAsString;
 
   /**
+   * Représentation en chaine de caractères du Total de {@link ResourceMovementDto}.
+   */
+  @JsonbProperty(JSON_RESOURCE_MOVEMENT_AMOUNT_TOTAL_AS_STRING)
+  private String resourceMovementAmountTotalAsString;
+
+  /**
+   * Représentation en chaine de caractères du Débit de {@link ResourceMovementDto}.
+   */
+  @JsonbProperty(JSON_RESOURCE_MOVEMENT_AMOUNT_CREDIT_AS_STRING)
+  private String resourceMovementAmountCreditAsString;
+
+  /**
+   * Représentation en chaine de caractères du Débit de {@link ResourceMovementDto}.
+   */
+  @JsonbProperty(JSON_RESOURCE_MOVEMENT_AMOUNT_DEBIT_AS_STRING)
+  private String resourceMovementAmountDebitAsString;
+
+  /**
    * Equilibré.
    */
   @JsonbProperty(JSON_BALANCED)
@@ -245,9 +275,19 @@ import lombok.Setter;
   public static final String JSON_CATEGORY_IDENTIFIER = &quot;idCategorie&quot;;
 
   /**
+   * Identifiant json champ {@link ActDto#categoryCode}.
+   */
+  public static final String JSON_CATEGORY_CODE = &quot;codeCategorie&quot;;
+
+  /**
    * Identifiant json champ {@link ActDto#categoryAsString}.
    */
   public static final String JSON_CATEGORY_AS_STRING = &quot;categorieChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#categoryGroup}.
+   */
+  public static final String JSON_CATEGORY_GROUP = &quot;categoryGroup&quot;;
 
   /**
    * Identifiant json champ {@link ActDto#sectionIdentifier}.
@@ -336,6 +376,24 @@ import lombok.Setter;
    */
   public static final String JSON_EXPENDITURE_MOVEMENT_AMOUNT_DEBIT_AS_STRING =
       &quot;totalDebitDepense&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#resourceMovementAmountTotalAsString}.
+   */
+  public static final String JSON_RESOURCE_MOVEMENT_AMOUNT_TOTAL_AS_STRING =
+      &quot;totalResource&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#resourceMovementAmountCreditAsString}.
+   */
+  public static final String JSON_RESOURCE_MOVEMENT_AMOUNT_CREDIT_AS_STRING =
+      &quot;totalCreditResource&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#resourceMovementAmountDebitAsString}.
+   */
+  public static final String JSON_RESOURCE_MOVEMENT_AMOUNT_DEBIT_AS_STRING =
+      &quot;totalDebitResource&quot;;
 
   /**
    * Identifiant json champ {@link ActDto#balanced}.

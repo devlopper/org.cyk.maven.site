@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ResourceMovementFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'acte de gestion de crédits</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.creditmanagementact.server.api</a> &gt; <span class="el_source">ResourceMovementFilter.java</span></div><h1>ResourceMovementFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.creditmanagementact.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +13,63 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-<span class="fc" id="L15">public class ResourceMovementFilter extends AbstractIdentifiableFilter {</span>
+public class ResourceMovementFilter extends AbstractIdentifiableFilter {
+  /**
+   * Identifiant de {@link ActDto}.
+   */  
+  String actIdentifier;
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   *
+   * @param dto filtre
+   */
+  public ResourceMovementFilter(FilterDto dto) {
+<span class="fc" id="L28">    super(dto);</span>
+<span class="fc" id="L29">  }</span>
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   */
+<span class="fc" id="L34">  public ResourceMovementFilter() {}</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L38">    super.doInitialize(filter);</span>
+<span class="fc" id="L39">    actIdentifier = getActIdentifier(filter);</span>
+<span class="fc" id="L40">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L44">    super.toDto(filter);</span>
+<span class="fc" id="L45">    setActIdentifier(filter, actIdentifier);</span>
+<span class="fc" id="L46">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link ActDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setActIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L55">    set(filter, JSON_ACT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L56">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L57">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link ActDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link ActDto}
+   */
+  public static String getActIdentifier(FilterDto filter) {
+<span class="fc" id="L66">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ACT_IDENTIFIER));</span>
+  }
   
+
+  /**
+   * Identifiant json champ {@link ResourceMovementFilter#actIdentifier}.
+   */
+  public static final String JSON_ACT_IDENTIFIER = AbstractMovementDto.JSON_ACT_IDENTIFIER;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

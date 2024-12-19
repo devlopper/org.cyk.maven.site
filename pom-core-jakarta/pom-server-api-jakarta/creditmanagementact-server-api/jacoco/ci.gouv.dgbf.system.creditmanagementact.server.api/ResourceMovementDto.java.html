@@ -21,11 +21,79 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_RESOURCE_IDENTIFIER)
   private String resourceIdentifier;
+
+  /**
+   * Représentation du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_RESOURCE_AS_STRING)
+  private String resourceAsString;
+
+  /**
+   * Représentation de l'exercice du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_RESOURCE_EXERCISE_AS_STRING)
+  private String resourceExerciseAsString;
+
+  /**
+   * Représentation de l'activité du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_RESOURCE_ACTIVITY_AS_STRING)
+  private String resourceActivityAsString;
+
+  /**
+   * Code de l'activité.
+   */
+  @JsonbProperty(JSON_RESOURCE_ACTIVITY_CODE)
+  private String resourceActivityCode;
+
+  /**
+   * Représentation de la nature économique du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_RESOURCE_ECONOMIC_NATURE_AS_STRING)
+  private String resourceEconomicNatureAsString;
+
+  /**
+   * Code de la nature économique.
+   */
+  @JsonbProperty(JSON_RESOURCE_ECONOMIC_NATURE_CODE)
+  private String resourceEconomicNatureCode;
   
   /**
    * Identifiant json {@link ResourceMovementDto#resourceIdentifier}.
    */
   public static final String JSON_RESOURCE_IDENTIFIER = &quot;idRessource&quot;;
+
+  /**
+   * Identifiant json {@link ResourceMovementDto#resourceAsString}.
+   */
+  public static final String JSON_RESOURCE_AS_STRING = &quot;resourceChaine&quot;;
+
+  /**
+   * Identifiant json {@link ResourceMovementDto#resourceExerciseAsString}.
+   */
+  public static final String JSON_RESOURCE_EXERCISE_AS_STRING = &quot;exerciceResourceChaine&quot;;
+
+  /**
+   * Identifiant json {@link ResourceMovementDto#resourceActivityAsString}.
+   */
+  public static final String JSON_RESOURCE_ACTIVITY_AS_STRING = &quot;activiteResourceChaine&quot;;
+
+  /**
+   * Identifiant json {@link ResourceMovementDto#resourceActivityCode}.
+   */
+  public static final String JSON_RESOURCE_ACTIVITY_CODE = &quot;activiteResourceCode&quot;;
+
+  /**
+   * Identifiant json {@link ResourceMovementDto#resourceEconomicNatureAsString}.
+   */
+  public static final String JSON_RESOURCE_ECONOMIC_NATURE_AS_STRING =
+      &quot;natureEconomiqueResourceChaine&quot;;
+
+  /**
+   * Identifiant json {@link ResourceMovementDto#resourceEconomicNatureCode}.
+   */
+  public static final String JSON_RESOURCE_ECONOMIC_NATURE_CODE =
+      &quot;natureEconomiqueResourceCode&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.

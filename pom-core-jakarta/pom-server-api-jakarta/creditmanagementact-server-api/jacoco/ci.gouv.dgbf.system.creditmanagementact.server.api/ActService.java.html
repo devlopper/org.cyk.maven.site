@@ -619,11 +619,9 @@ public interface ActService extends SpecificService {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
 
-    /**
-     * {@link ActDto#getCategoryIdentifier()}.
-     */
-    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
-    private String typeIdentifier;
+   
+    /*@JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String typeIdentifier;*/
 
     /**
      * {@link ActDto#getCategoryIdentifier()}.
@@ -712,7 +710,7 @@ public interface ActService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L715">  class ActRevokeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L713">  class ActRevokeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ActDto#getReason()}.

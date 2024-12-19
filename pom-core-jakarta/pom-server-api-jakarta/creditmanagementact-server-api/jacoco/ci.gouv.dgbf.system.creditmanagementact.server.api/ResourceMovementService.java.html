@@ -22,6 +22,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -73,6 +74,69 @@ public interface ResourceMovementService extends SpecificService {
   Response create(ResourceMovementCreateRequestDto request);
 
   /**
+   * Cette classe représente la requête d'enregistrement.
+   *
+   * @author AKM
+   *
+   */
+  interface SaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ActDto}.
+     *
+     * @return identifiant {@link ActDto}
+     */
+    String getActIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ActDto}.
+     *
+     * @param identifier identifiant {@link ActDto}
+     */
+    void setActIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du poste de ressource.
+     *
+     * @return identifiant {@link ActDto}
+     */
+    String getResourceIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du poste de dépense.
+     *
+     * @param identifier identifiant du poste de dépense
+     */
+    void setResourceIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    long getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(long amount);
+
+    /**
+     * Identifiant json de l'identifiant de {@link ActDto}.
+     */
+    String JSON_ACT_IDENTIFIER = AbstractMovementDto.JSON_ACT_IDENTIFIER;
+    /**
+     * Identifiant json de l'identifiant du poste de ressource.
+     */
+    String JSON_RESOURCE_IDENTIFIER = ResourceMovementDto.JSON_RESOURCE_IDENTIFIER;
+    /**
+     * Identifiant json du montant.
+     */
+    String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+  }
+
+  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -80,7 +144,8 @@ public interface ResourceMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L83">  class ResourceMovementCreateRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L147">  class ResourceMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SaveRequestDto {
     /**
      * {@link AbstractMovementDto#getActIdentifier()}.
      */
@@ -112,6 +177,133 @@ public interface ResourceMovementService extends SpecificService {
      * {@link AbstractMovementDto#JSON_AMOUNT}.
      */
     public static final String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+  }
+
+  /**
+   * Identifiant du service de création de plusieurs.
+   */
+  String CREATE_MANY_IDENTIFIER = &quot;CREATION_PLUSIEURS_MOUVEMENT_RESSOURCE&quot;;
+
+  /**
+   * Chemin du service de création de plusieurs.
+   */
+  String CREATE_MANY_PATH = &quot;creations&quot;;
+
+  /**
+   * Cette méthode permet de créer plusieurs {@link ResourceMovementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_MANY_IDENTIFIER, summary = &quot;Création des mouvements de ressource&quot;,
+      description = &quot;Ce service permet de créer des mouvements de ressource&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createMany(ResourceMovementCreateManyRequestDto request);
+
+  /**
+   * Cette classe représente un mouvement de ressource.
+   *
+   * @author AKM
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L216">  public static class MovementDto {</span>
+    /**
+     * Identifiant du poste de dépense.
+     */
+    private String identifier;
+
+    /**
+     * Montant.
+     */
+    private long amount;
+  }
+  
+  /**
+   * Cette classe représente la requête d'enregistrement de plusieurs.
+   *
+   * @author AKM
+   *
+   */
+  interface SaveManyRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ActDto}.
+     *
+     * @return identifiant {@link ActDto}
+     */
+    String getActIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ActDto}.
+     *
+     * @param identifier identifiant {@link ActDto}
+     */
+    void setActIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir les mouvements de ressources.
+     *
+     * @return mouvements de ressources
+     */
+    List&lt;MovementDto&gt; getMovements();
+
+    /**
+     * Cette méthode permet d'assigner les mouvements de dépenses.
+     *
+     * @param movements mouvements de dépenses
+     */
+    void setMovements(List&lt;MovementDto&gt; movements);
+
+    /**
+     * Identifiant json de l'identifiant de {@link ActDto}.
+     */
+    String JSON_ACT_IDENTIFIER = AbstractMovementDto.JSON_ACT_IDENTIFIER;
+
+    /**
+     * Identifiant json des mouvements.
+     */
+    String JSON_MOVEMENTS = &quot;mouvements&quot;;
+  }
+
+  /**
+   * Cette classe représente la requête de création de plusieurs.
+   *
+   * @author AKM
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L282">  class ResourceMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SaveManyRequestDto {
+    /**
+     * Identifier de {@link ActDto}.
+     */
+    @JsonbProperty(JSON_ACT_IDENTIFIER)
+    String actIdentifier;
+
+    /**
+     * Liste de {@link MovementDto}.
+     */
+    @JsonbProperty(JSON_MOVEMENTS)
+    List&lt;MovementDto&gt; movements;
+
+    /**
+     * Cette méthode permet d'obtenir des mouvements.
+     *
+     * @return mouvements
+     */
+    public List&lt;MovementDto&gt; movements() {
+<span class="fc bfc" id="L302" title="All 2 branches covered.">      if (movements == null) {</span>
+<span class="fc" id="L303">        movements = new ArrayList&lt;&gt;();</span>
+      }
+<span class="fc" id="L305">      return movements;</span>
+    }
   }
 
   /**
@@ -148,7 +340,7 @@ public interface ResourceMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L151">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ResourceMovementDto&gt; {</span>
+<span class="fc" id="L343">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ResourceMovementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ResourceMovementDto&gt; datas;
@@ -244,7 +436,7 @@ public interface ResourceMovementService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L247">  class ResourceMovementUpdateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L439">  class ResourceMovementUpdateRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * {@link AbstractMovementDto#getActIdentifier()}.
      */
