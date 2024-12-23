@@ -118,6 +118,19 @@ import lombok.Setter;
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
 
+
+  /**
+   * Montant exécuté.
+   */
+  @JsonbProperty(JSON_EXECUTED_AMOUNT)
+  private Long executedAmount;
+
+  /**
+   * Représentation en chaine de caractères du montant exécuté.
+   */
+  @JsonbProperty(JSON_EXECUTED_AMOUNT_AS_STRING)
+  private String executedAmountAsString;
+
   /**
    * Identifiant json de identifiant de {@link ActivityDto}.
    */
@@ -215,6 +228,19 @@ import lombok.Setter;
    * Identifiant json {@link #amountAsString}.
    */
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
+
+
+
+  /**
+   * Identifiant json {@link #amount}.
+   */
+  public static final String JSON_EXECUTED_AMOUNT = &quot;montantExecute&quot;;
+
+  /**
+   * Identifiant json {@link #amountAsString}.
+   */
+  public static final String JSON_EXECUTED_AMOUNT_AS_STRING = &quot;montantExecuteChaine&quot;;
+
 
   /**
    * Nom pour lecture humaine de la classe.

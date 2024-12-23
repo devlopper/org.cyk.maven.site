@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserRole.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">UserRole.java</span></div><h1>UserRole.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.CodableByStringWithGetterOnly;
+import lombok.Getter;
+
+/**
+ * Cette énumération représente les rôles des utilisateurs.
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L12">@Getter</span>
+public enum UserRole implements CodableByStringWithGetterOnly {
+
+  // Activité
+
+  /**
+   * Gérer {@link ActivityDto}.
+   */
+<span class="fc" id="L20">  MANAGE_ACTIVITY(&quot;GERER_ACTIVITE&quot;),</span>
+
+  // Programme triennal.
+
+  /**
+   * Gérer {@link TriennialProgramDto}.
+   */
+<span class="fc" id="L27">  MANAGE_TRIENNIAL_PROGRAM(&quot;GERER_PROGRAMME_TRIENNAL&quot;),</span>
+
+  /**
+   * Saisir {@link TriennialProgramDto}.
+   */
+<span class="fc" id="L32">  INPUT_TRIENNIAL_PROGRAM(&quot;SAISIR_PROGRAMME_TRIENNAL&quot;),</span>
+
+  /**
+   * Transmettre {@link TriennialProgramDto}.
+   */
+<span class="fc" id="L37">  TRANSMIT_TRIENNIAL_PROGRAM(&quot;TRANSMETTRE_PROGRAMME_TRIENNAL&quot;),</span>
+
+  /**
+   * Valider {@link TriennialProgramDto}.
+   */
+<span class="fc" id="L42">  VALIDATE_TRIENNIAL_PROGRAM(&quot;VALIDER_PROGRAMME_TRIENNAL&quot;),</span>
+
+  /**
+   * Approuver {@link TriennialProgramDto}.
+   */
+<span class="fc" id="L47">  APPROVE_TRIENNIAL_PROGRAM(&quot;APPROUVER_PROGRAMME_TRIENNAL&quot;),</span>
+
+  // Activité de programme triennal
+
+  /**
+   * Gérer {@link ActivityDto}.
+   */
+<span class="fc" id="L54">  MANAGE_TRIENNIAL_PROGRAM_ACTIVITY(&quot;GERER_PROGRAMME_TRIENNAL_ACTIVITE&quot;),</span>
+
+  // Financemment
+
+  /**
+   * Commenter {@link FundingDto}.
+   */
+<span class="fc" id="L61">  COMMENT_FUNDING(&quot;COMMENTER_FINANCEMENT&quot;);</span>
+
+<span class="fc" id="L63">  private UserRole(String code) {</span>
+<span class="fc" id="L64">    this.code = code;</span>
+<span class="fc" id="L65">  }</span>
+
+  /**
+   * Code.
+   */
+  String code;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
