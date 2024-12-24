@@ -131,6 +131,33 @@ import lombok.Setter;
   @JsonbProperty(JSON_ORDER_NUMBER_AS_STRING)
   private String orderNumberAsString;
 
+
+  /**
+   * Montant exécuté.
+   */
+  @JsonbProperty(JSON_EXECUTED_AMOUNT)
+  private Long executedAmount;
+
+  /**
+   * Représentation en chaine de caractères du montant exécuté.
+   */
+  @JsonbProperty(JSON_EXECUTED_AMOUNT_AS_STRING)
+  private String executedAmountAsString;
+
+
+  /**
+   * Montant restant.
+   */
+  @JsonbProperty(JSON_REMAINING_AMOUNT)
+  private Long remainingAmount;
+
+  /**
+   * Représentation en chaine de caractères du montant restant.
+   */
+  @JsonbProperty(JSON_REMAINING_AMOUNT_AS_STRING)
+  private String remainingAmountAsString;
+
+
   /**
    * Identifiant json de identifiant de {@link TriennialProgramActivityDto}.
    */
@@ -248,6 +275,28 @@ import lombok.Setter;
    * Identifiant json {@link #orderNumberAsString}.
    */
   public static final String JSON_ORDER_NUMBER_AS_STRING = &quot;numeroOrdreChaine&quot;;
+
+
+
+  /**
+   * Identifiant json {@link #executedAmount}.
+   */
+  public static final String JSON_EXECUTED_AMOUNT = &quot;montantExecute&quot;;
+
+  /**
+   * Identifiant json {@link #executedAmountAsString}.
+   */
+  public static final String JSON_EXECUTED_AMOUNT_AS_STRING = &quot;montantExecuteChaine&quot;;
+
+  /**
+   * Identifiant json {@link #remainingAmount}.
+   */
+  public static final String JSON_REMAINING_AMOUNT = &quot;montantRestant&quot;;
+
+  /**
+   * Identifiant json {@link #remainingAmountAsString}.
+   */
+  public static final String JSON_REMAINING_AMOUNT_AS_STRING = &quot;montantRestantChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
