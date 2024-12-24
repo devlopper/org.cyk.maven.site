@@ -123,7 +123,7 @@ public interface ExpenditureNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L126">  class ExpenditureNatureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L126">  class ExpenditureNatureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;
@@ -166,7 +166,7 @@ public interface ExpenditureNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L169">  public static class ExpenditureNatureGetManyResponseDto</span>
+<span class="fc" id="L169">  public static class ExpenditureNatureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureNatureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -259,7 +259,7 @@ public interface ExpenditureNatureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L262">  class ExpenditureNatureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L262">  class ExpenditureNatureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     private String categoryIdentifier;

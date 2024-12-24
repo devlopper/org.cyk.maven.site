@@ -36,29 +36,29 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public ExpenditureNatureFilter(FilterDto dto) {
-<span class="nc" id="L39">    super(dto);</span>
-<span class="nc" id="L40">  }</span>
+<span class="fc" id="L39">    super(dto);</span>
+<span class="fc" id="L40">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="nc" id="L45">  public ExpenditureNatureFilter() {}</span>
+<span class="fc" id="L45">  public ExpenditureNatureFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L49">    super.doInitialize(filter);</span>
-<span class="nc" id="L50">    categoryIdentifier = getCategoryIdentifier(filter);</span>
-<span class="nc" id="L51">    domainIdentifier = getDomainIdentifier(filter);</span>
-<span class="nc" id="L52">    activityCategory = getActivityCategory(filter);</span>
-<span class="nc" id="L53">  }</span>
+<span class="fc" id="L49">    super.doInitialize(filter);</span>
+<span class="fc" id="L50">    categoryIdentifier = getCategoryIdentifier(filter);</span>
+<span class="fc" id="L51">    domainIdentifier = getDomainIdentifier(filter);</span>
+<span class="fc" id="L52">    activityCategory = getActivityCategory(filter);</span>
+<span class="fc" id="L53">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L57">    super.toDto(filter);</span>
-<span class="nc" id="L58">    setCategoryIdentifier(filter, categoryIdentifier);</span>
-<span class="nc" id="L59">    setDomainIdentifier(filter, domainIdentifier);</span>
-<span class="nc" id="L60">    setActivityCategory(filter, activityCategory);</span>
-<span class="nc" id="L61">  }</span>
+<span class="fc" id="L57">    super.toDto(filter);</span>
+<span class="fc" id="L58">    setCategoryIdentifier(filter, categoryIdentifier);</span>
+<span class="fc" id="L59">    setDomainIdentifier(filter, domainIdentifier);</span>
+<span class="fc" id="L60">    setActivityCategory(filter, activityCategory);</span>
+<span class="fc" id="L61">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link ExpenditureNatureCategoryDto}.
@@ -67,9 +67,9 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant de {@link ExpenditureNatureCategoryDto}
    */
   public static void setCategoryIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L70">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L71">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L72">  }</span>
+<span class="pc" id="L70">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L71">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L72">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ExpenditureNatureCategoryDto}.
@@ -78,7 +78,7 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link ExpenditureNatureCategoryDto}
    */
   public static String getCategoryIdentifier(FilterDto filter) {
-<span class="nc" id="L81">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
+<span class="fc" id="L81">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
   }
 
   /**
@@ -88,9 +88,9 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @param activityCategory {@link ActivityCategory}
    */
   public static void setActivityCategory(FilterDto filter, ActivityCategory activityCategory) {
-<span class="nc" id="L91">    set(filter, JSON_ACTIVITY_CATEGORY, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L92">        f -&gt; f.setValueAsEnum(activityCategory));</span>
-<span class="nc" id="L93">  }</span>
+<span class="pc" id="L91">    set(filter, JSON_ACTIVITY_CATEGORY, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L92">        f -&gt; f.setValueAsEnum(activityCategory));</span>
+<span class="fc" id="L93">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link ActivityCategory}.
@@ -99,8 +99,8 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @return {@link ActivityCategory}
    */
   public static ActivityCategory getActivityCategory(FilterDto filter) {
-<span class="nc" id="L102">    return get(filter,</span>
-<span class="nc" id="L103">        d -&gt; d.getFieldValueAsEnum(JSON_ACTIVITY_CATEGORY, ActivityCategory.class));</span>
+<span class="fc" id="L102">    return get(filter,</span>
+<span class="fc" id="L103">        d -&gt; d.getFieldValueAsEnum(JSON_ACTIVITY_CATEGORY, ActivityCategory.class));</span>
   }
 
   /**
@@ -110,9 +110,9 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant de {@link ExpenditureNatureDomainDto}
    */
   public static void setDomainIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L113">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L114">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L115">  }</span>
+<span class="pc" id="L113">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L114">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L115">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ExpenditureNatureDomainDto}.
@@ -121,7 +121,7 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link ExpenditureNatureDomainDto}
    */
   public static String getDomainIdentifier(FilterDto filter) {
-<span class="nc" id="L124">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
+<span class="fc" id="L124">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
   }
 
   /**

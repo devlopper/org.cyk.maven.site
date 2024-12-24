@@ -29,13 +29,13 @@ import lombok.Setter;
  */
 @ApplicationScoped
 @Setter
-<span class="nc" id="L32">public class JustificationStructureClient extends AbstractClient&lt;JustificationStructureService&gt;</span>
+<span class="fc" id="L32">public class JustificationStructureClient extends AbstractClient&lt;JustificationStructureService&gt;</span>
     implements GetByIdentifier&lt;JustificationStructureDto&gt;, GetMany&lt;GetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public JustificationStructureClient service(JustificationStructureService service) {
-<span class="nc" id="L38">    return (JustificationStructureClient) super.service(service);</span>
+<span class="fc" id="L38">    return (JustificationStructureClient) super.service(service);</span>
   }
 
   /**
@@ -45,8 +45,8 @@ import lombok.Setter;
    * @return réponse
    */
   public CreateResponseDto create(JustificationStructureCreateRequestDto request) {
-<span class="nc" id="L48">    return new CreateExecutor(JustificationStructureService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L49">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L48">    return new CreateExecutor(JustificationStructureService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L49">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -56,9 +56,9 @@ import lombok.Setter;
    * @return réponse
    */
   public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L59">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
-<span class="nc" id="L60">        JustificationStructureService.GET_MANY_IDENTIFIER)</span>
-<span class="nc" id="L61">        .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L59">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+        JustificationStructureService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L61">        .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -74,13 +74,13 @@ import lombok.Setter;
   @Override
   public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
                                     String auditWho, String auditSession) {
-<span class="nc" id="L77">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L78">    request.setProjection(projection);</span>
-<span class="nc" id="L79">    request.setFilter(filter);</span>
-<span class="nc" id="L80">    request.setPage(page);</span>
-<span class="nc" id="L81">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L82">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L83">    return getMany(request);</span>
+<span class="fc" id="L77">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L78">    request.setProjection(projection);</span>
+<span class="fc" id="L79">    request.setFilter(filter);</span>
+<span class="fc" id="L80">    request.setPage(page);</span>
+<span class="fc" id="L81">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L82">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L83">    return getMany(request);</span>
   }
 
   /**
@@ -90,9 +90,9 @@ import lombok.Setter;
    * @return réponse
    */
   public JustificationStructureDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L93">    return new GetOneExecutor&lt;JustificationStructureDto&gt;(JustificationStructureDto.class,</span>
-<span class="nc" id="L94">        JustificationStructureService.GET_ONE_IDENTIFIER)</span>
-<span class="nc" id="L95">        .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L93">    return new GetOneExecutor&lt;JustificationStructureDto&gt;(JustificationStructureDto.class,</span>
+        JustificationStructureService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L95">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -107,12 +107,12 @@ import lombok.Setter;
   public JustificationStructureDto getOne(ProjectionDto projection, FilterDto filter,
                                           String auditWho,
                                           String auditSession) {
-<span class="nc" id="L110">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L111">    request.setProjection(projection);</span>
-<span class="nc" id="L112">    request.setFilter(filter);</span>
-<span class="nc" id="L113">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L114">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L115">    return getOne(request);</span>
+<span class="fc" id="L110">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L111">    request.setProjection(projection);</span>
+<span class="fc" id="L112">    request.setFilter(filter);</span>
+<span class="fc" id="L113">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L114">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L115">    return getOne(request);</span>
   }
 
   /**
@@ -122,9 +122,9 @@ import lombok.Setter;
    * @return groupe d'échéance
    */
   public JustificationStructureDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L125">    return new GetOneExecutor&lt;JustificationStructureDto&gt;(JustificationStructureDto.class,</span>
-<span class="nc" id="L126">        JustificationStructureService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L127">        .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L125">    return new GetOneExecutor&lt;JustificationStructureDto&gt;(JustificationStructureDto.class,</span>
+        JustificationStructureService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L127">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -140,12 +140,12 @@ import lombok.Setter;
   public JustificationStructureDto getByIdentifier(String identifier, ProjectionDto projection,
                                                    String auditWho,
                                                    String auditSession) {
-<span class="nc" id="L143">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L144">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L145">    request.setProjection(projection);</span>
-<span class="nc" id="L146">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L147">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L148">    return getByIdentifier(request);</span>
+<span class="fc" id="L143">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L144">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L145">    request.setProjection(projection);</span>
+<span class="fc" id="L146">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L147">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L148">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -155,8 +155,8 @@ import lombok.Setter;
    * @return réponse
    */
   public IdentifiableResponseDto update(JustificationStructureUpdateRequestDto request) {
-<span class="nc" id="L158">    return new IdentifiableExecutor(JustificationStructureService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L159">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L158">    return new IdentifiableExecutor(JustificationStructureService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L159">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -166,8 +166,8 @@ import lombok.Setter;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L169">    return new IdentifiableExecutor(JustificationStructureService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L170">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L169">    return new IdentifiableExecutor(JustificationStructureService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L170">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -181,11 +181,11 @@ import lombok.Setter;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
                                                     String auditSession) {
-<span class="nc" id="L184">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L185">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L186">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L187">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L188">    return delete(request);</span>
+<span class="fc" id="L184">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L185">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L186">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L187">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L188">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

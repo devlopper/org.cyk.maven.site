@@ -216,7 +216,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L219">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
+<span class="fc" id="L219">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -274,7 +274,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L277">  class FundingCreateByTriennialProgramByActivityRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L277">  class FundingCreateByTriennialProgramByActivityRequestDto extends AbstractAuditedRequestJsonDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -351,7 +351,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L354">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L354">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -443,7 +443,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L446">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L446">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -498,7 +498,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L501">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L501">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Montant.
      */
@@ -555,7 +555,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L558">  class FundingUpdateCommentRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L558">  class FundingUpdateCommentRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Commentaire.
      */
