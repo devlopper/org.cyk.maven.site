@@ -6,22 +6,22 @@
  * @author Christian
  *
  */
-<span class="fc" id="L9">public enum ActivityCategory {</span>
+<span class="nc" id="L9">public enum ActivityCategory {</span>
 
-  /**
+<span class="nc" id="L11">  /**</span>
    * Action.
    */
-<span class="fc" id="L14">  ACTION,</span>
+<span class="nc" id="L14">  ACTION,</span>
   
-  /**
+<span class="nc" id="L16">  /**</span>
    * Fonctionnement.
    */
-<span class="fc" id="L19">  FUNCTIONING,</span>
+<span class="nc" id="L19">  FUNCTIONING,</span>
   
-  /**
+<span class="nc" id="L21">  /**</span>
    * Opération.
    */
-<span class="fc" id="L24">  OPERATION</span>
+<span class="nc" id="L24">  OPERATION</span>
 
   ;
   
@@ -32,7 +32,7 @@
    * @return vrai ou faux
    */
   public static boolean hasExpenditureNature(ActivityCategory category) {
-<span class="fc bfc" id="L35" title="All 4 branches covered.">    return ACTION.equals(category) || FUNCTIONING.equals(category);</span>
+<span class="nc bnc" id="L35" title="All 4 branches missed.">    return ACTION.equals(category) || FUNCTIONING.equals(category);</span>
   }
   
   /**
@@ -42,7 +42,7 @@
    * @return vrai ou faux
    */
   public static boolean hasWealthAccount(ActivityCategory category) {
-<span class="fc" id="L45">    return OPERATION.equals(category);</span>
+<span class="nc" id="L45">    return OPERATION.equals(category);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

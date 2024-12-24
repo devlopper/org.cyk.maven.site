@@ -85,7 +85,7 @@ public interface EconomicAccountService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L88">  class EconomicAccountCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="nc" id="L88">  class EconomicAccountCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
 
   }
 
@@ -123,7 +123,7 @@ public interface EconomicAccountService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;EconomicAccountDto&gt; {</span>
+<span class="nc" id="L126">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;EconomicAccountDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;EconomicAccountDto&gt; datas;
@@ -219,7 +219,7 @@ public interface EconomicAccountService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L222">  class EconomicAccountUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="nc" id="L222">  class EconomicAccountUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

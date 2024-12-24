@@ -122,7 +122,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L125">  class TriennialProgramCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="nc" id="L125">  class TriennialProgramCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
@@ -139,7 +139,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L142">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L142">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Raison.
@@ -161,7 +161,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L164">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
+<span class="nc" id="L164">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link TriennialProgramDto#getStatus()}.
@@ -210,14 +210,14 @@ public interface TriennialProgramService extends SpecificService {
      * @param reason raison
      */
     public void initialize(TriennialProgramStatus status, String statusAsString, String reason) {
-<span class="fc" id="L213">      this.status = status;</span>
-<span class="fc" id="L214">      this.statusAsString = statusAsString;</span>
-<span class="fc" id="L215">      this.reason = reason;</span>
-<span class="fc" id="L216">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
-<span class="fc" id="L217">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L218">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
-<span class="fc" id="L219">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
-<span class="fc" id="L220">    }</span>
+<span class="nc" id="L213">      this.status = status;</span>
+<span class="nc" id="L214">      this.statusAsString = statusAsString;</span>
+<span class="nc" id="L215">      this.reason = reason;</span>
+<span class="nc" id="L216">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
+<span class="nc" id="L217">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="nc" id="L218">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
+<span class="nc" id="L219">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
+<span class="nc" id="L220">    }</span>
 
     /**
      * {@link TriennialProgramDto#JSON_STATUS}.
@@ -403,7 +403,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L406">  public static class TriennialProgramGetManyResponseDto</span>
+<span class="nc" id="L406">  public static class TriennialProgramGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TriennialProgramDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -495,7 +495,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L498">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="nc" id="L498">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
