@@ -157,6 +157,12 @@ import lombok.Setter;
   /**
    * Représentation en chaine de caractères du reste du budget plannifié.
    */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_PLANNED_BUDGET)
+  private Long remainingExecutedPlannedBudget;
+
+  /**
+   * Représentation en chaine de caractères du reste du budget plannifié.
+   */
   @JsonbProperty(JSON_REMAINING_EXECUTED_PLANNED_BUDGET_AS_STRING)
   private String remainingExecutedPlannedBudgetAsString;
 
@@ -315,6 +321,13 @@ import lombok.Setter;
    * Identifiant json {@link AbstractExpenditureOrResourceItemDto#executedRealizedBudgetAsString}.
    */
   public static final String JSON_EXECUTED_REALIZED_BUDGET_AS_STRING = &quot;budgetExecuteRealiseChaine&quot;;
+
+  /**
+   * Identifiant json
+   * {@link AbstractExpenditureOrResourceItemDto#remainingExecutedPlannedBudget}.
+   */
+  public static final String JSON_REMAINING_EXECUTED_PLANNED_BUDGET =
+      &quot;resteBudgetPlannifie&quot;;
 
   /**
    * Identifiant json
