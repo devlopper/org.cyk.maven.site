@@ -12,57 +12,81 @@ import lombok.Getter;
 <span class="fc" id="L12">@Getter</span>
 public enum UserRole implements CodableByStringWithGetterOnly {
 
+  // --- Actions ---
+
   // Activité
 
   /**
    * Gérer {@link ActivityDto}.
    */
-<span class="fc" id="L20">  MANAGE_ACTIVITY(&quot;GERER_ACTIVITE&quot;),</span>
+<span class="fc" id="L22">  MANAGE_ACTIVITY(&quot;GERER_ACTIVITE&quot;),</span>
 
   // Programme triennal.
 
   /**
    * Gérer {@link TriennialProgramDto}.
    */
-<span class="fc" id="L27">  MANAGE_TRIENNIAL_PROGRAM(&quot;GERER_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L29">  MANAGE_TRIENNIAL_PROGRAM(&quot;GERER_PROGRAMME_TRIENNAL&quot;),</span>
 
   /**
    * Saisir {@link TriennialProgramDto}.
    */
-<span class="fc" id="L32">  INPUT_TRIENNIAL_PROGRAM(&quot;SAISIR_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L34">  INPUT_TRIENNIAL_PROGRAM(&quot;SAISIR_PROGRAMME_TRIENNAL&quot;),</span>
 
   /**
    * Transmettre {@link TriennialProgramDto}.
    */
-<span class="fc" id="L37">  TRANSMIT_TRIENNIAL_PROGRAM(&quot;TRANSMETTRE_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L39">  TRANSMIT_TRIENNIAL_PROGRAM(&quot;TRANSMETTRE_PROGRAMME_TRIENNAL&quot;),</span>
 
   /**
    * Valider {@link TriennialProgramDto}.
    */
-<span class="fc" id="L42">  VALIDATE_TRIENNIAL_PROGRAM(&quot;VALIDER_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L44">  VALIDATE_TRIENNIAL_PROGRAM(&quot;VALIDER_PROGRAMME_TRIENNAL&quot;),</span>
 
   /**
    * Approuver {@link TriennialProgramDto}.
    */
-<span class="fc" id="L47">  APPROVE_TRIENNIAL_PROGRAM(&quot;APPROUVER_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L49">  APPROVE_TRIENNIAL_PROGRAM(&quot;APPROUVER_PROGRAMME_TRIENNAL&quot;),</span>
 
   // Activité de programme triennal
 
   /**
    * Gérer {@link ActivityDto}.
    */
-<span class="fc" id="L54">  MANAGE_TRIENNIAL_PROGRAM_ACTIVITY(&quot;GERER_PROGRAMME_TRIENNAL_ACTIVITE&quot;),</span>
+<span class="fc" id="L56">  MANAGE_TRIENNIAL_PROGRAM_ACTIVITY(&quot;GERER_PROGRAMME_TRIENNAL_ACTIVITE&quot;),</span>
 
   // Financemment
 
   /**
    * Commenter {@link FundingDto}.
    */
-<span class="fc" id="L61">  COMMENT_FUNDING(&quot;COMMENTER_FINANCEMENT&quot;);</span>
+<span class="fc" id="L63">  COMMENT_FUNDING(&quot;COMMENTER_FINANCEMENT&quot;),</span>
 
-<span class="fc" id="L63">  private UserRole(String code) {</span>
-<span class="fc" id="L64">    this.code = code;</span>
-<span class="fc" id="L65">  }</span>
+  // --- Groupe d'actions ---
+
+  /**
+   * Agent technique.
+   */
+<span class="fc" id="L70">  TECHNICAL_AGENT(&quot;AGENT_TECHNIQUE&quot;),</span>
+  
+  /**
+   * Responsable technique.
+   */
+<span class="fc" id="L75">  TECHNICAL_MANAGER(&quot;RESPONSABLE_TECHNIQUE&quot;),</span>
+  
+  /**
+   * Validateur.
+   */
+<span class="fc" id="L80">  VALIDATOR(&quot;VALIDATEUR&quot;),</span>
+  
+  /**
+   * Approbateur.
+   */
+<span class="fc" id="L85">  APPROVER(&quot;APPROBATEUR&quot;);</span>
+  
+<span class="fc" id="L87">  private UserRole(String code) {</span>
+<span class="fc" id="L88">    this.code = code;</span>
+<span class="fc" id="L89">  }</span>
 
   /**
    * Code.
