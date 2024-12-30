@@ -66,6 +66,12 @@ import lombok.Setter;
   private String remainingExecutedBudgetAsString;
   
   /**
+   * Reste du budget exécuté.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_BUDGET)
+  private Long remainingExecutedBudget;
+  
+  /**
    * Est crédit.
    */
   @JsonbProperty(JSON_IS_CREDIT)
@@ -114,6 +120,11 @@ import lombok.Setter;
   /**
    * Identifiant json {@link AbstractMovementDto#remainingExecutedBudgetAsString}.
    */
-  public static final String JSON_REMAINING_EXECUTED_BUDGET_AS_STRING = &quot;resteBudgetExecute&quot;;
+  public static final String JSON_REMAINING_EXECUTED_BUDGET_AS_STRING = &quot;resteBudgetExecuteChaine&quot;;
+  
+  /**
+   * Identifiant json {@link AbstractMovementDto#remainingExecutedBudget}.
+   */
+  public static final String JSON_REMAINING_EXECUTED_BUDGET = &quot;resteBudgetExecute&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

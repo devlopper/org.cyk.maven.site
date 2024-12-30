@@ -169,6 +169,12 @@ import lombok.Setter;
   private Boolean refusable;
 
   /**
+   * Montant du Total des depenses de {@link ExpenditureMovementDto}.
+   */
+  @JsonbProperty(JSON_EXPENDITURE_MOVEMENT_AMOUNT_TOTAL)
+  private Long expenditureMovementAmountTotal;
+
+  /**
    * Représentation en chaine de caractères du Total de {@link ExpenditureMovementDto}.
    */
   @JsonbProperty(JSON_EXPENDITURE_MOVEMENT_AMOUNT_TOTAL_AS_STRING)
@@ -187,6 +193,12 @@ import lombok.Setter;
   private String expenditureMovementAmountDebitAsString;
 
   /**
+   * Montant du Total des ressoures de {@link ResourceMovementDto}.
+   */
+  @JsonbProperty(JSON_RESOURCE_MOVEMENT_AMOUNT_TOTAL)
+  private Long resourceMovementAmountTotal;
+
+  /**
    * Représentation en chaine de caractères du Total de {@link ResourceMovementDto}.
    */
   @JsonbProperty(JSON_RESOURCE_MOVEMENT_AMOUNT_TOTAL_AS_STRING)
@@ -203,6 +215,18 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_RESOURCE_MOVEMENT_AMOUNT_DEBIT_AS_STRING)
   private String resourceMovementAmountDebitAsString;
+
+  /**
+   * Ecart entre total ressource et total depense .
+   */
+  @JsonbProperty(JSON_GAP_AMOUNT)
+  private Long gapAmount;
+
+  /**
+   * Représentation en chaine de caractères de l'écart entre total ressource et total depense.
+   */
+  @JsonbProperty(JSON_GAP_AMOUNT_AS_STRING)
+  private String gapAmountAsString;
 
   /**
    * Equilibré.
@@ -362,8 +386,14 @@ import lombok.Setter;
   /**
    * Identifiant json champ {@link ActDto#expenditureMovementAmountTotalAsString}.
    */
-  public static final String JSON_EXPENDITURE_MOVEMENT_AMOUNT_TOTAL_AS_STRING =
+  public static final String JSON_EXPENDITURE_MOVEMENT_AMOUNT_TOTAL =
       &quot;totalDepense&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#expenditureMovementAmountTotalAsString}.
+   */
+  public static final String JSON_EXPENDITURE_MOVEMENT_AMOUNT_TOTAL_AS_STRING =
+      &quot;totalDepenseChaine&quot;;
 
   /**
    * Identifiant json champ {@link ActDto#expenditureMovementAmountCreditAsString}.
@@ -378,22 +408,40 @@ import lombok.Setter;
       &quot;totalDebitDepense&quot;;
 
   /**
+   * Identifiant json champ {@link ActDto#resourceMovementAmountTotal}.
+   */
+  public static final String JSON_RESOURCE_MOVEMENT_AMOUNT_TOTAL =
+      &quot;totalResource&quot;;
+
+  /**
    * Identifiant json champ {@link ActDto#resourceMovementAmountTotalAsString}.
    */
   public static final String JSON_RESOURCE_MOVEMENT_AMOUNT_TOTAL_AS_STRING =
-      &quot;totalResource&quot;;
+      &quot;totalResourceChaine&quot;;
 
   /**
    * Identifiant json champ {@link ActDto#resourceMovementAmountCreditAsString}.
    */
   public static final String JSON_RESOURCE_MOVEMENT_AMOUNT_CREDIT_AS_STRING =
-      &quot;totalCreditResource&quot;;
+      &quot;totalCreditResourceChaine&quot;;
 
   /**
    * Identifiant json champ {@link ActDto#resourceMovementAmountDebitAsString}.
    */
   public static final String JSON_RESOURCE_MOVEMENT_AMOUNT_DEBIT_AS_STRING =
-      &quot;totalDebitResource&quot;;
+      &quot;totalDebitResourceChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#gapAmount}.
+   */
+  public static final String JSON_GAP_AMOUNT =
+      &quot;gapAmount&quot;;
+
+  /**
+   * Identifiant json champ {@link ActDto#gapAmountAsString}.
+   */
+  public static final String JSON_GAP_AMOUNT_AS_STRING =
+      &quot;gapAmountChaine&quot;;
 
   /**
    * Identifiant json champ {@link ActDto#balanced}.
