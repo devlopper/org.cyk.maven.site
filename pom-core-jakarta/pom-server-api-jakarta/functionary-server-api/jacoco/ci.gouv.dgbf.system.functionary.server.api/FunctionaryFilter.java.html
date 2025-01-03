@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FunctionaryFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">FunctionaryFilter.java</span></div><h1>FunctionaryFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link FunctionaryDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+<span class="fc" id="L17">public class FunctionaryFilter extends AbstractIdentifiableFilter {</span>
+
+  /**
+   * Adresse email.
+   */
+  @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+  String emailAddress;
+
+  /**
+   * Matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  String registrationNumber;
+
+  /**
+   * Nom.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME)
+  String firstName;
+
+  /**
+   * Prénoms.
+   */
+  @JsonbProperty(value = JSON_LAST_NAMES)
+  String lastNames;
+
+  /**
+   * Identifiant du genre.
+   */
+  @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
+  String genderIdentifier;
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L51">    super.doInitialize(filter);</span>
+<span class="fc" id="L52">    emailAddress = getEmailAddress(filter);</span>
+<span class="fc" id="L53">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L54">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L58">    super.toDto(filter);</span>
+<span class="fc" id="L59">    setEmailAddress(filter, emailAddress);</span>
+<span class="fc" id="L60">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L61">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link #emailAddress}.
+   *
+   * @param filter filtre
+   * @param emailAddress {@link #emailAddress}
+   */
+  public static void setEmailAddress(FilterDto filter, String emailAddress) {
+<span class="pc" id="L70">    set(filter, JSON_EMAIL_ADDRESS, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L71">        f -&gt; f.setValueAsString(emailAddress));</span>
+<span class="fc" id="L72">  }</span>
+  
+  /**
+   * Cette méthode permet d'obtenir {@link #emailAddress}.
+   *
+   * @param filter filtre
+   * @return {@link #emailAddress}
+   */
+  public static String getEmailAddress(FilterDto filter) {
+<span class="fc" id="L81">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMAIL_ADDRESS));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner {@link #registrationNumber}.
+   *
+   * @param filter filtre
+   * @param registrationNumber {@link #registrationNumber}
+   */
+  public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
+<span class="pc" id="L91">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L92">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="fc" id="L93">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #registrationNumber}.
+   *
+   * @param filter filtre
+   * @return {@link #registrationNumber}
+   */
+  public static String getRegistrationNumber(FilterDto filter) {
+<span class="fc" id="L102">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+  }
+
+  /**
+   * Identifiant json du {@link #emailAddress}.
+   */
+  public static final String JSON_EMAIL_ADDRESS = FunctionaryDto.JSON_EMAIL_ADDRESS;
+  
+  /**
+   * Identifiant json du {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = FunctionaryDto.JSON_REGISTRATION_NUMBER;
+  
+  /**
+   * Identifiant json du {@link #firstName}.
+   */
+  public static final String JSON_FIRST_NAME = FunctionaryDto.JSON_FIRST_NAME;
+  
+  /**
+   * Identifiant json du {@link #lastNames}.
+   */
+  public static final String JSON_LAST_NAMES = FunctionaryDto.JSON_LAST_NAMES;
+  
+  /**
+   * Identifiant json du {@link #genderIdentifier}.
+   */
+  public static final String JSON_GENDER_IDENTIFIER = FunctionaryDto.JSON_GENDER_IDENTIFIER;
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

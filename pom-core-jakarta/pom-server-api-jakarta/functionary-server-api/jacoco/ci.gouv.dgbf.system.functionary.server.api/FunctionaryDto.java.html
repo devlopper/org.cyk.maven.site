@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FunctionaryDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">FunctionaryDto.java</span></div><h1>FunctionaryDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un fonctionnaire.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class FunctionaryDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant de l'employé.
+   */
+  @JsonbProperty(value = JSON_EMPLOYEE_IDENTIFIER)
+  private String employeeIdentifier;
+
+  /**
+   * Adresse email.
+   */
+  @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+  private String emailAddress;
+
+  /**
+   * Numéro matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+
+  /**
+   * Nom.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME)
+  private String firstName;
+
+  /**
+   * Prénoms.
+   */
+  @JsonbProperty(value = JSON_LAST_NAMES)
+  private String lastNames;
+
+  /**
+   * Identifiant du genre.
+   */
+  @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
+  private String genderIdentifier;
+
+  /**
+   * Est du genre masculin.
+   */
+  @JsonbProperty(value = JSON_IS_GENDER_MASCULINE)
+  private Boolean isGenderMasculine;
+  
+  /**
+   * Date de naissance.
+   */
+  @JsonbProperty(value = JSON_BIRTH_DATE)
+  private LocalDate birthDate;
+
+  /**
+   * Date de première prise de service.
+   */
+  @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE)
+  private LocalDate firstServiceStartDate;
+
+  /**
+   * Identifiant json {@link #employeeIdentifier}.
+   */
+  public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
+  
+  /**
+   * Identifiant json {@link #emailAddress}.
+   */
+  public static final String JSON_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
+  
+  /**
+   * Identifiant json {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+  
+  /**
+   * Identifiant json {@link #firstName}.
+   */
+  public static final String JSON_FIRST_NAME = &quot;nom&quot;;
+  
+  /**
+   * Identifiant json {@link #lastNames}.
+   */
+  public static final String JSON_LAST_NAMES = &quot;prenoms&quot;;
+  
+  /**
+   * Identifiant json {@link #genderIdentifier}.
+   */
+  public static final String JSON_GENDER_IDENTIFIER = &quot;idGenre&quot;;
+  
+  /**
+   * Identifiant json {@link #isGenderMasculine}.
+   */
+  public static final String JSON_IS_GENDER_MASCULINE = &quot;estGenreMasculin&quot;;
+  
+  /**
+   * Identifiant json {@link #birthDate}.
+   */
+  public static final String JSON_BIRTH_DATE = &quot;dateNaissance&quot;;
+  
+  /**
+   * Identifiant json {@link #firstServiceStartDate}.
+   */
+  public static final String JSON_FIRST_SERVICE_START_DATE = &quot;datePremierePriseService&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;fonctionnaire&quot;;
+  
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
