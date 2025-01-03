@@ -171,19 +171,88 @@ import lombok.Setter;
   private String statusReason;
 
   /**
+   * Auteur de la création du programme triennal.
+   */
+  @JsonbProperty(JSON_CREATED_BY)
+  private String createdBy;
+
+
+  /**
+   * Auteur de la modification du programme triennal.
+   */
+  @JsonbProperty(JSON_UPDATED_BY)
+  private String updatedBy;
+
+  /**
+   * Date de transmission du programme triennal.
+   */
+  @JsonbProperty(JSON_TRANSMITTED_DATE_AS_STRING)
+  private String transmittedDateAsString;
+
+
+  /**
+   * Auteur de la transmission du programme triennal.
+   */
+  @JsonbProperty(JSON_TRANSMITTED_BY)
+  private String transmittedBy;
+
+
+  /**
+   * Date de retour du programme triennal.
+   */
+  @JsonbProperty(JSON_RETURNED_DATE_AS_STRING)
+  private String returnedDateAsString;
+
+
+  /**
+   * Auteur du retour du programme triennal.
+   */
+  @JsonbProperty(JSON_RETURNED_BY)
+  private String returnedBy;
+
+
+  /**
+   * Date d'acceptation du programme triennal.
+   */
+  @JsonbProperty(JSON_ACCEPTED_DATE_AS_STRING)
+  private String acceptedDateAsString;
+
+
+  /**
+   * Auteur de l'acceptation du programme triennal.
+   */
+  @JsonbProperty(JSON_ACCEPTED_BY)
+  private String acceptedBy;
+
+
+  /**
+   * Date d'approbation du programme triennal.
+   */
+  @JsonbProperty(JSON_APPROVED_DATE_AS_STRING)
+  private String approvedDateAsString;
+
+
+  /**
+   * Auteur de l'acceptation du programme triennal.
+   */
+  @JsonbProperty(JSON_APPROVED_BY)
+  private String approvedBy;
+
+
+  /**
    * Cette méthode permet de copier à partir d'une réponse de changement de statut.
    *
    * @param statusUpdateResponse {@link TriennialProgramStatusUpdateResponseDto}
    */
   public void copy(TriennialProgramStatusUpdateResponseDto statusUpdateResponse) {
-<span class="fc" id="L179">    status = statusUpdateResponse.getStatus();</span>
-<span class="fc" id="L180">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
-<span class="fc" id="L181">    statusReason = statusUpdateResponse.getReason();</span>
-<span class="fc" id="L182">    transmitable = statusUpdateResponse.getTransmitable();</span>
-<span class="fc" id="L183">    acceptable = statusUpdateResponse.getAcceptable();</span>
-<span class="fc" id="L184">    approvable = statusUpdateResponse.getApprovable();</span>
-<span class="fc" id="L185">    returnable = statusUpdateResponse.getReturnable();</span>
-<span class="fc" id="L186">  }</span>
+<span class="fc" id="L248">    status = statusUpdateResponse.getStatus();</span>
+<span class="fc" id="L249">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
+<span class="fc" id="L250">    statusReason = statusUpdateResponse.getReason();</span>
+<span class="fc" id="L251">    transmitable = statusUpdateResponse.getTransmitable();</span>
+<span class="fc" id="L252">    acceptable = statusUpdateResponse.getAcceptable();</span>
+<span class="fc" id="L253">    approvable = statusUpdateResponse.getApprovable();</span>
+<span class="fc" id="L254">    returnable = statusUpdateResponse.getReturnable();</span>
+<span class="fc" id="L255">  }</span>
 
   /**
    * Identifiant json de identifiant de {@link TriennialProgramDto}.
@@ -326,6 +395,59 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusReason}.
    */
   public static final String JSON_STATUS_REASON = &quot;raisonStatut&quot;;
+
+  /**
+   * Identifiant json champ {@link #transmittedDateAsString}.
+   */
+  public static final String JSON_TRANSMITTED_DATE_AS_STRING = &quot;dateTransmissionChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #transmittedBy}.
+   */
+  public static final String JSON_TRANSMITTED_BY = &quot;acteurTransmissionChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #createdBy}.
+   */
+  public static final String JSON_CREATED_BY = &quot;acteurCreationChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #updatedBy}.
+   */
+  public static final String JSON_UPDATED_BY = &quot;acteurModificationChaine&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #returnedDateAsString}.
+   */
+  public static final String JSON_RETURNED_DATE_AS_STRING = &quot;dateRetourChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #returnedBy}.
+   */
+  public static final String JSON_RETURNED_BY = &quot;acteurRetourChaine&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #acceptedDateAsString}.
+   */
+  public static final String JSON_ACCEPTED_DATE_AS_STRING = &quot;dateAcceptationChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #acceptedBy}.
+   */
+  public static final String JSON_ACCEPTED_BY = &quot;acteurAcceptationChaine&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #approvedDateAsString}.
+   */
+  public static final String JSON_APPROVED_DATE_AS_STRING = &quot;dateApprobationChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #approvedBy}.
+   */
+  public static final String JSON_APPROVED_BY = &quot;acteurApprobationChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
