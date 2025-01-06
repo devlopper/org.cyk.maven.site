@@ -1,5 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-API du serveur du module de gestion des employes,ci.gouv.dgbf.system.employee.server.api,EmployeeClient,0,211,0,0,0,39,0,20,0,20
+API du serveur du module de gestion des employes,ci.gouv.dgbf.system.employee.server.api,EmployeeClient,3,224,0,0,0,41,0,22,0,22
+API du serveur du module de gestion des employes,ci.gouv.dgbf.system.employee.server.api,EmployeeService.EmployeeImportAllRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de gestion des employes,ci.gouv.dgbf.system.employee.server.api,EmployeeService.EmployeeImportByFunctionaryRegistrationNumberRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de gestion des employes,ci.gouv.dgbf.system.employee.server.api,EmployeeService.EmployeeCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de gestion des employes,ci.gouv.dgbf.system.employee.server.api,EmployeeService.EmployeeGetManyResponseDto,0,3,0,0,0,1,0,1,0,1

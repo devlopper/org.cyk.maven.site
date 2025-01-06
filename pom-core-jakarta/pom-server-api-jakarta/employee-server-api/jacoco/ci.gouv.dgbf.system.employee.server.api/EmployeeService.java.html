@@ -8,6 +8,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateManyResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -287,7 +288,7 @@ public interface EmployeeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L290">  class EmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto implements</span>
+<span class="fc" id="L291">  class EmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto implements</span>
       EmployeeSaveRequestDto {
 
     @JsonbProperty(value = JSON_FIRST_NAME)
@@ -354,7 +355,7 @@ public interface EmployeeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L357">  public static class EmployeeGetManyResponseDto extends AbstractGetByPageResponseDto&lt;EmployeeDto&gt; {</span>
+<span class="fc" id="L358">  public static class EmployeeGetManyResponseDto extends AbstractGetByPageResponseDto&lt;EmployeeDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;EmployeeDto&gt; datas;
@@ -444,7 +445,7 @@ public interface EmployeeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L447">  class EmployeeUpdateRequestDto extends ByIdentifierRequestDto implements EmployeeSaveRequestDto {</span>
+<span class="fc" id="L448">  class EmployeeUpdateRequestDto extends ByIdentifierRequestDto implements EmployeeSaveRequestDto {</span>
 
     @JsonbProperty(value = JSON_FIRST_NAME)
     private String firstName;
@@ -538,7 +539,7 @@ public interface EmployeeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L541">  class EmployeeImportByFunctionaryRegistrationNumberRequestDto extends</span>
+<span class="fc" id="L542">  class EmployeeImportByFunctionaryRegistrationNumberRequestDto extends</span>
       AbstractAuditedRequestJsonDto {
 
     /**
@@ -552,6 +553,42 @@ public interface EmployeeService extends SpecificService {
      * {@link EmployeeDto#JSON_REGISTRATION_NUMBER}.
      */
     public static final String JSON_REGISTRATION_NUMBER = EmployeeDto.JSON_REGISTRATION_NUMBER;
+  }
+  
+  /**
+   * Identifiant du service d'importation de tout.
+   */
+  String IMPORT_ALL_IDENTIFIER = &quot;IMPORTATION_TOUT_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service d'imporation de tout.
+   */
+  String IMPORT_ALL_PATH = &quot;importation-tout&quot;;
+
+  /**
+   * Cette méthode permet d'importer tout.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(IMPORT_ALL_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = IMPORT_ALL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateManyResponseDto.class))})
+  Response importAll(EmployeeImportAllRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'importation de tout.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L591">  class EmployeeImportAllRequestDto extends AbstractAuditedRequestJsonDto {</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
