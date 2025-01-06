@@ -24,6 +24,7 @@ import ci.gouv.dgbf.system.employee.server.api.EmployeeService.EmployeeImportAll
 import ci.gouv.dgbf.system.employee.server.api.EmployeeService.EmployeeImportByFunctionaryRegistrationNumberRequestDto;
 import ci.gouv.dgbf.system.employee.server.api.EmployeeService.EmployeeUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.core.Response;
 
 /**
  * Cette classe représente le client de {@link EmployeeService}.
@@ -32,12 +33,12 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L35">public class EmployeeClient extends AbstractClient&lt;EmployeeService&gt; implements GetByIdentifier&lt;</span>
+<span class="fc" id="L36">public class EmployeeClient extends AbstractClient&lt;EmployeeService&gt; implements GetByIdentifier&lt;</span>
     EmployeeDto&gt;, GetMany&lt;EmployeeGetManyResponseDto&gt;, DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public EmployeeClient service(EmployeeService service) {
-<span class="fc" id="L40">    return (EmployeeClient) super.service(service);</span>
+<span class="fc" id="L41">    return (EmployeeClient) super.service(service);</span>
   }
 
   /**
@@ -47,7 +48,7 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public CreateResponseDto create(EmployeeCreateRequestDto request) {
-<span class="fc" id="L50">    return new CreateExecutor(EmployeeService.CREATE_IDENTIFIER).execute(() -&gt; service().create(</span>
+<span class="fc" id="L51">    return new CreateExecutor(EmployeeService.CREATE_IDENTIFIER).execute(() -&gt; service().create(</span>
         request));
   }
 
@@ -58,8 +59,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public EmployeeGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L61">    return new GetOneExecutor&lt;EmployeeGetManyResponseDto&gt;(EmployeeGetManyResponseDto.class,</span>
-<span class="fc" id="L62">        EmployeeService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L62">    return new GetOneExecutor&lt;EmployeeGetManyResponseDto&gt;(EmployeeGetManyResponseDto.class,</span>
+<span class="fc" id="L63">        EmployeeService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -74,13 +75,13 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public EmployeeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L77">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L78">    request.setProjection(projection);</span>
-<span class="fc" id="L79">    request.setFilter(filter);</span>
-<span class="fc" id="L80">    request.setPage(page);</span>
-<span class="fc" id="L81">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L82">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L83">    return getMany(request);</span>
+<span class="fc" id="L78">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L79">    request.setProjection(projection);</span>
+<span class="fc" id="L80">    request.setFilter(filter);</span>
+<span class="fc" id="L81">    request.setPage(page);</span>
+<span class="fc" id="L82">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L83">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L84">    return getMany(request);</span>
   }
 
   /**
@@ -90,8 +91,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public EmployeeDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L93">    return new GetOneExecutor&lt;EmployeeDto&gt;(EmployeeDto.class, EmployeeService.GET_ONE_IDENTIFIER)</span>
-<span class="fc" id="L94">        .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L94">    return new GetOneExecutor&lt;EmployeeDto&gt;(EmployeeDto.class, EmployeeService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L95">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -105,12 +106,12 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public EmployeeDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L108">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L109">    request.setProjection(projection);</span>
-<span class="fc" id="L110">    request.setFilter(filter);</span>
-<span class="fc" id="L111">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L112">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L113">    return getOne(request);</span>
+<span class="fc" id="L109">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L110">    request.setProjection(projection);</span>
+<span class="fc" id="L111">    request.setFilter(filter);</span>
+<span class="fc" id="L112">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L113">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L114">    return getOne(request);</span>
   }
 
   /**
@@ -120,8 +121,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return groupe d'échéance
    */
   public EmployeeDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L123">    return new GetOneExecutor&lt;EmployeeDto&gt;(EmployeeDto.class,</span>
-<span class="fc" id="L124">        EmployeeService.GET_BY_IDENTIFIER_IDENTIFIER).execute(() -&gt; service().getByIdentifier(</span>
+<span class="fc" id="L124">    return new GetOneExecutor&lt;EmployeeDto&gt;(EmployeeDto.class,</span>
+<span class="fc" id="L125">        EmployeeService.GET_BY_IDENTIFIER_IDENTIFIER).execute(() -&gt; service().getByIdentifier(</span>
             request));
   }
 
@@ -137,12 +138,12 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public EmployeeDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
-<span class="fc" id="L140">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L141">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L142">    request.setProjection(projection);</span>
-<span class="fc" id="L143">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L144">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L145">    return getByIdentifier(request);</span>
+<span class="fc" id="L141">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L142">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L143">    request.setProjection(projection);</span>
+<span class="fc" id="L144">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L145">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L146">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -152,8 +153,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto update(EmployeeUpdateRequestDto request) {
-<span class="fc" id="L155">    return new IdentifiableExecutor(EmployeeService.UPDATE_IDENTIFIER).execute(() -&gt; service()</span>
-<span class="fc" id="L156">        .update(request));</span>
+<span class="fc" id="L156">    return new IdentifiableExecutor(EmployeeService.UPDATE_IDENTIFIER).execute(() -&gt; service()</span>
+<span class="fc" id="L157">        .update(request));</span>
   }
 
   /**
@@ -163,8 +164,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L166">    return new IdentifiableExecutor(EmployeeService.DELETE_IDENTIFIER).execute(() -&gt; service()</span>
-<span class="fc" id="L167">        .delete(request));</span>
+<span class="fc" id="L167">    return new IdentifiableExecutor(EmployeeService.DELETE_IDENTIFIER).execute(() -&gt; service()</span>
+<span class="fc" id="L168">        .delete(request));</span>
   }
 
   /**
@@ -178,11 +179,11 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L181">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L182">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L183">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L184">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L185">    return delete(request);</span>
+<span class="fc" id="L182">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L183">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L184">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L185">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L186">    return delete(request);</span>
   }
 
   /**
@@ -193,10 +194,10 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public CreateResponseDto importByFunctionaryRegistrationNumber(
       EmployeeImportByFunctionaryRegistrationNumberRequestDto request) {
-<span class="fc" id="L196">    return new CreateExecutor(EmployeeService.IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_PATH)</span>
-<span class="fc" id="L197">        .execute(() -&gt; service().importByFunctionaryRegistrationNumber(request));</span>
+<span class="fc" id="L197">    return new CreateExecutor(EmployeeService.IMPORT_BY_FUNCTIONARY_REGISTRATION_NUMBER_PATH)</span>
+<span class="fc" id="L198">        .execute(() -&gt; service().importByFunctionaryRegistrationNumber(request));</span>
   }
-  
+
   /**
    * {@link EmployeeService#importAll}.
    *
@@ -204,8 +205,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public CreateManyResponseDto importAll(EmployeeImportAllRequestDto request) {
-<span class="pc" id="L207">    return new CreateManyExecutor(EmployeeService.IMPORT_ALL_PATH)</span>
-<span class="pc" id="L208">        .execute(() -&gt; service().importAll(request));</span>
+<span class="fc" id="L208">    return new CreateManyExecutor(EmployeeService.IMPORT_ALL_PATH).setExpectedResponseStatusCode(</span>
+<span class="fc" id="L209">        Response.Status.OK.getStatusCode()).execute(() -&gt; service().importAll(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
