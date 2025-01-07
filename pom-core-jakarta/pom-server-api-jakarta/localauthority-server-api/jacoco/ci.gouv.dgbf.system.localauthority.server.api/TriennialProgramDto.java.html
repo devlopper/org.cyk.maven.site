@@ -139,6 +139,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
 
+  /**
+   * Numéro d'approbation du programme triennal au format chaine de caractère.
+   */
+  @JsonbProperty(JSON_APPROVAL_NUMBER)
+  private String approvalNumber;
+
 
   /**
    * Transmittable.
@@ -245,14 +251,14 @@ import lombok.Setter;
    * @param statusUpdateResponse {@link TriennialProgramStatusUpdateResponseDto}
    */
   public void copy(TriennialProgramStatusUpdateResponseDto statusUpdateResponse) {
-<span class="fc" id="L248">    status = statusUpdateResponse.getStatus();</span>
-<span class="fc" id="L249">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
-<span class="fc" id="L250">    statusReason = statusUpdateResponse.getReason();</span>
-<span class="fc" id="L251">    transmitable = statusUpdateResponse.getTransmitable();</span>
-<span class="fc" id="L252">    acceptable = statusUpdateResponse.getAcceptable();</span>
-<span class="fc" id="L253">    approvable = statusUpdateResponse.getApprovable();</span>
-<span class="fc" id="L254">    returnable = statusUpdateResponse.getReturnable();</span>
-<span class="fc" id="L255">  }</span>
+<span class="fc" id="L254">    status = statusUpdateResponse.getStatus();</span>
+<span class="fc" id="L255">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
+<span class="fc" id="L256">    statusReason = statusUpdateResponse.getReason();</span>
+<span class="fc" id="L257">    transmitable = statusUpdateResponse.getTransmitable();</span>
+<span class="fc" id="L258">    acceptable = statusUpdateResponse.getAcceptable();</span>
+<span class="fc" id="L259">    approvable = statusUpdateResponse.getApprovable();</span>
+<span class="fc" id="L260">    returnable = statusUpdateResponse.getReturnable();</span>
+<span class="fc" id="L261">  }</span>
 
   /**
    * Identifiant json de identifiant de {@link TriennialProgramDto}.
@@ -304,6 +310,12 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #approvalNumber}.
+   */
+  public static final String JSON_APPROVAL_NUMBER = &quot;numeroApprobation&quot;;
 
   /**
    * Identifiant json champ {@link #activityCountAsString}.
