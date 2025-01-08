@@ -49,6 +49,12 @@ import lombok.Setter;
   private String lastNames;
 
   /**
+   * Nom et prénoms.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME_AND_LAST_NAMES)
+  private String firstNameAndLastNames;
+  
+  /**
    * Identifiant du genre.
    */
   @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
@@ -59,7 +65,7 @@ import lombok.Setter;
    */
   @JsonbProperty(value = JSON_IS_GENDER_MASCULINE)
   private Boolean isGenderMasculine;
-  
+
   /**
    * Date de naissance.
    */
@@ -73,55 +79,72 @@ import lombok.Setter;
   private LocalDate firstServiceStartDate;
 
   /**
+   * Représentation en chaine de caractères de {@link #firstServiceStartDate}.
+   */
+  @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE_AS_STRING)
+  private String firstServiceStartDateAsString;
+
+  /**
    * Identifiant json {@link #employeeIdentifier}.
    */
   public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
-  
+
   /**
    * Identifiant json {@link #emailAddress}.
    */
   public static final String JSON_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
-  
+
   /**
    * Identifiant json {@link #registrationNumber}.
    */
   public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
-  
+
   /**
    * Identifiant json {@link #firstName}.
    */
   public static final String JSON_FIRST_NAME = &quot;nom&quot;;
-  
+
   /**
    * Identifiant json {@link #lastNames}.
    */
   public static final String JSON_LAST_NAMES = &quot;prenoms&quot;;
+
+  /**
+   * Identifiant champ json {@link #firstNameAndLastNames}.
+   */
+  public static final String JSON_FIRST_NAME_AND_LAST_NAMES = &quot;nomEtPrenoms&quot;;
   
   /**
    * Identifiant json {@link #genderIdentifier}.
    */
   public static final String JSON_GENDER_IDENTIFIER = &quot;idGenre&quot;;
-  
+
   /**
    * Identifiant json {@link #isGenderMasculine}.
    */
   public static final String JSON_IS_GENDER_MASCULINE = &quot;estGenreMasculin&quot;;
-  
+
   /**
    * Identifiant json {@link #birthDate}.
    */
   public static final String JSON_BIRTH_DATE = &quot;dateNaissance&quot;;
-  
+
   /**
    * Identifiant json {@link #firstServiceStartDate}.
    */
   public static final String JSON_FIRST_SERVICE_START_DATE = &quot;datePremierePriseService&quot;;
-  
+
+  /**
+   * Identifiant champ json {@link #firstServiceStartDateAsString}.
+   */
+  public static final String JSON_FIRST_SERVICE_START_DATE_AS_STRING =
+      &quot;datePremierePriseServiceChaine&quot;;
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;fonctionnaire&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
