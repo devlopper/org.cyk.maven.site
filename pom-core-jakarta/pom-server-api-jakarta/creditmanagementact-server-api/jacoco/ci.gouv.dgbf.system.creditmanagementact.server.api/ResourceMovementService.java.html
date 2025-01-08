@@ -121,6 +121,20 @@ public interface ResourceMovementService extends SpecificService {
      * @param amount montant
      */
     void setAmount(long amount);
+    
+    /**
+     * Cette méthode permet d'obtenir est crédit.
+     *
+     * @return est crédit
+     */
+    Boolean getIsCredit();
+
+    /**
+     * Cette méthode permet d'assigner est crédit.
+     *
+     * @param isCredit est crédit
+     */
+    void setIsCredit(Boolean isCredit);
 
     /**
      * Identifiant json de l'identifiant de {@link ActDto}.
@@ -134,6 +148,10 @@ public interface ResourceMovementService extends SpecificService {
      * Identifiant json du montant.
      */
     String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+    /**
+     * Identifiant json de est crédit.
+     */
+    String JSON_IS_CREDIT = AbstractMovementDto.JSON_IS_CREDIT;
   }
 
   /**
@@ -144,7 +162,7 @@ public interface ResourceMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L147">  class ResourceMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L165">  class ResourceMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
     /**
      * {@link AbstractMovementDto#getActIdentifier()}.
@@ -163,6 +181,12 @@ public interface ResourceMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
+    
+    /**
+     * Est crédit.
+     */
+    @JsonbProperty(JSON_IS_CREDIT)
+    Boolean isCredit;
 
     /**
      * {@link AbstractMovementDto#JSON_ACT_IDENTIFIER}.
@@ -177,6 +201,10 @@ public interface ResourceMovementService extends SpecificService {
      * {@link AbstractMovementDto#JSON_AMOUNT}.
      */
     public static final String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+    /**
+     * {@link AbstractMovementDto#JSON_IS_CREDIT}.
+     */
+    public static final String JSON_IS_CREDIT = AbstractMovementDto.JSON_IS_CREDIT;
   }
 
   /**
@@ -213,7 +241,7 @@ public interface ResourceMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L216">  public static class MovementDto {</span>
+<span class="fc" id="L244">  public static class MovementDto {</span>
     /**
      * Identifiant du poste de dépense.
      */
@@ -223,6 +251,11 @@ public interface ResourceMovementService extends SpecificService {
      * Montant.
      */
     private long amount;
+    
+    /**
+     * Est crédit.
+     */
+    private Boolean isCredit;
   }
   
   /**
@@ -279,7 +312,7 @@ public interface ResourceMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L282">  class ResourceMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L315">  class ResourceMovementCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveManyRequestDto {
     /**
      * Identifier de {@link ActDto}.
@@ -299,10 +332,10 @@ public interface ResourceMovementService extends SpecificService {
      * @return mouvements
      */
     public List&lt;MovementDto&gt; movements() {
-<span class="fc bfc" id="L302" title="All 2 branches covered.">      if (movements == null) {</span>
-<span class="fc" id="L303">        movements = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L335" title="All 2 branches covered.">      if (movements == null) {</span>
+<span class="fc" id="L336">        movements = new ArrayList&lt;&gt;();</span>
       }
-<span class="fc" id="L305">      return movements;</span>
+<span class="fc" id="L338">      return movements;</span>
     }
   }
 
@@ -340,7 +373,7 @@ public interface ResourceMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L343">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ResourceMovementDto&gt; {</span>
+<span class="fc" id="L376">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ResourceMovementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ResourceMovementDto&gt; datas;
@@ -436,7 +469,7 @@ public interface ResourceMovementService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L439">  class ResourceMovementUpdateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L472">  class ResourceMovementUpdateRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * {@link AbstractMovementDto#getActIdentifier()}.
      */
@@ -454,6 +487,12 @@ public interface ResourceMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
+    
+    /**
+     * Est crédit.
+     */
+    @JsonbProperty(JSON_IS_CREDIT)
+    private Boolean isCredit;
 
     /**
      * {@link AbstractMovementDto#JSON_ACT_IDENTIFIER}.
@@ -468,6 +507,10 @@ public interface ResourceMovementService extends SpecificService {
      * {@link AbstractMovementDto#JSON_AMOUNT}.
      */
     public static final String JSON_AMOUNT = AbstractMovementDto.JSON_AMOUNT;
+    /**
+     * {@link AbstractMovementDto#JSON_IS_CREDIT}.
+     */
+    public static final String JSON_IS_CREDIT = AbstractMovementDto.JSON_IS_CREDIT;
   }
 
   /**
