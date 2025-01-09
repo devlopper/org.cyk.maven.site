@@ -73,6 +73,12 @@ import lombok.Setter;
   private LocalDate birthDate;
 
   /**
+   * Représentation en chaine de caractères de {@link #birthDate}.
+   */
+  @JsonbProperty(value = JSON_BIRTH_DATE_AS_STRING)
+  private String birthDateAsString;
+  
+  /**
    * Date de première prise de service.
    */
   @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE)
@@ -129,6 +135,11 @@ import lombok.Setter;
    */
   public static final String JSON_BIRTH_DATE = &quot;dateNaissance&quot;;
 
+  /**
+   * Identifiant json {@link #birthDateAsString}.
+   */
+  public static final String JSON_BIRTH_DATE_AS_STRING = &quot;dateNaissanceChaine&quot;;
+  
   /**
    * Identifiant json {@link #firstServiceStartDate}.
    */
