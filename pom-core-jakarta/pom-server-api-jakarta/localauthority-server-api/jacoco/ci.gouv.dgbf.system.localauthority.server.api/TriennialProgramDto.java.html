@@ -145,6 +145,11 @@ import lombok.Setter;
   @JsonbProperty(JSON_APPROVAL_NUMBER)
   private String approvalNumber;
 
+  /**
+   * Identifiant du groupe de fichier.
+   */
+  @JsonbProperty(JSON_FILES_GOUPE_IDENTIFIER)
+  private String filesGroupIdentifier;
 
   /**
    * Transmittable.
@@ -251,14 +256,14 @@ import lombok.Setter;
    * @param statusUpdateResponse {@link TriennialProgramStatusUpdateResponseDto}
    */
   public void copy(TriennialProgramStatusUpdateResponseDto statusUpdateResponse) {
-<span class="fc" id="L254">    status = statusUpdateResponse.getStatus();</span>
-<span class="fc" id="L255">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
-<span class="fc" id="L256">    statusReason = statusUpdateResponse.getReason();</span>
-<span class="fc" id="L257">    transmitable = statusUpdateResponse.getTransmitable();</span>
-<span class="fc" id="L258">    acceptable = statusUpdateResponse.getAcceptable();</span>
-<span class="fc" id="L259">    approvable = statusUpdateResponse.getApprovable();</span>
-<span class="fc" id="L260">    returnable = statusUpdateResponse.getReturnable();</span>
-<span class="fc" id="L261">  }</span>
+<span class="fc" id="L259">    status = statusUpdateResponse.getStatus();</span>
+<span class="fc" id="L260">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
+<span class="fc" id="L261">    statusReason = statusUpdateResponse.getReason();</span>
+<span class="fc" id="L262">    transmitable = statusUpdateResponse.getTransmitable();</span>
+<span class="fc" id="L263">    acceptable = statusUpdateResponse.getAcceptable();</span>
+<span class="fc" id="L264">    approvable = statusUpdateResponse.getApprovable();</span>
+<span class="fc" id="L265">    returnable = statusUpdateResponse.getReturnable();</span>
+<span class="fc" id="L266">  }</span>
 
   /**
    * Identifiant json de identifiant de {@link TriennialProgramDto}.
@@ -316,6 +321,11 @@ import lombok.Setter;
    * Identifiant json champ {@link #approvalNumber}.
    */
   public static final String JSON_APPROVAL_NUMBER = &quot;numeroApprobation&quot;;
+
+  /**
+   * Identifiant json champ {@link #approvalNumber}.
+   */
+  public static final String JSON_FILES_GOUPE_IDENTIFIER = &quot;identifiantGroupeFichier&quot;;
 
   /**
    * Identifiant json champ {@link #activityCountAsString}.
