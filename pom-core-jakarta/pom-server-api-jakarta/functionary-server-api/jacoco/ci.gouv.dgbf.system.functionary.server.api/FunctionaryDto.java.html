@@ -25,6 +25,12 @@ import lombok.Setter;
   private String employeeIdentifier;
 
   /**
+   * Identifiant de l'identité.
+   */
+  @JsonbProperty(value = JSON_IDENTITY_IDENTIFIER)
+  private String identityIdentifier;
+  
+  /**
    * Adresse email.
    */
   @JsonbProperty(value = JSON_EMAIL_ADDRESS)
@@ -95,6 +101,11 @@ import lombok.Setter;
    */
   public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
 
+  /**
+   * Identifiant json {@link #identityIdentifier}.
+   */
+  public static final String JSON_IDENTITY_IDENTIFIER = &quot;idIdentite&quot;;
+  
   /**
    * Identifiant json {@link #emailAddress}.
    */
