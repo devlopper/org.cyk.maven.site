@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptEvaluationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptEvaluationService.java</span></div><h1>ScriptEvaluationService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
+import ci.gouv.dgbf.extension.core.enumeration.StringFormat;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -20,6 +21,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -42,6 +44,71 @@ public interface ScriptEvaluationService extends SpecificService {
    * Chemin de base des services.
    */
   String PATH = &quot;evaluations-scripts&quot;;
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface ScriptEvaluationSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ScriptDto}.
+     *
+     * @return identifiant de {@link ScriptDto}
+     */
+    String getScriptIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ScriptDto}.
+     *
+     * @param scriptIdentifier identifiant de {@link ScriptDto}
+     */
+    void setScriptIdentifier(String scriptIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir les arguments.
+     *
+     * @return arguments
+     */
+    Map&lt;String, Object&gt; getArguments();
+
+    /**
+     * Cette méthode permet d'assigner les arguments.
+     *
+     * @param arguments Arguments
+     */
+    void setArguments(Map&lt;String, Object&gt; arguments);
+
+    /**
+     * Cette méthode permet d'obtenir {@link StringFormat} du résultat.
+     *
+     * @return {@link StringFormat} du résultat
+     */
+    StringFormat getResultAsStringFormat();
+
+    /**
+     * Cette méthode permet d'assigner {@link StringFormat} du résultat.
+     *
+     * @param resultAsStringFormat {@link StringFormat} du résultat
+     */
+    void setResultAsStringFormat(StringFormat resultAsStringFormat);
+
+    /**
+     * Identifiant json identifiant de {@link ScriptDto}.
+     */
+    String JSON_SCRIPT_IDENTIFIER = ScriptEvaluationDto.JSON_SCRIPT_IDENTIFIER;
+
+    /**
+     * Identifiant json des arguments.
+     */
+    String JSON_ARGUMENTS = ScriptEvaluationDto.JSON_ARGUMENTS;
+
+    /**
+     * Identifiant json du format de la représenation en chaine de caractères du résultat.
+     */
+    String JSON_RESULT_AS_STRING_FORMAT = ScriptEvaluationDto.JSON_RESULT_AS_STRING_FORMAT;
+  }
 
   /**
    * Identifiant du service de création.
@@ -76,8 +143,16 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L79">  class ScriptEvaluationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L146">  class ScriptEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements ScriptEvaluationSaveRequestDto {
+    @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
+    private String scriptIdentifier;
 
+    @JsonbProperty(JSON_ARGUMENTS)
+    private Map&lt;String, Object&gt; arguments;
+    
+    @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
+    private StringFormat resultAsStringFormat;
   }
 
   /**
@@ -113,7 +188,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L116">  public static class ScriptEvaluationGetManyResponseDto</span>
+<span class="fc" id="L191">  public static class ScriptEvaluationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptEvaluationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -203,8 +278,16 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L206">  class ScriptEvaluationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L281">  class ScriptEvaluationUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements ScriptEvaluationSaveRequestDto {
+    @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
+    private String scriptIdentifier;
 
+    @JsonbProperty(JSON_ARGUMENTS)
+    private Map&lt;String, Object&gt; arguments;
+    
+    @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
+    private StringFormat resultAsStringFormat;
   }
 
   /**

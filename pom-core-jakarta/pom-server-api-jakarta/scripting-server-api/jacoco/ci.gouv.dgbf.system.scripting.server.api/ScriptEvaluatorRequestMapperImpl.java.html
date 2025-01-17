@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptEvaluatorRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptEvaluatorRequestMapperImpl.java</span></div><h1>ScriptEvaluatorRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link ScriptEvaluatorDto}.
+*
+* @author Christian
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-01-17T07:16:41+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class ScriptEvaluatorRequestMapperImpl implements ScriptEvaluatorRequestMapper {</span>
+
+    @Override
+    public ScriptEvaluatorService.ScriptEvaluatorCreateRequestDto mapCreate(ScriptEvaluatorDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        ScriptEvaluatorService.ScriptEvaluatorCreateRequestDto scriptEvaluatorCreateRequestDto = new ScriptEvaluatorService.ScriptEvaluatorCreateRequestDto();</span>
+
+<span class="fc" id="L28">        scriptEvaluatorCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L29">        scriptEvaluatorCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        scriptEvaluatorCreateRequestDto.setEngineName( arg0.getEngineName() );</span>
+
+<span class="fc" id="L32">        return scriptEvaluatorCreateRequestDto;</span>
+    }
+
+    @Override
+    public ScriptEvaluatorService.ScriptEvaluatorUpdateRequestDto mapUpdate(ScriptEvaluatorDto arg0) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
+        }
+
+<span class="fc" id="L41">        ScriptEvaluatorService.ScriptEvaluatorUpdateRequestDto scriptEvaluatorUpdateRequestDto = new ScriptEvaluatorService.ScriptEvaluatorUpdateRequestDto();</span>
+
+<span class="fc" id="L43">        scriptEvaluatorUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        scriptEvaluatorUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L45">        scriptEvaluatorUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L46">        scriptEvaluatorUpdateRequestDto.setEngineName( arg0.getEngineName() );</span>
+
+<span class="fc" id="L48">        return scriptEvaluatorUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

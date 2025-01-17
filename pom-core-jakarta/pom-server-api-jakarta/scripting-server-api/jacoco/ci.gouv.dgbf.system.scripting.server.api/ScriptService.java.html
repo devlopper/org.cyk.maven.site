@@ -3,6 +3,7 @@
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -20,6 +21,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -42,6 +44,90 @@ public interface ScriptService extends SpecificService {
    * Chemin de base des services.
    */
   String PATH = &quot;scripts&quot;;
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface ScriptSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link DomainDto}.
+     *
+     * @return identifiant de {@link DomainDto}
+     */
+    String getDomainIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link DomainDto}.
+     *
+     * @param domainIdentifier identifiant de {@link DomainDto}
+     */
+    void setDomainIdentifier(String domainIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ScriptEvaluationDto}.
+     *
+     * @return identifiant de {@link ScriptEvaluationDto}
+     */
+    String getEvaluatorIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ScriptEvaluationDto}.
+     *
+     * @param evaluatorIdentifier identifiant de {@link ScriptEvaluationDto}
+     */
+    void setEvaluatorIdentifier(String evaluatorIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir le texte.
+     *
+     * @return texte
+     */
+    String getText();
+
+    /**
+     * Cette méthode permet d'assigner le texte.
+     *
+     * @param text texte
+     */
+    void setText(String text);
+
+    /**
+     * Cette méthode permet d'obtenir {@link ResultType}.
+     *
+     * @return {@link ResultType}
+     */
+    ResultType getResultType();
+
+    /**
+     * Cette méthode permet d'assigner ResultType.
+     *
+     * @param resultType {@link ResultType}
+     */
+    void setResultType(ResultType resultType);
+
+    /**
+     * Identifiant json identifiant de {@link DomainDto}.
+     */
+    String JSON_DOMAIN_IDENTIFIER = ScriptDto.JSON_DOMAIN_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link ScriptEvaluationDto}.
+     */
+    String JSON_EVALUATOR_IDENTIFIER = ScriptDto.JSON_EVALUATOR_IDENTIFIER;
+
+    /**
+     * Identifiant json du texte.
+     */
+    String JSON_TEXT = ScriptDto.JSON_TEXT;
+
+    /**
+     * Identifiant json de {@link ResultType}.
+     */
+    String JSON_RESULT_TYPE = ScriptDto.JSON_RESULT_TYPE;
+  }
 
   /**
    * Identifiant du service de création.
@@ -76,8 +162,19 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L79">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L165">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements ScriptSaveRequestDto {
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
 
+    @JsonbProperty(JSON_EVALUATOR_IDENTIFIER)
+    private String evaluatorIdentifier;
+
+    @JsonbProperty(JSON_TEXT)
+    private String text;
+
+    @JsonbProperty(JSON_RESULT_TYPE)
+    private ResultType resultType;
   }
 
   /**
@@ -113,7 +210,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L116">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
+<span class="fc" id="L213">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ScriptDto&gt; datas;
@@ -202,8 +299,19 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L205">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L302">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements ScriptSaveRequestDto {
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
 
+    @JsonbProperty(JSON_EVALUATOR_IDENTIFIER)
+    private String evaluatorIdentifier;
+
+    @JsonbProperty(JSON_TEXT)
+    private String text;
+
+    @JsonbProperty(JSON_RESULT_TYPE)
+    private ResultType resultType;
   }
 
   /**
@@ -230,5 +338,85 @@ public interface ScriptService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service d'évaluation.
+   */
+  String EVALUATE_IDENTIFIER = &quot;EVALUATION_SCRIPT&quot;;
+
+  /**
+   * Chemin du service d'évaluation.
+   */
+  String EVALUATE_PATH = &quot;evaluation&quot;;
+
+  /**
+   * Cette méthode permet d'évaluer {@link ScriptDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EVALUATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = EVALUATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ScriptEvaluateResponseDto.class))})
+  Response evaluate(ScriptEvaluateRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'évaluation.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L375">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
+    @JsonbProperty(JSON_ARGUMENTS)
+    private Map&lt;String, Object&gt; arguments;
+
+    /**
+     * Identifiant json {@link #arguments}.
+     */
+    public static final String JSON_ARGUMENTS = &quot;arguments&quot;;
+    
+    
+  }
+
+  /**
+   * Cette classe représente la réponse d'évaluation.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L395">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
+    @JsonbProperty(JSON_RESULT_AS_STRING)
+    private String resultValueAsString;
+
+    @JsonbProperty(JSON_RESULT_TYPE)
+    private ResultType resultType;
+    
+    /**
+     * Cette méthode permet d'obtenir le résultat.
+     *
+     * @return résultat
+     */
+    public Object getResult() {
+<span class="fc" id="L408">      return ResultType.parse(resultValueAsString, resultType);</span>
+    }
+    
+    /**
+     * Identifiant json {@link #resultValueAsString}.
+     */
+    public static final String JSON_RESULT_AS_STRING = &quot;valeurResultatChaine&quot;;
+    
+    /**
+     * Identifiant json {@link #resultType}.
+     */
+    public static final String JSON_RESULT_TYPE = &quot;typeResultat&quot;;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

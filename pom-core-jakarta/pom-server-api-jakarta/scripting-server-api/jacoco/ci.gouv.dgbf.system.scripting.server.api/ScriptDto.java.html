@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptDto.java</span></div><h1>ScriptDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +16,37 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L17">public class ScriptDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L19">public class ScriptDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+
+  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
+
+  @JsonbProperty(JSON_DOMAIN_AS_STRING)
+  private String domainAsString;
+
+  @JsonbProperty(JSON_EVALUATOR_IDENTIFIER)
+  private String evaluatorIdentifier;
+
+  @JsonbProperty(JSON_EVALUATOR_AS_STRING)
+  private String evaluatorAsString;
+
+  @JsonbProperty(JSON_TEXT)
+  private String text;
+
+  @JsonbProperty(JSON_PARAMETERS)
+  private Set&lt;String&gt; parameters;
+  
+  @JsonbProperty(JSON_PARAMETERS_COUNT)
+  private Integer parametersCount;
+
+  @JsonbProperty(JSON_PARAMETERS_COUNT_AS_STRING)
+  private String parametersCountAsString;
+  
+  @JsonbProperty(JSON_RESULT_TYPE)
+  private ResultType resultType;
+
+  @JsonbProperty(JSON_RESULT_TYPE_AS_STRING)
+  private String resultTypeAsString;
 
   /**
    * Identifiant json de identifiant de {@link ScriptDto}.
@@ -25,6 +57,56 @@ import lombok.Setter;
    * Identifiant json de représentation en chaine de caractères de {@link ScriptDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;scriptChaine&quot;;
+
+  /**
+   * Identifiant json {@link #domainIdentifier}.
+   */
+  public static final String JSON_DOMAIN_IDENTIFIER = DomainDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #domainAsString}.
+   */
+  public static final String JSON_DOMAIN_AS_STRING = DomainDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #evaluatorIdentifier}.
+   */
+  public static final String JSON_EVALUATOR_IDENTIFIER = ScriptEvaluatorDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #evaluatorAsString}.
+   */
+  public static final String JSON_EVALUATOR_AS_STRING = ScriptEvaluatorDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #text}.
+   */
+  public static final String JSON_TEXT = &quot;texte&quot;;
+
+  /**
+   * Identifiant json {@link #parameters}.
+   */
+  public static final String JSON_PARAMETERS = &quot;parametres&quot;;
+  
+  /**
+   * Identifiant json {@link #parametersCount}.
+   */
+  public static final String JSON_PARAMETERS_COUNT = &quot;nombreParametres&quot;;
+  
+  /**
+   * Identifiant json {@link #parametersCountAsString}.
+   */
+  public static final String JSON_PARAMETERS_COUNT_AS_STRING = JSON_PARAMETERS_COUNT + &quot;Chaine&quot;;
+  
+  /**
+   * Identifiant json {@link #resultType}.
+   */
+  public static final String JSON_RESULT_TYPE = ResultType.JSON_THIS;
+
+  /**
+   * Identifiant json {@link #resultTypeAsString}.
+   */
+  public static final String JSON_RESULT_TYPE_AS_STRING = ResultType.JSON_THIS_AS_STRING;
 
   /**
    * Nom pour lecture humaine de la classe.
