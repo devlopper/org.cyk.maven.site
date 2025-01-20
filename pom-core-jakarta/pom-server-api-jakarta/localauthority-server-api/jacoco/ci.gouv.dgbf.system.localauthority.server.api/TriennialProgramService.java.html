@@ -20,6 +20,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,7 +48,6 @@ public interface TriennialProgramService extends SpecificService {
    * Cette interface représente une requête d'enregistrement.
    *
    * @author Christian
-   *
    */
   interface TriennialProgramSaveRequestDto {
     /**
@@ -154,21 +154,34 @@ public interface TriennialProgramService extends SpecificService {
     @JsonbProperty(JSON_APPROVAL_NUMBER)
     private String approvalNumber;
 
+
+    /**
+     * Date d'approbation Metier {@link TriennialProgramDto}.
+     */
+    @JsonbProperty(JSON_BUSINESS_APPROVAL_DATE)
+    private LocalDate businessApprovalDate;
+
     /**
      * {@link TriennialProgramDto#JSON_APPROVAL_NUMBER}.
      */
     public static final String JSON_APPROVAL_NUMBER = TriennialProgramDto.JSON_APPROVAL_NUMBER;
+
+    /**
+     * {@link TriennialProgramDto#JSON_BUSINESS_APPROVAL_DATE}.
+     */
+    public static final String JSON_BUSINESS_APPROVAL_DATE =
+        TriennialProgramDto.JSON_BUSINESS_APPROVAL_DATE;
+
   }
 
   /**
    * Cette classe représente la requête de retour.
    *
    * @author AKM
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L171">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L184">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Raison.
@@ -186,11 +199,10 @@ public interface TriennialProgramService extends SpecificService {
    * Cette classe représente la réponse de mise à jour du statut.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L193">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L205">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link TriennialProgramDto#getStatus()}.
@@ -233,20 +245,20 @@ public interface TriennialProgramService extends SpecificService {
     /**
      * Cette méthode permet d'initialiser la réponse à partir du statut.
      *
-     * @param status {@link TriennialProgramStatus}
+     * @param status         {@link TriennialProgramStatus}
      * @param statusAsString représentation en chaine de caractères de
-     *        {@link TriennialProgramStatus}
-     * @param reason raison
+     *                       {@link TriennialProgramStatus}
+     * @param reason         raison
      */
     public void initialize(TriennialProgramStatus status, String statusAsString, String reason) {
-<span class="fc" id="L242">      this.status = status;</span>
-<span class="fc" id="L243">      this.statusAsString = statusAsString;</span>
-<span class="fc" id="L244">      this.reason = reason;</span>
-<span class="fc" id="L245">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
-<span class="fc" id="L246">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L247">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
-<span class="fc" id="L248">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
-<span class="fc" id="L249">    }</span>
+<span class="fc" id="L254">      this.status = status;</span>
+<span class="fc" id="L255">      this.statusAsString = statusAsString;</span>
+<span class="fc" id="L256">      this.reason = reason;</span>
+<span class="fc" id="L257">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
+<span class="fc" id="L258">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L259">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
+<span class="fc" id="L260">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
+<span class="fc" id="L261">    }</span>
 
     /**
      * {@link TriennialProgramDto#JSON_STATUS}.
@@ -432,7 +444,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L435">  public static class TriennialProgramGetManyResponseDto</span>
+<span class="fc" id="L447">  public static class TriennialProgramGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TriennialProgramDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -524,7 +536,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L527">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L539">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;

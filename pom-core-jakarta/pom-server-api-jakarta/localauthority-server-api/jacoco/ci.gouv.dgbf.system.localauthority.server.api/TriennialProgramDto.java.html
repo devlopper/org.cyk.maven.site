@@ -3,6 +3,7 @@
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.localauthority.server.api.TriennialProgramService.TriennialProgramStatusUpdateResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class TriennialProgramDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L20">public class TriennialProgramDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
    * Identifiant {@link ExerciseDto}.
@@ -146,6 +147,12 @@ import lombok.Setter;
   private String approvalNumber;
 
   /**
+   * Date d'approbation metier {@link TriennialProgramDto}.
+   */
+  @JsonbProperty(JSON_BUSINESS_APPROVAL_DATE)
+  private LocalDate businessApprovalDate;
+
+  /**
    * Identifiant du groupe de fichier.
    */
   @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
@@ -256,14 +263,14 @@ import lombok.Setter;
    * @param statusUpdateResponse {@link TriennialProgramStatusUpdateResponseDto}
    */
   public void copy(TriennialProgramStatusUpdateResponseDto statusUpdateResponse) {
-<span class="fc" id="L259">    status = statusUpdateResponse.getStatus();</span>
-<span class="fc" id="L260">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
-<span class="fc" id="L261">    statusReason = statusUpdateResponse.getReason();</span>
-<span class="fc" id="L262">    transmitable = statusUpdateResponse.getTransmitable();</span>
-<span class="fc" id="L263">    acceptable = statusUpdateResponse.getAcceptable();</span>
-<span class="fc" id="L264">    approvable = statusUpdateResponse.getApprovable();</span>
-<span class="fc" id="L265">    returnable = statusUpdateResponse.getReturnable();</span>
-<span class="fc" id="L266">  }</span>
+<span class="fc" id="L266">    status = statusUpdateResponse.getStatus();</span>
+<span class="fc" id="L267">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
+<span class="fc" id="L268">    statusReason = statusUpdateResponse.getReason();</span>
+<span class="fc" id="L269">    transmitable = statusUpdateResponse.getTransmitable();</span>
+<span class="fc" id="L270">    acceptable = statusUpdateResponse.getAcceptable();</span>
+<span class="fc" id="L271">    approvable = statusUpdateResponse.getApprovable();</span>
+<span class="fc" id="L272">    returnable = statusUpdateResponse.getReturnable();</span>
+<span class="fc" id="L273">  }</span>
 
   /**
    * Identifiant json de identifiant de {@link TriennialProgramDto}.
@@ -321,6 +328,12 @@ import lombok.Setter;
    * Identifiant json champ {@link #approvalNumber}.
    */
   public static final String JSON_APPROVAL_NUMBER = &quot;numeroApprobation&quot;;
+
+
+  /**
+   * Identitiant json {@link TriennialProgramDto#businessApprovalDate}.
+   */
+  public static final String JSON_BUSINESS_APPROVAL_DATE = &quot;dateApprobationMetier&quot;;
 
   /**
    * Identifiant json champ {@link #filesGroupIdentifier}.
