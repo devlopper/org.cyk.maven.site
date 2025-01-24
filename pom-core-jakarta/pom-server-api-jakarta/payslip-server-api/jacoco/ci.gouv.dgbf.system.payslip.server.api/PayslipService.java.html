@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
@@ -70,7 +71,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L73">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L74">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -112,7 +113,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L115">  class PayslipImportByEmployeeIdentifierRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L116">  class PayslipImportByEmployeeIdentifierRequestDto extends AbstractAuditedRequestJsonDto {</span>
 
     /**
      * {@link AbstractEmployeePeriodDto#getEmployeeIdentifier()}.
@@ -164,7 +165,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L167">  class PayslipImportByFunctionaryRegistrationNumberRequestDto</span>
+<span class="fc" id="L168">  class PayslipImportByFunctionaryRegistrationNumberRequestDto</span>
       extends AbstractAuditedRequestJsonDto {
 
     /**
@@ -179,6 +180,105 @@ public interface PayslipService extends SpecificService {
      */
     public static final String JSON_REGISTRATION_NUMBER =
         AbstractEmployeePeriodDto.JSON_EMPLOYEE_REGISTRATION_NUMBER;
+  }
+
+  /**
+   * Identifiant du service d'importation de bulletins de salaires par nom d'utilisateur.
+   */
+  String IMPORT_BY_USER_NAME_IDENTIFIER = &quot;IMPORTATION_PAR_NOM_UTILISATEUR_BULLETIN_SALAIRE&quot;;
+
+  /**
+   * Chemin du service d'imporation de bulletins de salaires par nom d'utilisateur.
+   */
+  String IMPORT_BY_USER_NAME_PATH = &quot;importation-par-nom-utilisateur&quot;;
+
+  /**
+   * Cette méthode permet d'importer des bulletins de salaires par nom d'utilisateur.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(IMPORT_BY_USER_NAME_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = IMPORT_BY_USER_NAME_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response importByUserName(PayslipImportByUserNameRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'importation de bulletins de salaires par nom
+   * d'utilisateur.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L219">  class PayslipImportByUserNameRequestDto extends AbstractAuditedRequestJsonDto {</span>
+
+    /**
+     * Nom d'utilisateur.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_USER_NAME)
+    private String userName;
+
+    /**
+     * Identifiant json {@link #userName}.
+     */
+    public static final String JSON_USER_NAME = &quot;nomUtilisateur&quot;;
+  }
+
+  /**
+   * Identifiant du service d'obtention d'identifiant de fichier de bulletin de salaire par
+   * identifiant de bulletin de salaire.
+   */
+  String GET_FILE_IDENTIFIER_BY_PAYSLIP_IDENTIFIER = &quot;OBTENIR_IDENTIFIANT_FICHIER_PAR_IDENTIFIANT&quot;;
+
+  /**
+   * Chemin du service d'obtention d'identifiant de fichier de bulletin de salaire par identifiant.
+   */
+  String GET_FILE_IDENTIFIER_BY_IDENTIFIER_PATH = &quot;obtention/identifiant-fichier-par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de fichier de bulletin de salaire par identifiant.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_FILE_IDENTIFIER_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.TEXT_PLAIN)
+  @Operation(operationId = GET_FILE_IDENTIFIER_BY_PAYSLIP_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = String.class))})
+  Response getFileIdentifierByIdentifier(PayslipGetFileIdentifierByIdentifierRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'obtention d'identifiant de fichier de bulletin de salaire
+   * par identifiant de bulletin de salaire.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L269">  class PayslipGetFileIdentifierByIdentifierRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Importable.
+     */
+    @NotNull
+    @JsonbProperty(value = JSON_BYTES_IMPORTABLE_WHEN_NULL)
+    private Boolean bytesImportableWhenNull;
+
+    /**
+     * {@link AbstractEmployeePeriodDto#JSON_EMPLOYEE_REGISTRATION_NUMBER}.
+     */
+    public static final String JSON_BYTES_IMPORTABLE_WHEN_NULL = &quot;octets_importable_quand_null&quot;;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
