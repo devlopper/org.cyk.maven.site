@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollDto.java</span></div><h1>PayrollDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une paie.
+ *
+ * @author A.K.M
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class PayrollDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  private String exerciseIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  private String exerciseAsString;
+
+  /**
+   * Date debut.
+   */
+  @JsonbProperty(JSON_START_DATE)
+  private LocalDate startDate;
+
+  /**
+   * Date fin.
+   */
+  @JsonbProperty(JSON_END_DATE)
+  private LocalDate endDate;
+  
+  /**
+   * Statut de la paie.
+   */
+  @JsonbProperty(JSON_STATUS)
+  private PayrollStatus status;
+
+  /**
+   * Statut de la paie au format chaine de caractère.
+   */
+  @JsonbProperty(JSON_STATUS_AS_STRING)
+  private String statusAsString;
+
+  /**
+   * Identifiant json champ {@link PayrollDto#statusAsString}.
+   */
+  public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idPaie&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;paieChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollDto#exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollDto#exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = &quot;exerciceChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollDto#startDate}.
+   */
+  public static final String JSON_START_DATE = &quot;startDate&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollDto#endDate}.
+   */
+  public static final String JSON_END_DATE = &quot;endDate&quot;;
+  
+  /**
+   * Identifiant json champ {@link PayrollDto#status}.
+   */
+  public static final String JSON_STATUS = &quot;statut&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;paie&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;paies&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

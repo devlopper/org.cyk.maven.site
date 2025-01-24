@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollRequestMapperImpl.java</span></div><h1>PayrollRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link PayrollDto}.
+*
+* @author A.K.M
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-01-24T16:51:47+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class PayrollRequestMapperImpl implements PayrollRequestMapper {</span>
+
+    @Override
+    public PayrollService.PayrollCreateRequestDto mapCreate(PayrollDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        PayrollService.PayrollCreateRequestDto payrollCreateRequestDto = new PayrollService.PayrollCreateRequestDto();</span>
+
+<span class="fc" id="L28">        payrollCreateRequestDto.setExerciseIdentifier( arg0.getExerciseIdentifier() );</span>
+<span class="fc" id="L29">        payrollCreateRequestDto.setStartDate( arg0.getStartDate() );</span>
+<span class="fc" id="L30">        payrollCreateRequestDto.setEndDate( arg0.getEndDate() );</span>
+
+<span class="fc" id="L32">        return payrollCreateRequestDto;</span>
+    }
+
+    @Override
+    public PayrollService.PayrollUpdateRequestDto mapUpdate(PayrollDto arg0) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
+        }
+
+<span class="fc" id="L41">        PayrollService.PayrollUpdateRequestDto payrollUpdateRequestDto = new PayrollService.PayrollUpdateRequestDto();</span>
+
+<span class="fc" id="L43">        payrollUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        payrollUpdateRequestDto.setStartDate( arg0.getStartDate() );</span>
+<span class="fc" id="L45">        payrollUpdateRequestDto.setEndDate( arg0.getEndDate() );</span>
+
+<span class="fc" id="L47">        return payrollUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
