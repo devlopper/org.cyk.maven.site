@@ -2,7 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -53,6 +53,48 @@ public interface PayrollService extends SpecificService {
   interface PayrollSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ExerciseDto}.
+     *
+     * @return identifiant de {@link ExerciseDto}
+     */
+    String getExerciseIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ExerciseDto}.
+     *
+     * @param exerciseIdentifier identifiant de {@link ExerciseDto}
+     */
+    void setExerciseIdentifier(String exerciseIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir la date de début.
+     *
+     * @return date de début
+     */
+    LocalDate getStartDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de début.
+     *
+     * @param startDate date de début
+     */
+    void setStartDate(LocalDate startDate);
+
+    /**
+     * Cette méthode permet d'obtenir la date de fin.
+     *
+     * @return date de fin
+     */
+    LocalDate getEndDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de fin.
+     *
+     * @param endDate date de fin
+     */
+    void setEndDate(LocalDate endDate);
+
+    /**
      * {@link PayrollDto#JSON_EXERCISE_IDENTIFIER}.
      */
     public static final String JSON_EXERCISE_IDENTIFIER = PayrollDto.JSON_EXERCISE_IDENTIFIER;
@@ -65,9 +107,7 @@ public interface PayrollService extends SpecificService {
     /**
      * {@link PayrollDto#JSON_END_DATE}.
      */
-    public static final String JSON_END_DATE = 
-                PayrollDto.JSON_END_DATE;
-
+    public static final String JSON_END_DATE = PayrollDto.JSON_END_DATE;
   }
 
   /**
@@ -103,7 +143,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L106">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L146">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayrollSaveRequestDto {
     /**
      * {@link PayrollDto#getExerciseIdentifier()}.
@@ -156,7 +196,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L159">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
+<span class="fc" id="L199">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayrollDto&gt; datas;
@@ -245,8 +285,13 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L248">  class PayrollUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L288">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayrollSaveRequestDto {
+    /**
+     * {@link PayrollDto#getExerciseIdentifier()}.
+     */
+    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+    private String exerciseIdentifier;
     /**
      * {@link PayrollDto#getStartDate()}.
      */
@@ -266,8 +311,7 @@ public interface PayrollService extends SpecificService {
     /**
      * {@link PayrollDto#JSON_END_DATE}.
      */
-    public static final String JSON_END_DATE = 
-                PayrollDto.JSON_END_DATE;
+    public static final String JSON_END_DATE = PayrollDto.JSON_END_DATE;
 
   }
 

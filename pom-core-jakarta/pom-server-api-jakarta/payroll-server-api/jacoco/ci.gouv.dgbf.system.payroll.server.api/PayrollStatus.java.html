@@ -17,33 +17,37 @@ import lombok.Getter;
 public enum PayrollStatus {
 
   /**
-   * Paie créé.
+   * Créée.
    */
-<span class="fc" id="L22">  CREATED(PayrollStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+<span class="fc" id="L22">  CREATED(PayrollStatusCode.CREATED, &quot;Créée&quot;, &quot;Création&quot;),</span>
+  
   /**
-   * Paie Initialisé.
+   * Initialisée.
    */
-<span class="fc" id="L26">  INITIALIZED(PayrollStatusCode.INITIALIZED, &quot;Initialisé&quot;, &quot;Initialisation&quot;),</span>
+<span class="fc" id="L27">  INITIALIZED(PayrollStatusCode.INITIALIZED, &quot;Initialisée&quot;, &quot;Initialisation&quot;),</span>
+  
   /**
-   * Paie controlé.
+   * Controlée.
    */
-<span class="fc" id="L30">  CONTROLED(PayrollStatusCode.CONTROLED, &quot;Controlé&quot;, &quot;Controle&quot;),</span>
+<span class="fc" id="L32">  CONTROLED(PayrollStatusCode.CONTROLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
+  
   /**
-   * Paie arbitragé.
+   * Arbitrée.
    */
-<span class="fc" id="L34">  ARBITRATED(PayrollStatusCode.ARBITRATED, &quot;Arbitré&quot;, &quot;Arbitrage&quot;),</span>
+<span class="fc" id="L37">  ARBITRATED(PayrollStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
+  
   /**
-   * Paie Clôturé.
+   * Clôturée.
    */
-<span class="fc" id="L38">  CLOSED(PayrollStatusCode.CLOSED, &quot;Clôturé&quot;, &quot;Clôture&quot;)</span>
+<span class="fc" id="L42">  CLOSED(PayrollStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
 
   ;
 
-<span class="fc" id="L42">  private PayrollStatus(String code, String name, String action) {</span>
-<span class="fc" id="L43">    this.code = code;</span>
-<span class="fc" id="L44">    this.name = name;</span>
-<span class="fc" id="L45">    this.action = action;</span>
-<span class="fc" id="L46">  }</span>
+<span class="fc" id="L46">  private PayrollStatus(String code, String name, String action) {</span>
+<span class="fc" id="L47">    this.code = code;</span>
+<span class="fc" id="L48">    this.name = name;</span>
+<span class="fc" id="L49">    this.action = action;</span>
+<span class="fc" id="L50">  }</span>
 
   private String code;
   private String name;
@@ -52,7 +56,7 @@ public enum PayrollStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L55">    return name;</span>
+<span class="fc" id="L59">    return name;</span>
   }
 
   /**
@@ -62,17 +66,17 @@ public enum PayrollStatus {
    * @return statut
    */
   public static PayrollStatus getByCode(String code) {
-<span class="fc" id="L65">    return Stream.of(PayrollStatus.values())</span>
-<span class="fc" id="L66">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L67">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L69">    return Stream.of(PayrollStatus.values())</span>
+<span class="fc" id="L70">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L71">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L71">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L72">    INITIALIZED.previous = Core.getSet(List.of(CREATED, INITIALIZED));</span>
-<span class="fc" id="L73">    CONTROLED.previous = Core.getSet(List.of(INITIALIZED, CONTROLED));</span>
-<span class="fc" id="L74">    ARBITRATED.previous = Core.getSet(List.of(CONTROLED, ARBITRATED));</span>
-<span class="fc" id="L75">    CLOSED.previous = Core.getSet(List.of(ARBITRATED, CLOSED));</span>
-<span class="fc" id="L76">  }</span>
+<span class="fc" id="L75">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L76">    INITIALIZED.previous = Core.getSet(List.of(CREATED));</span>
+<span class="fc" id="L77">    CONTROLED.previous = Core.getSet(List.of(INITIALIZED));</span>
+<span class="fc" id="L78">    ARBITRATED.previous = Core.getSet(List.of(CONTROLED));</span>
+<span class="fc" id="L79">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="fc" id="L80">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
