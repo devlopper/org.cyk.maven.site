@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayslipDto.java</span></div><h1>PayslipDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L17">public class PayslipDto extends AbstractIdentifiableAuditableDto {</span>
+<span class="fc" id="L18">public class PayslipDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant {@link PayrollDto}.
+   */
+  @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
+  private String payrollIdentifier;
+  
+  /**
+   * Représentation en chaine de caractère de {@link PayrollDto}.
+   */
+  @JsonbProperty(JSON_PAYROLL_AS_STRING)
+  private String payrollAsString;
 
   /**
    * Identifiant json de l'identifiant.
@@ -25,6 +38,16 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;bulletinSalaireChaine&quot;;
+  
+  /**
+   * Identifiant json {@link PayslipDto#payrollIdentifier}.
+   */
+  public static final String JSON_PAYROLL_IDENTIFIER = PayrollDto.JSON_THIS_IDENTIFIER;
+  
+  /**
+   * Identifiant json {@link PayslipDto#payrollAsString}.
+   */
+  public static final String JSON_PAYROLL_AS_STRING = PayrollDto.JSON_THIS_AS_STRING;
 
   /**
    * Nom pour lecture humaine de la classe.
