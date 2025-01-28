@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptService.java</span></div><h1>ScriptService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
+import ci.gouv.dgbf.extension.core.enumeration.ValueType;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -95,18 +96,18 @@ public interface ScriptService extends SpecificService {
     void setText(String text);
 
     /**
-     * Cette méthode permet d'obtenir {@link ResultType}.
+     * Cette méthode permet d'obtenir le type de résultat.
      *
-     * @return {@link ResultType}
+     * @return type de résultat
      */
-    ResultType getResultType();
+    ValueType getResultType();
 
     /**
-     * Cette méthode permet d'assigner ResultType.
+     * Cette méthode permet d'assigner le type de résultat.
      *
-     * @param resultType {@link ResultType}
+     * @param resultType type de résultat
      */
-    void setResultType(ResultType resultType);
+    void setResultType(ValueType resultType);
 
     /**
      * Identifiant json identifiant de {@link DomainDto}.
@@ -124,7 +125,7 @@ public interface ScriptService extends SpecificService {
     String JSON_TEXT = ScriptDto.JSON_TEXT;
 
     /**
-     * Identifiant json de {@link ResultType}.
+     * Identifiant json de {@link ValueType}.
      */
     String JSON_RESULT_TYPE = ScriptDto.JSON_RESULT_TYPE;
   }
@@ -162,7 +163,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L165">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L166">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -174,7 +175,7 @@ public interface ScriptService extends SpecificService {
     private String text;
 
     @JsonbProperty(JSON_RESULT_TYPE)
-    private ResultType resultType;
+    private ValueType resultType;
   }
 
   /**
@@ -210,7 +211,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L213">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
+<span class="fc" id="L214">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ScriptDto&gt; datas;
@@ -299,7 +300,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L302">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L303">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -311,7 +312,7 @@ public interface ScriptService extends SpecificService {
     private String text;
 
     @JsonbProperty(JSON_RESULT_TYPE)
-    private ResultType resultType;
+    private ValueType resultType;
   }
 
   /**
@@ -372,7 +373,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L375">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L376">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(JSON_ARGUMENTS)
     private Map&lt;String, Object&gt; arguments;
 
@@ -380,8 +381,8 @@ public interface ScriptService extends SpecificService {
      * Identifiant json {@link #arguments}.
      */
     public static final String JSON_ARGUMENTS = &quot;arguments&quot;;
-    
-    
+
+
   }
 
   /**
@@ -392,27 +393,27 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L395">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L396">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
     @JsonbProperty(JSON_RESULT_AS_STRING)
     private String resultValueAsString;
 
     @JsonbProperty(JSON_RESULT_TYPE)
-    private ResultType resultType;
-    
+    private ValueType resultType;
+
     /**
      * Cette méthode permet d'obtenir le résultat.
      *
      * @return résultat
      */
     public Object getResult() {
-<span class="fc" id="L408">      return ResultType.parse(resultValueAsString, resultType);</span>
+<span class="fc" id="L409">      return ValueType.parse(resultValueAsString, resultType);</span>
     }
-    
+
     /**
      * Identifiant json {@link #resultValueAsString}.
      */
     public static final String JSON_RESULT_AS_STRING = &quot;valeurResultatChaine&quot;;
-    
+
     /**
      * Identifiant json {@link #resultType}.
      */

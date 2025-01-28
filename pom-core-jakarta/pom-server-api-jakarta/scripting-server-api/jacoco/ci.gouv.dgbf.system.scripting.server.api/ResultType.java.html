@@ -11,39 +11,40 @@ import lombok.Getter;
  *
  */
 <span class="fc" id="L13">@Getter</span>
+@Deprecated
 public enum ResultType {
 
   /**
    * Chaine de caractères.
    */
-<span class="fc" id="L19">  STRING(ResultTypeCode.STRING, &quot;Chaine de caractères&quot;),</span>
+<span class="fc" id="L20">  STRING(ResultTypeCode.STRING, &quot;Chaine de caractères&quot;),</span>
 
   /**
    * Entier.
    */
-<span class="fc" id="L24">  INTEGER(ResultTypeCode.INTEGER, &quot;Entier&quot;),</span>
+<span class="fc" id="L25">  INTEGER(ResultTypeCode.INTEGER, &quot;Entier&quot;),</span>
 
   /**
    * Booléen.
    */
-<span class="fc" id="L29">  BOOLEAN(ResultTypeCode.BOOLEAN, &quot;Booléen&quot;),</span>
+<span class="fc" id="L30">  BOOLEAN(ResultTypeCode.BOOLEAN, &quot;Booléen&quot;),</span>
 
   /**
    * Carte.
    */
-<span class="fc" id="L34">  MAP(ResultTypeCode.MAP, &quot;Carte&quot;);</span>
+<span class="fc" id="L35">  MAP(ResultTypeCode.MAP, &quot;Carte&quot;);</span>
 
-<span class="fc" id="L36">  private ResultType(String code, String name) {</span>
-<span class="fc" id="L37">    this.code = code;</span>
-<span class="fc" id="L38">    this.name = name;</span>
-<span class="fc" id="L39">  }</span>
+<span class="fc" id="L37">  private ResultType(String code, String name) {</span>
+<span class="fc" id="L38">    this.code = code;</span>
+<span class="fc" id="L39">    this.name = name;</span>
+<span class="fc" id="L40">  }</span>
 
   private String code;
   private String name;
 
   @Override
   public String toString() {
-<span class="fc" id="L46">    return name;</span>
+<span class="fc" id="L47">    return name;</span>
   }
 
   /**
@@ -53,8 +54,8 @@ public enum ResultType {
    * @return statut
    */
   public static ResultType getByCode(String code) {
-<span class="fc" id="L56">    return Stream.of(ResultType.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L57">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L57">    return Stream.of(ResultType.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L58">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
   }
 
   /**
@@ -66,13 +67,13 @@ public enum ResultType {
    * @return valeur du type souhaité
    */
   public static Object parse(String string, ResultType type) {
-<span class="fc bfc" id="L69" title="All 2 branches covered.">    if (ResultType.INTEGER.equals(type)) {</span>
-<span class="fc" id="L70">      return Integer.parseInt(string);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">    if (ResultType.INTEGER.equals(type)) {</span>
+<span class="fc" id="L71">      return Integer.parseInt(string);</span>
     }
-<span class="fc bfc" id="L72" title="All 2 branches covered.">    if (ResultType.BOOLEAN.equals(type)) {</span>
-<span class="fc" id="L73">      return Boolean.parseBoolean(string);</span>
+<span class="fc bfc" id="L73" title="All 2 branches covered.">    if (ResultType.BOOLEAN.equals(type)) {</span>
+<span class="fc" id="L74">      return Boolean.parseBoolean(string);</span>
     }
-<span class="fc" id="L75">    return string;</span>
+<span class="fc" id="L76">    return string;</span>
   }
 
   /**
