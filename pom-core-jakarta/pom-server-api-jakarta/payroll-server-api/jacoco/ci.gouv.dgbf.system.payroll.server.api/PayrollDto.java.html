@@ -47,7 +47,7 @@ import lombok.Setter;
    * Représentation en chaine de caractères de {@link #startDate}.
    */
   @JsonbProperty(JSON_START_DATE_AS_STRING)
-  private LocalDate startDateAsString;
+  private String startDateAsString;
 
   /**
    * Date de fin.
@@ -59,8 +59,14 @@ import lombok.Setter;
    * Représentation en chaine de caractères de {@link #endDate}.
    */
   @JsonbProperty(JSON_END_DATE_AS_STRING)
-  private LocalDate endDateAsString;
+  private String endDateAsString;
 
+  /**
+   * Représentation en chaine de caractères de la période.
+   */
+  @JsonbProperty(JSON_PERIOD_AS_STRING)
+  private String periodAsString;
+  
   /**
    * {@link PayrollStatus}.
    */
@@ -152,6 +158,11 @@ import lombok.Setter;
    */
   public static final String JSON_END_DATE_AS_STRING = &quot;dateFinChaine&quot;;
 
+  /**
+   * Identifiant json champ {@link #periodAsString}.
+   */
+  public static final String JSON_PERIOD_AS_STRING = &quot;periodChaine&quot;;
+  
   /**
    * Identifiant json champ {@link #status}.
    */
