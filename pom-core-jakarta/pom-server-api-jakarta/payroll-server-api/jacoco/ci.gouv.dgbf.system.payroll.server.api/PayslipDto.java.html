@@ -30,6 +30,12 @@ import lombok.Setter;
   private String payrollAsString;
 
   /**
+   * Identifiant {@link EmployeeOrganizationDto}.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER)
+  private String employeeOrganizationIdentifier;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idBulletinSalaire&quot;;
@@ -48,6 +54,12 @@ import lombok.Setter;
    * Identifiant json {@link PayslipDto#payrollAsString}.
    */
   public static final String JSON_PAYROLL_AS_STRING = PayrollDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json {@link PayslipDto#employeeOrganizationIdentifier}.
+   */
+  public static final String JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER = 
+                      EmployeeOrganizationDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Nom pour lecture humaine de la classe.

@@ -58,16 +58,38 @@ public interface PayslipService extends SpecificService {
     String getPayrollIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link PayrollDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link EmployeeOrganizationDto}.
      *
-     * @param identifier identifiant {@link PayrollDto}
+     * @param identifier identifiant {@link EmployeeOrganizationDto}
      */
     void setPayrollIdentifier(String identifier);
+    
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link EmployeeOrganizationDto}.
+     *
+     * @return identifiant {@link EmployeeOrganizationDto}
+     */
+    
+    String getEmployeeOrganizationIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link EmployeeOrganizationDto}.
+     *
+     * @param identifier identifiant {@link EmployeeOrganizationDto}
+     */
+    void setEmployeeOrganizationIdentifier(String identifier);
+
 
     /**
      * {@link PayslipDto#JSON_PAYROLL_IDENTIFIER}.
      */
     public static final String JSON_PAYROLL_IDENTIFIER = PayslipDto.JSON_PAYROLL_IDENTIFIER;
+
+    /**
+     * {@link PayslipDto#JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER}.
+     */
+    public static final String JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER = 
+                          PayslipDto.JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER;
 
   }
 
@@ -104,13 +126,19 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L107">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L129">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
      */
     @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
     String payrollIdentifier;
+
+    /**
+     * Identifiant de {@link EmployeeOrganizationDto}.
+     */
+    @JsonbProperty(JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER)
+    String employeeOrganizationIdentifier;
 
   }
 
@@ -147,7 +175,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L178">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -236,13 +264,19 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L239">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L267">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
      */
     @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
     String payrollIdentifier;
+    
+    /**
+     * Identifiant de {@link EmployeeOrganizationDto}.
+     */
+    @JsonbProperty(JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER)
+    String employeeOrganizationIdentifier;
 
   }
 
