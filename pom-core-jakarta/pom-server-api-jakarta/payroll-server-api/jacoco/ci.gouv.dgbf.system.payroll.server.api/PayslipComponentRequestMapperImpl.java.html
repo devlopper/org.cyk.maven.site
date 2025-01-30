@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-01-30T18:07:18+0000&quot;,
+    date = &quot;2025-01-30T18:48:31+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -26,7 +26,7 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L26">        PayslipComponentService.PayslipComponentCreateRequestDto payslipComponentCreateRequestDto = new PayslipComponentService.PayslipComponentCreateRequestDto();</span>
 
 <span class="fc" id="L28">        payslipComponentCreateRequestDto.setPayslipIdentifier( arg0.getPayslipIdentifier() );</span>
-<span class="fc" id="L29">        payslipComponentCreateRequestDto.setSalaryComponentIdentifier( arg0.getSalaryComponentIdentifier() );</span>
+<span class="fc" id="L29">        payslipComponentCreateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
 
 <span class="fc" id="L31">        return payslipComponentCreateRequestDto;</span>
     }
@@ -41,7 +41,7 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L42">        payslipComponentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
 <span class="fc" id="L43">        payslipComponentUpdateRequestDto.setPayslipIdentifier( arg0.getPayslipIdentifier() );</span>
-<span class="fc" id="L44">        payslipComponentUpdateRequestDto.setSalaryComponentIdentifier( arg0.getSalaryComponentIdentifier() );</span>
+<span class="fc" id="L44">        payslipComponentUpdateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
 
 <span class="fc" id="L46">        return payslipComponentUpdateRequestDto;</span>
     }

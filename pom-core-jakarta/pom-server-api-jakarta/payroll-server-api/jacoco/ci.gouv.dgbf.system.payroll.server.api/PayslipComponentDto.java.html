@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente {@link SalaryComponentDto} de {@link PayslipDto}.
+ * Cette classe représente {@link PayrollComponentDto} de {@link PayslipDto}.
  *
  * @author Christian
  *
@@ -24,10 +24,10 @@ import lombok.Setter;
   private String payslipIdentifier;
 
   /**
-   * Identifiant {@link SalaryComponentDto}.
+   * Identifiant {@link PayrollComponentDto}.
    */
-  @JsonbProperty(JSON_SALARY_COMPONENT_IDENTIFIER)
-  private String salaryComponentIdentifier;
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+  private String payrollComponentIdentifier;
 
   /**
    * Identifiant json de l'identifiant.
@@ -38,17 +38,17 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;posteBulletinPaieChaine&quot;;
-  
+
   /**
    * Identifiant json {@link PayslipComponentDto#payslipIdentifier}.
    */
   public static final String JSON_PAYSLIP_IDENTIFIER = PayslipDto.JSON_THIS_IDENTIFIER;
-  
+
   /**
-   * Identifiant json {@link PayslipComponentDto#salaryComponentIdentifier}.
+   * Identifiant json {@link PayslipComponentDto#payrollComponentIdentifier}.
    */
-  public static final String JSON_SALARY_COMPONENT_IDENTIFIER = 
-                              SalaryComponentDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+      PayrollComponentDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Nom pour lecture humaine de la classe.
