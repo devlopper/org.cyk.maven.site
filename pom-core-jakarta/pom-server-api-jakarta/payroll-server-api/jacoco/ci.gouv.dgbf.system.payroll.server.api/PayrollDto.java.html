@@ -16,7 +16,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L19">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements PayslipContainerDto {
 
   /**
    * Identifiant {@link ExerciseDto}.
@@ -29,7 +30,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXERCISE_YEAR)
   private Integer exerciseYear;
-  
+
   /**
    * Représentation en chaine de caractères {@link ExerciseDto}.
    */
@@ -47,19 +48,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_START_DATE_AS_STRING)
   private LocalDate startDateAsString;
-  
+
   /**
    * Date de fin.
    */
   @JsonbProperty(JSON_END_DATE)
   private LocalDate endDate;
-  
+
   /**
    * Représentation en chaine de caractères de {@link #endDate}.
    */
   @JsonbProperty(JSON_END_DATE_AS_STRING)
   private LocalDate endDateAsString;
-  
+
   /**
    * {@link PayrollStatus}.
    */
@@ -72,6 +73,40 @@ import lombok.Setter;
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
 
+  /*-- Début définition des montants --*/
+  
+  /**
+   * Représentation en chaine de caractères du montant brut.
+   */
+  @JsonbProperty(JSON_GROSS_AMOUNT_AS_STRING)
+  private String grossAmountAsString;
+
+  /**
+  * Représentation en chaine de caractères du montant brut imposable.
+  */
+  @JsonbProperty(JSON_TAXABLE_GROSS_AMOUNT_AS_STRING)  
+  private String taxableGrossAmountAsString;
+
+  /**
+  * Représentation en chaine de caractères des éléments non soumis.
+  */
+  @JsonbProperty(JSON_NON_TAXABLE_AMOUNT_AS_STRING)
+  private String nonTaxableAmountAsString;
+
+  /**
+  * Représentation en chaine de caractères du montant des retenues.
+  */
+  @JsonbProperty(JSON_DEDUCTIONS_AMOUNT_AS_STRING)
+  private String deductionsAmountAsString;
+
+  /**
+  * Représentation en chaine de caractères du montant net.
+  */
+  @JsonbProperty(JSON_NET_AMOUNT_AS_STRING)
+  private String netAmountAsString;
+  
+  /*-- Fin définition des montants --*/
+  
   /**
    * Identifiant json de l'identifiant.
    */
@@ -91,7 +126,7 @@ import lombok.Setter;
    * Identifiant json champ {@link #exerciseYear}.
    */
   public static final String JSON_EXERCISE_YEAR = ExerciseDto.JSON_THIS_YEAR;
-  
+
   /**
    * Identifiant json champ {@link #exerciseAsString}.
    */
@@ -106,17 +141,17 @@ import lombok.Setter;
    * Identifiant json champ {@link #startDateAsString}.
    */
   public static final String JSON_START_DATE_AS_STRING = &quot;dateDebutChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link #endDate}.
    */
   public static final String JSON_END_DATE = &quot;dateFin&quot;;
-  
+
   /**
    * Identifiant json champ {@link #endDateAsString}.
    */
   public static final String JSON_END_DATE_AS_STRING = &quot;dateFinChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link #status}.
    */
@@ -126,7 +161,7 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
