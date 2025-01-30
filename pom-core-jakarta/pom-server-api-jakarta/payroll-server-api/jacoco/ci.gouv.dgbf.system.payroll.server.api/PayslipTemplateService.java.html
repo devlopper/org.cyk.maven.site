@@ -35,13 +35,13 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = PayslipTemplateService.PATH)
-@Tag(name = &quot;Gestion des postes de salaire&quot;)
+@Tag(name = &quot;Gestion des postes de paie&quot;)
 public interface PayslipTemplateService extends SpecificService {
 
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;modeles-bulletins-salaires&quot;;
+  String PATH = &quot;modeles-bulletins-paies&quot;;
 
   /**
    * Cette interface représente une requête d'enregistrement.
@@ -56,7 +56,7 @@ public interface PayslipTemplateService extends SpecificService {
   /**
    * Identifiant du service de création.
    */
-  String CREATE_IDENTIFIER = &quot;CREATION_MODELE_BULLETIN_SALAIRE&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_MODELE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service de création.
@@ -94,7 +94,7 @@ public interface PayslipTemplateService extends SpecificService {
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_MODELE_BULLETIN_SALAIRE&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_MODELE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -134,7 +134,7 @@ public interface PayslipTemplateService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_MODELE_BULLETIN_SALAIRE&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_MODELE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -159,7 +159,7 @@ public interface PayslipTemplateService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_MODELE_BULLETIN_SALAIRE&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_MODELE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -184,7 +184,7 @@ public interface PayslipTemplateService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_MODELE_BULLETIN_SALAIRE&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_MODELE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -222,7 +222,7 @@ public interface PayslipTemplateService extends SpecificService {
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_MODELE_BULLETIN_SALAIRE&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_MODELE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service de suppression.

@@ -35,13 +35,13 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = PayslipComponentService.PATH)
-@Tag(name = &quot;Gestion des postes de bulletin de salaire&quot;)
+@Tag(name = &quot;Gestion des postes de bulletin de paie&quot;)
 public interface PayslipComponentService extends SpecificService {
 
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;postes-bulletins-salaires&quot;;
+  String PATH = &quot;postes-bulletins-paies&quot;;
 
   /**
    * Cette interface représente une requête d'enregistrement.
@@ -95,7 +95,7 @@ public interface PayslipComponentService extends SpecificService {
   /**
    * Identifiant du service de création.
    */
-  String CREATE_IDENTIFIER = &quot;CREATION_POSTE_BULLETIN_SALAIRE&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_POSTE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service de création.
@@ -143,7 +143,7 @@ public interface PayslipComponentService extends SpecificService {
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_POSTE_BULLETIN_SALAIRE&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_POSTE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -183,7 +183,7 @@ public interface PayslipComponentService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_POSTE_BULLETIN_SALAIRE&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_POSTE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -208,7 +208,7 @@ public interface PayslipComponentService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_POSTE_BULLETIN_SALAIRE&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_POSTE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -233,7 +233,7 @@ public interface PayslipComponentService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_POSTE_BULLETIN_SALAIRE&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_POSTE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -281,7 +281,7 @@ public interface PayslipComponentService extends SpecificService {
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_POSTE_BULLETIN_SALAIRE&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_POSTE_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service de suppression.
