@@ -36,6 +36,12 @@ import lombok.Setter;
   private String periodAsString;
   
   /**
+   * Nom d'utilisateur.
+   */
+  @JsonbProperty(value = JSON_USER_NAME)
+  private String userName;
+  
+  /**
    * Identifiant JSON {@link #employeeAsString}.
    */
   public static final String JSON_EMPLOYEE_AS_STRING = &quot;employeChaine&quot;;
@@ -49,6 +55,11 @@ import lombok.Setter;
    * Identifiant JSON {@link #periodAsString}.
    */
   public static final String JSON_PERIOD_AS_STRING = &quot;periodeChaine&quot;;
+  
+  /**
+   * Identifiant JSON {@link #userName}.
+   */
+  public static final String JSON_USER_NAME = &quot;nomUtilisateur&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
