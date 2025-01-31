@@ -50,7 +50,64 @@ public interface PayrollComponentService extends SpecificService {
    *
    */
   interface PayrollComponentSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir vrai si c'est un gain sinon faux.
+     *
+     * @return vrai si c'est un gain sinon faux
+     */
+    Boolean getIsEarning();
 
+    /**
+     * Cette méthode permet d'assigner vrai si c'est un gain sinon faux.
+     *
+     * @param isEarning vrai si c'est un gain sinon faux
+     */
+    void setIsEarning(Boolean isEarning);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la formule de calcul employé.
+     *
+     * @return identifiant de la formule de calcul employé
+     */
+    String getEmployeeCalculationFormulaIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la formule de calcul employé.
+     *
+     * @param employeeCalculationFormulaIdentifier identifiant de la formule de calcul employé
+     */
+    void setEmployeeCalculationFormulaIdentifier(String employeeCalculationFormulaIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la formule de calcul employeur.
+     *
+     * @return identifiant de la formule de calcul employeur
+     */
+    String getEmployerCalculationFormulaIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la formule de calcul employeur.
+     *
+     * @param employerCalculationFormulaIdentifier identifiant de la formule de calcul employeur
+     */
+    void setEmployerCalculationFormulaIdentifier(String employerCalculationFormulaIdentifier);
+
+    /**
+     * {@link PayrollComponentDto#JSON_IS_EARNING}.
+     */
+    String JSON_IS_EARNING = PayrollComponentDto.JSON_IS_EARNING;
+
+    /**
+     * {@link PayrollComponentDto#JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER}.
+     */
+    String JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER =
+        PayrollComponentDto.JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER;
+
+    /**
+     * {@link PayrollComponentDto#JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER}.
+     */
+    String JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER =
+        PayrollComponentDto.JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER;
   }
 
   /**
@@ -86,9 +143,17 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L146">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
 
+    @JsonbProperty(JSON_IS_EARNING)
+    private Boolean isEarning;
+
+    @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
+    private String employeeCalculationFormulaIdentifier;
+
+    @JsonbProperty(JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER)
+    private String employerCalculationFormulaIdentifier;
   }
 
   /**
@@ -124,7 +189,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  public static class PayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L192">  public static class PayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -214,9 +279,16 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L217">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L282">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
+    @JsonbProperty(JSON_IS_EARNING)
+    private Boolean isEarning;
 
+    @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
+    private String employeeCalculationFormulaIdentifier;
+
+    @JsonbProperty(JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER)
+    private String employerCalculationFormulaIdentifier;
   }
 
   /**
