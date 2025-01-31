@@ -15,14 +15,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class PayslipDto extends AbstractIdentifiableAuditableDto {</span>
+<span class="fc" id="L18">public class PayslipDto extends AbstractIdentifiableAuditableDto implements PayslipContainerDto {</span>
 
   /**
    * Identifiant {@link PayrollDto}.
    */
   @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
   private String payrollIdentifier;
-  
+
   /**
    * Représentation en chaine de caractère de {@link PayrollDto}.
    */
@@ -35,6 +35,40 @@ import lombok.Setter;
   @JsonbProperty(JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER)
   private String employeeOrganizationIdentifier;
 
+  /*-- Début définition des montants --*/
+
+  /**
+   * Représentation en chaine de caractères du montant brut.
+   */
+  @JsonbProperty(JSON_GROSS_AMOUNT_AS_STRING)
+  private String grossAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères du montant brut imposable.
+   */
+  @JsonbProperty(JSON_TAXABLE_GROSS_AMOUNT_AS_STRING)
+  private String taxableGrossAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères des éléments non soumis.
+   */
+  @JsonbProperty(JSON_NON_TAXABLE_AMOUNT_AS_STRING)
+  private String nonTaxableAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères du montant des retenues.
+   */
+  @JsonbProperty(JSON_DEDUCTIONS_AMOUNT_AS_STRING)
+  private String deductionsAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères du montant net.
+   */
+  @JsonbProperty(JSON_NET_AMOUNT_AS_STRING)
+  private String netAmountAsString;
+
+  /*-- Fin définition des montants --*/
+
   /**
    * Identifiant json de l'identifiant.
    */
@@ -44,22 +78,22 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;bulletinPaieChaine&quot;;
-  
+
   /**
    * Identifiant json {@link PayslipDto#payrollIdentifier}.
    */
   public static final String JSON_PAYROLL_IDENTIFIER = PayrollDto.JSON_THIS_IDENTIFIER;
-  
+
   /**
    * Identifiant json {@link PayslipDto#payrollAsString}.
    */
   public static final String JSON_PAYROLL_AS_STRING = PayrollDto.JSON_THIS_AS_STRING;
-  
+
   /**
    * Identifiant json {@link PayslipDto#employeeOrganizationIdentifier}.
    */
-  public static final String JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER = 
-                      EmployeeOrganizationDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER =
+      EmployeeOrganizationDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Nom pour lecture humaine de la classe.
