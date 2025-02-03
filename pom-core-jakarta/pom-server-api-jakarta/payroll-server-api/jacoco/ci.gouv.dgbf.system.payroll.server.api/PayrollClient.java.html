@@ -2,8 +2,10 @@
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.Executor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -19,6 +21,7 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.payroll.server.api.PayrollService.PayrollCreateRequestDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayrollService.PayrollGetManyResponseDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayrollService.PayrollUpdateRequestDto;
+import ci.gouv.dgbf.system.payroll.server.api.PayrollService.ProcessResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -32,14 +35,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L35">public class PayrollClient extends AbstractClient&lt;PayrollService&gt;</span>
-    implements GetByIdentifier&lt;PayrollDto&gt;,
-    GetMany&lt;PayrollGetManyResponseDto&gt;,
+<span class="fc" id="L38">public class PayrollClient extends AbstractClient&lt;PayrollService&gt;</span>
+    implements GetByIdentifier&lt;PayrollDto&gt;, GetMany&lt;PayrollGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public PayrollClient service(PayrollService service) {
-<span class="fc" id="L42">    return (PayrollClient) super.service(service);</span>
+<span class="fc" id="L44">    return (PayrollClient) super.service(service);</span>
   }
 
   /**
@@ -49,8 +51,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(PayrollCreateRequestDto request) {
-<span class="fc" id="L52">    return new CreateExecutor(PayrollService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L54">    return new CreateExecutor(PayrollService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L55">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -60,10 +62,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public PayrollGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L63">    return new GetOneExecutor&lt;PayrollGetManyResponseDto&gt;(</span>
-        PayrollGetManyResponseDto.class,
-        PayrollService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L66">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L65">    return new GetOneExecutor&lt;PayrollGetManyResponseDto&gt;(PayrollGetManyResponseDto.class,</span>
+<span class="fc" id="L66">        PayrollService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -77,8 +77,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public PayrollGetManyResponseDto getMany(ProjectionDto projection,
-      FilterDto filter, PageDto page, String auditWho, String auditSession) {
+  public PayrollGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
 <span class="fc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L83">    request.setProjection(projection);</span>
 <span class="fc" id="L84">    request.setFilter(filter);</span>
@@ -95,9 +95,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public PayrollDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L98">    return new GetOneExecutor&lt;PayrollDto&gt;(PayrollDto.class,</span>
-        PayrollService.GET_ONE_IDENTIFIER)
-<span class="fc" id="L100">            .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L98">    return new GetOneExecutor&lt;PayrollDto&gt;(PayrollDto.class, PayrollService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L99">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -109,14 +108,14 @@ import lombok.experimental.Accessors;
    * @param auditSession audit session
    * @return réponse
    */
-  public PayrollDto getOne(ProjectionDto projection, FilterDto filter,
-      String auditWho, String auditSession) {
-<span class="fc" id="L114">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L115">    request.setProjection(projection);</span>
-<span class="fc" id="L116">    request.setFilter(filter);</span>
-<span class="fc" id="L117">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L118">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L119">    return getOne(request);</span>
+  public PayrollDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L113">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L114">    request.setProjection(projection);</span>
+<span class="fc" id="L115">    request.setFilter(filter);</span>
+<span class="fc" id="L116">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L117">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L118">    return getOne(request);</span>
   }
 
   /**
@@ -126,9 +125,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public PayrollDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L129">    return new GetOneExecutor&lt;PayrollDto&gt;(PayrollDto.class,</span>
+<span class="fc" id="L128">    return new GetOneExecutor&lt;PayrollDto&gt;(PayrollDto.class,</span>
         PayrollService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L131">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L130">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -141,14 +140,14 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public PayrollDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
-<span class="fc" id="L146">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L147">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L148">    request.setProjection(projection);</span>
-<span class="fc" id="L149">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L150">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L151">    return getByIdentifier(request);</span>
+  public PayrollDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
+<span class="fc" id="L145">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L146">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L147">    request.setProjection(projection);</span>
+<span class="fc" id="L148">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L149">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L150">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -158,8 +157,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(PayrollUpdateRequestDto request) {
-<span class="fc" id="L161">    return new IdentifiableExecutor(PayrollService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L162">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L160">    return new IdentifiableExecutor(PayrollService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L161">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -169,8 +168,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L172">    return new IdentifiableExecutor(PayrollService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L173">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L171">    return new IdentifiableExecutor(PayrollService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L172">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -184,11 +183,41 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L187">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L188">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L189">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L190">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L191">    return delete(request);</span>
+<span class="fc" id="L186">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L187">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L188">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L189">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L190">    return delete(request);</span>
+  }
+
+  /**
+   * {@link PayrollService#initialize}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto initialize(ByIdentifierRequestDto request) {
+<span class="fc" id="L200">    return new ProcessExecutor(PayrollService.INITIALIZE_IDENTIFIER)</span>
+<span class="fc" id="L201">        .execute(() -&gt; service().initialize(request));</span>
+  }
+  
+  /**
+   * Cette classe représente un exécuteur de {@link PayrollDto}.
+   *
+   * @author Christian
+   *
+   */
+  public class ProcessExecutor extends Executor&lt;ProcessResponseDto&gt; {
+
+    /**
+     * Cette méthode permet d'instancier.
+     *
+     * @param identifier identifiant
+     */
+<span class="fc" id="L217">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L218">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L219">    }</span>
+
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

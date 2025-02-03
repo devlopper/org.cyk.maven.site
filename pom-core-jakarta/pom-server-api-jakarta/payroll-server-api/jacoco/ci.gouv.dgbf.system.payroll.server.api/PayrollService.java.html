@@ -339,5 +339,111 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+  
+  /* Statuses workflow */
+  
+  /**
+   * Cette classe représente la réponse de traitement.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L353">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * {@link PayrollDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private PayrollStatus status;
+
+    /**
+     * {@link PayrollDto#getInitializable()}.
+     */
+    @JsonbProperty(JSON_INITIALIZABLE)
+    private Boolean initializable;
+
+    /**
+     * {@link PayrollDto#getControllable()}.
+     */
+    @JsonbProperty(JSON_CONTROLLABLE)
+    private Boolean controllable;
+
+    /**
+     * {@link PayrollDto#getArbitrable()}.
+     */
+    @JsonbProperty(JSON_ARBITRABLE)
+    private Boolean arbitrable;
+
+    /**
+     * {@link PayrollDto#getClosable()}.
+     */
+    @JsonbProperty(JSON_CLOSABLE)
+    private Boolean closable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status {@link PayrollStatus}
+     */
+    public void initialize(PayrollStatus status) {
+<span class="fc" id="L391">      this.status = status;</span>
+<span class="fc" id="L392">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L393">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L394">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L395">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L396">    }</span>
+
+    /**
+     * {@link PayrollDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = PayrollDto.JSON_STATUS;
+
+    /**
+     * {@link PayrollDto#JSON_INITIALIZABLE}.
+     */
+    public static final String JSON_INITIALIZABLE = PayrollDto.JSON_INITIALIZABLE;
+
+    /**
+     * {@link PayrollDto#JSON_CONTROLLABLE}.
+     */
+    public static final String JSON_CONTROLLABLE = PayrollDto.JSON_CONTROLLABLE;
+
+    /**
+     * {@link PayrollDto#JSON_ARBITRABLE}.
+     */
+    public static final String JSON_ARBITRABLE = PayrollDto.JSON_ARBITRABLE;
+
+    /**
+     * {@link PayrollDto#JSON_CLOSABLE}.
+     */
+    public static final String JSON_CLOSABLE = PayrollDto.JSON_CLOSABLE;
+  }
+  
+  /**
+   * Identifiant du service d'initialisation.
+   */
+  String INITIALIZE_IDENTIFIER = &quot;INITIALISATION_PAIE&quot;;
+
+  /**
+   * Chemin du service d'initialisation.
+   */
+  String INITIALIZE_PATH = &quot;initialisation&quot;;
+
+  /**
+   * Cette méthode permet d'initialiser {@link PayrollDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(INITIALIZE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = INITIALIZE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response initialize(ByIdentifierRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

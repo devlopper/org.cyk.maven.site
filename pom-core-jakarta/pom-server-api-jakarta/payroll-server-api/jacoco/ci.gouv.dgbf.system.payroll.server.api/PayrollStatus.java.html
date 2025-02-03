@@ -29,7 +29,7 @@ public enum PayrollStatus {
   /**
    * Controlée.
    */
-<span class="fc" id="L32">  CONTROLED(PayrollStatusCode.CONTROLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
+<span class="fc" id="L32">  CONTROLLED(PayrollStatusCode.CONTROLLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
   
   /**
    * Arbitrée.
@@ -74,8 +74,8 @@ public enum PayrollStatus {
   static {
 <span class="fc" id="L75">    CREATED.previous = Collections.emptySet();</span>
 <span class="fc" id="L76">    INITIALIZED.previous = Core.getSet(List.of(CREATED));</span>
-<span class="fc" id="L77">    CONTROLED.previous = Core.getSet(List.of(INITIALIZED));</span>
-<span class="fc" id="L78">    ARBITRATED.previous = Core.getSet(List.of(CONTROLED));</span>
+<span class="fc" id="L77">    CONTROLLED.previous = Core.getSet(List.of(INITIALIZED));</span>
+<span class="fc" id="L78">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
 <span class="fc" id="L79">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
 <span class="fc" id="L80">  }</span>
 }

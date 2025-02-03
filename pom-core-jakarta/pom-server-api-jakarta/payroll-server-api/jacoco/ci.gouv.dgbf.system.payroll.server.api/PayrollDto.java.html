@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollDto.java</span></div><h1>PayrollDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.payroll.server.api.PayrollService.ProcessResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import java.time.LocalDate;
 import lombok.EqualsAndHashCode;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L20">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements PayslipContainerDto {
 
   /**
@@ -66,7 +67,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_PERIOD_AS_STRING)
   private String periodAsString;
-  
+
   /**
    * {@link PayrollStatus}.
    */
@@ -80,7 +81,7 @@ import lombok.Setter;
   private String statusAsString;
 
   /*-- Début définition des montants --*/
-  
+
   /**
    * Représentation en chaine de caractères du montant brut.
    */
@@ -88,31 +89,69 @@ import lombok.Setter;
   private String grossAmountAsString;
 
   /**
-  * Représentation en chaine de caractères du montant brut imposable.
-  */
-  @JsonbProperty(JSON_TAXABLE_GROSS_AMOUNT_AS_STRING)  
+   * Représentation en chaine de caractères du montant brut imposable.
+   */
+  @JsonbProperty(JSON_TAXABLE_GROSS_AMOUNT_AS_STRING)
   private String taxableGrossAmountAsString;
 
   /**
-  * Représentation en chaine de caractères des éléments non soumis.
-  */
+   * Représentation en chaine de caractères des éléments non soumis.
+   */
   @JsonbProperty(JSON_NON_TAXABLE_AMOUNT_AS_STRING)
   private String nonTaxableAmountAsString;
 
   /**
-  * Représentation en chaine de caractères du montant des retenues.
-  */
+   * Représentation en chaine de caractères du montant des retenues.
+   */
   @JsonbProperty(JSON_DEDUCTIONS_AMOUNT_AS_STRING)
   private String deductionsAmountAsString;
 
   /**
-  * Représentation en chaine de caractères du montant net.
-  */
+   * Représentation en chaine de caractères du montant net.
+   */
   @JsonbProperty(JSON_NET_AMOUNT_AS_STRING)
   private String netAmountAsString;
-  
+
   /*-- Fin définition des montants --*/
-  
+
+  /**
+   * Initialisable.
+   */
+  @JsonbProperty(JSON_INITIALIZABLE)
+  private Boolean initializable;
+
+  /**
+   * Contrôlable.
+   */
+  @JsonbProperty(JSON_CONTROLLABLE)
+  private Boolean controllable;
+
+  /**
+   * Arbitrable.
+   */
+  @JsonbProperty(JSON_ARBITRABLE)
+  private Boolean arbitrable;
+
+  /**
+   * Clôturable.
+   */
+  @JsonbProperty(JSON_CLOSABLE)
+  private Boolean closable;
+
+  /**
+   * Cette méthode permet d'initialiser à partir d'une réponse.
+   *
+   * @param response résponse
+   */
+  public void initialize(ProcessResponseDto response) {
+<span class="fc" id="L147">    status = response.getStatus();</span>
+<span class="fc" id="L148">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L149">    initializable = response.getInitializable();</span>
+<span class="fc" id="L150">    controllable = response.getControllable();</span>
+<span class="fc" id="L151">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L152">    closable = response.getClosable();</span>
+<span class="fc" id="L153">  }</span>
+
   /**
    * Identifiant json de l'identifiant.
    */
@@ -162,7 +201,7 @@ import lombok.Setter;
    * Identifiant json champ {@link #periodAsString}.
    */
   public static final String JSON_PERIOD_AS_STRING = &quot;periodChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link #status}.
    */
@@ -172,6 +211,26 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #initializable}.
+   */
+  public static final String JSON_INITIALIZABLE = &quot;initialisable&quot;;
+
+  /**
+   * Identifiant json champ {@link #controllable}.
+   */
+  public static final String JSON_CONTROLLABLE = &quot;controlable&quot;;
+
+  /**
+   * Identifiant json champ {@link #arbitrable}.
+   */
+  public static final String JSON_ARBITRABLE = &quot;arbitrable&quot;;
+
+  /**
+   * Identifiant json champ {@link #closable}.
+   */
+  public static final String JSON_CLOSABLE = &quot;cloturable&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
