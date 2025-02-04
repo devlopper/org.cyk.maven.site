@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -50,6 +51,19 @@ public interface PayslipTemplateComponentService extends SpecificService {
    *
    */
   interface PayslipTemplateComponentSaveRequestDto {
+    
+    /**
+     * {@link PayslipTemplateDto#JSON_THIS_IDENTIFIER}.
+     */
+    public static final String JSON_PAYSLIP_TEMPLATE_IDENTIFIER =
+        PayslipTemplateDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * {@link PayrollComponentDto#JSON_THIS_IDENTIFIER}.
+     */
+    public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+        PayrollComponentDto.JSON_THIS_IDENTIFIER;
+    
 
   }
 
@@ -86,9 +100,21 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class PayslipTemplateComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L103">  class PayslipTemplateComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipTemplateComponentSaveRequestDto {
-
+    
+    /**
+    * Identifiant de {@link PayslipTemplateDto}.
+    */
+    @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
+    String payslipTemplateIdentifier;
+   
+    /**
+    * Identifiant de {@link PayrollComponentDto}.
+    */
+    @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+    String payrollComponentIdentifier;
+    
   }
 
   /**
@@ -124,7 +150,7 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  public static class PayslipTemplateComponentGetManyResponseDto</span>
+<span class="fc" id="L153">  public static class PayslipTemplateComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipTemplateComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -214,8 +240,20 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L217">  class PayslipTemplateComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L243">  class PayslipTemplateComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipTemplateComponentSaveRequestDto {
+    
+    /**
+     * Identifiant de {@link PayrollDto}.
+     */
+    @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+    String payrollComponentIdentifier;
+    
+    /**
+     * Identifiant de {@link EmployeeOrganizationDto}.
+     */
+    @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
+    String payslipTemplateIdentifier;
 
   }
 

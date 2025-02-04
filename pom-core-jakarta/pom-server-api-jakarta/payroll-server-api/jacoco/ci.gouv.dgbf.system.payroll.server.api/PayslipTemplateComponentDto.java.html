@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class PayslipTemplateComponentDto extends AbstractIdentifiableAuditableDto {</span>
+<span class="fc" id="L19">public class PayslipTemplateComponentDto extends AbstractIdentifiableAuditableDto {</span>
   
   /**
    * Identifiant {@link PayrollComponentDto}.
@@ -27,7 +28,7 @@ import lombok.Setter;
    * Représentation en chaine de caractères {@link PayrollComponentDto}.
    */
   @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
-  private String payrollComponentAsTring;
+  private String payrollComponentAsString;
   
   /**
    * Identifiant {@link PayslipTemplateDto}.
@@ -39,7 +40,7 @@ import lombok.Setter;
    * Représentation en chaine de caractères {@link PayslipTemplateDto}.
    */
   @JsonbProperty(JSON_PAYSLIP_TEMPLATE_AS_STRING)
-  private String payslipTemplateAsTring;
+  private String payslipTemplateAsString;
 
   /**
    * Identifiant json de l'identifiant.
@@ -50,6 +51,7 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;posteModeleBulletinPaieChaine&quot;;
+  
 
   /**
    * Nom pour lecture humaine de la classe.
@@ -68,7 +70,7 @@ import lombok.Setter;
       .JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json champ {@link #payrollComponentAsTring}.
+   * Identifiant json champ {@link #payrollComponentAsString}.
    */
   public static final String JSON_PAYROLL_COMPONENT_AS_STRING = PayrollComponentDto
       .JSON_THIS_AS_STRING;
@@ -80,7 +82,7 @@ import lombok.Setter;
       .JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json champ {@link #payrollComponentAsTring}.
+   * Identifiant json champ {@link #payrollComponentAsString}.
    */
   public static final String JSON_PAYSLIP_TEMPLATE_AS_STRING = PayslipTemplateDto
       .JSON_THIS_AS_STRING;
