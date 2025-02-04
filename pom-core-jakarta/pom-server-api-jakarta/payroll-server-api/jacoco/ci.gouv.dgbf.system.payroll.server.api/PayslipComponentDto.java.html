@@ -30,6 +30,18 @@ import lombok.Setter;
   private String payrollComponentIdentifier;
 
   /**
+   * Représentation en chaine de caractères du poste de bulletin.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
+  private String payrollComponentAsString;
+
+  /**
+   * Représentation en chaine de caractères du montant employé.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_AMOUNT_AS_STRING)
+  private String employeeAmountAsString;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idPosteBulletinPaie&quot;;
@@ -49,6 +61,16 @@ import lombok.Setter;
    */
   public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
       PayrollComponentDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères du poste de bulletin.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;posteChaine&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères du montant employé.
+   */
+  public static final String JSON_EMPLOYEE_AMOUNT_AS_STRING = &quot;montantEmployeChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
