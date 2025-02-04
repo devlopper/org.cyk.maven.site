@@ -19,7 +19,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -100,7 +99,7 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L103">  class PayslipTemplateComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L102">  class PayslipTemplateComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipTemplateComponentSaveRequestDto {
     
     /**
@@ -150,7 +149,7 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L153">  public static class PayslipTemplateComponentGetManyResponseDto</span>
+<span class="fc" id="L152">  public static class PayslipTemplateComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipTemplateComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -240,7 +239,7 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L243">  class PayslipTemplateComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L242">  class PayslipTemplateComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipTemplateComponentSaveRequestDto {
     
     /**
