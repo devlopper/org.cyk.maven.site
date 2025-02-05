@@ -79,6 +79,34 @@ public interface PayslipComponentService extends SpecificService {
     void setPayrollComponentIdentifier(String identifier);
 
     /**
+     * Cette méthode permet d'obtenir le montant employé.
+     *
+     * @return montant employé
+     */
+    Integer getEmployeeAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant employé.
+     *
+     * @param employeeAmount montant employé
+     */
+    void setEmployeeAmount(Integer employeeAmount);
+
+    /**
+     * Cette méthode permet d'obtenir le montant employeur.
+     *
+     * @return montant employeur
+     */
+    Integer getEmployerAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant employeur.
+     *
+     * @param employerAmount montant employeur
+     */
+    void setEmployerAmount(Integer employerAmount);
+
+    /**
      * {@link PayslipComponentDto#JSON_PAYSLIP_IDENTIFIER}.
      */
     public static final String JSON_PAYSLIP_IDENTIFIER =
@@ -90,6 +118,15 @@ public interface PayslipComponentService extends SpecificService {
     public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
         PayslipComponentDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
 
+    /**
+     * {@link PayslipComponentDto#JSON_EMPLOYEE_AMOUNT}.
+     */
+    public static final String JSON_EMPLOYEE_AMOUNT = PayslipComponentDto.JSON_EMPLOYEE_AMOUNT;
+
+    /**
+     * {@link PayslipComponentDto#JSON_EMPLOYER_AMOUNT}.
+     */
+    public static final String JSON_EMPLOYER_AMOUNT = PayslipComponentDto.JSON_EMPLOYER_AMOUNT;
   }
 
   /**
@@ -125,7 +162,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  class PayslipComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L165">  class PayslipComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipComponentSaveRequestDto {
     /**
      * Identifiant de {@link PayslipDto}.
@@ -137,7 +174,16 @@ public interface PayslipComponentService extends SpecificService {
      */
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     String payrollComponentIdentifier;
-
+    /**
+     * Montant employé.
+     */
+    @JsonbProperty(JSON_EMPLOYEE_AMOUNT)
+    Integer employeeAmount;
+    /**
+     * Montant employeur.
+     */
+    @JsonbProperty(JSON_EMPLOYER_AMOUNT)
+    Integer employerAmount;
   }
 
   /**
@@ -173,7 +219,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L176">  public static class PayslipComponentGetManyResponseDto</span>
+<span class="fc" id="L222">  public static class PayslipComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -263,7 +309,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L266">  class PayslipComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L312">  class PayslipComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipComponentSaveRequestDto {
     /**
      * Identifiant de {@link PayslipDto}.
@@ -275,7 +321,16 @@ public interface PayslipComponentService extends SpecificService {
      */
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     String payrollComponentIdentifier;
-
+    /**
+     * Montant employé.
+     */
+    @JsonbProperty(JSON_EMPLOYEE_AMOUNT)
+    Integer employeeAmount;
+    /**
+     * Montant employeur.
+     */
+    @JsonbProperty(JSON_EMPLOYER_AMOUNT)
+    Integer employerAmount;
   }
 
   /**

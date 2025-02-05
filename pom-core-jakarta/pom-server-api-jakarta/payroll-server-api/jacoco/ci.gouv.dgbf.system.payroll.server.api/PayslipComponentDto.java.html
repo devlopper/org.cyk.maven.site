@@ -36,10 +36,28 @@ import lombok.Setter;
   private String payrollComponentAsString;
 
   /**
-   * Représentation en chaine de caractères du montant employé.
+   * Montant employé.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_AMOUNT)
+  private Integer employeeAmount;
+
+  /**
+   * Représentation en chaine de caractères de {@link #employeeAmount}.
    */
   @JsonbProperty(JSON_EMPLOYEE_AMOUNT_AS_STRING)
   private String employeeAmountAsString;
+
+  /**
+   * Montant employeur.
+   */
+  @JsonbProperty(JSON_EMPLOYER_AMOUNT)
+  private Integer employerAmount;
+
+  /**
+   * Représentation en chaine de caractères de {@link #employerAmount}.
+   */
+  @JsonbProperty(JSON_EMPLOYER_AMOUNT_AS_STRING)
+  private String employerAmountAsString;
 
   /**
    * Identifiant json de l'identifiant.
@@ -52,25 +70,40 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;posteBulletinPaieChaine&quot;;
 
   /**
-   * Identifiant json {@link PayslipComponentDto#payslipIdentifier}.
+   * Identifiant json {@link #payslipIdentifier}.
    */
   public static final String JSON_PAYSLIP_IDENTIFIER = PayslipDto.JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json {@link PayslipComponentDto#payrollComponentIdentifier}.
+   * Identifiant json {@link #payrollComponentIdentifier}.
    */
   public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
       PayrollComponentDto.JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json de la représentation en chaine de caractères du poste de bulletin.
+   * Identifiant json {@link #payrollComponentAsString}.
    */
   public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;posteChaine&quot;;
 
   /**
-   * Identifiant json de la représentation en chaine de caractères du montant employé.
+   * Identifiant json {@link #employeeAmount}.
    */
-  public static final String JSON_EMPLOYEE_AMOUNT_AS_STRING = &quot;montantEmployeChaine&quot;;
+  public static final String JSON_EMPLOYEE_AMOUNT = &quot;montantEmploye&quot;;
+
+  /**
+   * Identifiant json {@link #employeeAmountAsString}.
+   */
+  public static final String JSON_EMPLOYEE_AMOUNT_AS_STRING = JSON_EMPLOYEE_AMOUNT + &quot;Chaine&quot;;
+
+  /**
+   * Identifiant json {@link #employerAmount}.
+   */
+  public static final String JSON_EMPLOYER_AMOUNT = &quot;montantEmployeur&quot;;
+
+  /**
+   * Identifiant json {@link #employerAmountAsString}.
+   */
+  public static final String JSON_EMPLOYER_AMOUNT_AS_STRING = JSON_EMPLOYER_AMOUNT + &quot;Chaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
