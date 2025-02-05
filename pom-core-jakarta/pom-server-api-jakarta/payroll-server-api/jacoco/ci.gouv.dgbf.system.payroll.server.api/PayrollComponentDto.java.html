@@ -30,10 +30,22 @@ import lombok.Setter;
   private String employeeCalculationFormulaIdentifier;
 
   /**
+   * Représentation en chaine de caractères de {@link Script} employé.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_AS_STRING)
+  private String employeeCalculationFormulaAsString;
+
+  /**
    * Identifiant {@link Script} employeur.
    */
   @JsonbProperty(JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER)
   private String employerCalculationFormulaIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link Script} employeur.
+   */
+  @JsonbProperty(JSON_EMPLOYER_CALCULATION_FORMULA_AS_STRING)
+  private String employerCalculationFormulaAsString;
 
   /**
    * Identifiant json de l'identifiant.
@@ -57,10 +69,22 @@ import lombok.Setter;
       &quot;idFormuleCalculEmploye&quot;;
 
   /**
+   * Identifiant json {@link #employeeCalculationFormulaAsString}.
+   */
+  public static final String JSON_EMPLOYEE_CALCULATION_FORMULA_AS_STRING =
+      &quot;formuleCalculEmployeChaine&quot;;
+
+  /**
    * Identifiant json {@link #employerCalculationFormulaIdentifier}.
    */
   public static final String JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER =
       &quot;idFormuleCalculEmployeur&quot;;
+
+  /**
+   * Identifiant json {@link #employerCalculationFormulaAsString}.
+   */
+  public static final String JSON_EMPLOYER_CALCULATION_FORMULA_AS_STRING =
+      &quot;formuleCalculEmployeurChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
