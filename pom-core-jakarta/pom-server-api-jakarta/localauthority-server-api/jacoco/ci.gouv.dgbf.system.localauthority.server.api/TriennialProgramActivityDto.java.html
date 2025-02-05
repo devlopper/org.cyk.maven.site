@@ -120,16 +120,16 @@ import lombok.Setter;
   private String justification;
 
   /**
-   * Représentation en chaine de caractères du numéro d'ordre.
+   * priorité.
    */
-  @JsonbProperty(JSON_ORDER_NUMBER)
-  private Long orderNumber;
+  @JsonbProperty(JSON_PRIORITY)
+  private Long priority;
 
   /**
-   * Numéro d'ordre.
+   * Représentation en chaine de caractères de la priorité.
    */
-  @JsonbProperty(JSON_ORDER_NUMBER_AS_STRING)
-  private String orderNumberAsString;
+  @JsonbProperty(JSON_PRIORITY_AS_STRING)
+  private String priorityAsString;
 
 
   /**
@@ -267,14 +267,14 @@ import lombok.Setter;
   public static final String JSON_JUSTIFICATION = &quot;justification&quot;;
 
   /**
-   * Identifiant json {@link #orderNumber}.
+   * Identifiant json {@link #priority}.
    */
-  public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
+  public static final String JSON_PRIORITY = &quot;priorite&quot;;
 
   /**
-   * Identifiant json {@link #orderNumberAsString}.
+   * Identifiant json {@link #priorityAsString}.
    */
-  public static final String JSON_ORDER_NUMBER_AS_STRING = &quot;numeroOrdreChaine&quot;;
+  public static final String JSON_PRIORITY_AS_STRING = &quot;prioriteChaine&quot;;
 
 
 

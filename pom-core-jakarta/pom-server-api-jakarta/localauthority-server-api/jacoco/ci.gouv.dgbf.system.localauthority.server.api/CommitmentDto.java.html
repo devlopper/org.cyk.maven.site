@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommitmentDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">CommitmentDto.java</span></div><h1>CommitmentDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un engagement.
+ *
+ * @author Desysoft
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L17">public class CommitmentDto extends AbstractIdentifiableNamableAuditableDto {</span>
+
+  /**
+   * Identifiant de {@link LocalAuthorityDto}.
+   */
+  @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+  private String localAuthorityIdentifier;
+
+
+  /**
+   * Objet de l'engagement.
+   */
+  @JsonbProperty(JSON_SUBJECT)
+  private String subject;
+
+
+  /**
+   * Référence de l'engagement.
+   */
+  @JsonbProperty(JSON_COMMITMENT_REFERENCE)
+  private String commitmentReference;
+
+
+  /**
+   * Numéro facture decompte.
+   */
+  @JsonbProperty(JSON_INVOICE_REFERENCE_NUMBER)
+  private String invoiceReferenceNumber;
+
+
+  /**
+   * Montant.
+   */
+  @JsonbProperty(JSON_AMOUNT)
+  private Long amount;
+
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private String amountAsString;
+
+
+  /**
+   * Identifiant json {@link #localAuthorityIdentifier}.
+   */
+  public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+      LocalAuthorityDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #amount}.
+   */
+  public static final String JSON_AMOUNT = &quot;montant&quot;;
+
+  /**
+   * Identifiant json {@link #amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
+
+
+  /**
+   * Identifiant json {@link #subject}.
+   */
+  public static final String JSON_SUBJECT = &quot;objet&quot;;
+
+
+  /**
+   * Identifiant json {@link #commitmentReference}.
+   */
+  public static final String JSON_COMMITMENT_REFERENCE = &quot;referenceEngagement&quot;;
+
+  /**
+   * Identifiant json {@link #invoiceReferenceNumber}.
+   */
+  public static final String JSON_INVOICE_REFERENCE_NUMBER = &quot;numeroFactureDecompte&quot;;
+
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;engagement&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

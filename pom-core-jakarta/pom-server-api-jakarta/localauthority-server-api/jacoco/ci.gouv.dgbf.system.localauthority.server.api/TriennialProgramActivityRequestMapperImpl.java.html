@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-05T17:10:51+0000&quot;,
+    date = &quot;2025-02-05T17:16:14+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -29,25 +29,27 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L29">        triennialProgramActivityCreateRequestDto.setActivityIdentifier( arg0.getActivityIdentifier() );</span>
 <span class="fc" id="L30">        triennialProgramActivityCreateRequestDto.setAmount( arg0.getAmount() );</span>
 <span class="fc" id="L31">        triennialProgramActivityCreateRequestDto.setJustification( arg0.getJustification() );</span>
+<span class="fc" id="L32">        triennialProgramActivityCreateRequestDto.setPriority( arg0.getPriority() );</span>
 
-<span class="fc" id="L33">        return triennialProgramActivityCreateRequestDto;</span>
+<span class="fc" id="L34">        return triennialProgramActivityCreateRequestDto;</span>
     }
 
     @Override
     public TriennialProgramActivityService.TriennialProgramActivityUpdateRequestDto mapUpdate(TriennialProgramActivityDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L42">        TriennialProgramActivityService.TriennialProgramActivityUpdateRequestDto triennialProgramActivityUpdateRequestDto = new TriennialProgramActivityService.TriennialProgramActivityUpdateRequestDto();</span>
+<span class="fc" id="L43">        TriennialProgramActivityService.TriennialProgramActivityUpdateRequestDto triennialProgramActivityUpdateRequestDto = new TriennialProgramActivityService.TriennialProgramActivityUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        triennialProgramActivityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L45">        triennialProgramActivityUpdateRequestDto.setTriennialProgramIdentifier( arg0.getTriennialProgramIdentifier() );</span>
-<span class="fc" id="L46">        triennialProgramActivityUpdateRequestDto.setActivityIdentifier( arg0.getActivityIdentifier() );</span>
-<span class="fc" id="L47">        triennialProgramActivityUpdateRequestDto.setAmount( arg0.getAmount() );</span>
-<span class="fc" id="L48">        triennialProgramActivityUpdateRequestDto.setJustification( arg0.getJustification() );</span>
+<span class="fc" id="L45">        triennialProgramActivityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        triennialProgramActivityUpdateRequestDto.setTriennialProgramIdentifier( arg0.getTriennialProgramIdentifier() );</span>
+<span class="fc" id="L47">        triennialProgramActivityUpdateRequestDto.setActivityIdentifier( arg0.getActivityIdentifier() );</span>
+<span class="fc" id="L48">        triennialProgramActivityUpdateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L49">        triennialProgramActivityUpdateRequestDto.setJustification( arg0.getJustification() );</span>
+<span class="fc" id="L50">        triennialProgramActivityUpdateRequestDto.setPriority( arg0.getPriority() );</span>
 
-<span class="fc" id="L50">        return triennialProgramActivityUpdateRequestDto;</span>
+<span class="fc" id="L52">        return triennialProgramActivityUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
