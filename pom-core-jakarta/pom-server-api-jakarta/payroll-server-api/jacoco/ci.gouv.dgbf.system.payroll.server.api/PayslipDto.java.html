@@ -30,10 +30,34 @@ import lombok.Setter;
   private String payrollAsString;
 
   /**
-   * Identifiant {@link EmployeeOrganizationDto}.
+   * Identifiant {@link FunctionaryBudgetarySectionUnitDto}.
    */
-  @JsonbProperty(JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER)
-  private String employeeOrganizationIdentifier;
+  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
+  private String functionaryBudgetarySectionUnitIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de {@link FunctionaryBudgetarySectionUnitDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_AS_STRING)
+  private String functionaryBudgetarySectionUnitAsString;
+
+  /**
+   * Représentation en chaine de caractère de {@link BudgetarySectionUnitDto}.
+   */
+  @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_AS_STRING)
+  private String budgetarySectionUnitAsString;
+
+  /**
+   * Matricule.
+   */
+  @JsonbProperty(JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+
+  /**
+   * Nom et prénom(s).
+   */
+  @JsonbProperty(JSON_FIRST_NAME_AND_LAST_NAMES)
+  private String firstNameAndLastNames;
 
   /*-- Début définition des montants --*/
 
@@ -80,20 +104,42 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;bulletinPaieChaine&quot;;
 
   /**
-   * Identifiant json {@link PayslipDto#payrollIdentifier}.
+   * Identifiant json {@link #payrollIdentifier}.
    */
   public static final String JSON_PAYROLL_IDENTIFIER = PayrollDto.JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json {@link PayslipDto#payrollAsString}.
+   * Identifiant json {@link #payrollAsString}.
    */
   public static final String JSON_PAYROLL_AS_STRING = PayrollDto.JSON_THIS_AS_STRING;
 
   /**
-   * Identifiant json {@link PayslipDto#employeeOrganizationIdentifier}.
+   * Identifiant json {@link #functionaryBudgetarySectionUnitIdentifier}.
    */
-  public static final String JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER =
-      EmployeeOrganizationDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER =
+      &quot;idFonctionnaireUniteSectionBudgetaire&quot;;
+
+  /**
+   * Identifiant json {@link #functionaryBudgetarySectionUnitAsString}.
+   */
+  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_AS_STRING =
+      &quot;fonctionnaireUniteSectionBudgetaireChaine&quot;;
+
+  /**
+   * Identifiant json {@link #budgetarySectionUnitAsString}.
+   */
+  public static final String JSON_BUDGETARY_SECTION_UNIT_AS_STRING =
+      &quot;uniteSectionBudgetaireChaine&quot;;
+
+  /**
+   * Identifiant json {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+
+  /**
+   * Identifiant json {@link #firstNameAndLastNames}.
+   */
+  public static final String JSON_FIRST_NAME_AND_LAST_NAMES = &quot;nomPrenoms&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

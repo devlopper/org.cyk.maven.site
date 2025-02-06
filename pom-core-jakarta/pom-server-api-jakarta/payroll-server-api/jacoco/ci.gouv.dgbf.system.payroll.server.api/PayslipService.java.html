@@ -58,24 +58,24 @@ public interface PayslipService extends SpecificService {
     String getPayrollIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link EmployeeOrganizationDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link PayrollDto}.
      *
-     * @param identifier identifiant {@link EmployeeOrganizationDto}
+     * @param identifier identifiant {@link PayrollDto}
      */
     void setPayrollIdentifier(String identifier);
     
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link EmployeeOrganizationDto}.
+     * Cette méthode permet d'obtenir l'identifiant du fonctionnaire dans une unité e section.
      *
-     * @return identifiant {@link EmployeeOrganizationDto}
+     * @return identifiant du fonctionnaire dans une unité e section
      */
     
     String getEmployeeOrganizationIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link EmployeeOrganizationDto}.
+     * Cette méthode permet d'assigner l'identifiant du fonctionnaire dans une unité e section.
      *
-     * @param identifier identifiant {@link EmployeeOrganizationDto}
+     * @param identifier identifiant du fonctionnaire dans une unité e section
      */
     void setEmployeeOrganizationIdentifier(String identifier);
 
@@ -86,10 +86,10 @@ public interface PayslipService extends SpecificService {
     public static final String JSON_PAYROLL_IDENTIFIER = PayslipDto.JSON_PAYROLL_IDENTIFIER;
 
     /**
-     * {@link PayslipDto#JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER}.
+     * {@link PayslipDto#JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER}.
      */
     public static final String JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER = 
-                          PayslipDto.JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER;
+                          PayslipDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
 
   }
 
@@ -135,7 +135,7 @@ public interface PayslipService extends SpecificService {
     String payrollIdentifier;
 
     /**
-     * Identifiant de {@link EmployeeOrganizationDto}.
+     * Identifiant de {@link PayslipTemplateDto}.
      */
     @JsonbProperty(JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER)
     String employeeOrganizationIdentifier;
@@ -273,7 +273,7 @@ public interface PayslipService extends SpecificService {
     String payrollIdentifier;
     
     /**
-     * Identifiant de {@link EmployeeOrganizationDto}.
+     * Identifiant de {@link PayslipTemplateDto}.
      */
     @JsonbProperty(JSON_EMPLOYEE_ORGANIZATION_IDENTIFIER)
     String employeeOrganizationIdentifier;
