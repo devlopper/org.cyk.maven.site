@@ -90,7 +90,6 @@ public interface CommitmentService extends SpecificService {
      */
     void setLocalAuthorityIdentifier(String identifier);
 
-
     /**
      * Cette methode permet d'obtenir le sujet de l'engagement.
      *
@@ -105,12 +104,12 @@ public interface CommitmentService extends SpecificService {
      */
     void setSubject(String subject);
 
-
     /**
      * Cette methode permet d'obtenir la référence de l'engagement.
+     *
+     * @return référence de l'engagement
      */
     String getCommitmentReference();
-
 
     /**
      * Cette méthode permet d'assigner la référence de l'engagement.
@@ -119,12 +118,12 @@ public interface CommitmentService extends SpecificService {
      */
     void setCommitmentReference(String commitmentReference);
 
-
     /**
      * Cette methode permet d'obtenir le numéro de la facture décompte.
+     *
+     * @return numéro de la facture décompte
      */
     String getInvoiceReferenceNumber();
-
 
     /**
      * Cette méthode permet d'assigner le numéro de la facture décompte.
@@ -132,7 +131,6 @@ public interface CommitmentService extends SpecificService {
      * @param invoiceReferenceNumber numéro facture décompte
      */
     void setInvoiceReferenceNumber(String invoiceReferenceNumber);
-
 
     /**
      * Cette méthode permet d'obtenir le montant.
@@ -187,7 +185,7 @@ public interface CommitmentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L190">  class CommitmentCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L188">  class CommitmentCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements CommitmentSaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -264,7 +262,7 @@ public interface CommitmentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L267">  public static class CommitmentGetManyResponseDto</span>
+<span class="fc" id="L265">  public static class CommitmentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;CommitmentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -356,7 +354,7 @@ public interface CommitmentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L359">  class CommitmentUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L357">  class CommitmentUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements CommitmentSaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)

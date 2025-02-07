@@ -19,7 +19,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.util.Date;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,22 +31,22 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 /**
  * Cette interface représente les services de {@link ProcedureModelDto}.
  *
- * @author Christian Yao Komenan
+ * @author Desysoft
  */
 @Path(value = ProcedureModelService.PATH)
-@Tag(name = &quot;Gestion des procedures&quot;)
+@Tag(name = &quot;Gestion des modeles de procédure&quot;)
 public interface ProcedureModelService extends SpecificService {
 
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;procedures&quot;;
+  String PATH = &quot;modeles-de-procédure&quot;;
 
 
   /**
    * Identifiant du service de création.
    */
-  String CREATE_IDENTIFIER = &quot;CREATION_PROCEDURE&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_MODELE_PROCEDURE&quot;;
 
   /**
    * Chemin du service de création.
@@ -62,41 +61,11 @@ public interface ProcedureModelService extends SpecificService {
   interface ProcedureModelSaveRequestDto {
 
     /**
-     * Identifiant JSON {@link WorkflowDto}.
-     */
-    String JSON_WORKFLOW_IDENTIFIER = ProcedureModelDto.JSON_WORKFLOW_IDENTIFIER;
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
-     *
-     * @return identifiant de {@link WorkflowDto}
-     */
-    String getWorkflowIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link WorkflowDto}.
-     *
-     * @param workflowIdentifier identifiant de {@link WorkflowDto}
-     */
-    void setWorkflowIdentifier(String workflowIdentifier);
-
-    /**
      * Identifiant json du champ d'ordre.
      */
     public static final String JSON_ORDER = ProcedureModelDto.JSON_ORDER;
 
-    /**
-     * Identifiant json du champ de date .
-     */
-    public static final String JSON_DATE = ProcedureModelDto.JSON_DATE;
-
-    /**
-     * Identifiant json du champ de date .
-     */
-    public static final String JSON_OBSERVATION = ProcedureModelDto.JSON_OBSERVATION;
-
   }
-
 
   /**
    * Cette méthode permet de créer.
@@ -120,27 +89,19 @@ public interface ProcedureModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L123">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L92">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureModelSaveRequestDto {
 
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
 
     @JsonbProperty(JSON_ORDER)
     private Integer order;
-
-    @JsonbProperty(JSON_DATE)
-    private Date date;
-
-    @JsonbProperty(JSON_OBSERVATION)
-    private String observation;
 
   }
 
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_PROCEDURE&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_MODELE_PROCEDURE&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -170,7 +131,7 @@ public interface ProcedureModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L173">  public static class ProcedureModelGetManyResponseDto</span>
+<span class="fc" id="L134">  public static class ProcedureModelGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureModelDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -180,7 +141,7 @@ public interface ProcedureModelService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_PROCEDURE&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_MODELE_PROCEDURE&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -205,7 +166,7 @@ public interface ProcedureModelService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_PROCEDURE&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_MODELE_PROCEDURE&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -230,7 +191,7 @@ public interface ProcedureModelService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_PROCEDURE&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_MODELE_PROCEDURE&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -259,27 +220,18 @@ public interface ProcedureModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L262">  class ProcedureModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L223">  class ProcedureModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureModelSaveRequestDto {
-
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
 
     @JsonbProperty(JSON_ORDER)
     private int order;
-
-    @JsonbProperty(JSON_DATE)
-    private Date date;
-
-    @JsonbProperty(JSON_OBSERVATION)
-    private String observation;
 
   }
 
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_PROCEDURE&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_MODELE_PROCEDURE&quot;;
 
   /**
    * Chemin du service de suppression.

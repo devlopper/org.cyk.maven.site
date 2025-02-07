@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-05T19:18:10+0000&quot;,
+    date = &quot;2025-02-07T15:09:58+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,33 +27,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        procedureModelCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        procedureModelCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        procedureModelCreateRequestDto.setWorkflowIdentifier( arg0.getWorkflowIdentifier() );</span>
-<span class="fc" id="L31">        procedureModelCreateRequestDto.setOrder( arg0.getOrder() );</span>
-<span class="fc" id="L32">        procedureModelCreateRequestDto.setDate( arg0.getDate() );</span>
-<span class="fc" id="L33">        procedureModelCreateRequestDto.setObservation( arg0.getObservation() );</span>
+<span class="fc" id="L30">        procedureModelCreateRequestDto.setOrder( arg0.getOrder() );</span>
 
-<span class="fc" id="L35">        return procedureModelCreateRequestDto;</span>
+<span class="fc" id="L32">        return procedureModelCreateRequestDto;</span>
     }
 
     @Override
     public ProcedureModelService.ProcedureModelUpdateRequestDto mapUpdate(ProcedureModelDto arg0) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L41">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L44">        ProcedureModelService.ProcedureModelUpdateRequestDto procedureModelUpdateRequestDto = new ProcedureModelService.ProcedureModelUpdateRequestDto();</span>
+<span class="fc" id="L41">        ProcedureModelService.ProcedureModelUpdateRequestDto procedureModelUpdateRequestDto = new ProcedureModelService.ProcedureModelUpdateRequestDto();</span>
 
-<span class="fc" id="L46">        procedureModelUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        procedureModelUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L48">        procedureModelUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L49">        procedureModelUpdateRequestDto.setWorkflowIdentifier( arg0.getWorkflowIdentifier() );</span>
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        if ( arg0.getOrder() != null ) {</span>
-<span class="fc" id="L51">            procedureModelUpdateRequestDto.setOrder( arg0.getOrder() );</span>
+<span class="fc" id="L43">        procedureModelUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        procedureModelUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L45">        procedureModelUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if ( arg0.getOrder() != null ) {</span>
+<span class="fc" id="L47">            procedureModelUpdateRequestDto.setOrder( arg0.getOrder() );</span>
         }
-<span class="fc" id="L53">        procedureModelUpdateRequestDto.setDate( arg0.getDate() );</span>
-<span class="fc" id="L54">        procedureModelUpdateRequestDto.setObservation( arg0.getObservation() );</span>
 
-<span class="fc" id="L56">        return procedureModelUpdateRequestDto;</span>
+<span class="fc" id="L50">        return procedureModelUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
