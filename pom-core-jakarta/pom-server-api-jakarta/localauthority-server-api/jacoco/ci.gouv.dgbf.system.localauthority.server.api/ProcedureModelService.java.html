@@ -40,7 +40,7 @@ public interface ProcedureModelService extends SpecificService {
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;modeles-de-procédure&quot;;
+  String PATH = &quot;modeles-de-procedure&quot;;
 
 
   /**
@@ -61,9 +61,45 @@ public interface ProcedureModelService extends SpecificService {
   interface ProcedureModelSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir l'ordre de {@link ProcedureModelDto}.
+     *
+     * @return order de {@link ProcedureModelDto}
+     */
+    Integer getOrder();
+
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ProcedureModelDto}.
+     *
+     * @param order identifiant de {@link ProcedureModelDto}
+     */
+    void setOrder(Integer order);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
+     *
+     * @return identifiant de {@link WorkflowDto}
+     */
+    String getWorkflowIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link WorkflowDto}.
+     *
+     * @param workflowIdentifier identifiant de {@link WorkflowDto}
+     */
+    void setWorkflowIdentifier(String workflowIdentifier);
+
+
+
+    /**
      * Identifiant json du champ d'ordre.
      */
-    public static final String JSON_ORDER = ProcedureModelDto.JSON_ORDER;
+    String JSON_ORDER = ProcedureModelDto.JSON_ORDER;
+
+    /**
+     * Identifiant json du champ d'ordre.
+     */
+    String JSON_WORKFLOW_IDENTIFIER = ProcedureModelDto.JSON_WORKFLOW_IDENTIFIER;
 
   }
 
@@ -89,8 +125,11 @@ public interface ProcedureModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L92">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L128">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureModelSaveRequestDto {
+
+    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
+    private String workflowIdentifier;
 
 
     @JsonbProperty(JSON_ORDER)
@@ -131,7 +170,7 @@ public interface ProcedureModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L134">  public static class ProcedureModelGetManyResponseDto</span>
+<span class="fc" id="L173">  public static class ProcedureModelGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureModelDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -220,11 +259,14 @@ public interface ProcedureModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L223">  class ProcedureModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L262">  class ProcedureModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureModelSaveRequestDto {
 
+    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
+    private String workflowIdentifier;
+
     @JsonbProperty(JSON_ORDER)
-    private int order;
+    private Integer order;
 
   }
 
