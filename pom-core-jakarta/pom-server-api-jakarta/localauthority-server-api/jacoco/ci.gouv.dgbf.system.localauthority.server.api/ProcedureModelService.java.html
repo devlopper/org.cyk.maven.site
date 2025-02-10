@@ -103,6 +103,7 @@ public interface ProcedureModelService extends SpecificService {
 
   }
 
+
   /**
    * Cette méthode permet de créer.
    *
@@ -125,12 +126,11 @@ public interface ProcedureModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L129">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureModelSaveRequestDto {
 
     @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
     private String workflowIdentifier;
-
 
     @JsonbProperty(JSON_ORDER)
     private Integer order;
