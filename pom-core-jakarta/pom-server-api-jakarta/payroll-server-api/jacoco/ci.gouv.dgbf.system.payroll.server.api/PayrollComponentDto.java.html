@@ -24,6 +24,12 @@ import lombok.Setter;
   private Boolean isEarning;
 
   /**
+   * Représentation en chaine de caractères de {@link #isEarning}.
+   */
+  @JsonbProperty(JSON_IS_EARNING_AS_STRING)
+  private String isEarningAsString;
+  
+  /**
    * Identifiant {@link Script} employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
@@ -62,6 +68,11 @@ import lombok.Setter;
    */
   public static final String JSON_IS_EARNING = &quot;estGain&quot;;
 
+  /**
+   * Identifiant json {@link #isEarningAsString}.
+   */
+  public static final String JSON_IS_EARNING_AS_STRING = JSON_IS_EARNING + &quot;Chaine&quot;;
+  
   /**
    * Identifiant json {@link #employeeCalculationFormulaIdentifier}.
    */
