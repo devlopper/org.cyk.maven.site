@@ -2,20 +2,24 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Cette classe représente un fournisseur.
  *
  * @author Desysoft
  */
-<span class="fc" id="L11">public class SupplierDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+@Getter
+@Setter
+<span class="fc" id="L15">public class SupplierDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
 
   /**
    * Numéro de compte contribuable.
    */
   @JsonbProperty(JSON_TAX_ACCOUNT_NUMBER)
-  public String taxAccountNumber;
+  private String taxAccountNumber;
 
 
   /**
