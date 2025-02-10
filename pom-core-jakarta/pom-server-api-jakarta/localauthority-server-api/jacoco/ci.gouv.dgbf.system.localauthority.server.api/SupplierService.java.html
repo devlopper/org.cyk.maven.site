@@ -73,6 +73,37 @@ public interface SupplierService extends SpecificService {
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
   Response create(SupplierCreateRequestDto request);
 
+
+  /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Desysoft
+   */
+  interface SaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir le Numéro de compte contribuable.
+     *
+     * @return title
+     */
+    String getTaxAccountNumber();
+
+
+    /**
+     * Cette méthode permet d'assigner le Numéro de compte contribuable.
+     *
+     * @param taxAccountNumber Numéro de compte contribuable
+     */
+    void setTaxAccountNumber(String taxAccountNumber);
+
+
+    /**
+     * Identifiant champ json du titre.
+     */
+    String JSON_TAX_ACCOUNT_NUMBER = SupplierDto.JSON_TAX_ACCOUNT_NUMBER;
+  }
+
+
   /**
    * Cette classe représente la requête de création.
    *
@@ -83,8 +114,11 @@ public interface SupplierService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L86">  class SupplierCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L117">  class SupplierCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements SaveRequestDto {
 
+    @JsonbProperty(JSON_TAX_ACCOUNT_NUMBER)
+    private String taxAccountNumber;
   }
 
   /**
@@ -120,7 +154,7 @@ public interface SupplierService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L123">  public static class SupplierGetManyResponseDto extends AbstractGetByPageResponseDto&lt;SupplierDto&gt; {</span>
+<span class="fc" id="L157">  class SupplierGetManyResponseDto extends AbstractGetByPageResponseDto&lt;SupplierDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;SupplierDto&gt; datas;
@@ -215,8 +249,10 @@ public interface SupplierService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="fc" id="L218">  class SupplierUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
-
+<span class="fc" id="L252">  class SupplierUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements SaveRequestDto {
+    @JsonbProperty(JSON_TAX_ACCOUNT_NUMBER)
+    private String taxAccountNumber;
   }
 
   /**
