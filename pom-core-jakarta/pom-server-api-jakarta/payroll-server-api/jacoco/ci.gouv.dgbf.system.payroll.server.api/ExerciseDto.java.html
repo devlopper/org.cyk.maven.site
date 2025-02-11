@@ -21,6 +21,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_YEAR)
   private Integer year;
 
+  /**
+   * Représentation en chaine de caractères du statut.
+   */
+  @JsonbProperty(JSON_STATUS_AS_STRING)
+  private String statusAsString;
+  
   /*-- Début définition des montants --*/
 
   /**
