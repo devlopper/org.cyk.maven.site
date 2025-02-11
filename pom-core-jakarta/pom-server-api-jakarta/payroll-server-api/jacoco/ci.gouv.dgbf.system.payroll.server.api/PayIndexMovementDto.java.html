@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayIndexMovementDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayIndexMovementDto.java</span></div><h1>PayIndexMovementDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un mouvement d'incice.
+ *
+ * @author A.K.M
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class PayIndexMovementDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant de l'indice.
+   */
+  @JsonbProperty(JSON_PAYINDEX_IDENTIFIER)
+  private String payIndexIdentifier;
+
+  /**
+   * Représentation en chaine de caractères  de l'indice.
+   */
+  @JsonbProperty(JSON_PAYINDEX_AS_STRING)
+  private String payIndexAsString;
+
+  /**
+   * Identifiant {@link MovementTrackingDto}.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
+  private String movementTrackingIdentifier;
+
+  /**
+   * Représentation en chaine de caractères  du suivi de mouvement.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TRACKING_AS_STRING)
+  private String movementTrackingAsString;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idMouvementIndice&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;mouvementIndiceChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #payIndexIdentifier}.
+   */
+  public static final String JSON_PAYINDEX_IDENTIFIER = &quot;idIndice&quot;;
+
+  /**
+   * Identifiant json champ {@link #payIndexAsString}.
+   */
+  public static final String JSON_PAYINDEX_AS_STRING = &quot;indiceChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #movementTrackingIdentifier}.
+   */
+  public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = &quot;idSuiviMouvement&quot;;
+
+  /**
+   * Identifiant json champ {@link #movementTrackingAsString}.
+   */
+  public static final String JSON_MOVEMENT_TRACKING_AS_STRING = &quot;suiviMouvementChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;mouvement indice&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;mouvements indices&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
