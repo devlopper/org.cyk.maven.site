@@ -110,6 +110,12 @@ import lombok.Setter;
   private String completedWorkVolumeAsString;
 
   /**
+   * Volume de travail réalisé sur une base de 100.
+   */
+  @JsonbProperty(JSON_WORK_COMPLETION_RATE)
+  private Integer workCompletionRate;
+  
+  /**
    * Démarrable.
    */
   @JsonbProperty(JSON_STARTABLE)
@@ -175,13 +181,13 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L178">    status = response.getStatus();</span>
-<span class="fc" id="L179">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L180">    startable = response.getStartable();</span>
-<span class="fc" id="L181">    stoppable = response.getStoppable();</span>
-<span class="fc" id="L182">    cancelable = response.getCancelable();</span>
-<span class="fc" id="L183">    terminatable = response.getTerminatable();</span>
-<span class="fc" id="L184">  }</span>
+<span class="fc" id="L184">    status = response.getStatus();</span>
+<span class="fc" id="L185">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L186">    startable = response.getStartable();</span>
+<span class="fc" id="L187">    stoppable = response.getStoppable();</span>
+<span class="fc" id="L188">    cancelable = response.getCancelable();</span>
+<span class="fc" id="L189">    terminatable = response.getTerminatable();</span>
+<span class="fc" id="L190">  }</span>
 
   /**
    * champ json {@link #descriptive}.
@@ -259,6 +265,11 @@ import lombok.Setter;
   public static final String JSON_COMPLETED_WORK_VOLUME_AS_STRING =
       JSON_COMPLETED_WORK_VOLUME + &quot;Chaine&quot;;
 
+  /**
+   * champ json {@link #workCompletionRate}.
+   */
+  public static final String JSON_WORK_COMPLETION_RATE = &quot;pourcentageVolumeTravailRealise&quot;;
+  
   /**
    * champ json {@link #startable}.
    */
