@@ -159,7 +159,7 @@ public interface ProcessingService {
      * {@link ProcessingDto#JSON_DATE}.
      */
     String JSON_DATE = ProcessingDto.JSON_DATE;
-    
+
     /**
      * {@link ProcessingDto#JSON_TOTAL_WORK_VOLUME}.
      */
@@ -218,9 +218,9 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_DATE)
     private LocalDateTime date;
-    
+
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
-    private Integer totalWorkVolume; 
+    private Integer totalWorkVolume;
   }
 
   /**
@@ -561,9 +561,75 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_DATE)
     private LocalDateTime date;
-    
+
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
-    private Integer totalWorkVolume; 
+    private Integer totalWorkVolume;
+  }
+
+  /**
+   * Identifiant du service de mise à jour du volume de travail réalisé.
+   */
+  String UPDATE_COMPLETED_WORK_VOLUME_IDENTIFIER = &quot;MISE_A_JOUR_VOLUME_TRAVAIL_REALISE_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service de mise à jour du volume de travail réalisé.
+   */
+  String UPDATE_COMPLETED_WORK_VOLUME_PATH = &quot;volume-travail-realise&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour le volume de travail réalisé.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_COMPLETED_WORK_VOLUME_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response updateCompletedWorkVolume(ProcessingUpdateCompletedWorkVolumeRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour du volume de travail réalisé.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L599">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * {@link ProcessingDto#getReason()}.
+     */
+    @JsonbProperty(JSON_VALUE)
+    private Integer value;
+
+    /**
+     * {@link ProcessingDto#getDate()}.
+     */
+    @JsonbProperty(JSON_IS_PROPORTION)
+    private Boolean isProportion;
+
+    /**
+     * {@link ProcessingDto#getDate()}.
+     */
+    @JsonbProperty(JSON_INCREMENTABLE)
+    private Boolean incrementable;
+    
+    /**
+     * {@link #value}.
+     */
+    public static final String JSON_VALUE = &quot;valeur&quot;;
+
+    /**
+     * {@link #isProportion}.
+     */
+    public static final String JSON_IS_PROPORTION = &quot;estProportion&quot;;
+    
+    /**
+     * {@link #incrementable}.
+     */
+    public static final String JSON_INCREMENTABLE = &quot;incrementable&quot;;
   }
 
   /**

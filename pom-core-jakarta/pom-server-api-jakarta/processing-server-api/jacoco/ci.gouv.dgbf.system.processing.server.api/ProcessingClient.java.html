@@ -24,6 +24,7 @@ import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessRespon
 import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessingCreateRequestDto;
 import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessingGetManyResponseDto;
 import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessingProcessRequestDto;
+import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessingUpdateCompletedWorkVolumeRequestDto;
 import ci.gouv.dgbf.system.processing.server.api.ProcessingService.ProcessingUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -34,13 +35,13 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L37">public class ProcessingClient extends AbstractClient&lt;ProcessingService&gt;</span>
+<span class="fc" id="L38">public class ProcessingClient extends AbstractClient&lt;ProcessingService&gt;</span>
     implements GetByIdentifier&lt;ProcessingDto&gt;, GetMany&lt;ProcessingGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt;, GetChart&lt;GetChartResponseDto&gt; {
 
   @Override
   public ProcessingClient service(ProcessingService service) {
-<span class="fc" id="L43">    return (ProcessingClient) super.service(service);</span>
+<span class="fc" id="L44">    return (ProcessingClient) super.service(service);</span>
   }
 
   /**
@@ -50,8 +51,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public CreateResponseDto create(ProcessingCreateRequestDto request) {
-<span class="fc" id="L53">    return new CreateExecutor(ProcessingService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L54">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L54">    return new CreateExecutor(ProcessingService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L55">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -62,10 +63,10 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public CreateResponseDto create(String auditWho, String auditSession) {
-<span class="fc" id="L65">    ProcessingCreateRequestDto request = new ProcessingCreateRequestDto();</span>
-<span class="fc" id="L66">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L67">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L68">    return create(request);</span>
+<span class="fc" id="L66">    ProcessingCreateRequestDto request = new ProcessingCreateRequestDto();</span>
+<span class="fc" id="L67">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L68">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L69">    return create(request);</span>
   }
 
   /**
@@ -75,8 +76,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public ProcessResponseDto start(ProcessingProcessRequestDto request) {
-<span class="fc" id="L78">    return new ProcessExecutor(ProcessingService.START_IDENTIFIER)</span>
-<span class="fc" id="L79">        .execute(() -&gt; service().start(request));</span>
+<span class="fc" id="L79">    return new ProcessExecutor(ProcessingService.START_IDENTIFIER)</span>
+<span class="fc" id="L80">        .execute(() -&gt; service().start(request));</span>
   }
 
   /**
@@ -88,11 +89,11 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return message
    */
   public ProcessResponseDto start(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L91">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
-<span class="fc" id="L92">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L93">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L94">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L95">    return start(request);</span>
+<span class="fc" id="L92">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L93">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L94">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L95">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L96">    return start(request);</span>
   }
 
   /**
@@ -102,8 +103,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public ProcessResponseDto stop(ProcessingProcessRequestDto request) {
-<span class="fc" id="L105">    return new ProcessExecutor(ProcessingService.STOP_IDENTIFIER)</span>
-<span class="fc" id="L106">        .execute(() -&gt; service().stop(request));</span>
+<span class="fc" id="L106">    return new ProcessExecutor(ProcessingService.STOP_IDENTIFIER)</span>
+<span class="fc" id="L107">        .execute(() -&gt; service().stop(request));</span>
   }
 
   /**
@@ -115,11 +116,11 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return message
    */
   public ProcessResponseDto stop(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L118">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
-<span class="fc" id="L119">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L120">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L121">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L122">    return stop(request);</span>
+<span class="fc" id="L119">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L120">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L121">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L122">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L123">    return stop(request);</span>
   }
 
   /**
@@ -129,8 +130,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public ProcessResponseDto cancel(ProcessingProcessRequestDto request) {
-<span class="fc" id="L132">    return new ProcessExecutor(ProcessingService.CANCEL_IDENTIFIER)</span>
-<span class="fc" id="L133">        .execute(() -&gt; service().cancel(request));</span>
+<span class="fc" id="L133">    return new ProcessExecutor(ProcessingService.CANCEL_IDENTIFIER)</span>
+<span class="fc" id="L134">        .execute(() -&gt; service().cancel(request));</span>
   }
 
   /**
@@ -142,11 +143,11 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return message
    */
   public ProcessResponseDto cancel(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L145">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
-<span class="fc" id="L146">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L147">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L148">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L149">    return cancel(request);</span>
+<span class="fc" id="L146">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L147">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L148">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L149">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L150">    return cancel(request);</span>
   }
 
   /**
@@ -156,8 +157,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public ProcessResponseDto terminate(ProcessingProcessRequestDto request) {
-<span class="fc" id="L159">    return new ProcessExecutor(ProcessingService.TERMINATE_IDENTIFIER)</span>
-<span class="fc" id="L160">        .execute(() -&gt; service().terminate(request));</span>
+<span class="fc" id="L160">    return new ProcessExecutor(ProcessingService.TERMINATE_IDENTIFIER)</span>
+<span class="fc" id="L161">        .execute(() -&gt; service().terminate(request));</span>
   }
 
   /**
@@ -169,11 +170,11 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return message
    */
   public ProcessResponseDto terminate(String identifier, String auditWho, String auditSession) {
-<span class="fc" id="L172">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
-<span class="fc" id="L173">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L174">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L175">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L176">    return terminate(request);</span>
+<span class="fc" id="L173">    ProcessingProcessRequestDto request = new ProcessingProcessRequestDto();</span>
+<span class="fc" id="L174">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L175">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L176">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L177">    return terminate(request);</span>
   }
 
   /**
@@ -183,8 +184,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public ProcessingGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L186">    return new GetOneExecutor&lt;ProcessingGetManyResponseDto&gt;(ProcessingGetManyResponseDto.class,</span>
-<span class="fc" id="L187">        ProcessingService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L187">    return new GetOneExecutor&lt;ProcessingGetManyResponseDto&gt;(ProcessingGetManyResponseDto.class,</span>
+<span class="fc" id="L188">        ProcessingService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -199,13 +200,13 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public ProcessingGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L202">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L203">    request.setProjection(projection);</span>
-<span class="fc" id="L204">    request.setFilter(filter);</span>
-<span class="fc" id="L205">    request.setPage(page);</span>
-<span class="fc" id="L206">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L207">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L208">    return getMany(request);</span>
+<span class="fc" id="L203">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L204">    request.setProjection(projection);</span>
+<span class="fc" id="L205">    request.setFilter(filter);</span>
+<span class="fc" id="L206">    request.setPage(page);</span>
+<span class="fc" id="L207">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L208">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L209">    return getMany(request);</span>
   }
 
   /**
@@ -215,8 +216,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public ProcessingDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L218">    return new GetOneExecutor&lt;ProcessingDto&gt;(ProcessingDto.class,</span>
-<span class="fc" id="L219">        ProcessingService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L219">    return new GetOneExecutor&lt;ProcessingDto&gt;(ProcessingDto.class,</span>
+<span class="fc" id="L220">        ProcessingService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -230,12 +231,12 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public ProcessingDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L233">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L234">    request.setProjection(projection);</span>
-<span class="fc" id="L235">    request.setFilter(filter);</span>
-<span class="fc" id="L236">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L237">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L238">    return getOne(request);</span>
+<span class="fc" id="L234">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L235">    request.setProjection(projection);</span>
+<span class="fc" id="L236">    request.setFilter(filter);</span>
+<span class="fc" id="L237">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L238">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L239">    return getOne(request);</span>
   }
 
   /**
@@ -245,9 +246,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public ProcessingDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L248">    return new GetOneExecutor&lt;ProcessingDto&gt;(ProcessingDto.class,</span>
+<span class="fc" id="L249">    return new GetOneExecutor&lt;ProcessingDto&gt;(ProcessingDto.class,</span>
         ProcessingService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L250">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L251">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -261,14 +262,14 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public ProcessingDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
-<span class="fc" id="L264">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L265">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L266">    request.setProjection(projection);</span>
-<span class="fc" id="L267">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L268">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L269">    return getByIdentifier(request);</span>
+<span class="fc" id="L265">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L266">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L267">    request.setProjection(projection);</span>
+<span class="fc" id="L268">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L269">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L270">    return getByIdentifier(request);</span>
   }
-  
+
   /**
    * {@link ProcessingService#update}.
    *
@@ -276,8 +277,20 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto update(ProcessingUpdateRequestDto request) {
-<span class="fc" id="L279">    return new IdentifiableExecutor(ProcessingService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L280">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L280">    return new IdentifiableExecutor(ProcessingService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L281">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link ProcessingService#updateCompletedWorkVolume}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto updateCompletedWorkVolume(
+      ProcessingUpdateCompletedWorkVolumeRequestDto request) {
+<span class="fc" id="L292">    return new IdentifiableExecutor(ProcessingService.UPDATE_COMPLETED_WORK_VOLUME_IDENTIFIER)</span>
+<span class="fc" id="L293">        .execute(() -&gt; service().updateCompletedWorkVolume(request));</span>
   }
 
   /**
@@ -287,8 +300,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L290">    return new IdentifiableExecutor(ProcessingService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L291">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L303">    return new IdentifiableExecutor(ProcessingService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L304">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -302,13 +315,13 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L305">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L306">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L307">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L308">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L309">    return delete(request);</span>
+<span class="fc" id="L318">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L319">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L320">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L321">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L322">    return delete(request);</span>
   }
-  
+
   /**
    * {@link ProcessingService#getChart}.
    *
@@ -316,20 +329,20 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public GetChartResponseDto getChart(GetChartRequestDto request) {
-<span class="fc" id="L319">    return new GetOneExecutor&lt;GetChartResponseDto&gt;(GetChartResponseDto.class,</span>
-<span class="fc" id="L320">        ProcessingService.GET_CHART_IDENTIFIER).execute(() -&gt; service().getChart(request));</span>
+<span class="fc" id="L332">    return new GetOneExecutor&lt;GetChartResponseDto&gt;(GetChartResponseDto.class,</span>
+<span class="fc" id="L333">        ProcessingService.GET_CHART_IDENTIFIER).execute(() -&gt; service().getChart(request));</span>
   }
-  
+
   /**
    * {@link ProcessingService#getChart}.
    */
   @Override
   public GetChartResponseDto getChart(FilterDto filter, String auditWho, String auditSession) {
-<span class="fc" id="L328">    GetChartRequestDto request = new GetChartRequestDto();</span>
-<span class="fc" id="L329">    request.setFilter(filter);</span>
-<span class="fc" id="L330">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L331">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L332">    return getChart(request);</span>
+<span class="fc" id="L341">    GetChartRequestDto request = new GetChartRequestDto();</span>
+<span class="fc" id="L342">    request.setFilter(filter);</span>
+<span class="fc" id="L343">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L344">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L345">    return getChart(request);</span>
   }
 
   /**
@@ -345,9 +358,9 @@ import jakarta.enterprise.context.ApplicationScoped;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L348">    public ProcessExecutor(String identifier) {</span>
-<span class="fc" id="L349">      super(ProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L350">    }</span>
+<span class="fc" id="L361">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L362">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L363">    }</span>
 
   }
 
