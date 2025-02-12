@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente une paie.
+ * Cette classe représente un mouvement de fonction.
  *
  * @author A.K.M
  *
@@ -16,6 +16,18 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L18">public class FunctionMovementDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant du fonctionnaire.
+   */
+  @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+  private String functionaryIdentifier;
+
+  /**
+   * Représentation en chaine de caractères du fonctionnaire.
+   */
+  @JsonbProperty(JSON_FUNCTIONARY_AS_STRING)
+  private String functionaryAsString;
 
   /**
    * Identifiant de la fonction.
@@ -50,6 +62,16 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;mouvementFonctionChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #functionaryIdentifier}.
+   */
+  public static final String JSON_FUNCTIONARY_IDENTIFIER = &quot;idFonctionnaire&quot;;
+
+  /**
+   * Identifiant json champ {@link #functionaryAsString}.
+   */
+  public static final String JSON_FUNCTIONARY_AS_STRING = &quot;fonctionnaireChaine&quot;;
 
   /**
    * Identifiant json champ {@link #functionIdentifier}.

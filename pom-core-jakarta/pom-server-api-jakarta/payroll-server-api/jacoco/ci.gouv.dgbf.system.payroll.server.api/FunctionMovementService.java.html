@@ -52,6 +52,20 @@ public interface FunctionMovementService extends SpecificService {
   interface FunctionMovementSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
+     *
+     * @return identifiant du fonctionnaire
+     */
+    String getFunctionaryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
+     *
+     * @param functionaryIdentifier identifiant du fonctionnaire
+     */
+    void setFunctionaryIdentifier(String functionaryIdentifier);
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant de la fonction.
      *
      * @return identifiant de la fonction
@@ -78,6 +92,12 @@ public interface FunctionMovementService extends SpecificService {
      * @param movementTrackingIdentifier identifiant du suivi de mouvement
      */
     void setMovementTrackingIdentifier(String movementTrackingIdentifier);
+
+    /**
+     * {@link FunctionMovementDto#JSON_FUNCTIONARY_IDENTIFIER}.
+     */
+    public static final String JSON_FUNCTIONARY_IDENTIFIER = 
+              FunctionMovementDto.JSON_FUNCTIONARY_IDENTIFIER;
 
     /**
      * {@link FunctionMovementDto#JSON_FUNCTION_IDENTIFIER}.
@@ -125,8 +145,13 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L148">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements FunctionMovementSaveRequestDto {
+    /**
+     * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
+     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
     /**
      * {@link FunctionMovementDto#getFunctionIdentifier()}.
      */
@@ -174,7 +199,7 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L177">  public static class FunctionMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="fc" id="L202">  public static class FunctionMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
               FunctionMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -264,8 +289,13 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L267">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L292">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionMovementSaveRequestDto {
+    /**
+     * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
+     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
     /**
      * {@link FunctionMovementDto#getFunctionIdentifier()}.
      */
