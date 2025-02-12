@@ -54,6 +54,18 @@ import lombok.Setter;
   private String movementTrackingAsString;
 
   /**
+   * Matricule.
+   */
+  @JsonbProperty(JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+
+  /**
+   * Nom et prénom(s).
+   */
+  @JsonbProperty(JSON_FIRST_NAME_AND_LAST_NAMES)
+  private String firstNameAndLastNames;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idMouvementFonction&quot;;
@@ -92,6 +104,16 @@ import lombok.Setter;
    * Identifiant json champ {@link #movementTrackingAsString}.
    */
   public static final String JSON_MOVEMENT_TRACKING_AS_STRING = &quot;suiviMouvementChaine&quot;;
+
+  /**
+   * Identifiant json {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+
+  /**
+   * Identifiant json {@link #firstNameAndLastNames}.
+   */
+  public static final String JSON_FIRST_NAME_AND_LAST_NAMES = &quot;nomPrenoms&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
