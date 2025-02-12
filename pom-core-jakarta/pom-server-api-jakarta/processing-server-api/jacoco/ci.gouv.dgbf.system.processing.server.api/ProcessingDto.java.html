@@ -24,251 +24,296 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_DESCRIPTIVE)
   private String descriptive;
-  
+
   /**
    * Date de début.
    */
   @JsonbProperty(JSON_FROM_DATE)
   private LocalDateTime fromDate;
-  
+
   /**
    * Représentation en chaine de caractères de la date de début.
    */
   @JsonbProperty(JSON_FROM_DATE_AS_STRING)
   private String fromDateAsString;
-  
+
   /**
    * Date de fin.
    */
   @JsonbProperty(JSON_TO_DATE)
   private LocalDateTime toDate;
-  
+
   /**
    * Représentation en chaine de caractères de la date de fin.
    */
   @JsonbProperty(JSON_TO_DATE_AS_STRING)
   private String toDateAsString;
-  
+
   /**
    * {@link ProcessingStatus}.
    */
   @JsonbProperty(JSON_STATUS)
   private ProcessingStatus status;
-  
+
   /**
    * Code {@link ProcessingStatus}.
    */
   @JsonbProperty(JSON_STATUS_CODE)
   private String statusCode;
-  
+
   /**
    * Représentation en chaine de caractères de {@link ProcessingStatus}.
    */
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
-  
+
   /**
    * Raison.
    */
   @JsonbProperty(JSON_REASON)
   private String reason;
-  
+
   /**
    * Date.
    */
   @JsonbProperty(JSON_DATE)
   private LocalDateTime date;
-  
+
   /**
    * Représentation en chaine de caractères de la date.
    */
   @JsonbProperty(JSON_DATE_AS_STRING)
   private String dateAsString;
-  
+
+  /**
+   * Volume de travail total.
+   */
+  @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
+  private Integer totalWorkVolume;
+
+  /**
+   * Représentation en chaine de caractères de {@link #totalWorkVolume}.
+   */
+  @JsonbProperty(JSON_TOTAL_WORK_VOLUME_AS_STRING)
+  private String totalWorkVolumeAsString;
+
+  /**
+   * Volume de travail réalisé.
+   */
+  @JsonbProperty(JSON_COMPLETED_WORK_VOLUME)
+  private Integer completedWorkVolume;
+
+  /**
+   * Représentation en chaine de caractères de {@link #totalWorkVolume}.
+   */
+  @JsonbProperty(JSON_COMPLETED_WORK_VOLUME_AS_STRING)
+  private String completedWorkVolumeAsString;
+
   /**
    * Démarrable.
    */
   @JsonbProperty(JSON_STARTABLE)
   private Boolean startable;
-  
+
   /**
    * Arrêtable.
    */
   @JsonbProperty(JSON_STOPPABLE)
   private Boolean stoppable;
-  
+
   /**
    * Annulable.
    */
   @JsonbProperty(JSON_CANCELABLE)
   private Boolean cancelable;
-  
+
   /**
    * Terminable.
    */
   @JsonbProperty(JSON_TERMINATABLE)
   private Boolean terminatable;
-  
+
   /**
    * Représentation en chaine de caractères de la date de création.
    */
   @JsonbProperty(JSON_CREATION_DATE_AS_STRING)
   private String creationDateAsString;
-  
+
   /**
    * Représentation en chaine de caractères de la date de démmarage.
    */
   @JsonbProperty(JSON_START_DATE_AS_STRING)
   private String startDateAsString;
-  
+
   /**
    * Représentation en chaine de caractères de la date d'arrêt.
    */
   @JsonbProperty(JSON_STOP_DATE_AS_STRING)
   private String stopDateAsString;
-  
+
   /**
    * Représentation en chaine de caractères de la date d'annulation.
    */
   @JsonbProperty(JSON_CANCELLATION_DATE_AS_STRING)
   private String cancellationDateAsString;
-  
+
   /**
    * Représentation en chaine de caractères de la date de terminaison.
    */
   @JsonbProperty(JSON_TERMINATION_DATE_AS_STRING)
   private String terminationDateAsString;
-  
+
   /**
    * Est en retard.
    */
   @JsonbProperty(JSON_IS_LATE)
   private Boolean isLate;
-  
+
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L154">    status = response.getStatus();</span>
-<span class="fc" id="L155">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L156">    startable = response.getStartable();</span>
-<span class="fc" id="L157">    stoppable = response.getStoppable();</span>
-<span class="fc" id="L158">    cancelable = response.getCancelable();</span>
-<span class="fc" id="L159">    terminatable = response.getTerminatable();</span>
-<span class="fc" id="L160">  }</span>
-  
+<span class="fc" id="L178">    status = response.getStatus();</span>
+<span class="fc" id="L179">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L180">    startable = response.getStartable();</span>
+<span class="fc" id="L181">    stoppable = response.getStoppable();</span>
+<span class="fc" id="L182">    cancelable = response.getCancelable();</span>
+<span class="fc" id="L183">    terminatable = response.getTerminatable();</span>
+<span class="fc" id="L184">  }</span>
+
   /**
    * champ json {@link #descriptive}.
    */
   public static final String JSON_DESCRIPTIVE = &quot;descriptif&quot;;
-  
+
   /**
    * champ json {@link #fromDate}.
    */
   public static final String JSON_FROM_DATE = &quot;dateDebut&quot;;
-  
+
   /**
    * champ json {@link #fromDateAsString}.
    */
   public static final String JSON_FROM_DATE_AS_STRING = &quot;dateDebutChaine&quot;;
-  
+
   /**
    * champ json {@link #toDate}.
    */
   public static final String JSON_TO_DATE = &quot;dateFin&quot;;
-  
+
   /**
    * champ json {@link #toDateAsString}.
    */
   public static final String JSON_TO_DATE_AS_STRING = &quot;dateFinChaine&quot;;
-  
+
   /**
    * champ json {@link #status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
-  
+
   /**
    * champ json {@link #statusCode}.
    */
   public static final String JSON_STATUS_CODE = &quot;codeStatut&quot;;
-  
+
   /**
    * champ json {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
-  
+
   /**
    * champ json {@link #reason}.
    */
   public static final String JSON_REASON = &quot;raison&quot;;
-  
+
   /**
    * champ json {@link #date}.
    */
   public static final String JSON_DATE = &quot;date&quot;;
-  
+
   /**
    * champ json {@link #dateAsString}.
    */
   public static final String JSON_DATE_AS_STRING = &quot;dateChaine&quot;;
-  
+
+  /**
+   * champ json {@link #totalWorkVolume}.
+   */
+  public static final String JSON_TOTAL_WORK_VOLUME = &quot;volumeTravailTotal&quot;;
+
+  /**
+   * champ json {@link #totalWorkVolumeAsString}.
+   */
+  public static final String JSON_TOTAL_WORK_VOLUME_AS_STRING = JSON_TOTAL_WORK_VOLUME + &quot;Chaine&quot;;
+
+  /**
+   * champ json {@link #completedWorkVolume}.
+   */
+  public static final String JSON_COMPLETED_WORK_VOLUME = &quot;volumeTravailRealise&quot;;
+
+  /**
+   * champ json {@link #completedWorkVolumeAsString}.
+   */
+  public static final String JSON_COMPLETED_WORK_VOLUME_AS_STRING =
+      JSON_COMPLETED_WORK_VOLUME + &quot;Chaine&quot;;
+
   /**
    * champ json {@link #startable}.
    */
   public static final String JSON_STARTABLE = &quot;demarrable&quot;;
-  
+
   /**
    * champ json {@link #stoppable}.
    */
   public static final String JSON_STOPPABLE = &quot;stoppable&quot;;
-  
+
   /**
    * champ json {@link #cancelable}.
    */
   public static final String JSON_CANCELABLE = &quot;annulable&quot;;
-  
+
   /**
    * champ json {@link #terminatable}.
    */
   public static final String JSON_TERMINATABLE = &quot;terminable&quot;;
-  
+
   /**
    * champ json {@link #creationDateAsString}.
    */
   public static final String JSON_CREATION_DATE_AS_STRING = &quot;dateCreationChaine&quot;;
-  
+
   /**
    * champ json {@link #startDateAsString}.
    */
   public static final String JSON_START_DATE_AS_STRING = &quot;dateDemmarageChaine&quot;;
-  
+
   /**
    * champ json {@link #stopDateAsString}.
    */
   public static final String JSON_STOP_DATE_AS_STRING = &quot;dateArretChaine&quot;;
-  
+
   /**
    * champ json {@link #cancellationDateAsString}.
    */
   public static final String JSON_CANCELLATION_DATE_AS_STRING = &quot;dateAnnulationChaine&quot;;
-  
+
   /**
    * champ json {@link #terminationDateAsString}.
    */
   public static final String JSON_TERMINATION_DATE_AS_STRING = &quot;dateTerminaisonChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link #isLate}.
    */
   public static final String JSON_IS_LATE = &quot;estEnRetard&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;traitement&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
