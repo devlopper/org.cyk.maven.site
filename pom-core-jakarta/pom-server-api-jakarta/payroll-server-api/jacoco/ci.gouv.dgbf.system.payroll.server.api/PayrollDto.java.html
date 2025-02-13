@@ -80,6 +80,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
 
+  /**
+   * Identifiant du traitement.
+   */
+  @JsonbProperty(JSON_PROCESSING_IDENTIFIER)
+  private String processingIdentifier;
+  
   /*-- Début définition des montants --*/
 
   /**
@@ -144,13 +150,13 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L147">    status = response.getStatus();</span>
-<span class="fc" id="L148">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L149">    initializable = response.getInitializable();</span>
-<span class="fc" id="L150">    controllable = response.getControllable();</span>
-<span class="fc" id="L151">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L152">    closable = response.getClosable();</span>
-<span class="fc" id="L153">  }</span>
+<span class="fc" id="L153">    status = response.getStatus();</span>
+<span class="fc" id="L154">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L155">    initializable = response.getInitializable();</span>
+<span class="fc" id="L156">    controllable = response.getControllable();</span>
+<span class="fc" id="L157">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L158">    closable = response.getClosable();</span>
+<span class="fc" id="L159">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -202,6 +208,11 @@ import lombok.Setter;
    */
   public static final String JSON_PERIOD_AS_STRING = &quot;periodChaine&quot;;
 
+  /**
+   * Identifiant json champ {@link #processingIdentifier}.
+   */
+  public static final String JSON_PROCESSING_IDENTIFIER = &quot;idTraitement&quot;;
+  
   /**
    * Identifiant json champ {@link #initializable}.
    */
