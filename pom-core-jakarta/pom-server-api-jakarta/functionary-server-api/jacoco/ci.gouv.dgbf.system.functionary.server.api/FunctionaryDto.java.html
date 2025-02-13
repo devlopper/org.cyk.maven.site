@@ -97,6 +97,12 @@ import lombok.Setter;
   private String firstServiceStartDateAsString;
 
   /**
+   * Représentation en chaine de caractères de {@link #functionaryAsString}.
+   */
+  @JsonbProperty(value = JSON_FUNCTIONARY_AS_STRING)
+  private String functionaryAsString;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idFonctionnaire&quot;;
@@ -166,6 +172,12 @@ import lombok.Setter;
    */
   public static final String JSON_FIRST_SERVICE_START_DATE_AS_STRING =
       &quot;datePremierePriseServiceChaine&quot;;
+
+  /**
+   * Identifiant champ json {@link #functionaryAsString}.
+   */
+  public static final String JSON_FUNCTIONARY_AS_STRING =
+      &quot;fonctionnaireChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
