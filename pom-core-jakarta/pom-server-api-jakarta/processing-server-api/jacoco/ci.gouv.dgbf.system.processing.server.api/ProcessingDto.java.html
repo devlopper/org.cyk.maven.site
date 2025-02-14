@@ -116,6 +116,18 @@ import lombok.Setter;
   private Integer workCompletionRate;
   
   /**
+   * Identifiant de {@link ProcessingDto} précédent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
+  private String previousIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de {@link ProcessingDto} précédent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_AS_STRING)
+  private String previousAsString;
+  
+  /**
    * Démarrable.
    */
   @JsonbProperty(JSON_STARTABLE)
@@ -181,13 +193,13 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L184">    status = response.getStatus();</span>
-<span class="fc" id="L185">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L186">    startable = response.getStartable();</span>
-<span class="fc" id="L187">    stoppable = response.getStoppable();</span>
-<span class="fc" id="L188">    cancelable = response.getCancelable();</span>
-<span class="fc" id="L189">    terminatable = response.getTerminatable();</span>
-<span class="fc" id="L190">  }</span>
+<span class="fc" id="L196">    status = response.getStatus();</span>
+<span class="fc" id="L197">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L198">    startable = response.getStartable();</span>
+<span class="fc" id="L199">    stoppable = response.getStoppable();</span>
+<span class="fc" id="L200">    cancelable = response.getCancelable();</span>
+<span class="fc" id="L201">    terminatable = response.getTerminatable();</span>
+<span class="fc" id="L202">  }</span>
 
   /**
    * champ json {@link #descriptive}.
@@ -269,6 +281,16 @@ import lombok.Setter;
    * champ json {@link #workCompletionRate}.
    */
   public static final String JSON_WORK_COMPLETION_RATE = &quot;pourcentageVolumeTravailRealise&quot;;
+  
+  /**
+   * champ json {@link #previousIdentifier}.
+   */
+  public static final String JSON_PREVIOUS_IDENTIFIER = &quot;idPrecedent&quot;;
+  
+  /**
+   * champ json {@link #previousAsString}.
+   */
+  public static final String JSON_PREVIOUS_AS_STRING = &quot;precedentChaine&quot;;
   
   /**
    * champ json {@link #startable}.

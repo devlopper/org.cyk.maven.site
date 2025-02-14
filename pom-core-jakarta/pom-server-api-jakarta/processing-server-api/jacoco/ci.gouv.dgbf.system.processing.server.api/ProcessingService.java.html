@@ -136,6 +136,20 @@ public interface ProcessingService {
     void setTotalWorkVolume(Integer totalWorkVolume);
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ProcessingDto} précédent.
+     *
+     * @return identifiant de {@link ProcessingDto} précédent
+     */
+    String getPreviousIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ProcessingDto} précédent.
+     *
+     * @param previousIdentifier identifiant de {@link ProcessingDto} précédent
+     */
+    void setPreviousIdentifier(String previousIdentifier);
+    
+    /**
      * {@link ProcessingDto#JSON_DESCRIPTIVE}.
      */
     String JSON_DESCRIPTIVE = ProcessingDto.JSON_DESCRIPTIVE;
@@ -169,6 +183,11 @@ public interface ProcessingService {
      * {@link ProcessingDto#JSON_COMPLETED_WORK_VOLUME}.
      */
     String JSON_COMPLETED_WORK_VOLUME = ProcessingDto.JSON_COMPLETED_WORK_VOLUME;
+    
+    /**
+     * {@link ProcessingDto#JSON_PREVIOUS_IDENTIFIER}.
+     */
+    String JSON_PREVIOUS_IDENTIFIER = ProcessingDto.JSON_PREVIOUS_IDENTIFIER;
   }
 
   /**
@@ -201,7 +220,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L204">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L223">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -221,6 +240,9 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
     private Integer totalWorkVolume;
+    
+    @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
+    private String previousIdentifier;
   }
 
   /**
@@ -231,7 +253,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L234">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L256">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link ProcessingDto#getStatus()}.
@@ -269,12 +291,12 @@ public interface ProcessingService {
      * @param status statut
      */
     public void initialize(ProcessingStatus status) {
-<span class="fc" id="L272">      this.status = status;</span>
-<span class="fc" id="L273">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
-<span class="fc" id="L274">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
-<span class="fc" id="L275">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
-<span class="fc" id="L276">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
-<span class="fc" id="L277">    }</span>
+<span class="fc" id="L294">      this.status = status;</span>
+<span class="fc" id="L295">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
+<span class="fc" id="L296">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
+<span class="fc" id="L297">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L298">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
+<span class="fc" id="L299">    }</span>
 
     /**
      * {@link ProcessingDto#JSON_STATUS}.
@@ -310,7 +332,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L313">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L335">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ProcessingDto#getReason()}.
@@ -455,7 +477,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L458">  public static class ProcessingGetManyResponseDto</span>
+<span class="fc" id="L480">  public static class ProcessingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -544,7 +566,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L547">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L569">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -564,6 +586,9 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
     private Integer totalWorkVolume;
+    
+    @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
+    private String previousIdentifier;
   }
 
   /**
@@ -596,7 +621,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L599">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L624">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ProcessingDto#getReason()}.
