@@ -15,6 +15,18 @@ import lombok.Setter;
 @Setter
 public class TriennialProgramFilter extends AbstractIdentifiableFilter {
 
+
+  /**
+   * Année maximum d'exercice.
+   */
+  Integer maximumExerciseYear;
+
+
+  /**
+   * Année minimum d'exercice.
+   */
+  Integer minimumExerciseYear;
+
   /**
    * Identifiant {@link ExerciseDto}.
    */
@@ -36,29 +48,33 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public TriennialProgramFilter(FilterDto dto) {
-<span class="fc" id="L39">    super(dto);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L51">    super(dto);</span>
+<span class="fc" id="L52">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L45">  public TriennialProgramFilter() {}</span>
+<span class="fc" id="L57">  public TriennialProgramFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L49">    super.doInitialize(filter);</span>
-<span class="fc" id="L50">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
-<span class="fc" id="L51">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
-<span class="fc" id="L52">    status = getStatus(filter);</span>
-<span class="fc" id="L53">  }</span>
+<span class="fc" id="L61">    super.doInitialize(filter);</span>
+<span class="fc" id="L62">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
+<span class="fc" id="L63">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
+<span class="fc" id="L64">    status = getStatus(filter);</span>
+<span class="fc" id="L65">    maximumExerciseYear = getMaximumExerciseYear(filter);</span>
+<span class="fc" id="L66">    minimumExerciseYear = getMinimumExerciseYear(filter);</span>
+<span class="fc" id="L67">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L57">    super.toDto(filter);</span>
-<span class="fc" id="L58">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
-<span class="fc" id="L59">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
-<span class="fc" id="L60">    setStatus(filter, status);</span>
-<span class="fc" id="L61">  }</span>
+<span class="fc" id="L71">    super.toDto(filter);</span>
+<span class="fc" id="L72">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
+<span class="fc" id="L73">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
+<span class="fc" id="L74">    setStatus(filter, status);</span>
+<span class="fc" id="L75">    setMaximumExerciseYear(filter, maximumExerciseYear);</span>
+<span class="fc" id="L76">    setMinimumExerciseYear(filter, minimumExerciseYear);</span>
+<span class="fc" id="L77">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant {@link ExerciseDto}.
@@ -67,7 +83,7 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @return identifiant {@link ExerciseDto}
    */
   public static String getExerciseIdentifier(FilterDto filter) {
-<span class="fc" id="L70">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
+<span class="fc" id="L86">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
   }
 
   /**
@@ -77,9 +93,9 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant {@link ExerciseDto}
    */
   public static void setExerciseIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L80">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L81">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L82">  }</span>
+<span class="pc" id="L96">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L97">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L98">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant {@link LocalAuthorityDto}.
@@ -88,7 +104,7 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @return identifiant {@link LocalAuthorityDto}
    */
   public static String getLocalAuthorityIdentifier(FilterDto filter) {
-<span class="fc" id="L91">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
+<span class="fc" id="L107">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
   }
 
   /**
@@ -98,9 +114,9 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant {@link LocalAuthorityDto}
    */
   public static void setLocalAuthorityIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L101">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L102">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L103">  }</span>
+<span class="pc" id="L117">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L118">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L119">  }</span>
 
   /**
    * Cette méthode permet d'assigner le {@link TriennialProgramStatus}.
@@ -109,8 +125,8 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @param status {@link TriennialProgramStatus}
    */
   public static void setStatus(FilterDto filter, TriennialProgramStatus status) {
-<span class="pc" id="L112">    set(filter, JSON_STATUS, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(status));</span>
-<span class="fc" id="L113">  }</span>
+<span class="pc" id="L128">    set(filter, JSON_STATUS, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsEnum(status));</span>
+<span class="fc" id="L129">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le {@link TriennialProgramStatus}.
@@ -119,8 +135,55 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * @return {@link TriennialProgramStatus}
    */
   public static TriennialProgramStatus getStatus(FilterDto filter) {
-<span class="fc" id="L122">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_STATUS, TriennialProgramStatus.class));</span>
+<span class="fc" id="L138">    return get(filter, d -&gt; d.getFieldValueAsEnum(JSON_STATUS, TriennialProgramStatus.class));</span>
   }
+
+
+  /**
+   * Cette méthode permet d'obtenir l'année maximale de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @return l'année maximale {@link ExerciseDto}
+   */
+  public static Integer getMaximumExerciseYear(FilterDto filter) {
+<span class="fc" id="L149">    return get(filter, d -&gt; d.getFieldValueAsIntegerByName(JSON_MAXIMUM_EXERCICE_YEAR));</span>
+  }
+
+
+  /**
+   * Cette méthode permet d'assigner l'année maximale de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @param maximumExerciseYear année maximal de  {@link ExerciseDto}
+   */
+  public static void setMaximumExerciseYear(FilterDto filter, Integer maximumExerciseYear) {
+<span class="pc" id="L160">    set(filter, JSON_MAXIMUM_EXERCICE_YEAR, f -&gt; f.getValueAsInteger(),</span>
+<span class="fc" id="L161">        f -&gt; f.setValueAsInteger(maximumExerciseYear));</span>
+<span class="fc" id="L162">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'année maximale de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @return l'année minimal {@link ExerciseDto}
+   */
+  public static Integer getMinimumExerciseYear(FilterDto filter) {
+<span class="fc" id="L171">    return get(filter, d -&gt; d.getFieldValueAsIntegerByName(JSON_MINIMUM_EXERCICE_YEAR));</span>
+  }
+
+
+  /**
+   * Cette méthode permet d'assigner l'année minimale de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @param minimumExerciseYear année minimale de  {@link ExerciseDto}
+   */
+  public static void setMinimumExerciseYear(FilterDto filter, Integer minimumExerciseYear) {
+<span class="pc" id="L182">    set(filter, JSON_MINIMUM_EXERCICE_YEAR, f -&gt; f.getValueAsInteger(),</span>
+<span class="fc" id="L183">        f -&gt; f.setValueAsInteger(minimumExerciseYear));</span>
+<span class="fc" id="L184">  }</span>
+
+
 
   /**
    * Identifiant json champ {@link #exerciseIdentifier}.
@@ -138,5 +201,16 @@ public class TriennialProgramFilter extends AbstractIdentifiableFilter {
    * Identifiant json champ {@link #status}.
    */
   public static final String JSON_STATUS = TriennialProgramDto.JSON_STATUS;
+
+  /**
+   * Identifiant json champ {@link #maximumExerciseYear}.
+   */
+  public static final String JSON_MAXIMUM_EXERCICE_YEAR = &quot;anneeExerciceMaximal&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #minimumExerciseYear}.
+   */
+  public static final String JSON_MINIMUM_EXERCICE_YEAR = &quot;anneeExerciceMinimum&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
