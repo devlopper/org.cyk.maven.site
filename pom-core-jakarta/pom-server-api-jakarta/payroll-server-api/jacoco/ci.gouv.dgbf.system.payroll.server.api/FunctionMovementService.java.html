@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -94,6 +95,48 @@ public interface FunctionMovementService extends SpecificService {
     void setMovementTrackingIdentifier(String movementTrackingIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir la date d'effet.
+     *
+     * @return date d'effet
+     */
+    LocalDate getEffectDate();
+
+    /**
+     * Cette méthode permet d'assigner la date d'effet.
+     *
+     * @param effetDate date d'effet
+     */
+    void setEffectDate(LocalDate effetDate);
+
+    /**
+     * Cette méthode permet d'obtenir la date de prise en compte.
+     *
+     * @return date de prise en compte
+     */
+    LocalDate getDateTakeInCounts();
+
+    /**
+     * Cette méthode permet d'assigner la date de prise en compte.
+     *
+     * @param dateTakeInCounts date de prise en compte
+     */
+    void setDateTakeInCounts(LocalDate dateTakeInCounts);
+
+    /**
+     * Cette méthode permet d'obtenir la date de rappel.
+     *
+     * @return date de rappel
+     */
+    LocalDate getDateReminder();
+
+    /**
+     * Cette méthode permet d'assigner la date de rappel.
+     *
+     * @param dateReminder date de rappel
+     */
+    void setDateReminder(LocalDate dateReminder);
+
+    /**
      * {@link FunctionMovementDto#JSON_FUNCTIONARY_IDENTIFIER}.
      */
     public static final String JSON_FUNCTIONARY_IDENTIFIER = 
@@ -110,6 +153,24 @@ public interface FunctionMovementService extends SpecificService {
      */
     public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = 
                       FunctionMovementDto.JSON_MOVEMENT_TRACKING_IDENTIFIER;
+
+    /**
+     * {@link FunctionMovementDto#JSON_EFFECT_DATE}.
+     */
+    public static final String JSON_EFFECT_DATE = 
+                      FunctionMovementDto.JSON_EFFECT_DATE;
+
+    /**
+     * {@link FunctionMovementDto#JSON_DATE_TAKEN_IN_COUNTS}.
+     */
+    public static final String JSON_DATE_TAKEN_IN_COUNTS = 
+                      FunctionMovementDto.JSON_DATE_TAKEN_IN_COUNTS;
+
+    /**
+     * {@link FunctionMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
+     */
+    public static final String JSON_DATE_REMINDER = 
+                      FunctionMovementDto.JSON_DATE_REMINDER;
   }
 
   /**
@@ -145,7 +206,7 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L209">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements FunctionMovementSaveRequestDto {
     /**
      * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
@@ -162,6 +223,22 @@ public interface FunctionMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
+  
+    /**
+     *{@link FunctionMovementDto#getEffectDate()}.
+     */
+    @JsonbProperty(JSON_EFFECT_DATE)
+    private LocalDate effectDate;
+    /**
+     * {@link FunctionMovementDto#getDateTakeInCounts()}.
+     */
+    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
+    private LocalDate dateTakeInCounts;
+    /**
+     * {@link FunctionMovementDto#getDateReminder()}.
+     */
+    @JsonbProperty(JSON_DATE_REMINDER)
+    private LocalDate dateReminder;
 
   }
 
@@ -199,7 +276,7 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L202">  public static class FunctionMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="fc" id="L279">  public static class FunctionMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
               FunctionMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -289,7 +366,7 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L292">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L369">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionMovementSaveRequestDto {
     /**
      * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
@@ -306,6 +383,22 @@ public interface FunctionMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
+  
+    /**
+     *{@link FunctionMovementDto#getEffectDate()}.
+     */
+    @JsonbProperty(JSON_EFFECT_DATE)
+    private LocalDate effectDate;
+    /**
+     * {@link FunctionMovementDto#getDateTakeInCounts()}.
+     */
+    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
+    private LocalDate dateTakeInCounts;
+    /**
+     * {@link FunctionMovementDto#getDateReminder()}.
+     */
+    @JsonbProperty(JSON_DATE_REMINDER)
+    private LocalDate dateReminder;
 
   }
 
