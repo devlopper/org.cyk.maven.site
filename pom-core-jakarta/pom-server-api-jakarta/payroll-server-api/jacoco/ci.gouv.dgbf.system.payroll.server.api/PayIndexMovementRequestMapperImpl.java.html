@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-17T13:07:29+0000&quot;,
+    date = &quot;2025-02-17T13:43:32+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,25 +25,41 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PayIndexMovementService.PayIndexMovementCreateRequestDto payIndexMovementCreateRequestDto = new PayIndexMovementService.PayIndexMovementCreateRequestDto();</span>
 
-<span class="fc" id="L28">        payIndexMovementCreateRequestDto.setPayIndexIdentifier( arg0.getPayIndexIdentifier() );</span>
-<span class="fc" id="L29">        payIndexMovementCreateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L28">        payIndexMovementCreateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
+<span class="fc" id="L29">        payIndexMovementCreateRequestDto.setPayIndexIdentifier( arg0.getPayIndexIdentifier() );</span>
+<span class="fc" id="L30">        payIndexMovementCreateRequestDto.setJobIdentifier( arg0.getJobIdentifier() );</span>
+<span class="fc" id="L31">        payIndexMovementCreateRequestDto.setGradeIdentifier( arg0.getGradeIdentifier() );</span>
+<span class="fc" id="L32">        payIndexMovementCreateRequestDto.setEchelonIdentifier( arg0.getEchelonIdentifier() );</span>
+<span class="fc" id="L33">        payIndexMovementCreateRequestDto.setGradeClassIdentifier( arg0.getGradeClassIdentifier() );</span>
+<span class="fc" id="L34">        payIndexMovementCreateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L35">        payIndexMovementCreateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
+<span class="fc" id="L36">        payIndexMovementCreateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
+<span class="fc" id="L37">        payIndexMovementCreateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
 
-<span class="fc" id="L31">        return payIndexMovementCreateRequestDto;</span>
+<span class="fc" id="L39">        return payIndexMovementCreateRequestDto;</span>
     }
 
     @Override
     public PayIndexMovementService.PayIndexMovementUpdateRequestDto mapUpdate(PayIndexMovementDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L45">            return null;</span>
         }
 
-<span class="fc" id="L40">        PayIndexMovementService.PayIndexMovementUpdateRequestDto payIndexMovementUpdateRequestDto = new PayIndexMovementService.PayIndexMovementUpdateRequestDto();</span>
+<span class="fc" id="L48">        PayIndexMovementService.PayIndexMovementUpdateRequestDto payIndexMovementUpdateRequestDto = new PayIndexMovementService.PayIndexMovementUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        payIndexMovementUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        payIndexMovementUpdateRequestDto.setPayIndexIdentifier( arg0.getPayIndexIdentifier() );</span>
-<span class="fc" id="L44">        payIndexMovementUpdateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L50">        payIndexMovementUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L51">        payIndexMovementUpdateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
+<span class="fc" id="L52">        payIndexMovementUpdateRequestDto.setPayIndexIdentifier( arg0.getPayIndexIdentifier() );</span>
+<span class="fc" id="L53">        payIndexMovementUpdateRequestDto.setJobIdentifier( arg0.getJobIdentifier() );</span>
+<span class="fc" id="L54">        payIndexMovementUpdateRequestDto.setGradeIdentifier( arg0.getGradeIdentifier() );</span>
+<span class="fc" id="L55">        payIndexMovementUpdateRequestDto.setEchelonIdentifier( arg0.getEchelonIdentifier() );</span>
+<span class="fc" id="L56">        payIndexMovementUpdateRequestDto.setGradeClassIdentifier( arg0.getGradeClassIdentifier() );</span>
+<span class="fc" id="L57">        payIndexMovementUpdateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L58">        payIndexMovementUpdateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
+<span class="fc" id="L59">        payIndexMovementUpdateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
+<span class="fc" id="L60">        payIndexMovementUpdateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
 
-<span class="fc" id="L46">        return payIndexMovementUpdateRequestDto;</span>
+<span class="fc" id="L62">        return payIndexMovementUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,7 +36,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = PayIndexMovementService.PATH)
-@Tag(name = &quot;Gestion des mouvements d'indices&quot;)
+@Tag(name = &quot;Gestion des mouvements de indices&quot;)
 public interface PayIndexMovementService extends SpecificService {
 
   /**
@@ -52,6 +53,20 @@ public interface PayIndexMovementService extends SpecificService {
   interface PayIndexMovementSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
+     *
+     * @return identifiant du fonctionnaire
+     */
+    String getFunctionaryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
+     *
+     * @param functionaryIdentifier identifiant du fonctionnaire
+     */
+    void setFunctionaryIdentifier(String functionaryIdentifier);
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant de l'indice.
      *
      * @return identifiant de l'indice
@@ -64,6 +79,62 @@ public interface PayIndexMovementService extends SpecificService {
      * @param payIndexIdentifier identifiant de l'indice
      */
     void setPayIndexIdentifier(String payIndexIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'emploi.
+     *
+     * @return identifiant de l'emploi
+     */
+    String getJobIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'emploi.
+     *
+     * @param jobIdentifier identifiant de l'emploi
+     */
+    void setJobIdentifier(String jobIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du grade.
+     *
+     * @return identifiant du grade
+     */
+    String getGradeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du grade.
+     *
+     * @param gradeIdentifier identifiant du grade
+     */
+    void setGradeIdentifier(String gradeIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du echelon.
+     *
+     * @return identifiant du echelon
+     */
+    String getEchelonIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du echelon.
+     *
+     * @param echelonIdentifier identifiant du echelon
+     */
+    void setEchelonIdentifier(String echelonIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la classe.
+     *
+     * @return identifiant de la classe
+     */
+    String getGradeClassIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la classe.
+     *
+     * @param gradeClassIdentifier identifiant de la classe
+     */
+    void setGradeClassIdentifier(String gradeClassIdentifier);
 
     /**
      * Cette méthode permet d'obtenir le suivi de mouvement.
@@ -80,16 +151,106 @@ public interface PayIndexMovementService extends SpecificService {
     void setMovementTrackingIdentifier(String movementTrackingIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir la date d'effet.
+     *
+     * @return date d'effet
+     */
+    LocalDate getEffectDate();
+
+    /**
+     * Cette méthode permet d'assigner la date d'effet.
+     *
+     * @param effetDate date d'effet
+     */
+    void setEffectDate(LocalDate effetDate);
+
+    /**
+     * Cette méthode permet d'obtenir la date de prise en compte.
+     *
+     * @return date de prise en compte
+     */
+    LocalDate getDateTakeInCounts();
+
+    /**
+     * Cette méthode permet d'assigner la date de prise en compte.
+     *
+     * @param dateTakeInCounts date de prise en compte
+     */
+    void setDateTakeInCounts(LocalDate dateTakeInCounts);
+
+    /**
+     * Cette méthode permet d'obtenir la date de rappel.
+     *
+     * @return date de rappel
+     */
+    LocalDate getDateReminder();
+
+    /**
+     * Cette méthode permet d'assigner la date de rappel.
+     *
+     * @param dateReminder date de rappel
+     */
+    void setDateReminder(LocalDate dateReminder);
+
+    /**
+     * {@link PayIndexMovementDto#JSON_FUNCTIONARY_IDENTIFIER}.
+     */
+    public static final String JSON_FUNCTIONARY_IDENTIFIER = 
+              PayIndexMovementDto.JSON_FUNCTIONARY_IDENTIFIER;
+
+    /**
      * {@link PayIndexMovementDto#JSON_PAYINDEX_IDENTIFIER}.
      */
-    public static final String JSON_PAYINDEX_IDENTIFIER = PayIndexMovementDto
-        .JSON_PAYINDEX_IDENTIFIER;
+    public static final String JSON_PAYINDEX_IDENTIFIER = 
+              PayIndexMovementDto.JSON_PAYINDEX_IDENTIFIER;
+
+    /**
+     * {@link PayIndexMovementDto#JSON_JOB_IDENTIFIER}.
+     */
+    public static final String JSON_JOB_IDENTIFIER = 
+              PayIndexMovementDto.JSON_JOB_IDENTIFIER;
+
+    /**
+     * {@link PayIndexMovementDto#JSON_GRADE_IDENTIFIER}.
+     */
+    public static final String JSON_GRADE_IDENTIFIER = 
+              PayIndexMovementDto.JSON_GRADE_IDENTIFIER;
+
+    /**
+     * {@link PayIndexMovementDto#JSON_ECHELON_IDENTIFIER}.
+     */
+    public static final String JSON_ECHELON_IDENTIFIER = 
+              PayIndexMovementDto.JSON_ECHELON_IDENTIFIER;
+
+    /**
+     * {@link PayIndexMovementDto#JSON_GRADE_CLASS_IDENTIFIER}.
+     */
+    public static final String JSON_GRADE_CLASS_IDENTIFIER = 
+              PayIndexMovementDto.JSON_GRADE_CLASS_IDENTIFIER;
 
     /**
      * {@link PayIndexMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
      */
     public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = 
                       PayIndexMovementDto.JSON_MOVEMENT_TRACKING_IDENTIFIER;
+
+    /**
+     * {@link PayIndexMovementDto#JSON_EFFECT_DATE}.
+     */
+    public static final String JSON_EFFECT_DATE = 
+                      PayIndexMovementDto.JSON_EFFECT_DATE;
+
+    /**
+     * {@link PayIndexMovementDto#JSON_DATE_TAKEN_IN_COUNTS}.
+     */
+    public static final String JSON_DATE_TAKEN_IN_COUNTS = 
+                      PayIndexMovementDto.JSON_DATE_TAKEN_IN_COUNTS;
+
+    /**
+     * {@link PayIndexMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
+     */
+    public static final String JSON_DATE_REMINDER = 
+                      PayIndexMovementDto.JSON_DATE_REMINDER;
   }
 
   /**
@@ -125,18 +286,59 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  class PayIndexMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L289">  class PayIndexMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayIndexMovementSaveRequestDto {
+    /**
+     * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.
+     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
     /**
      * {@link PayIndexMovementDto#getPayIndexIdentifier()}.
      */
     @JsonbProperty(JSON_PAYINDEX_IDENTIFIER)
     private String payIndexIdentifier;
     /**
+     * {@link PayIndexMovementDto#getJobIdentifier()}.
+     */
+    @JsonbProperty(JSON_JOB_IDENTIFIER)
+    private String jobIdentifier;
+    /**
+     * {@link PayIndexMovementDto#getGradeIdentifier()}.
+     */
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    private String gradeIdentifier;
+    /**
+     * {@link PayIndexMovementDto#getEchelonIdentifier()}.
+     */
+    @JsonbProperty(JSON_ECHELON_IDENTIFIER)
+    private String echelonIdentifier;
+    /**
+     * {@link PayIndexMovementDto#getGradeClassIdentifier()}.
+     */
+    @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
+    private String gradeClassIdentifier;
+    /**
      * {@link PayIndexMovementDto#getMovementTrackingIdentifier()}.
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
+  
+    /**
+     *{@link PayIndexMovementDto#getEffectDate()}.
+     */
+    @JsonbProperty(JSON_EFFECT_DATE)
+    private LocalDate effectDate;
+    /**
+     * {@link PayIndexMovementDto#getDateTakeInCounts()}.
+     */
+    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
+    private LocalDate dateTakeInCounts;
+    /**
+     * {@link PayIndexMovementDto#getDateReminder()}.
+     */
+    @JsonbProperty(JSON_DATE_REMINDER)
+    private LocalDate dateReminder;
 
   }
 
@@ -162,8 +364,8 @@ public interface PayIndexMovementService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = PayIndexMovementGetManyResponseDto
-          .class))})
+      content = {@Content(schema = @Schema(implementation = 
+                        PayIndexMovementGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -174,7 +376,7 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L177">  public static class PayIndexMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="fc" id="L379">  public static class PayIndexMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
               PayIndexMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -264,18 +466,59 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L267">  class PayIndexMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L469">  class PayIndexMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayIndexMovementSaveRequestDto {
+    /**
+     * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.
+     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
     /**
      * {@link PayIndexMovementDto#getPayIndexIdentifier()}.
      */
     @JsonbProperty(JSON_PAYINDEX_IDENTIFIER)
     private String payIndexIdentifier;
     /**
+     * {@link PayIndexMovementDto#getJobIdentifier()}.
+     */
+    @JsonbProperty(JSON_JOB_IDENTIFIER)
+    private String jobIdentifier;
+    /**
+     * {@link PayIndexMovementDto#getGradeIdentifier()}.
+     */
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    private String gradeIdentifier;
+    /**
+     * {@link PayIndexMovementDto#getEchelonIdentifier()}.
+     */
+    @JsonbProperty(JSON_ECHELON_IDENTIFIER)
+    private String echelonIdentifier;
+    /**
+     * {@link PayIndexMovementDto#getGradeClassIdentifier()}.
+     */
+    @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
+    private String gradeClassIdentifier;
+    /**
      * {@link PayIndexMovementDto#getMovementTrackingIdentifier()}.
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
+  
+    /**
+     *{@link PayIndexMovementDto#getEffectDate()}.
+     */
+    @JsonbProperty(JSON_EFFECT_DATE)
+    private LocalDate effectDate;
+    /**
+     * {@link PayIndexMovementDto#getDateTakeInCounts()}.
+     */
+    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
+    private LocalDate dateTakeInCounts;
+    /**
+     * {@link PayIndexMovementDto#getDateReminder()}.
+     */
+    @JsonbProperty(JSON_DATE_REMINDER)
+    private LocalDate dateReminder;
 
   }
 

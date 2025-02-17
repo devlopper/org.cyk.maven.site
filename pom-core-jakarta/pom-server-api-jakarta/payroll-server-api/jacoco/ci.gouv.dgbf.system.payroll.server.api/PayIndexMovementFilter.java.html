@@ -22,6 +22,22 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
     * Identifiant de l'indice.
     */
   String payIndexIdentifier;
+  /**
+    * Identifiant de l'emploi.
+    */
+  String jobIdentifier;
+  /**
+    * Identifiant du grade.
+    */
+  String gradeIdentifier;
+  /**
+    * Identifiant de l'échelon.
+    */
+  String echelonIdentifier;
+  /**
+    * Identifiant de la classe.
+    */
+  String gradeClassIdentifier;
 
   /**
     * Identifiant du suivi mouvement.
@@ -34,29 +50,37 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public PayIndexMovementFilter(FilterDto dto) {
-<span class="fc" id="L37">    super(dto);</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L53">    super(dto);</span>
+<span class="fc" id="L54">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L43">  public PayIndexMovementFilter() {}</span>
+<span class="fc" id="L59">  public PayIndexMovementFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L47">    super.doInitialize(filter);</span>
-<span class="fc" id="L48">    functionaryIdentifier = getFunctionaryIdentifier(filter);</span>
-<span class="fc" id="L49">    payIndexIdentifier = getPayIndexIdentifier(filter);</span>
-<span class="fc" id="L50">    movementTrackingIdentifier = getMovementTrackingIdentifier(filter);</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L63">    super.doInitialize(filter);</span>
+<span class="fc" id="L64">    functionaryIdentifier = getFunctionaryIdentifier(filter);</span>
+<span class="fc" id="L65">    payIndexIdentifier = getPayIndexIdentifier(filter);</span>
+<span class="fc" id="L66">    jobIdentifier = getJobIdentifier(filter);</span>
+<span class="fc" id="L67">    gradeIdentifier = getGradeIdentifier(filter);</span>
+<span class="fc" id="L68">    echelonIdentifier = getEchelonIdentifier(filter);</span>
+<span class="fc" id="L69">    gradeClassIdentifier = getGradeClassIdentifier(filter);</span>
+<span class="fc" id="L70">    movementTrackingIdentifier = getMovementTrackingIdentifier(filter);</span>
+<span class="fc" id="L71">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L55">    super.toDto(filter);</span>
-<span class="fc" id="L56">    setFunctionaryIdentifier(filter, functionaryIdentifier);</span>
-<span class="fc" id="L57">    setPayIndexIdentifier(filter, payIndexIdentifier);</span>
-<span class="fc" id="L58">    setMovementTrackingIdentifier(filter, movementTrackingIdentifier);</span>
-<span class="fc" id="L59">  }</span>
+<span class="fc" id="L75">    super.toDto(filter);</span>
+<span class="fc" id="L76">    setFunctionaryIdentifier(filter, functionaryIdentifier);</span>
+<span class="fc" id="L77">    setPayIndexIdentifier(filter, payIndexIdentifier);</span>
+<span class="fc" id="L78">    setJobIdentifier(filter, jobIdentifier);</span>
+<span class="fc" id="L79">    setGradeIdentifier(filter, gradeIdentifier);</span>
+<span class="fc" id="L80">    setEchelonIdentifier(filter, echelonIdentifier);</span>
+<span class="fc" id="L81">    setGradeClassIdentifier(filter, gradeClassIdentifier);</span>
+<span class="fc" id="L82">    setMovementTrackingIdentifier(filter, movementTrackingIdentifier);</span>
+<span class="fc" id="L83">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
@@ -65,9 +89,9 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setFunctionaryIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L68">    set(filter, JSON_FUNCTIONARY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L70">  }</span>
+<span class="pc" id="L92">    set(filter, JSON_FUNCTIONARY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L93">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L94">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
@@ -76,7 +100,7 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant du fonctionnaire
    */
   public static String getFunctionaryIdentifier(FilterDto filter) {
-<span class="fc" id="L79">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_IDENTIFIER));</span>
+<span class="fc" id="L103">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_IDENTIFIER));</span>
   }
 
   /**
@@ -86,9 +110,9 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setPayIndexIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L89">    set(filter, JSON_PAYINDEX_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L90">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L91">  }</span>
+<span class="pc" id="L113">    set(filter, JSON_PAYINDEX_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L114">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L115">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de l'indice.
@@ -97,7 +121,91 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant de l'indice
    */
   public static String getPayIndexIdentifier(FilterDto filter) {
-<span class="fc" id="L100">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYINDEX_IDENTIFIER));</span>
+<span class="fc" id="L124">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYINDEX_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de l'emploi.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setJobIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L134">    set(filter, JSON_JOB_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L135">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L136">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de l'emploi.
+   *
+   * @param filter filtre
+   * @return identifiant de l'emploi
+   */
+  public static String getJobIdentifier(FilterDto filter) {
+<span class="fc" id="L145">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_JOB_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant du grade.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setGradeIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L155">    set(filter, JSON_GRADE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L156">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L157">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant du grade.
+   *
+   * @param filter filtre
+   * @return identifiant du grade
+   */
+  public static String getGradeIdentifier(FilterDto filter) {
+<span class="fc" id="L166">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de l'échelon.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setEchelonIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L176">    set(filter, JSON_ECHELON_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L177">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L178">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de l'échelon.
+   *
+   * @param filter filtre
+   * @return identifiant de l'échelon
+   */
+  public static String getEchelonIdentifier(FilterDto filter) {
+<span class="fc" id="L187">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ECHELON_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de la classe.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setGradeClassIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L197">    set(filter, JSON_GRADE_CLASS_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L198">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L199">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de la classe.
+   *
+   * @param filter filtre
+   * @return identifiant de la classe
+   */
+  public static String getGradeClassIdentifier(FilterDto filter) {
+<span class="fc" id="L208">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_CLASS_IDENTIFIER));</span>
   }
 
   /**
@@ -107,9 +215,9 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setMovementTrackingIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L110">    set(filter, JSON_MOVEMENT_TRACKING_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L111">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L112">  }</span>
+<span class="pc" id="L218">    set(filter, JSON_MOVEMENT_TRACKING_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L219">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L220">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du suivi de mouvement.
@@ -118,7 +226,7 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant du suivi de mouvement
    */
   public static String getMovementTrackingIdentifier(FilterDto filter) {
-<span class="fc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_MOVEMENT_TRACKING_IDENTIFIER));</span>
+<span class="fc" id="L229">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_MOVEMENT_TRACKING_IDENTIFIER));</span>
   }
 
   /**
@@ -132,6 +240,30 @@ public class PayIndexMovementFilter extends AbstractIdentifiableFilter {
    */
   public static final String JSON_PAYINDEX_IDENTIFIER = PayIndexMovementDto
       .JSON_PAYINDEX_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link PayIndexMovementFilter#jobIdentifier}.
+   */
+  public static final String JSON_JOB_IDENTIFIER = PayIndexMovementDto
+      .JSON_JOB_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link PayIndexMovementFilter#gradeIdentifier}.
+   */
+  public static final String JSON_GRADE_IDENTIFIER = PayIndexMovementDto
+      .JSON_GRADE_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link PayIndexMovementFilter#echelonIdentifier}.
+   */
+  public static final String JSON_ECHELON_IDENTIFIER = PayIndexMovementDto
+      .JSON_ECHELON_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link PayIndexMovementFilter#gradeClassIdentifier}.
+   */
+  public static final String JSON_GRADE_CLASS_IDENTIFIER = PayIndexMovementDto
+      .JSON_GRADE_CLASS_IDENTIFIER;
 
   /**
    * Identifiant json champ {@link PayIndexMovementFilter#movementTrackingIdentifier}.
