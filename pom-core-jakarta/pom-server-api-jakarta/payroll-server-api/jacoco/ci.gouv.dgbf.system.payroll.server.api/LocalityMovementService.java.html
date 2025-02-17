@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,7 +32,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 /**
  * Cette interface représente les services de {@link LocalityMovementDto}.
  *
- * @author A.K.M
+ * @author stephane
  *
  */
 @Path(value = LocalityMovementService.PATH)
@@ -46,22 +47,36 @@ public interface LocalityMovementService extends SpecificService {
   /**
    * Cette interface représente une requête d'enregistrement.
    *
-   * @author A.K.M
+   * @author stephane
    *
    */
   interface LocalityMovementSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de la localité.
+     * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
      *
-     * @return identifiant de la localité
+     * @return identifiant du fonctionnaire
+     */
+    String getFunctionaryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
+     *
+     * @param functionaryIdentifier identifiant du fonctionnaire
+     */
+    void setFunctionaryIdentifier(String functionaryIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la localite.
+     *
+     * @return identifiant de la localite
      */
     String getLocalityIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de la localité.
+     * Cette méthode permet d'assigner l'identifiant de la localite.
      *
-     * @param localityIdentifier identifiant de la localité
+     * @param localityIdentifier identifiant de la localite
      */
     void setLocalityIdentifier(String localityIdentifier);
 
@@ -80,16 +95,82 @@ public interface LocalityMovementService extends SpecificService {
     void setMovementTrackingIdentifier(String movementTrackingIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir la date d'effet.
+     *
+     * @return date d'effet
+     */
+    LocalDate getEffectDate();
+
+    /**
+     * Cette méthode permet d'assigner la date d'effet.
+     *
+     * @param effetDate date d'effet
+     */
+    void setEffectDate(LocalDate effetDate);
+
+    /**
+     * Cette méthode permet d'obtenir la date de prise en compte.
+     *
+     * @return date de prise en compte
+     */
+    LocalDate getDateTakeInCounts();
+
+    /**
+     * Cette méthode permet d'assigner la date de prise en compte.
+     *
+     * @param dateTakeInCounts date de prise en compte
+     */
+    void setDateTakeInCounts(LocalDate dateTakeInCounts);
+
+    /**
+     * Cette méthode permet d'obtenir la date de rappel.
+     *
+     * @return date de rappel
+     */
+    LocalDate getDateReminder();
+
+    /**
+     * Cette méthode permet d'assigner la date de rappel.
+     *
+     * @param dateReminder date de rappel
+     */
+    void setDateReminder(LocalDate dateReminder);
+
+    /**
+     * {@link LocalityMovementDto#JSON_FUNCTIONARY_IDENTIFIER}.
+     */
+    public static final String JSON_FUNCTIONARY_IDENTIFIER = 
+              LocalityMovementDto.JSON_FUNCTIONARY_IDENTIFIER;
+
+    /**
      * {@link LocalityMovementDto#JSON_LOCALITY_IDENTIFIER}.
      */
     public static final String JSON_LOCALITY_IDENTIFIER = 
-                LocalityMovementDto.JSON_LOCALITY_IDENTIFIER;
+              LocalityMovementDto.JSON_LOCALITY_IDENTIFIER;
 
     /**
      * {@link LocalityMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
      */
     public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = 
                       LocalityMovementDto.JSON_MOVEMENT_TRACKING_IDENTIFIER;
+
+    /**
+     * {@link LocalityMovementDto#JSON_EFFECT_DATE}.
+     */
+    public static final String JSON_EFFECT_DATE = 
+                      LocalityMovementDto.JSON_EFFECT_DATE;
+
+    /**
+     * {@link LocalityMovementDto#JSON_DATE_TAKEN_IN_COUNTS}.
+     */
+    public static final String JSON_DATE_TAKEN_IN_COUNTS = 
+                      LocalityMovementDto.JSON_DATE_TAKEN_IN_COUNTS;
+
+    /**
+     * {@link LocalityMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
+     */
+    public static final String JSON_DATE_REMINDER = 
+                      LocalityMovementDto.JSON_DATE_REMINDER;
   }
 
   /**
@@ -120,13 +201,18 @@ public interface LocalityMovementService extends SpecificService {
   /**
    * Cette classe représente la requête de création.
    *
-   * @author A.K.M
+   * @author stephane
    *
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  class LocalityMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L209">  class LocalityMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements LocalityMovementSaveRequestDto {
+    /**
+     * {@link LocalityMovementDto#getFunctionaryIdentifier()}.
+     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
     /**
      * {@link LocalityMovementDto#getLocalityIdentifier()}.
      */
@@ -137,6 +223,22 @@ public interface LocalityMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
+  
+    /**
+     *{@link LocalityMovementDto#getEffectDate()}.
+     */
+    @JsonbProperty(JSON_EFFECT_DATE)
+    private LocalDate effectDate;
+    /**
+     * {@link LocalityMovementDto#getDateTakeInCounts()}.
+     */
+    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
+    private LocalDate dateTakeInCounts;
+    /**
+     * {@link LocalityMovementDto#getDateReminder()}.
+     */
+    @JsonbProperty(JSON_DATE_REMINDER)
+    private LocalDate dateReminder;
 
   }
 
@@ -163,18 +265,18 @@ public interface LocalityMovementService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = 
-                  LocalityMovementGetManyResponseDto.class))})
+                        LocalityMovementGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
    *
-   * @author A.K.M
+   * @author stephane
    *
    */
   @Getter
   @Setter
-<span class="fc" id="L177">  public static class LocalityMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="fc" id="L279">  public static class LocalityMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
               LocalityMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -259,13 +361,18 @@ public interface LocalityMovementService extends SpecificService {
   /**
    * Cette classe représente la requête de mise à jour.
    *
-   * @author A.K.M
+   * @author stephane
    *
    */
   @Getter
   @Setter
-<span class="fc" id="L267">  class LocalityMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L369">  class LocalityMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements LocalityMovementSaveRequestDto {
+    /**
+     * {@link LocalityMovementDto#getFunctionaryIdentifier()}.
+     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
     /**
      * {@link LocalityMovementDto#getLocalityIdentifier()}.
      */
@@ -276,6 +383,22 @@ public interface LocalityMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
+  
+    /**
+     *{@link LocalityMovementDto#getEffectDate()}.
+     */
+    @JsonbProperty(JSON_EFFECT_DATE)
+    private LocalDate effectDate;
+    /**
+     * {@link LocalityMovementDto#getDateTakeInCounts()}.
+     */
+    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
+    private LocalDate dateTakeInCounts;
+    /**
+     * {@link LocalityMovementDto#getDateReminder()}.
+     */
+    @JsonbProperty(JSON_DATE_REMINDER)
+    private LocalDate dateReminder;
 
   }
 
