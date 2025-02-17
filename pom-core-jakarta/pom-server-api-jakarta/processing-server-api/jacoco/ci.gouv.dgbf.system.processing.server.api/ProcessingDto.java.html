@@ -118,14 +118,14 @@ import lombok.Setter;
   /**
    * Indique si le volume de travail total a été réalisé.
    */
-  @JsonbProperty(JSON_IS_WORK_VOLUME_COMPLETED)
-  private Boolean isWorkVolumeCompleted;
+  @JsonbProperty(JSON_IS_WORK_COMPLETED)
+  private Boolean isWorkCompleted;
 
   /**
-   * Représentation en chaine de caractères de {@link #isWorkVolumeCompleted}.
+   * Représentation en chaine de caractères de {@link #isWorkCompleted}.
    */
-  @JsonbProperty(JSON_IS_WORK_VOLUME_COMPLETED_AS_STRING)
-  private String isWorkVolumeCompletedAsString;
+  @JsonbProperty(JSON_IS_WORK_COMPLETED_AS_STRING)
+  private String isWorkCompletedAsString;
 
   /**
    * Identifiant de {@link ProcessingDto} précédent.
@@ -290,15 +290,14 @@ import lombok.Setter;
       JSON_COMPLETED_WORK_VOLUME + &quot;Chaine&quot;;
 
   /**
-   * champ json {@link #isWorkVolumeCompleted}.
+   * champ json {@link #isWorkCompleted}.
    */
-  public static final String JSON_IS_WORK_VOLUME_COMPLETED = &quot;volumeTravailEstRealise&quot;;
+  public static final String JSON_IS_WORK_COMPLETED = &quot;travailEstRealise&quot;;
 
   /**
-   * champ json {@link #isWorkVolumeCompletedAsString}.
+   * champ json {@link #isWorkCompletedAsString}.
    */
-  public static final String JSON_IS_WORK_VOLUME_COMPLETED_AS_STRING =
-      JSON_IS_WORK_VOLUME_COMPLETED + &quot;Chaine&quot;;
+  public static final String JSON_IS_WORK_COMPLETED_AS_STRING = JSON_IS_WORK_COMPLETED + &quot;Chaine&quot;;
 
   /**
    * champ json {@link #workCompletionRate}.
