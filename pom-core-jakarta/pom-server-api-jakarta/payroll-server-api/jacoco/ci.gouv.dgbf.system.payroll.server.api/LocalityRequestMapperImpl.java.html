@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>LocalityRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">LocalityRequestMapperImpl.java</span></div><h1>LocalityRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link LocalityDto}.
+*
+* @author stephane
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-02-17T20:07:48+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class LocalityRequestMapperImpl implements LocalityRequestMapper {</span>
+
+    @Override
+    public LocalityService.LocalityCreateRequestDto mapCreate(LocalityDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        LocalityService.LocalityCreateRequestDto localityCreateRequestDto = new LocalityService.LocalityCreateRequestDto();</span>
+
+<span class="fc" id="L28">        localityCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L29">        localityCreateRequestDto.setName( arg0.getName() );</span>
+
+<span class="fc" id="L31">        return localityCreateRequestDto;</span>
+    }
+
+    @Override
+    public LocalityService.LocalityUpdateRequestDto mapUpdate(LocalityDto arg0) {
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L37">            return null;</span>
+        }
+
+<span class="fc" id="L40">        LocalityService.LocalityUpdateRequestDto localityUpdateRequestDto = new LocalityService.LocalityUpdateRequestDto();</span>
+
+<span class="fc" id="L42">        localityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L43">        localityUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L44">        localityUpdateRequestDto.setName( arg0.getName() );</span>
+
+<span class="fc" id="L46">        return localityUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
