@@ -33,7 +33,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  * Cette interface représente les services de {@link ActivityDto}.
  *
  * @author Christian Yao Komenan
- *
  */
 @Path(value = ActivityService.PATH)
 @Tag(name = &quot;Gestion des activités&quot;)
@@ -74,7 +73,6 @@ public interface ActivityService extends SpecificService {
    * Cette interface représente une requête d'enregistrement.
    *
    * @author Christian
-   *
    */
   interface ActivitySaveRequestDto {
 
@@ -190,6 +188,70 @@ public interface ActivityService extends SpecificService {
      */
     void setCategoryEnum(ActivityCategory categoryEnum);
 
+
+    /**
+     * Cette méthode permet d'obtenir la description.
+     *
+     * @return la description de {@link ActivityDto}
+     */
+    String getDescription();
+
+
+    /**
+     * Cette méthode permet d'assigner la description.
+     *
+     * @param description description
+     */
+    void setDescription(String description);
+
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant l'activité à laquelle on fait référence.
+     *
+     * @return la référence operation de {@link ActivityDto}
+     */
+    String getReferencedActivityIdentifier();
+
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'activité à laquelle on fait référence.
+     *
+     * @param referencedActivityIdentifier identifiant de l'activity
+     */
+    void setReferencedActivityIdentifier(String referencedActivityIdentifier);
+
+
+    /**
+     * Cette méthode permet d'obtenir la référence au PND.
+     *
+     * @return la référence au PND de {@link ActivityDto}
+     */
+    String getPndReference();
+
+
+    /**
+     * Cette méthode permet d'assigner la référence au PND.
+     *
+     * @param pndReference référence du PND
+     */
+    void setPndReference(String pndReference);
+
+
+    /**
+     * Cette méthode permet d'obtenir la référence eventuelle.
+     *
+     * @return la référence éventuelle de {@link ActivityDto}
+     */
+    String getEventualReference();
+
+
+    /**
+     * Cette méthode permet d'assigner la référence éventuelle.
+     *
+     * @param eventualReference autres références éventuelles
+     */
+    void setEventualReference(String eventualReference);
+
     /**
      * Identifiant json du champ de l'identitant de {@link ActivityNatureDto}.
      */
@@ -233,17 +295,39 @@ public interface ActivityService extends SpecificService {
      * {@link ActivityCategory}.
      */
     public static final String JSON_CATEGORY = ActivityDto.JSON_CATEGORY;
+
+    /**
+     * Identifiant json desctiption.
+     */
+    String JSON_DESCRIPTION = ActivityDto.JSON_DESCRIPTION;
+
+    /**
+     * Identifiant json de la référence de l'opération.
+     */
+    String REFERENCED_ACTIVITY_IDENTIFIER = ActivityDto.REFERENCED_ACTIVITY_IDENTIFIER;
+
+
+    /**
+     * Identifiant json de la référence au PND.
+     */
+    String PND_REFERENCE = ActivityDto.PND_REFERENCE;
+
+    /**
+     * Identifiant json de la référence eventuelle.
+     */
+    String EVENTUAL_REFERENCE = ActivityDto.EVENTUAL_REFERENCE;
+
+
   }
 
   /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L246">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L330">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -269,6 +353,18 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_CATEGORY)
     private ActivityCategory categoryEnum;
+
+    @JsonbProperty(JSON_DESCRIPTION)
+    private String description;
+
+    @JsonbProperty(REFERENCED_ACTIVITY_IDENTIFIER)
+    private String referencedActivityIdentifier;
+
+    @JsonbProperty(PND_REFERENCE)
+    private String pndReference;
+
+    @JsonbProperty(EVENTUAL_REFERENCE)
+    private String eventualReference;
   }
 
   /**
@@ -295,7 +391,7 @@ public interface ActivityService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = Long.class))})
   Response getCount(GetCountRequestDto request);
-  
+
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
@@ -326,11 +422,10 @@ public interface ActivityService extends SpecificService {
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L333">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L428">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -418,11 +513,10 @@ public interface ActivityService extends SpecificService {
    * Cette classe représente la requête de mise à jour.
    *
    * @author Christian
-   *
    */
   @Getter
   @Setter
-<span class="fc" id="L425">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L519">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -448,6 +542,18 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_CATEGORY)
     private ActivityCategory categoryEnum;
+
+    @JsonbProperty(JSON_DESCRIPTION)
+    private String description;
+
+    @JsonbProperty(REFERENCED_ACTIVITY_IDENTIFIER)
+    private String referencedActivityIdentifier;
+
+    @JsonbProperty(PND_REFERENCE)
+    private String pndReference;
+
+    @JsonbProperty(EVENTUAL_REFERENCE)
+    private String eventualReference;
   }
 
   /**

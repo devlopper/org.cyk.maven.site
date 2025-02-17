@@ -10,12 +10,11 @@ import lombok.Setter;
  * Cette classe représente une activité.
  *
  * @author Christian
- *
  */
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class ActivityDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L17">public class ActivityDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
    * Identifiant de {@link LocalAuthorityDto}.
@@ -132,6 +131,38 @@ import lombok.Setter;
   private String executedAmountAsString;
 
   /**
+   * Description de l'activité.
+   */
+  @JsonbProperty(JSON_DESCRIPTION)
+  private String description;
+
+  /**
+   * Identifiant de l'activité à laquelle on fait référence.
+   */
+  @JsonbProperty(REFERENCED_ACTIVITY_IDENTIFIER)
+  private String referencedActivityIdentifier;
+
+
+  /**
+   * Représentation en chaine de caractère de la l'activité de référence.
+   */
+  @JsonbProperty(REFERENCED_ACTIVITY_AS_STRING)
+  private String referencedActivityAsString;
+
+
+  /**
+   * Référence au PND.
+   */
+  @JsonbProperty(PND_REFERENCE)
+  private String pndReference;
+
+  /**
+   * Référence eventuelle.
+   */
+  @JsonbProperty(EVENTUAL_REFERENCE)
+  private String eventualReference;
+
+  /**
    * Identifiant json de identifiant de {@link ActivityDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idActivite&quot;;
@@ -230,7 +261,6 @@ import lombok.Setter;
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
 
 
-
   /**
    * Identifiant json {@link #amount}.
    */
@@ -240,6 +270,34 @@ import lombok.Setter;
    * Identifiant json {@link #amountAsString}.
    */
   public static final String JSON_EXECUTED_AMOUNT_AS_STRING = &quot;montantExecuteChaine&quot;;
+
+  /**
+   * Identifiant json {@link #description}.
+   */
+  public static final String JSON_DESCRIPTION = &quot;description&quot;;
+
+
+  /**
+   * Identifiant json de l'activité de référence {@link #referencedActivityIdentifier}.
+   */
+  public static final String REFERENCED_ACTIVITY_IDENTIFIER = &quot;identifiantActiviteDeReference&quot;;
+
+  /**
+   * Identifiant json de l'activité de référence {@link #referencedActivityAsString}.
+   */
+  public static final String REFERENCED_ACTIVITY_AS_STRING = &quot;ActiviteDeReferenceChaine&quot;;
+
+
+
+  /**
+   * Identifiant json de la référence au PND {@link #pndReference}.
+   */
+  public static final String PND_REFERENCE = &quot;referencePND&quot;;
+
+  /**
+   * Identifiant json de la référence eventuelle {@link #eventualReference}.
+   */
+  public static final String EVENTUAL_REFERENCE = &quot;referenceEventuelle&quot;;
 
 
   /**
