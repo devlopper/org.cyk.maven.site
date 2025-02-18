@@ -285,8 +285,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L288">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto</span>
-      implements PayrollSaveRequestDto {
+<span class="fc" id="L288">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto implements PayrollSaveRequestDto {</span>
     /**
      * {@link PayrollDto#getExerciseIdentifier()}.
      */
@@ -339,9 +338,9 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
-  
+
   /* Statuses workflow */
-  
+
   /**
    * Cette classe représente la réponse de traitement.
    *
@@ -350,7 +349,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L353">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L352">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link PayrollDto#getStatus()}.
@@ -388,12 +387,12 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="fc" id="L391">      this.status = status;</span>
-<span class="fc" id="L392">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L393">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L394">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L395">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L396">    }</span>
+<span class="fc" id="L390">      this.status = status;</span>
+<span class="fc" id="L391">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L392">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L393">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L394">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L395">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.
@@ -420,7 +419,7 @@ public interface PayrollService extends SpecificService {
      */
     public static final String JSON_CLOSABLE = PayrollDto.JSON_CLOSABLE;
   }
-  
+
   /**
    * Identifiant du service d'initialisation.
    */
@@ -445,5 +444,31 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response initialize(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de reprise de l'initialisation à partir d'un point.
+   */
+  String RESUME_INITIALIZATION_FROM_CHECKPOINT_IDENTIFIER =
+      &quot;REPRISE_INITIALISATION_A_PARTIR_POINT_PAIE&quot;;
+
+  /**
+   * Chemin du service de reprise d'initialisation à partir d'un point.
+   */
+  String RESUME_INITIALIZATION_FROM_CHECKPOINT_PATH = &quot;reprise-initialisation-a-partir-point&quot;;
+
+  /**
+   * Cette méthode permet de reprendre l'initialisation à partir d'un point.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(RESUME_INITIALIZATION_FROM_CHECKPOINT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = RESUME_INITIALIZATION_FROM_CHECKPOINT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response resumeInitializationFromCheckpoint(ByIdentifierRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

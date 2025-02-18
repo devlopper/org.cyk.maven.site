@@ -200,7 +200,19 @@ import lombok.experimental.Accessors;
 <span class="fc" id="L200">    return new ProcessExecutor(PayrollService.INITIALIZE_IDENTIFIER)</span>
 <span class="fc" id="L201">        .execute(() -&gt; service().initialize(request));</span>
   }
-  
+
+  /**
+   * {@link PayrollService#resumeInitializationFromCheckpoint}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto resumeInitializationFromCheckpoint(
+      ByIdentifierRequestDto request) {
+<span class="fc" id="L212">    return new ProcessExecutor(PayrollService.RESUME_INITIALIZATION_FROM_CHECKPOINT_IDENTIFIER)</span>
+<span class="fc" id="L213">        .execute(() -&gt; service().resumeInitializationFromCheckpoint(request));</span>
+  }
+
   /**
    * Cette classe représente un exécuteur de {@link PayrollDto}.
    *
@@ -214,9 +226,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L217">    public ProcessExecutor(String identifier) {</span>
-<span class="fc" id="L218">      super(ProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L219">    }</span>
+<span class="fc" id="L229">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L230">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L231">    }</span>
 
   }
 }
