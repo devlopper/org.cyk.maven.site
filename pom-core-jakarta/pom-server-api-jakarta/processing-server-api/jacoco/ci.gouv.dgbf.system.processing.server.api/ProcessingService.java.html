@@ -18,6 +18,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Getter;
@@ -148,7 +149,7 @@ public interface ProcessingService {
      * @param previousIdentifier identifiant de {@link ProcessingDto} précédent
      */
     void setPreviousIdentifier(String previousIdentifier);
-    
+
     /**
      * {@link ProcessingDto#JSON_DESCRIPTIVE}.
      */
@@ -183,7 +184,7 @@ public interface ProcessingService {
      * {@link ProcessingDto#JSON_COMPLETED_WORK_VOLUME}.
      */
     String JSON_COMPLETED_WORK_VOLUME = ProcessingDto.JSON_COMPLETED_WORK_VOLUME;
-    
+
     /**
      * {@link ProcessingDto#JSON_PREVIOUS_IDENTIFIER}.
      */
@@ -220,7 +221,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L223">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L224">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -240,7 +241,7 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
     private Integer totalWorkVolume;
-    
+
     @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
     private String previousIdentifier;
   }
@@ -253,7 +254,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L256">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L257">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link ProcessingDto#getStatus()}.
@@ -291,12 +292,12 @@ public interface ProcessingService {
      * @param status statut
      */
     public void initialize(ProcessingStatus status) {
-<span class="fc" id="L294">      this.status = status;</span>
-<span class="fc" id="L295">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
-<span class="fc" id="L296">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
-<span class="fc" id="L297">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
-<span class="fc" id="L298">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
-<span class="fc" id="L299">    }</span>
+<span class="fc" id="L295">      this.status = status;</span>
+<span class="fc" id="L296">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
+<span class="fc" id="L297">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
+<span class="fc" id="L298">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L299">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
+<span class="fc" id="L300">    }</span>
 
     /**
      * {@link ProcessingDto#JSON_STATUS}.
@@ -332,7 +333,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L335">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L336">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ProcessingDto#getReason()}.
@@ -477,7 +478,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L480">  public static class ProcessingGetManyResponseDto</span>
+<span class="fc" id="L481">  public static class ProcessingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -566,7 +567,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L569">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L570">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -586,7 +587,7 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
     private Integer totalWorkVolume;
-    
+
     @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
     private String previousIdentifier;
   }
@@ -621,40 +622,55 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L624">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L625">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
-     * {@link ProcessingDto#getReason()}.
+     * Valeur.
      */
     @JsonbProperty(JSON_VALUE)
     private Integer value;
 
     /**
-     * {@link ProcessingDto#getDate()}.
+     * Proportion du volume total de travail.
      */
-    @JsonbProperty(JSON_IS_PROPORTION)
-    private Boolean isProportion;
+    @JsonbProperty(JSON_PROPORTION)
+    private BigDecimal proportion;
 
     /**
-     * {@link ProcessingDto#getDate()}.
+     * Est un increment si vrai ou un décrément si faux. N'est rien si null.
      */
-    @JsonbProperty(JSON_INCREMENTABLE)
-    private Boolean incrementable;
-    
+    @JsonbProperty(JSON_IS_INCREMENT)
+    private Boolean isIncrement;
+
+    /**
+     * Cette méthode permet de calculer le volume de travail réalisé.
+     *
+     * @param totalWorkVolume volume de travail total.
+     * @param currentCompletedWorkVolume volume de travail réalisé courant.
+     * @return volume de travail réalisé
+     */
+    public Integer computeCompletedWorkVolume(Integer totalWorkVolume,
+        Integer currentCompletedWorkVolume) {
+<span class="fc bfc" id="L654" title="All 2 branches covered.">      if (isIncrement == null) {</span>
+<span class="fc" id="L655">        return value;</span>
+      }
+<span class="fc bfc" id="L657" title="All 2 branches covered.">      return currentCompletedWorkVolume + (isIncrement ? 1 : -1) * value;</span>
+    }
+
     /**
      * {@link #value}.
      */
     public static final String JSON_VALUE = &quot;valeur&quot;;
 
     /**
-     * {@link #isProportion}.
+     * {@link #proportion}.
      */
-    public static final String JSON_IS_PROPORTION = &quot;estProportion&quot;;
-    
+    public static final String JSON_PROPORTION = &quot;proportion&quot;;
+
     /**
-     * {@link #incrementable}.
+     * {@link #isIncrement}.
      */
-    public static final String JSON_INCREMENTABLE = &quot;incrementable&quot;;
+    public static final String JSON_IS_INCREMENT = &quot;estIncrement&quot;;
   }
 
   /**
