@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayIndexService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">PayIndexService.java</span></div><h1>PayIndexService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -50,6 +50,24 @@ public interface PayIndexService extends SpecificService {
    *
    */
   interface PayIndexSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir la valeur de l'indice.
+     *
+     * @return valeur de l'indice
+     */
+    Integer getValue();
+
+    /**
+     * Cette méthode permet d'assigner la valeur de l'indice.
+     *
+     * @param value valeur de l'indice
+     */
+    void setValue(Integer value);
+
+    /**
+     * {@link PayIndexSaveRequestDto#JSON_VALUE}.
+     */
+    String JSON_VALUE =  PayIndexDto.JSON_VALUE;
 
   }
 
@@ -86,8 +104,11 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class PayIndexCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L107">  class PayIndexCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayIndexSaveRequestDto {
+
+    @JsonbProperty(value = JSON_VALUE)
+    private Integer value;
 
   }
 
@@ -124,7 +145,7 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  public static class PayIndexGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayIndexDto&gt; {</span>
+<span class="fc" id="L148">  public static class PayIndexGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayIndexDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayIndexDto&gt; datas;
@@ -213,8 +234,11 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L216">  class PayIndexUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L237">  class PayIndexUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayIndexSaveRequestDto {
+
+    @JsonbProperty(value = JSON_VALUE)
+    private Integer value;
 
   }
 
