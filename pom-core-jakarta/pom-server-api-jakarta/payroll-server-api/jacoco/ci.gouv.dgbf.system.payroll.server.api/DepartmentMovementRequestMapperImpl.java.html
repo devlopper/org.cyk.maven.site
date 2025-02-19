@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DepartmentMovementRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">DepartmentMovementRequestMapperImpl.java</span></div><h1>DepartmentMovementRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link DepartmentMovementDto}.
+*
+* @author A.K.M
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-02-19T15:20:13+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class DepartmentMovementRequestMapperImpl implements DepartmentMovementRequestMapper {</span>
+
+    @Override
+    public DepartmentMovementService.DepartmentMovementCreateRequestDto mapCreate(DepartmentMovementDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        DepartmentMovementService.DepartmentMovementCreateRequestDto departmentMovementCreateRequestDto = new DepartmentMovementService.DepartmentMovementCreateRequestDto();</span>
+
+<span class="fc" id="L28">        departmentMovementCreateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
+<span class="fc" id="L29">        departmentMovementCreateRequestDto.setDepartmentIdentifier( arg0.getDepartmentIdentifier() );</span>
+<span class="fc" id="L30">        departmentMovementCreateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L31">        departmentMovementCreateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
+<span class="fc" id="L32">        departmentMovementCreateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
+<span class="fc" id="L33">        departmentMovementCreateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
+
+<span class="fc" id="L35">        return departmentMovementCreateRequestDto;</span>
+    }
+
+    @Override
+    public DepartmentMovementService.DepartmentMovementUpdateRequestDto mapUpdate(DepartmentMovementDto arg0) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L41">            return null;</span>
+        }
+
+<span class="fc" id="L44">        DepartmentMovementService.DepartmentMovementUpdateRequestDto departmentMovementUpdateRequestDto = new DepartmentMovementService.DepartmentMovementUpdateRequestDto();</span>
+
+<span class="fc" id="L46">        departmentMovementUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        departmentMovementUpdateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
+<span class="fc" id="L48">        departmentMovementUpdateRequestDto.setDepartmentIdentifier( arg0.getDepartmentIdentifier() );</span>
+<span class="fc" id="L49">        departmentMovementUpdateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L50">        departmentMovementUpdateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
+<span class="fc" id="L51">        departmentMovementUpdateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
+<span class="fc" id="L52">        departmentMovementUpdateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
+
+<span class="fc" id="L54">        return departmentMovementUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
