@@ -29,54 +29,6 @@ import lombok.Setter;
   private String payIndexAsString;
 
   /**
-   * Identifiant de l'emploi.
-   */
-  @JsonbProperty(JSON_JOB_IDENTIFIER)
-  private String jobIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de l'emploi.
-   */
-  @JsonbProperty(JSON_JOB_AS_STRING)
-  private String jobAsString;
-
-  /**
-   * Identifiant du grade.
-   */
-  @JsonbProperty(JSON_GRADE_IDENTIFIER)
-  private String gradeIdentifier;
-
-  /**
-   * Représentation en chaine de caractères du grade.
-   */
-  @JsonbProperty(JSON_GRADE_AS_STRING)
-  private String gradeAsString;
-
-  /**
-   * Identifiant de l'échelon.
-   */
-  @JsonbProperty(JSON_ECHELON_IDENTIFIER)
-  private String echelonIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de l'échelon.
-   */
-  @JsonbProperty(JSON_ECHELON_AS_STRING)
-  private String echelonAsString;
-
-  /**
-   * Identifiant de la classe.
-   */
-  @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
-  private String gradeClassIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de la classe.
-   */
-  @JsonbProperty(JSON_GRADE_CLASS_AS_STRING)
-  private String gradeClassAsString;
-
-  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idMouvementIndice&quot;;
@@ -95,46 +47,6 @@ import lombok.Setter;
    * Identifiant json champ {@link #payIndexAsString}.
    */
   public static final String JSON_PAYINDEX_AS_STRING = &quot;indiceChaine&quot;;
-
-  /**
-   * Identifiant json champ {@link #jobIdentifier}.
-   */
-  public static final String JSON_JOB_IDENTIFIER = &quot;idEmploi&quot;;
-
-  /**
-   * Identifiant json champ {@link #jobAsString}.
-   */
-  public static final String JSON_JOB_AS_STRING = &quot;emploiChaine&quot;;
-
-  /**
-   * Identifiant json champ {@link #gradeIdentifier}.
-   */
-  public static final String JSON_GRADE_IDENTIFIER = &quot;idGrade&quot;;
-
-  /**
-   * Identifiant json champ {@link #gradeAsString}.
-   */
-  public static final String JSON_GRADE_AS_STRING = &quot;gradeChaine&quot;;
-
-  /**
-   * Identifiant json champ {@link #echelonIdentifier}.
-   */
-  public static final String JSON_ECHELON_IDENTIFIER = &quot;idEchelon&quot;;
-
-  /**
-   * Identifiant json champ {@link #echelonAsString}.
-   */
-  public static final String JSON_ECHELON_AS_STRING = &quot;echelonChaine&quot;;
-
-  /**
-   * Identifiant json champ {@link #gradeClassIdentifier}.
-   */
-  public static final String JSON_GRADE_CLASS_IDENTIFIER = &quot;idClasse&quot;;
-
-  /**
-   * Identifiant json champ {@link #gradeClassAsString}.
-   */
-  public static final String JSON_GRADE_CLASS_AS_STRING = &quot;classeChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

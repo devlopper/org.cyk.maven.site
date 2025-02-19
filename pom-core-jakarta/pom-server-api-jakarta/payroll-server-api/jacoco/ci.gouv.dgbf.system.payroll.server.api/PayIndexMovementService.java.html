@@ -81,62 +81,6 @@ public interface PayIndexMovementService extends SpecificService {
     void setPayIndexIdentifier(String payIndexIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de l'emploi.
-     *
-     * @return identifiant de l'emploi
-     */
-    String getJobIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de l'emploi.
-     *
-     * @param jobIdentifier identifiant de l'emploi
-     */
-    void setJobIdentifier(String jobIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant du grade.
-     *
-     * @return identifiant du grade
-     */
-    String getGradeIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant du grade.
-     *
-     * @param gradeIdentifier identifiant du grade
-     */
-    void setGradeIdentifier(String gradeIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant du echelon.
-     *
-     * @return identifiant du echelon
-     */
-    String getEchelonIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant du echelon.
-     *
-     * @param echelonIdentifier identifiant du echelon
-     */
-    void setEchelonIdentifier(String echelonIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de la classe.
-     *
-     * @return identifiant de la classe
-     */
-    String getGradeClassIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de la classe.
-     *
-     * @param gradeClassIdentifier identifiant de la classe
-     */
-    void setGradeClassIdentifier(String gradeClassIdentifier);
-
-    /**
      * Cette méthode permet d'obtenir le suivi de mouvement.
      *
      * @return suivi de mouvement
@@ -205,30 +149,6 @@ public interface PayIndexMovementService extends SpecificService {
               PayIndexMovementDto.JSON_PAYINDEX_IDENTIFIER;
 
     /**
-     * {@link PayIndexMovementDto#JSON_JOB_IDENTIFIER}.
-     */
-    public static final String JSON_JOB_IDENTIFIER = 
-              PayIndexMovementDto.JSON_JOB_IDENTIFIER;
-
-    /**
-     * {@link PayIndexMovementDto#JSON_GRADE_IDENTIFIER}.
-     */
-    public static final String JSON_GRADE_IDENTIFIER = 
-              PayIndexMovementDto.JSON_GRADE_IDENTIFIER;
-
-    /**
-     * {@link PayIndexMovementDto#JSON_ECHELON_IDENTIFIER}.
-     */
-    public static final String JSON_ECHELON_IDENTIFIER = 
-              PayIndexMovementDto.JSON_ECHELON_IDENTIFIER;
-
-    /**
-     * {@link PayIndexMovementDto#JSON_GRADE_CLASS_IDENTIFIER}.
-     */
-    public static final String JSON_GRADE_CLASS_IDENTIFIER = 
-              PayIndexMovementDto.JSON_GRADE_CLASS_IDENTIFIER;
-
-    /**
      * {@link PayIndexMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
      */
     public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = 
@@ -286,7 +206,7 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L289">  class PayIndexMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L209">  class PayIndexMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayIndexMovementSaveRequestDto {
     /**
      * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.
@@ -298,26 +218,6 @@ public interface PayIndexMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_PAYINDEX_IDENTIFIER)
     private String payIndexIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getJobIdentifier()}.
-     */
-    @JsonbProperty(JSON_JOB_IDENTIFIER)
-    private String jobIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getGradeIdentifier()}.
-     */
-    @JsonbProperty(JSON_GRADE_IDENTIFIER)
-    private String gradeIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getEchelonIdentifier()}.
-     */
-    @JsonbProperty(JSON_ECHELON_IDENTIFIER)
-    private String echelonIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getGradeClassIdentifier()}.
-     */
-    @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
-    private String gradeClassIdentifier;
     /**
      * {@link PayIndexMovementDto#getMovementTrackingIdentifier()}.
      */
@@ -376,7 +276,7 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L379">  public static class PayIndexMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="fc" id="L279">  public static class PayIndexMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
               PayIndexMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -466,7 +366,7 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L469">  class PayIndexMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L369">  class PayIndexMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayIndexMovementSaveRequestDto {
     /**
      * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.
@@ -478,26 +378,6 @@ public interface PayIndexMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_PAYINDEX_IDENTIFIER)
     private String payIndexIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getJobIdentifier()}.
-     */
-    @JsonbProperty(JSON_JOB_IDENTIFIER)
-    private String jobIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getGradeIdentifier()}.
-     */
-    @JsonbProperty(JSON_GRADE_IDENTIFIER)
-    private String gradeIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getEchelonIdentifier()}.
-     */
-    @JsonbProperty(JSON_ECHELON_IDENTIFIER)
-    private String echelonIdentifier;
-    /**
-     * {@link PayIndexMovementDto#getGradeClassIdentifier()}.
-     */
-    @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
-    private String gradeClassIdentifier;
     /**
      * {@link PayIndexMovementDto#getMovementTrackingIdentifier()}.
      */
