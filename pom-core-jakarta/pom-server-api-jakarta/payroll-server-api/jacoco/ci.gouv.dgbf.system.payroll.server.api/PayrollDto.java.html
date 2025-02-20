@@ -145,6 +145,12 @@ import lombok.Setter;
   private Boolean initializable;
 
   /**
+   * Initialisation en cours.
+   */
+  @JsonbProperty(JSON_INITIALIZATION_RUNNING)
+  private Boolean initializationRunning;
+
+  /**
    * Initialisation reprenable à partir d'un point.
    */
   @JsonbProperty(JSON_INITIALIZATION_RESUMABLE_FROM_CHECKPOINT)
@@ -174,13 +180,13 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L177">    status = response.getStatus();</span>
-<span class="fc" id="L178">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L179">    initializable = response.getInitializable();</span>
-<span class="fc" id="L180">    controllable = response.getControllable();</span>
-<span class="fc" id="L181">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L182">    closable = response.getClosable();</span>
-<span class="fc" id="L183">  }</span>
+<span class="fc" id="L183">    status = response.getStatus();</span>
+<span class="fc" id="L184">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L185">    initializable = response.getInitializable();</span>
+<span class="fc" id="L186">    controllable = response.getControllable();</span>
+<span class="fc" id="L187">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L188">    closable = response.getClosable();</span>
+<span class="fc" id="L189">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -241,6 +247,11 @@ import lombok.Setter;
    * Identifiant json champ {@link #initializable}.
    */
   public static final String JSON_INITIALIZABLE = &quot;initialisable&quot;;
+
+  /**
+   * Identifiant json champ {@link #initializationRunning}.
+   */
+  public static final String JSON_INITIALIZATION_RUNNING = &quot;initialisationEnCours&quot;;
 
   /**
    * Identifiant json champ {@link #initializationResumableFromCheckpoint}.
