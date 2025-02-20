@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetarySectionUnitMovementFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">BudgetarySectionUnitMovementFilter.java</span></div><h1>BudgetarySectionUnitMovementFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link BudgetarySectionUnitMovementDto}.
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+public class BudgetarySectionUnitMovementFilter extends AbstractIdentifiableFilter {
+  /**
+     * Identifiant du fonctionnaire.
+     */
+  String functionaryIdentifier;
+  /**
+  * Identifiant du service.
+  */
+  String budgetarySectionUnitIdentifier;
+  
+  /**
+  * Identifiant du suivi mouvement.
+  */
+  String movementTrackingIdentifier;
+  
+  /**
+  * Cette méthode permet d'instantier un objet.
+  *
+  * @param dto filtre
+  */
+  public BudgetarySectionUnitMovementFilter(FilterDto dto) {
+<span class="fc" id="L37">    super(dto);</span>
+<span class="fc" id="L38">  }</span>
+  
+  /**
+  * Cette méthode permet d'instantier un objet.
+  */
+<span class="fc" id="L43">  public BudgetarySectionUnitMovementFilter() {}</span>
+  
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L47">    super.doInitialize(filter);</span>
+<span class="fc" id="L48">    functionaryIdentifier = getFunctionaryIdentifier(filter);</span>
+<span class="fc" id="L49">    budgetarySectionUnitIdentifier = getBudgetarySectionUnitIdentifier(filter);</span>
+<span class="fc" id="L50">    movementTrackingIdentifier = getMovementTrackingIdentifier(filter);</span>
+<span class="fc" id="L51">  }</span>
+  
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L55">    super.toDto(filter);</span>
+<span class="fc" id="L56">    setFunctionaryIdentifier(filter, functionaryIdentifier);</span>
+<span class="fc" id="L57">    setBudgetarySectionUnitIdentifier(filter, budgetarySectionUnitIdentifier);</span>
+<span class="fc" id="L58">    setMovementTrackingIdentifier(filter, movementTrackingIdentifier);</span>
+<span class="fc" id="L59">  }</span>
+  
+  /**
+  * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
+  *
+  * @param filter filtre
+  * @param identifier identifiant
+  */
+  public static void setFunctionaryIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L68">    set(filter, JSON_FUNCTIONARY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L70">  }</span>
+  
+  /**
+  * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
+  *
+  * @param filter filtre
+  * @return identifiant du fonctionnaire
+  */
+  public static String getFunctionaryIdentifier(FilterDto filter) {
+<span class="fc" id="L79">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_IDENTIFIER));</span>
+  }
+  
+  /**
+  * Cette méthode permet d'assigner l'identifiant du service.
+  *
+  * @param filter filtre
+  * @param identifier identifiant
+  */
+  public static void setBudgetarySectionUnitIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L89">    set(filter, JSON_BUDGETARY_SECTION_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L90">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L91">  }</span>
+  
+  /**
+  * Cette méthode permet d'obtenir l'identifiant du service.
+  *
+  * @param filter filtre
+  * @return identifiant du service
+  */
+  public static String getBudgetarySectionUnitIdentifier(FilterDto filter) {
+<span class="fc" id="L100">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_BUDGETARY_SECTION_UNIT_IDENTIFIER));</span>
+  }
+  
+  /**
+  * Cette méthode permet d'assigner l'identifiant du suivi de mouvement.
+  *
+  * @param filter filtre
+  * @param identifier identifiant
+  */
+  public static void setMovementTrackingIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L110">    set(filter, JSON_MOVEMENT_TRACKING_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L111">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L112">  }</span>
+  
+  /**
+  * Cette méthode permet d'obtenir l'identifiant du suivi de mouvement.
+  *
+  * @param filter filtre
+  * @return identifiant du suivi de mouvement
+  */
+  public static String getMovementTrackingIdentifier(FilterDto filter) {
+<span class="fc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_MOVEMENT_TRACKING_IDENTIFIER));</span>
+  }
+  
+  /**
+  * Identifiant json champ {@link BudgetarySectionUnitMovementFilter#functionaryIdentifier}.
+  */
+  public static final String JSON_FUNCTIONARY_IDENTIFIER = 
+          BudgetarySectionUnitMovementDto.JSON_FUNCTIONARY_IDENTIFIER;
+  
+  /**
+  * Identifiant json champ {@link BudgetarySectionUnitMovementFilter
+  * #budgetarySectionUnitIdentifier}.
+  */
+  public static final String JSON_BUDGETARY_SECTION_UNIT_IDENTIFIER = 
+          BudgetarySectionUnitMovementDto.JSON_BUDGETARY_SECTION_UNIT_IDENTIFIER;
+  
+  /**
+  * Identifiant json champ {@link BudgetarySectionUnitMovementFilter#movementTrackingIdentifier}.
+  */
+  public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = 
+                BudgetarySectionUnitMovementDto.JSON_MOVEMENT_TRACKING_IDENTIFIER;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
