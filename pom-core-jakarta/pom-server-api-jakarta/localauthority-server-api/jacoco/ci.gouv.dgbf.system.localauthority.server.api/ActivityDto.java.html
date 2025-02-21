@@ -139,27 +139,27 @@ import lombok.Setter;
   /**
    * Identifiant de l'activité à laquelle on fait référence.
    */
-  @JsonbProperty(REFERENCED_ACTIVITY_IDENTIFIER)
+  @JsonbProperty(JSON_REFERENCED_ACTIVITY_IDENTIFIER)
   private String referencedActivityIdentifier;
 
 
   /**
    * Représentation en chaine de caractère de la l'activité de référence.
    */
-  @JsonbProperty(REFERENCED_ACTIVITY_AS_STRING)
+  @JsonbProperty(JSON_REFERENCED_ACTIVITY_AS_STRING)
   private String referencedActivityAsString;
 
 
   /**
    * Référence au PND.
    */
-  @JsonbProperty(PND_REFERENCE)
+  @JsonbProperty(JSON_PND_REFERENCE)
   private String pndReference;
 
   /**
    * Référence eventuelle.
    */
-  @JsonbProperty(EVENTUAL_REFERENCE)
+  @JsonbProperty(JSON_EVENTUAL_REFERENCE)
   private String eventualReference;
 
   /**
@@ -280,24 +280,24 @@ import lombok.Setter;
   /**
    * Identifiant json de l'activité de référence {@link #referencedActivityIdentifier}.
    */
-  public static final String REFERENCED_ACTIVITY_IDENTIFIER = &quot;identifiantActiviteDeReference&quot;;
+  public static final String JSON_REFERENCED_ACTIVITY_IDENTIFIER = &quot;identifiantActiviteDeReference&quot;;
 
   /**
    * Identifiant json de l'activité de référence {@link #referencedActivityAsString}.
    */
-  public static final String REFERENCED_ACTIVITY_AS_STRING = &quot;ActiviteDeReferenceChaine&quot;;
+  public static final String JSON_REFERENCED_ACTIVITY_AS_STRING = &quot;ActiviteDeReferenceChaine&quot;;
 
 
 
   /**
    * Identifiant json de la référence au PND {@link #pndReference}.
    */
-  public static final String PND_REFERENCE = &quot;referencePND&quot;;
+  public static final String JSON_PND_REFERENCE = &quot;referencePND&quot;;
 
   /**
    * Identifiant json de la référence eventuelle {@link #eventualReference}.
    */
-  public static final String EVENTUAL_REFERENCE = &quot;referenceEventuelle&quot;;
+  public static final String JSON_EVENTUAL_REFERENCE = &quot;referenceEventuelle&quot;;
 
 
   /**
