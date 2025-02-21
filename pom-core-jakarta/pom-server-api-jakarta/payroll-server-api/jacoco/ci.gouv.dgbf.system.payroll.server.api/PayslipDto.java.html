@@ -40,7 +40,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
-  
+
   /**
    * Identifiant {@link FunctionaryBudgetarySectionUnitDto}.
    */
@@ -60,6 +60,12 @@ import lombok.Setter;
   private String budgetarySectionUnitAsString;
 
   /**
+   * Représentation en chaine de caractère de la section.
+   */
+  @JsonbProperty(JSON_BUDGETARY_SECTION_AS_STRING)
+  private String budgetarySectionAsString;
+
+  /**
    * Matricule.
    */
   @JsonbProperty(JSON_REGISTRATION_NUMBER)
@@ -70,6 +76,30 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_FIRST_NAME_AND_LAST_NAMES)
   private String firstNameAndLastNames;
+
+  /**
+   * Représentation en chaine de caractère de l'indice.
+   */
+  @JsonbProperty(JSON_PAY_INDEX_AS_STRING)
+  private String payIndexAsString;
+
+  /**
+   * Représentation en chaine de caractère de la fonction.
+   */
+  @JsonbProperty(JSON_FUNCTION_AS_STRING)
+  private String functionAsString;
+
+  /**
+   * Représentation en chaine de caractère du service.
+   */
+  @JsonbProperty(JSON_LOCALITY_AS_STRING)
+  private String localityAsString;
+
+  /**
+   * Représentation en chaine de caractère du nombre d'enfants.
+   */
+  @JsonbProperty(JSON_CHILDREN_COUNT_AS_STRING)
+  private String childrenCountAsString;
 
   /*-- Début définition des montants --*/
 
@@ -152,7 +182,7 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
-  
+
   /**
    * Identifiant json {@link #functionaryBudgetarySectionUnitIdentifier}.
    */
@@ -168,9 +198,33 @@ import lombok.Setter;
   /**
    * Identifiant json {@link #budgetarySectionUnitAsString}.
    */
-  public static final String JSON_BUDGETARY_SECTION_UNIT_AS_STRING =
-      &quot;uniteSectionBudgetaireChaine&quot;;
+  public static final String JSON_BUDGETARY_SECTION_UNIT_AS_STRING = &quot;uniteSectionBudgetaireChaine&quot;;
 
+  /**
+   * Identifiant json {@link #budgetarySectionAsString}.
+   */
+  public static final String JSON_BUDGETARY_SECTION_AS_STRING = &quot;sectionBudgetaireChaine&quot;;
+
+  /**
+   * Identifiant json {@link #payIndexAsString}.
+   */
+  public static final String JSON_PAY_INDEX_AS_STRING = &quot;indiceChaine&quot;;
+
+  /**
+   * Identifiant json {@link #functionAsString}.
+   */
+  public static final String JSON_FUNCTION_AS_STRING = &quot;fonctionChaine&quot;;
+
+  /**
+   * Identifiant json {@link #localityAsString}.
+   */
+  public static final String JSON_LOCALITY_AS_STRING = &quot;localiteChaine&quot;;
+
+  /**
+   * Identifiant json {@link #childrenCountAsString}.
+   */
+  public static final String JSON_CHILDREN_COUNT_AS_STRING = &quot;nombreEnfantChaine&quot;;
+  
   /**
    * Identifiant json {@link #registrationNumber}.
    */
