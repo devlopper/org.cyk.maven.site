@@ -36,6 +36,12 @@ import lombok.Setter;
   private String payrollComponentAsString;
 
   /**
+   * Est un gain.
+   */
+  @JsonbProperty(JSON_IS_EARNING)
+  private Boolean isEarning;
+  
+  /**
    * Montant employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_AMOUNT)
@@ -85,6 +91,11 @@ import lombok.Setter;
    */
   public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;posteChaine&quot;;
 
+  /**
+   * Identifiant json {@link #isEarning}.
+   */
+  public static final String JSON_IS_EARNING = &quot;estGain&quot;;
+  
   /**
    * Identifiant json {@link #employeeAmount}.
    */
