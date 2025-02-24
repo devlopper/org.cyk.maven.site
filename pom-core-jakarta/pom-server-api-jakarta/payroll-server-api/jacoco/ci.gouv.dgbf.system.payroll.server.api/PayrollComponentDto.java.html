@@ -30,6 +30,30 @@ import lombok.Setter;
   private String isEarningAsString;
   
   /**
+   * Est taxable.
+   */
+  @JsonbProperty(JSON_IS_TAXABLE)
+  private Boolean isTaxable;
+  
+  /**
+   * Représentation en chaine de caractères de {@link #isTaxable}.
+   */
+  @JsonbProperty(JSON_IS_TAXABLE_AS_STRING)
+  private String isTaxableAsString;
+  
+  /**
+   * Est pensionnable.
+   */
+  @JsonbProperty(JSON_IS_PENSIONABLE)
+  private Boolean isPensionable;
+  
+  /**
+   * Représentation en chaine de caractères de {@link #isPensionable}.
+   */
+  @JsonbProperty(JSON_IS_PENSIONABLE_AS_STRING)
+  private String isPensionableAsString;
+  
+  /**
    * Identifiant {@link Script} employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
@@ -72,6 +96,26 @@ import lombok.Setter;
    * Identifiant json {@link #isEarningAsString}.
    */
   public static final String JSON_IS_EARNING_AS_STRING = JSON_IS_EARNING + &quot;Chaine&quot;;
+  
+  /**
+   * Identifiant json {@link #isTaxable}.
+   */
+  public static final String JSON_IS_TAXABLE = &quot;estTaxable&quot;;
+
+  /**
+   * Identifiant json {@link #isTaxableAsString}.
+   */
+  public static final String JSON_IS_TAXABLE_AS_STRING = JSON_IS_TAXABLE + &quot;Chaine&quot;;
+  
+  /**
+   * Identifiant json {@link #isPensionable}.
+   */
+  public static final String JSON_IS_PENSIONABLE = &quot;estPensionnable&quot;;
+
+  /**
+   * Identifiant json {@link #isPensionableAsString}.
+   */
+  public static final String JSON_IS_PENSIONABLE_AS_STRING = JSON_IS_PENSIONABLE + &quot;Chaine&quot;;
   
   /**
    * Identifiant json {@link #employeeCalculationFormulaIdentifier}.

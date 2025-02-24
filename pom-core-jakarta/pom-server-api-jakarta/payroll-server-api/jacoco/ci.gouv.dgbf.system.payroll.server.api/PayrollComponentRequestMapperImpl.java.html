@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-02-24T10:18:43+0000&quot;,
+    date = &quot;2025-02-24T12:51:21+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -28,28 +28,32 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L28">        payrollComponentCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        payrollComponentCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L30">        payrollComponentCreateRequestDto.setIsEarning( arg0.getIsEarning() );</span>
-<span class="fc" id="L31">        payrollComponentCreateRequestDto.setEmployeeCalculationFormulaIdentifier( arg0.getEmployeeCalculationFormulaIdentifier() );</span>
-<span class="fc" id="L32">        payrollComponentCreateRequestDto.setEmployerCalculationFormulaIdentifier( arg0.getEmployerCalculationFormulaIdentifier() );</span>
+<span class="fc" id="L31">        payrollComponentCreateRequestDto.setIsTaxable( arg0.getIsTaxable() );</span>
+<span class="fc" id="L32">        payrollComponentCreateRequestDto.setIsPensionable( arg0.getIsPensionable() );</span>
+<span class="fc" id="L33">        payrollComponentCreateRequestDto.setEmployeeCalculationFormulaIdentifier( arg0.getEmployeeCalculationFormulaIdentifier() );</span>
+<span class="fc" id="L34">        payrollComponentCreateRequestDto.setEmployerCalculationFormulaIdentifier( arg0.getEmployerCalculationFormulaIdentifier() );</span>
 
-<span class="fc" id="L34">        return payrollComponentCreateRequestDto;</span>
+<span class="fc" id="L36">        return payrollComponentCreateRequestDto;</span>
     }
 
     @Override
     public PayrollComponentService.PayrollComponentUpdateRequestDto mapUpdate(PayrollComponentDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L43">        PayrollComponentService.PayrollComponentUpdateRequestDto payrollComponentUpdateRequestDto = new PayrollComponentService.PayrollComponentUpdateRequestDto();</span>
+<span class="fc" id="L45">        PayrollComponentService.PayrollComponentUpdateRequestDto payrollComponentUpdateRequestDto = new PayrollComponentService.PayrollComponentUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        payrollComponentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        payrollComponentUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L47">        payrollComponentUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L48">        payrollComponentUpdateRequestDto.setIsEarning( arg0.getIsEarning() );</span>
-<span class="fc" id="L49">        payrollComponentUpdateRequestDto.setEmployeeCalculationFormulaIdentifier( arg0.getEmployeeCalculationFormulaIdentifier() );</span>
-<span class="fc" id="L50">        payrollComponentUpdateRequestDto.setEmployerCalculationFormulaIdentifier( arg0.getEmployerCalculationFormulaIdentifier() );</span>
+<span class="fc" id="L47">        payrollComponentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        payrollComponentUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L49">        payrollComponentUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L50">        payrollComponentUpdateRequestDto.setIsEarning( arg0.getIsEarning() );</span>
+<span class="fc" id="L51">        payrollComponentUpdateRequestDto.setIsTaxable( arg0.getIsTaxable() );</span>
+<span class="fc" id="L52">        payrollComponentUpdateRequestDto.setIsPensionable( arg0.getIsPensionable() );</span>
+<span class="fc" id="L53">        payrollComponentUpdateRequestDto.setEmployeeCalculationFormulaIdentifier( arg0.getEmployeeCalculationFormulaIdentifier() );</span>
+<span class="fc" id="L54">        payrollComponentUpdateRequestDto.setEmployerCalculationFormulaIdentifier( arg0.getEmployerCalculationFormulaIdentifier() );</span>
 
-<span class="fc" id="L52">        return payrollComponentUpdateRequestDto;</span>
+<span class="fc" id="L56">        return payrollComponentUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

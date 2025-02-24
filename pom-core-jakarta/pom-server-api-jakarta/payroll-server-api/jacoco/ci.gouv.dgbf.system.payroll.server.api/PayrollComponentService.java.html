@@ -65,6 +65,34 @@ public interface PayrollComponentService extends SpecificService {
     void setIsEarning(Boolean isEarning);
 
     /**
+     * Cette méthode permet d'obtenir vrai si c'est taxable sinon faux.
+     *
+     * @return vrai si c'est taxable sinon faux
+     */
+    Boolean getIsTaxable();
+
+    /**
+     * Cette méthode permet d'assigner vrai si c'est taxable sinon faux.
+     *
+     * @param isTaxable vrai si c'est taxable sinon faux
+     */
+    void setIsTaxable(Boolean isTaxable);
+
+    /**
+     * Cette méthode permet d'obtenir vrai si c'est pensionnable sinon faux.
+     *
+     * @return vrai si c'est pensionnable sinon faux
+     */
+    Boolean getIsPensionable();
+
+    /**
+     * Cette méthode permet d'assigner vrai si c'est pensionnable sinon faux.
+     *
+     * @param isPensionable vrai si c'est pensionnable sinon faux
+     */
+    void setIsPensionable(Boolean isPensionable);
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant de la formule de calcul employé.
      *
      * @return identifiant de la formule de calcul employé
@@ -96,6 +124,16 @@ public interface PayrollComponentService extends SpecificService {
      * {@link PayrollComponentDto#JSON_IS_EARNING}.
      */
     String JSON_IS_EARNING = PayrollComponentDto.JSON_IS_EARNING;
+
+    /**
+     * {@link PayrollComponentDto#JSON_IS_TAXABLE}.
+     */
+    String JSON_IS_TAXABLE = PayrollComponentDto.JSON_IS_TAXABLE;
+
+    /**
+     * {@link PayrollComponentDto#JSON_IS_PENSIONABLE}.
+     */
+    String JSON_IS_PENSIONABLE = PayrollComponentDto.JSON_IS_PENSIONABLE;
 
     /**
      * {@link PayrollComponentDto#JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER}.
@@ -143,11 +181,17 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L184">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
 
     @JsonbProperty(JSON_IS_EARNING)
     private Boolean isEarning;
+
+    @JsonbProperty(JSON_IS_TAXABLE)
+    private Boolean isTaxable;
+
+    @JsonbProperty(JSON_IS_PENSIONABLE)
+    private Boolean isPensionable;
 
     @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
     private String employeeCalculationFormulaIdentifier;
@@ -189,7 +233,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L192">  public static class PayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L236">  public static class PayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -279,10 +323,16 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L282">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L326">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
     @JsonbProperty(JSON_IS_EARNING)
     private Boolean isEarning;
+
+    @JsonbProperty(JSON_IS_TAXABLE)
+    private Boolean isTaxable;
+
+    @JsonbProperty(JSON_IS_PENSIONABLE)
+    private Boolean isPensionable;
 
     @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
     private String employeeCalculationFormulaIdentifier;
