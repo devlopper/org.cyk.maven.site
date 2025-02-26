@@ -111,6 +111,38 @@ public interface ScriptEvaluationService extends SpecificService {
   }
 
   /**
+   * Cette classe représente la réponse du service de création.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L120">  class ScriptEvaluationCreateResponseDto extends CreateResponseDto {</span>
+    /**
+     * Représentation en chaine de caractères du résultat.
+     */
+    @JsonbProperty(JSON_RESULT_AS_STRING)
+    private String resultAsString;
+
+    /**
+     * Format de {@link #resultAsString}.
+     */
+    @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
+    private StringFormat resultAsStringFormat;
+
+    /**
+     * Identifiant json {@link #resultAsString}.
+     */
+    public static final String JSON_RESULT_AS_STRING = ScriptEvaluationDto.JSON_RESULT_AS_STRING;
+
+    /**
+     * Identifiant json {@link #resultAsStringFormat}.
+     */
+    public static final String JSON_RESULT_AS_STRING_FORMAT =
+        ScriptEvaluationDto.JSON_RESULT_AS_STRING_FORMAT;
+  }
+
+  /**
    * Identifiant du service de création.
    */
   String CREATE_IDENTIFIER = &quot;CREATION_EVALUATION_SCRIPT&quot;;
@@ -131,8 +163,8 @@ public interface ScriptEvaluationService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(operationId = CREATE_IDENTIFIER)
-  @APIResponse(responseCode = &quot;201&quot;,
-      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  @APIResponse(responseCode = &quot;201&quot;, content = {
+      @Content(schema = @Schema(implementation = ScriptEvaluationCreateResponseDto.class))})
   Response create(ScriptEvaluationCreateRequestDto request);
 
   /**
@@ -143,14 +175,14 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  class ScriptEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L178">  class ScriptEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ScriptEvaluationSaveRequestDto {
     @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
     private String scriptIdentifier;
 
     @JsonbProperty(JSON_ARGUMENTS)
     private Map&lt;String, Object&gt; arguments;
-    
+
     @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
     private StringFormat resultAsStringFormat;
   }
@@ -188,7 +220,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L191">  public static class ScriptEvaluationGetManyResponseDto</span>
+<span class="fc" id="L223">  public static class ScriptEvaluationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptEvaluationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -278,14 +310,14 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L281">  class ScriptEvaluationUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L313">  class ScriptEvaluationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ScriptEvaluationSaveRequestDto {
     @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
     private String scriptIdentifier;
 
     @JsonbProperty(JSON_ARGUMENTS)
     private Map&lt;String, Object&gt; arguments;
-    
+
     @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
     private StringFormat resultAsStringFormat;
   }
