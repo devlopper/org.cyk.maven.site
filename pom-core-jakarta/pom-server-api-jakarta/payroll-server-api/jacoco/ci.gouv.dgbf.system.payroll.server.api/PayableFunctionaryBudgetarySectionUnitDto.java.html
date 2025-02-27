@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayableFunctionaryBudgetarySectionUnitDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayableFunctionaryBudgetarySectionUnitDto.java</span></div><h1>PayableFunctionaryBudgetarySectionUnitDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente {@link FunctionaryDto} de {@link BudgetarySectionUnitDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class PayableFunctionaryBudgetarySectionUnitDto extends AbstractIdentifiableDto {</span>
+
+  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
+  private String functionaryBudgetarySectionUnitIdentifier;
+
+  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_AS_STRING)
+  private String functionaryBudgetarySectionUnitAsString;
+
+  @JsonbProperty(JSON_FUNCTIONARY_AS_STRING)
+  private String functionaryAsString;
+
+  @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_AS_STRING)
+  private String budgetarySectionUnitAsString;
+
+  @JsonbProperty(JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+  
+  /**
+   * Identifiant json de identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idFonctionnaireUniteSectionBudgetairePayable&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de
+   * {@link FunctionaryBudgetarySectionUnitDto}.
+   */
+  public static final String JSON_THIS_AS_STRING =
+      &quot;fonctionnaireUniteSectionBudgetairePayableChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #functionaryBudgetarySectionUnitIdentifier}.
+   */
+  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER =
+      FunctionaryBudgetarySectionUnitDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #functionaryBudgetarySectionUnitAsString}.
+   */
+  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_AS_STRING =
+      FunctionaryBudgetarySectionUnitDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #functionaryAsString}.
+   */
+  public static final String JSON_FUNCTIONARY_AS_STRING = &quot;fonctionnaireChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #budgetarySectionUnitAsString}.
+   */
+  public static final String JSON_BUDGETARY_SECTION_UNIT_AS_STRING =
+      BudgetarySectionUnitDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;fonctionnaire d'unité de section budgétaire payable&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;fonctionnaires d'unité de section budgétaire payable&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
