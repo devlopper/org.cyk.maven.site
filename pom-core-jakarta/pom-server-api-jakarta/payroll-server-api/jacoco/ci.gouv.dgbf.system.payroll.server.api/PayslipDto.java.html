@@ -30,6 +30,18 @@ import lombok.Setter;
   private String payrollAsString;
 
   /**
+   * Identifiant {@link RemunerableDto}.
+   */
+  @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
+  private String remunerableIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de {@link RemunerableDto}.
+   */
+  @JsonbProperty(JSON_REMUNERABLE_AS_STRING)
+  private String remunerableAsString;
+  
+  /**
    * {@link PayslipStatus}.
    */
   @JsonbProperty(JSON_STATUS)
@@ -173,6 +185,16 @@ import lombok.Setter;
    */
   public static final String JSON_PAYROLL_AS_STRING = PayrollDto.JSON_THIS_AS_STRING;
 
+  /**
+   * Identifiant json {@link #remunerableIdentifier}.
+   */
+  public static final String JSON_REMUNERABLE_IDENTIFIER = RemunerableDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #remunerableAsString}.
+   */
+  public static final String JSON_REMUNERABLE_AS_STRING = RemunerableDto.JSON_THIS_AS_STRING;
+  
   /**
    * Identifiant json champ {@link #status}.
    */
