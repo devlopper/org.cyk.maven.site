@@ -88,7 +88,7 @@ public interface SectionUnitService extends SpecificService {
   @Setter
 <span class="fc" id="L89">  class SectionUnitCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements SectionUnitSaveRequestDto {
-
+    private String sectionIdentifier;
   }
 
   /**
@@ -216,6 +216,7 @@ public interface SectionUnitService extends SpecificService {
   @Setter
 <span class="fc" id="L217">  class SectionUnitUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SectionUnitSaveRequestDto {
+    private String sectionIdentifier;
 
   }
 
