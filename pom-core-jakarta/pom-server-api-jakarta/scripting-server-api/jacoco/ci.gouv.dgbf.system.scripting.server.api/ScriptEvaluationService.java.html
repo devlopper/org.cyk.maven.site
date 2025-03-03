@@ -9,6 +9,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateManyResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -20,6 +21,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import lombok.Getter;
@@ -46,26 +48,12 @@ public interface ScriptEvaluationService extends SpecificService {
   String PATH = &quot;evaluations-scripts&quot;;
 
   /**
-   * Cette interface représente une requête d'enregistrement.
+   * Cette interface représente la base de requête d'enregistrement.
    *
    * @author Christian
    *
    */
-  interface ScriptEvaluationSaveRequestDto {
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link ScriptDto}.
-     *
-     * @return identifiant de {@link ScriptDto}
-     */
-    String getScriptIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link ScriptDto}.
-     *
-     * @param scriptIdentifier identifiant de {@link ScriptDto}
-     */
-    void setScriptIdentifier(String scriptIdentifier);
-
+  interface ScriptEvaluationBaseSaveRequestDto {
     /**
      * Cette méthode permet d'obtenir les arguments.
      *
@@ -95,11 +83,6 @@ public interface ScriptEvaluationService extends SpecificService {
     void setResultAsStringFormat(StringFormat resultAsStringFormat);
 
     /**
-     * Identifiant json identifiant de {@link ScriptDto}.
-     */
-    String JSON_SCRIPT_IDENTIFIER = ScriptEvaluationDto.JSON_SCRIPT_IDENTIFIER;
-
-    /**
      * Identifiant json des arguments.
      */
     String JSON_ARGUMENTS = ScriptEvaluationDto.JSON_ARGUMENTS;
@@ -111,13 +94,60 @@ public interface ScriptEvaluationService extends SpecificService {
   }
 
   /**
-   * Cette classe représente la réponse du service de création.
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface ScriptEvaluationSaveRequestDto extends ScriptEvaluationBaseSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ScriptDto}.
+     *
+     * @return identifiant de {@link ScriptDto}
+     */
+    String getScriptIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ScriptDto}.
+     *
+     * @param scriptIdentifier identifiant de {@link ScriptDto}
+     */
+    void setScriptIdentifier(String scriptIdentifier);
+
+    /**
+     * Identifiant json identifiant de {@link ScriptDto}.
+     */
+    String JSON_SCRIPT_IDENTIFIER = ScriptEvaluationDto.JSON_SCRIPT_IDENTIFIER;
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L131">  class ScriptEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements ScriptEvaluationSaveRequestDto {
+    @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
+    private String scriptIdentifier;
+
+    @JsonbProperty(JSON_ARGUMENTS)
+    private Map&lt;String, Object&gt; arguments;
+
+    @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
+    private StringFormat resultAsStringFormat;
+  }
+
+  /**
+   * Cette classe représente la réponse de création.
    *
    * @author Christian
    */
   @Getter
   @Setter
-<span class="fc" id="L120">  class ScriptEvaluationCreateResponseDto extends CreateResponseDto {</span>
+<span class="fc" id="L150">  class ScriptEvaluationCreateResponseDto extends CreateResponseDto {</span>
     /**
      * Représentation en chaine de caractères du résultat.
      */
@@ -168,24 +198,106 @@ public interface ScriptEvaluationService extends SpecificService {
   Response create(ScriptEvaluationCreateRequestDto request);
 
   /**
-   * Cette classe représente la requête de création.
+   * Cette classe représente la requête de création de plusieurs.
    *
    * @author Christian
    *
    */
   @Getter
   @Setter
-<span class="fc" id="L178">  class ScriptEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
-      implements ScriptEvaluationSaveRequestDto {
-    @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
-    private String scriptIdentifier;
+<span class="fc" id="L208">  class ScriptEvaluationCreateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements ScriptEvaluationBaseSaveRequestDto {
+    @JsonbProperty(JSON_SCRIPT_IDENTIFIERS)
+    private Map&lt;String, Integer&gt; scriptIdentifiers;
 
     @JsonbProperty(JSON_ARGUMENTS)
     private Map&lt;String, Object&gt; arguments;
 
     @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
     private StringFormat resultAsStringFormat;
+
+    /**
+     * Identifiant json {@link #scriptIdentifiers}.
+     */
+    public static final String JSON_SCRIPT_IDENTIFIERS = ScriptDto.JSON_THIS_IDENTIFIER;
   }
+
+  /**
+   * Cette classe représente la réponse de création de plusieurs.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L232">  class ScriptEvaluationCreateManyResponseDto extends CreateManyResponseDto {</span>
+    /**
+     * Collection de {@link ResultDto}.
+     */
+    @JsonbProperty(JSON_RESULTS)
+    private Collection&lt;ResultDto&gt; results;
+
+    /**
+     * Format de {@link ResultDto#valueAsString}.
+     */
+    @JsonbProperty(JSON_RESULT_VALUE_AS_STRING_FORMAT)
+    private StringFormat resultValueAsStringFormat;
+
+    /**
+     * Identifiant json {@link #results}.
+     */
+    public static final String JSON_RESULTS = &quot;resultats&quot;;
+    
+    /**
+     * Identifiant json {@link #resultValueAsStringFormat}.
+     */
+    public static final String JSON_RESULT_VALUE_AS_STRING_FORMAT =
+        ScriptEvaluationDto.JSON_RESULT_AS_STRING_FORMAT;
+    
+    /**
+     * Cette classe représente un résultat.
+     *
+     * @author Christian
+     */
+    @Getter
+    @Setter
+<span class="fc" id="L263">    public static class ResultDto extends OrderedIdentifierDto {</span>
+      /**
+       * Représentation en chaine de caractères de la valeur.
+       */
+      @JsonbProperty(JSON_VALUE_AS_STRING)
+      private String valueAsString;
+      
+      /**
+       * Identifiant json {@link #valueAsString}.
+       */
+      public static final String JSON_VALUE_AS_STRING = &quot;valeurChaine&quot;;
+    }
+  }
+
+  /**
+   * Identifiant du service de création de plusieurs.
+   */
+  String CREATE_MANY_IDENTIFIER = &quot;CREATION_PLUSIEURS_EVALUATION_SCRIPT&quot;;
+
+  /**
+   * Chemin du service de création de plusieurs.
+   */
+  String CREATE_MANY_PATH = &quot;creation/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet de créer plusieurs {@link ScriptEvaluationDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ScriptEvaluationCreateManyResponseDto.class))})
+  Response createMany(ScriptEvaluationCreateManyRequestDto request);
 
   /**
    * Identifiant du service d'obtention de plusieurs.
@@ -220,7 +332,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L223">  public static class ScriptEvaluationGetManyResponseDto</span>
+<span class="fc" id="L335">  public static class ScriptEvaluationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptEvaluationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -310,7 +422,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L313">  class ScriptEvaluationUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L425">  class ScriptEvaluationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ScriptEvaluationSaveRequestDto {
     @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
     private String scriptIdentifier;

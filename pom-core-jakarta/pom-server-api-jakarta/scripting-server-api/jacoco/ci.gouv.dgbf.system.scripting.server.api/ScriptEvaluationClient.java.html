@@ -14,6 +14,8 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.scripting.server.api.ScriptEvaluationService.ScriptEvaluationCreateManyRequestDto;
+import ci.gouv.dgbf.system.scripting.server.api.ScriptEvaluationService.ScriptEvaluationCreateManyResponseDto;
 import ci.gouv.dgbf.system.scripting.server.api.ScriptEvaluationService.ScriptEvaluationCreateRequestDto;
 import ci.gouv.dgbf.system.scripting.server.api.ScriptEvaluationService.ScriptEvaluationCreateResponseDto;
 import ci.gouv.dgbf.system.scripting.server.api.ScriptEvaluationService.ScriptEvaluationGetManyResponseDto;
@@ -32,13 +34,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L35">public class ScriptEvaluationClient extends AbstractClient&lt;ScriptEvaluationService&gt;</span>
+<span class="fc" id="L37">public class ScriptEvaluationClient extends AbstractClient&lt;ScriptEvaluationService&gt;</span>
     implements GetByIdentifier&lt;ScriptEvaluationDto&gt;, GetMany&lt;ScriptEvaluationGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public ScriptEvaluationClient service(ScriptEvaluationService service) {
-<span class="fc" id="L41">    return (ScriptEvaluationClient) super.service(service);</span>
+<span class="fc" id="L43">    return (ScriptEvaluationClient) super.service(service);</span>
   }
 
   /**
@@ -48,7 +50,18 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ScriptEvaluationCreateResponseDto create(ScriptEvaluationCreateRequestDto request) {
-<span class="fc" id="L51">    return new ScriptEvaluationCreateExecutor().execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L53">    return new ScriptEvaluationCreateExecutor().execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link ScriptEvaluationService#createMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ScriptEvaluationCreateManyResponseDto createMany(
+      ScriptEvaluationCreateManyRequestDto request) {
+<span class="fc" id="L64">    return new ScriptEvaluationCreateManyExecutor().execute(() -&gt; service().createMany(request));</span>
   }
 
   /**
@@ -58,9 +71,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ScriptEvaluationGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L61">    return new GetOneExecutor&lt;ScriptEvaluationGetManyResponseDto&gt;(</span>
+<span class="fc" id="L74">    return new GetOneExecutor&lt;ScriptEvaluationGetManyResponseDto&gt;(</span>
         ScriptEvaluationGetManyResponseDto.class, ScriptEvaluationService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L63">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L76">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -76,13 +89,13 @@ import lombok.experimental.Accessors;
   @Override
   public ScriptEvaluationGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L79">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L80">    request.setProjection(projection);</span>
-<span class="fc" id="L81">    request.setFilter(filter);</span>
-<span class="fc" id="L82">    request.setPage(page);</span>
-<span class="fc" id="L83">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L84">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L85">    return getMany(request);</span>
+<span class="fc" id="L92">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L93">    request.setProjection(projection);</span>
+<span class="fc" id="L94">    request.setFilter(filter);</span>
+<span class="fc" id="L95">    request.setPage(page);</span>
+<span class="fc" id="L96">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L97">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L98">    return getMany(request);</span>
   }
 
   /**
@@ -92,8 +105,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ScriptEvaluationDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L95">    return new GetOneExecutor&lt;ScriptEvaluationDto&gt;(ScriptEvaluationDto.class,</span>
-<span class="fc" id="L96">        ScriptEvaluationService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L108">    return new GetOneExecutor&lt;ScriptEvaluationDto&gt;(ScriptEvaluationDto.class,</span>
+<span class="fc" id="L109">        ScriptEvaluationService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -107,12 +120,12 @@ import lombok.experimental.Accessors;
    */
   public ScriptEvaluationDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L110">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L111">    request.setProjection(projection);</span>
-<span class="fc" id="L112">    request.setFilter(filter);</span>
-<span class="fc" id="L113">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L114">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L115">    return getOne(request);</span>
+<span class="fc" id="L123">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L124">    request.setProjection(projection);</span>
+<span class="fc" id="L125">    request.setFilter(filter);</span>
+<span class="fc" id="L126">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L127">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L128">    return getOne(request);</span>
   }
 
   /**
@@ -122,9 +135,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public ScriptEvaluationDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L125">    return new GetOneExecutor&lt;ScriptEvaluationDto&gt;(ScriptEvaluationDto.class,</span>
+<span class="fc" id="L138">    return new GetOneExecutor&lt;ScriptEvaluationDto&gt;(ScriptEvaluationDto.class,</span>
         ScriptEvaluationService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L127">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L140">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -139,12 +152,12 @@ import lombok.experimental.Accessors;
   @Override
   public ScriptEvaluationDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L142">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L143">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L144">    request.setProjection(projection);</span>
-<span class="fc" id="L145">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L146">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L147">    return getByIdentifier(request);</span>
+<span class="fc" id="L155">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L156">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L157">    request.setProjection(projection);</span>
+<span class="fc" id="L158">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L159">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L160">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -154,8 +167,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(ScriptEvaluationUpdateRequestDto request) {
-<span class="fc" id="L157">    return new IdentifiableExecutor(ScriptEvaluationService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L158">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L170">    return new IdentifiableExecutor(ScriptEvaluationService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L171">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -165,8 +178,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L168">    return new IdentifiableExecutor(ScriptEvaluationService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L169">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L181">    return new IdentifiableExecutor(ScriptEvaluationService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L182">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -180,19 +193,30 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L183">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L184">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L185">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L186">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L187">    return delete(request);</span>
+<span class="fc" id="L196">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L197">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L198">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L199">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L200">    return delete(request);</span>
   }
 
   class ScriptEvaluationCreateExecutor extends GetOneExecutor&lt;ScriptEvaluationCreateResponseDto&gt; {
 
-<span class="fc" id="L192">    public ScriptEvaluationCreateExecutor() {</span>
-<span class="fc" id="L193">      super(ScriptEvaluationCreateResponseDto.class, ScriptEvaluationService.CREATE_IDENTIFIER);</span>
-<span class="fc" id="L194">      expectedResponseStatusCode = Response.Status.CREATED.getStatusCode();</span>
-<span class="fc" id="L195">    }</span>
+<span class="fc" id="L205">    public ScriptEvaluationCreateExecutor() {</span>
+<span class="fc" id="L206">      super(ScriptEvaluationCreateResponseDto.class, ScriptEvaluationService.CREATE_IDENTIFIER);</span>
+<span class="fc" id="L207">      expectedResponseStatusCode = Response.Status.CREATED.getStatusCode();</span>
+<span class="fc" id="L208">    }</span>
+
+  }
+
+  class ScriptEvaluationCreateManyExecutor
+      extends GetOneExecutor&lt;ScriptEvaluationCreateManyResponseDto&gt; {
+
+<span class="fc" id="L215">    public ScriptEvaluationCreateManyExecutor() {</span>
+<span class="fc" id="L216">      super(ScriptEvaluationCreateManyResponseDto.class,</span>
+          ScriptEvaluationService.CREATE_MANY_IDENTIFIER);
+<span class="fc" id="L218">      expectedResponseStatusCode = Response.Status.OK.getStatusCode();</span>
+<span class="fc" id="L219">    }</span>
 
   }
 }
