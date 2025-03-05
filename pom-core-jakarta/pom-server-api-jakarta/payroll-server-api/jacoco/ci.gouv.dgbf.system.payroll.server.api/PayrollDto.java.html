@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="nc" id="L20">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L20">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements PayslipContainerDto {
 
   /**
@@ -180,13 +180,13 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="nc" id="L183">    status = response.getStatus();</span>
-<span class="nc" id="L184">    statusAsString = response.getStatus().getName();</span>
-<span class="nc" id="L185">    initializable = response.getInitializable();</span>
-<span class="nc" id="L186">    controllable = response.getControllable();</span>
-<span class="nc" id="L187">    arbitrable = response.getArbitrable();</span>
-<span class="nc" id="L188">    closable = response.getClosable();</span>
-<span class="nc" id="L189">  }</span>
+<span class="fc" id="L183">    status = response.getStatus();</span>
+<span class="fc" id="L184">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L185">    initializable = response.getInitializable();</span>
+<span class="fc" id="L186">    controllable = response.getControllable();</span>
+<span class="fc" id="L187">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L188">    closable = response.getClosable();</span>
+<span class="fc" id="L189">  }</span>
 
   /**
    * Identifiant json de l'identifiant.

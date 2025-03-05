@@ -181,7 +181,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L184">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L184">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
 
     @JsonbProperty(JSON_IS_EARNING)
@@ -233,7 +233,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L236">  public static class PayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L236">  public static class PayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -323,7 +323,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L326">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L326">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
     @JsonbProperty(JSON_IS_EARNING)
     private Boolean isEarning;

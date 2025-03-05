@@ -13,41 +13,41 @@ import lombok.Getter;
  * @author A.K.M
  *
  */
-@Getter
+<span class="fc" id="L16">@Getter</span>
 public enum PayrollStatus {
 
-<span class="nc" id="L19">  /**</span>
+  /**
    * Créée.
    */
-<span class="nc" id="L22">  CREATED(PayrollStatusCode.CREATED, &quot;Créée&quot;, &quot;Création&quot;),</span>
+<span class="fc" id="L22">  CREATED(PayrollStatusCode.CREATED, &quot;Créée&quot;, &quot;Création&quot;),</span>
   
-<span class="nc" id="L24">  /**</span>
+  /**
    * Initialisée.
    */
-<span class="nc" id="L27">  INITIALIZED(PayrollStatusCode.INITIALIZED, &quot;Initialisée&quot;, &quot;Initialisation&quot;),</span>
+<span class="fc" id="L27">  INITIALIZED(PayrollStatusCode.INITIALIZED, &quot;Initialisée&quot;, &quot;Initialisation&quot;),</span>
   
-<span class="nc" id="L29">  /**</span>
+  /**
    * Controlée.
    */
-<span class="nc" id="L32">  CONTROLLED(PayrollStatusCode.CONTROLLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
+<span class="fc" id="L32">  CONTROLLED(PayrollStatusCode.CONTROLLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
   
-<span class="nc" id="L34">  /**</span>
+  /**
    * Arbitrée.
    */
-<span class="nc" id="L37">  ARBITRATED(PayrollStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
+<span class="fc" id="L37">  ARBITRATED(PayrollStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
   
-<span class="nc" id="L39">  /**</span>
+  /**
    * Clôturée.
    */
-<span class="nc" id="L42">  CLOSED(PayrollStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
+<span class="fc" id="L42">  CLOSED(PayrollStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
 
   ;
 
-<span class="nc" id="L46">  private PayrollStatus(String code, String name, String action) {</span>
-<span class="nc" id="L47">    this.code = code;</span>
-<span class="nc" id="L48">    this.name = name;</span>
-<span class="nc" id="L49">    this.action = action;</span>
-<span class="nc" id="L50">  }</span>
+<span class="fc" id="L46">  private PayrollStatus(String code, String name, String action) {</span>
+<span class="fc" id="L47">    this.code = code;</span>
+<span class="fc" id="L48">    this.name = name;</span>
+<span class="fc" id="L49">    this.action = action;</span>
+<span class="fc" id="L50">  }</span>
 
   private String code;
   private String name;
@@ -56,7 +56,7 @@ public enum PayrollStatus {
 
   @Override
   public String toString() {
-<span class="nc" id="L59">    return name;</span>
+<span class="fc" id="L59">    return name;</span>
   }
 
   /**
@@ -66,17 +66,17 @@ public enum PayrollStatus {
    * @return statut
    */
   public static PayrollStatus getByCode(String code) {
-<span class="nc" id="L69">    return Stream.of(PayrollStatus.values())</span>
-<span class="nc" id="L70">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="nc" id="L71">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L69">    return Stream.of(PayrollStatus.values())</span>
+<span class="fc" id="L70">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L71">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="nc" id="L75">    CREATED.previous = Collections.emptySet();</span>
-<span class="nc" id="L76">    INITIALIZED.previous = Core.getSet(List.of(CREATED));</span>
-<span class="nc" id="L77">    CONTROLLED.previous = Core.getSet(List.of(INITIALIZED));</span>
-<span class="nc" id="L78">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
-<span class="nc" id="L79">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
-<span class="nc" id="L80">  }</span>
+<span class="fc" id="L75">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L76">    INITIALIZED.previous = Core.getSet(List.of(CREATED));</span>
+<span class="fc" id="L77">    CONTROLLED.previous = Core.getSet(List.of(INITIALIZED));</span>
+<span class="fc" id="L78">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
+<span class="fc" id="L79">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="fc" id="L80">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

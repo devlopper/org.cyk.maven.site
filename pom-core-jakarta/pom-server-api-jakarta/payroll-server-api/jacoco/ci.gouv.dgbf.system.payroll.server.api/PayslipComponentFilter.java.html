@@ -35,29 +35,29 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public PayslipComponentFilter(FilterDto dto) {
-<span class="nc" id="L38">    super(dto);</span>
-<span class="nc" id="L39">  }</span>
+<span class="fc" id="L38">    super(dto);</span>
+<span class="fc" id="L39">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="nc" id="L44">  public PayslipComponentFilter() {}</span>
+<span class="fc" id="L44">  public PayslipComponentFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L48">    super.doInitialize(filter);</span>
-<span class="nc" id="L49">    payslipIdentifier = getPayslipIdentifier(filter);</span>
-<span class="nc" id="L50">    payrollComponentIdentifier = getPayrollComponentIdentifier(filter);</span>
-<span class="nc" id="L51">    isEarning = getIsEarning(filter);</span>
-<span class="nc" id="L52">  }</span>
+<span class="fc" id="L48">    super.doInitialize(filter);</span>
+<span class="fc" id="L49">    payslipIdentifier = getPayslipIdentifier(filter);</span>
+<span class="fc" id="L50">    payrollComponentIdentifier = getPayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L51">    isEarning = getIsEarning(filter);</span>
+<span class="fc" id="L52">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L56">    super.toDto(filter);</span>
-<span class="nc" id="L57">    setPayslipIdentifier(filter, payslipIdentifier);</span>
-<span class="nc" id="L58">    setPayrollComponentIdentifier(filter, payrollComponentIdentifier);</span>
-<span class="nc" id="L59">    setIsEarning(filter, isEarning);</span>
-<span class="nc" id="L60">  }</span>
+<span class="fc" id="L56">    super.toDto(filter);</span>
+<span class="fc" id="L57">    setPayslipIdentifier(filter, payslipIdentifier);</span>
+<span class="fc" id="L58">    setPayrollComponentIdentifier(filter, payrollComponentIdentifier);</span>
+<span class="fc" id="L59">    setIsEarning(filter, isEarning);</span>
+<span class="fc" id="L60">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link PayslipDto}.
@@ -66,9 +66,9 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setPayslipIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L69">    set(filter, JSON_PAYSLIP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L70">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L71">  }</span>
+<span class="pc" id="L69">    set(filter, JSON_PAYSLIP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L70">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L71">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link PayslipDto}.
@@ -77,7 +77,7 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link PayslipDto}
    */
   public static String getPayslipIdentifier(FilterDto filter) {
-<span class="nc" id="L80">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYSLIP_IDENTIFIER));</span>
+<span class="fc" id="L80">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYSLIP_IDENTIFIER));</span>
   }
 
   /**
@@ -87,9 +87,9 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant de {@link PayrollDto}
    */
   public static void setPayrollComponentIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L90">    set(filter, JSON_PAYROLL_COMPONENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L91">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L92">  }</span>
+<span class="pc" id="L90">    set(filter, JSON_PAYROLL_COMPONENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L91">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L92">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link PayrollDto}.
@@ -98,7 +98,7 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link PayrollDto}
    */
   public static String getPayrollComponentIdentifier(FilterDto filter) {
-<span class="nc" id="L101">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_COMPONENT_IDENTIFIER));</span>
+<span class="fc" id="L101">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_COMPONENT_IDENTIFIER));</span>
   }
   
   /**
@@ -108,8 +108,8 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter {
    * @param isEarning est gain
    */
   public static void setIsEarning(FilterDto filter, Boolean isEarning) {
-<span class="nc" id="L111">    set(filter, JSON_IS_EARNING, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsBoolean(isEarning));</span>
-<span class="nc" id="L112">  }</span>
+<span class="pc" id="L111">    set(filter, JSON_IS_EARNING, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsBoolean(isEarning));</span>
+<span class="fc" id="L112">  }</span>
 
   /**
    * Cette méthode permet d'obtenir est gain.
@@ -118,7 +118,7 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter {
    * @return vrai si est gain sinon faux
    */
   public static Boolean getIsEarning(FilterDto filter) {
-<span class="nc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_EARNING));</span>
+<span class="fc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_EARNING));</span>
   }
 
   /**

@@ -206,7 +206,7 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L209">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L209">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements FunctionMovementSaveRequestDto {
     /**
      * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
@@ -276,7 +276,7 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L279">  public static class FunctionMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="fc" id="L279">  public static class FunctionMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
               FunctionMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -366,7 +366,7 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L369">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L369">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionMovementSaveRequestDto {
     /**
      * {@link FunctionMovementDto#getFunctionaryIdentifier()}.

@@ -26,26 +26,26 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @param dto {@link FilterDto}
    */
   public PayrollComponentFilter(FilterDto dto) {
-<span class="nc" id="L29">    super(dto);</span>
-<span class="nc" id="L30">  }</span>
+<span class="fc" id="L29">    super(dto);</span>
+<span class="fc" id="L30">  }</span>
 
   /**
    * Cette méthode permet d'instantier.
    *
    */
-<span class="nc" id="L36">  public PayrollComponentFilter() {}</span>
+<span class="fc" id="L36">  public PayrollComponentFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L40">    super.doInitialize(filter);</span>
-<span class="nc" id="L41">    isEarning = getIsEarning(filter);</span>
-<span class="nc" id="L42">  }</span>
+<span class="fc" id="L40">    super.doInitialize(filter);</span>
+<span class="fc" id="L41">    isEarning = getIsEarning(filter);</span>
+<span class="fc" id="L42">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L46">    super.toDto(filter);</span>
-<span class="nc" id="L47">    setIsEarning(filter, isEarning);</span>
-<span class="nc" id="L48">  }</span>
+<span class="fc" id="L46">    super.toDto(filter);</span>
+<span class="fc" id="L47">    setIsEarning(filter, isEarning);</span>
+<span class="fc" id="L48">  }</span>
   
   /**
    * Cette méthode permet d'assigner est gain.
@@ -54,8 +54,8 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @param isEarning est gain
    */
   public static void setIsEarning(FilterDto filter, Boolean isEarning) {
-<span class="nc" id="L57">    set(filter, JSON_IS_EARNING, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsBoolean(isEarning));</span>
-<span class="nc" id="L58">  }</span>
+<span class="pc" id="L57">    set(filter, JSON_IS_EARNING, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsBoolean(isEarning));</span>
+<span class="fc" id="L58">  }</span>
 
   /**
    * Cette méthode permet d'obtenir est gain.
@@ -64,7 +64,7 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @return vrai si est gain sinon faux
    */
   public static Boolean getIsEarning(FilterDto filter) {
-<span class="nc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_EARNING));</span>
+<span class="fc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_EARNING));</span>
   }
 
   /**

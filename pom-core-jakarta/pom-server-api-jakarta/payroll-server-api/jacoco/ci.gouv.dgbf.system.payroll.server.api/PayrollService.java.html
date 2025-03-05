@@ -143,7 +143,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L146">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L146">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayrollSaveRequestDto {
     /**
      * {@link PayrollDto#getExerciseIdentifier()}.
@@ -196,7 +196,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L199">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
+<span class="fc" id="L199">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayrollDto&gt; datas;
@@ -285,7 +285,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L288">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto implements PayrollSaveRequestDto {</span>
+<span class="fc" id="L288">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto implements PayrollSaveRequestDto {</span>
     /**
      * {@link PayrollDto#getExerciseIdentifier()}.
      */
@@ -347,7 +347,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L350">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L350">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link PayrollDto#getStatus()}.
@@ -385,12 +385,12 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="nc" id="L388">      this.status = status;</span>
-<span class="nc" id="L389">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="nc" id="L390">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="nc" id="L391">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="nc" id="L392">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="nc" id="L393">    }</span>
+<span class="fc" id="L388">      this.status = status;</span>
+<span class="fc" id="L389">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L390">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L391">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L392">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L393">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.

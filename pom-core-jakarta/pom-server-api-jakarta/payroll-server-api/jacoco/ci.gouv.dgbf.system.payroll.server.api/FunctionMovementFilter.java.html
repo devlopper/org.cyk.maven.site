@@ -34,29 +34,29 @@ public class FunctionMovementFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public FunctionMovementFilter(FilterDto dto) {
-<span class="nc" id="L37">    super(dto);</span>
-<span class="nc" id="L38">  }</span>
+<span class="fc" id="L37">    super(dto);</span>
+<span class="fc" id="L38">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="nc" id="L43">  public FunctionMovementFilter() {}</span>
+<span class="fc" id="L43">  public FunctionMovementFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L47">    super.doInitialize(filter);</span>
-<span class="nc" id="L48">    functionaryIdentifier = getFunctionaryIdentifier(filter);</span>
-<span class="nc" id="L49">    functionIdentifier = getFunctionIdentifier(filter);</span>
-<span class="nc" id="L50">    movementTrackingIdentifier = getMovementTrackingIdentifier(filter);</span>
-<span class="nc" id="L51">  }</span>
+<span class="fc" id="L47">    super.doInitialize(filter);</span>
+<span class="fc" id="L48">    functionaryIdentifier = getFunctionaryIdentifier(filter);</span>
+<span class="fc" id="L49">    functionIdentifier = getFunctionIdentifier(filter);</span>
+<span class="fc" id="L50">    movementTrackingIdentifier = getMovementTrackingIdentifier(filter);</span>
+<span class="fc" id="L51">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L55">    super.toDto(filter);</span>
-<span class="nc" id="L56">    setFunctionaryIdentifier(filter, functionaryIdentifier);</span>
-<span class="nc" id="L57">    setFunctionIdentifier(filter, functionIdentifier);</span>
-<span class="nc" id="L58">    setMovementTrackingIdentifier(filter, movementTrackingIdentifier);</span>
-<span class="nc" id="L59">  }</span>
+<span class="fc" id="L55">    super.toDto(filter);</span>
+<span class="fc" id="L56">    setFunctionaryIdentifier(filter, functionaryIdentifier);</span>
+<span class="fc" id="L57">    setFunctionIdentifier(filter, functionIdentifier);</span>
+<span class="fc" id="L58">    setMovementTrackingIdentifier(filter, movementTrackingIdentifier);</span>
+<span class="fc" id="L59">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
@@ -65,9 +65,9 @@ public class FunctionMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setFunctionaryIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L68">    set(filter, JSON_FUNCTIONARY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L70">  }</span>
+<span class="pc" id="L68">    set(filter, JSON_FUNCTIONARY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L70">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
@@ -76,7 +76,7 @@ public class FunctionMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant du fonctionnaire
    */
   public static String getFunctionaryIdentifier(FilterDto filter) {
-<span class="nc" id="L79">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_IDENTIFIER));</span>
+<span class="fc" id="L79">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_IDENTIFIER));</span>
   }
 
   /**
@@ -86,9 +86,9 @@ public class FunctionMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setFunctionIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L89">    set(filter, JSON_FUNCTION_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L90">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L91">  }</span>
+<span class="pc" id="L89">    set(filter, JSON_FUNCTION_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L90">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L91">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de la fonction.
@@ -97,7 +97,7 @@ public class FunctionMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant de la fonction
    */
   public static String getFunctionIdentifier(FilterDto filter) {
-<span class="nc" id="L100">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTION_IDENTIFIER));</span>
+<span class="fc" id="L100">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTION_IDENTIFIER));</span>
   }
 
   /**
@@ -107,9 +107,9 @@ public class FunctionMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setMovementTrackingIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L110">    set(filter, JSON_MOVEMENT_TRACKING_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L111">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L112">  }</span>
+<span class="pc" id="L110">    set(filter, JSON_MOVEMENT_TRACKING_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L111">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L112">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du suivi de mouvement.
@@ -118,7 +118,7 @@ public class FunctionMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant du suivi de mouvement
    */
   public static String getMovementTrackingIdentifier(FilterDto filter) {
-<span class="nc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_MOVEMENT_TRACKING_IDENTIFIER));</span>
+<span class="fc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_MOVEMENT_TRACKING_IDENTIFIER));</span>
   }
 
   /**

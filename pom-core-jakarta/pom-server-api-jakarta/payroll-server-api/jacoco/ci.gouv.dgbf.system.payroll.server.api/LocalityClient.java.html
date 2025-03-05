@@ -28,13 +28,13 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="nc" id="L31">public class LocalityClient extends AbstractClient&lt;LocalityService&gt; implements</span>
+<span class="fc" id="L31">public class LocalityClient extends AbstractClient&lt;LocalityService&gt; implements</span>
     GetByIdentifier&lt;LocalityDto&gt;, GetMany&lt;LocalityGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public LocalityClient service(LocalityService service) {
-<span class="nc" id="L37">    return (LocalityClient) super.service(service);</span>
+<span class="fc" id="L37">    return (LocalityClient) super.service(service);</span>
   }
 
   /**
@@ -44,8 +44,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public CreateResponseDto create(LocalityCreateRequestDto request) {
-<span class="nc" id="L47">    return new CreateExecutor(LocalityService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L48">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L47">    return new CreateExecutor(LocalityService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L48">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -55,9 +55,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public LocalityGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L58">    return new GetOneExecutor&lt;LocalityGetManyResponseDto&gt;(</span>
-<span class="nc" id="L59">        LocalityGetManyResponseDto.class, LocalityService.GET_MANY_IDENTIFIER)</span>
-<span class="nc" id="L60">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L58">    return new GetOneExecutor&lt;LocalityGetManyResponseDto&gt;(</span>
+        LocalityGetManyResponseDto.class, LocalityService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L60">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -73,13 +73,13 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public LocalityGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="nc" id="L76">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L77">    request.setProjection(projection);</span>
-<span class="nc" id="L78">    request.setFilter(filter);</span>
-<span class="nc" id="L79">    request.setPage(page);</span>
-<span class="nc" id="L80">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L81">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L82">    return getMany(request);</span>
+<span class="fc" id="L76">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L77">    request.setProjection(projection);</span>
+<span class="fc" id="L78">    request.setFilter(filter);</span>
+<span class="fc" id="L79">    request.setPage(page);</span>
+<span class="fc" id="L80">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L81">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L82">    return getMany(request);</span>
   }
 
   /**
@@ -89,8 +89,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public LocalityDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L92">    return new GetOneExecutor&lt;LocalityDto&gt;(LocalityDto.class,</span>
-<span class="nc" id="L93">        LocalityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L92">    return new GetOneExecutor&lt;LocalityDto&gt;(LocalityDto.class,</span>
+<span class="fc" id="L93">        LocalityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -104,12 +104,12 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public LocalityDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="nc" id="L107">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L108">    request.setProjection(projection);</span>
-<span class="nc" id="L109">    request.setFilter(filter);</span>
-<span class="nc" id="L110">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L111">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L112">    return getOne(request);</span>
+<span class="fc" id="L107">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L108">    request.setProjection(projection);</span>
+<span class="fc" id="L109">    request.setFilter(filter);</span>
+<span class="fc" id="L110">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L111">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L112">    return getOne(request);</span>
   }
 
   /**
@@ -119,9 +119,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return groupe d'échéance
    */
   public LocalityDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L122">    return new GetOneExecutor&lt;LocalityDto&gt;(LocalityDto.class,</span>
-<span class="nc" id="L123">        LocalityService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L124">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L122">    return new GetOneExecutor&lt;LocalityDto&gt;(LocalityDto.class,</span>
+        LocalityService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L124">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -136,12 +136,12 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public LocalityDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="nc" id="L139">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L140">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L141">    request.setProjection(projection);</span>
-<span class="nc" id="L142">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L143">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L144">    return getByIdentifier(request);</span>
+<span class="fc" id="L139">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L140">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L141">    request.setProjection(projection);</span>
+<span class="fc" id="L142">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L143">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L144">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -151,8 +151,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto update(LocalityUpdateRequestDto request) {
-<span class="nc" id="L154">    return new IdentifiableExecutor(LocalityService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L155">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L154">    return new IdentifiableExecutor(LocalityService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L155">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -162,8 +162,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L165">    return new IdentifiableExecutor(LocalityService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L166">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L165">    return new IdentifiableExecutor(LocalityService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L166">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -177,11 +177,11 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="nc" id="L180">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L181">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L182">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L183">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L184">    return delete(request);</span>
+<span class="fc" id="L180">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L181">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L182">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L183">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L184">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

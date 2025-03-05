@@ -165,7 +165,7 @@ public interface MovementTrackingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L168">  class MovementTrackingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L168">  class MovementTrackingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements MovementTrackingSaveRequestDto {
     /**
      * {@link MovementTrackingDto#getEffectDate()}.
@@ -224,7 +224,7 @@ public interface MovementTrackingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L227">  public static class MovementTrackingGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="fc" id="L227">  public static class MovementTrackingGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
                         MovementTrackingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -314,7 +314,7 @@ public interface MovementTrackingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L317">  class MovementTrackingUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L317">  class MovementTrackingUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements MovementTrackingSaveRequestDto {
     /**
      * {@link MovementTrackingDto#getEffectDate()}.

@@ -30,27 +30,27 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public PayslipFilter(FilterDto dto) {
-<span class="nc" id="L33">    super(dto);</span>
-<span class="nc" id="L34">  }</span>
+<span class="fc" id="L33">    super(dto);</span>
+<span class="fc" id="L34">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="nc" id="L39">  public PayslipFilter() {}</span>
+<span class="fc" id="L39">  public PayslipFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L43">    super.doInitialize(filter);</span>
-<span class="nc" id="L44">    payrollIdentifier = getPayrollIdentifier(filter);</span>
-<span class="nc" id="L45">    registrationNumber = getRegistrationNumber(filter);</span>
-<span class="nc" id="L46">  }</span>
+<span class="fc" id="L43">    super.doInitialize(filter);</span>
+<span class="fc" id="L44">    payrollIdentifier = getPayrollIdentifier(filter);</span>
+<span class="fc" id="L45">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L46">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L50">    super.toDto(filter);</span>
-<span class="nc" id="L51">    setPayrollIdentifier(filter, payrollIdentifier);</span>
-<span class="nc" id="L52">    setRegistrationNumber(filter, registrationNumber);</span>
-<span class="nc" id="L53">  }</span>
+<span class="fc" id="L50">    super.toDto(filter);</span>
+<span class="fc" id="L51">    setPayrollIdentifier(filter, payrollIdentifier);</span>
+<span class="fc" id="L52">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L53">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link PayrollDto}.
@@ -59,9 +59,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setPayrollIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L62">    set(filter, JSON_PAYROLL_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L63">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L64">  }</span>
+<span class="pc" id="L62">    set(filter, JSON_PAYROLL_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L63">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L64">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link PayrollDto}.
@@ -70,7 +70,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link PayrollDto}
    */
   public static String getPayrollIdentifier(FilterDto filter) {
-<span class="nc" id="L73">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_IDENTIFIER));</span>
+<span class="fc" id="L73">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_IDENTIFIER));</span>
   }
 
   /**
@@ -80,9 +80,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param registrationNumber matricule
    */
   public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
-<span class="nc" id="L83">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L84">        f -&gt; f.setValueAsString(registrationNumber));</span>
-<span class="nc" id="L85">  }</span>
+<span class="pc" id="L83">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L84">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="fc" id="L85">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le matricule.
@@ -91,7 +91,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return matricule
    */
   public static String getRegistrationNumber(FilterDto filter) {
-<span class="nc" id="L94">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+<span class="fc" id="L94">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
   }
 
   /**
