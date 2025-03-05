@@ -151,6 +151,34 @@ public interface ProcessingService {
     void setPreviousIdentifier(String previousIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir la taille du lot.
+     *
+     * @return taille du lot
+     */
+    Integer getBatchSize();
+
+    /**
+     * Cette méthode permet d'assigner la taille du lot.
+     *
+     * @param batchSize taille du lot
+     */
+    void setBatchSize(Integer batchSize);
+    
+    /**
+     * Cette méthode permet d'obtenir le nombre de thread.
+     *
+     * @return nombre de thread
+     */
+    Integer getThreadCount();
+
+    /**
+     * Cette méthode permet d'assigner le nombre de thread.
+     *
+     * @param threadCount nombre de thread
+     */
+    void setThreadCount(Integer threadCount);
+    
+    /**
      * {@link ProcessingDto#JSON_DESCRIPTIVE}.
      */
     String JSON_DESCRIPTIVE = ProcessingDto.JSON_DESCRIPTIVE;
@@ -185,6 +213,16 @@ public interface ProcessingService {
      */
     String JSON_COMPLETED_WORK_VOLUME = ProcessingDto.JSON_COMPLETED_WORK_VOLUME;
 
+    /**
+     * {@link ProcessingDto#JSON_BATCH_SIZE}.
+     */
+    String JSON_BATCH_SIZE = ProcessingDto.JSON_BATCH_SIZE;
+    
+    /**
+     * {@link ProcessingDto#JSON_THREAD_COUNT}.
+     */
+    String JSON_THREAD_COUNT = ProcessingDto.JSON_THREAD_COUNT;
+    
     /**
      * {@link ProcessingDto#JSON_PREVIOUS_IDENTIFIER}.
      */
@@ -221,7 +259,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L224">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L262">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -242,6 +280,12 @@ public interface ProcessingService {
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
     private Integer totalWorkVolume;
 
+    @JsonbProperty(JSON_BATCH_SIZE)
+    private Integer batchSize;
+    
+    @JsonbProperty(JSON_THREAD_COUNT)
+    private Integer threadCount;
+    
     @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
     private String previousIdentifier;
   }
@@ -254,7 +298,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L257">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L301">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link ProcessingDto#getStatus()}.
@@ -292,12 +336,12 @@ public interface ProcessingService {
      * @param status statut
      */
     public void initialize(ProcessingStatus status) {
-<span class="fc" id="L295">      this.status = status;</span>
-<span class="fc" id="L296">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
-<span class="fc" id="L297">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
-<span class="fc" id="L298">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
-<span class="fc" id="L299">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
-<span class="fc" id="L300">    }</span>
+<span class="fc" id="L339">      this.status = status;</span>
+<span class="fc" id="L340">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
+<span class="fc" id="L341">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
+<span class="fc" id="L342">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L343">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
+<span class="fc" id="L344">    }</span>
 
     /**
      * {@link ProcessingDto#JSON_STATUS}.
@@ -333,7 +377,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L336">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L380">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ProcessingDto#getReason()}.
@@ -478,7 +522,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L481">  public static class ProcessingGetManyResponseDto</span>
+<span class="fc" id="L525">  public static class ProcessingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -567,7 +611,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L570">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L614">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -588,6 +632,12 @@ public interface ProcessingService {
     @JsonbProperty(JSON_TOTAL_WORK_VOLUME)
     private Integer totalWorkVolume;
 
+    @JsonbProperty(JSON_BATCH_SIZE)
+    private Integer batchSize;
+    
+    @JsonbProperty(JSON_THREAD_COUNT)
+    private Integer threadCount;
+    
     @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
     private String previousIdentifier;
   }
@@ -622,7 +672,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L625">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L675">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Valeur.
@@ -651,10 +701,10 @@ public interface ProcessingService {
      */
     public Integer computeCompletedWorkVolume(Integer totalWorkVolume,
         Integer currentCompletedWorkVolume) {
-<span class="fc bfc" id="L654" title="All 2 branches covered.">      if (isIncrement == null) {</span>
-<span class="fc" id="L655">        return value;</span>
+<span class="fc bfc" id="L704" title="All 2 branches covered.">      if (isIncrement == null) {</span>
+<span class="fc" id="L705">        return value;</span>
       }
-<span class="fc bfc" id="L657" title="All 2 branches covered.">      return currentCompletedWorkVolume + (isIncrement ? 1 : -1) * value;</span>
+<span class="fc bfc" id="L707" title="All 2 branches covered.">      return currentCompletedWorkVolume + (isIncrement ? 1 : -1) * value;</span>
     }
 
     /**

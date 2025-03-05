@@ -128,6 +128,30 @@ import lombok.Setter;
   private String isWorkCompletedAsString;
 
   /**
+   * Taille du lot. Définit le nombre d'éléments à traiter dans un seul lot.
+   */
+  @JsonbProperty(JSON_BATCH_SIZE)
+  private Integer batchSize;
+
+  /**
+   * Représentation en chaine de caractères de {@link #batchSize}.
+   */
+  @JsonbProperty(JSON_BATCH_SIZE_AS_STRING)
+  private String batchSizeAsString;
+
+  /**
+   * Nombre de thread. Définit le nombre de threads concurrents pour le traitement des lots.
+   */
+  @JsonbProperty(JSON_THREAD_COUNT)
+  private Integer threadCount;
+
+  /**
+   * Représentation en chaine de caractères de {@link #threadCount}.
+   */
+  @JsonbProperty(JSON_THREAD_COUNT_AS_STRING)
+  private String threadCountAsString;
+
+  /**
    * Identifiant de {@link ProcessingDto} précédent.
    */
   @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
@@ -205,13 +229,13 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L208">    status = response.getStatus();</span>
-<span class="fc" id="L209">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L210">    startable = response.getStartable();</span>
-<span class="fc" id="L211">    stoppable = response.getStoppable();</span>
-<span class="fc" id="L212">    cancelable = response.getCancelable();</span>
-<span class="fc" id="L213">    terminatable = response.getTerminatable();</span>
-<span class="fc" id="L214">  }</span>
+<span class="fc" id="L232">    status = response.getStatus();</span>
+<span class="fc" id="L233">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L234">    startable = response.getStartable();</span>
+<span class="fc" id="L235">    stoppable = response.getStoppable();</span>
+<span class="fc" id="L236">    cancelable = response.getCancelable();</span>
+<span class="fc" id="L237">    terminatable = response.getTerminatable();</span>
+<span class="fc" id="L238">  }</span>
 
   /**
    * champ json {@link #descriptive}.
@@ -303,6 +327,26 @@ import lombok.Setter;
    * champ json {@link #workCompletionRate}.
    */
   public static final String JSON_WORK_COMPLETION_RATE = &quot;pourcentageVolumeTravailRealise&quot;;
+
+  /**
+   * champ json {@link #batchSize}.
+   */
+  public static final String JSON_BATCH_SIZE = &quot;tailleLot&quot;;
+
+  /**
+   * champ json {@link #batchSizeAsString}.
+   */
+  public static final String JSON_BATCH_SIZE_AS_STRING = JSON_BATCH_SIZE + &quot;Chaine&quot;;
+
+  /**
+   * champ json {@link #threadCount}.
+   */
+  public static final String JSON_THREAD_COUNT = &quot;nombreThread&quot;;
+
+  /**
+   * champ json {@link #threadCountAsString}.
+   */
+  public static final String JSON_THREAD_COUNT_AS_STRING = JSON_THREAD_COUNT + &quot;Chaine&quot;;
 
   /**
    * champ json {@link #previousIdentifier}.
