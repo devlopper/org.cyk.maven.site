@@ -26,25 +26,25 @@ public class RemunerableFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public RemunerableFilter(FilterDto dto) {
-<span class="fc" id="L29">    super(dto);</span>
-<span class="fc" id="L30">  }</span>
+<span class="nc" id="L29">    super(dto);</span>
+<span class="nc" id="L30">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L35">  public RemunerableFilter() {}</span>
+<span class="nc" id="L35">  public RemunerableFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    registrationNumber = getRegistrationNumber(filter);</span>
-<span class="fc" id="L41">  }</span>
+<span class="nc" id="L39">    super.doInitialize(filter);</span>
+<span class="nc" id="L40">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="nc" id="L41">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    setRegistrationNumber(filter, registrationNumber);</span>
-<span class="fc" id="L47">  }</span>
+<span class="nc" id="L45">    super.toDto(filter);</span>
+<span class="nc" id="L46">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="nc" id="L47">  }</span>
 
   /**
    * Cette méthode permet d'assigner le matricule.
@@ -53,9 +53,9 @@ public class RemunerableFilter extends AbstractIdentifiableFilter {
    * @param registrationNumber matricule
    */
   public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
-<span class="pc" id="L56">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L57">        f -&gt; f.setValueAsString(registrationNumber));</span>
-<span class="fc" id="L58">  }</span>
+<span class="nc" id="L56">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="nc" id="L57">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="nc" id="L58">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le matricule.
@@ -64,7 +64,7 @@ public class RemunerableFilter extends AbstractIdentifiableFilter {
    * @return matricule
    */
   public static String getRegistrationNumber(FilterDto filter) {
-<span class="fc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+<span class="nc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
   }
 
   /**

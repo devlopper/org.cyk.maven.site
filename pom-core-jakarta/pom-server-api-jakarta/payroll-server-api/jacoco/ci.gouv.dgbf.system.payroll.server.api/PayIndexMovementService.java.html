@@ -206,7 +206,7 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L209">  class PayIndexMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="nc" id="L209">  class PayIndexMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayIndexMovementSaveRequestDto {
     /**
      * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.
@@ -276,7 +276,7 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L279">  public static class PayIndexMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
+<span class="nc" id="L279">  public static class PayIndexMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
               PayIndexMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -366,7 +366,7 @@ public interface PayIndexMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L369">  class PayIndexMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="nc" id="L369">  class PayIndexMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayIndexMovementSaveRequestDto {
     /**
      * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.

@@ -13,36 +13,36 @@ import lombok.Getter;
  * @author Christian
  *
  */
-<span class="fc" id="L16">@Getter</span>
+@Getter
 public enum PayslipStatus {
   
-  /**
+<span class="nc" id="L19">  /**</span>
    * Initialisée.
    */
-<span class="fc" id="L22">  INITIALIZED(PayslipStatusCode.INITIALIZED, &quot;Initialisée&quot;, &quot;Initialisation&quot;),</span>
+<span class="nc" id="L22">  INITIALIZED(PayslipStatusCode.INITIALIZED, &quot;Initialisée&quot;, &quot;Initialisation&quot;),</span>
   
-  /**
+<span class="nc" id="L24">  /**</span>
    * Controlée.
    */
-<span class="fc" id="L27">  CONTROLLED(PayslipStatusCode.CONTROLLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
+<span class="nc" id="L27">  CONTROLLED(PayslipStatusCode.CONTROLLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
   
-  /**
+<span class="nc" id="L29">  /**</span>
    * Arbitrée.
    */
-<span class="fc" id="L32">  ARBITRATED(PayslipStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
+<span class="nc" id="L32">  ARBITRATED(PayslipStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
   
-  /**
+<span class="nc" id="L34">  /**</span>
    * Clôturée.
    */
-<span class="fc" id="L37">  CLOSED(PayslipStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
+<span class="nc" id="L37">  CLOSED(PayslipStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
 
   ;
 
-<span class="fc" id="L41">  private PayslipStatus(String code, String name, String action) {</span>
-<span class="fc" id="L42">    this.code = code;</span>
-<span class="fc" id="L43">    this.name = name;</span>
-<span class="fc" id="L44">    this.action = action;</span>
-<span class="fc" id="L45">  }</span>
+<span class="nc" id="L41">  private PayslipStatus(String code, String name, String action) {</span>
+<span class="nc" id="L42">    this.code = code;</span>
+<span class="nc" id="L43">    this.name = name;</span>
+<span class="nc" id="L44">    this.action = action;</span>
+<span class="nc" id="L45">  }</span>
 
   private String code;
   private String name;
@@ -51,7 +51,7 @@ public enum PayslipStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L54">    return name;</span>
+<span class="nc" id="L54">    return name;</span>
   }
 
   /**
@@ -61,16 +61,16 @@ public enum PayslipStatus {
    * @return statut
    */
   public static PayslipStatus getByCode(String code) {
-<span class="fc" id="L64">    return Stream.of(PayslipStatus.values())</span>
-<span class="fc" id="L65">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L66">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="nc" id="L64">    return Stream.of(PayslipStatus.values())</span>
+<span class="nc" id="L65">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="nc" id="L66">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L70">    INITIALIZED.previous = Collections.emptySet();</span>
-<span class="fc" id="L71">    CONTROLLED.previous = Core.getSet(List.of(INITIALIZED));</span>
-<span class="fc" id="L72">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
-<span class="fc" id="L73">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
-<span class="fc" id="L74">  }</span>
+<span class="nc" id="L70">    INITIALIZED.previous = Collections.emptySet();</span>
+<span class="nc" id="L71">    CONTROLLED.previous = Core.getSet(List.of(INITIALIZED));</span>
+<span class="nc" id="L72">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
+<span class="nc" id="L73">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="nc" id="L74">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
