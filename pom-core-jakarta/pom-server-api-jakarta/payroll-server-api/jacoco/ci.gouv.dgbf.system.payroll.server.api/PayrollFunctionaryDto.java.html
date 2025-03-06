@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollFunctionaryDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollFunctionaryDto.java</span></div><h1>PayrollFunctionaryDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente {@link FunctionaryDto} de paie.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class PayrollFunctionaryDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant {@link FunctionaryDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+  private String functionaryIdentifier;
+
+  /**
+   * Représentation en chaine de caractères {@link FunctionaryDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONARY_AS_STRING)
+  private String functionaryAsString;
+
+  /**
+   * Matricule.
+   */
+  @JsonbProperty(JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+
+  /**
+   * Nombre d'enfants.
+   */
+  @JsonbProperty(JSON_CHILDREN_COUNT)
+  private Integer childrenCount;
+  
+  /**
+   * Marié.
+   */
+  @JsonbProperty(JSON_MARRIED)
+  private Boolean married;
+  
+  /**
+   * Identifiant json de identifiant de {@link PayrollFunctionaryDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idFonctionnairePaie&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de {@link PayrollFunctionaryDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;fonctionnairePaieChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #functionaryIdentifier}.
+   */
+  public static final String JSON_FUNCTIONARY_IDENTIFIER = FunctionaryDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #functionaryAsString}.
+   */
+  public static final String JSON_FUNCTIONARY_AS_STRING =
+      FunctionaryBudgetarySectionUnitDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = FunctionaryDto.JSON_REGISTRATION_NUMBER;
+
+  /**
+   * Identifiant json de {@link #childrenCount}.
+   */
+  public static final String JSON_CHILDREN_COUNT = FunctionaryDto.JSON_CHILDREN_COUNT;
+  
+  /**
+   * Identifiant json de {@link #married}.
+   */
+  public static final String JSON_MARRIED = FunctionaryDto.JSON_MARRIED;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;fonctionnaire de paie&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;fonctionnaires de paie&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
