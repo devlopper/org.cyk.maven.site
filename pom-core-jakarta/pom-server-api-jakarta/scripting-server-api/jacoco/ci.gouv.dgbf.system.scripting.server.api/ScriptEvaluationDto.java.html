@@ -43,6 +43,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
   private StringFormat resultAsStringFormat;
 
+  @JsonbProperty(JSON_MESSAGE)
+  private String message;
+  
   /**
    * Identifiant json de identifiant de {@link ScriptEvaluationDto}.
    */
@@ -93,6 +96,11 @@ import lombok.Setter;
    */
   public static final String JSON_RESULT_AS_STRING_FORMAT = &quot;formatResultatChaine&quot;;
 
+  /**
+   * Identifiant json {@link #message}.
+   */
+  public static final String JSON_MESSAGE = &quot;message&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */
