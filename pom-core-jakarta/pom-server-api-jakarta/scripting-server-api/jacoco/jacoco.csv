@@ -1,5 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptClient,0,212,0,0,0,40,0,20,0,20
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptClient,0,228,0,0,0,42,0,22,0,22
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptRelationService.ScriptRelationCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationService.ScriptEvaluationCreateManyRequestDto.GroupDto,0,33,0,2,0,8,0,5,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationService.ScriptEvaluationUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -19,6 +19,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,S
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationClient.ScriptEvaluationCreateExecutor,0,12,0,0,0,4,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationFilter,0,7,0,0,0,4,0,2,0,2
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationClient.ScriptEvaluationCreateManyExecutor,0,12,0,0,0,4,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptUpdateTextRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluatorFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationService.ScriptEvaluationCreateManyResponseDto.ResultDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptRelationDto,0,3,0,0,0,1,0,1,0,1

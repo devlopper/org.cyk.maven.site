@@ -316,6 +316,44 @@ public interface ScriptService extends SpecificService {
   }
 
   /**
+   * Identifiant du service de mise à jour du texte.
+   */
+  String UPDATE_TEXT_IDENTIFIER = &quot;MISE_A_JOUR_TEXTE_SCRIPT&quot;;
+
+  /**
+   * Chemin du service de mise à jour du texte.
+   */
+  String UPDATE_TEXT_PATH = &quot;texte&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour le texte de {@link ScriptDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_TEXT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_TEXT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateText(ScriptUpdateTextRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour de texte.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L351">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
+    @JsonbProperty(ScriptSaveRequestDto.JSON_TEXT)
+    private String text;
+  }
+
+  /**
    * Identifiant du service de suppression.
    */
   String DELETE_IDENTIFIER = &quot;SUPPRESSION_SCRIPT&quot;;
@@ -373,7 +411,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L376">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L414">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(JSON_ARGUMENTS)
     private Map&lt;String, Object&gt; arguments;
 
@@ -393,7 +431,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L396">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L434">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
     @JsonbProperty(JSON_RESULT_AS_STRING)
     private String resultValueAsString;
 
@@ -406,7 +444,7 @@ public interface ScriptService extends SpecificService {
      * @return résultat
      */
     public Object getResult() {
-<span class="fc" id="L409">      return ValueType.parse(resultValueAsString, resultType);</span>
+<span class="fc" id="L447">      return ValueType.parse(resultValueAsString, resultType);</span>
     }
 
     /**
