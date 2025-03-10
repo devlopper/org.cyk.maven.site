@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-03-06T18:20:06+0000&quot;,
+    date = &quot;2025-03-10T18:08:09+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,22 +27,24 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L27">        RemunerableService.RemunerableCreateRequestDto remunerableCreateRequestDto = new RemunerableService.RemunerableCreateRequestDto();</span>
 
 <span class="fc" id="L29">        remunerableCreateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L30">        remunerableCreateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
 
-<span class="fc" id="L31">        return remunerableCreateRequestDto;</span>
+<span class="fc" id="L32">        return remunerableCreateRequestDto;</span>
     }
 
     @Override
     public RemunerableService.RemunerableUpdateRequestDto mapUpdate(RemunerableDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L40">        RemunerableService.RemunerableUpdateRequestDto remunerableUpdateRequestDto = new RemunerableService.RemunerableUpdateRequestDto();</span>
+<span class="fc" id="L41">        RemunerableService.RemunerableUpdateRequestDto remunerableUpdateRequestDto = new RemunerableService.RemunerableUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        remunerableUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        remunerableUpdateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L43">        remunerableUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        remunerableUpdateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L45">        remunerableUpdateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
 
-<span class="fc" id="L45">        return remunerableUpdateRequestDto;</span>
+<span class="fc" id="L47">        return remunerableUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

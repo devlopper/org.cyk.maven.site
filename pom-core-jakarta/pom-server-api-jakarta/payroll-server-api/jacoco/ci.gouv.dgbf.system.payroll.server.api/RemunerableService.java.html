@@ -63,12 +63,31 @@ public interface RemunerableService extends SpecificService {
      * @param identifier identifiant {@link FunctionaryBudgetarySectionUnitDto}
      */
     void setFunctionaryBudgetarySectionUnitIdentifier(String identifier);
+    
+    /**
+     * Cette méthode permet d'obténir vrai si c'est activé sinon faux.
+     *
+     * @return vrai si c'est activé sinon faux
+     */
+    Boolean getIsEnabled();
+
+    /**
+     * Cette méthode permet d'assigner vrai si c'est activé sinon faux.
+     *
+     * @param isEnabled vrai si c'est activé sinon faux
+     */
+    void setIsEnabled(Boolean isEnabled);
 
     /**
      * {@link RemunerableDto #JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER}.
      */
     public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER =
         RemunerableDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
+    
+    /**
+     * {@link RemunerableDto #JSON_IS_ENABLED}.
+     */
+    public static final String JSON_IS_ENABLED = RemunerableDto.JSON_IS_ENABLED;
   }
 
   /**
@@ -104,13 +123,16 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L107">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L126">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements RemunerableSaveRequestDto {
     /**
      * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
     String functionaryBudgetarySectionUnitIdentifier;
+    
+    @JsonbProperty(JSON_IS_ENABLED)
+    private Boolean isEnabled;
 
   }
 
@@ -147,7 +169,7 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class RemunerableGetManyResponseDto</span>
+<span class="fc" id="L172">  public static class RemunerableGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;RemunerableDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -237,13 +259,16 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L262">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements RemunerableSaveRequestDto {
     /**
      * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
     String functionaryBudgetarySectionUnitIdentifier;
+    
+    @JsonbProperty(JSON_IS_ENABLED)
+    private Boolean isEnabled;
 
   }
 
