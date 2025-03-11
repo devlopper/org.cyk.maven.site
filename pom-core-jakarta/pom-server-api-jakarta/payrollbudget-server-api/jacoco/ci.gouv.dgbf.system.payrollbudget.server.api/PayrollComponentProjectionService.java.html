@@ -126,28 +126,28 @@ public interface PayrollComponentProjectionService extends SpecificService {
      *
      * @return identifiant du poste de paie
      */
-    String getPayslipComponentIdentifier();
+    String getPayrollComponentIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant du poste de paie.
      *
-     * @param payslipComponentIdentifier identifiant du poste de paie
+     * @param payrollComponentIdentifier identifiant du poste de paie
      */
-    void setPayslipComponentIdentifier(String payslipComponentIdentifier);
+    void setPayrollComponentIdentifier(String payrollComponentIdentifier);
     
     /**
      * Cette méthode permet d'obtenir l'identifiant de la période de paie.
      *
      * @return identifiant de la période de paie
      */
-    String getPayslipPeriodIdentifier();
+    String getPayrollPeriodIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant de la période de paie.
      *
-     * @param payslipPeriodIdentifier identifiant de la période de paie
+     * @param payrollPeriodIdentifier identifiant de la période de paie
      */
-    void setPayslipPeriodIdentifier(String payslipPeriodIdentifier);
+    void setPayrollPeriodIdentifier(String payrollPeriodIdentifier);
     
     /**
      * Cette méthode permet d'obtenir le montant.
@@ -218,10 +218,10 @@ public interface PayrollComponentProjectionService extends SpecificService {
     private String administrativeUnitIdentifier;
     
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
-    private String payslipComponentIdentifier;
+    private String payrollComponentIdentifier;
      
     @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
-    private String payslipPeriodIdentifier;
+    private String payrollPeriodIdentifier;
     
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
@@ -371,10 +371,10 @@ public interface PayrollComponentProjectionService extends SpecificService {
     private String administrativeUnitIdentifier;
     
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
-    private String payslipComponentIdentifier;
+    private String payrollComponentIdentifier;
      
     @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
-    private String payslipPeriodIdentifier;
+    private String payrollPeriodIdentifier;
     
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
