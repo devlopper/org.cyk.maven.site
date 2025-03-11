@@ -40,6 +40,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_TEXT)
   private String text;
 
+  @JsonbProperty(JSON_TEXT_AS_HTML)
+  private String textAsHtml;
+  
   @JsonbProperty(JSON_PARAMETERS)
   private Set&lt;String&gt; parameters;
   
@@ -112,6 +115,11 @@ import lombok.Setter;
    */
   public static final String JSON_TEXT = &quot;texte&quot;;
 
+  /**
+   * Identifiant json {@link #textAsHtml}.
+   */
+  public static final String JSON_TEXT_AS_HTML = &quot;texteHtml&quot;;
+  
   /**
    * Identifiant json {@link #parameters}.
    */
