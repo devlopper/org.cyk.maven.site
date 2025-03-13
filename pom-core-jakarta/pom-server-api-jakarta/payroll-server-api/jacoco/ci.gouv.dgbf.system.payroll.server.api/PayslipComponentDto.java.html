@@ -40,7 +40,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_IS_EARNING)
   private Boolean isEarning;
-  
+
   /**
    * Montant employé.
    */
@@ -54,6 +54,12 @@ import lombok.Setter;
   private String employeeAmountAsString;
 
   /**
+   * Message de calcul de {@link #employeeAmount}.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_AMOUNT_CALCULATION_MESSAGE)
+  private String employeeAmountCalculationMessage;
+
+  /**
    * Montant employeur.
    */
   @JsonbProperty(JSON_EMPLOYER_AMOUNT)
@@ -64,6 +70,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EMPLOYER_AMOUNT_AS_STRING)
   private String employerAmountAsString;
+
+  /**
+   * Message de calcul de {@link #employerAmount}.
+   */
+  @JsonbProperty(JSON_EMPLOYER_AMOUNT_CALCULATION_MESSAGE)
+  private String employerAmountCalculationMessage;
 
   /**
    * Identifiant json de l'identifiant.
@@ -95,7 +107,7 @@ import lombok.Setter;
    * Identifiant json {@link #isEarning}.
    */
   public static final String JSON_IS_EARNING = &quot;estGain&quot;;
-  
+
   /**
    * Identifiant json {@link #employeeAmount}.
    */
@@ -107,6 +119,12 @@ import lombok.Setter;
   public static final String JSON_EMPLOYEE_AMOUNT_AS_STRING = JSON_EMPLOYEE_AMOUNT + &quot;Chaine&quot;;
 
   /**
+   * Identifiant json {@link #employeeAmountCalculationMessage}.
+   */
+  public static final String JSON_EMPLOYEE_AMOUNT_CALCULATION_MESSAGE =
+      &quot;messageCalculMontantEmploye&quot;;
+
+  /**
    * Identifiant json {@link #employerAmount}.
    */
   public static final String JSON_EMPLOYER_AMOUNT = &quot;montantEmployeur&quot;;
@@ -115,6 +133,12 @@ import lombok.Setter;
    * Identifiant json {@link #employerAmountAsString}.
    */
   public static final String JSON_EMPLOYER_AMOUNT_AS_STRING = JSON_EMPLOYER_AMOUNT + &quot;Chaine&quot;;
+
+  /**
+   * Identifiant json {@link #employerAmountCalculationMessage}.
+   */
+  public static final String JSON_EMPLOYER_AMOUNT_CALCULATION_MESSAGE =
+      &quot;messageCalculMontantEmployeur&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
