@@ -104,20 +104,6 @@ public interface ReimbursementService extends SpecificService {
 
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant {@link ReimbursementDto} antérieur.
-     *
-     * @return identifiant {@link ReimbursementDto} antérieur
-     */
-    String getPreviousReimbursementIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant {@link ReimbursementDto} antérieur.
-     *
-     * @param reimbursementIdentifier identifiant {@link ReimbursementDto}
-     */
-    void setPreviousReimbursementIdentifier(String reimbursementIdentifier);
-
-    /**
      * Cette méthode permet d'obtenir le montant 1.
      *
      * @return montant 1
@@ -159,6 +145,22 @@ public interface ReimbursementService extends SpecificService {
      */
     void setAmount3(long amount3);
 
+
+    /**
+     * Cette méthode permet d'obtenir le remboursement precedent.
+     *
+     * @return remboursement precedent
+     */
+    String getPreviousReimbursement();
+
+    /**
+     * Cette méthode permet d'assigner le remboursement precedent.
+     *
+     * @param previousReimbursement remboursement precedent
+     */
+    void setPreviousReimbursement(String previousReimbursement);
+
+
     /**
      * Identifiant champ json de {@link ReimbursementDto}.
      */
@@ -167,8 +169,7 @@ public interface ReimbursementService extends SpecificService {
     /**
      * Identifiant champ json de {@link CommitmentDto}.
      */
-    String JSON_COMMITMENT_IDENTIFIER =
-        ReimbursementDto.JSON_COMMITMENT_IDENTIFIER;
+    String JSON_COMMITMENT_IDENTIFIER = ReimbursementDto.JSON_COMMITMENT_IDENTIFIER;
 
 
     /**
@@ -177,13 +178,11 @@ public interface ReimbursementService extends SpecificService {
     String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
         ReimbursementDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
 
-
     /**
-     * Identifiant champ json de {@link TriennialProgramDto}.
+     * Identifiant champ json du remboursement precedent.
      */
-    String JSON_PREVIOUS_REIMBURSEMENT_IDENTIFIER =
-        ReimbursementDto.JSON_PREVIOUS_REIMBURSEMENT_IDENTIFIER;
-
+    String JSON_PREVIOUS_REIMBURSEMENT =
+        ReimbursementDto.JSON_PREVIOUS_REIMBURSEMENT;
 
     /**
      * Identifiant champ json du montant 1.
@@ -208,7 +207,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L211">  class ReimbursementCreateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L210">  class ReimbursementCreateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
     private String commitmentIdentifier;
@@ -216,8 +215,8 @@ public interface ReimbursementService extends SpecificService {
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
 
-    @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT_IDENTIFIER)
-    private String previousReimbursementIdentifier;
+    @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT)
+    private String previousReimbursement;
 
     @JsonbProperty(JSON_AMOUNT_1)
     private long amount1;
@@ -263,7 +262,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L266">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ReimbursementDto&gt; {</span>
+<span class="fc" id="L265">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ReimbursementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ReimbursementDto&gt; datas;
@@ -355,7 +354,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L358">  class ReimbursementUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L357">  class ReimbursementUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
     private String commitmentIdentifier;
@@ -363,8 +362,8 @@ public interface ReimbursementService extends SpecificService {
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
 
-    @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT_IDENTIFIER)
-    private String previousReimbursementIdentifier;
+    @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT)
+    private String previousReimbursement;
 
     @JsonbProperty(JSON_AMOUNT_1)
     private long amount1;
@@ -408,7 +407,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L411">  class ReimbursementUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L410">  class ReimbursementUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Montant.
      */

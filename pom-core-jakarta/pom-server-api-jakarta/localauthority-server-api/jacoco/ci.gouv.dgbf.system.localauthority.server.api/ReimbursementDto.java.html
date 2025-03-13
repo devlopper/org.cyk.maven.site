@@ -41,17 +41,6 @@ import lombok.Setter;
   @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
   private String triennialProgramAsString;
 
-  /**
-   * Identifiant {@link ExpenditureNatureDto}.
-   */
-  @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT_IDENTIFIER)
-  private String previousReimbursementIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de {@link ExpenditureNatureDto}.
-   */
-  @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT_AS_STRING)
-  private String previousReimbursementAsString;
 
   /**
    * Montant 1.
@@ -90,6 +79,20 @@ import lombok.Setter;
   @JsonbProperty(JSON_AMOUNT_3_AS_STRING)
   private String amount3AsString;
 
+
+  /**
+   * Remboursement precedent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT)
+  private String previousReimbursement;
+
+
+  /**
+   * Représentation en chaine de caractères de Remboursement precedent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_REIMBURSEMENT_AS_STRING)
+  private String previousReimbursementAsString;
+
   /**
    * Montant modifiable.
    */
@@ -106,17 +109,6 @@ import lombok.Setter;
    * Identifiant json {@link #commitmentAsString}.
    */
   public static final String JSON_COMMITMENT_AS_STRING = &quot;commitmentChaine&quot;;
-
-
-  /**
-   * Identifiant json {@link #previousReimbursementIdentifier}.
-   */
-  public static final String JSON_PREVIOUS_REIMBURSEMENT_IDENTIFIER = &quot;idPreviousReimbursement&quot;;
-
-  /**
-   * Identifiant json {@link #previousReimbursementAsString}.
-   */
-  public static final String JSON_PREVIOUS_REIMBURSEMENT_AS_STRING = &quot;previousReimbursementChaine&quot;;
 
 
   /**
@@ -146,6 +138,23 @@ import lombok.Setter;
   public static final String JSON_AMOUNT_2_AS_STRING = &quot;montant2Chaine&quot;;
 
   /**
+   * Identifiant json {@link #previousReimbursement}.
+   */
+  public static final String JSON_PREVIOUS_REIMBURSEMENT = &quot;remboursementPrecedent&quot;;
+
+
+  /**
+   * Identifiant json {@link #previousReimbursementAsString}.
+   */
+  public static final String JSON_PREVIOUS_REIMBURSEMENT_AS_STRING = &quot;remboursementPrecedentChaine&quot;;
+
+  /**
+   * Identifiant json {@link #amountsInputable}.
+   */
+  public static final String JSON_AMOUNTS_INPUTABLE = &quot;montantsModifiable&quot;;
+
+
+  /**
    * Identifiant json {@link #amount3}.
    */
   public static final String JSON_AMOUNT_3 = &quot;montant3&quot;;
@@ -155,11 +164,6 @@ import lombok.Setter;
    * Identifiant json {@link #amount3AsString}.
    */
   public static final String JSON_AMOUNT_3_AS_STRING = &quot;montant3Chaine&quot;;
-
-  /**
-   * Identifiant json {@link #amountsInputable}.
-   */
-  public static final String JSON_AMOUNTS_INPUTABLE = &quot;montantsModifiable&quot;;
 
   /**
    * Identifiant json {@link #triennialProgramAsString}.
