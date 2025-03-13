@@ -19,30 +19,69 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L20">public class ScriptEvaluationDto extends AbstractIdentifiableAuditableDto {</span>
 
+  /**
+   * Identifiant {@link ScriptDto}.
+   */
   @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
   private String scriptIdentifier;
 
+  /**
+   * Représentation en chaine de caractères de {@link ScriptDto}.
+   */
   @JsonbProperty(JSON_SCRIPT_AS_STRING)
   private String scriptAsString;
   
+  /**
+   * Arguments.
+   */
   @JsonbProperty(JSON_ARGUMENTS)
   private Map&lt;String, String&gt; arguments;
 
+  /**
+   * Représentation en chaine de caractères des arguments.
+   */
   @JsonbProperty(JSON_ARGUMENTS_AS_STRING)
   private String argumentsAsString;
   
+  /**
+   * Format de la représentation en chaine de caractères des arguments.
+   */
   @JsonbProperty(JSON_ARGUMENTS_AS_STRING_FORMAT)
   private StringFormat argumentsAsStringFormat;
   
+  /**
+   * Résultat.
+   */
   @JsonbProperty(JSON_RESULT)
   private Map&lt;String, String&gt; result;
 
+  /**
+   * Représentation en chaine de caractères du résultat.
+   */
   @JsonbProperty(JSON_RESULT_AS_STRING)
   private String resultAsString;
   
+  /**
+   * Format de la représentation en chaine de caractères du résultat.
+   */
   @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
   private StringFormat resultAsStringFormat;
 
+  /**
+   * Résultat en entier.
+   */
+  @JsonbProperty(JSON_RESULT_AS_INTEGER)
+  private Integer resultAsInteger;
+  
+  /**
+   * Résultat en booléen.
+   */
+  @JsonbProperty(JSON_RESULT_AS_BOOLEAN)
+  private Boolean resultAsBoolean;
+  
+  /**
+   * Message.
+   */
   @JsonbProperty(JSON_MESSAGE)
   private String message;
   
@@ -96,6 +135,16 @@ import lombok.Setter;
    */
   public static final String JSON_RESULT_AS_STRING_FORMAT = &quot;formatResultatChaine&quot;;
 
+  /**
+   * Identifiant json {@link #resultAsInteger}.
+   */
+  public static final String JSON_RESULT_AS_INTEGER = &quot;resultatEntier&quot;;
+  
+  /**
+   * Identifiant json {@link #resultAsBoolean}.
+   */
+  public static final String JSON_RESULT_AS_BOOLEAN = &quot;resultatBooleen&quot;;
+  
   /**
    * Identifiant json {@link #message}.
    */
