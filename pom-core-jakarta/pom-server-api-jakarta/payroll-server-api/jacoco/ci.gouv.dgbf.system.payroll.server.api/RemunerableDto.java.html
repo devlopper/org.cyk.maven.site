@@ -41,6 +41,48 @@ import lombok.Setter;
   @JsonbProperty(JSON_IS_ENABLED)
   private Boolean isEnabled;
   
+  @JsonbProperty(JSON_JOB_IDENTIFIER)
+  private String jobIdentifier;
+  
+  @JsonbProperty(JSON_JOB_AS_STRING)
+  private String jobAsString;
+  
+  @JsonbProperty(JSON_GRADE_IDENTIFIER)
+  private String gradeIdentifier;
+  
+  @JsonbProperty(JSON_GRADE_AS_STRING)
+  private String gradeAsString;
+  
+  @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
+  private String gradeClassIdentifier;
+  
+  @JsonbProperty(JSON_GRADE_CLASS_AS_STRING)
+  private String gradeClassAsString;
+  
+  @JsonbProperty(JSON_ECHELON_IDENTIFIER)
+  private String echelonIdentifier;
+  
+  @JsonbProperty(JSON_ECHELON_AS_STRING)
+  private String echelonAsString;
+  
+  @JsonbProperty(JSON_PAY_INDEX)
+  private String payIndex;
+  
+  @JsonbProperty(JSON_CHILD_NUMBER_AS_STRING)
+  private String childNumber;
+  
+  @JsonbProperty(JSON_IS_MARRIED_AS_STRING)
+  private String isMarried;
+  
+  @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
+  private String localityIdentifier;
+  
+  @JsonbProperty(JSON_LOCALITY_AS_STRING)
+  private String localityAsString;
+  
+  @JsonbProperty(JSON_FUNCTION_AS_STRING)
+  private String functionAsString;
+  
   /**
    * Représentation en chaine de caractères de {@link isEnabled}.
    */
@@ -108,6 +150,76 @@ import lombok.Setter;
    */
   public static final String JSON_PAYSLIP_TEMPLATE_AS_STRING =
       PayslipTemplateDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json de {@link #jobIdentifier}.
+   */
+  public static final String JSON_JOB_IDENTIFIER = &quot;idEmploi&quot;;
+  
+  /**
+   * Identifiant json de {@link #jobAsString}.
+   */
+  public static final String JSON_JOB_AS_STRING = &quot;emploiChaine&quot;;
+  
+  /**
+   * Identifiant json de {@link #gradeIdentifier}.
+   */
+  public static final String JSON_GRADE_IDENTIFIER = &quot;idGrade&quot;;
+  
+  /**
+   * Identifiant json de {@link #gradeAsString}.
+   */
+  public static final String JSON_GRADE_AS_STRING = &quot;gradeChaine&quot;;
+  
+  /**
+   * Identifiant json de {@link #gradeClassIdentifier}.
+   */
+  public static final String JSON_GRADE_CLASS_IDENTIFIER = &quot;idClasse&quot;;
+  
+  /**
+   * Identifiant json de {@link #gradeAsString}.
+   */
+  public static final String JSON_GRADE_CLASS_AS_STRING = &quot;classeChaine&quot;;
+  
+  /**
+   * Identifiant json de {@link #echelonIdentifier}.
+   */
+  public static final String JSON_ECHELON_IDENTIFIER = &quot;idEchelon&quot;;
+  
+  /**
+   * Identifiant json de {@link #echelonAsString}.
+   */
+  public static final String JSON_ECHELON_AS_STRING = &quot;echelonChaine&quot;;
+  
+  /**
+   * Identifiant json de {@link #localityIdentifier}.
+   */
+  public static final String JSON_LOCALITY_IDENTIFIER = &quot;idLocalite&quot;;
+  
+  /**
+   * Identifiant json de {@link #localityAsString}.
+   */
+  public static final String JSON_LOCALITY_AS_STRING = &quot;localiteChaine&quot;;
+  
+  /**
+   * Identifiant json de {@link #functionAsString}.
+   */
+  public static final String JSON_FUNCTION_AS_STRING = &quot;fonctionChaine&quot;;
+  
+  /**
+   * Identifiant json de {@link #payIndex}.
+   */
+  public static final String JSON_PAY_INDEX = &quot;indice&quot;;
+  
+  /**
+   * Identifiant json de {@link #isMarried}.
+   */
+  public static final String JSON_IS_MARRIED_AS_STRING = &quot;estMarie&quot;;
+  
+  /**
+   * Identifiant json de {@link #childNumber}.
+   */
+  public static final String JSON_CHILD_NUMBER_AS_STRING = &quot;nombreEnfant&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
