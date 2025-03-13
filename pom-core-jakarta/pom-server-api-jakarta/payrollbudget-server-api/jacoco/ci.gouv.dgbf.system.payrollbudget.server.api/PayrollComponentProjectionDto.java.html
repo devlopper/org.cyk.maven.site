@@ -24,17 +24,35 @@ import lombok.Setter;
   private String exerciseIdentifier;
 
   /**
+   * Représentation en année de l'exercice.
+   */
+  @JsonbProperty(JSON_YEAR)
+  private Integer year;
+  
+  /**
    * Identifiant de l'employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
   private String employeeIdentifier;
   
   /**
+   * Représentation en chaine de caractères de la catégorie.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_AS_STRING)
+  private String employeeAsString;
+  
+  /**
    * Identifiant de l'unité administrative.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
   private String administrativeUnitIdentifier;
-
+  
+  /**
+   * Représentation en chaine de caractères de l'unité administrative.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String administrativeUnitAsString;
+  
   /**
    * Identifiant du poste de paie.
    */
@@ -42,36 +60,75 @@ import lombok.Setter;
   private String payrollComponentIdentifier;
 
   /**
+   * Représentation en chaine de caractères du poste de paie.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
+  private String payrollComponentAsString;
+  
+  /**
    * Identifiant de la période de paie.
    */
   @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
   private String payrollPeriodIdentifier;
   
   /**
+   * Représentation en chaine de caractères de la période de paie.
+   */
+  @JsonbProperty(JSON_PAYROLL_PERIOD_AS_STRING)
+  private String payrollPeriodAsString;
+  
+  /**
    * Montant.
    */
   @JsonbProperty(JSON_AMOUNT)
-  private Integer amount;
-    
+  private Long amount;
+  
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private String amountAsString;
+  
   /**
    * Identifiant json champ {@link PayrollComponentProjectionDto#exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
 
   /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#year}.
+   */
+  public static final String JSON_YEAR = &quot;annee&quot;;
+  
+  /**
    * Identifiant json {@link PayrollComponentProjectionDto#administrativeUnitIdentifier}.
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
+  
+  /**
+   * Identifiant json {@link PayrollComponentProjectionDto#administrativeUnitAsString}.
+   */
+  
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
 
   /**
    * Identifiant json {@link PayrollComponentProjectionDto#employeeIdentifier}.
    */
   public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
-
+  
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#employeeAsString}.
+   */
+  public static final String JSON_EMPLOYEE_AS_STRING = &quot;employeChaine&quot;;
+  
   /**
    * Identifiant json champ {@link PayrollComponentProjectionDto#payrollComponentIdentifier}.
    */
   public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = &quot;idPostePaie&quot;;
+  
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollComponentAsString}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;postePaieChaine&quot;;
   
   /**
    * Identifiant json champ {@link PayrollComponentProjectionDto#payrollPeriodIdentifier}.
@@ -79,9 +136,19 @@ import lombok.Setter;
   public static final String JSON_PAYROLL_PERIOD_IDENTIFIER = &quot;idPeriodePaie&quot;;
   
   /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollPeriodAsString}.
+   */
+  public static final String JSON_PAYROLL_PERIOD_AS_STRING = &quot;periodePaieChaine&quot;;
+  
+  /**
    * Identifiant json champ {@link PayrollComponentProjectionDto#amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
+  
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
