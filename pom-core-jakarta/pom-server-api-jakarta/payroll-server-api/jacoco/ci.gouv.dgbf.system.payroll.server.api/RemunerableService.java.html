@@ -63,6 +63,20 @@ public interface RemunerableService extends SpecificService {
      * @param identifier identifiant {@link FunctionaryBudgetarySectionUnitDto}
      */
     void setFunctionaryBudgetarySectionUnitIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link PayslipTemplateDto}.
+     *
+     * @return identifiant {@link PayslipTemplateDto}
+     */
+    String getPayslipTemplateIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link PayslipTemplateDto}.
+     *
+     * @param identifier identifiant {@link PayslipTemplateDto}
+     */
+    void setPayslipTemplateIdentifier(String identifier);
     
     /**
      * Cette méthode permet d'obténir vrai si c'est activé sinon faux.
@@ -83,6 +97,12 @@ public interface RemunerableService extends SpecificService {
      */
     public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER =
         RemunerableDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
+
+    /**
+     * {@link RemunerableDto #JSON_PAYSLIP_TEMPLATE_IDENTIFIER}.
+     */
+    public static final String JSON_PAYSLIP_TEMPLATE_IDENTIFIER =
+        RemunerableDto.JSON_PAYSLIP_TEMPLATE_IDENTIFIER;
     
     /**
      * {@link RemunerableDto #JSON_IS_ENABLED}.
@@ -123,13 +143,19 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L146">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements RemunerableSaveRequestDto {
     /**
      * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
     String functionaryBudgetarySectionUnitIdentifier;
+
+    /**
+     * Identifiant de {@link PayslipTemplateDto}.
+     */
+    @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
+    String payslipTemplateIdentifier;
     
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;
@@ -169,7 +195,7 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L172">  public static class RemunerableGetManyResponseDto</span>
+<span class="fc" id="L198">  public static class RemunerableGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;RemunerableDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -259,13 +285,19 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L262">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L288">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements RemunerableSaveRequestDto {
     /**
      * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
     String functionaryBudgetarySectionUnitIdentifier;
+    
+    /**
+     * Identifiant de {@link PayslipTemplateDto}.
+     */
+    @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
+    String payslipTemplateIdentifier;
     
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;

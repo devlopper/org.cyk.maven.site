@@ -31,6 +31,12 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_REGISTRATION_NUMBER)
   private String registrationNumber;
+
+  @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
+  private String payslipTemplateIdentifier;
+
+  @JsonbProperty(JSON_PAYSLIP_TEMPLATE_AS_STRING)
+  private String payslipTemplateAsString;
   
   @JsonbProperty(JSON_IS_ENABLED)
   private Boolean isEnabled;
@@ -90,6 +96,18 @@ import lombok.Setter;
    * Identifiant json de {@link #registrationNumber}.
    */
   public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+
+  /**
+   * Identifiant json de {@link #payslipTemplateIdentifier}.
+   */
+  public static final String JSON_PAYSLIP_TEMPLATE_IDENTIFIER =
+      PayslipTemplateDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #payslipTemplateAsString}.
+   */
+  public static final String JSON_PAYSLIP_TEMPLATE_AS_STRING =
+      PayslipTemplateDto.JSON_THIS_AS_STRING;
   
   /**
    * Nom pour lecture humaine de la classe.
