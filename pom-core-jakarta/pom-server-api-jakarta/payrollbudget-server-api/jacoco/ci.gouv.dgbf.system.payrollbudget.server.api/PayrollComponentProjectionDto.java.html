@@ -36,6 +36,12 @@ import lombok.Setter;
   private String employeeIdentifier;
   
   /**
+   * Représentation du matricule de l'employé.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_REGISTRATION_NUMBER)
+  private String employeeRegistrationNumber;
+  
+  /**
    * Représentation en chaine de caractères de la catégorie.
    */
   @JsonbProperty(JSON_EMPLOYEE_AS_STRING)
@@ -117,6 +123,11 @@ import lombok.Setter;
   
   /**
    * Identifiant json champ {@link PayrollComponentProjectionDto#employeeAsString}.
+   */
+  public static final String JSON_EMPLOYEE_REGISTRATION_NUMBER = &quot;employeMatricule&quot;;
+  
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#employeeRegistrationNumber}.
    */
   public static final String JSON_EMPLOYEE_AS_STRING = &quot;employeChaine&quot;;
   
