@@ -19,6 +19,11 @@ public class RemunerableFilter extends AbstractIdentifiableFilter {
    * Matricule.
    */
   private String registrationNumber;
+  
+  /**
+   * Fonctionnaire.
+   */
+  private String functionaryBudgetarySectionUnitIdentifier;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -26,25 +31,28 @@ public class RemunerableFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public RemunerableFilter(FilterDto dto) {
-<span class="fc" id="L29">    super(dto);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L34">    super(dto);</span>
+<span class="fc" id="L35">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L35">  public RemunerableFilter() {}</span>
+<span class="fc" id="L40">  public RemunerableFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    registrationNumber = getRegistrationNumber(filter);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L44">    super.doInitialize(filter);</span>
+<span class="fc" id="L45">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L46">    functionaryBudgetarySectionUnitIdentifier = </span>
+<span class="fc" id="L47">        getFunctionaryBudgetarySectionUnitIdentifier(filter);</span>
+<span class="fc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    setRegistrationNumber(filter, registrationNumber);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L53">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L54">    setFunctionaryBudgetarySectionUnitIdentifier(filter, functionaryBudgetarySectionUnitIdentifier);</span>
+<span class="fc" id="L55">  }</span>
 
   /**
    * Cette méthode permet d'assigner le matricule.
@@ -53,10 +61,10 @@ public class RemunerableFilter extends AbstractIdentifiableFilter {
    * @param registrationNumber matricule
    */
   public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
-<span class="pc" id="L56">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L57">        f -&gt; f.setValueAsString(registrationNumber));</span>
-<span class="fc" id="L58">  }</span>
-
+<span class="pc" id="L64">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L65">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="fc" id="L66">  }</span>
+  
   /**
    * Cette méthode permet d'obtenir le matricule.
    *
@@ -64,14 +72,43 @@ public class RemunerableFilter extends AbstractIdentifiableFilter {
    * @return matricule
    */
   public static String getRegistrationNumber(FilterDto filter) {
-<span class="fc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
   }
 
+  /**
+   * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
+   *
+   * @param filter filtre
+   * @param functionaryBudgetarySectionUnitIdentifier identifiant du fonctionnaire
+   */
+  public static void setFunctionaryBudgetarySectionUnitIdentifier(FilterDto filter, 
+      String functionaryBudgetarySectionUnitIdentifier) {
+<span class="pc" id="L86">    set(filter, JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L87">        f -&gt; f.setValueAsString(functionaryBudgetarySectionUnitIdentifier));</span>
+<span class="fc" id="L88">  }</span>
+  
+  /**
+   * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
+   *
+   * @param filter filtre
+   * @return identifiant du fonctionnaire
+   */
+  public static String getFunctionaryBudgetarySectionUnitIdentifier(FilterDto filter) {
+<span class="fc" id="L97">    return get(filter, d -&gt; d.getFieldValueAsStringByName(</span>
+        JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER));
+  }
+  
   /**
    * Identifiant json champ {@link RemunerableFilter#registrationNumber}.
    */
   public static final String JSON_REGISTRATION_NUMBER =
       RemunerableDto.JSON_REGISTRATION_NUMBER;
+  
+  /**
+   * Identifiant json champ {@link RemunerableFilter#functionaryBudgetarySectionUnitIdentifier}.
+   */
+  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER =
+      RemunerableDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
