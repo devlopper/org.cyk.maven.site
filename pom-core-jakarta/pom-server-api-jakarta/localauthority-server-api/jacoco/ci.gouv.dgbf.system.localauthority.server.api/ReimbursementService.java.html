@@ -207,7 +207,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L210">  class ReimbursementCreateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="nc" id="L210">  class ReimbursementCreateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
     private String commitmentIdentifier;
@@ -262,7 +262,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L265">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ReimbursementDto&gt; {</span>
+<span class="nc" id="L265">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;ReimbursementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ReimbursementDto&gt; datas;
@@ -354,7 +354,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L357">  class ReimbursementUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="nc" id="L357">  class ReimbursementUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
     private String commitmentIdentifier;
@@ -407,7 +407,7 @@ public interface ReimbursementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L410">  class ReimbursementUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L410">  class ReimbursementUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Montant.
      */

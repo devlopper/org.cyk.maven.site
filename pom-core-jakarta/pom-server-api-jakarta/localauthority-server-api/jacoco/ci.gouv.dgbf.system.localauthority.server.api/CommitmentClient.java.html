@@ -31,13 +31,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L34">public class CommitmentClient extends AbstractClient&lt;CommitmentService&gt;</span>
+<span class="nc" id="L34">public class CommitmentClient extends AbstractClient&lt;CommitmentService&gt;</span>
     implements GetByIdentifier&lt;CommitmentDto&gt;, GetMany&lt;CommitmentGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public CommitmentClient service(CommitmentService service) {
-<span class="fc" id="L40">    return (CommitmentClient) super.service(service);</span>
+<span class="nc" id="L40">    return (CommitmentClient) super.service(service);</span>
   }
 
   /**
@@ -47,8 +47,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(CommitmentCreateRequestDto request) {
-<span class="fc" id="L50">    return new CreateExecutor(CommitmentService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L51">        .execute(() -&gt; service().create(request));</span>
+<span class="nc" id="L50">    return new CreateExecutor(CommitmentService.CREATE_IDENTIFIER)</span>
+<span class="nc" id="L51">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -58,8 +58,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CommitmentGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L61">    return new GetOneExecutor&lt;CommitmentGetManyResponseDto&gt;(CommitmentGetManyResponseDto.class,</span>
-<span class="fc" id="L62">        CommitmentService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="nc" id="L61">    return new GetOneExecutor&lt;CommitmentGetManyResponseDto&gt;(CommitmentGetManyResponseDto.class,</span>
+<span class="nc" id="L62">        CommitmentService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -75,13 +75,13 @@ import lombok.experimental.Accessors;
   @Override
   public CommitmentGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
                                               PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L78">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L79">    request.setProjection(projection);</span>
-<span class="fc" id="L80">    request.setFilter(filter);</span>
-<span class="fc" id="L81">    request.setPage(page);</span>
-<span class="fc" id="L82">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L83">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L84">    return getMany(request);</span>
+<span class="nc" id="L78">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="nc" id="L79">    request.setProjection(projection);</span>
+<span class="nc" id="L80">    request.setFilter(filter);</span>
+<span class="nc" id="L81">    request.setPage(page);</span>
+<span class="nc" id="L82">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L83">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L84">    return getMany(request);</span>
   }
 
   /**
@@ -91,9 +91,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CommitmentDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L94">    return new GetOneExecutor&lt;CommitmentDto&gt;(CommitmentDto.class,</span>
-        CommitmentService.GET_ONE_IDENTIFIER)
-<span class="fc" id="L96">        .execute(() -&gt; service().getOne(request));</span>
+<span class="nc" id="L94">    return new GetOneExecutor&lt;CommitmentDto&gt;(CommitmentDto.class,</span>
+<span class="nc" id="L95">        CommitmentService.GET_ONE_IDENTIFIER)</span>
+<span class="nc" id="L96">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -107,12 +107,12 @@ import lombok.experimental.Accessors;
    */
   public CommitmentDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
                               String auditSession) {
-<span class="fc" id="L110">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L111">    request.setProjection(projection);</span>
-<span class="fc" id="L112">    request.setFilter(filter);</span>
-<span class="fc" id="L113">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L114">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L115">    return getOne(request);</span>
+<span class="nc" id="L110">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="nc" id="L111">    request.setProjection(projection);</span>
+<span class="nc" id="L112">    request.setFilter(filter);</span>
+<span class="nc" id="L113">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L114">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L115">    return getOne(request);</span>
   }
 
   /**
@@ -122,9 +122,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public CommitmentDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L125">    return new GetOneExecutor&lt;CommitmentDto&gt;(CommitmentDto.class,</span>
-        CommitmentService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L127">        .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="nc" id="L125">    return new GetOneExecutor&lt;CommitmentDto&gt;(CommitmentDto.class,</span>
+<span class="nc" id="L126">        CommitmentService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
+<span class="nc" id="L127">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -139,12 +139,12 @@ import lombok.experimental.Accessors;
   @Override
   public CommitmentDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
                                        String auditSession) {
-<span class="fc" id="L142">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L143">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L144">    request.setProjection(projection);</span>
-<span class="fc" id="L145">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L146">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L147">    return getByIdentifier(request);</span>
+<span class="nc" id="L142">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="nc" id="L143">    request.setIdentifier(identifier);</span>
+<span class="nc" id="L144">    request.setProjection(projection);</span>
+<span class="nc" id="L145">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L146">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L147">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -154,8 +154,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(CommitmentUpdateRequestDto request) {
-<span class="fc" id="L157">    return new IdentifiableExecutor(CommitmentService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L158">        .execute(() -&gt; service().update(request));</span>
+<span class="nc" id="L157">    return new IdentifiableExecutor(CommitmentService.UPDATE_IDENTIFIER)</span>
+<span class="nc" id="L158">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -165,8 +165,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L168">    return new IdentifiableExecutor(CommitmentService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L169">        .execute(() -&gt; service().delete(request));</span>
+<span class="nc" id="L168">    return new IdentifiableExecutor(CommitmentService.DELETE_IDENTIFIER)</span>
+<span class="nc" id="L169">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -180,11 +180,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
                                                     String auditSession) {
-<span class="fc" id="L183">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L184">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L185">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L186">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L187">    return delete(request);</span>
+<span class="nc" id="L183">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="nc" id="L184">    request.setIdentifier(identifier);</span>
+<span class="nc" id="L185">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L186">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L187">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

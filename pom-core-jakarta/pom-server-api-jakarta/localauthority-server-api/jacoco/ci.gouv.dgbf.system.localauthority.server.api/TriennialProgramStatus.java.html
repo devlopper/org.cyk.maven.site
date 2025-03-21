@@ -14,45 +14,45 @@ import lombok.Getter;
  * @author Christian
  *
  */
-<span class="fc" id="L17">@Getter</span>
+@Getter
 public enum TriennialProgramStatus {
 
-  /**
+<span class="nc" id="L20">  /**</span>
    * Créé.
    */
-<span class="fc" id="L23">  CREATED(TriennialProgramStatusCode.CREATED, &quot;Créé&quot;, &quot;Créer&quot;, &quot;Création&quot;, WorkflowStep.INPUT),</span>
+<span class="nc" id="L23">  CREATED(TriennialProgramStatusCode.CREATED, &quot;Créé&quot;, &quot;Créer&quot;, &quot;Création&quot;, WorkflowStep.INPUT),</span>
 
-  /**
+<span class="nc" id="L25">  /**</span>
    * Transmis.
    */
-<span class="fc" id="L28">  TRANSMITTED(TriennialProgramStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmettre&quot;, &quot;Transmission&quot;,</span>
-      WorkflowStep.VALIDATION),
+<span class="nc" id="L28">  TRANSMITTED(TriennialProgramStatusCode.TRANSMITTED, &quot;Transmis&quot;, &quot;Transmettre&quot;, &quot;Transmission&quot;,</span>
+<span class="nc" id="L29">      WorkflowStep.VALIDATION),</span>
 
-  /**
+<span class="nc" id="L31">  /**</span>
    * Accepté.
    */
-<span class="fc" id="L34">  ACCEPTED(TriennialProgramStatusCode.ACCEPTED, &quot;Accepté&quot;, &quot;Accepter&quot;, &quot;Acceptation&quot;,</span>
-      WorkflowStep.APPROVAL),
+<span class="nc" id="L34">  ACCEPTED(TriennialProgramStatusCode.ACCEPTED, &quot;Accepté&quot;, &quot;Accepter&quot;, &quot;Acceptation&quot;,</span>
+<span class="nc" id="L35">      WorkflowStep.APPROVAL),</span>
 
-  /**
+<span class="nc" id="L37">  /**</span>
    * Retourné.
    */
-<span class="fc" id="L40">  RETURNED(TriennialProgramStatusCode.RETURNED, &quot;Retourné&quot;, &quot;Retourner&quot;, &quot;Retour&quot;,</span>
-      WorkflowStep.INPUT),
+<span class="nc" id="L40">  RETURNED(TriennialProgramStatusCode.RETURNED, &quot;Retourné&quot;, &quot;Retourner&quot;, &quot;Retour&quot;,</span>
+<span class="nc" id="L41">      WorkflowStep.INPUT),</span>
 
-  /**
+<span class="nc" id="L43">  /**</span>
    * Approuvé.
    */
-<span class="fc" id="L46">  APPROVED(TriennialProgramStatusCode.APPROVED, &quot;Approuvé&quot;, &quot;Approuver&quot;, &quot;Approbation&quot;, null);</span>
+<span class="nc" id="L46">  APPROVED(TriennialProgramStatusCode.APPROVED, &quot;Approuvé&quot;, &quot;Approuver&quot;, &quot;Approbation&quot;, null);</span>
 
-  private TriennialProgramStatus(String code, String name, String action, String actionName,
-<span class="fc" id="L49">      WorkflowStep workflowStep) {</span>
-<span class="fc" id="L50">    this.code = code;</span>
-<span class="fc" id="L51">    this.name = name;</span>
-<span class="fc" id="L52">    this.action = action;</span>
-<span class="fc" id="L53">    this.actionName = actionName;</span>
-<span class="fc" id="L54">    this.workflowStep = workflowStep;</span>
-<span class="fc" id="L55">  }</span>
+<span class="nc" id="L48">  private TriennialProgramStatus(String code, String name, String action, String actionName,</span>
+      WorkflowStep workflowStep) {
+<span class="nc" id="L50">    this.code = code;</span>
+<span class="nc" id="L51">    this.name = name;</span>
+<span class="nc" id="L52">    this.action = action;</span>
+<span class="nc" id="L53">    this.actionName = actionName;</span>
+<span class="nc" id="L54">    this.workflowStep = workflowStep;</span>
+<span class="nc" id="L55">  }</span>
 
   private String code;
   private String name;
@@ -68,7 +68,7 @@ public enum TriennialProgramStatus {
    * @return vrai sinon faux
    */
   public boolean isWorkflowStepInput() {
-<span class="fc" id="L71">    return WorkflowStep.INPUT.equals(workflowStep);</span>
+<span class="nc" id="L71">    return WorkflowStep.INPUT.equals(workflowStep);</span>
   }
 
   /**
@@ -77,7 +77,7 @@ public enum TriennialProgramStatus {
    * @return vrai si le montant est modifiable sinon faux
    */
   public boolean isAmountUpdatable() {
-<span class="fc" id="L80">    return isWorkflowStepInput();</span>
+<span class="nc" id="L80">    return isWorkflowStepInput();</span>
   }
 
   /**
@@ -86,13 +86,13 @@ public enum TriennialProgramStatus {
    * @return vrai si le commentaire est modifiable sinon faux
    */
   public boolean isCommentUpdatable() {
-<span class="fc bfc" id="L89" title="All 2 branches covered.">    return WorkflowStep.VALIDATION.equals(workflowStep)</span>
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        || WorkflowStep.APPROVAL.equals(workflowStep);</span>
+<span class="nc bnc" id="L89" title="All 2 branches missed.">    return WorkflowStep.VALIDATION.equals(workflowStep)</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        || WorkflowStep.APPROVAL.equals(workflowStep);</span>
   }
 
   @Override
   public String toString() {
-<span class="fc" id="L95">    return name;</span>
+<span class="nc" id="L95">    return name;</span>
   }
 
   /**
@@ -102,18 +102,18 @@ public enum TriennialProgramStatus {
    * @return statut
    */
   public static TriennialProgramStatus getByCode(String code) {
-<span class="fc" id="L105">    return Stream.of(TriennialProgramStatus.values())</span>
-<span class="fc" id="L106">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L107">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="nc" id="L105">    return Stream.of(TriennialProgramStatus.values())</span>
+<span class="nc" id="L106">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="nc" id="L107">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L111">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L112">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, RETURNED));</span>
-<span class="fc" id="L113">    ACCEPTED.previous = Core.getSet(List.of(TRANSMITTED));</span>
-<span class="fc" id="L114">    RETURNED.previous = Core.getSet(List.of(TRANSMITTED, ACCEPTED));</span>
-<span class="fc" id="L115">    APPROVED.previous = Core.getSet(List.of(ACCEPTED));</span>
-<span class="fc" id="L116">  }</span>
+<span class="nc" id="L111">    CREATED.previous = Collections.emptySet();</span>
+<span class="nc" id="L112">    TRANSMITTED.previous = Core.getSet(List.of(CREATED, RETURNED));</span>
+<span class="nc" id="L113">    ACCEPTED.previous = Core.getSet(List.of(TRANSMITTED));</span>
+<span class="nc" id="L114">    RETURNED.previous = Core.getSet(List.of(TRANSMITTED, ACCEPTED));</span>
+<span class="nc" id="L115">    APPROVED.previous = Core.getSet(List.of(ACCEPTED));</span>
+<span class="nc" id="L116">  }</span>
 
   /**
    * Cette classe représente les étapes du circuit de travail.
@@ -121,31 +121,31 @@ public enum TriennialProgramStatus {
    * @author Christian
    *
    */
-<span class="fc" id="L124">  @Getter</span>
-  public enum WorkflowStep {
-    /**
+  @Getter
+<span class="nc" id="L125">  public enum WorkflowStep {</span>
+<span class="nc" id="L126">    /**</span>
      * Saisie.
      */
-<span class="fc" id="L129">    INPUT(&quot;Saisie&quot;, &quot;Saisir les montants des actions et opérations. &quot;</span>
+<span class="nc" id="L129">    INPUT(&quot;Saisie&quot;, &quot;Saisir les montants des actions et opérations. &quot;</span>
         + &quot;Ensuite, veuillez transmettre pour validation&quot;),
-    /**
+<span class="nc" id="L131">    /**</span>
      * Validation.
      */
-<span class="fc" id="L134">    VALIDATION(&quot;Validation&quot;, &quot;Vérifier les montants des actions et opérations. &quot;</span>
+<span class="nc" id="L134">    VALIDATION(&quot;Validation&quot;, &quot;Vérifier les montants des actions et opérations. &quot;</span>
         + &quot;Accepter si vous êtes d'accord sinon retouner à la saisie&quot;),
-    /**
+<span class="nc" id="L136">    /**</span>
      * Approbation.
      */
-<span class="fc" id="L139">    APPROVAL(&quot;Approbation&quot;, &quot;Vérifier les montants des actions et opérations. &quot;</span>
+<span class="nc" id="L139">    APPROVAL(&quot;Approbation&quot;, &quot;Vérifier les montants des actions et opérations. &quot;</span>
         + &quot;Approuver si vous êtes d'accord sinon retouner à la saisie&quot;);
 
     private String name;
     private String description;
 
-<span class="fc" id="L145">    private WorkflowStep(String name, String description) {</span>
-<span class="fc" id="L146">      this.name = name;</span>
-<span class="fc" id="L147">      this.description = description;</span>
-<span class="fc" id="L148">    }</span>
+<span class="nc" id="L145">    private WorkflowStep(String name, String description) {</span>
+<span class="nc" id="L146">      this.name = name;</span>
+<span class="nc" id="L147">      this.description = description;</span>
+<span class="nc" id="L148">    }</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

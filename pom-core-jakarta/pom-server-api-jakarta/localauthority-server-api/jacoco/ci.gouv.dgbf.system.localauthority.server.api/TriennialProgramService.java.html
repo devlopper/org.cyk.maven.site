@@ -122,7 +122,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L125">  class TriennialProgramCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="nc" id="L125">  class TriennialProgramCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
@@ -147,7 +147,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  class TriennialProgramApprovalRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L150">  class TriennialProgramApprovalRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Numéro d'approbation.
      */
@@ -181,7 +181,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L184">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L184">  class TriennialProgramReturnRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Raison.
@@ -202,7 +202,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L205">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
+<span class="nc" id="L205">  class TriennialProgramStatusUpdateResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link TriennialProgramDto#getStatus()}.
@@ -251,14 +251,14 @@ public interface TriennialProgramService extends SpecificService {
      * @param reason         raison
      */
     public void initialize(TriennialProgramStatus status, String statusAsString, String reason) {
-<span class="fc" id="L254">      this.status = status;</span>
-<span class="fc" id="L255">      this.statusAsString = statusAsString;</span>
-<span class="fc" id="L256">      this.reason = reason;</span>
-<span class="fc" id="L257">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
-<span class="fc" id="L258">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L259">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
-<span class="fc" id="L260">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
-<span class="fc" id="L261">    }</span>
+<span class="nc" id="L254">      this.status = status;</span>
+<span class="nc" id="L255">      this.statusAsString = statusAsString;</span>
+<span class="nc" id="L256">      this.reason = reason;</span>
+<span class="nc" id="L257">      transmitable = TriennialProgramStatus.TRANSMITTED.getPrevious().contains(status);</span>
+<span class="nc" id="L258">      acceptable = TriennialProgramStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="nc" id="L259">      returnable = TriennialProgramStatus.RETURNED.getPrevious().contains(status);</span>
+<span class="nc" id="L260">      approvable = TriennialProgramStatus.APPROVED.getPrevious().contains(status);</span>
+<span class="nc" id="L261">    }</span>
 
     /**
      * {@link TriennialProgramDto#JSON_STATUS}.
@@ -444,7 +444,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L447">  public static class TriennialProgramGetManyResponseDto</span>
+<span class="nc" id="L447">  public static class TriennialProgramGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TriennialProgramDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -536,7 +536,7 @@ public interface TriennialProgramService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L539">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="nc" id="L539">  class TriennialProgramUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements TriennialProgramSaveRequestDto {
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
