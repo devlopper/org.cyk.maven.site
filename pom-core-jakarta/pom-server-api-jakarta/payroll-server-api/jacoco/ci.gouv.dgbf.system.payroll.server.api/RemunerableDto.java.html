@@ -28,6 +28,9 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_AS_STRING)
   private String budgetarySectionUnitAsString;
+  
+  @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+  private String functionaryIdentifier;
 
   @JsonbProperty(JSON_REGISTRATION_NUMBER)
   private String registrationNumber;
@@ -69,16 +72,19 @@ import lombok.Setter;
   private String payIndex;
   
   @JsonbProperty(JSON_CHILD_NUMBER_AS_STRING)
-  private String childNumber;
+  private Integer childNumber;
   
   @JsonbProperty(JSON_IS_MARRIED_AS_STRING)
-  private String isMarried;
+  private Boolean isMarried;
   
   @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
   private String localityIdentifier;
   
   @JsonbProperty(JSON_LOCALITY_AS_STRING)
   private String localityAsString;
+  
+  @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
+  private String functionIdentifier;
   
   @JsonbProperty(JSON_FUNCTION_AS_STRING)
   private String functionAsString;
@@ -138,6 +144,11 @@ import lombok.Setter;
    * Identifiant json de {@link #registrationNumber}.
    */
   public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+
+  /**
+   * Identifiant json de {@link #functionaryIdentifier}.
+   */
+  public static final String JSON_FUNCTIONARY_IDENTIFIER = &quot;idFonctionnaire&quot;;
 
   /**
    * Identifiant json de {@link #payslipTemplateIdentifier}.
@@ -200,6 +211,11 @@ import lombok.Setter;
    * Identifiant json de {@link #localityAsString}.
    */
   public static final String JSON_LOCALITY_AS_STRING = &quot;localiteChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #functionIdentifier}.
+   */
+  public static final String JSON_FUNCTION_IDENTIFIER = &quot;idFonction&quot;;
   
   /**
    * Identifiant json de {@link #functionAsString}.

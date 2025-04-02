@@ -40,6 +40,66 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_REMUNERABLE_AS_STRING)
   private String remunerableAsString;
+
+  /**
+   * Identifiant {@link FunctionMovementDto}.
+   */
+  @JsonbProperty(JSON_FUNCTION_MOVEMENT_IDENTIFIER)
+  private String functionMovementIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de {@link FunctionMovementDto}.
+   */
+  @JsonbProperty(JSON_FUNCTION_MOVEMENT_AS_STRING)
+  private String functionMovementAsString;
+
+  /**
+   * Identifiant {@link LocalityMovementDto}.
+   */
+  @JsonbProperty(JSON_LOCALITY_MOVEMENT_IDENTIFIER)
+  private String localityMovementIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de {@link LocalityMovementDto}.
+   */
+  @JsonbProperty(JSON_LOCALITY_MOVEMENT_AS_STRING)
+  private String localityMovementAsString;
+
+  /**
+   * Identifiant {@link ServiceMovementDto}.
+   */
+  @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER)
+  private String budgetarySectionUnitMovementIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de {@link ServiceMovementDto}.
+   */
+  @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_AS_STRING)
+  private String budgetarySectionUnitMovementAsString;
+
+  /**
+   * Identifiant {@link PayIndexMovementDto}.
+   */
+  @JsonbProperty(JSON_PAY_INDEX_MOVEMENT_IDENTIFIER)
+  private String payIndexMovementIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de {@link PayIndexMovementDto}.
+   */
+  @JsonbProperty(JSON_PAY_INDEX_MOVEMENT_AS_STRING)
+  private String payIndexMovementAsString;
+
+  /**
+   * Nombre d'enfants.
+   */
+  @JsonbProperty(JSON_CHILD_NUMBER)
+  private Integer childNumber;
+
+  /**
+   * Est marié.
+   */
+  @JsonbProperty(JSON_IS_MARRIED)
+  private Boolean isMarried;
   
   /**
    * {@link PayslipStatus}.
@@ -188,6 +248,64 @@ import lombok.Setter;
    * Identifiant json {@link #remunerableAsString}.
    */
   public static final String JSON_REMUNERABLE_AS_STRING = RemunerableDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #functionMovementIdentifier}.
+   */
+  public static final String JSON_FUNCTION_MOVEMENT_IDENTIFIER = 
+                  FunctionMovementDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #functionMovementAsString}.
+   */
+  public static final String JSON_FUNCTION_MOVEMENT_AS_STRING = 
+                  FunctionMovementDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #localityMovementIdentifier}.
+   */
+  public static final String JSON_LOCALITY_MOVEMENT_IDENTIFIER = 
+                  LocalityMovementDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #localityMovementAsString}.
+   */
+  public static final String JSON_LOCALITY_MOVEMENT_AS_STRING = 
+                  LocalityMovementDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #budgetarySectionUnitMovementIdentifier}.
+   */
+  public static final String JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER = 
+                  BudgetarySectionUnitMovementDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #budgetarySectionUnitMovementAsString}.
+   */
+  public static final String JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_AS_STRING = 
+                  BudgetarySectionUnitMovementDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #payIndexMovementIdentifier}.
+   */
+  public static final String JSON_PAY_INDEX_MOVEMENT_IDENTIFIER = 
+                  PayIndexMovementDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #payIndexMovementAsString}.
+   */
+  public static final String JSON_PAY_INDEX_MOVEMENT_AS_STRING = 
+                  PayIndexMovementDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #childNumber}.
+   */
+  public static final String JSON_CHILD_NUMBER = &quot;nombreEnfant&quot;;
+
+  /**
+   * Identifiant json {@link #isMarried}.
+   */
+  public static final String JSON_IS_MARRIED = &quot;estMarie&quot;;
   
   /**
    * Identifiant json champ {@link #status}.

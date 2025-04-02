@@ -20,6 +20,21 @@ import lombok.Setter;
 <span class="fc" id="L20">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements PayslipContainerDto {
 
+
+
+  /**
+   * Identifiant {@link PeriodGroupDto}.
+   */
+  @JsonbProperty(JSON_PERIOD_GROUP_IDENTIFIER)
+  private String periodGroupIdentifier;
+
+  /**
+   * Représentation en chaine de caractères {@link PeriodGroupDto}.
+   */
+  @JsonbProperty(JSON_PERIOD_GROUP_AS_STRING)
+  private String periodGroupAsString;
+
+
   /**
    * Identifiant {@link ExerciseDto}.
    */
@@ -180,13 +195,13 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L183">    status = response.getStatus();</span>
-<span class="fc" id="L184">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L185">    initializable = response.getInitializable();</span>
-<span class="fc" id="L186">    controllable = response.getControllable();</span>
-<span class="fc" id="L187">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L188">    closable = response.getClosable();</span>
-<span class="fc" id="L189">  }</span>
+<span class="fc" id="L198">    status = response.getStatus();</span>
+<span class="fc" id="L199">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L200">    initializable = response.getInitializable();</span>
+<span class="fc" id="L201">    controllable = response.getControllable();</span>
+<span class="fc" id="L202">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L203">    closable = response.getClosable();</span>
+<span class="fc" id="L204">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -198,6 +213,15 @@ import lombok.Setter;
    */
   public static final String JSON_THIS_AS_STRING = &quot;paieChaine&quot;;
 
+  /**
+   * Identifiant json champ {@link #periodGroupIdentifier}.
+   */
+  public static final String JSON_PERIOD_GROUP_IDENTIFIER = PeriodGroupDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #periodGroupAsString}.
+   */
+  public static final String JSON_PERIOD_GROUP_AS_STRING = PeriodGroupDto.JSON_THIS_AS_STRING;
   /**
    * Identifiant json champ {@link #exerciseIdentifier}.
    */

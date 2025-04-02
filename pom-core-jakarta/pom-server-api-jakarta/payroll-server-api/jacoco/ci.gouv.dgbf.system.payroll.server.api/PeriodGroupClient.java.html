@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PeriodGroupClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PeriodGroupClient.java</span></div><h1>PeriodGroupClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payroll.server.api.PeriodGroupService.PeriodGroupCreateRequestDto;
+import ci.gouv.dgbf.system.payroll.server.api.PeriodGroupService.PeriodGroupGetManyResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.PeriodGroupService.PeriodGroupUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de {@link PeriodGroupService}.
+ *
+ * @author arnaud
+ *
+ */
+@ApplicationScoped
+<span class="fc" id="L31">public class PeriodGroupClient extends AbstractClient&lt;PeriodGroupService&gt; implements</span>
+    GetByIdentifier&lt;PeriodGroupDto&gt;, GetMany&lt;PeriodGroupGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public PeriodGroupClient service(PeriodGroupService service) {
+<span class="fc" id="L37">    return (PeriodGroupClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(PeriodGroupCreateRequestDto request) {
+<span class="fc" id="L47">    return new CreateExecutor(PeriodGroupService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L48">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public PeriodGroupGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L58">    return new GetOneExecutor&lt;PeriodGroupGetManyResponseDto&gt;(</span>
+        PeriodGroupGetManyResponseDto.class, PeriodGroupService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L60">            .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public PeriodGroupGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L76">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L77">    request.setProjection(projection);</span>
+<span class="fc" id="L78">    request.setFilter(filter);</span>
+<span class="fc" id="L79">    request.setPage(page);</span>
+<span class="fc" id="L80">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L81">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L82">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public PeriodGroupDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L92">    return new GetOneExecutor&lt;PeriodGroupDto&gt;(PeriodGroupDto.class,</span>
+<span class="fc" id="L93">        PeriodGroupService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public PeriodGroupDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L107">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L108">    request.setProjection(projection);</span>
+<span class="fc" id="L109">    request.setFilter(filter);</span>
+<span class="fc" id="L110">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L111">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L112">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe de periode
+   */
+  public PeriodGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L122">    return new GetOneExecutor&lt;PeriodGroupDto&gt;(PeriodGroupDto.class,</span>
+        PeriodGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L124">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public PeriodGroupDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L139">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L140">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L141">    request.setProjection(projection);</span>
+<span class="fc" id="L142">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L143">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L144">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(PeriodGroupUpdateRequestDto request) {
+<span class="fc" id="L154">    return new IdentifiableExecutor(PeriodGroupService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L155">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L165">    return new IdentifiableExecutor(PeriodGroupService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L166">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link PeriodGroupService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L180">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L181">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L182">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L183">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L184">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

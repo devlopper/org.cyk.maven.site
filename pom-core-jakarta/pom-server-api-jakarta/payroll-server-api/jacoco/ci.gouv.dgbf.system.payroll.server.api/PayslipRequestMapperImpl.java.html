@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-03-17T19:37:16+0000&quot;,
+    date = &quot;2025-04-02T09:40:18+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,23 +27,35 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        payslipCreateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
 <span class="fc" id="L29">        payslipCreateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
+<span class="fc" id="L30">        payslipCreateRequestDto.setFunctionMovementIdentifier( arg0.getFunctionMovementIdentifier() );</span>
+<span class="fc" id="L31">        payslipCreateRequestDto.setLocalityMovementIdentifier( arg0.getLocalityMovementIdentifier() );</span>
+<span class="fc" id="L32">        payslipCreateRequestDto.setBudgetarySectionUnitMovementIdentifier( arg0.getBudgetarySectionUnitMovementIdentifier() );</span>
+<span class="fc" id="L33">        payslipCreateRequestDto.setPayIndexMovementIdentifier( arg0.getPayIndexMovementIdentifier() );</span>
+<span class="fc" id="L34">        payslipCreateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
+<span class="fc" id="L35">        payslipCreateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
 
-<span class="fc" id="L31">        return payslipCreateRequestDto;</span>
+<span class="fc" id="L37">        return payslipCreateRequestDto;</span>
     }
 
     @Override
     public PayslipService.PayslipUpdateRequestDto mapUpdate(PayslipDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L43">            return null;</span>
         }
 
-<span class="fc" id="L40">        PayslipService.PayslipUpdateRequestDto payslipUpdateRequestDto = new PayslipService.PayslipUpdateRequestDto();</span>
+<span class="fc" id="L46">        PayslipService.PayslipUpdateRequestDto payslipUpdateRequestDto = new PayslipService.PayslipUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        payslipUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        payslipUpdateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
-<span class="fc" id="L44">        payslipUpdateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
+<span class="fc" id="L48">        payslipUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L49">        payslipUpdateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
+<span class="fc" id="L50">        payslipUpdateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
+<span class="fc" id="L51">        payslipUpdateRequestDto.setFunctionMovementIdentifier( arg0.getFunctionMovementIdentifier() );</span>
+<span class="fc" id="L52">        payslipUpdateRequestDto.setLocalityMovementIdentifier( arg0.getLocalityMovementIdentifier() );</span>
+<span class="fc" id="L53">        payslipUpdateRequestDto.setBudgetarySectionUnitMovementIdentifier( arg0.getBudgetarySectionUnitMovementIdentifier() );</span>
+<span class="fc" id="L54">        payslipUpdateRequestDto.setPayIndexMovementIdentifier( arg0.getPayIndexMovementIdentifier() );</span>
+<span class="fc" id="L55">        payslipUpdateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
+<span class="fc" id="L56">        payslipUpdateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
 
-<span class="fc" id="L46">        return payslipUpdateRequestDto;</span>
+<span class="fc" id="L58">        return payslipUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

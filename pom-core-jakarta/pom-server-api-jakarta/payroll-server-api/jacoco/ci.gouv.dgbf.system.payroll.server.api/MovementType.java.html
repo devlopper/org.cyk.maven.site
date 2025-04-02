@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">MovementType.java</span></div><h1>MovementType.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les types de mouvements de {@link MovementType }.
+ *
+ * @author akm
+ *
+ */
+<span class="fc" id="L12">@Getter</span>
+public enum MovementType {
+
+  /**
+   * Fonction.
+   */
+<span class="fc" id="L18">  FUNCTION(MovementTypeCode.FUNCTION, &quot;Fonction&quot;),</span>
+  
+  /**
+   * Localité.
+   */
+<span class="fc" id="L23">  LOCALITY(MovementTypeCode.LOCALITY, &quot;Localité&quot;),</span>
+  
+  /**
+   * Service.
+   */
+<span class="fc" id="L28">  SERVICE(MovementTypeCode.SERVICE, &quot;Service&quot;),</span>
+  
+  /**
+   * Indice.
+   */
+<span class="fc" id="L33">  PAY_INDEX(MovementTypeCode.PAY_INDEX, &quot;Indice&quot;)</span>
+
+  ;
+
+<span class="fc" id="L37">  private MovementType(String code, String name) {</span>
+<span class="fc" id="L38">    this.code = code;</span>
+<span class="fc" id="L39">    this.name = name;</span>
+<span class="fc" id="L40">  }</span>
+
+  private String code;
+  private String name;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L47">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le type de movement par code.
+   *
+   * @param code code
+   * @return type movement
+   */
+  public static MovementType getByCode(String code) {
+<span class="fc" id="L57">    return Stream.of(MovementType.values())</span>
+<span class="fc" id="L58">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L59">        .orElseThrow(IllegalArgumentException::new);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
