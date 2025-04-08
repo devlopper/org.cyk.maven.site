@@ -327,7 +327,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L330">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L330">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -425,7 +425,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L428">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L428">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -516,7 +516,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L519">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L519">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)

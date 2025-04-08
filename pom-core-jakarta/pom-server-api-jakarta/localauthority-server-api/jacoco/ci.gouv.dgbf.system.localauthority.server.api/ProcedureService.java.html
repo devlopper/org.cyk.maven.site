@@ -33,10 +33,9 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  * Cette interface représente les services de {@link ProcedureDto}.
  *
  * @author Christian Yao Komenan
- *
  */
 @Path(value = ProcedureService.PATH)
-@Tag(name = &quot;Gestion des procedures&quot;)
+@Tag(name = &quot;Gestion des  procedures&quot;)
 public interface ProcedureService extends SpecificService {
 
   /**
@@ -54,51 +53,46 @@ public interface ProcedureService extends SpecificService {
    * Chemin du service de création.
    */
   String CREATE_PATH = &quot;&quot;;
-
   /**
-   * Cette interface représente un enregistrement.
-   *
-   * @author Christian
-   *
+   * Identifiant du service d'obtention de plusieurs.
    */
-  interface ProcedureSaveRequestDto {
-
-    /**
-     * Identifiant JSON {@link WorkflowDto}.
-     */
-    String JSON_WORKFLOW_IDENTIFIER = ProcedureDto.JSON_WORKFLOW_IDENTIFIER;
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
-     *
-     * @return identifiant de {@link WorkflowDto}
-     */
-    String getWorkflowIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link WorkflowDto}.
-     *
-     * @param workflowIdentifier identifiant de {@link WorkflowDto}
-     */
-    void setWorkflowIdentifier(String workflowIdentifier);
-
-    /**
-     * Identifiant json du champ d'ordre.
-     */
-    public static final String JSON_ORDER = ProcedureDto.JSON_ORDER;
-
-    /**
-     * Identifiant json du champ de date .
-     */
-    public static final String JSON_DATE = ProcedureDto.JSON_DATE;
-
-    /**
-     * Identifiant json du champ de date .
-     */
-    public static final String JSON_OBSERVATION = ProcedureDto.JSON_OBSERVATION;
-
-  }
-
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_PROCEDURE&quot;;
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_PROCEDURE&quot;;
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_PROCEDURE&quot;;
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_PROCEDURE&quot;;
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_PROCEDURE&quot;;
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
 
   /**
    * Cette méthode permet de créer.
@@ -116,41 +110,6 @@ public interface ProcedureService extends SpecificService {
   Response create(ProcedureCreateRequestDto request);
 
   /**
-   * Cette classe représente la requête de création.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="nc" id="L126">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
-      implements ProcedureSaveRequestDto {
-
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
-
-    @JsonbProperty(JSON_ORDER)
-    private Integer order;
-
-    @JsonbProperty(JSON_DATE)
-    private Date date;
-
-    @JsonbProperty(JSON_OBSERVATION)
-    private String observation;
-
-  }
-
-  /**
-   * Identifiant du service d'obtention de plusieurs.
-   */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service d'obtention de plusieurs.
-   */
-  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
-
-  /**
    * Cette méthode permet d'obtenir plusieurs.
    *
    * @param request requête
@@ -162,33 +121,9 @@ public interface ProcedureService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = ProcedureGetManyResponseDto.class))})
+      content = {
+          @Content(schema = @Schema(implementation = ProcedureGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
-
-  /**
-   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="nc" id="L176">  public static class ProcedureGetManyResponseDto</span>
-      extends AbstractGetByPageResponseDto&lt;ProcedureDto&gt; {
-
-    @JsonbProperty(JSON_DATAS)
-    private List&lt;ProcedureDto&gt; datas;
-  }
-
-  /**
-   * Identifiant du service d'obtention de un.
-   */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service d'obtention de un.
-   */
-  String GET_ONE_PATH = &quot;obtention/un&quot;;
 
   /**
    * Cette méthode permet d'obtenir {@link ProcedureDto}.
@@ -206,16 +141,6 @@ public interface ProcedureService extends SpecificService {
   Response getOne(GetOneRequestDto request);
 
   /**
-   * Identifiant du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
-
-  /**
    * Cette méthode permet d'obtenir par identrifiant.
    *
    * @param request requête
@@ -229,16 +154,6 @@ public interface ProcedureService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = ProcedureDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
-
-  /**
-   * Identifiant du service de mise à jour.
-   */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service de mise à jour.
-   */
-  String UPDATE_PATH = &quot;&quot;;
 
   /**
    * Cette méthode permet de mettre à jour.
@@ -256,41 +171,6 @@ public interface ProcedureService extends SpecificService {
   Response update(ProcedureUpdateRequestDto request);
 
   /**
-   * Cette classe représente la requête de mise à jour.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="nc" id="L266">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
-      implements ProcedureSaveRequestDto {
-
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
-
-    @JsonbProperty(JSON_ORDER)
-    private int order;
-
-    @JsonbProperty(JSON_DATE)
-    private Date date;
-
-    @JsonbProperty(JSON_OBSERVATION)
-    private String observation;
-
-  }
-
-  /**
-   * Identifiant du service de suppression.
-   */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service de suppression.
-   */
-  String DELETE_PATH = &quot;&quot;;
-
-  /**
    * Cette méthode permet de supprimer {@link ProcedureDto}.
    *
    * @param request requête
@@ -304,5 +184,134 @@ public interface ProcedureService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Cette interface représente un enregistrement.
+   *
+   * @author Christian
+   */
+  interface ProcedureSaveRequestDto {
+
+    /**
+     * Identifiant JSON {@link TriennialProgramDto}.
+     */
+    String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = ProcedureDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
+
+    /**
+     * Identifiant JSON {@link WorkflowDto}.
+     */
+    String JSON_WORKFLOW_IDENTIFIER = ProcedureDto.JSON_WORKFLOW_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ d'ordre.
+     */
+    public static final String JSON_ORDER = ProcedureDto.JSON_ORDER;
+
+    /**
+     * Identifiant json du champ de date detail.
+     */
+    public static final String JSON_DATE = ProcedureDto.JSON_DATE;
+
+    /**
+     * Identifiant json du champ de date .
+     */
+    public static final String JSON_OBSERVATION = ProcedureDto.JSON_OBSERVATION;
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
+     *
+     * @return identifiant de {@link WorkflowDto}
+     */
+    String getWorkflowIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link WorkflowDto}.
+     *
+     * @param workflowIdentifier identifiant de {@link WorkflowDto}
+     */
+    void setWorkflowIdentifier(String workflowIdentifier);
+
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link TriennialProgramDto}.
+     *
+     * @return identifiant de {@link TriennialProgramDto}
+     */
+    String getTriennialProgramIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link TriennialProgramDto}.
+     *
+     * @param triennialProgramIdentifier identifiant de {@link TriennialProgramDto}
+     */
+    void setTriennialProgramIdentifier(String triennialProgramIdentifier);
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L257">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements ProcedureSaveRequestDto {
+
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
+
+    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
+    private String workflowIdentifier;
+
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
+
+    @JsonbProperty(JSON_DATE)
+    private Date date;
+
+    @JsonbProperty(JSON_OBSERVATION)
+    private String observation;
+
+  }
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L284">  public static class ProcedureGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ProcedureDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ProcedureDto&gt; datas;
+  }
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L298">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements ProcedureSaveRequestDto {
+
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
+
+    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
+    private String workflowIdentifier;
+
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
+
+    @JsonbProperty(JSON_DATE)
+    private Date date;
+
+    @JsonbProperty(JSON_OBSERVATION)
+    private String observation;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

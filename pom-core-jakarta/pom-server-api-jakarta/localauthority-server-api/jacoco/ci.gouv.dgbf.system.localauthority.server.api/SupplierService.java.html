@@ -114,7 +114,7 @@ public interface SupplierService extends SpecificService {
   @JsonbPropertyOrder(value = {AbstractCodableCreateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableCreateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="nc" id="L117">  class SupplierCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L117">  class SupplierCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements SaveRequestDto {
 
     @JsonbProperty(JSON_TAX_ACCOUNT_NUMBER)
@@ -154,7 +154,7 @@ public interface SupplierService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L157">  class SupplierGetManyResponseDto extends AbstractGetByPageResponseDto&lt;SupplierDto&gt; {</span>
+<span class="fc" id="L157">  class SupplierGetManyResponseDto extends AbstractGetByPageResponseDto&lt;SupplierDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;SupplierDto&gt; datas;
@@ -249,7 +249,7 @@ public interface SupplierService extends SpecificService {
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_CODE,
       AbstractCodableNamableUpdateRequestJsonDto.FIELD_NAME, AbstractRequestDto.FIELD_AUDIT_WHO,
       AbstractAuditedRequestJsonDto.FIELD_AUDIT_SESSION})
-<span class="nc" id="L252">  class SupplierUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L252">  class SupplierUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SaveRequestDto {
     @JsonbProperty(JSON_TAX_ACCOUNT_NUMBER)
     private String taxAccountNumber;

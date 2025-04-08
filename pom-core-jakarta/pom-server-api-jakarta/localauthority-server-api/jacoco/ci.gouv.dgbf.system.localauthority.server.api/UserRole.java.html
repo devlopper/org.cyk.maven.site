@@ -9,84 +9,84 @@ import lombok.Getter;
  * @author Christian
  *
  */
-@Getter
-<span class="nc" id="L13">public enum UserRole implements CodableByStringWithGetterOnly {</span>
+<span class="fc" id="L12">@Getter</span>
+public enum UserRole implements CodableByStringWithGetterOnly {
 
-<span class="nc" id="L15">  // --- Actions ---</span>
+  // --- Actions ---
 
   // Activité
 
   /**
    * Gérer {@link ActivityDto}.
    */
-<span class="nc" id="L22">  MANAGE_ACTIVITY(&quot;GERER_ACTIVITE&quot;),</span>
+<span class="fc" id="L22">  MANAGE_ACTIVITY(&quot;GERER_ACTIVITE&quot;),</span>
 
-<span class="nc" id="L24">  // Programme triennal.</span>
+  // Programme triennal.
 
   /**
    * Gérer {@link TriennialProgramDto}.
    */
-<span class="nc" id="L29">  MANAGE_TRIENNIAL_PROGRAM(&quot;GERER_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L29">  MANAGE_TRIENNIAL_PROGRAM(&quot;GERER_PROGRAMME_TRIENNAL&quot;),</span>
 
-<span class="nc" id="L31">  /**</span>
+  /**
    * Saisir {@link TriennialProgramDto}.
    */
-<span class="nc" id="L34">  INPUT_TRIENNIAL_PROGRAM(&quot;SAISIR_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L34">  INPUT_TRIENNIAL_PROGRAM(&quot;SAISIR_PROGRAMME_TRIENNAL&quot;),</span>
 
-<span class="nc" id="L36">  /**</span>
+  /**
    * Transmettre {@link TriennialProgramDto}.
    */
-<span class="nc" id="L39">  TRANSMIT_TRIENNIAL_PROGRAM(&quot;TRANSMETTRE_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L39">  TRANSMIT_TRIENNIAL_PROGRAM(&quot;TRANSMETTRE_PROGRAMME_TRIENNAL&quot;),</span>
 
-<span class="nc" id="L41">  /**</span>
+  /**
    * Valider {@link TriennialProgramDto}.
    */
-<span class="nc" id="L44">  VALIDATE_TRIENNIAL_PROGRAM(&quot;VALIDER_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L44">  VALIDATE_TRIENNIAL_PROGRAM(&quot;VALIDER_PROGRAMME_TRIENNAL&quot;),</span>
 
-<span class="nc" id="L46">  /**</span>
+  /**
    * Approuver {@link TriennialProgramDto}.
    */
-<span class="nc" id="L49">  APPROVE_TRIENNIAL_PROGRAM(&quot;APPROUVER_PROGRAMME_TRIENNAL&quot;),</span>
+<span class="fc" id="L49">  APPROVE_TRIENNIAL_PROGRAM(&quot;APPROUVER_PROGRAMME_TRIENNAL&quot;),</span>
 
-<span class="nc" id="L51">  // Activité de programme triennal</span>
+  // Activité de programme triennal
 
   /**
    * Gérer {@link ActivityDto}.
    */
-<span class="nc" id="L56">  MANAGE_TRIENNIAL_PROGRAM_ACTIVITY(&quot;GERER_PROGRAMME_TRIENNAL_ACTIVITE&quot;),</span>
+<span class="fc" id="L56">  MANAGE_TRIENNIAL_PROGRAM_ACTIVITY(&quot;GERER_PROGRAMME_TRIENNAL_ACTIVITE&quot;),</span>
 
-<span class="nc" id="L58">  // Financemment</span>
+  // Financemment
 
   /**
    * Commenter {@link FundingDto}.
    */
-<span class="nc" id="L63">  COMMENT_FUNDING(&quot;COMMENTER_FINANCEMENT&quot;),</span>
+<span class="fc" id="L63">  COMMENT_FUNDING(&quot;COMMENTER_FINANCEMENT&quot;),</span>
 
-<span class="nc" id="L65">  // --- Groupe d'actions ---</span>
+  // --- Groupe d'actions ---
 
   /**
    * Agent technique.
    */
-<span class="nc" id="L70">  TECHNICAL_AGENT(&quot;AGENT_TECHNIQUE&quot;),</span>
+<span class="fc" id="L70">  TECHNICAL_AGENT(&quot;AGENT_TECHNIQUE&quot;),</span>
   
-<span class="nc" id="L72">  /**</span>
+  /**
    * Responsable technique.
    */
-<span class="nc" id="L75">  TECHNICAL_MANAGER(&quot;RESPONSABLE_TECHNIQUE&quot;),</span>
+<span class="fc" id="L75">  TECHNICAL_MANAGER(&quot;RESPONSABLE_TECHNIQUE&quot;),</span>
   
-<span class="nc" id="L77">  /**</span>
+  /**
    * Validateur.
    */
-<span class="nc" id="L80">  VALIDATOR(&quot;VALIDATEUR&quot;),</span>
+<span class="fc" id="L80">  VALIDATOR(&quot;VALIDATEUR&quot;),</span>
   
-<span class="nc" id="L82">  /**</span>
+  /**
    * Approbateur.
    */
-<span class="nc" id="L85">  APPROVER(&quot;APPROBATEUR&quot;);</span>
+<span class="fc" id="L85">  APPROVER(&quot;APPROBATEUR&quot;);</span>
   
-<span class="nc" id="L87">  private UserRole(String code) {</span>
-<span class="nc" id="L88">    this.code = code;</span>
-<span class="nc" id="L89">  }</span>
+<span class="fc" id="L87">  private UserRole(String code) {</span>
+<span class="fc" id="L88">    this.code = code;</span>
+<span class="fc" id="L89">  }</span>
 
   /**
    * Code.

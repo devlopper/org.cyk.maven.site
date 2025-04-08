@@ -25,26 +25,26 @@ public class CommitmentFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public CommitmentFilter(FilterDto dto) {
-<span class="nc" id="L28">    super(dto);</span>
-<span class="nc" id="L29">  }</span>
+<span class="fc" id="L28">    super(dto);</span>
+<span class="fc" id="L29">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="nc" id="L34">  public CommitmentFilter() {</span>
-<span class="nc" id="L35">  }</span>
+<span class="fc" id="L34">  public CommitmentFilter() {</span>
+<span class="fc" id="L35">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L39">    super.doInitialize(filter);</span>
-<span class="nc" id="L40">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
-<span class="nc" id="L41">  }</span>
+<span class="fc" id="L39">    super.doInitialize(filter);</span>
+<span class="fc" id="L40">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
+<span class="fc" id="L41">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L45">    super.toDto(filter);</span>
-<span class="nc" id="L46">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
-<span class="nc" id="L47">  }</span>
+<span class="fc" id="L45">    super.toDto(filter);</span>
+<span class="fc" id="L46">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
+<span class="fc" id="L47">  }</span>
 
 
   /**
@@ -54,9 +54,9 @@ public class CommitmentFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant de {@link LocalAuthorityDto}
    */
   public static void setLocalAuthorityIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L57">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L58">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L59">  }</span>
+<span class="pc" id="L57">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L58">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L59">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link LocalAuthorityDto}.
@@ -65,7 +65,7 @@ public class CommitmentFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link LocalAuthorityDto}
    */
   public static String getLocalAuthorityIdentifier(FilterDto filter) {
-<span class="nc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
+<span class="fc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
   }
 
 
