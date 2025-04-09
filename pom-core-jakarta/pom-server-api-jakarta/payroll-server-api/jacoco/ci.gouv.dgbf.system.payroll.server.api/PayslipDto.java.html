@@ -220,6 +220,18 @@ import lombok.Setter;
   /*-- Fin définition des montants --*/
 
   /**
+   * Nombre de propositions.
+   */
+  @JsonbProperty(JSON_PROPOSITION_COUNT)
+  private Integer propositionCount;
+
+  /**
+   * Représentation en chaine de caractère du nombre de propositions.
+   */
+  @JsonbProperty(JSON_PROPOSITION_COUNT_AS_STRING)
+  private String propositionCountAsString;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idBulletinPaie&quot;;
@@ -362,6 +374,16 @@ import lombok.Setter;
    * Identifiant json {@link #firstNameAndLastNames}.
    */
   public static final String JSON_FIRST_NAME_AND_LAST_NAMES = &quot;nomPrenoms&quot;;
+
+  /**
+   * Identifiant json {@link #propositionCount}.
+   */
+  public static final String JSON_PROPOSITION_COUNT = &quot;nombreProposition&quot;;
+
+  /**
+   * Identifiant json {@link #propositionCountAsString}.
+   */
+  public static final String JSON_PROPOSITION_COUNT_AS_STRING = &quot;nombrePropositionChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
