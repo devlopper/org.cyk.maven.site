@@ -182,6 +182,12 @@ import lombok.Setter;
   private Integer grossAmountVariation;
 
   /**
+   * Représentation en chaine de caractères de la variation du montant brut.
+   */
+  @JsonbProperty(JSON_GROSS_AMOUNT_VARIATION_AS_STRING)
+  private String grossAmountVariationAsString;
+
+  /**
    * Représentation en chaine de caractères du montant brut imposable.
    */
   @JsonbProperty(JSON_TAXABLE_GROSS_AMOUNT_AS_STRING)
