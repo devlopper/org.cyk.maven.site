@@ -176,6 +176,12 @@ import lombok.Setter;
   private String grossAmountAsString;
 
   /**
+   * Variation du montant brut.
+   */
+  @JsonbProperty(JSON_GROSS_AMOUNT_VARIATION)
+  private Integer grossAmountVariation;
+
+  /**
    * Représentation en chaine de caractères du montant brut imposable.
    */
   @JsonbProperty(JSON_TAXABLE_GROSS_AMOUNT_AS_STRING)
@@ -230,6 +236,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_PROPOSITION_COUNT_AS_STRING)
   private String propositionCountAsString;
+  
+  /**
+   * Est à controler prioritairement.
+   */
+  @JsonbProperty(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY)
+  private Boolean isTobeControlledInPriority;
 
   /**
    * Identifiant json de l'identifiant.
@@ -384,6 +396,11 @@ import lombok.Setter;
    * Identifiant json {@link #propositionCountAsString}.
    */
   public static final String JSON_PROPOSITION_COUNT_AS_STRING = &quot;nombrePropositionChaine&quot;;
+  
+  /**
+   * Identifiant json {@link #isTobeControlledInPriority}.
+   */
+  public static final String JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY = &quot;estAControlerPrioritairement&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
