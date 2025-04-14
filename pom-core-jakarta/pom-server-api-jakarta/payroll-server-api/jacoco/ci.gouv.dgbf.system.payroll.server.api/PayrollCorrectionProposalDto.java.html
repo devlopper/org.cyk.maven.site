@@ -31,38 +31,50 @@ import lombok.Setter;
   /**
    * Identifiant de l'élément de paie.
    */
-  @JsonbProperty(JSON_PAY_ELEMENT_IDENTIFIER)
-  private String payElementIdentifier;
+  @JsonbProperty(JSON_SUGGESTED_PAY_ELEMENT_IDENTIFIER)
+  private String suggestedPayElementIdentifier;
 
   /**
-   * Représentation en chaine de caractère de l'élément de paie.
+   * Représentation en chaine de caractère de l'élément de paie à proposer.
    */
   @JsonbProperty(JSON_PAY_ELEMENT_AS_STRING)
-  private String payElementAsString;
+  private String suggestedPayElementAsString;
+  
+  /**
+   * Identifiant de l'élément de paie à corriger.
+   */
+  @JsonbProperty(JSON_CORRECTED_PAY_ELEMENT_IDENTIFIER)
+  private String correctedPayElementIdentifier;
+
+  /**
+   * Représentation en chaine de caractère de l'élément de paie à corriger.
+   */
+  @JsonbProperty(JSON_CORRECTED_PAY_ELEMENT_AS_STRING)
+  private String correctedPayElementAsString;
   
   /**
    * Identifiant du mouvement à proposer.
    */
-  @JsonbProperty(JSON_MOVEMENT_IDENTIFIER)
-  private String movementIdentifier;
+  @JsonbProperty(JSON_SUGGESTED_MOVEMENT_IDENTIFIER)
+  private String suggestedMovementIdentifier;
 
   /**
    * Représentation en chaine de caractère du mouvement à proposer.
    */
-  @JsonbProperty(JSON_MOVEMENT_AS_STRING)
-  private String movementAsString;
+  @JsonbProperty(JSON_SUGGESTED_MOVEMENT_AS_STRING)
+  private String suggestedMovementAsString;
   
   /**
    * Identifiant du mouvement à corriger.
    */
-  @JsonbProperty(JSON_REFERENCED_MOVEMENT_IDENTIFIER)
-  private String referencedMovementIdentifier;
+  @JsonbProperty(JSON_CORRECTED_MOVEMENT_IDENTIFIER)
+  private String correctedMovementIdentifier;
 
   /**
    * Représentation en chaine de caractère du mouvement à corriger.
    */
-  @JsonbProperty(JSON_REFERENCED_MOVEMENT_AS_STRING)
-  private String referencedMovementAsString;
+  @JsonbProperty(JSON_CORRECTED_MOVEMENT_AS_STRING)
+  private String correctedMovementAsString;
   
   /**
    * {@link MovementType}.
@@ -97,24 +109,34 @@ import lombok.Setter;
   public static final String JSON_PAYROLL_AS_STRING = PayrollDto.JSON_THIS_AS_STRING;
   
   /**
-   * Identifiant json {@link #payElementIdentifier}.
+   * Identifiant json {@link #suggestedPayElementIdentifier}.
    */
-  public static final String JSON_PAY_ELEMENT_IDENTIFIER = &quot;idElementPaie&quot;;
+  public static final String JSON_SUGGESTED_PAY_ELEMENT_IDENTIFIER = &quot;idElementPaiePropose&quot;;
 
   /**
-   * Identifiant json {@link #payElementAsString}.
+   * Identifiant json {@link #suggestedPayElementAsString}.
    */
-  public static final String JSON_PAY_ELEMENT_AS_STRING = &quot;elementPaieChaine&quot;;
+  public static final String JSON_PAY_ELEMENT_AS_STRING = &quot;elementPaieProposeChaine&quot;;
   
   /**
-   * Identifiant json {@link #referencedMovementIdentifier}.
+   * Identifiant json {@link #correctedPayElementIdentifier}.
    */
-  public static final String JSON_REFERENCED_MOVEMENT_IDENTIFIER = &quot;idMouvementReference&quot;;
+  public static final String JSON_CORRECTED_PAY_ELEMENT_IDENTIFIER = &quot;idElementPaieACorriger&quot;;
 
   /**
-   * Identifiant json {@link #referencedMovementAsString}.
+   * Identifiant json {@link #correctedMovementAsString}.
    */
-  public static final String JSON_REFERENCED_MOVEMENT_AS_STRING = &quot;mouvementReferenceChaine&quot;;
+  public static final String JSON_CORRECTED_PAY_ELEMENT_AS_STRING = &quot;elementPaieACorrigerChaine&quot;;
+  
+  /**
+   * Identifiant json {@link #correctedMovementIdentifier}.
+   */
+  public static final String JSON_CORRECTED_MOVEMENT_IDENTIFIER = &quot;idMouvementACorriger&quot;;
+
+  /**
+   * Identifiant json {@link #correctedMovementAsString}.
+   */
+  public static final String JSON_CORRECTED_MOVEMENT_AS_STRING = &quot;mouvementACorrigerChaine&quot;;
   
   /**
    * Identifiant json {@link #movementType}.
@@ -127,14 +149,14 @@ import lombok.Setter;
   public static final String JSON_MOVEMENT_TYPE_AS_STRING = &quot;typeMouvementChaine&quot;;
   
   /**
-   * Identifiant json {@link #movementIdentifier}.
+   * Identifiant json {@link #suggestedMovementIdentifier}.
    */
-  public static final String JSON_MOVEMENT_IDENTIFIER = &quot;idMouvement&quot;;
+  public static final String JSON_SUGGESTED_MOVEMENT_IDENTIFIER = &quot;idMouvementPropose&quot;;
 
   /**
-   * Identifiant json {@link #movementAsString}.
+   * Identifiant json {@link #suggestedMovementAsString}.
    */
-  public static final String JSON_MOVEMENT_AS_STRING = &quot;mouvementChaine&quot;;
+  public static final String JSON_SUGGESTED_MOVEMENT_AS_STRING = &quot;mouvementProposeChaine&quot;;
   
 
   /**
