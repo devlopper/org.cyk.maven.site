@@ -184,6 +184,12 @@ import lombok.Setter;
   /**
    * Représentation en chaine de caractères de la variation du montant brut.
    */
+  @JsonbProperty(JSON_PREVIOUS_GROSS_AMOUNT_AS_STRING)
+  private String previousGrossAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation du montant brut.
+   */
   @JsonbProperty(JSON_GROSS_AMOUNT_VARIATION_AS_STRING)
   private String grossAmountVariationAsString;
 
@@ -194,10 +200,34 @@ import lombok.Setter;
   private String taxableGrossAmountAsString;
 
   /**
+   * Représentation en chaine de caractères du montant brut imposable précédent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_TAXABLE_GROSS_AMOUNT_AS_STRING)
+  private String previousTaxableGrossAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation du montant brut imposable.
+   */
+  @JsonbProperty(JSON_TAXABLE_GROSS_AMOUNT_VARIATION_AS_STRING)
+  private String taxableGrossAmountVariationAsString;
+
+  /**
    * Représentation en chaine de caractères des éléments non soumis.
    */
   @JsonbProperty(JSON_NON_TAXABLE_AMOUNT_AS_STRING)
   private String nonTaxableAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères des éléments non soumis précédent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_NON_TAXABLE_AMOUNT_AS_STRING)
+  private String previousNonTaxableAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation des éléments non soumis.
+   */
+  @JsonbProperty(JSON_NON_TAXABLE_AMOUNT_VARIATION_AS_STRING)
+  private String nonTaxableAmountVariationAsString;
 
   /**
    * Représentation en chaine de caractères du montant des retenues.
@@ -206,10 +236,34 @@ import lombok.Setter;
   private String deductionsAmountAsString;
 
   /**
+   * Représentation en chaine de caractères du montant des retenues précédent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_DEDUCTIONS_AMOUNT_AS_STRING)
+  private String previousDeductionsAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation du montant des retenues.
+   */
+  @JsonbProperty(JSON_DEDUCTIONS_AMOUNT_VARIATION_AS_STRING)
+  private String deductionsAmountVariationAsString;
+
+  /**
    * Représentation en chaine de caractères du montant net.
    */
   @JsonbProperty(JSON_NET_AMOUNT_AS_STRING)
   private String netAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères du montant net précédent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_NET_AMOUNT_AS_STRING)
+  private String previousNetAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation du montant net.
+   */
+  @JsonbProperty(JSON_NET_AMOUNT_VARIATION_AS_STRING)
+  private String netAmountVariationAsString;
 
   /**
    * Représentation en chaine de caractères du montant initialisé.
