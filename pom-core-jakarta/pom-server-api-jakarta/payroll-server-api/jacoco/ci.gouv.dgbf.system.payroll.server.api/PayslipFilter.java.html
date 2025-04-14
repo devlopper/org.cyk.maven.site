@@ -27,7 +27,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
   /**
    * Est à controler prioritairement.
    */
-  private Boolean isTobeControlledInPriority;
+  private Boolean isToBeControlledInPriority;
 
   /**
    * Variation montant brut.
@@ -53,7 +53,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
 <span class="fc" id="L53">    super.doInitialize(filter);</span>
 <span class="fc" id="L54">    payrollIdentifier = getPayrollIdentifier(filter);</span>
 <span class="fc" id="L55">    registrationNumber = getRegistrationNumber(filter);</span>
-<span class="fc" id="L56">    isTobeControlledInPriority = getIsTobeControlledInPriority(filter);</span>
+<span class="fc" id="L56">    isToBeControlledInPriority = getIsToBeControlledInPriority(filter);</span>
 <span class="fc" id="L57">    grossAmountVariation = getGrossAmountVariation(filter);</span>
 <span class="fc" id="L58">  }</span>
 
@@ -62,7 +62,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
 <span class="fc" id="L62">    super.toDto(filter);</span>
 <span class="fc" id="L63">    setPayrollIdentifier(filter, payrollIdentifier);</span>
 <span class="fc" id="L64">    setRegistrationNumber(filter, registrationNumber);</span>
-<span class="fc" id="L65">    setIsTobeControlledInPriority(filter, isTobeControlledInPriority);</span>
+<span class="fc" id="L65">    setIsToBeControlledInPriority(filter, isToBeControlledInPriority);</span>
 <span class="fc" id="L66">    setGrossAmountVariation(filter, grossAmountVariation);</span>
 <span class="fc" id="L67">  }</span>
 
@@ -112,12 +112,12 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * Cette méthode permet d'assigner est à controler prioritairement.
    *
    * @param filter filtre
-   * @param isTobeControlledInPriority est à controler prioritairement
+   * @param isToBeControlledInPriority est à controler prioritairement
    */
-  public static void setIsTobeControlledInPriority(FilterDto filter,
-      Boolean isTobeControlledInPriority) {
+  public static void setIsToBeControlledInPriority(FilterDto filter,
+      Boolean isToBeControlledInPriority) {
 <span class="pc" id="L119">    set(filter, JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY, f -&gt; f.getValueAsBoolean(),</span>
-<span class="fc" id="L120">        f -&gt; f.setValueAsBoolean(isTobeControlledInPriority));</span>
+<span class="fc" id="L120">        f -&gt; f.setValueAsBoolean(isToBeControlledInPriority));</span>
 <span class="fc" id="L121">  }</span>
 
   /**
@@ -126,7 +126,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param filter filtre
    * @return est à controler prioritairement
    */
-  public static Boolean getIsTobeControlledInPriority(FilterDto filter) {
+  public static Boolean getIsToBeControlledInPriority(FilterDto filter) {
 <span class="fc" id="L130">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY));</span>
   }
 
@@ -162,7 +162,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
   public static final String JSON_REGISTRATION_NUMBER = PayslipDto.JSON_REGISTRATION_NUMBER;
 
   /**
-   * Identifiant json champ {@link PayslipFilter#isTobeControlledInPriority}.
+   * Identifiant json champ {@link PayslipFilter#isToBeControlledInPriority}.
    */
   public static final String JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY =
       PayslipDto.JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY;
