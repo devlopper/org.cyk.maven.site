@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ExistenceVerificationRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
@@ -226,8 +227,7 @@ public interface FunctionaryService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Création d'un fonctionnaire&quot;,
-      description = &quot;Ce service permet de créer un fonctionnaire&quot;)
+  @Operation(operationId = CREATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;201&quot;,
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
   Response create(FunctionaryCreateRequestDto request);
@@ -288,8 +288,7 @@ public interface FunctionaryService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir des fonctionnaires&quot;)
+  @Operation(operationId = GET_MANY_IDENTIFIER)
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -300,7 +299,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L303">  public static class FunctionaryGetManyResponseDto</span>
+<span class="fc" id="L302">  public static class FunctionaryGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;FunctionaryDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -327,10 +326,32 @@ public interface FunctionaryService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir un fonctionnaire&quot;)
+  @Operation(operationId = GET_ONE_IDENTIFIER)
   Response getOne(GetOneRequestDto request);
 
+  /**
+   * Identifiant du service de vérification d'existence.
+   */
+  String VERIFY_EXISTENCE_IDENTIFIER = &quot;VERIFICATION_EXISTENCE_FONCTIONNAIRE&quot;;
+
+  /**
+   * Chemin du service de vérification d'existence.
+   */
+  String VERIFY_EXISTENCE_PATH = &quot;verification-existence&quot;;
+
+  /**
+   * Cette méthode permet de vérifier l'existence.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(VERIFY_EXISTENCE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = VERIFY_EXISTENCE_IDENTIFIER)
+  Response verifyExistence(ExistenceVerificationRequestDto request);
+  
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
@@ -351,8 +372,7 @@ public interface FunctionaryService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir par identifiant un fonctionnaire&quot;)
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = FunctionaryDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
@@ -377,8 +397,7 @@ public interface FunctionaryService extends SpecificService {
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = UPDATE_IDENTIFIER,
-      description = &quot;Ce service permet de mettre à jour un fonctionnaire&quot;)
+  @Operation(operationId = UPDATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response update(FunctionaryUpdateRequestDto request);
@@ -391,7 +410,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L394">  class FunctionaryUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L413">  class FunctionaryUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionarySaveRequestDto {
 
     @JsonbProperty(value = JSON_FIRST_NAME)
@@ -439,8 +458,7 @@ public interface FunctionaryService extends SpecificService {
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = DELETE_IDENTIFIER,
-      description = &quot;Ce service permet de supprimer un fonctionnaire&quot;)
+  @Operation(operationId = DELETE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
@@ -465,9 +483,7 @@ public interface FunctionaryService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = IMPORT_BY_REGISTRATION_NUMBER_IDENTIFIER,
-      summary = &quot;Importation de fonctionnaire par matricule&quot;,
-      description = &quot;Ce service permet d'importer un fonctionnaire par matricule&quot;)
+  @Operation(operationId = IMPORT_BY_REGISTRATION_NUMBER_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response importByRegistrationNumber(FunctionaryImportByRegistrationNumberRequestDto request);
@@ -481,7 +497,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L484">  class FunctionaryImportByRegistrationNumberRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L500">  class FunctionaryImportByRegistrationNumberRequestDto extends AbstractAuditedRequestJsonDto {</span>
 
     /**
      * {@link FunctionaryDto#getRegistrationNumber()}.
@@ -529,7 +545,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L532">  class FunctionaryImportAllRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L548">  class FunctionaryImportAllRequestDto extends AbstractAuditedRequestJsonDto {</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
