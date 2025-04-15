@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeeDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">EmployeeDto.java</span></div><h1>EmployeeDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un employé.
+ *
+ * @author Christian
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class EmployeeDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Représentation en chaine de caractères de l'identité.
+   */
+  @JsonbProperty(value = JSON_IDENTITY_AS_STRING)
+  private String identityAsString;
+
+  /**
+   * Adresse email.
+   */
+  @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+  private String emailAddress;
+
+  /**
+   * Identifiant groupe de numéro matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER)
+  private String registrationNumberGroupIdentifier;
+
+  /**
+   * Est groupe de numéro matricule fonction publique.
+   */
+  @JsonbProperty(value = JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION)
+  private Boolean isRegistrationNumberGroupPublicFunction;
+
+  /**
+   * Numéro matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+
+  /**
+   * Nom.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME)
+  private String firstName;
+
+  /**
+   * Prénoms.
+   */
+  @JsonbProperty(value = JSON_LAST_NAMES)
+  private String lastNames;
+
+  /**
+   * Nom et prénoms.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME_AND_LAST_NAMES)
+  private String firstNameAndLastNames;
+
+  /**
+   * Identifiant du genre.
+   */
+  @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
+  private String genderIdentifier;
+
+  /**
+   * Est du genre masculin.
+   */
+  @JsonbProperty(value = JSON_IS_GENDER_MASCULINE)
+  private Boolean isGenderMasculine;
+
+  /**
+   * Date de naissance.
+   */
+  @JsonbProperty(value = JSON_BIRTH_DATE)
+  private LocalDate birthDate;
+
+  /**
+   * Représentation en chaine de caractères de {@link #birthDate}.
+   */
+  @JsonbProperty(value = JSON_BIRTH_DATE_AS_STRING)
+  private String birthDateAsString;
+
+  /**
+   * Date de première prise de service.
+   */
+  @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE)
+  private LocalDate firstServiceStartDate;
+
+  /**
+   * Représentation en chaine de caractères de {@link #firstServiceStartDate}.
+   */
+  @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE_AS_STRING)
+  private String firstServiceStartDateAsString;
+
+  /**
+   * Identifiant de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  private String exerciseIdentifier;
+
+  /**
+   * Identifiant de l'unité administrative.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String administrativeUnitIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de l'unité administrative.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String administrativeUnitAsString;
+
+  /**
+   * Identifiant du poste de paie.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+  private String payrollComponentIdentifier;
+
+  /**
+   * Représentation en chaine de caractères du poste de paie.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
+  private String payrollComponentAsString;
+
+  /**
+   * Représentation en chaine de caractères de la période de paie.
+   */
+  @JsonbProperty(JSON_PAYROLL_PERIOD_AS_STRING)
+  private String payrollPeriodAsString;
+
+  /**
+   * Identifiant de la période de paie.
+   */
+  @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
+  private String payrollPeriodIdentifier;
+
+  /**
+   * Montant.
+   */
+  @JsonbProperty(JSON_AMOUNT)
+  private Long amount;
+
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private String amountAsString;
+
+  /**
+   * Identifiant json {@link PayrollComponentProjectionDto#administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
+
+  /**
+   * Identifiant json {@link PayrollComponentProjectionDto#administrativeUnitAsString}.
+   */
+
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
+
+  /**
+   * Identifiant champ json {@link #identityAsString}.
+   */
+  public static final String JSON_IDENTITY_AS_STRING = &quot;identiteChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollComponentIdentifier}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = &quot;idPostePaie&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollComponentAsString}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;postePaieChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollPeriodIdentifier}.
+   */
+  public static final String JSON_PAYROLL_PERIOD_IDENTIFIER = &quot;idPeriodePaie&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollPeriodAsString}.
+   */
+  public static final String JSON_PAYROLL_PERIOD_AS_STRING = &quot;periodePaieChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#amount}.
+   */
+  public static final String JSON_AMOUNT = &quot;montant&quot;;
+
+  /**
+   * Identifiant json champ {@link PayrollComponentProjectionDto#amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
+
+  /**
+   * Identifiant champ json {@link #emailAddress}.
+   */
+  public static final String JSON_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
+
+  /**
+   * Identifiant champ json {@link #registrationNumberGroupIdentifier}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER = &quot;idGroupeMatricule&quot;;
+
+  /**
+   * Identifiant champ json {@link #isRegistrationNumberGroupPublicFunction}.
+   */
+  public static final String JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION =
+      &quot;estGroupeMatriculeFonctionPublique&quot;;
+  /**
+   * Identifiant champ json {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+
+  /**
+   * Identifiant champ json {@link #firstName}.
+   */
+  public static final String JSON_FIRST_NAME = &quot;nom&quot;;
+
+  /**
+   * Identifiant champ json {@link #lastNames}.
+   */
+  public static final String JSON_LAST_NAMES = &quot;prenoms&quot;;
+
+  /**
+   * Identifiant champ json {@link #firstNameAndLastNames}.
+   */
+  public static final String JSON_FIRST_NAME_AND_LAST_NAMES = &quot;nomEtPrenoms&quot;;
+
+  /**
+   * Identifiant champ json {@link #genderIdentifier}.
+   */
+  public static final String JSON_GENDER_IDENTIFIER = &quot;idGenre&quot;;
+
+  /**
+   * Identifiant json {@link #isGenderMasculine}.
+   */
+  public static final String JSON_IS_GENDER_MASCULINE = &quot;estGenreMasculin&quot;;
+
+  /**
+   * Identifiant champ json {@link #birthDate}.
+   */
+  public static final String JSON_BIRTH_DATE = &quot;dateNaissance&quot;;
+
+  /**
+   * Identifiant champ json {@link #birthDateAsString}.
+   */
+  public static final String JSON_BIRTH_DATE_AS_STRING = &quot;dateNaissanceChaine&quot;;
+
+  /**
+   * Identifiant champ json {@link #firstServiceStartDate}.
+   */
+  public static final String JSON_FIRST_SERVICE_START_DATE = &quot;datePremierePriseService&quot;;
+
+  /**
+   * Identifiant champ json {@link #firstServiceStartDateAsString}.
+   */
+  public static final String JSON_FIRST_SERVICE_START_DATE_AS_STRING =
+      &quot;datePremierePriseServiceChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;employé&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
