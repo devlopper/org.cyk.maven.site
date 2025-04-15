@@ -302,6 +302,18 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY)
   private Boolean isToBeControlledInPriority;
+  
+  /**
+   * Est à controler.
+   */
+  @JsonbProperty(JSON_IS_TO_BE_CONTROLLED)
+  private Boolean isToBeControlled;
+  
+  /**
+   * Est controlé.
+   */
+  @JsonbProperty(JSON_IS_CONTROLLED)
+  private Boolean isControlled;
 
   /**
    * Identifiant json de l'identifiant.
@@ -461,6 +473,16 @@ import lombok.Setter;
    * Identifiant json {@link #isToBeControlledInPriority}.
    */
   public static final String JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY = &quot;estAControlerPrioritairement&quot;;
+  
+  /**
+   * Identifiant json {@link #isToBeControlled}.
+   */
+  public static final String JSON_IS_TO_BE_CONTROLLED = &quot;estAControler&quot;;
+  
+  /**
+   * Identifiant json {@link #isControlled}.
+   */
+  public static final String JSON_IS_CONTROLLED = &quot;estControle&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
