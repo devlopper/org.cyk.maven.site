@@ -57,7 +57,7 @@ public interface DepartmentService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des départements&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = DepartmentGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -68,7 +68,8 @@ public interface DepartmentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;DepartmentDto&gt; {</span>
+<span class="fc" id="L71">  public static class DepartmentGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;DepartmentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;DepartmentDto&gt; datas;

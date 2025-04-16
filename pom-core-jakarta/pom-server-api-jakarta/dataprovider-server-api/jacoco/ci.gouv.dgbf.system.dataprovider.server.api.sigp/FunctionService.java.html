@@ -57,7 +57,7 @@ public interface FunctionService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des fonctions&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = FunctionGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -68,7 +68,7 @@ public interface FunctionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FunctionDto&gt; {</span>
+<span class="fc" id="L71">  public static class FunctionGetManyResponseDto extends AbstractGetByPageResponseDto&lt;FunctionDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FunctionDto&gt; datas;

@@ -56,8 +56,8 @@ public interface SubPrefectureService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des sous-préfectures&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = SubPrefectureGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -68,7 +68,8 @@ public interface SubPrefectureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;SubPrefectureDto&gt; {</span>
+<span class="fc" id="L71">  public static class SubPrefectureGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;SubPrefectureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;SubPrefectureDto&gt; datas;

@@ -57,7 +57,7 @@ public interface GradeService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des grades&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = GradeGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -68,7 +68,7 @@ public interface GradeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;GradeDto&gt; {</span>
+<span class="fc" id="L71">  public static class GradeGetManyResponseDto extends AbstractGetByPageResponseDto&lt;GradeDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;GradeDto&gt; datas;

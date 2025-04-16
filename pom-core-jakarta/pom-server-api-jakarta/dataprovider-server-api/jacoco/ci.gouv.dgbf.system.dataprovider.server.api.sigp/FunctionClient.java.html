@@ -7,7 +7,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.dataprovider.server.api.sigp.FunctionService.GetManyResponseDto;
+import ci.gouv.dgbf.system.dataprovider.server.api.sigp.FunctionService.FunctionGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -22,7 +22,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L24">public class FunctionClient extends AbstractClient&lt;FunctionService&gt;</span>
-    implements GetMany&lt;GetManyResponseDto&gt; {
+    implements GetMany&lt;FunctionGetManyResponseDto&gt; {
 
   @Override
   public FunctionClient service(FunctionService service) {
@@ -35,8 +35,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L39">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
+  public FunctionGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L39">    return new GetOneExecutor&lt;FunctionGetManyResponseDto&gt;(FunctionGetManyResponseDto.class,</span>
 <span class="fc" id="L40">        FunctionService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
@@ -51,8 +51,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
+  public FunctionGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
 <span class="fc" id="L56">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L57">    request.setProjection(projection);</span>
 <span class="fc" id="L58">    request.setFilter(filter);</span>

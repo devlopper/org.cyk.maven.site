@@ -57,7 +57,7 @@ public interface MunicipalityService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des communes&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = MunicipalityGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -68,7 +68,8 @@ public interface MunicipalityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;MunicipalityDto&gt; {</span>
+<span class="fc" id="L71">  public static class MunicipalityGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;MunicipalityDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;MunicipalityDto&gt; datas;

@@ -7,7 +7,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.dataprovider.server.api.sigp.MaritalStatusService.GetManyResponseDto;
+import ci.gouv.dgbf.system.dataprovider.server.api.sigp.MaritalStatusService.MaritalStatusGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -22,7 +22,7 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true, fluent = true)
 <span class="fc" id="L24">public class MaritalStatusClient extends AbstractClient&lt;MaritalStatusService&gt;</span>
-    implements GetMany&lt;GetManyResponseDto&gt; {
+    implements GetMany&lt;MaritalStatusGetManyResponseDto&gt; {
 
   @Override
   public MaritalStatusClient service(MaritalStatusService service) {
@@ -35,9 +35,10 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L39">    return new GetOneExecutor&lt;GetManyResponseDto&gt;(GetManyResponseDto.class,</span>
-<span class="fc" id="L40">        MaritalStatusService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  public MaritalStatusGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L39">    return new GetOneExecutor&lt;MaritalStatusGetManyResponseDto&gt;(</span>
+        MaritalStatusGetManyResponseDto.class, MaritalStatusService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L41">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -51,15 +52,15 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public GetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
-      String auditWho, String auditSession) {
-<span class="fc" id="L56">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L57">    request.setProjection(projection);</span>
-<span class="fc" id="L58">    request.setFilter(filter);</span>
-<span class="fc" id="L59">    request.setPage(page);</span>
-<span class="fc" id="L60">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L61">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L62">    return getMany(request);</span>
+  public MaritalStatusGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L57">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L58">    request.setProjection(projection);</span>
+<span class="fc" id="L59">    request.setFilter(filter);</span>
+<span class="fc" id="L60">    request.setPage(page);</span>
+<span class="fc" id="L61">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L62">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L63">    return getMany(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
