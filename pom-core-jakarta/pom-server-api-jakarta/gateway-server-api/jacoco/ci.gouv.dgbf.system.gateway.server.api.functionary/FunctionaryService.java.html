@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FunctionaryService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de fournisseur de données</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.gateway.server.api.functionary</a> &gt; <span class="el_source">FunctionaryService.java</span></div><h1>FunctionaryService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.gateway.server.api.functionary;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ExistenceVerificationRequestDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.validation.constraints.NotNull;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette inteface représente les services de {@link FunctionaryDto}.
+ *
+ * @author Christian
+ *
+ */
+@Path(FunctionaryService.PATH)
+@Tag(name = &quot;Fonctionnaires&quot;)
+public interface FunctionaryService extends SpecificService {
+
+  /**
+   * Chemin du service de gestion des fonctionnaires.
+   */
+  String PATH = Constant.PATH + &quot;fonctionnaires&quot;;
+
+  /**
+   * Identifiant du service de vérification d'existence.
+   */
+  String VERIFY_EXISTENCE_IDENTIFIER = &quot;VERIFICATION_EXISTENCE_FONCTIONNAIRE&quot;;
+
+  /**
+   * Chemin du service de vérification d'existence.
+   */
+  String VERIFY_EXISTENCE_PATH = &quot;verification-existence&quot;;
+
+  /**
+   * Cette méthode permet de vérifier l'existence.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(VERIFY_EXISTENCE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = VERIFY_EXISTENCE_IDENTIFIER)
+  Response verifyExistence(ExistenceVerificationRequestDto request);
+
+  /**
+   * Identifiant du service de vérification d'existence stricte.
+   */
+  String VERIFY_EXISTENCE_STRICT_IDENTIFIER = &quot;VERIFICATION_EXISTENCE_STRICTE_FONCTIONNAIRE&quot;;
+
+  /**
+   * Chemin du service de vérification d'existence stricte.
+   */
+  String VERIFY_EXISTENCE_STRICT_PATH = &quot;verification-existence-stricte&quot;;
+
+  /**
+   * Cette méthode permet de vérifier strictement l'existence.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(VERIFY_EXISTENCE_STRICT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = VERIFY_EXISTENCE_STRICT_IDENTIFIER)
+  Response verifyExistenceStrict(FunctionaryStrictExistenceVerificationRequestDto request);
+
+  /**
+   * Cette classe représente la requête vérification d'existence stricte.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L89">  public static class FunctionaryStrictExistenceVerificationRequestDto</span>
+      extends AbstractAuditedRequestJsonDto {
+    /**
+     * Matricule.
+     */
+    @NotNull
+    @JsonbProperty(JSON_REGISTRATION_NUMBER)
+    String registrationNumber;
+
+    /**
+     * Date de naissance.
+     */
+    @NotNull
+    @JsonbProperty(JSON_BIRTH_DATE)
+    LocalDate birthDate;
+
+    /**
+     * Nom et prénoms.
+     */
+    @NotNull
+    @JsonbProperty(JSON_FIRST_NAME_AND_LAST_NAMES)
+    String firstNameAndLastNames;
+
+    /**
+     * Date de première prise de service.
+     */
+    @NotNull
+    @JsonbProperty(JSON_FIRST_SERVICE_START_DATE)
+    LocalDate firstServiceStartDate;
+
+    /**
+     * Identifiant json {@link #registrationNumber}.
+     */
+    public static final String JSON_REGISTRATION_NUMBER = FunctionaryDto.JSON_REGISTRATION_NUMBER;
+
+    /**
+     * Identifiant json {@link #birthDate}.
+     */
+    public static final String JSON_BIRTH_DATE = FunctionaryDto.JSON_BIRTH_DATE;
+
+    /**
+     * Identifiant json {@link #firstNameAndLastNames}.
+     */
+    public static final String JSON_FIRST_NAME_AND_LAST_NAMES =
+        FunctionaryDto.JSON_FIRST_NAME_AND_LAST_NAMES;
+
+    /**
+     * Identifiant json {@link #firstServiceStartDate}.
+     */
+    public static final String JSON_FIRST_SERVICE_START_DATE =
+        FunctionaryDto.JSON_FIRST_SERVICE_START_DATE;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
