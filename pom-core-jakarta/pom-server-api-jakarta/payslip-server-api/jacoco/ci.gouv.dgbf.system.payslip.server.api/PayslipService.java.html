@@ -235,7 +235,8 @@ public interface PayslipService extends SpecificService {
    * Identifiant du service d'obtention d'identifiant de fichier de bulletin de salaire par
    * identifiant de bulletin de salaire.
    */
-  String GET_FILE_IDENTIFIER_BY_PAYSLIP_IDENTIFIER = &quot;OBTENIR_IDENTIFIANT_FICHIER_PAR_IDENTIFIANT&quot;;
+  String GET_FILE_IDENTIFIER_BY_IDENTIFIER_IDENTIFIER =
+      &quot;OBTENIR_IDENTIFIANT_FICHIER_PAR_IDENTIFIANT&quot;;
 
   /**
    * Chemin du service d'obtention d'identifiant de fichier de bulletin de salaire par identifiant.
@@ -252,7 +253,7 @@ public interface PayslipService extends SpecificService {
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.TEXT_PLAIN)
-  @Operation(operationId = GET_FILE_IDENTIFIER_BY_PAYSLIP_IDENTIFIER)
+  @Operation(operationId = GET_FILE_IDENTIFIER_BY_IDENTIFIER_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = String.class))})
   Response getFileIdentifierByIdentifier(PayslipGetFileIdentifierByIdentifierRequestDto request);
@@ -266,7 +267,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L269">  class PayslipGetFileIdentifierByIdentifierRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L270">  class PayslipGetFileIdentifierByIdentifierRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Importable.
