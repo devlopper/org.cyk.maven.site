@@ -24,8 +24,8 @@ import ci.gouv.dgbf.system.functionary.server.api.FunctionaryService.Functionary
 import ci.gouv.dgbf.system.functionary.server.api.FunctionaryService.FunctionaryGetManyResponseDto;
 import ci.gouv.dgbf.system.functionary.server.api.FunctionaryService.FunctionaryImportAllRequestDto;
 import ci.gouv.dgbf.system.functionary.server.api.FunctionaryService.FunctionaryImportByRegistrationNumberRequestDto;
+import ci.gouv.dgbf.system.functionary.server.api.FunctionaryService.FunctionaryStrictExistenceVerificationRequestDto;
 import ci.gouv.dgbf.system.functionary.server.api.FunctionaryService.FunctionaryUpdateRequestDto;
-import ci.gouv.dgbf.system.functionary.server.api.FunctionaryService.StrictExistenceVerificationRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.ws.rs.core.Response;
 
@@ -135,7 +135,7 @@ import jakarta.ws.rs.core.Response;
    * @param request requête
    * @return réponse
    */
-  public Boolean verifyExistenceStrict(StrictExistenceVerificationRequestDto request) {
+  public Boolean verifyExistenceStrict(FunctionaryStrictExistenceVerificationRequestDto request) {
 <span class="fc" id="L139">    return new GetBooleanExecutor(FunctionaryService.VERIFY_EXISTENCE_STRICT_IDENTIFIER)</span>
 <span class="fc" id="L140">        .execute(() -&gt; service().verifyExistenceStrict(request));</span>
   }

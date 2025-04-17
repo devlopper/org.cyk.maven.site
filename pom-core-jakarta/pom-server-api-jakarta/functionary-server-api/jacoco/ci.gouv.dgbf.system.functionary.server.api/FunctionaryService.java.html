@@ -373,7 +373,7 @@ public interface FunctionaryService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.TEXT_PLAIN})
   @Operation(operationId = VERIFY_EXISTENCE_STRICT_IDENTIFIER)
-  Response verifyExistenceStrict(StrictExistenceVerificationRequestDto request);
+  Response verifyExistenceStrict(FunctionaryStrictExistenceVerificationRequestDto request);
 
   /**
    * Cette classe représente la requête vérification d'existence stricte.
@@ -383,7 +383,8 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L386">  public static class StrictExistenceVerificationRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L386">  public static class FunctionaryStrictExistenceVerificationRequestDto</span>
+      extends AbstractAuditedRequestJsonDto {
     /**
      * Matricule.
      */
@@ -411,7 +412,7 @@ public interface FunctionaryService extends SpecificService {
     @NotNull
     @JsonbProperty(JSON_FIRST_SERVICE_START_DATE)
     LocalDate firstServiceStartDate;
-    
+
     /**
      * Identifiant json {@link #registrationNumber}.
      */
@@ -493,7 +494,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L496">  class FunctionaryUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L497">  class FunctionaryUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionarySaveRequestDto {
 
     @JsonbProperty(value = JSON_FIRST_NAME)
@@ -580,7 +581,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L583">  class FunctionaryImportByRegistrationNumberRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L584">  class FunctionaryImportByRegistrationNumberRequestDto extends AbstractAuditedRequestJsonDto {</span>
 
     /**
      * {@link FunctionaryDto#getRegistrationNumber()}.
@@ -628,7 +629,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L631">  class FunctionaryImportAllRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L632">  class FunctionaryImportAllRequestDto extends AbstractAuditedRequestJsonDto {</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
