@@ -24,9 +24,42 @@ import lombok.Setter;
   private String fileIdentifier;
 
   /**
+   * Représentation en chaine de caractères de {@link PeriodDto}.
+   */
+  @JsonbProperty(value = JSON_PERIOD_AS_STRING)
+  private String periodAsString;
+  
+  /**
+   * Année.
+   */
+  @JsonbProperty(value = JSON_PERIOD_YEAR)
+  private Integer year;
+  
+  /**
+   * Mois.
+   */
+  @JsonbProperty(value = JSON_PERIOD_MONTH)
+  private Integer month;
+  
+  /**
    * Identifiant JSON {@link #fileIdentifier}.
    */
   public static final String JSON_FILE_IDENTIFIER = &quot;idFichier&quot;;
+  
+  /**
+   * Identifiant JSON {@link #periodAsString}.
+   */
+  public static final String JSON_PERIOD_AS_STRING = &quot;periodeChaine&quot;;
+  
+  /**
+   * Identifiant JSON {@link #year}.
+   */
+  public static final String JSON_PERIOD_YEAR = &quot;annee&quot;;
+  
+  /**
+   * Identifiant JSON {@link #month}.
+   */
+  public static final String JSON_PERIOD_MONTH = &quot;mois&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
