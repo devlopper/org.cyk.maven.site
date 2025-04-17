@@ -15,7 +15,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-<span class="fc" id="L18">public class FunctionaryFilter extends AbstractIdentifiableFilter {</span>
+public class FunctionaryFilter extends AbstractIdentifiableFilter {
 
   /**
    * Adresse email.
@@ -42,6 +42,12 @@ import lombok.Setter;
   String lastNames;
 
   /**
+   * Nom et prénoms.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME_AND_LAST_NAMES)
+  String firstNameAndLastNames;
+
+  /**
    * Identifiant du genre.
    */
   @JsonbProperty(value = JSON_GENDER_IDENTIFIER)
@@ -59,27 +65,45 @@ import lombok.Setter;
   @JsonbProperty(value = JSON_FIRST_SERVICE_START_DATE)
   LocalDate firstServiceStartDate;
 
+  /**
+   * Cette méthode permet d'instancier un objet.
+   */
+  public FunctionaryFilter() {
+<span class="fc" id="L72">    super();</span>
+<span class="fc" id="L73">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   *
+   * @param dto filtre
+   */
+  public FunctionaryFilter(FilterDto dto) {
+<span class="fc" id="L81">    super(dto);</span>
+<span class="fc" id="L82">  }</span>
+
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L64">    super.doInitialize(filter);</span>
-<span class="fc" id="L65">    emailAddress = getEmailAddress(filter);</span>
-<span class="fc" id="L66">    registrationNumber = getRegistrationNumber(filter);</span>
-<span class="fc" id="L67">    firstName = getFirstName(filter);</span>
-<span class="fc" id="L68">    lastNames = getLastNames(filter);</span>
-<span class="fc" id="L69">    birthDate = getBirthDate(filter);</span>
-<span class="fc" id="L70">    firstServiceStartDate = getFirstServiceStartDate(filter);</span>
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L86">    super.doInitialize(filter);</span>
+<span class="fc" id="L87">    emailAddress = getEmailAddress(filter);</span>
+<span class="fc" id="L88">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L89">    firstName = getFirstName(filter);</span>
+<span class="fc" id="L90">    lastNames = getLastNames(filter);</span>
+<span class="fc" id="L91">    firstNameAndLastNames = getFirstNameAndLastNames(filter);</span>
+<span class="fc" id="L92">    birthDate = getBirthDate(filter);</span>
+<span class="fc" id="L93">    firstServiceStartDate = getFirstServiceStartDate(filter);</span>
+<span class="fc" id="L94">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L75">    super.toDto(filter);</span>
-<span class="fc" id="L76">    setEmailAddress(filter, emailAddress);</span>
-<span class="fc" id="L77">    setRegistrationNumber(filter, registrationNumber);</span>
-<span class="fc" id="L78">    setFirstName(filter, firstName);</span>
-<span class="fc" id="L79">    setLastNames(filter, lastNames);</span>
-<span class="fc" id="L80">    setBirthDate(filter, birthDate);</span>
-<span class="fc" id="L81">    setFirstServiceStartDate(filter, firstServiceStartDate);</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L98">    super.toDto(filter);</span>
+<span class="fc" id="L99">    setEmailAddress(filter, emailAddress);</span>
+<span class="fc" id="L100">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L101">    setFirstName(filter, firstName);</span>
+<span class="fc" id="L102">    setLastNames(filter, lastNames);</span>
+<span class="fc" id="L103">    setFirstNameAndLastNames(filter, firstNameAndLastNames);</span>
+<span class="fc" id="L104">    setBirthDate(filter, birthDate);</span>
+<span class="fc" id="L105">    setFirstServiceStartDate(filter, firstServiceStartDate);</span>
+<span class="fc" id="L106">  }</span>
 
   /**
    * Cette méthode permet d'assigner {@link #emailAddress}.
@@ -88,9 +112,9 @@ import lombok.Setter;
    * @param emailAddress {@link #emailAddress}
    */
   public static void setEmailAddress(FilterDto filter, String emailAddress) {
-<span class="pc" id="L91">    set(filter, JSON_EMAIL_ADDRESS, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L92">        f -&gt; f.setValueAsString(emailAddress));</span>
-<span class="fc" id="L93">  }</span>
+<span class="pc" id="L115">    set(filter, JSON_EMAIL_ADDRESS, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L116">        f -&gt; f.setValueAsString(emailAddress));</span>
+<span class="fc" id="L117">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link #emailAddress}.
@@ -99,7 +123,7 @@ import lombok.Setter;
    * @return {@link #emailAddress}
    */
   public static String getEmailAddress(FilterDto filter) {
-<span class="fc" id="L102">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMAIL_ADDRESS));</span>
+<span class="fc" id="L126">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMAIL_ADDRESS));</span>
   }
 
   /**
@@ -109,9 +133,9 @@ import lombok.Setter;
    * @param registrationNumber {@link #registrationNumber}
    */
   public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
-<span class="pc" id="L112">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L113">        f -&gt; f.setValueAsString(registrationNumber));</span>
-<span class="fc" id="L114">  }</span>
+<span class="pc" id="L136">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L137">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="fc" id="L138">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link #registrationNumber}.
@@ -120,7 +144,7 @@ import lombok.Setter;
    * @return {@link #registrationNumber}
    */
   public static String getRegistrationNumber(FilterDto filter) {
-<span class="fc" id="L123">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+<span class="fc" id="L147">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
   }
 
   /**
@@ -130,8 +154,8 @@ import lombok.Setter;
    * @param firstName nom
    */
   public static void setFirstName(FilterDto filter, String firstName) {
-<span class="pc" id="L133">    set(filter, JSON_FIRST_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(firstName));</span>
-<span class="fc" id="L134">  }</span>
+<span class="pc" id="L157">    set(filter, JSON_FIRST_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(firstName));</span>
+<span class="fc" id="L158">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le nom.
@@ -140,7 +164,7 @@ import lombok.Setter;
    * @return nom
    */
   public static String getFirstName(FilterDto filter) {
-<span class="fc" id="L143">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FIRST_NAME));</span>
+<span class="fc" id="L167">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FIRST_NAME));</span>
   }
 
   /**
@@ -150,8 +174,8 @@ import lombok.Setter;
    * @param lastNames prénoms
    */
   public static void setLastNames(FilterDto filter, String lastNames) {
-<span class="pc" id="L153">    set(filter, JSON_LAST_NAMES, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(lastNames));</span>
-<span class="fc" id="L154">  }</span>
+<span class="pc" id="L177">    set(filter, JSON_LAST_NAMES, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(lastNames));</span>
+<span class="fc" id="L178">  }</span>
 
   /**
    * Cette méthode permet d'obtenir les prénoms.
@@ -160,7 +184,28 @@ import lombok.Setter;
    * @return prénoms
    */
   public static String getLastNames(FilterDto filter) {
-<span class="fc" id="L163">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LAST_NAMES));</span>
+<span class="fc" id="L187">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LAST_NAMES));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le nom et prénoms.
+   *
+   * @param filter filtre
+   * @param firstName nom et prénoms
+   */
+  public static void setFirstNameAndLastNames(FilterDto filter, String firstName) {
+<span class="pc" id="L197">    set(filter, JSON_FIRST_NAME_AND_LAST_NAMES, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L198">        f -&gt; f.setValueAsString(firstName));</span>
+<span class="fc" id="L199">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le nom et prénoms.
+   *
+   * @param filter filtre
+   * @return nom et prénoms
+   */
+  public static String getFirstNameAndLastNames(FilterDto filter) {
+<span class="fc" id="L208">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FIRST_NAME_AND_LAST_NAMES));</span>
   }
 
   /**
@@ -170,8 +215,8 @@ import lombok.Setter;
    * @param birthDate date de naissance
    */
   public static void setBirthDate(FilterDto filter, LocalDate birthDate) {
-<span class="pc" id="L173">    set(filter, JSON_BIRTH_DATE, f -&gt; f.getValueAsDate(), f -&gt; f.setValueAsDate(birthDate));</span>
-<span class="fc" id="L174">  }</span>
+<span class="pc" id="L218">    set(filter, JSON_BIRTH_DATE, f -&gt; f.getValueAsDate(), f -&gt; f.setValueAsDate(birthDate));</span>
+<span class="fc" id="L219">  }</span>
 
   /**
    * Cette méthode permet d'obtenir la date de naissance.
@@ -180,7 +225,7 @@ import lombok.Setter;
    * @return date de naissance
    */
   public static LocalDate getBirthDate(FilterDto filter) {
-<span class="fc" id="L183">    return get(filter, d -&gt; d.getFieldValueAsDateByName(JSON_BIRTH_DATE));</span>
+<span class="fc" id="L228">    return get(filter, d -&gt; d.getFieldValueAsDateByName(JSON_BIRTH_DATE));</span>
   }
 
   /**
@@ -190,9 +235,9 @@ import lombok.Setter;
    * @param firstServiceStartDate date de première prise de service
    */
   public static void setFirstServiceStartDate(FilterDto filter, LocalDate firstServiceStartDate) {
-<span class="pc" id="L193">    set(filter, JSON_FIRST_SERVICE_START_DATE, f -&gt; f.getValueAsDate(),</span>
-<span class="fc" id="L194">        f -&gt; f.setValueAsDate(firstServiceStartDate));</span>
-<span class="fc" id="L195">  }</span>
+<span class="pc" id="L238">    set(filter, JSON_FIRST_SERVICE_START_DATE, f -&gt; f.getValueAsDate(),</span>
+<span class="fc" id="L239">        f -&gt; f.setValueAsDate(firstServiceStartDate));</span>
+<span class="fc" id="L240">  }</span>
 
   /**
    * Cette méthode permet d'obtenir la date de première prise de service.
@@ -201,7 +246,7 @@ import lombok.Setter;
    * @return date de première prise de service
    */
   public static LocalDate getFirstServiceStartDate(FilterDto filter) {
-<span class="fc" id="L204">    return get(filter, d -&gt; d.getFieldValueAsDateByName(JSON_FIRST_SERVICE_START_DATE));</span>
+<span class="fc" id="L249">    return get(filter, d -&gt; d.getFieldValueAsDateByName(JSON_FIRST_SERVICE_START_DATE));</span>
   }
 
   /**
@@ -223,6 +268,12 @@ import lombok.Setter;
    * Identifiant json du {@link #lastNames}.
    */
   public static final String JSON_LAST_NAMES = FunctionaryDto.JSON_LAST_NAMES;
+
+  /**
+   * Identifiant json du {@link #firstNameAndLastNames}.
+   */
+  public static final String JSON_FIRST_NAME_AND_LAST_NAMES =
+      FunctionaryDto.JSON_FIRST_NAME_AND_LAST_NAMES;
 
   /**
    * Identifiant json du {@link #genderIdentifier}.

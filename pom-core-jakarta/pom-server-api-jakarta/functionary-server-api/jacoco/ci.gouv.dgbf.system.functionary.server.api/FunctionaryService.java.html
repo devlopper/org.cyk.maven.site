@@ -147,7 +147,7 @@ public interface FunctionaryService extends SpecificService {
      * @param isGenderMasculine masculinité
      */
     void setIsGenderMasculine(Boolean isGenderMasculine);
-    
+
     /**
      * Cette méthode permet d'obtenir la date de naissance.
      *
@@ -351,7 +351,90 @@ public interface FunctionaryService extends SpecificService {
   @Produces(value = {MediaType.TEXT_PLAIN})
   @Operation(operationId = VERIFY_EXISTENCE_IDENTIFIER)
   Response verifyExistence(ExistenceVerificationRequestDto request);
-  
+
+  /**
+   * Identifiant du service de vérification d'existence stricte.
+   */
+  String VERIFY_EXISTENCE_STRICT_IDENTIFIER = &quot;VERIFICATION_EXISTENCE_STRICTE_FONCTIONNAIRE&quot;;
+
+  /**
+   * Chemin du service de vérification d'existence stricte.
+   */
+  String VERIFY_EXISTENCE_STRICT_PATH = &quot;verification-existence-stricte&quot;;
+
+  /**
+   * Cette méthode permet de vérifier strictement l'existence.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(VERIFY_EXISTENCE_STRICT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = VERIFY_EXISTENCE_STRICT_IDENTIFIER)
+  Response verifyExistenceStrict(StrictExistenceVerificationRequestDto request);
+
+  /**
+   * Cette classe représente la requête vérification d'existence stricte.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L386">  public static class StrictExistenceVerificationRequestDto extends AbstractAuditedRequestJsonDto {</span>
+    /**
+     * Matricule.
+     */
+    @NotNull
+    @JsonbProperty(JSON_REGISTRATION_NUMBER)
+    String registrationNumber;
+
+    /**
+     * Date de naissance.
+     */
+    @NotNull
+    @JsonbProperty(JSON_BIRTH_DATE)
+    LocalDate birthDate;
+
+    /**
+     * Nom et prénoms.
+     */
+    @NotNull
+    @JsonbProperty(JSON_FIRST_NAME_AND_LAST_NAMES)
+    String firstNameAndLastNames;
+
+    /**
+     * Date de première prise de service.
+     */
+    @NotNull
+    @JsonbProperty(JSON_FIRST_SERVICE_START_DATE)
+    LocalDate firstServiceStartDate;
+    
+    /**
+     * Identifiant json {@link #registrationNumber}.
+     */
+    public static final String JSON_REGISTRATION_NUMBER = FunctionaryDto.JSON_REGISTRATION_NUMBER;
+
+    /**
+     * Identifiant json {@link #birthDate}.
+     */
+    public static final String JSON_BIRTH_DATE = FunctionaryDto.JSON_BIRTH_DATE;
+
+    /**
+     * Identifiant json {@link #firstNameAndLastNames}.
+     */
+    public static final String JSON_FIRST_NAME_AND_LAST_NAMES =
+        FunctionaryDto.JSON_FIRST_NAME_AND_LAST_NAMES;
+
+    /**
+     * Identifiant json {@link #firstServiceStartDate}.
+     */
+    public static final String JSON_FIRST_SERVICE_START_DATE =
+        FunctionaryDto.JSON_FIRST_SERVICE_START_DATE;
+  }
+
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
@@ -410,7 +493,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L413">  class FunctionaryUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L496">  class FunctionaryUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionarySaveRequestDto {
 
     @JsonbProperty(value = JSON_FIRST_NAME)
@@ -497,7 +580,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L500">  class FunctionaryImportByRegistrationNumberRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L583">  class FunctionaryImportByRegistrationNumberRequestDto extends AbstractAuditedRequestJsonDto {</span>
 
     /**
      * {@link FunctionaryDto#getRegistrationNumber()}.
@@ -511,7 +594,7 @@ public interface FunctionaryService extends SpecificService {
      */
     public static final String JSON_REGISTRATION_NUMBER = FunctionaryDto.JSON_REGISTRATION_NUMBER;
   }
-  
+
   /**
    * Identifiant du service d'importation de tout.
    */
@@ -545,7 +628,7 @@ public interface FunctionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L548">  class FunctionaryImportAllRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L631">  class FunctionaryImportAllRequestDto extends AbstractAuditedRequestJsonDto {</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
