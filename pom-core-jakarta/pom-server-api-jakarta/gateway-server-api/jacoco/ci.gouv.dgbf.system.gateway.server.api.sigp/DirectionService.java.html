@@ -25,7 +25,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = DirectionService.PATH)
-@Tag(name = &quot;Directions&quot;)
+@Tag(name = Constant.TAG_PREFIX + &quot;Directions&quot;)
 public interface DirectionService extends SpecificService {
 
   /**

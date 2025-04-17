@@ -26,7 +26,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(PayslipService.PATH)
-@Tag(name = &quot;Bulletins de salaire&quot;)
+@Tag(name = Constant.TAG_PREFIX + &quot;Bulletins de salaire&quot;)
 public interface PayslipService extends SpecificService {
 
   /**

@@ -25,7 +25,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = SchoolService.PATH)
-@Tag(name = &quot;Écoles&quot;)
+@Tag(name = Constant.TAG_PREFIX + &quot;Écoles&quot;)
 public interface SchoolService extends SpecificService {
 
   /**

@@ -25,7 +25,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = JobService.PATH)
-@Tag(name = &quot;Emplois&quot;)
+@Tag(name = Constant.TAG_PREFIX + &quot;Emplois&quot;)
 public interface JobService extends SpecificService {
 
   /**
