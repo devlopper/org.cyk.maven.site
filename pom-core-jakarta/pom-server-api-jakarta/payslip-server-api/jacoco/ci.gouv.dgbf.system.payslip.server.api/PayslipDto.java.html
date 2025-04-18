@@ -23,9 +23,20 @@ import lombok.Setter;
   private String fileIdentifier;
 
   /**
+   * Identifiant du propriétaire du fichier.
+   */
+  @JsonbProperty(value = JSON_FILE_OWNER_IDENTIFIER)
+  private String fileOwnerIdentifier;
+  
+  /**
    * Identifiant JSON {@link #fileIdentifier}.
    */
   public static final String JSON_FILE_IDENTIFIER = &quot;idFichier&quot;;
+  
+  /**
+   * Identifiant JSON {@link #fileOwnerIdentifier}.
+   */
+  public static final String JSON_FILE_OWNER_IDENTIFIER = &quot;idProprietaireFichier&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
