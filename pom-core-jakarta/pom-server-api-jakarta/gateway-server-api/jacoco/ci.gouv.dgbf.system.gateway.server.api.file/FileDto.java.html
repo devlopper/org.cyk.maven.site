@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FileDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de fournisseur de données</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.gateway.server.api.file</a> &gt; <span class="el_source">FileDto.java</span></div><h1>FileDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.gateway.server.api.file;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un fichier.
+ *
+ * @author Christian Yao Komenan
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class FileDto extends AbstractIdentifiableNamableDto {</span>
+
+  /**
+   * Type de contenu.
+   */
+  @JsonbProperty(value = JSON_CONTENT_TYPE)
+  private String contentType;
+
+  /**
+   * Octets.
+   */
+  @JsonbProperty(value = JSON_BYTES)
+  private byte[] bytes;
+  
+  /**
+   * Nombre d'octets.
+   */
+  @JsonbProperty(value = JSON_NUMBER_OF_BYTES)
+  private Integer numberOfBytes;
+  
+  /**
+   * Représentation en chaine de caractères de {@link #numberOfBytes}.
+   */
+  @JsonbProperty(value = JSON_NUMBER_OF_BYTES_AS_STRING)
+  private String numberOfBytesAsString;
+  
+  /**
+   * Identifiant {@link OwnerDto}.
+   */
+  @JsonbProperty(value = JSON_OWNER_IDENTIFIER)
+  private String ownerIdentifier;
+
+  /**
+   * Représentation en chaine de caratères de {@link OwnerDto}.
+   */
+  @JsonbProperty(value = JSON_OWNER_AS_STRING)
+  private String ownerAsString;
+  
+  /**
+   * Hash.
+   */
+  @JsonbProperty(value = JSON_HASH)
+  private String hash;
+
+  /**
+   * Identifiant {@link FilesGroupDto}.
+   */
+  @JsonbProperty(value = JSON_GROUP_IDENTIFIER)
+  private String groupIdentifier;
+  
+  /**
+   * Identifiant JSON {@link #contentType}.
+   */
+  public static final String JSON_CONTENT_TYPE = &quot;typeContenu&quot;;
+
+  /**
+   * Identifiant JSON {@link #bytes}.
+   */
+  public static final String JSON_BYTES = &quot;octets&quot;;
+  
+  /**
+   * Identifiant JSON {@link #numberOfBytes}.
+   */
+  public static final String JSON_NUMBER_OF_BYTES = &quot;nombreOctets&quot;;
+  
+  /**
+   * Identifiant JSON {@link #numberOfBytesAsString}.
+   */
+  public static final String JSON_NUMBER_OF_BYTES_AS_STRING = &quot;nombreOctetsChaine&quot;;
+  
+  /**
+   * Identifiant JSON {@link #ownerIdentifier}.
+   */
+  public static final String JSON_OWNER_IDENTIFIER = &quot;idProprietaire&quot;;
+  
+  /**
+   * Identifiant JSON {@link #ownerAsString}.
+   */
+  public static final String JSON_OWNER_AS_STRING = &quot;proprietaireChaine&quot;;
+  
+  /**
+   * Identifiant JSON {@link #groupIdentifier}.
+   */
+  public static final String JSON_GROUP_IDENTIFIER = &quot;idGroupe&quot;;
+  
+  /**
+   * Identifiant JSON {@link #hash}.
+   */
+  public static final String JSON_HASH = &quot;hash&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;fichier&quot;;
+  
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
