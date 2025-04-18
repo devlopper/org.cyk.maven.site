@@ -310,6 +310,18 @@ import lombok.Setter;
   private String statusCode;
 
   /**
+   * Transmettable pour contrôle.
+   */
+  @JsonbProperty(JSON_TRANSMITTABLE_FOR_CONTROL)
+  private Boolean transmittableForControl;
+
+  /**
+   * Contrôlable.
+   */
+  @JsonbProperty(JSON_CONTROLLABLE)
+  private Boolean controllable;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idBulletinPaie&quot;;
@@ -472,6 +484,16 @@ import lombok.Setter;
    * Identifiant json {@link #statusCode}.
    */
   public static final String JSON_STATUS_CODE = &quot;codeStatut&quot;;
+
+  /**
+   * Identifiant json champ {@link #transmittableForControl}.
+   */
+  public static final String JSON_TRANSMITTABLE_FOR_CONTROL = &quot;transmettablePourControle&quot;;
+
+  /**
+   * Identifiant json champ {@link #controllable}.
+   */
+  public static final String JSON_CONTROLLABLE = &quot;controlable&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

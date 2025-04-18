@@ -232,10 +232,22 @@ import lombok.Setter;
   private Boolean initializationResumableFromCheckpoint;
 
   /**
+   * Transmettable pour contrôle.
+   */
+  @JsonbProperty(JSON_TRANSMITTABLE_FOR_CONTROL)
+  private Boolean transmittableForControl;
+
+  /**
    * Contrôlable.
    */
   @JsonbProperty(JSON_CONTROLLABLE)
   private Boolean controllable;
+
+  /**
+   * Transmettable pour arbitrage.
+   */
+  @JsonbProperty(JSON_TRANSMITTABLE_FOR_ARBITRATION)
+  private Boolean transmittableForArbitration;
 
   /**
    * Arbitrable.
@@ -255,13 +267,15 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L258">    status = response.getStatus();</span>
-<span class="fc" id="L259">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L260">    initializable = response.getInitializable();</span>
-<span class="fc" id="L261">    controllable = response.getControllable();</span>
-<span class="fc" id="L262">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L263">    closable = response.getClosable();</span>
-<span class="fc" id="L264">  }</span>
+<span class="fc" id="L270">    status = response.getStatus();</span>
+<span class="fc" id="L271">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L272">    initializable = response.getInitializable();</span>
+<span class="fc" id="L273">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L274">    controllable = response.getControllable();</span>
+<span class="fc" id="L275">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
+<span class="fc" id="L276">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L277">    closable = response.getClosable();</span>
+<span class="fc" id="L278">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -344,9 +358,19 @@ import lombok.Setter;
       &quot;initialisationReprenable&quot;;
 
   /**
+   * Identifiant json champ {@link #transmittableForControl}.
+   */
+  public static final String JSON_TRANSMITTABLE_FOR_CONTROL = &quot;transmettablePourControle&quot;;
+
+  /**
    * Identifiant json champ {@link #controllable}.
    */
   public static final String JSON_CONTROLLABLE = &quot;controlable&quot;;
+
+  /**
+   * Identifiant json champ {@link #transmittableForArbitration}.
+   */
+  public static final String JSON_TRANSMITTABLE_FOR_ARBITRATION = &quot;transmettablePourArbitrage&quot;;
 
   /**
    * Identifiant json champ {@link #arbitrable}.

@@ -74,9 +74,10 @@ public enum PayslipStatus {
 
   static {
 <span class="fc" id="L76">    INITIALIZED.previous = Collections.emptySet();</span>
-<span class="fc" id="L77">    CONTROLLED.previous = Core.getSet(List.of(INITIALIZED));</span>
-<span class="fc" id="L78">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
-<span class="fc" id="L79">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
-<span class="fc" id="L80">  }</span>
+<span class="fc" id="L77">    TRANSMITTED_FOR_CONTROL.previous = Core.getSet(List.of(INITIALIZED));</span>
+<span class="fc" id="L78">    CONTROLLED.previous = Core.getSet(List.of(TRANSMITTED_FOR_CONTROL));</span>
+<span class="fc" id="L79">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
+<span class="fc" id="L80">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="fc" id="L81">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

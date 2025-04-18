@@ -225,6 +225,62 @@ import lombok.experimental.Accessors;
   }
 
   /**
+   * {@link PayrollService#transmitForControl}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto transmitForControl(ByIdentifierRequestDto request) {
+<span class="fc" id="L234">    return new ProcessExecutor(PayrollService.TRANSMIT_FOR_CONTROL_IDENTIFIER)</span>
+<span class="fc" id="L235">        .execute(() -&gt; service().transmitForControl(request));</span>
+  }
+
+  /**
+   * {@link PayrollService#transmitForControl}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return message
+   */
+  public ProcessResponseDto transmitForControl(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L248">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L249">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L250">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L251">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L252">    return transmitForControl(request);</span>
+  }
+
+  /**
+   * {@link PayrollService#control}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto control(ByIdentifierRequestDto request) {
+<span class="fc" id="L262">    return new ProcessExecutor(PayrollService.CONTROL_IDENTIFIER)</span>
+<span class="fc" id="L263">        .execute(() -&gt; service().control(request));</span>
+  }
+
+  /**
+   * {@link PayrollService#control}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return message
+   */
+  public ProcessResponseDto control(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L276">    ByIdentifierRequestDto request = new ByIdentifierRequestDto();</span>
+<span class="fc" id="L277">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L278">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L279">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L280">    return control(request);</span>
+  }
+
+  /**
    * Cette classe représente un exécuteur de {@link PayrollDto}.
    *
    * @author Christian
@@ -237,9 +293,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L240">    public ProcessExecutor(String identifier) {</span>
-<span class="fc" id="L241">      super(ProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L242">    }</span>
+<span class="fc" id="L296">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L297">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L298">    }</span>
 
   }
 }

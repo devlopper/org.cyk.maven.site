@@ -394,10 +394,22 @@ public interface PayrollService extends SpecificService {
     private Boolean initializable;
 
     /**
+     * {@link PayrollDto#getTransmittableForControl()}.
+     */
+    @JsonbProperty(JSON_TRANSMITTABLE_FOR_CONTROL)
+    private Boolean transmittableForControl;
+
+    /**
      * {@link PayrollDto#getControllable()}.
      */
     @JsonbProperty(JSON_CONTROLLABLE)
     private Boolean controllable;
+
+    /**
+     * {@link PayrollDto#getTransmittableForArbitration()}.
+     */
+    @JsonbProperty(JSON_TRANSMITTABLE_FOR_ARBITRATION)
+    private Boolean transmittableForArbitration;
 
     /**
      * {@link PayrollDto#getArbitrable()}.
@@ -417,12 +429,16 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="fc" id="L420">      this.status = status;</span>
-<span class="fc" id="L421">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L422">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L423">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L424">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L425">    }</span>
+<span class="fc" id="L432">      this.status = status;</span>
+<span class="fc" id="L433">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L434">      transmittableForControl = </span>
+<span class="fc" id="L435">            PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L436">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L437">      transmittableForArbitration = PayrollStatus.TRANSMITTED_FOR_ARBITRATION</span>
+<span class="fc" id="L438">                                  .getPrevious().contains(status);</span>
+<span class="fc" id="L439">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L440">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L441">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.
@@ -435,9 +451,21 @@ public interface PayrollService extends SpecificService {
     public static final String JSON_INITIALIZABLE = PayrollDto.JSON_INITIALIZABLE;
 
     /**
+     * {@link PayrollDto#JSON_TRANSMITTABLE_FOR_CONTROL}.
+     */
+    public static final String JSON_TRANSMITTABLE_FOR_CONTROL = 
+                  PayrollDto.JSON_TRANSMITTABLE_FOR_CONTROL;
+
+    /**
      * {@link PayrollDto#JSON_CONTROLLABLE}.
      */
     public static final String JSON_CONTROLLABLE = PayrollDto.JSON_CONTROLLABLE;
+
+    /**
+     * {@link PayrollDto#JSON_TRANSMITTABLE_FOR_ARBITRATION}.
+     */
+    public static final String JSON_TRANSMITTABLE_FOR_ARBITRATION = 
+                  PayrollDto.JSON_TRANSMITTABLE_FOR_ARBITRATION;
 
     /**
      * {@link PayrollDto#JSON_ARBITRABLE}.
@@ -525,5 +553,55 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response resumeInitializationFromCheckpoint(ByIdentifierRequestDto request);
+  
+  /**
+   * Identifiant du service de transmission de paie pour controle.
+   */
+  String TRANSMIT_FOR_CONTROL_IDENTIFIER = &quot;TRANSMISSION_POUR_CONTROLE_PAIE&quot;;
+
+  /**
+   * Chemin du service de transmission de paie pour controle.
+   */
+  String TRANSMIT_FOR_CONTROL_PATH = &quot;transmission-pour-controle-paie&quot;;
+
+  /**
+   * Cette méthode permet de transmettre une paie pour controle {@link PayrollDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TRANSMIT_FOR_CONTROL_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = TRANSMIT_FOR_CONTROL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response transmitForControl(ByIdentifierRequestDto request);
+  
+  /**
+   * Identifiant du service de controle paie.
+   */
+  String CONTROL_IDENTIFIER = &quot;CONTROLE_PAIE&quot;;
+
+  /**
+   * Chemin du service de controle paie.
+   */
+  String CONTROL_PATH = &quot;controle-paie&quot;;
+
+  /**
+   * Cette méthode permet dcontroler une paie {@link PayrollDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CONTROL_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CONTROL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response control(ByIdentifierRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
