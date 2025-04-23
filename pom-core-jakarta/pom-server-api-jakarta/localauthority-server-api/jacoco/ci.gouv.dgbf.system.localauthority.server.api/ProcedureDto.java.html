@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class ProcedureDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L20">public class ProcedureDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
    * Identifiant de {@link WorkflowDto}.
@@ -59,7 +60,7 @@ import lombok.Setter;
    * Date.
    */
   @JsonbProperty(JSON_DATE)
-  private Date date;
+  private LocalDate date;
 
   /**
    * Représentation en chaine de caractères de date.

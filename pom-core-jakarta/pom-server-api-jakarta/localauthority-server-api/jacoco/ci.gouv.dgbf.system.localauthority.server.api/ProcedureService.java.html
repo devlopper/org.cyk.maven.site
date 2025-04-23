@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import lombok.Getter;
@@ -254,7 +255,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L257">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L258">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
@@ -267,7 +268,7 @@ public interface ProcedureService extends SpecificService {
     private Integer order;
 
     @JsonbProperty(JSON_DATE)
-    private Date date;
+    private LocalDate date;
 
     @JsonbProperty(JSON_OBSERVATION)
     private String observation;
@@ -281,7 +282,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L284">  public static class ProcedureGetManyResponseDto</span>
+<span class="fc" id="L285">  public static class ProcedureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -295,7 +296,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L298">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L299">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
@@ -308,7 +309,7 @@ public interface ProcedureService extends SpecificService {
     private Integer order;
 
     @JsonbProperty(JSON_DATE)
-    private Date date;
+    private LocalDate date;
 
     @JsonbProperty(JSON_OBSERVATION)
     private String observation;
