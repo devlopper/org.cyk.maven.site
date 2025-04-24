@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeePayrollComponentClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">EmployeePayrollComponentClient.java</span></div><h1>EmployeePayrollComponentClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payrollbudget.server.api.EmployeePayrollComponentService.EmployeePayrollComponentGetManyResponseDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de {@link EmployeePayrollComponentService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+<span class="fc" id="L23">public class EmployeePayrollComponentClient extends AbstractClient&lt;EmployeePayrollComponentService&gt;</span>
+    implements GetByIdentifier&lt;EmployeePayrollComponentDto&gt;,
+    GetMany&lt;EmployeePayrollComponentGetManyResponseDto&gt; {
+
+  @Override
+  public EmployeePayrollComponentClient service(EmployeePayrollComponentService service) {
+<span class="fc" id="L29">    return (EmployeePayrollComponentClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link EmployeePayrollComponentService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public EmployeePayrollComponentGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L39">    return new GetOneExecutor&lt;EmployeePayrollComponentGetManyResponseDto&gt;(</span>
+        EmployeePayrollComponentGetManyResponseDto.class,
+        EmployeePayrollComponentService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L42">            .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link EmployeePayrollComponentService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public EmployeePayrollComponentGetManyResponseDto getMany(ProjectionDto projection,
+      FilterDto filter, PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L57">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L58">    request.setProjection(projection);</span>
+<span class="fc" id="L59">    request.setFilter(filter);</span>
+<span class="fc" id="L60">    request.setPage(page);</span>
+<span class="fc" id="L61">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L62">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L63">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link EmployeePayrollComponentService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public EmployeePayrollComponentDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L73">    return new GetOneExecutor&lt;EmployeePayrollComponentDto&gt;(EmployeePayrollComponentDto.class,</span>
+        EmployeePayrollComponentService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L75">            .execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link EmployeePayrollComponentService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public EmployeePayrollComponentDto getOne(ProjectionDto projection, FilterDto filter,
+      String auditWho, String auditSession) {
+<span class="fc" id="L89">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L90">    request.setProjection(projection);</span>
+<span class="fc" id="L91">    request.setFilter(filter);</span>
+<span class="fc" id="L92">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L93">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L94">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link EmployeePayrollComponentService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public EmployeePayrollComponentDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L104">    return new GetOneExecutor&lt;EmployeePayrollComponentDto&gt;(EmployeePayrollComponentDto.class,</span>
+        EmployeePayrollComponentService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L106">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link EmployeePayrollComponentService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public EmployeePayrollComponentDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L121">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L122">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L123">    request.setProjection(projection);</span>
+<span class="fc" id="L124">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L125">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L126">    return getByIdentifier(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

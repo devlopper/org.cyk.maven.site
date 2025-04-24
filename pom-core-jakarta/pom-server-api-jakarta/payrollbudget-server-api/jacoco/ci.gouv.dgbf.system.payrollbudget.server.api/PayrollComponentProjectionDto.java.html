@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollComponentProjectionDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">PayrollComponentProjectionDto.java</span></div><h1>PayrollComponentProjectionDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,70 +15,64 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class PayrollComponentProjectionDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L18">public class PayrollComponentProjectionDto extends AbstractIdentifiableAuditableDto {</span>
 
   /**
-   * Identifiant de l'exercice.
+   * Identifiant {@link ExerciseDto}.
    */
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   private String exerciseIdentifier;
 
   /**
-   * Représentation en année de l'exercice.
+   * Représentation en chaine de caractères de {@link ExerciseDto}.
    */
-  @JsonbProperty(JSON_YEAR)
-  private Integer year;
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  private String exerciseAsString;
   
   /**
-   * Identifiant de l'employé.
-   */
-  @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
-  private String employeeIdentifier;
-  
-  /**
-   * Représentation du matricule de l'employé.
-   */
-  @JsonbProperty(JSON_EMPLOYEE_REGISTRATION_NUMBER)
-  private String employeeRegistrationNumber;
-  
-  /**
-   * Représentation en chaine de caractères de la catégorie.
-   */
-  @JsonbProperty(JSON_EMPLOYEE_AS_STRING)
-  private String employeeAsString;
-  
-  /**
-   * Identifiant de l'unité administrative.
+   * Identifiant {@link AdministrativeUnitDto}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
   private String administrativeUnitIdentifier;
   
   /**
-   * Représentation en chaine de caractères de l'unité administrative.
+   * Représentation en chaine de caractères de {@link AdministrativeUnitDto}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
   private String administrativeUnitAsString;
   
   /**
-   * Identifiant du poste de paie.
+   * Identifiant {@link EmployeeDto}.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
+  private String employeeIdentifier;
+    
+  /**
+   * Représentation en chaine de caractères de {@link EmployeeDto}.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_AS_STRING)
+  private String employeeAsString;
+  
+  /**
+   * Identifiant {@link PayrollComponentDto}.
    */
   @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
   private String payrollComponentIdentifier;
 
   /**
-   * Représentation en chaine de caractères du poste de paie.
+   * Représentation en chaine de caractères de {@link PayrollComponentDto}.
    */
   @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
   private String payrollComponentAsString;
   
   /**
-   * Identifiant de la période de paie.
+   * Identifiant {@link PayrollPeriodGroupDto}.
    */
   @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
   private String payrollPeriodIdentifier;
   
   /**
-   * Représentation en chaine de caractères de la période de paie.
+   * Représentation en chaine de caractères de {@link PayrollPeriodGroupDto}.
    */
   @JsonbProperty(JSON_PAYROLL_PERIOD_AS_STRING)
   private String payrollPeriodAsString;
@@ -87,7 +81,7 @@ import lombok.Setter;
    * Montant.
    */
   @JsonbProperty(JSON_AMOUNT)
-  private Long amount;
+  private Integer amount;
   
   /**
    * Représentation en chaine de caractères du montant.
@@ -96,68 +90,63 @@ import lombok.Setter;
   private String amountAsString;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#exerciseIdentifier}.
+   * Identifiant json champ {@link #exerciseIdentifier}.
    */
-  public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
-
-  /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#year}.
-   */
-  public static final String JSON_YEAR = &quot;annee&quot;;
+  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
   
   /**
-   * Identifiant json {@link PayrollComponentProjectionDto#administrativeUnitIdentifier}.
+   * Identifiant json champ {@link #exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json {@link #administrativeUnitIdentifier}.
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
   
   /**
-   * Identifiant json {@link PayrollComponentProjectionDto#administrativeUnitAsString}.
+   * Identifiant json {@link #administrativeUnitAsString}.
    */
   
   public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
 
   /**
-   * Identifiant json {@link PayrollComponentProjectionDto#employeeIdentifier}.
+   * Identifiant json {@link #employeeIdentifier}.
    */
   public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#employeeAsString}.
-   */
-  public static final String JSON_EMPLOYEE_REGISTRATION_NUMBER = &quot;employeMatricule&quot;;
-  
-  /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#employeeRegistrationNumber}.
+   * Identifiant json champ {@link #employeeAsString}.
    */
   public static final String JSON_EMPLOYEE_AS_STRING = &quot;employeChaine&quot;;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollComponentIdentifier}.
+   * Identifiant json champ {@link #payrollComponentIdentifier}.
    */
   public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = &quot;idPostePaie&quot;;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollComponentAsString}.
+   * Identifiant json champ {@link #payrollComponentAsString}.
    */
   public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;postePaieChaine&quot;;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollPeriodIdentifier}.
+   * Identifiant json champ {@link #payrollPeriodIdentifier}.
    */
   public static final String JSON_PAYROLL_PERIOD_IDENTIFIER = &quot;idPeriodePaie&quot;;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#payrollPeriodAsString}.
+   * Identifiant json champ {@link #payrollPeriodAsString}.
    */
   public static final String JSON_PAYROLL_PERIOD_AS_STRING = &quot;periodePaieChaine&quot;;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#amount}.
+   * Identifiant json champ {@link #amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
   
   /**
-   * Identifiant json champ {@link PayrollComponentProjectionDto#amountAsString}.
+   * Identifiant json champ {@link #amountAsString}.
    */
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
   

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollComponentProjectionFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">PayrollComponentProjectionFilter.java</span></div><h1>PayrollComponentProjectionFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
-
-import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,24 +11,18 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PayrollComponentProjectionFilter extends AbstractIdentifiableFilter {
-  /**
-   * Identifiant de la periode.
-   */
-  String payrollPeriodIdentifier;
-  /**
-   * Identifiant de l'employé.
-   */
-  String employeeIdentifier;
-  /**
-   * Identifiant de l'exercice.
-   */
-  String exerciseIdentifier;
+public class PayrollComponentProjectionFilter
+    extends AbstractExerciseAdministrativeUnitEmployeeFilter {
 
   /**
-   * Identifiant de l'unité administrative.
+   * Identifiant de {@link PayrollComponentDto}.
    */
-  String administrativeUnitIdentifier;
+  String payrollComponentIdentifier;
+
+  /**
+   * Identifiant de {@link PayrollPeriodGroupDto}.
+   */
+  String payrollPeriodGroupIdentifier;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -38,136 +30,80 @@ public class PayrollComponentProjectionFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public PayrollComponentProjectionFilter(FilterDto dto) {
-<span class="fc" id="L41">    super(dto);</span>
-<span class="fc" id="L42">  }</span>
+<span class="fc" id="L33">    super(dto);</span>
+<span class="fc" id="L34">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L47">  public PayrollComponentProjectionFilter() {}</span>
+<span class="fc" id="L39">  public PayrollComponentProjectionFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L51">    super.doInitialize(filter);</span>
-<span class="fc" id="L52">    payrollPeriodIdentifier = getPayrollPeriodIdentifier(filter);</span>
-<span class="fc" id="L53">    employeeIdentifier = getEmployeeIdentifier(filter);</span>
-<span class="fc" id="L54">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
-<span class="fc" id="L55">    administrativeUnitIdentifier = getAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L43">    super.doInitialize(filter);</span>
+<span class="fc" id="L44">    payrollComponentIdentifier = getPayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L45">    payrollPeriodGroupIdentifier = getPayrollPeriodGroupIdentifier(filter);</span>
+<span class="fc" id="L46">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L60">    super.toDto(filter);</span>
-
-<span class="fc" id="L62">    setPayrollPeriodIdentifier(filter, payrollPeriodIdentifier);</span>
-<span class="fc" id="L63">    setEmployeeIdentifier(filter, employeeIdentifier);</span>
-<span class="fc" id="L64">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
-<span class="fc" id="L65">    setAdministrativeUnitIdentifier(filter, administrativeUnitIdentifier);</span>
-<span class="fc" id="L66">  }</span>
+<span class="fc" id="L50">    super.toDto(filter);</span>
+<span class="fc" id="L51">    setPayrollComponentIdentifier(filter, payrollComponentIdentifier);</span>
+<span class="fc" id="L52">    setPayrollPeriodGroupIdentifier(filter, payrollPeriodGroupIdentifier);</span>
+<span class="fc" id="L53">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant de l'unité administrative.
+   * Cette méthode permet d'obtenir l'identifiant de {@link PayrollComponentDto}.
    *
    * @param filter filtre
-   * @return identifiant de l'unité administrative
+   * @return identifiant de {@link PayrollComponentDto}
    */
-  public static String getAdministrativeUnitIdentifier(FilterDto filter) {
-<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER));</span>
+  public static String getPayrollComponentIdentifier(FilterDto filter) {
+<span class="fc" id="L62">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_COMPONENT_IDENTIFIER));</span>
   }
 
   /**
-   * Cette méthode permet d'assigner l'identifiant de l'unité administrative.
+   * Cette méthode permet d'assigner l'identifiant de {@link PayrollComponentDto}.
    *
    * @param filter filtre
-   * @param identifier identifiant de l'unité administrative
+   * @param identifier identifiant de l'identifiant de {@link PayrollComponentDto}
    */
-  public static void setAdministrativeUnitIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L85">    set(filter, JSON_ADMINISTRATIVE_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L86">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L87">  }</span>
+  public static void setPayrollComponentIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L72">    set(filter, JSON_PAYROLL_COMPONENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L73">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L74">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant de la periode.
+   * Cette méthode permet d'obtenir l'identifiant de {@link PayrollPeriodGroupDto}.
    *
    * @param filter filtre
-   * @return identifiant de la periode
+   * @return identifiant de {@link PayrollPeriodGroupDto}
    */
-  public static String getPayrollPeriodIdentifier(FilterDto filter) {
-<span class="fc" id="L96">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_PERIOD_IDENTIFIER));</span>
+  public static String getPayrollPeriodGroupIdentifier(FilterDto filter) {
+<span class="fc" id="L83">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER));</span>
   }
 
   /**
-   * Cette méthode permet d'assigner l'identifiant de la periode.
+   * Cette méthode permet d'assigner l'identifiant de {@link PayrollPeriodGroupDto}.
    *
    * @param filter filtre
-   * @param identifier identifiant de l'identifiant de la periode
+   * @param identifier identifiant de l'identifiant de {@link PayrollPeriodGroupDto}
    */
-  public static void setPayrollPeriodIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L106">    set(filter, JSON_PAYROLL_PERIOD_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L107">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L108">  }</span>
+  public static void setPayrollPeriodGroupIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L93">    set(filter, JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L94">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L95">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant de l'exercice.
-   *
-   * @param filter filtre
-   * @return identifiant de l'exercice
+   * Identifiant json {@link #payrollComponentIdentifier}.
    */
-  public static String getEmployeeIdentifier(FilterDto filter) {
-<span class="fc" id="L117">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
-  }
+  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+      PayrollComponentDto.JSON_THIS_IDENTIFIER;
 
   /**
-   * Cette méthode permet d'assigner l'identifiant de l'exercice.
-   *
-   * @param filter filtre
-   * @param identifier identifiant de l'identifiant de l'exercice
+   * Identifiant json {@link #payrollPeriodGroupIdentifier}.
    */
-  public static void setEmployeeIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L127">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L128">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L129">  }</span>
-
-  /**
-   * Cette méthode permet d'obtenir l'identifiant de l'employé.
-   *
-   * @param filter filtre
-   * @return identifiant de l'employé
-   */
-  public static String getExerciseIdentifier(FilterDto filter) {
-<span class="fc" id="L138">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
-  }
-
-  /**
-   * Cette méthode permet d'assigner l'identifiant de l'employé.
-   *
-   * @param filter filtre
-   * @param identifier identifiant de l'identifiant de l'employé
-   */
-  public static void setExerciseIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L148">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L149">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L150">  }</span>
-
-  /**
-   * Identifiant json champ exrecice.
-   */
-  public static final String JSON_EXERCISE_IDENTIFIER = &quot;idExercice&quot;;
-
-  /**
-   * Identifiant json unité Administrative.
-   */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
-
-  /**
-   * Identifiant json employé.
-   */
-  public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
-
-
-  /**
-   * Identifiant json champ periode.
-   */
-  public static final String JSON_PAYROLL_PERIOD_IDENTIFIER = &quot;idPeriodePaie&quot;;
+  public static final String JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER =
+      PayrollPeriodGroupDto.JSON_THIS_IDENTIFIER;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

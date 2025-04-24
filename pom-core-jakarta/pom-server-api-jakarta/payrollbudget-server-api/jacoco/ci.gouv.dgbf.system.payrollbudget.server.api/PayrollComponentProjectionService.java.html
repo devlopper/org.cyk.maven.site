@@ -154,14 +154,14 @@ public interface PayrollComponentProjectionService extends SpecificService {
      *
      * @return montant
      */
-    long getAmount();
+    Integer getAmount();
 
     /**
      * Cette méthode permet d'assigner le montant.
      *
      * @param amount montant
      */
-    void setAmount(long amount);
+    void setAmount(Integer amount);
     
     /**
      * Identifiant json champ identifiant de l'exercice.
@@ -224,7 +224,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
     private String payrollPeriodIdentifier;
     
     @JsonbProperty(JSON_AMOUNT)
-    private long amount;
+    private Integer amount;
   }
 
   /**
@@ -377,7 +377,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
     private String payrollPeriodIdentifier;
     
     @JsonbProperty(JSON_AMOUNT)
-    private long amount;
+    private Integer amount;
   }
 
   /**
