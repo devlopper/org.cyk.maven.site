@@ -33,22 +33,37 @@ public enum PayslipStatus {
 <span class="fc" id="L33">  CONTROLLED(PayslipStatusCode.CONTROLLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
   
   /**
+   * Acceptée.
+   */
+<span class="fc" id="L38">  ACCEPTED(PayslipStatusCode.ACCEPTED, &quot;Acceptée&quot;, &quot;Acceptation&quot;),</span>
+  
+  /**
+   * Validée.
+   */
+<span class="fc" id="L43">  VALIDATED(PayslipStatusCode.VALIDATED, &quot;Validée&quot;, &quot;Validation&quot;),</span>
+  
+  /**
+   * Recalculée.
+   */
+<span class="fc" id="L48">  RECALCULATED(PayslipStatusCode.RECALCULATED, &quot;Recalculée&quot;, &quot;Recalcul&quot;),</span>
+  
+  /**
    * Arbitrée.
    */
-<span class="fc" id="L38">  ARBITRATED(PayslipStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
+<span class="fc" id="L53">  ARBITRATED(PayslipStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
   
   /**
    * Clôturée.
    */
-<span class="fc" id="L43">  CLOSED(PayslipStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
+<span class="fc" id="L58">  CLOSED(PayslipStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
 
   ;
 
-<span class="fc" id="L47">  private PayslipStatus(String code, String name, String action) {</span>
-<span class="fc" id="L48">    this.code = code;</span>
-<span class="fc" id="L49">    this.name = name;</span>
-<span class="fc" id="L50">    this.action = action;</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L62">  private PayslipStatus(String code, String name, String action) {</span>
+<span class="fc" id="L63">    this.code = code;</span>
+<span class="fc" id="L64">    this.name = name;</span>
+<span class="fc" id="L65">    this.action = action;</span>
+<span class="fc" id="L66">  }</span>
 
   private String code;
   private String name;
@@ -57,7 +72,7 @@ public enum PayslipStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L60">    return name;</span>
+<span class="fc" id="L75">    return name;</span>
   }
 
   /**
@@ -67,17 +82,20 @@ public enum PayslipStatus {
    * @return statut
    */
   public static PayslipStatus getByCode(String code) {
-<span class="fc" id="L70">    return Stream.of(PayslipStatus.values())</span>
-<span class="fc" id="L71">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L72">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L85">    return Stream.of(PayslipStatus.values())</span>
+<span class="fc" id="L86">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L87">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L76">    INITIALIZED.previous = Collections.emptySet();</span>
-<span class="fc" id="L77">    TRANSMITTED_FOR_CONTROL.previous = Core.getSet(List.of(INITIALIZED));</span>
-<span class="fc" id="L78">    CONTROLLED.previous = Core.getSet(List.of(TRANSMITTED_FOR_CONTROL));</span>
-<span class="fc" id="L79">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
-<span class="fc" id="L80">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
-<span class="fc" id="L81">  }</span>
+<span class="fc" id="L91">    INITIALIZED.previous = Collections.emptySet();</span>
+<span class="fc" id="L92">    TRANSMITTED_FOR_CONTROL.previous = Core.getSet(List.of(INITIALIZED));</span>
+<span class="fc" id="L93">    CONTROLLED.previous = Core.getSet(List.of(TRANSMITTED_FOR_CONTROL));</span>
+<span class="fc" id="L94">    ACCEPTED.previous = Core.getSet(List.of(CONTROLLED));</span>
+<span class="fc" id="L95">    RECALCULATED.previous = Core.getSet(List.of(ACCEPTED));</span>
+<span class="fc" id="L96">    VALIDATED.previous = Core.getSet(List.of(ACCEPTED, RECALCULATED));</span>
+<span class="fc" id="L97">    ARBITRATED.previous = Core.getSet(List.of(CONTROLLED));</span>
+<span class="fc" id="L98">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="fc" id="L99">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -3,6 +3,8 @@
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -242,7 +244,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L245">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L247">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -320,7 +322,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L323">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L325">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -409,7 +411,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L412">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L414">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -479,5 +481,105 @@ public interface PayslipService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+  
+  /**
+   * Identifiant du service de controle bulletin.
+   */
+  String CONTROL_IDENTIFIER = &quot;CONTROLE_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de controle bulletin.
+   */
+  String CONTROL_PATH = &quot;controle-bulletin&quot;;
+
+  /**
+   * Cette méthode permet de controler un bulletin {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CONTROL_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CONTROL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response control(ByIdentifierRequestDto request);
+  
+  /**
+   * Identifiant du service de acceptation bulletin.
+   */
+  String ACCEPTATION_IDENTIFIER = &quot;ACCEPTATION_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de acceptation bulletin.
+   */
+  String ACCEPTATION_PATH = &quot;acceptation-bulletin&quot;;
+
+  /**
+   * Cette méthode permet de accepter un bulletin {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ACCEPTATION_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = ACCEPTATION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response accept(ByFilterRequestDto request);
+  
+  /**
+   * Identifiant du service de recalcul bulletin.
+   */
+  String RECALCULATION_IDENTIFIER = &quot;RECALCUL_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de recalcul bulletin.
+   */
+  String RECALCULATION_PATH = &quot;recalcul-bulletin&quot;;
+
+  /**
+   * Cette méthode permet de recalculer un bulletin {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(RECALCULATION_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = RECALCULATION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response recalculate(ByFilterRequestDto request);
+  
+  /**
+   * Identifiant du service de validation bulletin.
+   */
+  String VALIDATION_IDENTIFIER = &quot;VALIDATION_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de validation bulletin.
+   */
+  String VALIDATION_PATH = &quot;validation-bulletin&quot;;
+
+  /**
+   * Cette méthode permet de valider un bulletin {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(VALIDATION_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = VALIDATION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response validate(ByFilterRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
