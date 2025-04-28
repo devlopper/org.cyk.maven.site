@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class PayslipDto extends AbstractIdentifiableAuditableDto implements PayslipContainerDto {</span>
+<span class="nc" id="L18">public class PayslipDto extends AbstractIdentifiableAuditableDto implements PayslipContainerDto {</span>
 
   /**
    * Identifiant {@link PayrollDto}.
@@ -310,6 +310,12 @@ import lombok.Setter;
   private String statusCode;
 
   /**
+   * initializable.
+   */
+  @JsonbProperty(JSON_INITIALIZABLE)
+  private Boolean initializable;
+
+  /**
    * Transmettable pour contrôle.
    */
   @JsonbProperty(JSON_TRANSMITTABLE_FOR_CONTROL)
@@ -320,6 +326,36 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_CONTROLLABLE)
   private Boolean controllable;
+
+  /**
+   * acceptable.
+   */
+  @JsonbProperty(JSON_ACCEPTABLE)
+  private Boolean acceptable;
+
+  /**
+   * racalculable.
+   */
+  @JsonbProperty(JSON_RECALCULABLE)
+  private Boolean recalculable;
+
+  /**
+   * validable.
+   */
+  @JsonbProperty(JSON_VALIDABLE)
+  private Boolean validable;
+
+  /**
+   * arbitrable.
+   */
+  @JsonbProperty(JSON_ARBITRABLE)
+  private Boolean arbitrable;
+
+  /**
+   * closable.
+   */
+  @JsonbProperty(JSON_CLOSABLE)
+  private Boolean closable;
 
   /**
    * Identifiant json de l'identifiant.
@@ -486,6 +522,11 @@ import lombok.Setter;
   public static final String JSON_STATUS_CODE = &quot;codeStatut&quot;;
 
   /**
+   * Identifiant json champ {@link #initializable}.
+   */
+  public static final String JSON_INITIALIZABLE = &quot;initializable&quot;;
+
+  /**
    * Identifiant json champ {@link #transmittableForControl}.
    */
   public static final String JSON_TRANSMITTABLE_FOR_CONTROL = &quot;transmettablePourControle&quot;;
@@ -494,6 +535,31 @@ import lombok.Setter;
    * Identifiant json champ {@link #controllable}.
    */
   public static final String JSON_CONTROLLABLE = &quot;controlable&quot;;
+
+  /**
+   * Identifiant json champ {@link #acceptable}.
+   */
+  public static final String JSON_ACCEPTABLE = &quot;acceptable&quot;;
+
+  /**
+   * Identifiant json champ {@link #recalculable}.
+   */
+  public static final String JSON_RECALCULABLE = &quot;recalculable&quot;;
+
+  /**
+   * Identifiant json champ {@link #validable}.
+   */
+  public static final String JSON_VALIDABLE = &quot;validable&quot;;
+
+  /**
+   * Identifiant json champ {@link #arbitrable}.
+   */
+  public static final String JSON_ARBITRABLE = &quot;arbitrable&quot;;
+
+  /**
+   * Identifiant json champ {@link #closable}.
+   */
+  public static final String JSON_CLOSABLE = &quot;closable&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

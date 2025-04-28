@@ -12,6 +12,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiablesResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -244,7 +245,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L247">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="nc" id="L248">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -322,7 +323,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L325">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="nc" id="L326">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -411,7 +412,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L414">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="nc" id="L415">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -504,8 +505,8 @@ public interface PayslipService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = CONTROL_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response control(ByIdentifierRequestDto request);
+      content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
+  Response control(ByFilterRequestDto request);
   
   /**
    * Identifiant du service de acceptation bulletin.
@@ -529,7 +530,7 @@ public interface PayslipService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = ACCEPTATION_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
   Response accept(ByFilterRequestDto request);
   
   /**
@@ -554,7 +555,7 @@ public interface PayslipService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = RECALCULATION_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
   Response recalculate(ByFilterRequestDto request);
   
   /**
@@ -579,7 +580,137 @@ public interface PayslipService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = VALIDATION_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
   Response validate(ByFilterRequestDto request);
+
+  /**
+   * Cette classe représente la réponse de traitement.
+   *
+   * @author akm
+   *
+   */
+  @Getter
+  @Setter
+<span class="nc" id="L594">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+
+    /**
+     * {@link PayslipDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private PayslipStatus status;
+
+    /**
+     * {@link PayslipDto#getInitializable()}.
+     */
+    @JsonbProperty(JSON_INITIALIZABLE)
+    private Boolean initializable;
+
+    /**
+     * {@link PayslipDto#getTransmittableForControl()}.
+     */
+    @JsonbProperty(JSON_TRANSMITTABLE_FOR_CONTROL)
+    private Boolean transmittableForControl;
+
+    /**
+     * {@link PayslipDto#getControllable()}.
+     */
+    @JsonbProperty(JSON_CONTROLLABLE)
+    private Boolean controllable;
+
+    /**
+     * {@link PayslipDto#getAcceptable()}.
+     */
+    @JsonbProperty(JSON_ACCEPTABLE)
+    private Boolean acceptable;
+
+    /**
+     * {@link PayslipDto#getRecalculable()}.
+     */
+    @JsonbProperty(JSON_RECALCULABLE)
+    private Boolean recalculable;
+
+    /**
+     * {@link PayslipDto#getValidable()}.
+     */
+    @JsonbProperty(JSON_VALIDABLE)
+    private Boolean validable;
+
+    /**
+     * {@link PayslipDto#getValidable()}.
+     */
+    @JsonbProperty(JSON_VALIDABLE)
+    private Boolean arbitrable;
+
+    /**
+     * {@link PayslipDto#getValidable()}.
+     */
+    @JsonbProperty(JSON_VALIDABLE)
+    private Boolean closable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status {@link PayslipStatus}
+     */
+    public void initialize(PayslipStatus status) {
+<span class="nc" id="L656">      this.status = status;</span>
+<span class="nc" id="L657">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="nc" id="L658">      transmittableForControl = </span>
+<span class="nc" id="L659">            PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="nc" id="L660">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="nc" id="L661">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="nc" id="L662">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="nc" id="L663">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="nc" id="L664">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="nc" id="L665">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="nc" id="L666">    }</span>
+
+    /**
+     * {@link PayslipDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = PayslipDto.JSON_STATUS;
+
+    /**
+     * {@link PayslipDto#JSON_INITIALIZABLE}.
+     */
+    public static final String JSON_INITIALIZABLE = 
+                  PayslipDto.JSON_INITIALIZABLE;
+
+    /**
+     * {@link PayslipDto#JSON_TRANSMITTABLE_FOR_CONTROL}.
+     */
+    public static final String JSON_TRANSMITTABLE_FOR_CONTROL = 
+                  PayslipDto.JSON_TRANSMITTABLE_FOR_CONTROL;
+
+    /**
+     * {@link PayslipDto#JSON_CONTROLLABLE}.
+     */
+    public static final String JSON_CONTROLLABLE = PayslipDto.JSON_CONTROLLABLE;
+
+    /**
+     * {@link PayslipDto#JSON_ACCEPTABLE}.
+     */
+    public static final String JSON_ACCEPTABLE =  PayslipDto.JSON_ACCEPTABLE;
+
+    /**
+     * {@link PayslipDto#JSON_RECALCULABLE}.
+     */
+    public static final String JSON_RECALCULABLE = PayslipDto.JSON_RECALCULABLE;
+
+    /**
+     * {@link PayslipDto#JSON_VALIDABLE}.
+     */
+    public static final String JSON_VALIDABLE = PayslipDto.JSON_VALIDABLE;
+
+    /**
+     * {@link PayslipDto#JSON_ARBITRABLE}.
+     */
+    public static final String JSON_ARBITRABLE = PayslipDto.JSON_ARBITRABLE;
+
+    /**
+     * {@link PayslipDto#JSON_CLOSABLE}.
+     */
+    public static final String JSON_CLOSABLE = PayslipDto.JSON_CLOSABLE;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
