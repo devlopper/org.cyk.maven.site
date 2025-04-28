@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -256,7 +257,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L259">  class PayrollCorrectionProposalCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L260">  class PayrollCorrectionProposalCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayrollCorrectionProposalSaveRequestDto {
     
     /**
@@ -348,7 +349,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L351">  public static class PayrollCorrectionProposalGetManyResponseDto </span>
+<span class="fc" id="L352">  public static class PayrollCorrectionProposalGetManyResponseDto </span>
       extends AbstractGetByPageResponseDto&lt;PayrollCorrectionProposalDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -438,7 +439,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L441">  class PayrollCorrectionProposalUpdateRequestDto </span>
+<span class="fc" id="L442">  class PayrollCorrectionProposalUpdateRequestDto </span>
       extends ByIdentifierRequestDto implements PayrollCorrectionProposalSaveRequestDto {
     /**
      * {@link PayrollCorrectionProposalDto#getPayrollIdentifier()}.
@@ -519,6 +520,56 @@ public interface PayrollCorrectionProposalService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+  
+  /**
+   * Identifiant du service d'acceptation d'une proposition.
+   */
+  String ACCEPTATION_IDENTIFIER = &quot;ACCEPTATION_PROPOSITION&quot;;
+
+  /**
+   * Chemin du service de acceptation proposition.
+   */
+  String ACCEPTATION_PATH = &quot;acceptation&quot;;
+
+  /**
+   * Cette méthode permet de accepter une proposition {@link PayrollCorrectionProposalDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ACCEPTATION_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = ACCEPTATION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response accept(ByFilterRequestDto request);
+  
+  /**
+   * Identifiant du service de refuser une proposition.
+   */
+  String REFUS_IDENTIFIER = &quot;REFUS_PROPOSITION&quot;;
+
+  /**
+   * Chemin du service de refuser une proposition.
+   */
+  String REFUS_PATH = &quot;refus&quot;;
+
+  /**
+   * Cette méthode permet de refuser une proposition {@link PayrollCorrectionProposalDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(REFUS_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = REFUS_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response refuse(ByFilterRequestDto request);
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

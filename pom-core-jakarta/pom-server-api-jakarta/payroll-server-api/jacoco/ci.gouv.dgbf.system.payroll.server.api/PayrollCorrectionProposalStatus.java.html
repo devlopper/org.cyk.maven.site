@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollCorrectionProposalStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollCorrectionProposalStatus.java</span></div><h1>PayrollCorrectionProposalStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les statuts de {@link PayrollCorrectionProposalDto}.
+ *
+ * @author stephane
+ *
+ */
+<span class="fc" id="L16">@Getter</span>
+public enum PayrollCorrectionProposalStatus {
+  
+  /**
+   * Activée.
+   */
+<span class="fc" id="L22">  ACTIVATED(PayrollCorrectionProposalStatusCode.ACTIVATED, &quot;Activée&quot;, &quot;Activation&quot;),</span>
+  
+  /**
+   * Proposée.
+   */
+<span class="fc" id="L27">  SUGGESTED(PayrollCorrectionProposalStatusCode.PROPOSED, </span>
+        &quot;Proposée&quot;, &quot;Proposition&quot;),
+  
+  /**
+   * Refusée.
+   */
+<span class="fc" id="L33">  REFUSED(PayrollCorrectionProposalStatusCode.REFUSED, &quot;Refusée&quot;, &quot;Refus&quot;),</span>
+  
+  /**
+   * Clôturée.
+   */
+<span class="fc" id="L38">  CLOSED(PayrollCorrectionProposalStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
+
+  ;
+
+<span class="fc" id="L42">  private PayrollCorrectionProposalStatus(String code, String name, String action) {</span>
+<span class="fc" id="L43">    this.code = code;</span>
+<span class="fc" id="L44">    this.name = name;</span>
+<span class="fc" id="L45">    this.action = action;</span>
+<span class="fc" id="L46">  }</span>
+
+  private String code;
+  private String name;
+  private String action;
+  private Set&lt;PayrollCorrectionProposalStatus&gt; previous;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L55">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le statut par code.
+   *
+   * @param code code
+   * @return statut
+   */
+  public static PayrollCorrectionProposalStatus getByCode(String code) {
+<span class="fc" id="L65">    return Stream.of(PayrollCorrectionProposalStatus.values())</span>
+<span class="fc" id="L66">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L67">        .orElseThrow(IllegalArgumentException::new);</span>
+  }
+
+  static {
+<span class="fc" id="L71">    ACTIVATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L72">    SUGGESTED.previous = Collections.emptySet();</span>
+<span class="fc" id="L73">    CLOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L74">    REFUSED.previous = Core.getSet(List.of(SUGGESTED));</span>
+<span class="fc" id="L75">    CLOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L76">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

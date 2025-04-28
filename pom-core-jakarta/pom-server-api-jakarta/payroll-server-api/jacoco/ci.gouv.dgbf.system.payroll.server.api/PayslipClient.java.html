@@ -36,14 +36,14 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="nc" id="L39">public class PayslipClient extends AbstractClient&lt;PayslipService&gt;</span>
+<span class="fc" id="L39">public class PayslipClient extends AbstractClient&lt;PayslipService&gt;</span>
     implements GetByIdentifier&lt;PayslipDto&gt;,
     GetMany&lt;PayslipGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public PayslipClient service(PayslipService service) {
-<span class="nc" id="L46">    return (PayslipClient) super.service(service);</span>
+<span class="fc" id="L46">    return (PayslipClient) super.service(service);</span>
   }
 
   /**
@@ -53,8 +53,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(PayslipCreateRequestDto request) {
-<span class="nc" id="L56">    return new CreateExecutor(PayslipService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L57">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L56">    return new CreateExecutor(PayslipService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L57">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -64,10 +64,10 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public PayslipGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L67">    return new GetOneExecutor&lt;PayslipGetManyResponseDto&gt;(</span>
-<span class="nc" id="L68">        PayslipGetManyResponseDto.class,</span>
-<span class="nc" id="L69">        PayslipService.GET_MANY_IDENTIFIER)</span>
-<span class="nc" id="L70">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L67">    return new GetOneExecutor&lt;PayslipGetManyResponseDto&gt;(</span>
+        PayslipGetManyResponseDto.class,
+        PayslipService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L70">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -83,13 +83,13 @@ import lombok.experimental.Accessors;
   @Override
   public PayslipGetManyResponseDto getMany(ProjectionDto projection,
       FilterDto filter, PageDto page, String auditWho, String auditSession) {
-<span class="nc" id="L86">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L87">    request.setProjection(projection);</span>
-<span class="nc" id="L88">    request.setFilter(filter);</span>
-<span class="nc" id="L89">    request.setPage(page);</span>
-<span class="nc" id="L90">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L91">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L92">    return getMany(request);</span>
+<span class="fc" id="L86">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L87">    request.setProjection(projection);</span>
+<span class="fc" id="L88">    request.setFilter(filter);</span>
+<span class="fc" id="L89">    request.setPage(page);</span>
+<span class="fc" id="L90">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L91">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L92">    return getMany(request);</span>
   }
 
   /**
@@ -99,9 +99,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public PayslipDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L102">    return new GetOneExecutor&lt;PayslipDto&gt;(PayslipDto.class,</span>
-<span class="nc" id="L103">        PayslipService.GET_ONE_IDENTIFIER)</span>
-<span class="nc" id="L104">            .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L102">    return new GetOneExecutor&lt;PayslipDto&gt;(PayslipDto.class,</span>
+        PayslipService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L104">            .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -115,12 +115,12 @@ import lombok.experimental.Accessors;
    */
   public PayslipDto getOne(ProjectionDto projection, FilterDto filter,
       String auditWho, String auditSession) {
-<span class="nc" id="L118">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L119">    request.setProjection(projection);</span>
-<span class="nc" id="L120">    request.setFilter(filter);</span>
-<span class="nc" id="L121">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L122">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L123">    return getOne(request);</span>
+<span class="fc" id="L118">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L119">    request.setProjection(projection);</span>
+<span class="fc" id="L120">    request.setFilter(filter);</span>
+<span class="fc" id="L121">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L122">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L123">    return getOne(request);</span>
   }
 
   /**
@@ -130,9 +130,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public PayslipDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L133">    return new GetOneExecutor&lt;PayslipDto&gt;(PayslipDto.class,</span>
-<span class="nc" id="L134">        PayslipService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L135">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L133">    return new GetOneExecutor&lt;PayslipDto&gt;(PayslipDto.class,</span>
+        PayslipService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L135">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -147,12 +147,12 @@ import lombok.experimental.Accessors;
   @Override
   public PayslipDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="nc" id="L150">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L151">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L152">    request.setProjection(projection);</span>
-<span class="nc" id="L153">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L154">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L155">    return getByIdentifier(request);</span>
+<span class="fc" id="L150">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L151">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L152">    request.setProjection(projection);</span>
+<span class="fc" id="L153">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L154">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L155">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -162,8 +162,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(PayslipUpdateRequestDto request) {
-<span class="nc" id="L165">    return new IdentifiableExecutor(PayslipService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L166">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L165">    return new IdentifiableExecutor(PayslipService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L166">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -173,8 +173,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L176">    return new IdentifiableExecutor(PayslipService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L177">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L176">    return new IdentifiableExecutor(PayslipService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L177">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -188,11 +188,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="nc" id="L191">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L192">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L193">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L194">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L195">    return delete(request);</span>
+<span class="fc" id="L191">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L192">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L193">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L194">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L195">    return delete(request);</span>
   }
 
   /**
@@ -202,8 +202,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto control(ByFilterRequestDto request) {
-<span class="nc" id="L205">    return new ProcessExecutor(PayslipService.CONTROL_IDENTIFIER)</span>
-<span class="nc" id="L206">        .execute(() -&gt; service().control(request));</span>
+<span class="fc" id="L205">    return new ProcessExecutor(PayslipService.CONTROL_IDENTIFIER)</span>
+<span class="fc" id="L206">        .execute(() -&gt; service().control(request));</span>
   }
 
   /**
@@ -213,8 +213,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto accept(ByFilterRequestDto request) {
-<span class="nc" id="L216">    return new ProcessExecutor(PayslipService.CONTROL_IDENTIFIER)</span>
-<span class="nc" id="L217">        .execute(() -&gt; service().accept(request));</span>
+<span class="fc" id="L216">    return new ProcessExecutor(PayslipService.CONTROL_IDENTIFIER)</span>
+<span class="fc" id="L217">        .execute(() -&gt; service().accept(request));</span>
   }
 
   /**
@@ -224,8 +224,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto validate(ByFilterRequestDto request) {
-<span class="nc" id="L227">    return new ProcessExecutor(PayslipService.VALIDATION_IDENTIFIER)</span>
-<span class="nc" id="L228">        .execute(() -&gt; service().validate(request));</span>
+<span class="fc" id="L227">    return new ProcessExecutor(PayslipService.VALIDATION_IDENTIFIER)</span>
+<span class="fc" id="L228">        .execute(() -&gt; service().validate(request));</span>
   }
 
   /**
@@ -241,9 +241,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="nc" id="L244">    public ProcessExecutor(String identifier) {</span>
-<span class="nc" id="L245">      super(ProcessResponseDto.class, identifier);</span>
-<span class="nc" id="L246">    }</span>
+<span class="fc" id="L244">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L245">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L246">    }</span>
 
   }
 }
