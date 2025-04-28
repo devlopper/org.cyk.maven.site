@@ -51,6 +51,26 @@ public interface GradeClassService extends SpecificService {
    */
   interface GradeClassSaveRequestDto {
 
+    /**
+     * Cette méthode me permet d'obtenir l'identifiant de {@link GeneralCivilServiceStatusDto}.
+     *
+     * @return identifiant de {@link GeneralCivilServiceStatusDto}
+     */
+    String getGeneralCivilServiceStatusIdentifier();
+
+    /**
+     * Cette méthode me permet d'assigner l'identifiant de {@link GeneralCivilServiceStatusDto}.
+     *
+     * @param identifier identifiant de {@link GeneralCivilServiceStatusDto}
+     */
+    void setGeneralCivilServiceStatusIdentifier(String identifier);
+
+    /**
+     * Identifiant json de {@link GeneralCivilServiceStatusDto}.
+     */
+    String JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER =
+        GradeClassDto.JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER;
+
   }
 
   /**
@@ -86,8 +106,11 @@ public interface GradeClassService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class GradeClassCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L109">  class GradeClassCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements GradeClassSaveRequestDto {
+
+    @JsonbProperty(JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER)
+    String generalCivilServiceStatusIdentifier;
 
   }
 
@@ -124,7 +147,7 @@ public interface GradeClassService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  public static class GradeClassGetManyResponseDto </span>
+<span class="fc" id="L150">  public static class GradeClassGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;GradeClassDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -214,8 +237,12 @@ public interface GradeClassService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L217">  class GradeClassUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L240">  class GradeClassUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements GradeClassSaveRequestDto {
+
+    @JsonbProperty(JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER)
+    String generalCivilServiceStatusIdentifier;
+
 
   }
 

@@ -16,6 +16,12 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L18">public class PayIndexDto extends AbstractIdentifiableAuditableDto {</span>
+  
+  @JsonbProperty(JSON_PAY_SCALE_IDENTIFIER)
+  private String payScaleIdentifier;
+
+  @JsonbProperty(JSON_PAY_SCALE_AS_STRING)
+  private String payScaleAsString;
 
   /**
    * Valeur.
@@ -37,6 +43,18 @@ import lombok.Setter;
    * Identifiant json {@link #value}.
    */
   public static final String JSON_VALUE = &quot;valeur&quot;;
+
+  /**
+   * Identifiant json de {@link #payScaleIdentifier}.
+   */
+  public static final String JSON_PAY_SCALE_IDENTIFIER =
+      PayScaleDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #payScaleAsString}.
+   */
+  public static final String JSON_PAY_SCALE_AS_STRING =
+      PayScaleDto.JSON_THIS_AS_STRING;
   
   /**
    * Nom pour lecture humaine de la classe.

@@ -50,6 +50,28 @@ public interface PayIndexService extends SpecificService {
    *
    */
   interface PayIndexSaveRequestDto {
+
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link PayScaleDto}.
+     *
+     * @return identifiant de {@link PayScaleDto}
+     */
+    String getPayScaleIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link PayScaleDto}.
+     *
+     * @param identifier identifiant de {@link PayScaleDto}
+     */
+    void setPayScaleIdentifier(String identifier);
+
+    /**
+     * Identifiant json de {@link PayScaleDto}.
+     */
+    String JSON_PAY_SCALE_IDENTIFIER =
+        PayIndexDto.JSON_PAY_SCALE_IDENTIFIER;
+
     /**
      * Cette méthode permet d'obtenir la valeur de l'indice.
      *
@@ -104,11 +126,14 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L107">  class PayIndexCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L129">  class PayIndexCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayIndexSaveRequestDto {
 
     @JsonbProperty(value = JSON_VALUE)
     private Integer value;
+
+    @JsonbProperty(JSON_PAY_SCALE_IDENTIFIER)
+    String payScaleIdentifier;
 
   }
 
@@ -145,7 +170,7 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">  public static class PayIndexGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayIndexDto&gt; {</span>
+<span class="fc" id="L173">  public static class PayIndexGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayIndexDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayIndexDto&gt; datas;
@@ -234,11 +259,14 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L237">  class PayIndexUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L262">  class PayIndexUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayIndexSaveRequestDto {
 
     @JsonbProperty(value = JSON_VALUE)
     private Integer value;
+
+    @JsonbProperty(JSON_PAY_SCALE_IDENTIFIER)
+    String payScaleIdentifier;
 
   }
 
