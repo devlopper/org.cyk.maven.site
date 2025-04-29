@@ -16,7 +16,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L18">public class ExerciseDto extends AbstractIdentifiableCodableNamableDto</span>
-    implements PayrollComponentProjectionContainerDto {
+    implements PayrollComponentProjectionContainerDto, EmployeeContainerDto {
 
   /**
    * Année.
@@ -24,6 +24,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_YEAR)
   Integer year;
 
+  @JsonbProperty(JSON_EMPLOYEE_COUNT_AS_STRING)
+  String employeeCountAsString;
+  
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   String amountAsString;
 
