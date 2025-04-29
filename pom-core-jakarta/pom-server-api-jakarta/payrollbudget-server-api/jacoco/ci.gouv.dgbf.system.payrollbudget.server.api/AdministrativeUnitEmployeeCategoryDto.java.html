@@ -15,7 +15,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class AdministrativeUnitEmployeeCategoryDto extends AbstractIdentifiableDto {</span>
+<span class="fc" id="L18">public class AdministrativeUnitEmployeeCategoryDto extends AbstractIdentifiableDto</span>
+    implements PayrollComponentProjectionContainerDto {
 
   /**
    * Identifiant {@link ExerciseDto}.
@@ -52,6 +53,9 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EMPLOYEE_CATEGORY_AS_STRING)
   String employeeCategoryAsString;
+
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  String amountAsString;
 
   /**
    * Identifiant json de identifiant de {@link AdministrativeUnitEmployeeCategoryDto}.
