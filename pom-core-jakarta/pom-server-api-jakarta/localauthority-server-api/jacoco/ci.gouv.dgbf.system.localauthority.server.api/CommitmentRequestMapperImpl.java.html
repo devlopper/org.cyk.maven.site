@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-04-24T12:29:17+0000&quot;,
+    date = &quot;2025-04-29T16:15:21+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,35 +27,37 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        commitmentCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L29">        commitmentCreateRequestDto.setLocalAuthorityIdentifier( arg0.getLocalAuthorityIdentifier() );</span>
-<span class="fc" id="L30">        commitmentCreateRequestDto.setSubject( arg0.getSubject() );</span>
-<span class="fc" id="L31">        commitmentCreateRequestDto.setCommitmentReference( arg0.getCommitmentReference() );</span>
-<span class="fc" id="L32">        commitmentCreateRequestDto.setInvoiceReferenceNumber( arg0.getInvoiceReferenceNumber() );</span>
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
-<span class="fc" id="L34">            commitmentCreateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L30">        commitmentCreateRequestDto.setSupplierIdentifier( arg0.getSupplierIdentifier() );</span>
+<span class="fc" id="L31">        commitmentCreateRequestDto.setSubject( arg0.getSubject() );</span>
+<span class="fc" id="L32">        commitmentCreateRequestDto.setCommitmentReference( arg0.getCommitmentReference() );</span>
+<span class="fc" id="L33">        commitmentCreateRequestDto.setInvoiceReferenceNumber( arg0.getInvoiceReferenceNumber() );</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
+<span class="fc" id="L35">            commitmentCreateRequestDto.setAmount( arg0.getAmount() );</span>
         }
 
-<span class="fc" id="L37">        return commitmentCreateRequestDto;</span>
+<span class="fc" id="L38">        return commitmentCreateRequestDto;</span>
     }
 
     @Override
     public CommitmentService.CommitmentUpdateRequestDto mapUpdate(CommitmentDto arg0) {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L43">            return null;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L44">            return null;</span>
         }
 
-<span class="fc" id="L46">        CommitmentService.CommitmentUpdateRequestDto commitmentUpdateRequestDto = new CommitmentService.CommitmentUpdateRequestDto();</span>
+<span class="fc" id="L47">        CommitmentService.CommitmentUpdateRequestDto commitmentUpdateRequestDto = new CommitmentService.CommitmentUpdateRequestDto();</span>
 
-<span class="fc" id="L48">        commitmentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L49">        commitmentUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L50">        commitmentUpdateRequestDto.setLocalAuthorityIdentifier( arg0.getLocalAuthorityIdentifier() );</span>
-<span class="fc" id="L51">        commitmentUpdateRequestDto.setSubject( arg0.getSubject() );</span>
-<span class="fc" id="L52">        commitmentUpdateRequestDto.setCommitmentReference( arg0.getCommitmentReference() );</span>
-<span class="fc" id="L53">        commitmentUpdateRequestDto.setInvoiceReferenceNumber( arg0.getInvoiceReferenceNumber() );</span>
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
-<span class="fc" id="L55">            commitmentUpdateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L49">        commitmentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        commitmentUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L51">        commitmentUpdateRequestDto.setLocalAuthorityIdentifier( arg0.getLocalAuthorityIdentifier() );</span>
+<span class="fc" id="L52">        commitmentUpdateRequestDto.setSupplierIdentifier( arg0.getSupplierIdentifier() );</span>
+<span class="fc" id="L53">        commitmentUpdateRequestDto.setSubject( arg0.getSubject() );</span>
+<span class="fc" id="L54">        commitmentUpdateRequestDto.setCommitmentReference( arg0.getCommitmentReference() );</span>
+<span class="fc" id="L55">        commitmentUpdateRequestDto.setInvoiceReferenceNumber( arg0.getInvoiceReferenceNumber() );</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
+<span class="fc" id="L57">            commitmentUpdateRequestDto.setAmount( arg0.getAmount() );</span>
         }
 
-<span class="fc" id="L58">        return commitmentUpdateRequestDto;</span>
+<span class="fc" id="L60">        return commitmentUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

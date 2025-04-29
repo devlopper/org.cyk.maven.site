@@ -90,6 +90,33 @@ public interface CommitmentService extends SpecificService {
     void setLocalAuthorityIdentifier(String identifier);
 
     /**
+     * Reprensentaion json de l'identifiant d'un fournisseur'.
+     *
+     */
+    String JSON_SUPPLIER_IDENTIFIER = &quot;idFournisseur&quot;;
+
+    /**
+     * Reprensentaion chaine de la phase.
+     *
+     */
+    String JSON_SUPPLIER_AS_STRING = &quot;fournisseurChaine&quot;;
+
+    /**
+     * Représentation en chaine de caractères de {@link SupplierDto}.
+     *
+     * @param supplierIdentifier identifiant de fournisseur
+     */
+    void setSupplierIdentifier(String supplierIdentifier);
+
+    /**
+     * Identifiant {@link SupplierDto}.
+     *
+     * @return supplier identifier
+     */
+    String getSupplierIdentifier();
+
+
+    /**
      * Cette methode permet d'obtenir le sujet de l'engagement.
      *
      * @return subject
@@ -184,11 +211,14 @@ public interface CommitmentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L187">  class CommitmentCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L214">  class CommitmentCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements CommitmentSaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
     private String localAuthorityIdentifier;
+
+    @JsonbProperty(JSON_SUPPLIER_IDENTIFIER)
+    private String supplierIdentifier;
 
     @JsonbProperty(JSON_SUBJECT)
     private String subject;
@@ -236,7 +266,7 @@ public interface CommitmentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L239">  class CommitmentGetManyResponseDto</span>
+<span class="fc" id="L269">  class CommitmentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;CommitmentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -328,11 +358,14 @@ public interface CommitmentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L331">  class CommitmentUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L361">  class CommitmentUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements CommitmentSaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
     private String localAuthorityIdentifier;
+
+    @JsonbProperty(JSON_SUPPLIER_IDENTIFIER)
+    private String supplierIdentifier;
 
     @JsonbProperty(JSON_SUBJECT)
     private String subject;

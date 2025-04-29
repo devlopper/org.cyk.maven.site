@@ -22,7 +22,6 @@ import lombok.Setter;
   @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
   private String localAuthorityIdentifier;
 
-
   /**
    * Code {@link LocalAuthorityDto}.
    */
@@ -35,6 +34,28 @@ import lombok.Setter;
   @JsonbProperty(JSON_LOCAL_AUTHORITY_AS_STRING)
   private String localAuthorityAsString;
 
+  /**
+   * Identifiant de {@link SupplierDto}.
+   */
+  @JsonbProperty(JSON_SUPPLIER_IDENTIFIER)
+  private String supplierIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link SupplierDto}.
+   */
+  @JsonbProperty(JSON_SUPPLIER_AS_STRING)
+  private String supplierAsString;
+
+  /**
+   * Identitiant json {@link SupplierDto#identifier}.
+   */
+  public static final String JSON_SUPPLIER_IDENTIFIER = &quot;idFournisseur&quot;;
+
+  /**
+   * Identitiant json {@link SupplierDto#asString}.
+   */
+  public static final String JSON_SUPPLIER_AS_STRING = &quot;fournisseurChaine&quot;;
+
 
   /**
    * Objet de l'engagement.
@@ -42,20 +63,17 @@ import lombok.Setter;
   @JsonbProperty(JSON_SUBJECT)
   private String subject;
 
-
   /**
    * Référence de l'engagement.
    */
   @JsonbProperty(JSON_COMMITMENT_REFERENCE)
   private String commitmentReference;
 
-
   /**
    * Numéro facture decompte.
    */
   @JsonbProperty(JSON_INVOICE_REFERENCE_NUMBER)
   private String invoiceReferenceNumber;
-
 
   /**
    * Montant.
@@ -69,13 +87,11 @@ import lombok.Setter;
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
 
-
   /**
    * Identifiant json {@link #localAuthorityIdentifier}.
    */
   public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
       LocalAuthorityDto.JSON_THIS_IDENTIFIER;
-
 
   /**
    * Identifiant json {@link #localAuthorityCode}.
@@ -114,7 +130,6 @@ import lombok.Setter;
    * Identifiant json {@link #invoiceReferenceNumber}.
    */
   public static final String JSON_INVOICE_REFERENCE_NUMBER = &quot;numeroFactureDecompte&quot;;
-
 
   /**
    * Nom pour lecture humaine de la classe.
