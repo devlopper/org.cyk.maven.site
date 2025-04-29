@@ -48,10 +48,9 @@ API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.ap
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollClient.ProcessExecutor,0,8,0,0,0,3,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,RemunerableDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,GradeClassService.GradeClassGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayslipClient,0,246,0,0,0,44,0,24,0,24
+API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayslipClient,0,263,0,0,0,46,0,26,0,26
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,LocalityMovementClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,BudgetarySectionUnitMovementDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollCorrectionProposalStatus,0,92,0,0,0,20,0,5,0,5
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,FunctionClient,0,128,0,0,0,27,0,11,0,11
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,RemunerableService.RemunerableGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollComponentDto,0,3,0,0,0,1,0,1,0,1
@@ -85,8 +84,8 @@ API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.ap
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,GradeClassClient,0,128,0,0,0,27,0,11,0,11
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,LocalityService.LocalityCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,LocalityClient,0,195,0,0,0,38,0,18,0,18
-API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollCorrectionProposalClient,0,195,0,0,0,38,0,18,0,18
-API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollCorrectionProposalDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollCorrectionProposalClient,0,229,0,0,0,42,0,22,0,22
+API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollCorrectionProposalDto,0,25,0,0,0,7,0,2,0,2
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PeriodGroupService.PeriodGroupUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,UserRole,0,25,0,0,0,6,0,2,0,2
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,EchelonService.EchelonGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -131,9 +130,10 @@ API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.ap
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,LocalityMovementRequestMapperImpl,0,75,0,4,0,22,0,5,0,3
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollComponentService.PayrollComponentGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,LocalityMovementFilter,9,99,0,0,0,25,3,16,3,16
-API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayslipDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayslipDto,0,45,0,0,0,12,0,2,0,2
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,LocalityDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayslipTemplateFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollCorrectionProposalClient.ProcessExecutor,0,8,0,0,0,3,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,FunctionaryBudgetarySectionUnitDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,FunctionaryClient,0,128,0,0,0,27,0,11,0,11
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollComponentService.PayrollComponentCreateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -159,6 +159,7 @@ API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.ap
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,RemunerableFilter,6,71,0,0,0,20,2,12,2,12
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,MovementTrackingFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,ExerciseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollCorrectionProposalService.ProcessResponseDto,0,35,0,0,0,8,0,2,0,2
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,PayrollFunctionaryService.PayrollFunctionaryUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,FunctionaryBudgetarySectionUnitService.FunctionaryBudgetarySectionUnitGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de rémunération,ci.gouv.dgbf.system.payroll.server.api,BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementCreateRequestDto,0,3,0,0,0,1,0,1,0,1

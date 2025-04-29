@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollCorrectionProposalDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollCorrectionProposalDto.java</span></div><h1>PayrollCorrectionProposalDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.system.payroll.server.api.PayrollCorrectionProposalService.ProcessResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L17">public class PayrollCorrectionProposalDto extends AbstractMovementTrackingIdentifiableAuditableDto {</span>
+<span class="fc" id="L18">public class PayrollCorrectionProposalDto extends AbstractMovementTrackingIdentifiableAuditableDto {</span>
  
   /**
    * Identifiant {@link PayrollDto}.
@@ -89,6 +90,43 @@ import lombok.Setter;
   private String movementTypeAsString;
   
   /**
+   * acceptable.
+   */
+  @JsonbProperty(JSON_SUGGESTABLE)
+  private Boolean suggestable;
+  
+  /**
+   * acceptable.
+   */
+  @JsonbProperty(JSON_ACCEPTABLE)
+  private Boolean acceptable;
+  
+  /**
+   * refusable.
+   */
+  @JsonbProperty(JSON_REFUSABLE)
+  private Boolean refusable;
+  
+  /**
+   * closable.
+   */
+  @JsonbProperty(JSON_CLOSABLE)
+  private Boolean closable;
+  
+  /**
+   * Cette méthode permet d'initialiser à partir d'une réponse.
+   *
+   * @param response résponse
+   */
+  public void initialize(ProcessResponseDto response) {
+<span class="fc" id="L122">    setStatus(response.getStatus());</span>
+<span class="fc" id="L123">    setStatusAsString(response.getStatus().getName());</span>
+<span class="fc" id="L124">    refusable = response.getRefusable();</span>
+<span class="fc" id="L125">    acceptable = response.getActivable();</span>
+<span class="fc" id="L126">    closable = response.getClosable();</span>
+<span class="fc" id="L127">  }</span>
+  
+  /**
    * Identifiant json de identifiant de {@link PayrollCorrectionProposalDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idProposition&quot;;
@@ -158,7 +196,27 @@ import lombok.Setter;
    */
   public static final String JSON_SUGGESTED_MOVEMENT_AS_STRING = &quot;mouvementProposeChaine&quot;;
   
-
+  /**
+   * Identifiant json {@link #acceptable}.
+   */
+  public static final String JSON_ACCEPTABLE = &quot;acceptable&quot;;
+  
+  /**
+   * Identifiant json {@link #suggestable}.
+   */
+  public static final String JSON_SUGGESTABLE = &quot;acceptable&quot;;
+  
+  
+  /**
+   * Identifiant json {@link #refusable}.
+   */
+  public static final String JSON_REFUSABLE = &quot;refusable&quot;;
+  
+  /**
+   * Identifiant json {@link #closable}.
+   */
+  public static final String JSON_CLOSABLE = &quot;closable&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */

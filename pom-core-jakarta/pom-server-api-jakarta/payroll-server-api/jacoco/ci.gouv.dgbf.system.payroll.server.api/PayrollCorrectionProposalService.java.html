@@ -570,6 +570,87 @@ public interface PayrollCorrectionProposalService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response refuse(ByFilterRequestDto request);
+  
+  /**
+   * Cette classe représente la réponse de traitement.
+   *
+   * @author stephane
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L582">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * {@link MovementStatusDto}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private MovementStatus status;
+
+    /**
+     * {@link PayrollCorrectionProposalDto#getActivable()}.
+     */
+    @JsonbProperty(JSON_ACTIVABLE)
+    private Boolean activable;
+
+    /**
+     * {@link PayrollCorrectionProposalDto#getAcceptable()}.
+     */
+    @JsonbProperty(JSON_SUGGESTABLE)
+    private Boolean suggestable;
+
+    /**
+     * {@link PayrollCorrectionProposalDto#getProposable()}.
+     */
+    @JsonbProperty(JSON_REFUSABLE)
+    private Boolean refusable;
+
+    /**
+     * {@link PayrollCorrectionProposalDto#getClosable()}.
+     */
+    @JsonbProperty(JSON_CLOSABLE)
+    private Boolean closable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status {@link MovementStatus}
+     */
+    public void initialize(MovementStatus status) {
+<span class="fc" id="L620">      this.status = status;</span>
+<span class="fc" id="L621">      activable = MovementStatus.ACTIVATED.getPrevious().contains(status);</span>
+<span class="fc" id="L622">      suggestable = </span>
+<span class="fc" id="L623">          MovementStatus.SUGGESTED.getPrevious().contains(status);</span>
+<span class="fc" id="L624">      refusable = MovementStatus.REFUSED.getPrevious().contains(status);</span>
+<span class="fc" id="L625">      closable = MovementStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L626">    }</span>
+
+    /**
+     * {@link PayrollCorrectionProposalDto}.
+     */
+    public static final String JSON_STATUS = &quot;statut&quot;;
+
+    /**
+     * {@link PayrollCorrectionProposalDto}.
+     */
+    public static final String JSON_ACTIVABLE = &quot;activable&quot;;
+
+    /**
+     * {@link PayrollCorrectionProposalDto}.
+     */
+    public static final String JSON_SUGGESTABLE = &quot;proposable&quot;;
+
+    /**
+     * {@link PayrollCorrectionProposalDto}.
+     */
+    public static final String JSON_REFUSABLE = &quot;refusable&quot;;
+
+    /**
+     * {@link PayrollCorrectionProposalDto}.
+     */
+    public static final String JSON_CLOSABLE = &quot;cloturable&quot;;
+
+  }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

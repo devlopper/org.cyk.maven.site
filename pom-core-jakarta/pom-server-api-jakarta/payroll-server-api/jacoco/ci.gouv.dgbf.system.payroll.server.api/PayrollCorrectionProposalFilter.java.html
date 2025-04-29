@@ -16,9 +16,19 @@ import lombok.Setter;
 public class PayrollCorrectionProposalFilter extends AbstractIdentifiableFilter {
   
   /**
+   * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
+   */
+  String functionaryBudgetarySectionUnitIdentifier;
+  
+  /**
+   * Identifiant de {@link PayrollDto}.
+   */
+  String payrollIdentifier;
+  
+  /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L21">  public PayrollCorrectionProposalFilter() {}</span>
+<span class="fc" id="L31">  public PayrollCorrectionProposalFilter() {}</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -26,8 +36,8 @@ public class PayrollCorrectionProposalFilter extends AbstractIdentifiableFilter 
    * @param dto filtre
    */
   public PayrollCorrectionProposalFilter(FilterDto dto) {
-<span class="fc" id="L29">    super(dto);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L39">    super(dto);</span>
+<span class="fc" id="L40">  }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
