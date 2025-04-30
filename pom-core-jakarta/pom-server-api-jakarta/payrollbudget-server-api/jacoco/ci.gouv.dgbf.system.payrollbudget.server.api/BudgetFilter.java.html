@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetFilter.java</span></div><h1>BudgetFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link BudgetDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class BudgetFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Identifiant {@link ExerciseDto}.
+   */
+  String exerciseIdentifier;
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   */
+  public BudgetFilter() {
+<span class="fc" id="L27">    super();</span>
+<span class="fc" id="L28">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   *
+   * @param dto filtre
+   */
+  public BudgetFilter(FilterDto dto) {
+<span class="fc" id="L36">    super(dto);</span>
+<span class="fc" id="L37">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L41">    super.doInitialize(filter);</span>
+<span class="fc" id="L42">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
+<span class="fc" id="L43">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L47">    super.toDto(filter);</span>
+<span class="fc" id="L48">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
+<span class="fc" id="L49">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link ExerciseDto}.
+   *
+   * @param filter filtre
+   * @return identifiant {@link ExerciseDto}
+   */
+  public static String getExerciseIdentifier(FilterDto filter) {
+<span class="fc" id="L58">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de l'unité administrative.
+   *
+   * @param filter filtre
+   * @param identifier identifiant {@link ExerciseDto}
+   */
+  public static void setExerciseIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L68">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L70">  }</span>
+
+  /**
+   * Identifiant json {@link #exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
