@@ -20,6 +20,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   String exerciseIdentifier;
   
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  String exerciseAsString;
+  
   /**
    * Identifiant json de identifiant de {@link BudgetDto}.
    */
@@ -33,7 +36,12 @@ import lombok.Setter;
   /**
    * Identifiant json de {@link #exerciseIdentifier}.
    */
-  public static final String JSON_EXERCISE_IDENTIFIER = &quot;exerciseIdentifier&quot;;
+  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
+  
+  /**
+   * Identifiant json de {@link #exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
   
   /**
    * Nom pour lecture humaine de la classe.
