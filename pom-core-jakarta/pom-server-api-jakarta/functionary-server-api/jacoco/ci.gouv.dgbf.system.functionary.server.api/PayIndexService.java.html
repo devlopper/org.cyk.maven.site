@@ -53,6 +53,27 @@ public interface PayIndexService extends SpecificService {
 
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link EchelonDto}.
+     *
+     * @return identifiant de {@link EchelonDto}
+     */
+    String getEchelonIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link EchelonDto}.
+     *
+     * @param identifier identifiant de {@link EchelonDto}
+     */
+    void setEchelonIdentifier(String identifier);
+
+    /**
+     * Identifiant json de {@link EchelonDto}.
+     */
+    String JSON_ECHELON_IDENTIFIER =
+        PayIndexDto.JSON_ECHELON_IDENTIFIER;
+
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant de {@link PayScaleDto}.
      *
      * @return identifiant de {@link PayScaleDto}
@@ -71,6 +92,46 @@ public interface PayIndexService extends SpecificService {
      */
     String JSON_PAY_SCALE_IDENTIFIER =
         PayIndexDto.JSON_PAY_SCALE_IDENTIFIER;
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link GradeDto}.
+     *
+     * @return identifiant de {@link GradeDto}
+     */
+    String getGradeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link GradeDto}.
+     *
+     * @param identifier identifiant de {@link GradeDto}
+     */
+    void setGradeIdentifier(String identifier);
+
+    /**
+     * Identifiant json de {@link GradeDto}.
+     */
+    String JSON_GRADE_IDENTIFIER =
+        PayIndexDto.JSON_GRADE_IDENTIFIER;
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link GradeClassDto}.
+     *
+     * @return identifiant de {@link GradeClassDto}
+     */
+    String getGradeClassIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link GradeClassDto}.
+     *
+     * @param identifier identifiant de {@link GradeClassDto}
+     */
+    void setGradeClassIdentifier(String identifier);
+
+    /**
+     * Identifiant json de {@link GradeClassDto}.
+     */
+    String JSON_GRADECLASS_IDENTIFIER =
+        PayIndexDto.JSON_GRADECLASS_IDENTIFIER;
 
     /**
      * Cette méthode permet d'obtenir la valeur de l'indice.
@@ -126,7 +187,7 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L129">  class PayIndexCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L190">  class PayIndexCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayIndexSaveRequestDto {
 
     @JsonbProperty(value = JSON_VALUE)
@@ -134,6 +195,15 @@ public interface PayIndexService extends SpecificService {
 
     @JsonbProperty(JSON_PAY_SCALE_IDENTIFIER)
     String payScaleIdentifier;
+
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    String gradeIdentifier;
+
+    @JsonbProperty(JSON_GRADECLASS_IDENTIFIER)
+    String gradeClassIdentifier;
+
+    @JsonbProperty(JSON_ECHELON_IDENTIFIER)
+    String echelonIdentifier;
 
   }
 
@@ -170,7 +240,7 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L173">  public static class PayIndexGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayIndexDto&gt; {</span>
+<span class="fc" id="L243">  public static class PayIndexGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayIndexDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayIndexDto&gt; datas;
@@ -259,7 +329,7 @@ public interface PayIndexService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L262">  class PayIndexUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L332">  class PayIndexUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayIndexSaveRequestDto {
 
     @JsonbProperty(value = JSON_VALUE)
@@ -267,6 +337,17 @@ public interface PayIndexService extends SpecificService {
 
     @JsonbProperty(JSON_PAY_SCALE_IDENTIFIER)
     String payScaleIdentifier;
+
+
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    String gradeIdentifier;
+
+    @JsonbProperty(JSON_GRADECLASS_IDENTIFIER)
+    String gradeClassIdentifier;
+
+
+    @JsonbProperty(JSON_ECHELON_IDENTIFIER)
+    String echelonIdentifier;
 
   }
 

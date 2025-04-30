@@ -23,6 +23,25 @@ import lombok.Setter;
   @JsonbProperty(JSON_PAY_SCALE_AS_STRING)
   private String payScaleAsString;
 
+  @JsonbProperty(JSON_GRADE_IDENTIFIER)
+  private String gradeIdentifier;
+
+  @JsonbProperty(JSON_GRADE_AS_STRING)
+  private String gradeAsString;
+
+  @JsonbProperty(JSON_GRADECLASS_IDENTIFIER)
+  private String gradeClassIdentifier;
+
+  @JsonbProperty(JSON_PAY_SCALE_AS_STRING)
+  private String gradeClassAsString;
+
+
+  @JsonbProperty(JSON_ECHELON_IDENTIFIER)
+  private String echelonIdentifier;
+
+  @JsonbProperty(JSON_ECHELON_AS_STRING)
+  private String echelonAsString;
+
   /**
    * Valeur.
    */
@@ -55,6 +74,42 @@ import lombok.Setter;
    */
   public static final String JSON_PAY_SCALE_AS_STRING =
       PayScaleDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #gradeIdentifier}.
+   */
+  public static final String JSON_GRADE_IDENTIFIER =
+      GradeDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #gradeAsString}.
+   */
+  public static final String JSON_GRADE_AS_STRING =
+      GradeDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #gradeClassIdentifier}.
+   */
+  public static final String JSON_GRADECLASS_IDENTIFIER =
+      GradeClassDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #gradeClassAsString}.
+   */
+  public static final String JSON_GRADECLASS_AS_STRING =
+      GradeClassDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json de {@link #echelonIdentifier}.
+   */
+  public static final String JSON_ECHELON_IDENTIFIER =
+      EchelonDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #echelonAsString}.
+   */
+  public static final String JSON_ECHELON_AS_STRING =
+      EchelonDto.JSON_THIS_AS_STRING;
   
   /**
    * Nom pour lecture humaine de la classe.
