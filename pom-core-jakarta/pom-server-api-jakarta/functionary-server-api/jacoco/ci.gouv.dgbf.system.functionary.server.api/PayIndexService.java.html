@@ -130,8 +130,8 @@ public interface PayIndexService extends SpecificService {
     /**
      * Identifiant json de {@link GradeClassDto}.
      */
-    String JSON_GRADECLASS_IDENTIFIER =
-        PayIndexDto.JSON_GRADECLASS_IDENTIFIER;
+    String JSON_GRADE_CLASS_IDENTIFIER =
+        PayIndexDto.JSON_GRADE_CLASS_IDENTIFIER;
 
     /**
      * Cette méthode permet d'obtenir la valeur de l'indice.
@@ -199,7 +199,7 @@ public interface PayIndexService extends SpecificService {
     @JsonbProperty(JSON_GRADE_IDENTIFIER)
     String gradeIdentifier;
 
-    @JsonbProperty(JSON_GRADECLASS_IDENTIFIER)
+    @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
     String gradeClassIdentifier;
 
     @JsonbProperty(JSON_ECHELON_IDENTIFIER)
@@ -342,7 +342,7 @@ public interface PayIndexService extends SpecificService {
     @JsonbProperty(JSON_GRADE_IDENTIFIER)
     String gradeIdentifier;
 
-    @JsonbProperty(JSON_GRADECLASS_IDENTIFIER)
+    @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
     String gradeClassIdentifier;
 
 

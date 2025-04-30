@@ -29,10 +29,10 @@ import lombok.Setter;
   @JsonbProperty(JSON_GRADE_AS_STRING)
   private String gradeAsString;
 
-  @JsonbProperty(JSON_GRADECLASS_IDENTIFIER)
+  @JsonbProperty(JSON_GRADE_CLASS_IDENTIFIER)
   private String gradeClassIdentifier;
 
-  @JsonbProperty(JSON_PAY_SCALE_AS_STRING)
+  @JsonbProperty(JSON_GRADE_CLASS_AS_STRING)
   private String gradeClassAsString;
 
 
@@ -90,13 +90,13 @@ import lombok.Setter;
   /**
    * Identifiant json de {@link #gradeClassIdentifier}.
    */
-  public static final String JSON_GRADECLASS_IDENTIFIER =
+  public static final String JSON_GRADE_CLASS_IDENTIFIER =
       GradeClassDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json de {@link #gradeClassAsString}.
    */
-  public static final String JSON_GRADECLASS_AS_STRING =
+  public static final String JSON_GRADE_CLASS_AS_STRING =
       GradeClassDto.JSON_THIS_AS_STRING;
   
   /**
