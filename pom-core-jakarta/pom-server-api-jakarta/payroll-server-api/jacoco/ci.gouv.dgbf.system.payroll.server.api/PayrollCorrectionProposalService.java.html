@@ -11,6 +11,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiablesResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -257,7 +258,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class PayrollCorrectionProposalCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L261">  class PayrollCorrectionProposalCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayrollCorrectionProposalSaveRequestDto {
     
     /**
@@ -349,7 +350,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L352">  public static class PayrollCorrectionProposalGetManyResponseDto </span>
+<span class="fc" id="L353">  public static class PayrollCorrectionProposalGetManyResponseDto </span>
       extends AbstractGetByPageResponseDto&lt;PayrollCorrectionProposalDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -439,7 +440,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L442">  class PayrollCorrectionProposalUpdateRequestDto </span>
+<span class="fc" id="L443">  class PayrollCorrectionProposalUpdateRequestDto </span>
       extends ByIdentifierRequestDto implements PayrollCorrectionProposalSaveRequestDto {
     /**
      * {@link PayrollCorrectionProposalDto#getPayrollIdentifier()}.
@@ -579,7 +580,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L582">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L583">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link MovementStatusDto}.
@@ -617,13 +618,13 @@ public interface PayrollCorrectionProposalService extends SpecificService {
      * @param status {@link MovementStatus}
      */
     public void initialize(MovementStatus status) {
-<span class="fc" id="L620">      this.status = status;</span>
-<span class="fc" id="L621">      activable = MovementStatus.ACTIVATED.getPrevious().contains(status);</span>
-<span class="fc" id="L622">      suggestable = </span>
-<span class="fc" id="L623">          MovementStatus.SUGGESTED.getPrevious().contains(status);</span>
-<span class="fc" id="L624">      refusable = MovementStatus.REFUSED.getPrevious().contains(status);</span>
-<span class="fc" id="L625">      closable = MovementStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L626">    }</span>
+<span class="fc" id="L621">      this.status = status;</span>
+<span class="fc" id="L622">      activable = MovementStatus.ACTIVATED.getPrevious().contains(status);</span>
+<span class="fc" id="L623">      suggestable = </span>
+<span class="fc" id="L624">          MovementStatus.SUGGESTED.getPrevious().contains(status);</span>
+<span class="fc" id="L625">      refusable = MovementStatus.REFUSED.getPrevious().contains(status);</span>
+<span class="fc" id="L626">      closable = MovementStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L627">    }</span>
 
     /**
      * {@link PayrollCorrectionProposalDto}.

@@ -113,7 +113,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
-
+  
+  /**
+   * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT)
+  private String functionaryBudgetarySectionUnit;
+  
   /**
    * Représentation en chaine de caractère de {@link FunctionaryBudgetarySectionUnitDto}.
    */
@@ -364,17 +370,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L367">    status = response.getStatus();</span>
-<span class="fc" id="L368">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L369">    initializable = response.getInitializable();</span>
-<span class="fc" id="L370">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L371">    controllable = response.getControllable();</span>
-<span class="fc" id="L372">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L373">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L374">    validable = response.getValidable();</span>
-<span class="fc" id="L375">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L376">    closable = response.getClosable();</span>
-<span class="fc" id="L377">  }</span>
+<span class="fc" id="L373">    status = response.getStatus();</span>
+<span class="fc" id="L374">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L375">    initializable = response.getInitializable();</span>
+<span class="fc" id="L376">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L377">    controllable = response.getControllable();</span>
+<span class="fc" id="L378">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L379">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L380">    validable = response.getValidable();</span>
+<span class="fc" id="L381">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L382">    closable = response.getClosable();</span>
+<span class="fc" id="L383">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -473,6 +479,12 @@ import lombok.Setter;
    * Identifiant json champ {@link #statusAsString}.
    */
   public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+  
+  /**
+   * Identifiant json {@link #functionaryBudgetarySectionUnit}.
+   */
+  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT =
+      &quot;idFonctionnaireUniteSectionBudgetaire&quot;;
 
   /**
    * Identifiant json {@link #functionaryBudgetarySectionUnitAsString}.
