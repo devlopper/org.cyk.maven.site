@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExerciseFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de classification budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryclassification.server.api</a> &gt; <span class="el_source">ExerciseFilter.java</span></div><h1>ExerciseFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryclassification.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasYear;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,18 +14,24 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ExerciseFilter extends AbstractIdentifiableFilter {
+public class ExerciseFilter extends AbstractIdentifiableFilter implements FilterHasYear {
+  
   /**
    * Budget préparable.
    */
   Boolean budgetPreparable;
 
   /**
+   * Année.
+   */
+  Integer year;
+  
+  /**
    * Cette méthode permet d'instancier un objet.
    */
   public ExerciseFilter() {
-<span class="fc" id="L26">    super();</span>
-<span class="fc" id="L27">  }</span>
+<span class="fc" id="L33">    super();</span>
+<span class="fc" id="L34">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -32,20 +39,22 @@ public class ExerciseFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public ExerciseFilter(FilterDto dto) {
-<span class="fc" id="L35">    super(dto);</span>
-<span class="fc" id="L36">  }</span>
+<span class="fc" id="L42">    super(dto);</span>
+<span class="fc" id="L43">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L40">    super.doInitialize(filter);</span>
-<span class="fc" id="L41">    budgetPreparable = getBudgetPreparable(filter);</span>
-<span class="fc" id="L42">  }</span>
+<span class="fc" id="L47">    super.doInitialize(filter);</span>
+<span class="fc" id="L48">    budgetPreparable = getBudgetPreparable(filter);</span>
+<span class="fc" id="L49">    updateYear(filter);</span>
+<span class="fc" id="L50">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L46">    super.toDto(filter);</span>
-<span class="fc" id="L47">    setBudgetPreparable(filter, budgetPreparable);</span>
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L54">    super.toDto(filter);</span>
+<span class="fc" id="L55">    setBudgetPreparable(filter, budgetPreparable);</span>
+<span class="fc" id="L56">    updateFilterYear(filter);</span>
+<span class="fc" id="L57">  }</span>
 
   /**
    * Cette méthode permet d'assigner préparabilité du budget.
@@ -54,9 +63,9 @@ public class ExerciseFilter extends AbstractIdentifiableFilter {
    * @param budgetPreparable préparabilité du budget
    */
   public static void setBudgetPreparable(FilterDto filter, Boolean budgetPreparable) {
-<span class="pc" id="L57">    set(filter, JSON_BUDGET_PREPARABLE, f -&gt; f.getValueAsBoolean(),</span>
-<span class="fc" id="L58">        f -&gt; f.setValueAsBoolean(budgetPreparable));</span>
-<span class="fc" id="L59">  }</span>
+<span class="pc" id="L66">    set(filter, JSON_BUDGET_PREPARABLE, f -&gt; f.getValueAsBoolean(),</span>
+<span class="fc" id="L67">        f -&gt; f.setValueAsBoolean(budgetPreparable));</span>
+<span class="fc" id="L68">  }</span>
 
   /**
    * Cette méthode permet d'obtenir la préparabilité du budget.
@@ -65,7 +74,7 @@ public class ExerciseFilter extends AbstractIdentifiableFilter {
    * @return préparabilité du budget
    */
   public static Boolean getBudgetPreparable(FilterDto filter) {
-<span class="fc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_BUDGET_PREPARABLE));</span>
+<span class="fc" id="L77">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_BUDGET_PREPARABLE));</span>
   }
 
   /**
