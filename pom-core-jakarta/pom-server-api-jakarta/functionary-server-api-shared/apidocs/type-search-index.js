@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ci.gouv.dgbf.system.functionary.server.api.shared","l":"CategoryIdentifierFilter"},{"p":"ci.gouv.dgbf.system.functionary.server.api.shared","l":"FilterHasCategoryIdentifier"},{"p":"ci.gouv.dgbf.system.functionary.server.api.shared","l":"HasCategoryIdentifier"}];updateSearchResults();
