@@ -15,14 +15,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
-  
+<span class="fc" id="L18">public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements EmployeeContainerDto, PayrollComponentProjectionContainerDto {
+
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   String exerciseIdentifier;
-  
+
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
   String exerciseAsString;
-  
+
+  @JsonbProperty(JSON_EMPLOYEE_COUNT_AS_STRING)
+  String employeeCountAsString;
+
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  String amountAsString;
+
   /**
    * Identifiant json de identifiant de {@link BudgetDto}.
    */
@@ -32,22 +39,22 @@ import lombok.Setter;
    * Identifiant json de représentation en chaine de caractères de {@link BudgetDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;budgetChaine&quot;;
-  
+
   /**
    * Identifiant json de {@link #exerciseIdentifier}.
    */
   public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
-  
+
   /**
    * Identifiant json de {@link #exerciseAsString}.
    */
   public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;budget&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */

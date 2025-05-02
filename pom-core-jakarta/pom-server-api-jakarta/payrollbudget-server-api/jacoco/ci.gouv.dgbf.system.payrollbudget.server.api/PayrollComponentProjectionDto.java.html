@@ -18,9 +18,22 @@ import lombok.Setter;
 <span class="fc" id="L18">public class PayrollComponentProjectionDto extends AbstractIdentifiableAuditableDto {</span>
 
   /**
+   * Identifiant {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+  private String budgetIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_AS_STRING)
+  private String budgetAsString;
+  
+  /**
    * Identifiant {@link ExerciseDto}.
    */
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  @Deprecated(forRemoval = true)
   private String exerciseIdentifier;
 
   /**
@@ -90,8 +103,19 @@ import lombok.Setter;
   private String amountAsString;
   
   /**
+   * Identifiant json champ {@link #budgetIdentifier}.
+   */
+  public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
+  
+  /**
+   * Identifiant json champ {@link #budgetAsString}.
+   */
+  public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
+  
+  /**
    * Identifiant json champ {@link #exerciseIdentifier}.
    */
+  @Deprecated(forRemoval = true)
   public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
   
   /**

@@ -19,37 +19,13 @@ import lombok.Setter;
     implements PayrollComponentProjectionContainerDto, EmployeeContainerDto {
 
   /**
-   * Identifiant {@link ExerciseDto}.
+   * Représentation en chaine de caractères de {@link BudgetAdministrativeUnitDto}.
    */
-  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
-  String exerciseIdentifier;
+  @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_AS_STRING)
+  String budgetAdministrativeUnitAsString;
 
   /**
-   * Représentation en chaine de caractères de {@link ExerciseDto}.
-   */
-  @JsonbProperty(JSON_EXERCISE_AS_STRING)
-  String exerciseAsString;
-
-  /**
-   * Identifiant {@link AdministrativeUnitDto}.
-   */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
-  String administrativeUnitIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de {@link AdministrativeUnitDto}.
-   */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
-  String administrativeUnitAsString;
-
-  /**
-   * Identifiant {@link EmployeeCategoryDto}.
-   */
-  @JsonbProperty(JSON_EMPLOYEE_CATEGORY_IDENTIFIER)
-  String employeeCategoryIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de {@link EmployeeCategoryDto}.
+   * Représentation en chaine de caractères de la catégorie d'employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_CATEGORY_AS_STRING)
   String employeeCategoryAsString;
@@ -59,7 +35,7 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   String amountAsString;
-  
+
   /**
    * Identifiant json de identifiant de {@link AdministrativeUnitEmployeeCategoryDto}.
    */
@@ -69,41 +45,19 @@ import lombok.Setter;
    * Identifiant json de représentation en chaine de caractères de
    * {@link AdministrativeUnitEmployeeCategoryDto}.
    */
-  public static final String JSON_THIS_AS_STRING = &quot;categorieEmployeUniteAdministrativeChaine&quot;;
+  public static final String JSON_THIS_AS_STRING =
+      &quot;categorieEmployeUniteAdministrativeChaine&quot;;
 
   /**
-   * Identifiant json {@link #exerciseIdentifier}.
+   * Identifiant json {@link #budgetAdministrativeUnitAsString}.
    */
-  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #exerciseAsString}.
-   */
-  public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #administrativeUnitIdentifier}.
-   */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
-      AdministrativeUnitDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #administrativeUnitAsString}.
-   */
-  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING =
-      AdministrativeUnitDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #employeeCategoryIdentifier}.
-   */
-  public static final String JSON_EMPLOYEE_CATEGORY_IDENTIFIER =
-      EmployeeCategoryDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_AS_STRING =
+      BudgetAdministrativeUnitDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #employeeCategoryAsString}.
    */
-  public static final String JSON_EMPLOYEE_CATEGORY_AS_STRING =
-      EmployeeCategoryDto.JSON_THIS_AS_STRING;
+  public static final String JSON_EMPLOYEE_CATEGORY_AS_STRING = &quot;categorieEmployeChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

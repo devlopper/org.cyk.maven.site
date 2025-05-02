@@ -67,9 +67,8 @@ public interface PayrollComponentProjectionService extends SpecificService {
       summary = &quot;Création d'une projection de poste de paie&quot;,
       description = &quot;Ce service permet de créer une projection de poste de paie&quot;)
   @APIResponse(responseCode = &quot;201&quot;,
-      content = {
-        @Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(PayrollComponentProjectionRequestDto request);
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(PayrollComponentProjectionCreateRequestDto request);
 
   /**
    * Cette interface représente les données d'enregistrement.
@@ -80,10 +79,25 @@ public interface PayrollComponentProjectionService extends SpecificService {
   interface SaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetDto}.
+     *
+     * @return identifiant de {@link BudgetDto}
+     */
+    String getBudgetIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link BudgetDto}.
+     *
+     * @param budgetIdentifier identifiant de {@link BudgetDto}
+     */
+    void setBudgetIdentifier(String budgetIdentifier);
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant de l'exercice.
      *
      * @return exerciseIdentifier
      */
+    @Deprecated(forRemoval = true)
     String getExerciseIdentifier();
 
     /**
@@ -91,12 +105,13 @@ public interface PayrollComponentProjectionService extends SpecificService {
      *
      * @param exerciseIdentifier identifiant de l'exercice
      */
+    @Deprecated(forRemoval = true)
     void setExerciseIdentifier(String exerciseIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de l'employé.
      *
-     * @return employeeIdentifier 
+     * @return employeeIdentifier
      */
     String getEmployeeIdentifier();
 
@@ -120,7 +135,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
      * @param administrativeUnitIdentifier identifiant de l'unité administrative
      */
     void setAdministrativeUnitIdentifier(String administrativeUnitIdentifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant du poste de paie.
      *
@@ -134,7 +149,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
      * @param payrollComponentIdentifier identifiant du poste de paie
      */
     void setPayrollComponentIdentifier(String payrollComponentIdentifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de la période de paie.
      *
@@ -148,7 +163,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
      * @param payrollPeriodIdentifier identifiant de la période de paie
      */
     void setPayrollPeriodIdentifier(String payrollPeriodIdentifier);
-    
+
     /**
      * Cette méthode permet d'obtenir le montant.
      *
@@ -162,10 +177,16 @@ public interface PayrollComponentProjectionService extends SpecificService {
      * @param amount montant
      */
     void setAmount(Integer amount);
-    
+
+    /**
+     * Identifiant json champ identifiant de {@link BudgetDto}.
+     */
+    String JSON_BUDGET_IDENTIFIER = PayrollComponentProjectionDto.JSON_BUDGET_IDENTIFIER;
+
     /**
      * Identifiant json champ identifiant de l'exercice.
      */
+    @Deprecated(forRemoval = true)
     String JSON_EXERCISE_IDENTIFIER = PayrollComponentProjectionDto.JSON_EXERCISE_IDENTIFIER;
 
     /**
@@ -176,21 +197,21 @@ public interface PayrollComponentProjectionService extends SpecificService {
     /**
      * Identifiant json champ identifiant de l'unité administrative.
      */
-    String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = PayrollComponentProjectionDto
-                                                 .JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+    String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
 
     /**
      * Identifiant json champ identifiant du poste de paie.
      */
-    String JSON_PAYROLL_COMPONENT_IDENTIFIER = PayrollComponentProjectionDto
-                                               .JSON_PAYROLL_COMPONENT_IDENTIFIER;
+    String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
 
     /**
      * Identifiant json champ identifiant de la periode de paie.
      */
-    String JSON_PAYROLL_PERIOD_IDENTIFIER = PayrollComponentProjectionDto
-                                            .JSON_PAYROLL_PERIOD_IDENTIFIER;
-    
+    String JSON_PAYROLL_PERIOD_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_PAYROLL_PERIOD_IDENTIFIER;
+
     /**
      * Identifiant json champ montant.
      */
@@ -205,9 +226,13 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L208">  class PayrollComponentProjectionRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L229">  class PayrollComponentProjectionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
-    
+
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    private String budgetIdentifier;
+
+    @Deprecated(forRemoval = true)
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
 
@@ -216,13 +241,13 @@ public interface PayrollComponentProjectionService extends SpecificService {
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
     private String administrativeUnitIdentifier;
-    
+
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     private String payrollComponentIdentifier;
-     
+
     @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
     private String payrollPeriodIdentifier;
-    
+
     @JsonbProperty(JSON_AMOUNT)
     private Integer amount;
   }
@@ -249,9 +274,8 @@ public interface PayrollComponentProjectionService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir des projections de poste de paie&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-        @Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(
+      schema = @Schema(implementation = PayrollComponentProjectionGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -262,8 +286,8 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L265">  public static class GetManyResponseDto </span>
-                extends AbstractGetByPageResponseDto&lt;PayrollComponentProjectionDto&gt; {
+<span class="fc" id="L289">  public static class PayrollComponentProjectionGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;PayrollComponentProjectionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayrollComponentProjectionDto&gt; datas;
@@ -292,8 +316,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
   @Operation(operationId = GET_ONE_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir une projection de poste de paie&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-        @Content(schema = @Schema(implementation = PayrollComponentProjectionDto.class))})
+      content = {@Content(schema = @Schema(implementation = PayrollComponentProjectionDto.class))})
   Response getOne(GetOneRequestDto request);
 
   /**
@@ -319,8 +342,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
   @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
       description = &quot;Ce service permet d'obtenir par identifiant une projection de poste de paie&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-        @Content(schema = @Schema(implementation = PayrollComponentProjectionDto.class))})
+      content = {@Content(schema = @Schema(implementation = PayrollComponentProjectionDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
   /**
@@ -346,8 +368,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
   @Operation(operationId = UPDATE_IDENTIFIER,
       description = &quot;Ce service permet de mettre à jour une projection de poste&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-        @Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response update(PayrollComponentProjectionUpdateRequestDto request);
 
   /**
@@ -358,9 +379,13 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L361">  class PayrollComponentProjectionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L382">  class PayrollComponentProjectionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements SaveRequestDto {
 
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    private String budgetIdentifier;
+
+    @Deprecated(forRemoval = true)
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
 
@@ -369,13 +394,13 @@ public interface PayrollComponentProjectionService extends SpecificService {
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
     private String administrativeUnitIdentifier;
-    
+
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     private String payrollComponentIdentifier;
-     
+
     @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
     private String payrollPeriodIdentifier;
-    
+
     @JsonbProperty(JSON_AMOUNT)
     private Integer amount;
   }
@@ -403,8 +428,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
   @Operation(operationId = DELETE_IDENTIFIER,
       description = &quot;Ce service permet de supprimer une projection de poste de paie&quot;)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-        @Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -16,35 +16,64 @@ import lombok.Setter;
 public abstract class AbstractExerciseFilter extends AbstractIdentifiableFilter {
 
   /**
+   * Identifiant {@link BudgetDto}.
+   */
+  String budgetIdentifier;
+
+  /**
    * Identifiant {@link ExerciseDto}.
    */
+  @Deprecated(forRemoval = true)
   String exerciseIdentifier;
-  
+
   /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public AbstractExerciseFilter(FilterDto dto) {
-<span class="fc" id="L29">    super(dto);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L35">    super(dto);</span>
+<span class="fc" id="L36">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L35">  public AbstractExerciseFilter() {}</span>
+<span class="fc" id="L41">  public AbstractExerciseFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L45">    super.doInitialize(filter);</span>
+<span class="fc" id="L46">    exerciseIdentifier = getExerciseIdentifier(filter);</span>
+<span class="fc" id="L47">    budgetIdentifier = getBudgetIdentifier(filter);</span>
+<span class="fc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L53">    setBudgetIdentifier(filter, budgetIdentifier);</span>
+<span class="fc" id="L54">    setExerciseIdentifier(filter, exerciseIdentifier);</span>
+<span class="fc" id="L55">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link BudgetDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link BudgetDto}
+   */
+  public static String getBudgetIdentifier(FilterDto filter) {
+<span class="fc" id="L64">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_BUDGET_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link BudgetDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant de l'identifiant de {@link BudgetDto}
+   */
+  public static void setBudgetIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L74">    set(filter, JSON_BUDGET_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L75">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L76">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ExerciseDto}.
@@ -52,8 +81,9 @@ public abstract class AbstractExerciseFilter extends AbstractIdentifiableFilter 
    * @param filter filtre
    * @return identifiant de {@link ExerciseDto}
    */
+  @Deprecated(forRemoval = true)
   public static String getExerciseIdentifier(FilterDto filter) {
-<span class="fc" id="L56">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
+<span class="fc" id="L86">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EXERCISE_IDENTIFIER));</span>
   }
 
   /**
@@ -62,10 +92,16 @@ public abstract class AbstractExerciseFilter extends AbstractIdentifiableFilter 
    * @param filter filtre
    * @param identifier identifiant de l'identifiant de {@link ExerciseDto}
    */
+  @Deprecated(forRemoval = true)
   public static void setExerciseIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L66">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L67">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L68">  }</span>
+<span class="pc" id="L97">    set(filter, JSON_EXERCISE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L98">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L99">  }</span>
+
+  /**
+   * Identifiant json {@link #budgetIdentifier}.
+   */
+  public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json {@link #exerciseIdentifier}.
