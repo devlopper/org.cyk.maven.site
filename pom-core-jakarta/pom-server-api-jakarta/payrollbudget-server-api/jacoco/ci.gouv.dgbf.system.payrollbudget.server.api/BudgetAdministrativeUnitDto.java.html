@@ -18,6 +18,12 @@ import lombok.Setter;
 <span class="fc" id="L18">public class BudgetAdministrativeUnitDto extends AbstractIdentifiableDto</span>
     implements EmployeeContainerDto, PayrollComponentProjectionContainerDto {
 
+  @JsonbProperty(JSON_BUDGET_EXERCISE_IDENTIFIER)
+  String budgetExerciseIdentifier;
+
+  @JsonbProperty(JSON_BUDGET_EXERCISE_AS_STRING)
+  String budgetExerciseAsString;
+
   /**
    * Identifiant de {@link BudgetDto}.
    */
@@ -58,6 +64,16 @@ import lombok.Setter;
    * {@link BudgetAdministrativeUnitDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;uniteAdministrativeBudgetChaine&quot;;
+
+  /**
+   * Identifiant json {@link #budgetExerciseIdentifier}.
+   */
+  public static final String JSON_BUDGET_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #budgetExerciseAsString}.
+   */
+  public static final String JSON_BUDGET_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #budgetIdentifier}.
