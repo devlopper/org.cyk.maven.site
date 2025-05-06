@@ -51,6 +51,26 @@ public interface JobService extends SpecificService {
    */
   interface JobSaveRequestDto {
 
+    /**
+     * Cette méthode me permet d'obtenir l'identifiant de {@link GradeDto}.
+     *
+     * @return identifiant de {@link GradeDto}
+     */
+    String getGradeIdentifier();
+
+    /**
+     * Cette méthode me permet d'assigner l'identifiant de {@link GradeDto}.
+     *
+     * @param identifier identifiant de {@link GradeDto}
+     */
+    void setGradeIdentifier(String identifier);
+
+    /**
+     * Identifiant json de {@link GradeDto}.
+     */
+    String JSON_GRADE_IDENTIFIER =
+        JobDto.JSON_GRADE_IDENTIFIER;
+
   }
 
   /**
@@ -86,8 +106,11 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class JobCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L109">  class JobCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements JobSaveRequestDto {
+
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    String gradeIdentifier;
 
   }
 
@@ -124,7 +147,7 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  public static class JobGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobDto&gt; {</span>
+<span class="fc" id="L150">  public static class JobGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;JobDto&gt; datas;
@@ -213,8 +236,11 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L216">  class JobUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L239">  class JobUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements JobSaveRequestDto {
+
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    String gradeIdentifier;
 
   }
 
