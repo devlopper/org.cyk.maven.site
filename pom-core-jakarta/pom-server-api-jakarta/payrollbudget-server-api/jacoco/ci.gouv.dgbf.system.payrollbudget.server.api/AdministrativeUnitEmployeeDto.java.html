@@ -19,6 +19,42 @@ import lombok.Setter;
     implements PayrollComponentProjectionContainerDto {
 
   /**
+   * Identifiant de {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  String exerciseIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  String exerciseAsString;
+
+  /**
+   * Identifiant de {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+  String budgetIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_AS_STRING)
+  String budgetAsString;
+
+  /**
+   * Identifiant de {@link AdministrativeUnitDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  String administrativeUnitIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link AdministrativeUnitDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  String administrativeUnitAsString;
+
+  /**
    * Identifiant de {@link BudgetAdministrativeUnitDto}.
    */
   @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_IDENTIFIER)
@@ -42,6 +78,30 @@ import lombok.Setter;
   @JsonbProperty(JSON_EMPLOYEE_AS_STRING)
   String employeeAsString;
 
+  /**
+   * Représentation en chaine de caractères de la fonction.
+   */
+  @JsonbProperty(JSON_FUNCTION_AS_STRING)
+  String functionAsString;
+  
+  /**
+   * {@link EmployeeDto} est fonctionnaire.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_IS_FUNCTIONARY)
+  Boolean employeeIsFunctionary;
+  
+  /**
+   * Représentation en chaine de caractères de l'emploi.
+   */
+  @JsonbProperty(JSON_JOB_AS_STRING)
+  String jobAsString;
+  
+  /**
+   * Représentation en chaine de caractères de l'indice de paie.
+   */
+  @JsonbProperty(JSON_PAY_INDEX_AS_STRING)
+  String payIndexAsString;
+  
   /**
    * Identifiant de la catégorie de {@link EmployeeDto}.
    */
@@ -67,23 +127,11 @@ import lombok.Setter;
   String employeeGradeAsString;
 
   /**
-   * Représentation en chaine de caractères de la valeur de l'indice de {@link EmployeeDto}.
-   */
-  @JsonbProperty(JSON_EMPLOYEE_PAY_INDEX_AS_STRING)
-  String employeePayIndexAsString;
-  
-  /**
-   * {@link EmployeeDto} est fonctionnaire.
-   */
-  @JsonbProperty(JSON_EMPLOYEE_IS_FUNCTIONARY)
-  Boolean employeeIsFunctionary;
-  
-  /**
    * Représentation en chaine de caractères {@link EmployeeDto} est fonctionnaire.
    */
   @JsonbProperty(JSON_EMPLOYEE_IS_FUNCTIONARY_AS_STRING)
   String employeeIsFunctionaryAsString;
-  
+
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   String amountAsString;
 
@@ -97,6 +145,38 @@ import lombok.Setter;
    * {@link AdministrativeUnitEmployeeDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;employeUniteAdministrativeChaine&quot;;
+
+  /**
+   * Identifiant json {@link #exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #budgetIdentifier}.
+   */
+  public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #budgetAsString}.
+   */
+  public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      AdministrativeUnitDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #administrativeUnitAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING =
+      AdministrativeUnitDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #budgetAdministrativeUnitIdentifier}.
@@ -121,6 +201,11 @@ import lombok.Setter;
   public static final String JSON_EMPLOYEE_AS_STRING = EmployeeDto.JSON_THIS_AS_STRING;
 
   /**
+   * Identifiant json {@link #jobAsString}.
+   */
+  public static final String JSON_JOB_AS_STRING = &quot;idEmploi&quot;;
+  
+  /**
    * Identifiant json {@link #employeeCategoryIdentifier}.
    */
   public static final String JSON_EMPLOYEE_CATEGORY_IDENTIFIER =
@@ -143,20 +228,25 @@ import lombok.Setter;
   public static final String JSON_EMPLOYEE_GRADE_AS_STRING = &quot;gradeChaine&quot;;
 
   /**
-   * Identifiant json {@link #employeePayIndexAsString}.
+   * Identifiant json {@link #functionAsString}.
    */
-  public static final String JSON_EMPLOYEE_PAY_INDEX_AS_STRING = &quot;indiceChaine&quot;;
+  public static final String JSON_FUNCTION_AS_STRING = &quot;idFonction&quot;;
   
+  /**
+   * Identifiant json {@link #payIndexAsString}.
+   */
+  public static final String JSON_PAY_INDEX_AS_STRING = &quot;indiceChaine&quot;;
+
   /**
    * Identifiant json {@link #employeeIsFunctionary}.
    */
   public static final String JSON_EMPLOYEE_IS_FUNCTIONARY = &quot;estFonctionnaire&quot;;
-  
+
   /**
    * Identifiant json {@link #employeeIsFunctionaryAsString}.
    */
   public static final String JSON_EMPLOYEE_IS_FUNCTIONARY_AS_STRING = &quot;estFonctionnaireChaine&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */

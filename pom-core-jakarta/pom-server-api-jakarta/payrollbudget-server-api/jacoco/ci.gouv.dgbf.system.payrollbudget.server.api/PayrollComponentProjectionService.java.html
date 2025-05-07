@@ -76,65 +76,22 @@ public interface PayrollComponentProjectionService extends SpecificService {
    * @author Christian
    *
    */
-  interface SaveRequestDto {
+  interface PayrollComponentProjectionSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link AdministrativeUnitEmployeeDto}.
      *
-     * @return identifiant de {@link BudgetDto}
+     * @return identifiant de {@link AdministrativeUnitEmployeeDto}
      */
-    String getBudgetIdentifier();
+    String getAdministrativeUnitEmployeeIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link BudgetDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link AdministrativeUnitEmployeeDto}.
      *
-     * @param budgetIdentifier identifiant de {@link BudgetDto}
+     * @param administrativeUnitEmployeeIdentifier identifiant de
+     *        {@link AdministrativeUnitEmployeeDto}
      */
-    void setBudgetIdentifier(String budgetIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de l'exercice.
-     *
-     * @return exerciseIdentifier
-     */
-    @Deprecated(forRemoval = true)
-    String getExerciseIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de l'exercice.
-     *
-     * @param exerciseIdentifier identifiant de l'exercice
-     */
-    @Deprecated(forRemoval = true)
-    void setExerciseIdentifier(String exerciseIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de l'employé.
-     *
-     * @return employeeIdentifier
-     */
-    String getEmployeeIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de l'employé.
-     *
-     * @param employeeIdentifier identifiant de l'employé
-     */
-    void setEmployeeIdentifier(String employeeIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de l'unité administrative.
-     *
-     * @return identifiant de l'unité administrative
-     */
-    String getAdministrativeUnitIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de l'unité administrative.
-     *
-     * @param administrativeUnitIdentifier identifiant de l'unité administrative
-     */
-    void setAdministrativeUnitIdentifier(String administrativeUnitIdentifier);
+    void setAdministrativeUnitEmployeeIdentifier(String administrativeUnitEmployeeIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant du poste de paie.
@@ -179,26 +136,10 @@ public interface PayrollComponentProjectionService extends SpecificService {
     void setAmount(Integer amount);
 
     /**
-     * Identifiant json champ identifiant de {@link BudgetDto}.
+     * Identifiant json champ identifiant de {@link AdministrativeUnitEmployeeDto}.
      */
-    String JSON_BUDGET_IDENTIFIER = PayrollComponentProjectionDto.JSON_BUDGET_IDENTIFIER;
-
-    /**
-     * Identifiant json champ identifiant de l'exercice.
-     */
-    @Deprecated(forRemoval = true)
-    String JSON_EXERCISE_IDENTIFIER = PayrollComponentProjectionDto.JSON_EXERCISE_IDENTIFIER;
-
-    /**
-     * Identifiant json champ identifiant de l'employé.
-     */
-    String JSON_EMPLOYEE_IDENTIFIER = PayrollComponentProjectionDto.JSON_EMPLOYEE_IDENTIFIER;
-
-    /**
-     * Identifiant json champ identifiant de l'unité administrative.
-     */
-    String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
-        PayrollComponentProjectionDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+    String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER;
 
     /**
      * Identifiant json champ identifiant du poste de paie.
@@ -226,21 +167,11 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L229">  class PayrollComponentProjectionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
-      implements SaveRequestDto {
+<span class="fc" id="L170">  class PayrollComponentProjectionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements PayrollComponentProjectionSaveRequestDto {
 
-    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
-    private String budgetIdentifier;
-
-    @Deprecated(forRemoval = true)
-    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
-    private String exerciseIdentifier;
-
-    @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
-    private String employeeIdentifier;
-
-    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
-    private String administrativeUnitIdentifier;
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+    private String administrativeUnitEmployeeIdentifier;
 
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     private String payrollComponentIdentifier;
@@ -286,7 +217,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L289">  public static class PayrollComponentProjectionGetManyResponseDto</span>
+<span class="fc" id="L220">  public static class PayrollComponentProjectionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentProjectionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -379,21 +310,11 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L382">  class PayrollComponentProjectionUpdateRequestDto extends ByIdentifierRequestDto</span>
-      implements SaveRequestDto {
+<span class="fc" id="L313">  class PayrollComponentProjectionUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements PayrollComponentProjectionSaveRequestDto {
 
-    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
-    private String budgetIdentifier;
-
-    @Deprecated(forRemoval = true)
-    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
-    private String exerciseIdentifier;
-
-    @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
-    private String employeeIdentifier;
-
-    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
-    private String administrativeUnitIdentifier;
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+    private String administrativeUnitEmployeeIdentifier;
 
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     private String payrollComponentIdentifier;

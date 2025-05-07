@@ -28,7 +28,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_BUDGET_AS_STRING)
   private String budgetAsString;
-  
+
   /**
    * Identifiant {@link ExerciseDto}.
    */
@@ -41,31 +41,37 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
   private String exerciseAsString;
-  
+
   /**
    * Identifiant {@link AdministrativeUnitDto}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
   private String administrativeUnitIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de {@link AdministrativeUnitDto}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
   private String administrativeUnitAsString;
-  
+
+  /**
+   * Identifiant {@link AdministrativeUnitEmployeeDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+  private String administrativeUnitEmployeeIdentifier;
+
   /**
    * Identifiant {@link EmployeeDto}.
    */
   @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
   private String employeeIdentifier;
-    
+
   /**
    * Représentation en chaine de caractères de {@link EmployeeDto}.
    */
   @JsonbProperty(JSON_EMPLOYEE_AS_STRING)
   private String employeeAsString;
-  
+
   /**
    * Identifiant {@link PayrollComponentDto}.
    */
@@ -77,103 +83,108 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
   private String payrollComponentAsString;
-  
+
   /**
    * Identifiant {@link PayrollPeriodGroupDto}.
    */
   @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
   private String payrollPeriodIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de {@link PayrollPeriodGroupDto}.
    */
   @JsonbProperty(JSON_PAYROLL_PERIOD_AS_STRING)
   private String payrollPeriodAsString;
-  
+
   /**
    * Montant.
    */
   @JsonbProperty(JSON_AMOUNT)
   private Integer amount;
-  
+
   /**
    * Représentation en chaine de caractères du montant.
    */
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
-  
+
   /**
    * Identifiant json champ {@link #budgetIdentifier}.
    */
   public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
-  
+
   /**
    * Identifiant json champ {@link #budgetAsString}.
    */
   public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
-  
+
   /**
    * Identifiant json champ {@link #exerciseIdentifier}.
    */
   @Deprecated(forRemoval = true)
   public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
-  
+
   /**
    * Identifiant json champ {@link #exerciseAsString}.
    */
   public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
-  
+
   /**
    * Identifiant json {@link #administrativeUnitIdentifier}.
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
-  
+
   /**
    * Identifiant json {@link #administrativeUnitAsString}.
    */
-  
   public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
+
+  /**
+   * Identifiant json {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
+      AdministrativeUnitEmployeeDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json {@link #employeeIdentifier}.
    */
   public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
-  
+
   /**
    * Identifiant json champ {@link #employeeAsString}.
    */
   public static final String JSON_EMPLOYEE_AS_STRING = &quot;employeChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link #payrollComponentIdentifier}.
    */
   public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = &quot;idPostePaie&quot;;
-  
+
   /**
    * Identifiant json champ {@link #payrollComponentAsString}.
    */
   public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;postePaieChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link #payrollPeriodIdentifier}.
    */
   public static final String JSON_PAYROLL_PERIOD_IDENTIFIER = &quot;idPeriodePaie&quot;;
-  
+
   /**
    * Identifiant json champ {@link #payrollPeriodAsString}.
    */
   public static final String JSON_PAYROLL_PERIOD_AS_STRING = &quot;periodePaieChaine&quot;;
-  
+
   /**
    * Identifiant json champ {@link #amount}.
    */
   public static final String JSON_AMOUNT = &quot;montant&quot;;
-  
+
   /**
    * Identifiant json champ {@link #amountAsString}.
    */
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
