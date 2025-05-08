@@ -67,7 +67,7 @@ public enum MovementStatus {
   }
 
   static {
-<span class="fc" id="L70">    ACTIVATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L70">    ACTIVATED.previous = Core.getSet(List.of(SUGGESTED));</span>
 <span class="fc" id="L71">    SUGGESTED.previous = Collections.emptySet();</span>
 <span class="fc" id="L72">    REFUSED.previous = Core.getSet(List.of(SUGGESTED));</span>
 <span class="fc" id="L73">    CLOSED.previous = Core.getSet(List.of(ACTIVATED));</span>

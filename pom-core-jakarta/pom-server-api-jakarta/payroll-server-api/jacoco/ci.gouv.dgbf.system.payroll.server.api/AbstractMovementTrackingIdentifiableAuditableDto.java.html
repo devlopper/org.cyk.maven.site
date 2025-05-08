@@ -18,10 +18,10 @@ import lombok.Setter;
                         AbstractIdentifiableAuditableDto {
 
   /**
-   * Identifiant du fonctionnaire.
+   * Identifiant {@link BudgetarySectionUnitMovementDto}.
    */
-  @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-  private String functionaryIdentifier;
+  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
+  private String functionaryBudgetarySectionUnitIdentifier;
 
   /**
    * Représentation en chaine de caractères du fonctionnaire.
@@ -112,9 +112,10 @@ import lombok.Setter;
   public static final String JSON_MOVEMENT_TRACKING_AS_STRING = &quot;suiviMouvementChaine&quot;;
 
   /**
-   * Identifiant json champ {@link #functionaryIdentifier}.
+   * Identifiant json champ {@link #functionaryBudgetarySectionUnitIdentifier}.
    */
-  public static final String JSON_FUNCTIONARY_IDENTIFIER = &quot;idFonctionnaire&quot;;
+  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER =  
+      FunctionaryBudgetarySectionUnitDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json champ {@link #functionaryAsString}.
