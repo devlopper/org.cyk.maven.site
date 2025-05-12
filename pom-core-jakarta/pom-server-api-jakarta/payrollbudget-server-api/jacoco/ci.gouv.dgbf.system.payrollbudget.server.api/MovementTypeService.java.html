@@ -49,18 +49,18 @@ public interface MovementTypeService extends SpecificService {
   interface MovementTypeSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir {@link EmployeeStatus}.
+     * Cette méthode permet d'obtenir {@link AdministrativeUnitEmployeeStatus}.
      *
-     * @return {@link EmployeeStatus}
+     * @return {@link AdministrativeUnitEmployeeStatus}
      */
-    EmployeeStatus getEmployeeStatus();
+    AdministrativeUnitEmployeeStatus getEmployeeStatus();
 
     /**
-     * Cette méthode permet d'assigner {@link EmployeeStatus}.
+     * Cette méthode permet d'assigner {@link AdministrativeUnitEmployeeStatus}.
      *
-     * @param employeeStatus {@link EmployeeStatus}
+     * @param employeeStatus {@link AdministrativeUnitEmployeeStatus}
      */
-    void setEmployeeStatus(EmployeeStatus employeeStatus);
+    void setEmployeeStatus(AdministrativeUnitEmployeeStatus employeeStatus);
 
     /**
      * {@link MovementTypeDto#JSON_EMPLOYEE_STATUS}.
@@ -106,7 +106,7 @@ public interface MovementTypeService extends SpecificService {
       implements MovementTypeSaveRequestDto {
 
     @JsonbProperty(JSON_EMPLOYEE_STATUS)
-    EmployeeStatus employeeStatus;
+    AdministrativeUnitEmployeeStatus employeeStatus;
   }
 
   /**
@@ -236,7 +236,7 @@ public interface MovementTypeService extends SpecificService {
       implements MovementTypeSaveRequestDto {
 
     @JsonbProperty(JSON_EMPLOYEE_STATUS)
-    EmployeeStatus employeeStatus;
+    AdministrativeUnitEmployeeStatus employeeStatus;
   }
 
   /**

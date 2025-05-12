@@ -103,6 +103,12 @@ import lombok.Setter;
   String jobAsString;
 
   /**
+   * {@link AdministrativeUnitEmployeeStatus}.
+   */
+  @JsonbProperty(JSON_STATUS)
+  AdministrativeUnitEmployeeStatus status;
+
+  /**
    * Représentation en chaine de caractères de l'indice de paie.
    */
   @JsonbProperty(JSON_PAY_INDEX_AS_STRING)
@@ -142,16 +148,16 @@ import lombok.Setter;
   String amountAsString;
 
   /**
-   * Offboardable.
+   * Outgoingable.
    */
-  @JsonbProperty(JSON_OFFBOARDABLE)
-  Boolean offboardable;
-  
+  @JsonbProperty(JSON_OUTGOINGABLE)
+  Boolean outgoingable;
+
   /**
-   * Offboardable.
+   * Outgoing cancelable.
    */
-  @JsonbProperty(JSON_OFFBOARD_CANCELABLE)
-  Boolean offboardCancelable;
+  @JsonbProperty(JSON_OUTGOING_CANCELABLE)
+  Boolean outgoingCancelable;
   
   /**
    * Identifiant json de identifiant de {@link AdministrativeUnitEmployeeDto}.
@@ -219,15 +225,15 @@ import lombok.Setter;
   public static final String JSON_EMPLOYEE_AS_STRING = EmployeeDto.JSON_THIS_AS_STRING;
 
   /**
-   * Identifiant json {@link #offboardable}.
+   * Identifiant json {@link #outgoingable}.
    */
-  public static final String JSON_OFFBOARDABLE = &quot;sortable&quot;;
+  public static final String JSON_OUTGOINGABLE = &quot;sortable&quot;;
   
   /**
-   * Identifiant json {@link #offboardCancelable}.
+   * Identifiant json {@link #outgoingCancelable}.
    */
-  public static final String JSON_OFFBOARD_CANCELABLE = &quot;sortieAnnulable&quot;;
-  
+  public static final String JSON_OUTGOING_CANCELABLE = &quot;sortieAnnulable&quot;;
+
   /**
    * Identifiant json {@link #movementTypeIdentifier}.
    */
@@ -238,6 +244,11 @@ import lombok.Setter;
    */
   public static final String JSON_JOB_AS_STRING = &quot;idEmploi&quot;;
 
+  /**
+   * Identifiant json {@link #status}.
+   */
+  public static final String JSON_STATUS = &quot;statut&quot;;
+  
   /**
    * Identifiant json {@link #employeeCategoryIdentifier}.
    */

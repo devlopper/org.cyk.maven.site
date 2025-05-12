@@ -14,12 +14,12 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MovementFilter extends AbstractIdentifiableFilter
-    implements FilterHasEmployeeStatusCode {
+    implements FilterHasAdministrativeUnitEmployeeStatusCode {
 
   /**
-   * Code {@link EmployeeStatus}.
+   * Code {@link AdministrativeUnitEmployeeStatus}.
    */
-  String employeeStatusCode;
+  String administrativeUnitEmployeeStatusCode;
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -40,13 +40,13 @@ public class MovementFilter extends AbstractIdentifiableFilter
   @Override
   protected void doInitialize(FilterDto filter) {
 <span class="fc" id="L42">    super.doInitialize(filter);</span>
-<span class="fc" id="L43">    updateEmployeeStatusCode(filter);</span>
+<span class="fc" id="L43">    updateAdministrativeUnitEmployeeStatusCode(filter);</span>
 <span class="fc" id="L44">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
 <span class="fc" id="L48">    super.toDto(filter);</span>
-<span class="fc" id="L49">    updateFilterEmployeeStatusCode(filter);</span>
+<span class="fc" id="L49">    updateFilterAdministrativeUnitEmployeeStatusCode(filter);</span>
 <span class="fc" id="L50">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
