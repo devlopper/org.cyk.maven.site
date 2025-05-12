@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">MovementService.java</span></div><h1>MovementService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -49,23 +49,43 @@ public interface MovementService extends SpecificService {
   interface MovementSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant {@link AdministrativeUnitEmployeeDto}.
+     *
+     * @return identifiant {@link AdministrativeUnitEmployeeDto}
+     */
+    String getAdministrativeUnitEmployeeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link AdministrativeUnitEmployeeDto}.
+     *
+     * @param identifier identifiant {@link AdministrativeUnitEmployeeDto}
+     */
+    void setAdministrativeUnitEmployeeIdentifier(String identifier);
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant {@link MovementTypeDto}.
      *
      * @return identifiant {@link MovementTypeDto}
      */
     String getTypeIdentifier();
-    
+
     /**
      * Cette méthode permet d'assigner l'identifiant {@link MovementTypeDto}.
      *
      * @param identifier identifiant {@link MovementTypeDto}
      */
     void setTypeIdentifier(String identifier);
-    
+
     /**
-     * {@link MovementTypeDto#JSON_THIS_IDENTIFIER}.
+     * {@link MovementDto#JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER}.
      */
-    String JSON_TYPE_IDENTIFIER = MovementTypeDto.JSON_THIS_IDENTIFIER;
+    String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
+        MovementDto.JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER;
+
+    /**
+     * {@link MovementDto#JSON_TYPE_IDENTIFIER}.
+     */
+    String JSON_TYPE_IDENTIFIER = MovementDto.JSON_TYPE_IDENTIFIER;
   }
 
   /**
@@ -101,9 +121,12 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L104">  class MovementCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L124">  class MovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements MovementSaveRequestDto {
-    
+
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+    String administrativeUnitEmployeeIdentifier;
+
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
     String typeIdentifier;
   }
@@ -141,7 +164,7 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L144">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
+<span class="fc" id="L167">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;MovementDto&gt; datas;
@@ -230,8 +253,10 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L233">  class MovementUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
-      implements MovementSaveRequestDto {
+<span class="fc" id="L256">  class MovementUpdateRequestDto extends ByIdentifierRequestDto implements MovementSaveRequestDto {</span>
+
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+    String administrativeUnitEmployeeIdentifier;
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
     String typeIdentifier;

@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdministrativeUnitEmployeeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">AdministrativeUnitEmployeeService.java</span></div><h1>AdministrativeUnitEmployeeService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.Service;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -35,6 +42,116 @@ public interface AdministrativeUnitEmployeeService extends Service {
    * Chemin de base.
    */
   String PATH = &quot;employes-unites-administratives&quot;;
+
+  /**
+   * Cette interface représente la requête d'enregistrement.
+   */
+  interface AdministrativeUnitEmployeeSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link BudgetDto}.
+     *
+     * @return identifiant {@link BudgetDto}
+     */
+    String getBudgetIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link BudgetDto}.
+     *
+     * @param identifier identifiant {@link BudgetDto}
+     */
+    void setBudgetIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link AdministrativeUnitDto}.
+     *
+     * @return identifiant {@link AdministrativeUnitDto}
+     */
+    String getAdministrativeUnitIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link AdministrativeUnitDto}.
+     *
+     * @param identifier identifiant {@link AdministrativeUnitDto}
+     */
+    void setAdministrativeUnitIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link EmployeeDto}.
+     *
+     * @return identifiant {@link EmployeeDto}
+     */
+    String getEmployeeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link EmployeeDto}.
+     *
+     * @param identifier identifiant {@link EmployeeDto}
+     */
+    void setEmployeeIdentifier(String identifier);
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_BUDGET_IDENTIFIER}.
+     */
+    String JSON_BUDGET_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_BUDGET_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_ADMINISTRATIVE_UNIT_IDENTIFIER}.
+     */
+    String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+        AdministrativeUnitEmployeeDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_EMPLOYEE_IDENTIFIER}.
+     */
+    String JSON_EMPLOYEE_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_EMPLOYEE_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link AdministrativeUnitEmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(AdministrativeUnitEmployeeCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L143">  class AdministrativeUnitEmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements AdministrativeUnitEmployeeSaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    String budgetIdentifier;
+
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    String administrativeUnitIdentifier;
+
+    @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
+    String employeeIdentifier;
+  }
 
   /**
    * Identifiant du service d'obtention de plusieurs.
@@ -67,7 +184,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L70">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
+<span class="fc" id="L187">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;AdministrativeUnitEmployeeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -121,5 +238,167 @@ public interface AdministrativeUnitEmployeeService extends Service {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = AdministrativeUnitEmployeeDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link AdministrativeUnitEmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(AdministrativeUnitEmployeeUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L275">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements AdministrativeUnitEmployeeSaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    String budgetIdentifier;
+
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    String administrativeUnitIdentifier;
+
+    @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
+    String employeeIdentifier;
+  }
+
+  /**
+   * Cette interface représente la requête d'entrée ou de sortie.
+   */
+  interface AdministrativeUnitEmployeeBoardRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link MovementTypeDto}.
+     *
+     * @return identifiant {@link MovementTypeDto}
+     */
+    String getMovementTypeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link MovementTypeDto}.
+     *
+     * @param identifier identifiant {@link MovementTypeDto}
+     */
+    void setMovementTypeIdentifier(String identifier);
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_MOVEMENT_TYPE_IDENTIFIER}.
+     */
+    String JSON_MOVEMENT_TYPE_IDENTIFIER =
+        AdministrativeUnitEmployeeDto.JSON_MOVEMENT_TYPE_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service de sortie.
+   */
+  String OFFBOARD_IDENTIFIER = &quot;SORTIE_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service de sortie.
+   */
+  String OFFBOARD_PATH = &quot;sortie&quot;;
+
+  /**
+   * Cette méthode permet de sortir {@link AdministrativeUnitEmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(OFFBOARD_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = OFFBOARD_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response offboard(AdministrativeUnitEmployeeOffboardRequestDto request);
+
+  /**
+   * Cette classe représente la requête de sortie.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L347">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
+      implements AdministrativeUnitEmployeeBoardRequestDto {
+
+    @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
+    String movementTypeIdentifier;
+  }
+
+  /**
+   * Identifiant du service d'annulation de sortie.
+   */
+  String CANCEL_OFFBOARD_IDENTIFIER = &quot;ANNULATION_SORTIE_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service d'annulation de sortie.
+   */
+  String CANCEL_OFFBOARD_PATH = &quot;annulation-sortie&quot;;
+
+  /**
+   * Cette méthode permet d'annuler une sortie de {@link AdministrativeUnitEmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CANCEL_OFFBOARD_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CANCEL_OFFBOARD_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response cancelOffboard(ByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link AdministrativeUnitEmployeeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

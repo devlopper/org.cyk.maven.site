@@ -18,6 +18,18 @@ import lombok.Setter;
 <span class="fc" id="L18">public class MovementDto extends AbstractIdentifiableAuditableDto {</span>
 
   /**
+   * Identifiant {@link AdministrativeUnitEmployeeDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+  private String administrativeUnitEmployeeIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link AdministrativeUnitEmployeeDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_AS_STRING)
+  private String administrativeUnitEmployeeAsString;
+
+  /**
    * Identifiant {@link MovementTypeDto}.
    */
   @JsonbProperty(JSON_TYPE_IDENTIFIER)
@@ -38,6 +50,18 @@ import lombok.Setter;
    * Identifiant json de représentation en chaine de caractères de {@link MovementDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;mouvementChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #administrativeUnitEmployeeIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
+      AdministrativeUnitEmployeeDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #administrativeUnitEmployeeAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_AS_STRING =
+      AdministrativeUnitEmployeeDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json de {@link #typeIdentifier}.

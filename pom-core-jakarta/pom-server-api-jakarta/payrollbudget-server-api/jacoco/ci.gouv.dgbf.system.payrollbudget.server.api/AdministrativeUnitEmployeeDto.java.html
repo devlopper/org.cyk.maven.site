@@ -79,29 +79,35 @@ import lombok.Setter;
   String employeeAsString;
 
   /**
+   * Identifiant {@link MovementTypeDto}.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
+  String movementTypeIdentifier;
+
+  /**
    * Représentation en chaine de caractères de la fonction.
    */
   @JsonbProperty(JSON_FUNCTION_AS_STRING)
   String functionAsString;
-  
+
   /**
    * {@link EmployeeDto} est fonctionnaire.
    */
   @JsonbProperty(JSON_EMPLOYEE_IS_FUNCTIONARY)
   Boolean employeeIsFunctionary;
-  
+
   /**
    * Représentation en chaine de caractères de l'emploi.
    */
   @JsonbProperty(JSON_JOB_AS_STRING)
   String jobAsString;
-  
+
   /**
    * Représentation en chaine de caractères de l'indice de paie.
    */
   @JsonbProperty(JSON_PAY_INDEX_AS_STRING)
   String payIndexAsString;
-  
+
   /**
    * Identifiant de la catégorie de {@link EmployeeDto}.
    */
@@ -135,6 +141,18 @@ import lombok.Setter;
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   String amountAsString;
 
+  /**
+   * Offboardable.
+   */
+  @JsonbProperty(JSON_OFFBOARDABLE)
+  Boolean offboardable;
+  
+  /**
+   * Offboardable.
+   */
+  @JsonbProperty(JSON_OFFBOARD_CANCELABLE)
+  Boolean offboardCancelable;
+  
   /**
    * Identifiant json de identifiant de {@link AdministrativeUnitEmployeeDto}.
    */
@@ -201,10 +219,25 @@ import lombok.Setter;
   public static final String JSON_EMPLOYEE_AS_STRING = EmployeeDto.JSON_THIS_AS_STRING;
 
   /**
+   * Identifiant json {@link #offboardable}.
+   */
+  public static final String JSON_OFFBOARDABLE = &quot;sortable&quot;;
+  
+  /**
+   * Identifiant json {@link #offboardCancelable}.
+   */
+  public static final String JSON_OFFBOARD_CANCELABLE = &quot;sortieAnnulable&quot;;
+  
+  /**
+   * Identifiant json {@link #movementTypeIdentifier}.
+   */
+  public static final String JSON_MOVEMENT_TYPE_IDENTIFIER = MovementTypeDto.JSON_THIS_IDENTIFIER;
+
+  /**
    * Identifiant json {@link #jobAsString}.
    */
   public static final String JSON_JOB_AS_STRING = &quot;idEmploi&quot;;
-  
+
   /**
    * Identifiant json {@link #employeeCategoryIdentifier}.
    */
@@ -231,7 +264,7 @@ import lombok.Setter;
    * Identifiant json {@link #functionAsString}.
    */
   public static final String JSON_FUNCTION_AS_STRING = &quot;idFonction&quot;;
-  
+
   /**
    * Identifiant json {@link #payIndexAsString}.
    */
