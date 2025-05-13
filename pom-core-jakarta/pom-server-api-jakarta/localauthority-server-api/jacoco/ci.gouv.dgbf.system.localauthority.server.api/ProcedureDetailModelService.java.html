@@ -50,9 +50,19 @@ public interface ProcedureDetailModelService extends SpecificService {
   String CREATE_IDENTIFIER = &quot;CREATION_MODELE_DETAIL_PROCEDURE&quot;;
 
   /**
+   * Identifiant du service de création par modèle.
+   */
+  String CREATE_BY_MODEL_IDENTIFIER = &quot;CREATION_PAR_MODELE_MODELE_DETAIL_PROCEDURE&quot;;
+
+  /**
    * Chemin du service de création.
    */
   String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Chemin du service de création par modele.
+   */
+  String CREATE_BY_MODEL_PATH = &quot;creation-par-modele&quot;;
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
@@ -108,6 +118,21 @@ public interface ProcedureDetailModelService extends SpecificService {
   @APIResponse(responseCode = &quot;201&quot;,
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
   Response create(ProcedureDetailModelCreateRequestDto request);
+
+  /**
+   * Cette méthode permet de créer.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_BY_MODEL_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_BY_MODEL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createByModel(ProcedureDetailCreateByProcedureDetailModelRequestDto request);
 
   /**
    * Cette méthode permet d'obtenir plusieurs.
@@ -231,7 +256,7 @@ public interface ProcedureDetailModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L234">  class ProcedureDetailModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L259">  class ProcedureDetailModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureDetailModelSaveRequestDto {
 
     @JsonbProperty(JSON_PROCEDURE_MODEL_IDENTIFIER)
@@ -246,13 +271,36 @@ public interface ProcedureDetailModelService extends SpecificService {
   }
 
   /**
+   * Cette classe représente la requête de création par modèle de procédure.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L280">  class ProcedureDetailCreateByProcedureDetailModelRequestDto</span>
+      extends AbstractCodableNamableCreateRequestJsonDto {
+    @JsonbProperty(JSON_PROCEDURE_DETAIL_MODEL_IDENTIFIER)
+    private String procedureDetailModelIdentifier;
+
+    @JsonbProperty(JSON_PROCEDURE_IDENTIFIER)
+    private String procedureIdentifier;
+
+    public static final String JSON_PROCEDURE_DETAIL_MODEL_IDENTIFIER =
+        &quot;idProcedureDetailModel&quot;;
+
+    public static final String JSON_PROCEDURE_IDENTIFIER =
+        &quot;idProcedure&quot;;
+
+  }
+
+  /**
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
    *
    * @author Desysoft
    */
   @Getter
   @Setter
-<span class="fc" id="L255">  public static class ProcedureDetailModelGetManyResponseDto</span>
+<span class="fc" id="L303">  public static class ProcedureDetailModelGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureDetailModelDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -266,7 +314,7 @@ public interface ProcedureDetailModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L269">  class ProcedureDetailModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L317">  class ProcedureDetailModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureDetailModelSaveRequestDto {
 
     @JsonbProperty(JSON_PROCEDURE_MODEL_IDENTIFIER)
