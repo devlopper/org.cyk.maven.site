@@ -44,9 +44,9 @@ public interface AdministrativeUnitEmployeeService extends Service {
   String PATH = &quot;employes-unites-administratives&quot;;
 
   /**
-   * Cette interface représente la requête d'enregistrement.
+   * Cette interface représente la base de requête d'enregistrement.
    */
-  interface AdministrativeUnitEmployeeSaveRequestDto {
+  interface AdministrativeUnitEmployeeBaseSaveRequestDto {
 
     /**
      * Cette méthode permet d'obtenir l'identifiant {@link BudgetDto}.
@@ -77,6 +77,24 @@ public interface AdministrativeUnitEmployeeService extends Service {
     void setAdministrativeUnitIdentifier(String identifier);
 
     /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_BUDGET_IDENTIFIER}.
+     */
+    String JSON_BUDGET_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_BUDGET_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_ADMINISTRATIVE_UNIT_IDENTIFIER}.
+     */
+    String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+        AdministrativeUnitEmployeeDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+  }
+
+  /**
+   * Cette interface représente la requête d'enregistrement.
+   */
+  interface AdministrativeUnitEmployeeSaveRequestDto
+      extends AdministrativeUnitEmployeeBaseSaveRequestDto {
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant {@link EmployeeDto}.
      *
      * @return identifiant {@link EmployeeDto}
@@ -91,20 +109,66 @@ public interface AdministrativeUnitEmployeeService extends Service {
     void setEmployeeIdentifier(String identifier);
 
     /**
-     * {@link AdministrativeUnitEmployeeDto#JSON_BUDGET_IDENTIFIER}.
+     * Cette méthode permet d'obtenir l'identifiant de l'emploi.
+     *
+     * @return identifiant de l'emploi
      */
-    String JSON_BUDGET_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_BUDGET_IDENTIFIER;
+    String getJobIdentifier();
 
     /**
-     * {@link AdministrativeUnitEmployeeDto#JSON_ADMINISTRATIVE_UNIT_IDENTIFIER}.
+     * Cette méthode permet d'assigner l'identifiant de l'emploi.
+     *
+     * @param identifier identifiant de l'emploi
      */
-    String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
-        AdministrativeUnitEmployeeDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+    void setJobIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'indice de paie.
+     *
+     * @return identifiant de l'indice de paie
+     */
+    String getPayIndexIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'indice de paie.
+     *
+     * @param identifier identifiant de l'indice de paie
+     */
+    void setPayIndexIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la fonction.
+     *
+     * @return identifiant de la fonction
+     */
+    String getFunctionIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la fonction.
+     *
+     * @param identifier identifiant de la fonction
+     */
+    void setFunctionIdentifier(String identifier);
 
     /**
      * {@link AdministrativeUnitEmployeeDto#JSON_EMPLOYEE_IDENTIFIER}.
      */
     String JSON_EMPLOYEE_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_EMPLOYEE_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_JOB_IDENTIFIER}.
+     */
+    String JSON_JOB_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_JOB_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_PAY_INDEX_IDENTIFIER}.
+     */
+    String JSON_PAY_INDEX_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_PAY_INDEX_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_FUNCTION_IDENTIFIER}.
+     */
+    String JSON_FUNCTION_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_FUNCTION_IDENTIFIER;
   }
 
   /**
@@ -140,7 +204,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L143">  class AdministrativeUnitEmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L207">  class AdministrativeUnitEmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements AdministrativeUnitEmployeeSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -151,6 +215,68 @@ public interface AdministrativeUnitEmployeeService extends Service {
 
     @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
     String employeeIdentifier;
+
+    @JsonbProperty(JSON_JOB_IDENTIFIER)
+    String jobIdentifier;
+
+    @JsonbProperty(JSON_PAY_INDEX_IDENTIFIER)
+    String payIndexIdentifier;
+
+    @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
+    String functionIdentifier;
+  }
+
+  /**
+   * Identifiant du service de création par fonctionnaire.
+   */
+  String CREATE_BY_FUNCTIONARY_IDENTIFIER =
+      &quot;CREATION_PAR_FONCTIONNAIRE_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service de création par fonctionnaire.
+   */
+  String CREATE_BY_FUNCTIONARY_PATH = &quot;creation-par-fonctionnaire&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link AdministrativeUnitEmployeeDto} par fonctionnaire.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_BY_FUNCTIONARY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_BY_FUNCTIONARY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createByFunctionary(AdministrativeUnitEmployeeCreateByFunctionaryRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création par fonctionnaire.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L263">  class AdministrativeUnitEmployeeCreateByFunctionaryRequestDto extends</span>
+      AbstractAuditedRequestJsonDto implements AdministrativeUnitEmployeeBaseSaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    String budgetIdentifier;
+
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    String administrativeUnitIdentifier;
+
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    String functionaryIdentifier;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_FUNCTIONARY_IDENTIFIER}.
+     */
+    public static final String JSON_FUNCTIONARY_IDENTIFIER =
+        AdministrativeUnitEmployeeDto.JSON_FUNCTIONARY_IDENTIFIER;
   }
 
   /**
@@ -184,7 +310,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L187">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
+<span class="fc" id="L313">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;AdministrativeUnitEmployeeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -272,7 +398,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L275">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L401">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -283,6 +409,15 @@ public interface AdministrativeUnitEmployeeService extends Service {
 
     @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
     String employeeIdentifier;
+
+    @JsonbProperty(JSON_JOB_IDENTIFIER)
+    String jobIdentifier;
+
+    @JsonbProperty(JSON_PAY_INDEX_IDENTIFIER)
+    String payIndexIdentifier;
+
+    @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
+    String functionIdentifier;
   }
 
   /**
@@ -344,7 +479,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L347">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L482">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeBoardRequestDto {
 
     @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
