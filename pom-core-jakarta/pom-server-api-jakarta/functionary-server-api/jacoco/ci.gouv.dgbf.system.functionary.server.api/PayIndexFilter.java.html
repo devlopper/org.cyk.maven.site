@@ -19,8 +19,8 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
   /**
    * Grade.
    */
-  @JsonbProperty(value = JSON_GRADE_AS_STRING)
-  String gradeAsString;
+  @JsonbProperty(value = JSON_GRADE_IDENTIFIER)
+  String gradeIdentifier;
 
  
 
@@ -43,43 +43,43 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
   @Override
   protected void doInitialize(FilterDto filter) {
 <span class="nc" id="L45">    super.doInitialize(filter);</span>
-<span class="nc" id="L46">    gradeAsString = getGradeAsString(filter);</span>
+<span class="nc" id="L46">    gradeIdentifier = getGradeIdentifier(filter);</span>
   
 <span class="nc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
 <span class="nc" id="L52">    super.toDto(filter);</span>
-<span class="nc" id="L53">    setGradeAsString(filter, gradeAsString);</span>
+<span class="nc" id="L53">    setGradeIdentifier(filter, gradeIdentifier);</span>
   
 <span class="nc" id="L55">  }</span>
 
   /**
-   * Cette méthode permet d'assigner {@link #gradeAsString}.
+   * Cette méthode permet d'assigner {@link #gradeIdentifier}.
    *
    * @param filter filtre
-   * @param gradeAsString {@link #gradeAsString}
+   * @param gradeIdentifier {@link #gradeIdentifier}
    */
-  public static void setGradeAsString(FilterDto filter, String gradeAsString) {
-<span class="nc" id="L64">    set(filter, JSON_GRADE_AS_STRING, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L65">        f -&gt; f.setValueAsString(gradeAsString));</span>
+  public static void setGradeIdentifier(FilterDto filter, String gradeIdentifier) {
+<span class="nc" id="L64">    set(filter, JSON_GRADE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="nc" id="L65">        f -&gt; f.setValueAsString(gradeIdentifier));</span>
 <span class="nc" id="L66">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir {@link #gradeAsString}.
+   * Cette méthode permet d'obtenir {@link #gradeIdentifier}.
    *
    * @param filter filtre
-   * @return {@link #gradeAsString}
+   * @return {@link #gradeIdentifier}
    */
-  public static String getGradeAsString(FilterDto filter) {
-<span class="nc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_AS_STRING));</span>
+  public static String getGradeIdentifier(FilterDto filter) {
+<span class="nc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_IDENTIFIER));</span>
   }
 
   
   /**
-   * Identifiant json du {@link #gradeAsString}.
+   * Identifiant json du {@link #gradeIdentifier}.
    */
-  public static final String JSON_GRADE_AS_STRING = PayIndexDto.JSON_GRADE_AS_STRING;
+  public static final String JSON_GRADE_IDENTIFIER = PayIndexDto.JSON_GRADE_IDENTIFIER;
 
   
 }
