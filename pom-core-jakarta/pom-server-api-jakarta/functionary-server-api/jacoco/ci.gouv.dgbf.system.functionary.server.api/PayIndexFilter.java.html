@@ -28,8 +28,8 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
    * Cette méthode permet d'instancier un objet.
    */
   public PayIndexFilter() {
-<span class="nc" id="L31">    super();</span>
-<span class="nc" id="L32">  }</span>
+<span class="fc" id="L31">    super();</span>
+<span class="fc" id="L32">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -37,22 +37,22 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public PayIndexFilter(FilterDto dto) {
-<span class="nc" id="L40">    super(dto);</span>
-<span class="nc" id="L41">  }</span>
+<span class="fc" id="L40">    super(dto);</span>
+<span class="fc" id="L41">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L45">    super.doInitialize(filter);</span>
-<span class="nc" id="L46">    gradeIdentifier = getGradeIdentifier(filter);</span>
+<span class="fc" id="L45">    super.doInitialize(filter);</span>
+<span class="fc" id="L46">    gradeIdentifier = getGradeIdentifier(filter);</span>
   
-<span class="nc" id="L48">  }</span>
+<span class="fc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L52">    super.toDto(filter);</span>
-<span class="nc" id="L53">    setGradeIdentifier(filter, gradeIdentifier);</span>
+<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L53">    setGradeIdentifier(filter, gradeIdentifier);</span>
   
-<span class="nc" id="L55">  }</span>
+<span class="fc" id="L55">  }</span>
 
   /**
    * Cette méthode permet d'assigner {@link #gradeIdentifier}.
@@ -61,9 +61,9 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
    * @param gradeIdentifier {@link #gradeIdentifier}
    */
   public static void setGradeIdentifier(FilterDto filter, String gradeIdentifier) {
-<span class="nc" id="L64">    set(filter, JSON_GRADE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L65">        f -&gt; f.setValueAsString(gradeIdentifier));</span>
-<span class="nc" id="L66">  }</span>
+<span class="pc" id="L64">    set(filter, JSON_GRADE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L65">        f -&gt; f.setValueAsString(gradeIdentifier));</span>
+<span class="fc" id="L66">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link #gradeIdentifier}.
@@ -72,7 +72,7 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
    * @return {@link #gradeIdentifier}
    */
   public static String getGradeIdentifier(FilterDto filter) {
-<span class="nc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_IDENTIFIER));</span>
+<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_IDENTIFIER));</span>
   }
 
   
