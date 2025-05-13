@@ -6,6 +6,7 @@ import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasBu
 import ci.gouv.dgbf.system.employee.server.api.shared.FilterHasEmployeeIdentifier;
 import ci.gouv.dgbf.system.functionary.server.api.shared.FilterHasCategoryIdentifier;
 import ci.gouv.dgbf.system.functionary.server.api.shared.FilterHasGradeIdentifier;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,13 +21,14 @@ import lombok.Setter;
 public class AdministrativeUnitEmployeeFilter extends AbstractIdentifiableFilter
     implements FilterHasBudgetAdministrativeUnitIdentifier, FilterHasEmployeeIdentifier,
     FilterHasCategoryIdentifier, FilterHasGradeIdentifier,
-    FilterHasAdministrativeUnitEmployeeStatusCode {
+    FilterHasAdministrativeUnitEmployeeStatusCode, FilterHasAdministrativeUnitEmployeeStatusCodes {
 
   String budgetAdministrativeUnitIdentifier;
   String employeeIdentifier;
   String categoryIdentifier;
   String gradeIdentifier;
   String administrativeUnitEmployeeStatusCode;
+  Set&lt;String&gt; administrativeUnitEmployeeStatusCodes;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -34,33 +36,35 @@ public class AdministrativeUnitEmployeeFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public AdministrativeUnitEmployeeFilter(FilterDto dto) {
-<span class="fc" id="L37">    super(dto);</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L39">    super(dto);</span>
+<span class="fc" id="L40">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L43">  public AdministrativeUnitEmployeeFilter() {}</span>
+<span class="fc" id="L45">  public AdministrativeUnitEmployeeFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L47">    super.doInitialize(filter);</span>
-<span class="fc" id="L48">    updateBudgetAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L49">    updateEmployeeIdentifier(filter);</span>
-<span class="fc" id="L50">    updateCategoryIdentifier(filter);</span>
-<span class="fc" id="L51">    updateGradeIdentifier(filter);</span>
-<span class="fc" id="L52">    updateAdministrativeUnitEmployeeStatusCode(filter);</span>
-<span class="fc" id="L53">  }</span>
+<span class="fc" id="L49">    super.doInitialize(filter);</span>
+<span class="fc" id="L50">    updateBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L51">    updateEmployeeIdentifier(filter);</span>
+<span class="fc" id="L52">    updateCategoryIdentifier(filter);</span>
+<span class="fc" id="L53">    updateGradeIdentifier(filter);</span>
+<span class="fc" id="L54">    updateAdministrativeUnitEmployeeStatusCode(filter);</span>
+<span class="fc" id="L55">    updateAdministrativeUnitEmployeeStatusCodes(filter);</span>
+<span class="fc" id="L56">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L57">    super.toDto(filter);</span>
-<span class="fc" id="L58">    updateFilterBudgetAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L59">    updateFilterEmployeeIdentifier(filter);</span>
-<span class="fc" id="L60">    updateFilterCategoryIdentifier(filter);</span>
-<span class="fc" id="L61">    updateFilterGradeIdentifier(filter);</span>
-<span class="fc" id="L62">    updateFilterAdministrativeUnitEmployeeStatusCode(filter);</span>
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L60">    super.toDto(filter);</span>
+<span class="fc" id="L61">    updateFilterBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L62">    updateFilterEmployeeIdentifier(filter);</span>
+<span class="fc" id="L63">    updateFilterCategoryIdentifier(filter);</span>
+<span class="fc" id="L64">    updateFilterGradeIdentifier(filter);</span>
+<span class="fc" id="L65">    updateFilterAdministrativeUnitEmployeeStatusCode(filter);</span>
+<span class="fc" id="L66">    updateFilterAdministrativeUnitEmployeeStatusCodes(filter);</span>
+<span class="fc" id="L67">  }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

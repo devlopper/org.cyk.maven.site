@@ -56,7 +56,7 @@ public enum AdministrativeUnitEmployeeStatus {
   public static AdministrativeUnitEmployeeStatus getByCode(String code) {
 <span class="fc" id="L57">    return Stream.of(AdministrativeUnitEmployeeStatus.values())</span>
 <span class="fc" id="L58">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L59">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="pc" id="L59">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {
