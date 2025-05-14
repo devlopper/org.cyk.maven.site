@@ -80,7 +80,7 @@ public enum PayrollStatus {
   public static PayrollStatus getByCode(String code) {
 <span class="fc" id="L81">    return Stream.of(PayrollStatus.values())</span>
 <span class="fc" id="L82">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L83">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="pc" id="L83">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {

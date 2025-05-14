@@ -103,6 +103,12 @@ import lombok.Setter;
   private Boolean isMarried;
   
   /**
+   * Est recalculable.
+   */
+  @JsonbProperty(JSON_IS_RECALCULABLE)
+  private Boolean isRecalculable;
+  
+  /**
    * {@link PayslipStatus}.
    */
   @JsonbProperty(JSON_STATUS)
@@ -370,17 +376,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L373">    status = response.getStatus();</span>
-<span class="fc" id="L374">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L375">    initializable = response.getInitializable();</span>
-<span class="fc" id="L376">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L377">    controllable = response.getControllable();</span>
-<span class="fc" id="L378">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L379">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L380">    validable = response.getValidable();</span>
-<span class="fc" id="L381">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L382">    closable = response.getClosable();</span>
-<span class="fc" id="L383">  }</span>
+<span class="fc" id="L379">    status = response.getStatus();</span>
+<span class="fc" id="L380">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L381">    initializable = response.getInitializable();</span>
+<span class="fc" id="L382">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L383">    controllable = response.getControllable();</span>
+<span class="fc" id="L384">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L385">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L386">    validable = response.getValidable();</span>
+<span class="fc" id="L387">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L388">    closable = response.getClosable();</span>
+<span class="fc" id="L389">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -469,6 +475,11 @@ import lombok.Setter;
    * Identifiant json {@link #isMarried}.
    */
   public static final String JSON_IS_MARRIED = &quot;estMarie&quot;;
+
+  /**
+   * Identifiant json {@link #isRecalculable}.
+   */
+  public static final String JSON_IS_RECALCULABLE = &quot;estRecalculable&quot;;
   
   /**
    * Identifiant json champ {@link #status}.

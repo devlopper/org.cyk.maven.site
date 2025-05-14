@@ -281,6 +281,39 @@ import lombok.experimental.Accessors;
   }
 
   /**
+   * {@link PayrollService#accept}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto accept(ByIdentifierRequestDto request) {
+<span class="fc" id="L290">    return new ProcessExecutor(PayrollService.ACCEPT_IDENTIFIER)</span>
+<span class="fc" id="L291">        .execute(() -&gt; service().accept(request));</span>
+  }
+
+  /**
+   * {@link PayrollService#recalculate}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto recalculate(ByIdentifierRequestDto request) {
+<span class="fc" id="L301">    return new ProcessExecutor(PayrollService.RECALCULATE_IDENTIFIER)</span>
+<span class="fc" id="L302">        .execute(() -&gt; service().recalculate(request));</span>
+  }
+
+  /**
+   * {@link PayrollService#validate}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto validate(ByIdentifierRequestDto request) {
+<span class="fc" id="L312">    return new ProcessExecutor(PayrollService.VALIDATE_IDENTIFIER)</span>
+<span class="fc" id="L313">        .execute(() -&gt; service().validate(request));</span>
+  }
+
+  /**
    * Cette classe représente un exécuteur de {@link PayrollDto}.
    *
    * @author Christian
@@ -293,9 +326,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L296">    public ProcessExecutor(String identifier) {</span>
-<span class="fc" id="L297">      super(ProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L298">    }</span>
+<span class="fc" id="L329">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L330">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L331">    }</span>
 
   }
 }
