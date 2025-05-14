@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementPositionFieldDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">MovementPositionFieldDto.java</span></div><h1>MovementPositionFieldDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un champ de position de {@link MovementPositionFieldDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class MovementPositionFieldDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant {@link MovementDto}.
+   */
+  @JsonbProperty(JSON_MOVEMENT_IDENTIFIER)
+  private String movementIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link MovementDto}.
+   */
+  @JsonbProperty(JSON_MOVEMENT_AS_STRING)
+  private String movementAsString;
+
+  /**
+   * {@link PositionField}.
+   */
+  @JsonbProperty(JSON_POSITION_FIELD)
+  private PositionField positionField;
+
+  /**
+   * Représentation en chaine de caractères de {@link PositionField}.
+   */
+  @JsonbProperty(JSON_POSITION_FIELD_AS_STRING)
+  private String positionFieldAsString;
+
+  /**
+   * Référence.
+   */
+  @JsonbProperty(JSON_REFERENCE)
+  private String reference;
+
+  /**
+   * Libellé de la référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_NAME)
+  private String referenceName;
+  
+  /**
+   * Identifiant json de identifiant de {@link MovementPositionFieldDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idChampPositionMouvement&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de {@link MovementPositionFieldDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;champPositionMouvementChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #movementIdentifier}.
+   */
+  public static final String JSON_MOVEMENT_IDENTIFIER =
+      MovementDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #movementAsString}.
+   */
+  public static final String JSON_MOVEMENT_AS_STRING =
+      MovementDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #positionField}.
+   */
+  public static final String JSON_POSITION_FIELD = &quot;champPosition&quot;;
+
+  /**
+   * Identifiant json de {@link #positionFieldAsString}.
+   */
+  public static final String JSON_POSITION_FIELD_AS_STRING = JSON_POSITION_FIELD + &quot;Chaine&quot;;
+
+  /**
+   * Identifiant json de {@link #reference}.
+   */
+  public static final String JSON_REFERENCE = &quot;reference&quot;;
+
+  /**
+   * Identifiant json de {@link #referenceName}.
+   */
+  public static final String JSON_REFERENCE_NAME = &quot;nomReference&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;champ de position de mouvement&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;champs de position de mouvement&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
