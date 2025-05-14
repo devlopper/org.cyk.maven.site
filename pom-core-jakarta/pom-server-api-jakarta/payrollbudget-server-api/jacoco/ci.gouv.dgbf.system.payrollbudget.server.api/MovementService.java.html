@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -77,6 +78,20 @@ public interface MovementService extends SpecificService {
     void setTypeIdentifier(String identifier);
 
     /**
+     * Cette méthode permet d'obtenir la date d'effet.
+     *
+     * @return date d'effet
+     */
+    LocalDate getEffectiveDate();
+
+    /**
+     * Cette méthode permet d'assigner la date d'effet.
+     *
+     * @param effectiveDate date d'effet
+     */
+    void setEffectiveDate(LocalDate effectiveDate);
+    
+    /**
      * {@link MovementDto#JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER}.
      */
     String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
@@ -86,6 +101,11 @@ public interface MovementService extends SpecificService {
      * {@link MovementDto#JSON_TYPE_IDENTIFIER}.
      */
     String JSON_TYPE_IDENTIFIER = MovementDto.JSON_TYPE_IDENTIFIER;
+    
+    /**
+     * {@link MovementDto#JSON_EFFECTIVE_DATE}.
+     */
+    String JSON_EFFECTIVE_DATE = MovementDto.JSON_EFFECTIVE_DATE;
   }
 
   /**
@@ -121,7 +141,7 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L124">  class MovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L144">  class MovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements MovementSaveRequestDto {
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
@@ -129,6 +149,9 @@ public interface MovementService extends SpecificService {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
     String typeIdentifier;
+    
+    @JsonbProperty(JSON_EFFECTIVE_DATE)
+    LocalDate effectiveDate;
   }
 
   /**
@@ -164,7 +187,7 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L167">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
+<span class="fc" id="L190">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;MovementDto&gt; datas;
@@ -253,13 +276,16 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L256">  class MovementUpdateRequestDto extends ByIdentifierRequestDto implements MovementSaveRequestDto {</span>
+<span class="fc" id="L279">  class MovementUpdateRequestDto extends ByIdentifierRequestDto implements MovementSaveRequestDto {</span>
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
     String administrativeUnitEmployeeIdentifier;
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
     String typeIdentifier;
+    
+    @JsonbProperty(JSON_EFFECTIVE_DATE)
+    LocalDate effectiveDate;
   }
 
   /**

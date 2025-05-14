@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class MovementDto extends AbstractIdentifiableAuditableDto {</span>
+<span class="fc" id="L19">public class MovementDto extends AbstractIdentifiableAuditableDto {</span>
 
   /**
    * Identifiant {@link AdministrativeUnitEmployeeDto}.
@@ -41,6 +42,18 @@ import lombok.Setter;
   @JsonbProperty(JSON_TYPE_AS_STRING)
   private String typeAsString;
 
+  /**
+   * Date d'effet.
+   */
+  @JsonbProperty(JSON_EFFECTIVE_DATE)
+  private LocalDate effectiveDate;
+
+  /**
+   * Représentation en chaine de caractères de la date d'effet.
+   */
+  @JsonbProperty(JSON_EFFECTIVE_DATE_AS_STRING)
+  private String effectiveDateAsString;
+  
   /**
    * Identifiant json de identifiant de {@link MovementDto}.
    */
@@ -73,6 +86,16 @@ import lombok.Setter;
    */
   public static final String JSON_TYPE_AS_STRING = MovementTypeDto.JSON_THIS_AS_STRING;
 
+  /**
+   * Identifiant json de {@link #effectiveDate}.
+   */
+  public static final String JSON_EFFECTIVE_DATE = &quot;dateEffet&quot;;
+
+  /**
+   * Identifiant json de {@link #effectiveDateAsString}.
+   */
+  public static final String JSON_EFFECTIVE_DATE_AS_STRING = &quot;dateEffetChaine&quot;;
+  
   /**
    * Nom pour lecture humaine de la classe.
    */
