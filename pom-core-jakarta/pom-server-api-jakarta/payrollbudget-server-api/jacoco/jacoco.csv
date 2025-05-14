@@ -4,6 +4,7 @@ API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.sys
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,EmployeeFilter,3,39,0,0,0,10,1,7,1,7
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementTypeService.MovementTypeUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,FilterHasPositionFieldCodes,0,10,0,0,0,4,0,2,0,2
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeCategoryDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetService.BudgetGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -18,7 +19,7 @@ API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.sys
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,JobProjectionFilter,3,43,0,0,0,13,1,8,1,8
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,FilterHasAdministrativeUnitEmployeeStatusCodes,0,10,0,0,0,6,0,2,0,2
-API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementFilter,0,21,0,0,0,10,0,4,0,4
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementFilter,0,39,0,0,0,16,0,4,0,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementTypeService.MovementTypeCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PayrollPeriodGroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,JobProjectionDto,0,3,0,0,0,1,0,1,0,1
@@ -27,6 +28,7 @@ API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.sys
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PayrollComponentProjectionClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetService.BudgetUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeCreateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementIdentifierFilter,3,20,0,0,0,4,1,4,1,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementTypeFilter,0,21,0,0,0,10,0,4,0,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementTypeService.MovementTypeGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -43,7 +45,9 @@ API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.sys
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeClient,0,243,0,0,0,44,0,24,0,24
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetAdministrativeUnitFilter,0,27,0,0,0,11,0,4,0,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PositionField,0,47,0,0,0,10,0,4,0,4
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementTypeIdentifierFilter,3,20,0,0,0,4,1,4,1,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,EmployeePayrollComponentService.EmployeePayrollComponentGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PositionFieldCodesFilter,3,20,0,0,0,4,1,4,1,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,JobProjectionService.JobProjectionCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PayrollPeriodGroupClient,0,128,0,0,0,27,0,11,0,11
@@ -55,15 +59,17 @@ API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.sys
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementPositionFieldDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,EmployeeDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,FilterHasMovementIdentifier,0,10,0,0,0,4,0,2,0,2
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeCategoryClient,0,128,0,0,0,27,0,11,0,11
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeCreateByFunctionaryRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementTypeRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PayrollComponentProjectionService.PayrollComponentProjectionUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,EmployeePayrollComponentFilter,3,43,0,0,0,13,1,8,1,8
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,JobProjectionService.JobProjectionUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PositionFieldCodeFilter,0,23,0,0,0,4,0,5,0,5
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,ExerciseFilter,0,23,0,0,0,9,0,4,0,4
-API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementPositionFieldFilter,0,21,0,0,0,10,0,4,0,4
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementPositionFieldFilter,0,33,0,0,0,14,0,4,0,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeStatusCodeFilter,3,20,0,0,0,4,1,4,1,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeCategoryService.AdministrativeUnitEmployeeCategoryGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeFilter,0,51,0,0,0,19,0,4,0,4
@@ -73,6 +79,7 @@ API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.sys
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PayrollPeriodGroupFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeRequestMapperImpl,0,75,0,4,0,22,0,5,0,3
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementPositionFieldService.MovementPositionFieldUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,FilterHasMovementTypeIdentifier,0,10,0,0,0,4,0,2,0,2
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeCategoryFilter,0,27,0,0,0,11,0,4,0,4
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitClient,0,128,0,0,0,27,0,11,0,11
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementService.MovementCreateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -82,6 +89,7 @@ API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.sys
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetAdministrativeUnitService.BudgetAdministrativeUnitGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,PayrollComponentProjectionFilter,6,71,0,0,0,19,2,12,2,12
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,BudgetAdministrativeUnitDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,FilterHasPositionFieldCode,0,10,0,0,0,4,0,2,0,2
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,MovementDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeOffboardRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de budgétisation de la rémunération,ci.gouv.dgbf.system.payrollbudget.server.api,EmployeeClient,0,128,0,0,0,27,0,11,0,11
