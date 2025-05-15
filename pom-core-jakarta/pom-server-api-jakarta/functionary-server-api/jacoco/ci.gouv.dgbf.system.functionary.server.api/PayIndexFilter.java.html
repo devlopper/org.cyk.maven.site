@@ -22,14 +22,30 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
   @JsonbProperty(value = JSON_GRADE_IDENTIFIER)
   String gradeIdentifier;
 
- 
+  /**
+   * Identifiant de {@link GradeClassDto}.
+   */
+  @JsonbProperty(value = JSON_GRADE_CLASS_IDENTIFIER)
+  String gradeClassIdentifier;
+
+  /**
+   * Identifiant de {@link EchelonDto}.
+   */
+  @JsonbProperty(value = JSON_ECHELON_IDENTIFIER)
+  String echelonIdentifier;
+
+  /**
+   * Identifiant de {@link PayScaleDto}.
+   */
+  @JsonbProperty(value = JSON_PAY_SCALE_IDENTIFIER)
+  String payScaleIdentifier;
 
   /**
    * Cette méthode permet d'instancier un objet.
    */
   public PayIndexFilter() {
-<span class="fc" id="L31">    super();</span>
-<span class="fc" id="L32">  }</span>
+<span class="fc" id="L47">    super();</span>
+<span class="fc" id="L48">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -37,22 +53,27 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public PayIndexFilter(FilterDto dto) {
-<span class="fc" id="L40">    super(dto);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L56">    super(dto);</span>
+<span class="fc" id="L57">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L45">    super.doInitialize(filter);</span>
-<span class="fc" id="L46">    gradeIdentifier = getGradeIdentifier(filter);</span>
+<span class="fc" id="L61">    super.doInitialize(filter);</span>
+<span class="fc" id="L62">    gradeIdentifier = getGradeIdentifier(filter);</span>
+<span class="fc" id="L63">    gradeClassIdentifier = getGradeClassIdentifier(filter);</span>
+<span class="fc" id="L64">    echelonIdentifier = getEchelonIdentifier(filter);</span>
+<span class="fc" id="L65">    payScaleIdentifier = getPayScaleIdentifier(filter);</span>
   
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L67">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L52">    super.toDto(filter);</span>
-<span class="fc" id="L53">    setGradeIdentifier(filter, gradeIdentifier);</span>
-  
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L71">    super.toDto(filter);</span>
+<span class="fc" id="L72">    setGradeIdentifier(filter, gradeIdentifier);</span>
+<span class="fc" id="L73">    setGradeClassIdentifier(filter, gradeClassIdentifier);</span>
+<span class="fc" id="L74">    setEchelonIdentifier(filter, echelonIdentifier);</span>
+<span class="fc" id="L75">    setPayScaleIdentifier(filter, payScaleIdentifier);</span>
+<span class="fc" id="L76">  }</span>
 
   /**
    * Cette méthode permet d'assigner {@link #gradeIdentifier}.
@@ -61,9 +82,42 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
    * @param gradeIdentifier {@link #gradeIdentifier}
    */
   public static void setGradeIdentifier(FilterDto filter, String gradeIdentifier) {
-<span class="pc" id="L64">    set(filter, JSON_GRADE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L65">        f -&gt; f.setValueAsString(gradeIdentifier));</span>
-<span class="fc" id="L66">  }</span>
+<span class="pc" id="L85">    set(filter, JSON_GRADE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L86">        f -&gt; f.setValueAsString(gradeIdentifier));</span>
+<span class="fc" id="L87">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link #gradeClassIdentifier}.
+   *
+   * @param filter filtre
+   * @param gradeClassIdentifier {@link #gradeClassIdentifier}
+   */
+  public static void setGradeClassIdentifier(FilterDto filter, String gradeClassIdentifier) {
+<span class="pc" id="L96">    set(filter, JSON_GRADE_CLASS_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L97">        f -&gt; f.setValueAsString(gradeClassIdentifier));</span>
+<span class="fc" id="L98">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link #echelonIdentifier}.
+   *
+   * @param filter filtre
+   * @param echelonIdentifier {@link #echelonIdentifier}
+   */
+  public static void setEchelonIdentifier(FilterDto filter, String echelonIdentifier) {
+<span class="pc" id="L107">    set(filter, JSON_ECHELON_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L108">        f -&gt; f.setValueAsString(echelonIdentifier));</span>
+<span class="fc" id="L109">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link #payScaleIdentifier}.
+   *
+   * @param filter filtre
+   * @param payScaleIdentifier {@link #payScaleIdentifier}
+   */
+  public static void setPayScaleIdentifier(FilterDto filter, String payScaleIdentifier) {
+<span class="pc" id="L118">    set(filter, JSON_PAY_SCALE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L119">        f -&gt; f.setValueAsString(payScaleIdentifier));</span>
+<span class="fc" id="L120">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link #gradeIdentifier}.
@@ -72,16 +126,59 @@ public class PayIndexFilter extends AbstractIdentifiableFilter {
    * @return {@link #gradeIdentifier}
    */
   public static String getGradeIdentifier(FilterDto filter) {
-<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_IDENTIFIER));</span>
+<span class="fc" id="L129">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_IDENTIFIER));</span>
   }
 
-  
+  /**
+   * Cette méthode permet d'obtenir {@link #gradeClassIdentifier}.
+   *
+   * @param filter filtre
+   * @return {@link #gradeClassIdentifier}
+   */
+  public static String getGradeClassIdentifier(FilterDto filter) {
+<span class="fc" id="L139">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GRADE_CLASS_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir {@link #echelonIdentifier}.
+   *
+   * @param filter filtre
+   * @return {@link #echelonIdentifier}
+   */
+  public static String getEchelonIdentifier(FilterDto filter) {
+<span class="fc" id="L149">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ECHELON_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir {@link #payScaleIdentifier}.
+   *
+   * @param filter filtre
+   * @return {@link #payScaleIdentifier}
+   */
+  public static String getPayScaleIdentifier(FilterDto filter) {
+<span class="fc" id="L159">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAY_SCALE_IDENTIFIER));</span>
+  }
+
   /**
    * Identifiant json du {@link #gradeIdentifier}.
    */
   public static final String JSON_GRADE_IDENTIFIER = PayIndexDto.JSON_GRADE_IDENTIFIER;
 
-  
+  /**
+   * Identifiant json du {@link #gradeClassIdentifier}.
+   */
+  public static final String JSON_GRADE_CLASS_IDENTIFIER = PayIndexDto.JSON_GRADE_CLASS_IDENTIFIER;
+
+  /**
+   * Identifiant json du {@link #echelonIdentifier}.
+   */
+  public static final String JSON_ECHELON_IDENTIFIER = PayIndexDto.JSON_ECHELON_IDENTIFIER;
+
+  /**
+   * Identifiant json du {@link #payScaleIdentifier}.
+   */
+  public static final String JSON_PAY_SCALE_IDENTIFIER = PayIndexDto.JSON_PAY_SCALE_IDENTIFIER;
+ 
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
