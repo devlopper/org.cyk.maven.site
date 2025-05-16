@@ -52,57 +52,46 @@ public interface ProcedureModelService extends SpecificService {
    * Chemin du service de création.
    */
   String CREATE_PATH = &quot;&quot;;
-
   /**
-   * Cette interface représente un enregistrement.
-   *
-   * @author Christian
+   * Identifiant du service d'obtention de plusieurs.
    */
-  interface ProcedureModelSaveRequestDto {
-
-    /**
-     * Cette méthode permet d'obtenir l'ordre de {@link ProcedureModelDto}.
-     *
-     * @return order de {@link ProcedureModelDto}
-     */
-    Integer getOrder();
-
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link ProcedureModelDto}.
-     *
-     * @param order identifiant de {@link ProcedureModelDto}
-     */
-    void setOrder(Integer order);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
-     *
-     * @return identifiant de {@link WorkflowDto}
-     */
-    String getWorkflowIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link WorkflowDto}.
-     *
-     * @param workflowIdentifier identifiant de {@link WorkflowDto}
-     */
-    void setWorkflowIdentifier(String workflowIdentifier);
-
-
-
-    /**
-     * Identifiant json du champ d'ordre.
-     */
-    String JSON_ORDER = ProcedureModelDto.JSON_ORDER;
-
-    /**
-     * Identifiant json du champ d'ordre.
-     */
-    String JSON_WORKFLOW_IDENTIFIER = ProcedureModelDto.JSON_WORKFLOW_IDENTIFIER;
-
-  }
-
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_MODELE_PROCEDURE&quot;;
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_MODELE_PROCEDURE&quot;;
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_MODELE_PROCEDURE&quot;;
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_MODELE_PROCEDURE&quot;;
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_MODELE_PROCEDURE&quot;;
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
 
   /**
    * Cette méthode permet de créer.
@@ -118,34 +107,6 @@ public interface ProcedureModelService extends SpecificService {
   @APIResponse(responseCode = &quot;201&quot;,
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
   Response create(ProcedureModelCreateRequestDto request);
-
-  /**
-   * Cette classe représente la requête de création.
-   *
-   * @author Christian
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L129">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
-      implements ProcedureModelSaveRequestDto {
-
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
-
-    @JsonbProperty(JSON_ORDER)
-    private Integer order;
-
-  }
-
-  /**
-   * Identifiant du service d'obtention de plusieurs.
-   */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_MODELE_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service d'obtention de plusieurs.
-   */
-  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
 
   /**
    * Cette méthode permet d'obtenir plusieurs.
@@ -164,30 +125,6 @@ public interface ProcedureModelService extends SpecificService {
   Response getMany(GetManyRequestDto request);
 
   /**
-   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
-   *
-   * @author Christian
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L173">  public static class ProcedureModelGetManyResponseDto</span>
-      extends AbstractGetByPageResponseDto&lt;ProcedureModelDto&gt; {
-
-    @JsonbProperty(JSON_DATAS)
-    private List&lt;ProcedureModelDto&gt; datas;
-  }
-
-  /**
-   * Identifiant du service d'obtention de un.
-   */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_MODELE_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service d'obtention de un.
-   */
-  String GET_ONE_PATH = &quot;obtention/un&quot;;
-
-  /**
    * Cette méthode permet d'obtenir {@link ProcedureModelDto}.
    *
    * @param request requête
@@ -201,16 +138,6 @@ public interface ProcedureModelService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = ProcedureModelDto.class))})
   Response getOne(GetOneRequestDto request);
-
-  /**
-   * Identifiant du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_MODELE_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
 
   /**
    * Cette méthode permet d'obtenir par identrifiant.
@@ -228,16 +155,6 @@ public interface ProcedureModelService extends SpecificService {
   Response getByIdentifier(GetByIdentifierRequestDto request);
 
   /**
-   * Identifiant du service de mise à jour.
-   */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_MODELE_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service de mise à jour.
-   */
-  String UPDATE_PATH = &quot;&quot;;
-
-  /**
    * Cette méthode permet de mettre à jour.
    *
    * @param request requête
@@ -253,34 +170,6 @@ public interface ProcedureModelService extends SpecificService {
   Response update(ProcedureModelUpdateRequestDto request);
 
   /**
-   * Cette classe représente la requête de mise à jour.
-   *
-   * @author Christian
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L262">  class ProcedureModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
-      implements ProcedureModelSaveRequestDto {
-
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
-
-    @JsonbProperty(JSON_ORDER)
-    private Integer order;
-
-  }
-
-  /**
-   * Identifiant du service de suppression.
-   */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_MODELE_PROCEDURE&quot;;
-
-  /**
-   * Chemin du service de suppression.
-   */
-  String DELETE_PATH = &quot;&quot;;
-
-  /**
    * Cette méthode permet de supprimer {@link ProcedureModelDto}.
    *
    * @param request requête
@@ -294,5 +183,77 @@ public interface ProcedureModelService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Cette interface représente un enregistrement.
+   *
+   * @author Christian
+   */
+  interface ProcedureModelSaveRequestDto {
+
+    /**
+     * Identifiant json du champ d'ordre.
+     */
+    String JSON_ORDER = ProcedureModelDto.JSON_ORDER;
+
+    /**
+     * Cette méthode permet d'obtenir l'ordre de {@link ProcedureModelDto}.
+     *
+     * @return order de {@link ProcedureModelDto}
+     */
+    Integer getOrder();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ProcedureModelDto}.
+     *
+     * @param order identifiant de {@link ProcedureModelDto}
+     */
+    void setOrder(Integer order);
+
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L222">  class ProcedureModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements ProcedureModelSaveRequestDto {
+
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
+
+  }
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L237">  public static class ProcedureModelGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ProcedureModelDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ProcedureModelDto&gt; datas;
+  }
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L251">  class ProcedureModelUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements ProcedureModelSaveRequestDto {
+
+    @JsonbProperty(JSON_ORDER)
+    private Integer order;
+
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

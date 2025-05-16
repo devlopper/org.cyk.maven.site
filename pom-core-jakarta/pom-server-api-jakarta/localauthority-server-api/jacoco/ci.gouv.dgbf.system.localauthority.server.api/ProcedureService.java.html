@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcedureService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ProcedureService.java</span></div><h1>ProcedureService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCreateRequestDto;
@@ -219,10 +218,6 @@ public interface ProcedureService extends SpecificService {
      */
     String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = ProcedureDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
 
-    /**
-     * Identifiant JSON {@link WorkflowDto}.
-     */
-    String JSON_WORKFLOW_IDENTIFIER = ProcedureDto.JSON_WORKFLOW_IDENTIFIER;
 
     /**
      * Identifiant json du champ d'ordre.
@@ -238,20 +233,6 @@ public interface ProcedureService extends SpecificService {
      * Identifiant json du champ de date .
      */
     public static final String JSON_OBSERVATION = ProcedureDto.JSON_OBSERVATION;
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link WorkflowDto}.
-     *
-     * @return identifiant de {@link WorkflowDto}
-     */
-    String getWorkflowIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link WorkflowDto}.
-     *
-     * @param workflowIdentifier identifiant de {@link WorkflowDto}
-     */
-    void setWorkflowIdentifier(String workflowIdentifier);
 
 
     /**
@@ -276,14 +257,11 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L279">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L260">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
-
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
 
     @JsonbProperty(JSON_ORDER)
     private Integer order;
@@ -303,19 +281,17 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L306">  class ProcedureCreateByModeleProcedureRequestDto</span>
+<span class="fc" id="L284">  class ProcedureCreateByModeleProcedureRequestDto</span>
       extends AbstractCreateRequestDto {
-    @JsonbProperty(JSON_PROCEDURE_MODEL_IDENTIFIER)
-    private String procedureModelIdentifier;
-
-    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
-    private String triennialProgramIdentifier;
 
     public static final String JSON_PROCEDURE_MODEL_IDENTIFIER =
         ProcedureDetailModelDto.JSON_PROCEDURE_MODEL_IDENTIFIER;
-
     public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
         ProcedureDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
+    @JsonbProperty(JSON_PROCEDURE_MODEL_IDENTIFIER)
+    private String procedureModelIdentifier;
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
 
   }
 
@@ -326,7 +302,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L329">  public static class ProcedureGetManyResponseDto</span>
+<span class="fc" id="L305">  public static class ProcedureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -340,14 +316,11 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L343">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L319">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
-
-    @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-    private String workflowIdentifier;
 
     @JsonbProperty(JSON_ORDER)
     private Integer order;

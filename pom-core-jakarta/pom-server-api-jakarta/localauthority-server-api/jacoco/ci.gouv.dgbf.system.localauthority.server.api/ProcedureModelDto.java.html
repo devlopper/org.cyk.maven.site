@@ -11,109 +11,73 @@ import lombok.Setter;
  * Cette classe représente un modèle de  procedure.
  *
  * @author Desysoft
- *
  */
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class ProcedureModelDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
-
-  /**
-   * Identifiant de {@link WorkflowDto}.
-   */
-  @JsonbProperty(JSON_WORKFLOW_IDENTIFIER)
-  private String workflowIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de {@link WorkflowDto}.
-   */
-  @JsonbProperty(JSON_WORKFLOW_AS_STRING)
-  private String workflowAsString;
-
-  /**
-   * Ordre.
-   */
-  @JsonbProperty(JSON_ORDER)
-  private Integer order;
-
-  /**
-   * Représentation en chaine de caractères d'ordre.
-   */
-  @JsonbProperty(JSON_ORDER_AS_STRING)
-  private String orderAsString;
-
-  /**
-   * Date.
-   */
-  @JsonbProperty(JSON_DATE)
-  private Date date;
-
-  /**
-   * Représentation en chaine de caractères de date.
-   */
-  @JsonbProperty(JSON_DATE_AS_STRING)
-  private String dateAsString;
-
-  /**
-   * Observation.
-   */
-  @JsonbProperty(JSON_OBSERVATION)
-  private String observation;
-
-  /**
-   * Représentation en chaine de caractères d'observation.
-   */
-  @JsonbProperty(JSON_OBSERVATION_AS_STRING)
-  private String observationAsString;
-
-  /**
-   * Identitiant json {@link ProcedureModelDto#workflowIdentifier}.
-   */
-  public static final String JSON_WORKFLOW_IDENTIFIER = &quot;idWorkflow&quot;;
-
-  /**
-   * Identitiant json {@link ProcedureModelDto#workflowAsString}.
-   */
-  public static final String JSON_WORKFLOW_AS_STRING = &quot;workflowChaine&quot;;
+<span class="fc" id="L18">public class ProcedureModelDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
    * Identifiant json {@link ProcedureModelDto#order}.
    */
   public static final String JSON_ORDER = &quot;order&quot;;
-
   /**
    * Identifiant json {@link ProcedureModelDto#orderAsString}.
    */
   public static final String JSON_ORDER_AS_STRING = &quot;orderChaine&quot;;
-
   /**
    * Identifiant json {@link ProcedureModelDto#date}.
    */
   public static final String JSON_DATE = &quot;date&quot;;
-
   /**
    * Identifiant json {@link ProcedureModelDto#dateAsString}.
    */
-  public static final String JSON_DATE_AS_STRING  = &quot;dateChaine&quot;;
-
+  public static final String JSON_DATE_AS_STRING = &quot;dateChaine&quot;;
   /**
    * Identifiant json {@link ProcedureModelDto#observation}.
    */
   public static final String JSON_OBSERVATION = &quot;observation&quot;;
-
   /**
    * Identifiant json {@link ProcedureModelDto#observationAsString}.
    */
-  public static final String JSON_OBSERVATION_AS_STRING  = &quot;observationChaine&quot;;
-
+  public static final String JSON_OBSERVATION_AS_STRING = &quot;observationChaine&quot;;
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;modele de procedure&quot;;
-
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = &quot;modeles de procedure&quot;;
+  /**
+   * Ordre.
+   */
+  @JsonbProperty(JSON_ORDER)
+  private Integer order;
+  /**
+   * Représentation en chaine de caractères d'ordre.
+   */
+  @JsonbProperty(JSON_ORDER_AS_STRING)
+  private String orderAsString;
+  /**
+   * Date.
+   */
+  @JsonbProperty(JSON_DATE)
+  private Date date;
+  /**
+   * Représentation en chaine de caractères de date.
+   */
+  @JsonbProperty(JSON_DATE_AS_STRING)
+  private String dateAsString;
+  /**
+   * Observation.
+   */
+  @JsonbProperty(JSON_OBSERVATION)
+  private String observation;
+  /**
+   * Représentation en chaine de caractères d'observation.
+   */
+  @JsonbProperty(JSON_OBSERVATION_AS_STRING)
+  private String observationAsString;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
