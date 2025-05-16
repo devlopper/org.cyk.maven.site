@@ -123,9 +123,15 @@ import lombok.Setter;
   /**
    * {@link EmployeeDto} est fonctionnaire.
    */
-  @JsonbProperty(JSON_EMPLOYEE_IS_FUNCTIONARY)
-  Boolean employeeIsFunctionary;
+  @JsonbProperty(JSON_IS_FUNCTIONARY)
+  Boolean isFunctionary;
 
+  /**
+   * Représentation en chaine de caractères {@link EmployeeDto} est fonctionnaire.
+   */
+  @JsonbProperty(JSON_IS_FUNCTIONARY_AS_STRING)
+  String isFunctionaryAsString;
+  
   /**
    * Identifiant fonctionnaire.
    */
@@ -161,12 +167,6 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EMPLOYEE_GRADE_AS_STRING)
   String employeeGradeAsString;
-
-  /**
-   * Représentation en chaine de caractères {@link EmployeeDto} est fonctionnaire.
-   */
-  @JsonbProperty(JSON_EMPLOYEE_IS_FUNCTIONARY_AS_STRING)
-  String employeeIsFunctionaryAsString;
 
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   String amountAsString;
@@ -321,20 +321,20 @@ import lombok.Setter;
   public static final String JSON_EMPLOYEE_GRADE_AS_STRING = &quot;gradeChaine&quot;;
 
   /**
-   * Identifiant json {@link #employeeIsFunctionary}.
+   * Identifiant json {@link #isFunctionary}.
    */
-  public static final String JSON_EMPLOYEE_IS_FUNCTIONARY = &quot;estFonctionnaire&quot;;
+  public static final String JSON_IS_FUNCTIONARY = &quot;estFonctionnaire&quot;;
 
+  /**
+   * Identifiant json {@link #isFunctionaryAsString}.
+   */
+  public static final String JSON_IS_FUNCTIONARY_AS_STRING = &quot;estFonctionnaireChaine&quot;;
+  
   /**
    * Identifiant json {@link #functionaryIdentifier}.
    */
   public static final String JSON_FUNCTIONARY_IDENTIFIER = &quot;idFonctionnaire&quot;;
   
-  /**
-   * Identifiant json {@link #employeeIsFunctionaryAsString}.
-   */
-  public static final String JSON_EMPLOYEE_IS_FUNCTIONARY_AS_STRING = &quot;estFonctionnaireChaine&quot;;
-
   /**
    * Nom pour lecture humaine de la classe.
    */
