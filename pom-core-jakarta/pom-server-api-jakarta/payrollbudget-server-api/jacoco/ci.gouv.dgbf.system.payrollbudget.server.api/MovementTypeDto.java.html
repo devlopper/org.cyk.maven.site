@@ -18,17 +18,17 @@ import lombok.Setter;
 <span class="fc" id="L18">public class MovementTypeDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
-   * {@link #EmployeeStatus}.
+   * {@link #AdministrativeUnitEmployeeStatus}.
    */
-  @JsonbProperty(JSON_EMPLOYEE_STATUS)
-  private AdministrativeUnitEmployeeStatus employeeStatus;
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS)
+  private AdministrativeUnitEmployeeStatus administrativeUnitEmployeeStatus;
 
   /**
    * Représentation en chaine de caractères de {@link #EmployeeStatus}.
    */
-  @JsonbProperty(JSON_EMPLOYEE_STATUS_AS_STRING)
-  private String employeeStatusAsString;
-  
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS_AS_STRING)
+  private String administrativeUnitEmployeeStatusAsString;
+
   /**
    * Identifiant json de identifiant de {@link MovementTypeDto}.
    */
@@ -40,15 +40,17 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;typeMouvementChaine&quot;;
 
   /**
-   * Identifiant json de {@link #employeeStatus}.
+   * Identifiant json de {@link #administrativeUnitEmployeeStatus}.
    */
-  public static final String JSON_EMPLOYEE_STATUS = &quot;statutEmploye&quot;;
+  public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS =
+      &quot;statutEmployeUniteAdministrative&quot;;
 
   /**
-   * Identifiant json de {@link #employeeStatusAsString}.
+   * Identifiant json de {@link #administrativeUnitEmployeeStatusAsString}.
    */
-  public static final String JSON_EMPLOYEE_STATUS_AS_STRING = &quot;statutEmployeChaine&quot;;
-  
+  public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS_AS_STRING =
+      &quot;statutEmployeUniteAdministrativeChaine&quot;;
+
   /**
    * Nom pour lecture humaine de la classe.
    */
