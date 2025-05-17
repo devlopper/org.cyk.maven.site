@@ -21,7 +21,8 @@ import lombok.Setter;
 public class AdministrativeUnitEmployeeFilter extends AbstractIdentifiableFilter
     implements FilterHasBudgetAdministrativeUnitIdentifier, FilterHasEmployeeIdentifier,
     FilterHasCategoryIdentifier, FilterHasGradeIdentifier,
-    FilterHasAdministrativeUnitEmployeeStatusCode, FilterHasAdministrativeUnitEmployeeStatusCodes {
+    FilterHasAdministrativeUnitEmployeeStatusCode, FilterHasAdministrativeUnitEmployeeStatusCodes,
+    FilterHasAdministrativeUnitHasPresenceMovement {
 
   String budgetAdministrativeUnitIdentifier;
   String employeeIdentifier;
@@ -29,42 +30,45 @@ public class AdministrativeUnitEmployeeFilter extends AbstractIdentifiableFilter
   String gradeIdentifier;
   String administrativeUnitEmployeeStatusCode;
   Set&lt;String&gt; administrativeUnitEmployeeStatusCodes;
-
+  Boolean isAdministrativeUnitEmployeeHasPresenceMovement;
+  
   /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public AdministrativeUnitEmployeeFilter(FilterDto dto) {
-<span class="fc" id="L39">    super(dto);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L41">    super(dto);</span>
+<span class="fc" id="L42">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L45">  public AdministrativeUnitEmployeeFilter() {}</span>
+<span class="fc" id="L47">  public AdministrativeUnitEmployeeFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L49">    super.doInitialize(filter);</span>
-<span class="fc" id="L50">    updateBudgetAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L51">    updateEmployeeIdentifier(filter);</span>
-<span class="fc" id="L52">    updateCategoryIdentifier(filter);</span>
-<span class="fc" id="L53">    updateGradeIdentifier(filter);</span>
-<span class="fc" id="L54">    updateAdministrativeUnitEmployeeStatusCode(filter);</span>
-<span class="fc" id="L55">    updateAdministrativeUnitEmployeeStatusCodes(filter);</span>
-<span class="fc" id="L56">  }</span>
+<span class="fc" id="L51">    super.doInitialize(filter);</span>
+<span class="fc" id="L52">    updateBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L53">    updateEmployeeIdentifier(filter);</span>
+<span class="fc" id="L54">    updateCategoryIdentifier(filter);</span>
+<span class="fc" id="L55">    updateGradeIdentifier(filter);</span>
+<span class="fc" id="L56">    updateAdministrativeUnitEmployeeStatusCode(filter);</span>
+<span class="fc" id="L57">    updateAdministrativeUnitEmployeeStatusCodes(filter);</span>
+<span class="fc" id="L58">    updateAdministrativeUnitEmployeeHasPresenceMovement(filter);</span>
+<span class="fc" id="L59">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L60">    super.toDto(filter);</span>
-<span class="fc" id="L61">    updateFilterBudgetAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L62">    updateFilterEmployeeIdentifier(filter);</span>
-<span class="fc" id="L63">    updateFilterCategoryIdentifier(filter);</span>
-<span class="fc" id="L64">    updateFilterGradeIdentifier(filter);</span>
-<span class="fc" id="L65">    updateFilterAdministrativeUnitEmployeeStatusCode(filter);</span>
-<span class="fc" id="L66">    updateFilterAdministrativeUnitEmployeeStatusCodes(filter);</span>
-<span class="fc" id="L67">  }</span>
+<span class="fc" id="L63">    super.toDto(filter);</span>
+<span class="fc" id="L64">    updateFilterBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L65">    updateFilterEmployeeIdentifier(filter);</span>
+<span class="fc" id="L66">    updateFilterCategoryIdentifier(filter);</span>
+<span class="fc" id="L67">    updateFilterGradeIdentifier(filter);</span>
+<span class="fc" id="L68">    updateFilterAdministrativeUnitEmployeeStatusCode(filter);</span>
+<span class="fc" id="L69">    updateFilterAdministrativeUnitEmployeeStatusCodes(filter);</span>
+<span class="fc" id="L70">    updateFilterAdministrativeUnitEmployeeHasPresenceMovement(filter);</span>
+<span class="fc" id="L71">  }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

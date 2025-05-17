@@ -83,19 +83,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_JOB_IDENTIFIER)
   String jobIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de l'emploi.
    */
   @JsonbProperty(JSON_JOB_AS_STRING)
   String jobAsString;
-  
+
   /**
    * Identifiant de l'indice de paie.
    */
   @JsonbProperty(JSON_PAY_INDEX_IDENTIFIER)
   String payIndexIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de l'indice de paie.
    */
@@ -107,13 +107,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
   String functionIdentifier;
-  
+
   /**
    * Représentation en chaine de caractères de la fonction.
    */
   @JsonbProperty(JSON_FUNCTION_AS_STRING)
   String functionAsString;
-  
+
   /**
    * Identifiant {@link MovementTypeDto}.
    */
@@ -131,13 +131,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_IS_FUNCTIONARY_AS_STRING)
   String isFunctionaryAsString;
-  
+
   /**
    * Identifiant fonctionnaire.
    */
   @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
   String functionaryIdentifier;
-  
+
   /**
    * {@link AdministrativeUnitEmployeeStatus}.
    */
@@ -182,7 +182,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_OUTGOING_CANCELABLE)
   Boolean outgoingCancelable;
+
+  /**
+   * Nombre de mouvement de présence.
+   */
+  @JsonbProperty(JSON_PRESENCE_MOVEMENT_COUNT)
+  Integer presenceMovementCount;
   
+  /**
+   * Représentation en chaine de caractères du nombre de mouvement de présence.
+   */
+  @JsonbProperty(JSON_PRESENCE_MOVEMENT_COUNT_AS_STRING)
+  String presenceMovementCountAsString;
+
   /**
    * Identifiant json de identifiant de {@link AdministrativeUnitEmployeeDto}.
    */
@@ -252,7 +264,7 @@ import lombok.Setter;
    * Identifiant json {@link #outgoingable}.
    */
   public static final String JSON_OUTGOINGABLE = &quot;sortable&quot;;
-  
+
   /**
    * Identifiant json {@link #outgoingCancelable}.
    */
@@ -272,32 +284,32 @@ import lombok.Setter;
    * Identifiant json {@link #jobAsString}.
    */
   public static final String JSON_JOB_AS_STRING = &quot;emploiChaine&quot;;
-  
+
   /**
    * Identifiant json {@link #payIndexIdentifier}.
    */
   public static final String JSON_PAY_INDEX_IDENTIFIER = &quot;idIndicePaie&quot;;
-  
+
   /**
    * Identifiant json {@link #payIndexAsString}.
    */
   public static final String JSON_PAY_INDEX_AS_STRING = &quot;indicePaieChaine&quot;;
-  
+
   /**
    * Identifiant json {@link #functionIdentifier}.
    */
   public static final String JSON_FUNCTION_IDENTIFIER = &quot;idFonction&quot;;
-  
+
   /**
    * Identifiant json {@link #functionAsString}.
    */
   public static final String JSON_FUNCTION_AS_STRING = &quot;fonctionChaine&quot;;
-  
+
   /**
    * Identifiant json {@link #status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
-  
+
   /**
    * Identifiant json {@link #categoryIdentifier}.
    */
@@ -329,12 +341,24 @@ import lombok.Setter;
    * Identifiant json {@link #isFunctionaryAsString}.
    */
   public static final String JSON_IS_FUNCTIONARY_AS_STRING = &quot;estFonctionnaireChaine&quot;;
-  
+
   /**
    * Identifiant json {@link #functionaryIdentifier}.
    */
   public static final String JSON_FUNCTIONARY_IDENTIFIER = &quot;idFonctionnaire&quot;;
+
+  /**
+   * Identifiant json {@link #presenceMovementCount}.
+   */
+  public static final String JSON_PRESENCE_MOVEMENT_COUNT =
+      &quot;compteMouvementPresence&quot;;
   
+  /**
+   * Identifiant json {@link #presenceMovementCountAsString}.
+   */
+  public static final String JSON_PRESENCE_MOVEMENT_COUNT_AS_STRING =
+      &quot;compteMouvementPresenceChaine&quot;;
+
   /**
    * Nom pour lecture humaine de la classe.
    */
