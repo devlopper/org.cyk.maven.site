@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -163,7 +164,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L166">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L167">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayrollSaveRequestDto {
     /**
      * {@link PayrollDto#getPeriodGroupIdentifier()}.
@@ -222,7 +223,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L225">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
+<span class="fc" id="L226">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayrollDto&gt; datas;
@@ -311,7 +312,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L314">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto implements PayrollSaveRequestDto {</span>
+<span class="fc" id="L315">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto implements PayrollSaveRequestDto {</span>
     /**
      * {@link PayrollDto#getPeriodGroupIdentifier()}.
      */
@@ -379,7 +380,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L382">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L383">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link PayrollDto#getStatus()}.
@@ -429,16 +430,16 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="fc" id="L432">      this.status = status;</span>
-<span class="fc" id="L433">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L434">      transmittableForControl = </span>
-<span class="fc" id="L435">            PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L436">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L437">      transmittableForArbitration = PayrollStatus.TRANSMITTED_FOR_ARBITRATION</span>
-<span class="fc" id="L438">                                  .getPrevious().contains(status);</span>
-<span class="fc" id="L439">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L440">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L441">    }</span>
+<span class="fc" id="L433">      this.status = status;</span>
+<span class="fc" id="L434">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L435">      transmittableForControl = </span>
+<span class="fc" id="L436">            PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L437">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L438">      transmittableForArbitration = PayrollStatus.TRANSMITTED_FOR_ARBITRATION</span>
+<span class="fc" id="L439">                                  .getPrevious().contains(status);</span>
+<span class="fc" id="L440">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L441">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L442">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.
@@ -601,82 +602,7 @@ public interface PayrollService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = CONTROL_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = ByIdentifierRequestDto.class))})
   Response control(ByIdentifierRequestDto request);
-  
-  /**
-   * Identifiant du service d'acceptation d'une paie.
-   */
-  String ACCEPT_IDENTIFIER = &quot;ACCEPTATION_PAIE&quot;;
-
-  /**
-   * Chemin du service d'acceptation d'une paie.
-   */
-  String ACCEPT_PATH = &quot;acceptation-paie&quot;;
-
-  /**
-   * Cette méthode permet d'accepter une paie {@link PayrollDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(ACCEPT_PATH)
-  @PUT
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = ACCEPT_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response accept(ByIdentifierRequestDto request);
-  
-  /**
-   * Identifiant du service de recalcul paie.
-   */
-  String RECALCULATE_IDENTIFIER = &quot;RECALCUL_PAIE&quot;;
-
-  /**
-   * Chemin du service de acceptation paie.
-   */
-  String RECALCULATE_PATH = &quot;recalcul-paie&quot;;
-
-  /**
-   * Cette méthode permet de recalculer une paie {@link PayrollDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(RECALCULATE_PATH)
-  @PUT
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = RECALCULATE_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response recalculate(ByIdentifierRequestDto request);
-  
-  /**
-   * Identifiant du service de validation paie.
-   */
-  String VALIDATE_IDENTIFIER = &quot;VALIDATION_PAIE&quot;;
-
-  /**
-   * Chemin du service de validation paie.
-   */
-  String VALIDATE_PATH = &quot;validation-paie&quot;;
-
-  /**
-   * Cette méthode permet de valider une paie {@link PayrollDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(VALIDATE_PATH)
-  @PUT
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = VALIDATE_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response validate(ByIdentifierRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

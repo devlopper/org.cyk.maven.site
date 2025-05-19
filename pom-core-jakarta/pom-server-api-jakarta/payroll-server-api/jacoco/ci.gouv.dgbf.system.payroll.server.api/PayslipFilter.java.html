@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayslipFilter.java</span></div><h1>PayslipFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.Core;
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import java.util.LinkedHashSet;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -45,41 +48,48 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
   private Integer grossAmountVariation;
 
   /**
+   * Est recalculable.
+   */
+  private Boolean isRecalculable;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public PayslipFilter(FilterDto dto) {
-<span class="fc" id="L53">    super(dto);</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L61">    super(dto);</span>
+<span class="fc" id="L62">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L59">  public PayslipFilter() {}</span>
+<span class="fc" id="L67">  public PayslipFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L63">    super.doInitialize(filter);</span>
-<span class="fc" id="L64">    payrollIdentifier = getPayrollIdentifier(filter);</span>
-<span class="fc" id="L65">    registrationNumber = getRegistrationNumber(filter);</span>
-<span class="fc" id="L66">    functionaryBudgetarySectionUnitIdentifier = </span>
-<span class="fc" id="L67">        getFunctionaryBudgetarySectionUnitIdentifier(filter);</span>
-<span class="fc" id="L68">    isToBeControlledInPriority = getIsToBeControlledInPriority(filter);</span>
-<span class="fc" id="L69">    statusCode = getStatusCode(filter);</span>
-<span class="fc" id="L70">    grossAmountVariation = getGrossAmountVariation(filter);</span>
-<span class="fc" id="L71">  }</span>
+<span class="fc" id="L71">    super.doInitialize(filter);</span>
+<span class="fc" id="L72">    payrollIdentifier = getPayrollIdentifier(filter);</span>
+<span class="fc" id="L73">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L74">    functionaryBudgetarySectionUnitIdentifier = </span>
+<span class="fc" id="L75">        getFunctionaryBudgetarySectionUnitIdentifier(filter);</span>
+<span class="fc" id="L76">    isToBeControlledInPriority = getIsToBeControlledInPriority(filter);</span>
+<span class="fc" id="L77">    statusCode = getStatusCode(filter);</span>
+<span class="fc" id="L78">    grossAmountVariation = getGrossAmountVariation(filter);</span>
+<span class="fc" id="L79">    isRecalculable = getIsRecalculable(filter);</span>
+<span class="fc" id="L80">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L75">    super.toDto(filter);</span>
-<span class="fc" id="L76">    setPayrollIdentifier(filter, payrollIdentifier);</span>
-<span class="fc" id="L77">    setRegistrationNumber(filter, registrationNumber);</span>
-<span class="fc" id="L78">    setFunctionaryBudgetarySectionUnitIdentifier(filter, functionaryBudgetarySectionUnitIdentifier);</span>
-<span class="fc" id="L79">    setIsToBeControlledInPriority(filter, isToBeControlledInPriority);</span>
-<span class="fc" id="L80">    setStatusCode(filter, statusCode);</span>
-<span class="fc" id="L81">    setGrossAmountVariation(filter, grossAmountVariation);</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L84">    super.toDto(filter);</span>
+<span class="fc" id="L85">    setPayrollIdentifier(filter, payrollIdentifier);</span>
+<span class="fc" id="L86">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L87">    setFunctionaryBudgetarySectionUnitIdentifier(filter, functionaryBudgetarySectionUnitIdentifier);</span>
+<span class="fc" id="L88">    setIsToBeControlledInPriority(filter, isToBeControlledInPriority);</span>
+<span class="fc" id="L89">    setStatusCode(filter, statusCode);</span>
+<span class="fc" id="L90">    setGrossAmountVariation(filter, grossAmountVariation);</span>
+<span class="fc" id="L91">    setIsRecalculable(filter, isRecalculable);</span>
+<span class="fc" id="L92">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link PayrollDto}.
@@ -88,9 +98,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setPayrollIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L91">    set(filter, JSON_PAYROLL_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L92">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L93">  }</span>
+<span class="pc" id="L101">    set(filter, JSON_PAYROLL_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L102">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L103">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link PayrollDto}.
@@ -99,7 +109,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link PayrollDto}
    */
   public static String getPayrollIdentifier(FilterDto filter) {
-<span class="fc" id="L102">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_IDENTIFIER));</span>
+<span class="fc" id="L112">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_IDENTIFIER));</span>
   }
   
   /**
@@ -110,9 +120,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    */
   public static void setFunctionaryBudgetarySectionUnitIdentifier(FilterDto filter, 
       String identifier) {
-<span class="pc" id="L113">    set(filter, JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L114">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L115">  }</span>
+<span class="pc" id="L123">    set(filter, JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L124">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L125">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
@@ -121,8 +131,8 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link FunctionaryBudgetarySectionUnitDto}
    */
   public static String getFunctionaryBudgetarySectionUnitIdentifier(FilterDto filter) {
-<span class="fc" id="L124">    return get(filter, d -&gt; d</span>
-<span class="fc" id="L125">        .getFieldValueAsStringByName(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER));</span>
+<span class="fc" id="L134">    return get(filter, d -&gt; d</span>
+<span class="fc" id="L135">        .getFieldValueAsStringByName(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER));</span>
   }
 
   /**
@@ -132,9 +142,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param registrationNumber matricule
    */
   public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
-<span class="pc" id="L135">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L136">        f -&gt; f.setValueAsString(registrationNumber));</span>
-<span class="fc" id="L137">  }</span>
+<span class="pc" id="L145">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L146">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="fc" id="L147">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le matricule.
@@ -143,7 +153,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return matricule
    */
   public static String getRegistrationNumber(FilterDto filter) {
-<span class="fc" id="L146">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+<span class="fc" id="L156">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
   }
 
   /**
@@ -154,9 +164,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    */
   public static void setIsToBeControlledInPriority(FilterDto filter,
       Boolean isToBeControlledInPriority) {
-<span class="pc" id="L157">    set(filter, JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY, f -&gt; f.getValueAsBoolean(),</span>
-<span class="fc" id="L158">        f -&gt; f.setValueAsBoolean(isToBeControlledInPriority));</span>
-<span class="fc" id="L159">  }</span>
+<span class="pc" id="L167">    set(filter, JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY, f -&gt; f.getValueAsBoolean(),</span>
+<span class="fc" id="L168">        f -&gt; f.setValueAsBoolean(isToBeControlledInPriority));</span>
+<span class="fc" id="L169">  }</span>
 
   /**
    * Cette méthode permet d'obtenir est à controler prioritairement.
@@ -165,7 +175,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return est à controler prioritairement
    */
   public static Boolean getIsToBeControlledInPriority(FilterDto filter) {
-<span class="fc" id="L168">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY));</span>
+<span class="fc" id="L178">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY));</span>
   }
 
   /**
@@ -175,9 +185,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param statusCode code du statut
    */
   public static void setStatusCode(FilterDto filter, String statusCode) {
-<span class="pc" id="L178">    set(filter, JSON_STATUS_CODE, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L179">        f -&gt; f.setValueAsString(statusCode));</span>
-<span class="fc" id="L180">  }</span>
+<span class="pc" id="L188">    set(filter, JSON_STATUS_CODE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L189">        f -&gt; f.setValueAsString(statusCode));</span>
+<span class="fc" id="L190">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le code statut.
@@ -186,7 +196,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return code du statut
    */
   public static String getStatusCode(FilterDto filter) {
-<span class="fc" id="L189">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_STATUS_CODE));</span>
+<span class="fc" id="L199">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_STATUS_CODE));</span>
   }
 
   /**
@@ -196,9 +206,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @param grossAmountVariation variation montant brut
    */
   public static void setGrossAmountVariation(FilterDto filter, Integer grossAmountVariation) {
-<span class="pc" id="L199">    set(filter, JSON_GROSS_AMOUNT_VARIATION, f -&gt; f.getValueAsInteger(),</span>
-<span class="fc" id="L200">        f -&gt; f.setValueAsInteger(grossAmountVariation));</span>
-<span class="fc" id="L201">  }</span>
+<span class="pc" id="L209">    set(filter, JSON_GROSS_AMOUNT_VARIATION, f -&gt; f.getValueAsInteger(),</span>
+<span class="fc" id="L210">        f -&gt; f.setValueAsInteger(grossAmountVariation));</span>
+<span class="fc" id="L211">  }</span>
 
   /**
    * Cette méthode permet d'obtenir la variation montant brut.
@@ -207,8 +217,30 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * @return variation montant brut
    */
   public static Integer getGrossAmountVariation(FilterDto filter) {
-<span class="fc" id="L210">    return get(filter, d -&gt; d.getFieldValueAsIntegerByName(JSON_GROSS_AMOUNT_VARIATION));</span>
+<span class="fc" id="L220">    return get(filter, d -&gt; d.getFieldValueAsIntegerByName(JSON_GROSS_AMOUNT_VARIATION));</span>
   }
+
+  /**
+   * Cette méthode permet d'assigner est récalculable.
+   *
+   * @param filter filtre
+   * @param isRecalculable est recalculable
+   */
+  public static void setIsRecalculable(FilterDto filter, Boolean isRecalculable) {
+<span class="pc" id="L230">    set(filter, JSON_IS_RECALCULABLE, f -&gt; f.getValueAsBoolean(),</span>
+<span class="fc" id="L231">        f -&gt; f.setValueAsBoolean(isRecalculable));</span>
+<span class="fc" id="L232">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir est recalculable.
+   *
+   * @param filter filtre
+   * @return est recalculable
+   */
+  public static Boolean getIsRecalculable(FilterDto filter) {
+<span class="fc" id="L241">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_RECALCULABLE));</span>
+  }
+
 
   /**
    * Identifiant json champ {@link PayslipFilter#payrollIdentifier}.
@@ -242,6 +274,12 @@ public class PayslipFilter extends AbstractIdentifiableFilter {
    * Identifiant json champ {@link PayslipFilter#grossAmountVariation}.
    */
   public static final String JSON_GROSS_AMOUNT_VARIATION = PayslipDto.JSON_GROSS_AMOUNT_VARIATION;
+
+  /**
+   * Identifiant JSON {@link #isRecalculable}.
+   */
+  public static final String JSON_IS_RECALCULABLE = PayslipDto.JSON_IS_RECALCULABLE;
+
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
