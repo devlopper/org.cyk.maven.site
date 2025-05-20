@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdministrativeUnitEmployeeFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">AdministrativeUnitEmployeeFilter.java</span></div><h1>AdministrativeUnitEmployeeFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
+import ci.gouv.dgbf.extension.core.CollectionCore;
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasAdministrativeUnitIdentifier;
@@ -30,7 +31,7 @@ public class AdministrativeUnitEmployeeFilter extends AbstractIdentifiableFilter
   String budgetIdentifier;
   String administrativeUnitIdentifier;
   String employeeIdentifier;
-  
+
   String budgetAdministrativeUnitIdentifier;
   String categoryIdentifier;
   String gradeIdentifier;
@@ -44,43 +45,56 @@ public class AdministrativeUnitEmployeeFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public AdministrativeUnitEmployeeFilter(FilterDto dto) {
-<span class="fc" id="L47">    super(dto);</span>
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L48">    super(dto);</span>
+<span class="fc" id="L49">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L53">  public AdministrativeUnitEmployeeFilter() {}</span>
+<span class="fc" id="L54">  public AdministrativeUnitEmployeeFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L57">    super.doInitialize(filter);</span>
-<span class="fc" id="L58">    updateBudgetIdentifier(filter);</span>
-<span class="fc" id="L59">    updateAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L60">    updateEmployeeIdentifier(filter);</span>
-    
-<span class="fc" id="L62">    updateBudgetAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L63">    updateCategoryIdentifier(filter);</span>
-<span class="fc" id="L64">    updateGradeIdentifier(filter);</span>
-<span class="fc" id="L65">    updateAdministrativeUnitEmployeeStatusCode(filter);</span>
-<span class="fc" id="L66">    updateAdministrativeUnitEmployeeStatusCodes(filter);</span>
-<span class="fc" id="L67">    updateAdministrativeUnitEmployeeHasPresenceMovement(filter);</span>
-<span class="fc" id="L68">  }</span>
+<span class="fc" id="L58">    super.doInitialize(filter);</span>
+<span class="fc" id="L59">    updateBudgetIdentifier(filter);</span>
+<span class="fc" id="L60">    updateAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L61">    updateEmployeeIdentifier(filter);</span>
+
+<span class="fc" id="L63">    updateBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L64">    updateCategoryIdentifier(filter);</span>
+<span class="fc" id="L65">    updateGradeIdentifier(filter);</span>
+<span class="fc" id="L66">    updateAdministrativeUnitEmployeeStatusCode(filter);</span>
+<span class="fc" id="L67">    updateAdministrativeUnitEmployeeStatusCodes(filter);</span>
+<span class="fc" id="L68">    updateAdministrativeUnitEmployeeHasPresenceMovement(filter);</span>
+<span class="fc" id="L69">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L72">    super.toDto(filter);</span>
-<span class="fc" id="L73">    updateFilterBudgetIdentifier(filter);</span>
-<span class="fc" id="L74">    updateFilterAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L75">    updateFilterEmployeeIdentifier(filter);</span>
-    
-<span class="fc" id="L77">    updateFilterBudgetAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L78">    updateFilterCategoryIdentifier(filter);</span>
-<span class="fc" id="L79">    updateFilterGradeIdentifier(filter);</span>
-<span class="fc" id="L80">    updateFilterAdministrativeUnitEmployeeStatusCode(filter);</span>
-<span class="fc" id="L81">    updateFilterAdministrativeUnitEmployeeStatusCodes(filter);</span>
-<span class="fc" id="L82">    updateFilterAdministrativeUnitEmployeeHasPresenceMovement(filter);</span>
-<span class="fc" id="L83">  }</span>
-}
+<span class="fc" id="L73">    super.toDto(filter);</span>
+<span class="fc" id="L74">    updateFilterBudgetIdentifier(filter);</span>
+<span class="fc" id="L75">    updateFilterAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L76">    updateFilterEmployeeIdentifier(filter);</span>
 
+<span class="fc" id="L78">    updateFilterBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L79">    updateFilterCategoryIdentifier(filter);</span>
+<span class="fc" id="L80">    updateFilterGradeIdentifier(filter);</span>
+<span class="fc" id="L81">    updateFilterAdministrativeUnitEmployeeStatusCode(filter);</span>
+<span class="fc" id="L82">    updateFilterAdministrativeUnitEmployeeStatusCodes(filter);</span>
+<span class="fc" id="L83">    updateFilterAdministrativeUnitEmployeeHasPresenceMovement(filter);</span>
+<span class="fc" id="L84">  }</span>
+
+  /**
+   * Cette méthode permet de savoir si le filtre contient {@link AdministrativeUnitEmployeeStatus}
+   * donné.
+   *
+   * @param administrativeUnitEmployeeStatus {@link AdministrativeUnitEmployeeStatus}
+   * @return vrai si le filtre contient {@link AdministrativeUnitEmployeeStatus} donné
+   */
+  public boolean hasAdministrativeUnitEmployeeStatus(
+      AdministrativeUnitEmployeeStatus administrativeUnitEmployeeStatus) {
+<span class="fc bfc" id="L95" title="All 2 branches covered.">    return administrativeUnitEmployeeStatus.getCode().equals(administrativeUnitEmployeeStatusCode)</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        || CollectionCore.contains(administrativeUnitEmployeeStatusCodes,</span>
+<span class="fc" id="L97">            administrativeUnitEmployeeStatus.getCode());</span>
+  }
+}
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
