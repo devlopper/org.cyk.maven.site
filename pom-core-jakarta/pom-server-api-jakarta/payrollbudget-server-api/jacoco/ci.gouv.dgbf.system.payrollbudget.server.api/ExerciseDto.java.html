@@ -24,11 +24,39 @@ import lombok.Setter;
   @JsonbProperty(JSON_YEAR)
   Integer year;
 
+  /**
+   * Représentation en chaine de caractères du nombre de {@link EmployeeDto}.
+   */
   @JsonbProperty(JSON_EMPLOYEE_COUNT_AS_STRING)
   String employeeCountAsString;
-  
+
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   String amountAsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link EmployeeDto}
+   * {@link AdministrativeUnitEmployeeStatus#INCOMING}.
+   */
+  @JsonbProperty(JSON_INCOMING_EMPLOYEE_COUNT_AS_STRING)
+  String incomingEmployeeCountAsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link EmployeeDto}
+   * {@link AdministrativeUnitEmployeeStatus#OUTGOING}.
+   */
+  @JsonbProperty(JSON_OUTGOING_EMPLOYEE_COUNT_AS_STRING)
+  String outgoingEmployeeCountAsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link EmployeeDto} ayant
+   * {@link MovementDto} ayant {@link MovementTypeDto} avec
+   * {@link AdministrativeUnitEmployeeStatus#PRESENT}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_CHANGE_EMPLOYEE_COUNT_AS_STRING)
+  String administrativeUnitChangeEmployeeCountAsString;
 
   /**
    * Identifiant json de identifiant de {@link ExerciseDto}.
