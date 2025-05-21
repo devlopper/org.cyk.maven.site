@@ -116,14 +116,14 @@ public interface PayrollCorrectionProposalService extends SpecificService {
      *
      * @param functionaryIdentifier identifiant du fonctionnaire
      */
-    void setFunctionaryIdentifier(String functionaryIdentifier);
+    void setFunctionaryBudgetarySectionUnitIdentifier(String functionaryIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
      *
      * @return identifiant du fonctionnaire
      */
-    String getFunctionaryIdentifier();
+    String getFunctionaryBudgetarySectionUnitIdentifier();
     
     /**
      * Cette méthode permet d'obtenir la date d'effet.
@@ -271,7 +271,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
      * {@link PayrollCorrectionProposalDto#getFunctionaryIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     
     /**
      * {@link PayrollCorrectionProposalDto#getEffectDate()}.
@@ -449,10 +449,10 @@ public interface PayrollCorrectionProposalService extends SpecificService {
     private String payrollIdentifier;
     
     /**
-     * {@link PayrollCorrectionProposalDto#getFunctionaryIdentifier()}.
+     * {@link PayrollCorrectionProposalDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     
     /**
      * {@link PayrollCorrectionProposalDto#getEffectDate()}.
