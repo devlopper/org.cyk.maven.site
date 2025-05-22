@@ -248,6 +248,17 @@ import lombok.experimental.Accessors;
   }
 
   /**
+   * {@link PayrollService#transmitForArbitration}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto transmitForArbitration(ByIdentifierRequestDto request) {
+<span class="fc" id="L257">    return new ProcessExecutor(PayrollService.TRANSMIT_FOR_ARBITRATION_IDENTIFIER)</span>
+<span class="fc" id="L258">        .execute(() -&gt; service().transmitForArbitration(request));</span>
+  }
+
+  /**
    * Cette classe représente un exécuteur de {@link PayrollDto}.
    *
    * @author Christian
@@ -260,9 +271,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L263">    public ProcessExecutor(String identifier) {</span>
-<span class="fc" id="L264">      super(ProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L265">    }</span>
+<span class="fc" id="L274">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L275">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L276">    }</span>
 
   }
 }
