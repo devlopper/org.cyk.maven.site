@@ -29,7 +29,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
   private String exerciseAsString;
-  
+
   /**
    * Identifiant {@link BudgetDto}.
    */
@@ -41,7 +41,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_BUDGET_AS_STRING)
   private String budgetAsString;
-  
+
   /**
    * Identifiant {@link BudgetAdministrativeUnitDto}.
    */
@@ -49,11 +49,11 @@ import lombok.Setter;
   private String budgetAdministrativeUnitIdentifier;
 
   /**
-   * Représentation en chaine de caractères de {@link AdministrativeUnitDto}.
+   * Représentation en chaine de caractères de unité administrative.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
   private String administrativeUnitAsString;
-  
+
   /**
    * Identifiant {@link AdministrativeUnitEmployeeDto}.
    */
@@ -67,11 +67,11 @@ import lombok.Setter;
   private String administrativeUnitEmployeeAsString;
 
   /**
-   * Représentation en chaine de caractères de {@link EmployeeDto}.
+   * Représentation en chaine de caractères de employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_AS_STRING)
   private String employeeAsString;
-  
+
   /**
    * Identifiant {@link MovementTypeDto}.
    */
@@ -95,13 +95,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EFFECTIVE_DATE_AS_STRING)
   private String effectiveDateAsString;
-  
+
   /**
    * Représentation en chaine de caractères de l'ensemble de {@link PositionField}.
    */
   @JsonbProperty(JSON_POSITION_FIELDS_AS_STRING)
   private String positionFieldsAsString;
-  
+
   /**
    * Identifiant json de identifiant de {@link MovementDto}.
    */
@@ -131,19 +131,19 @@ import lombok.Setter;
    * Identifiant json {@link #budgetAsString}.
    */
   public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
-  
+
   /**
    * Identifiant json {@link #budgetAdministrativeUnitIdentifier}.
    */
   public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_IDENTIFIER =
       BudgetAdministrativeUnitDto.JSON_THIS_IDENTIFIER;
-  
+
   /**
    * Identifiant json {@link #administrativeUnitAsString}.
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING =
-      AdministrativeUnitDto.JSON_THIS_AS_STRING;
-  
+      BudgetAdministrativeUnitDto.JSON_ADMINISTRATIVE_UNIT_AS_STRING;
+
   /**
    * Identifiant json de {@link #administrativeUnitEmployeeIdentifier}.
    */
@@ -159,8 +159,9 @@ import lombok.Setter;
   /**
    * Identifiant json {@link #employeeAsString}.
    */
-  public static final String JSON_EMPLOYEE_AS_STRING = EmployeeDto.JSON_THIS_AS_STRING;
-  
+  public static final String JSON_EMPLOYEE_AS_STRING =
+      AdministrativeUnitEmployeeDto.JSON_EMPLOYEE_AS_STRING;
+
   /**
    * Identifiant json de {@link #typeIdentifier}.
    */
@@ -180,12 +181,12 @@ import lombok.Setter;
    * Identifiant json de {@link #effectiveDateAsString}.
    */
   public static final String JSON_EFFECTIVE_DATE_AS_STRING = &quot;dateEffetChaine&quot;;
-  
+
   /**
    * Identifiant json de {@link #positionFieldsAsString}.
    */
   public static final String JSON_POSITION_FIELDS_AS_STRING = &quot;champsPositionChaine&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */

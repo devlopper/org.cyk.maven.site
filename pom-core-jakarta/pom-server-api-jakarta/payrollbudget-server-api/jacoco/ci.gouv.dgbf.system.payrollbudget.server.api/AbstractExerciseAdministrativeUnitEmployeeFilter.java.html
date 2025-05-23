@@ -5,8 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente la base de filtre par {@link ExerciseDto}, {@link AdministrativeUnitDto}
- * et {@link EmployeeDto}.
+ * Cette classe représente la base de filtre par {@link ExerciseDto}, unité administrative
+ * et employé.
  *
  * @author Christian
  *
@@ -17,7 +17,7 @@ public abstract class AbstractExerciseAdministrativeUnitEmployeeFilter
     extends AbstractExerciseAdministrativeUnitFilter {
 
   /**
-   * Identifiant {@link EmployeeDto}.
+   * Identifiant employé.
    */
   String employeeIdentifier;
 
@@ -48,20 +48,20 @@ public abstract class AbstractExerciseAdministrativeUnitEmployeeFilter
 <span class="fc" id="L48">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant de {@link EmployeeDto}.
+   * Cette méthode permet d'obtenir l'identifiant de employé.
    *
    * @param filter filtre
-   * @return identifiant de {@link EmployeeDto}
+   * @return identifiant de employé
    */
   public static String getEmployeeIdentifier(FilterDto filter) {
 <span class="fc" id="L57">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMPLOYEE_IDENTIFIER));</span>
   }
 
   /**
-   * Cette méthode permet d'assigner l'identifiant de {@link EmployeeDto}.
+   * Cette méthode permet d'assigner l'identifiant de employé.
    *
    * @param filter filtre
-   * @param identifier identifiant de l'identifiant de {@link EmployeeDto}
+   * @param identifier identifiant de l'identifiant de employé
    */
   public static void setEmployeeIdentifier(FilterDto filter, String identifier) {
 <span class="pc" id="L67">    set(filter, JSON_EMPLOYEE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
@@ -71,7 +71,7 @@ public abstract class AbstractExerciseAdministrativeUnitEmployeeFilter
   /**
    * Identifiant json {@link #employeeIdentifier}.
    */
-  public static final String JSON_EMPLOYEE_IDENTIFIER = EmployeeDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_EMPLOYEE_IDENTIFIER = &quot;idEmploye&quot;;
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

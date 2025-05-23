@@ -6,7 +6,7 @@ import lombok.Setter;
 
 /**
  * Cette classe représente la base de filtre par {@link ExerciseDto} et
- * {@link AdministrativeUnitDto}.
+ * unité administrative.
  *
  * @author Christian
  *
@@ -16,7 +16,7 @@ import lombok.Setter;
 public abstract class AbstractExerciseAdministrativeUnitFilter extends AbstractExerciseFilter {
 
   /**
-   * Identifiant {@link AdministrativeUnitDto}.
+   * Identifiant unité administrative.
    */
   String administrativeUnitIdentifier;
 
@@ -47,10 +47,10 @@ public abstract class AbstractExerciseAdministrativeUnitFilter extends AbstractE
 <span class="fc" id="L47">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant de {@link AdministrativeUnitDto}.
+   * Cette méthode permet d'obtenir l'identifiant de unité administrative.
    *
    * @param filter filtre
-   * @return identifiant {@link AdministrativeUnitDto}
+   * @return identifiant unité administrative
    */
   public static String getAdministrativeUnitIdentifier(FilterDto filter) {
 <span class="fc" id="L56">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER));</span>
@@ -60,7 +60,7 @@ public abstract class AbstractExerciseAdministrativeUnitFilter extends AbstractE
    * Cette méthode permet d'assigner l'identifiant de l'unité administrative.
    *
    * @param filter filtre
-   * @param identifier identifiant {@link AdministrativeUnitDto}
+   * @param identifier identifiant unité administrative
    */
   public static void setAdministrativeUnitIdentifier(FilterDto filter, String identifier) {
 <span class="pc" id="L66">    set(filter, JSON_ADMINISTRATIVE_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
@@ -70,8 +70,7 @@ public abstract class AbstractExerciseAdministrativeUnitFilter extends AbstractE
   /**
    * Identifiant json {@link #administrativeUnitIdentifier}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
-      AdministrativeUnitDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

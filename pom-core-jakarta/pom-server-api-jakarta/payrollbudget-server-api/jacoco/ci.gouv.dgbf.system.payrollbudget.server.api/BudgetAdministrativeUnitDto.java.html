@@ -38,19 +38,19 @@ import lombok.Setter;
   String budgetAsString;
 
   /**
-   * Identifiant de {@link AdministrativeUnitDto}.
+   * Identifiant de unité administrative.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
   String administrativeUnitIdentifier;
 
   /**
-   * Représentation en chaine de caractères de {@link AdministrativeUnitDto}.
+   * Représentation en chaine de caractères de unité administrative.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
   String administrativeUnitAsString;
 
   /**
-   * Représentation en chaine de caractères du nombre de {@link EmployeeDto}.
+   * Représentation en chaine de caractères du nombre de employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_COUNT_AS_STRING)
   String employeeCountAsString;
@@ -69,21 +69,21 @@ import lombok.Setter;
   String amountAsString;
 
   /**
-   * Représentation en chaine de caractères du nombre de {@link EmployeeDto}
+   * Représentation en chaine de caractères du nombre de employé
    * {@link AdministrativeUnitEmployeeStatus#INCOMING}.
    */
   @JsonbProperty(JSON_INCOMING_EMPLOYEE_COUNT_AS_STRING)
   String incomingEmployeeCountAsString;
 
   /**
-   * Représentation en chaine de caractères du nombre de {@link EmployeeDto}
+   * Représentation en chaine de caractères du nombre de employé
    * {@link AdministrativeUnitEmployeeStatus#OUTGOING}.
    */
   @JsonbProperty(JSON_OUTGOING_EMPLOYEE_COUNT_AS_STRING)
   String outgoingEmployeeCountAsString;
 
   /**
-   * Représentation en chaine de caractères du nombre de {@link EmployeeDto} ayant
+   * Représentation en chaine de caractères du nombre de employé ayant
    * {@link MovementDto} ayant {@link MovementTypeDto} avec
    * {@link AdministrativeUnitEmployeeStatus#PRESENT}.
    */
@@ -124,14 +124,12 @@ import lombok.Setter;
   /**
    * Identifiant json {@link #administrativeUnitIdentifier}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
-      AdministrativeUnitDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
 
   /**
    * Identifiant json {@link #administrativeUnitAsString}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING =
-      AdministrativeUnitDto.JSON_THIS_AS_STRING;
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

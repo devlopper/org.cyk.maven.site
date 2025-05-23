@@ -92,30 +92,30 @@ public interface JobProjectionService extends SpecificService {
     void setBudgetIdentifier(String budgetIdentifier);
     
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link AdministrativeUnitDto}.
+     * Cette méthode permet d'obtenir l'identifiant de unité administrative.
      *
-     * @return identifiant de {@link AdministrativeUnitDto}
+     * @return identifiant de unité administrative
      */
     String getAdministrativeUnitIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link AdministrativeUnitDto}.
+     * Cette méthode permet d'assigner l'identifiant de unité administrative.
      *
-     * @param administrativeUnitIdentifier identifiant de {@link AdministrativeUnitDto}       
+     * @param administrativeUnitIdentifier identifiant de unité administrative       
      */
     void setAdministrativeUnitIdentifier(String administrativeUnitIdentifier);
     
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link EmployeeDto}.
+     * Cette méthode permet d'assigner l'identifiant de emploi.
      *
-     * @param employmentIdentifier identifiant de {@link EmployeeDto}       
+     * @param employmentIdentifier identifiant de emploi       
      */
     void setJobIdentifier(String employmentIdentifier);
     
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link EmployeeDto}.
+     * Cette méthode permet d'obtenir l'identifiant de emploi.
      *
-     * @return identifiant de {@link EmployeeDto}
+     * @return identifiant de emploi
      */
     String getJobIdentifier();
     
@@ -134,7 +134,7 @@ public interface JobProjectionService extends SpecificService {
     void setAmount(Integer amount);
 
     /**
-     * Identifiant json champ identifiant de {@link AdministrativeUnitDto}.
+     * Identifiant json champ identifiant de unité administrative.
      */
     String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
         JobProjectionDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
