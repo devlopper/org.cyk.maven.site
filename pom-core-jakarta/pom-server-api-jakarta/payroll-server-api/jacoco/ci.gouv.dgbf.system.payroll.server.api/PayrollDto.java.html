@@ -23,13 +23,13 @@ import lombok.Setter;
 
 
   /**
-   * Identifiant {@link PeriodGroupDto}.
+   * Identifiant {@link PayrollPeriodGroupDto}.
    */
   @JsonbProperty(JSON_PERIOD_GROUP_IDENTIFIER)
   private String periodGroupIdentifier;
 
   /**
-   * Représentation en chaine de caractères {@link PeriodGroupDto}.
+   * Représentation en chaine de caractères {@link PayrollPeriodGroupDto}.
    */
   @JsonbProperty(JSON_PERIOD_GROUP_AS_STRING)
   private String periodGroupAsString;
@@ -290,12 +290,14 @@ import lombok.Setter;
   /**
    * Identifiant json champ {@link #periodGroupIdentifier}.
    */
-  public static final String JSON_PERIOD_GROUP_IDENTIFIER = PeriodGroupDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_PERIOD_GROUP_IDENTIFIER =
+      PayrollPeriodGroupDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json champ {@link #periodGroupAsString}.
    */
-  public static final String JSON_PERIOD_GROUP_AS_STRING = PeriodGroupDto.JSON_THIS_AS_STRING;
+  public static final String JSON_PERIOD_GROUP_AS_STRING =
+      PayrollPeriodGroupDto.JSON_THIS_AS_STRING;
   /**
    * Identifiant json champ {@link #exerciseIdentifier}.
    */

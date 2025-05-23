@@ -16,7 +16,7 @@ import lombok.Setter;
 public class PayrollFilter extends AbstractIdentifiableFilter {
 
   /**
-   * Identifiant de {@link PeriodGroupDto}.
+   * Identifiant de {@link PayrollPeriodGroupDto}.
    */
   String periodGroupIdentifier;
 
@@ -49,10 +49,10 @@ public class PayrollFilter extends AbstractIdentifiableFilter {
 
 
   /**
-   * Cette méthode permet d'assigner l'identifiant de {@link PeriodGroupDto}.
+   * Cette méthode permet d'assigner l'identifiant de {@link PayrollPeriodGroupDto}.
    *
    * @param filter     filtre
-   * @param identifier identifiant de {@link PeriodGroupDto}
+   * @param identifier identifiant de {@link PayrollPeriodGroupDto}
    */
   public static void setPeriodGroupIdentifier(FilterDto filter, String identifier) {
 <span class="pc" id="L58">    set(filter, JSON_PERIOD_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
@@ -60,10 +60,10 @@ public class PayrollFilter extends AbstractIdentifiableFilter {
 <span class="fc" id="L60">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant de {@link PeriodGroupDto}.
+   * Cette méthode permet d'obtenir l'identifiant de {@link PayrollPeriodGroupDto}.
    *
    * @param filter filtre
-   * @return identifiant de {@link PeriodGroupDto}
+   * @return identifiant de {@link PayrollPeriodGroupDto}
    */
   public static String getPeriodGroupIdentifier(FilterDto filter) {
 <span class="fc" id="L69">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PERIOD_GROUP_IDENTIFIER));</span>
@@ -74,7 +74,7 @@ public class PayrollFilter extends AbstractIdentifiableFilter {
    * Identifiant json champ {@link #periodGroupIdentifier}.
    */
   public static final String JSON_PERIOD_GROUP_IDENTIFIER =
-      PeriodGroupDto.JSON_THIS_IDENTIFIER;
+      PayrollPeriodGroupDto.JSON_THIS_IDENTIFIER;
 }
   
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
