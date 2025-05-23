@@ -12,6 +12,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Deprecated(forRemoval = true)
 public class EmployeePayrollComponentFilter
     extends AbstractExerciseAdministrativeUnitEmployeeFilter {
 
@@ -26,25 +27,25 @@ public class EmployeePayrollComponentFilter
    * @param dto filtre
    */
   public EmployeePayrollComponentFilter(FilterDto dto) {
-<span class="fc" id="L29">    super(dto);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L30">    super(dto);</span>
+<span class="fc" id="L31">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L35">  public EmployeePayrollComponentFilter() {}</span>
+<span class="fc" id="L36">  public EmployeePayrollComponentFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    payrollComponentIdentifier = getPayrollComponentIdentifier(filter);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L40">    super.doInitialize(filter);</span>
+<span class="fc" id="L41">    payrollComponentIdentifier = getPayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L42">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    setPayrollComponentIdentifier(filter, payrollComponentIdentifier);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L46">    super.toDto(filter);</span>
+<span class="fc" id="L47">    setPayrollComponentIdentifier(filter, payrollComponentIdentifier);</span>
+<span class="fc" id="L48">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link PayrollComponentDto}.
@@ -53,7 +54,7 @@ public class EmployeePayrollComponentFilter
    * @return identifiant de {@link PayrollComponentDto}
    */
   public static String getPayrollComponentIdentifier(FilterDto filter) {
-<span class="fc" id="L56">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_COMPONENT_IDENTIFIER));</span>
+<span class="fc" id="L57">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_COMPONENT_IDENTIFIER));</span>
   }
 
   /**
@@ -63,9 +64,9 @@ public class EmployeePayrollComponentFilter
    * @param identifier identifiant de l'identifiant de {@link PayrollComponentDto}
    */
   public static void setPayrollComponentIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L66">    set(filter, JSON_PAYROLL_COMPONENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L67">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L68">  }</span>
+<span class="pc" id="L67">    set(filter, JSON_PAYROLL_COMPONENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L68">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L69">  }</span>
 
   /**
    * Identifiant json {@link #payrollComponentIdentifier}.

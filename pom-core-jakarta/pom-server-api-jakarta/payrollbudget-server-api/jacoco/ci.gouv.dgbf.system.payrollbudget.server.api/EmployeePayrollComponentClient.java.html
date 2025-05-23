@@ -20,13 +20,14 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L23">public class EmployeePayrollComponentClient extends AbstractClient&lt;EmployeePayrollComponentService&gt;</span>
+@Deprecated(forRemoval = true)
+<span class="fc" id="L24">public class EmployeePayrollComponentClient extends AbstractClient&lt;EmployeePayrollComponentService&gt;</span>
     implements GetByIdentifier&lt;EmployeePayrollComponentDto&gt;,
     GetMany&lt;EmployeePayrollComponentGetManyResponseDto&gt; {
 
   @Override
   public EmployeePayrollComponentClient service(EmployeePayrollComponentService service) {
-<span class="fc" id="L29">    return (EmployeePayrollComponentClient) super.service(service);</span>
+<span class="fc" id="L30">    return (EmployeePayrollComponentClient) super.service(service);</span>
   }
 
   /**
@@ -36,10 +37,10 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public EmployeePayrollComponentGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L39">    return new GetOneExecutor&lt;EmployeePayrollComponentGetManyResponseDto&gt;(</span>
+<span class="fc" id="L40">    return new GetOneExecutor&lt;EmployeePayrollComponentGetManyResponseDto&gt;(</span>
         EmployeePayrollComponentGetManyResponseDto.class,
         EmployeePayrollComponentService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L42">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L43">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -54,13 +55,13 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public EmployeePayrollComponentGetManyResponseDto getMany(ProjectionDto projection,
       FilterDto filter, PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L57">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L58">    request.setProjection(projection);</span>
-<span class="fc" id="L59">    request.setFilter(filter);</span>
-<span class="fc" id="L60">    request.setPage(page);</span>
-<span class="fc" id="L61">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L62">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L63">    return getMany(request);</span>
+<span class="fc" id="L58">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L59">    request.setProjection(projection);</span>
+<span class="fc" id="L60">    request.setFilter(filter);</span>
+<span class="fc" id="L61">    request.setPage(page);</span>
+<span class="fc" id="L62">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L63">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L64">    return getMany(request);</span>
   }
 
   /**
@@ -70,9 +71,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public EmployeePayrollComponentDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L73">    return new GetOneExecutor&lt;EmployeePayrollComponentDto&gt;(EmployeePayrollComponentDto.class,</span>
+<span class="fc" id="L74">    return new GetOneExecutor&lt;EmployeePayrollComponentDto&gt;(EmployeePayrollComponentDto.class,</span>
         EmployeePayrollComponentService.GET_ONE_IDENTIFIER)
-<span class="fc" id="L75">            .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L76">            .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -86,12 +87,12 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public EmployeePayrollComponentDto getOne(ProjectionDto projection, FilterDto filter,
       String auditWho, String auditSession) {
-<span class="fc" id="L89">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L90">    request.setProjection(projection);</span>
-<span class="fc" id="L91">    request.setFilter(filter);</span>
-<span class="fc" id="L92">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L93">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L94">    return getOne(request);</span>
+<span class="fc" id="L90">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L91">    request.setProjection(projection);</span>
+<span class="fc" id="L92">    request.setFilter(filter);</span>
+<span class="fc" id="L93">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L94">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L95">    return getOne(request);</span>
   }
 
   /**
@@ -101,9 +102,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return groupe d'échéance
    */
   public EmployeePayrollComponentDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L104">    return new GetOneExecutor&lt;EmployeePayrollComponentDto&gt;(EmployeePayrollComponentDto.class,</span>
+<span class="fc" id="L105">    return new GetOneExecutor&lt;EmployeePayrollComponentDto&gt;(EmployeePayrollComponentDto.class,</span>
         EmployeePayrollComponentService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L106">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L107">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -118,12 +119,12 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public EmployeePayrollComponentDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L121">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L122">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L123">    request.setProjection(projection);</span>
-<span class="fc" id="L124">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L125">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L126">    return getByIdentifier(request);</span>
+<span class="fc" id="L122">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L123">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L124">    request.setProjection(projection);</span>
+<span class="fc" id="L125">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L126">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L127">    return getByIdentifier(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

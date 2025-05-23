@@ -18,6 +18,30 @@ import lombok.Setter;
 <span class="fc" id="L18">public class PayrollComponentProjectionDto extends AbstractIdentifiableAuditableDto {</span>
 
   /**
+   * Identifiant {@link AdministrativeUnitEmployeeDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+  private String administrativeUnitEmployeeIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link AdministrativeUnitEmployeeDto}.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_AS_STRING)
+  private String administrativeUnitEmployeeAsString;
+  
+  /**
+   * Identifiant {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  private String exerciseIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  private String exerciseAsString;
+
+  /**
    * Identifiant {@link BudgetDto}.
    */
   @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -30,19 +54,6 @@ import lombok.Setter;
   private String budgetAsString;
 
   /**
-   * Identifiant {@link ExerciseDto}.
-   */
-  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
-  @Deprecated(forRemoval = true)
-  private String exerciseIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de {@link ExerciseDto}.
-   */
-  @JsonbProperty(JSON_EXERCISE_AS_STRING)
-  private String exerciseAsString;
-
-  /**
    * Identifiant {@link AdministrativeUnitDto}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
@@ -53,12 +64,6 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
   private String administrativeUnitAsString;
-
-  /**
-   * Identifiant {@link AdministrativeUnitEmployeeDto}.
-   */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
-  private String administrativeUnitEmployeeIdentifier;
 
   /**
    * Identifiant {@link EmployeeDto}.
@@ -87,14 +92,26 @@ import lombok.Setter;
   /**
    * Identifiant {@link PayrollPeriodGroupDto}.
    */
-  @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
-  private String payrollPeriodIdentifier;
+  @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER)
+  private String payrollPeriodGroupIdentifier;
 
   /**
    * Représentation en chaine de caractères de {@link PayrollPeriodGroupDto}.
    */
-  @JsonbProperty(JSON_PAYROLL_PERIOD_AS_STRING)
-  private String payrollPeriodAsString;
+  @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_AS_STRING)
+  private String payrollPeriodGroupAsString;
+
+  /**
+   * Montant de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_AMOUNT)
+  private Integer referenceAmount;
+
+  /**
+   * Représentation en chaine de caractères du montant de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
+  private String referenceAmountAsString;
 
   /**
    * Montant.
@@ -121,7 +138,6 @@ import lombok.Setter;
   /**
    * Identifiant json champ {@link #exerciseIdentifier}.
    */
-  @Deprecated(forRemoval = true)
   public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
 
   /**
@@ -140,10 +156,16 @@ import lombok.Setter;
   public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
 
   /**
-   * Identifiant json {@link #administrativeUnitIdentifier}.
+   * Identifiant json {@link #administrativeUnitEmployeeIdentifier}.
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
       AdministrativeUnitEmployeeDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #administrativeUnitEmployeeAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_AS_STRING =
+      AdministrativeUnitEmployeeDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #employeeIdentifier}.
@@ -166,14 +188,24 @@ import lombok.Setter;
   public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;postePaieChaine&quot;;
 
   /**
-   * Identifiant json champ {@link #payrollPeriodIdentifier}.
+   * Identifiant json champ {@link #payrollPeriodGroupIdentifier}.
    */
-  public static final String JSON_PAYROLL_PERIOD_IDENTIFIER = &quot;idPeriodePaie&quot;;
+  public static final String JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER = &quot;idGroupePeriodePaie&quot;;
 
   /**
-   * Identifiant json champ {@link #payrollPeriodAsString}.
+   * Identifiant json champ {@link #payrollPeriodGroupAsString}.
    */
-  public static final String JSON_PAYROLL_PERIOD_AS_STRING = &quot;periodePaieChaine&quot;;
+  public static final String JSON_PAYROLL_PERIOD_GROUP_AS_STRING = &quot;groupePeriodePaieChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #referenceAmount}.
+   */
+  public static final String JSON_REFERENCE_AMOUNT = &quot;montantReference&quot;;
+
+  /**
+   * Identifiant json champ {@link #referenceAmountAsString}.
+   */
+  public static final String JSON_REFERENCE_AMOUNT_AS_STRING = &quot;montantReferenceChaine&quot;;
 
   /**
    * Identifiant json champ {@link #amount}.

@@ -31,7 +31,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 /**
  * Cette interface représente les services de {@link PayrollComponentProjectionDto}.
  *
- * @author Christian Yao Komenan
+ * @author Christian
  *
  */
 @Path(value = PayrollComponentProjectionService.PATH)
@@ -43,6 +43,114 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   String PATH = &quot;projections-postes-paie&quot;;
 
+  /**
+   * Cette interface représente les données d'enregistrement.
+   *
+   * @author Christian
+   *
+   */
+  interface PayrollComponentProjectionSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link AdministrativeUnitEmployeeDto}.
+     *
+     * @return identifiant de {@link AdministrativeUnitEmployeeDto}
+     */
+    String getAdministrativeUnitEmployeeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link AdministrativeUnitEmployeeDto}.
+     *
+     * @param identifier identifiant de
+     *        {@link AdministrativeUnitEmployeeDto}
+     */
+    void setAdministrativeUnitEmployeeIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du poste de paie.
+     *
+     * @return identifiant du poste de paie
+     */
+    String getPayrollComponentIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du poste de paie.
+     *
+     * @param identifier identifiant du poste de paie
+     */
+    void setPayrollComponentIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe de la période de paie.
+     *
+     * @return identifiant du groupe de la période de paie
+     */
+    String getPayrollPeriodGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe de la période de paie.
+     *
+     * @param identifier identifiant du groupe de la période de paie
+     */
+    void setPayrollPeriodGroupIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    Integer getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(Integer amount);
+
+    /**
+     * Cette méthode permet d'obtenir le montant de référence.
+     *
+     * @return montant de référence
+     */
+    Integer getReferenceAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant de référence.
+     *
+     * @param amount montant de référence
+     */
+    void setReferenceAmount(Integer amount);
+    
+    /**
+     * Identifiant json champ identifiant de {@link AdministrativeUnitEmployeeDto}.
+     */
+    String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER;
+
+    /**
+     * Identifiant json champ identifiant du poste de paie.
+     */
+    String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
+
+    /**
+     * Identifiant json champ identifiant du groupe de la periode de paie.
+     */
+    String JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER;
+
+    /**
+     * Identifiant json champ montant de référence.
+     */
+    String JSON_REFERENCE_AMOUNT = PayrollComponentProjectionDto.JSON_REFERENCE_AMOUNT;
+    
+    /**
+     * Identifiant json champ montant.
+     */
+    String JSON_AMOUNT = PayrollComponentProjectionDto.JSON_AMOUNT;
+  }
+  
   /**
    * Identifiant du service de création.
    */
@@ -71,95 +179,6 @@ public interface PayrollComponentProjectionService extends SpecificService {
   Response create(PayrollComponentProjectionCreateRequestDto request);
 
   /**
-   * Cette interface représente les données d'enregistrement.
-   *
-   * @author Christian
-   *
-   */
-  interface PayrollComponentProjectionSaveRequestDto {
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link AdministrativeUnitEmployeeDto}.
-     *
-     * @return identifiant de {@link AdministrativeUnitEmployeeDto}
-     */
-    String getAdministrativeUnitEmployeeIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link AdministrativeUnitEmployeeDto}.
-     *
-     * @param administrativeUnitEmployeeIdentifier identifiant de
-     *        {@link AdministrativeUnitEmployeeDto}
-     */
-    void setAdministrativeUnitEmployeeIdentifier(String administrativeUnitEmployeeIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant du poste de paie.
-     *
-     * @return identifiant du poste de paie
-     */
-    String getPayrollComponentIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant du poste de paie.
-     *
-     * @param payrollComponentIdentifier identifiant du poste de paie
-     */
-    void setPayrollComponentIdentifier(String payrollComponentIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de la période de paie.
-     *
-     * @return identifiant de la période de paie
-     */
-    String getPayrollPeriodIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de la période de paie.
-     *
-     * @param payrollPeriodIdentifier identifiant de la période de paie
-     */
-    void setPayrollPeriodIdentifier(String payrollPeriodIdentifier);
-
-    /**
-     * Cette méthode permet d'obtenir le montant.
-     *
-     * @return montant
-     */
-    Integer getAmount();
-
-    /**
-     * Cette méthode permet d'assigner le montant.
-     *
-     * @param amount montant
-     */
-    void setAmount(Integer amount);
-
-    /**
-     * Identifiant json champ identifiant de {@link AdministrativeUnitEmployeeDto}.
-     */
-    String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
-        PayrollComponentProjectionDto.JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER;
-
-    /**
-     * Identifiant json champ identifiant du poste de paie.
-     */
-    String JSON_PAYROLL_COMPONENT_IDENTIFIER =
-        PayrollComponentProjectionDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
-
-    /**
-     * Identifiant json champ identifiant de la periode de paie.
-     */
-    String JSON_PAYROLL_PERIOD_IDENTIFIER =
-        PayrollComponentProjectionDto.JSON_PAYROLL_PERIOD_IDENTIFIER;
-
-    /**
-     * Identifiant json champ montant.
-     */
-    String JSON_AMOUNT = PayrollComponentProjectionDto.JSON_AMOUNT;
-  }
-
-  /**
    * Cette classe représente la requête de création.
    *
    * @author Christian
@@ -167,7 +186,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  class PayrollComponentProjectionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L189">  class PayrollComponentProjectionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayrollComponentProjectionSaveRequestDto {
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
@@ -176,9 +195,12 @@ public interface PayrollComponentProjectionService extends SpecificService {
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     private String payrollComponentIdentifier;
 
-    @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
-    private String payrollPeriodIdentifier;
+    @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER)
+    private String payrollPeriodGroupIdentifier;
 
+    @JsonbProperty(JSON_REFERENCE_AMOUNT)
+    private Integer referenceAmount;
+    
     @JsonbProperty(JSON_AMOUNT)
     private Integer amount;
   }
@@ -217,7 +239,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L220">  public static class PayrollComponentProjectionGetManyResponseDto</span>
+<span class="fc" id="L242">  public static class PayrollComponentProjectionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentProjectionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -310,7 +332,7 @@ public interface PayrollComponentProjectionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L313">  class PayrollComponentProjectionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L335">  class PayrollComponentProjectionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayrollComponentProjectionSaveRequestDto {
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
@@ -319,9 +341,12 @@ public interface PayrollComponentProjectionService extends SpecificService {
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     private String payrollComponentIdentifier;
 
-    @JsonbProperty(JSON_PAYROLL_PERIOD_IDENTIFIER)
-    private String payrollPeriodIdentifier;
+    @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER)
+    private String payrollPeriodGroupIdentifier;
 
+    @JsonbProperty(JSON_REFERENCE_AMOUNT)
+    private Integer referenceAmount;
+    
     @JsonbProperty(JSON_AMOUNT)
     private Integer amount;
   }

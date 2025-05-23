@@ -29,6 +29,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  */
 @Path(PayrollComponentService.PATH)
 @Tag(name = &quot;Gestion des postes de paie&quot;)
+@Deprecated(forRemoval = true)
 public interface PayrollComponentService extends Service {
 
   /**
@@ -67,7 +68,7 @@ public interface PayrollComponentService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L70">  public static class PayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L71">  public static class PayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)

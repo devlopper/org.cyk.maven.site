@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,12 +15,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L17">public class EmployeeDto extends AbstractIdentifiableDto</span>
+<span class="fc" id="L18">public class EmployeeDto extends AbstractIdentifiableDto</span>
     implements PayrollComponentProjectionContainerDto {
 
   @JsonbProperty(JSON_REGISTRATION_NUMBER)
   String registrationNumber;
 
+  /**
+   * Représentation en chaine de caractères du montant de référence.
+   */
+  @Transient
+  @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
+  String referenceAmountAsString;
+  
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   String amountAsString;
 
