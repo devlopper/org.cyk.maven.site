@@ -28,14 +28,13 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(EmployeePayrollComponentService.PATH)
-@Tag(name = &quot;Gestion des postes de paie d'employés&quot;)
-@Deprecated(forRemoval = true)
+@Tag(name = &quot;Gestion des postes de paie d'employé&quot;)
 public interface EmployeePayrollComponentService extends Service {
 
   /**
    * Chemin de base.
    */
-  String PATH = &quot;postes-paie-employes&quot;;
+  String PATH = &quot;postes-paies-employes&quot;;
 
   /**
    * Identifiant du service d'obtention de plusieurs.
@@ -68,7 +67,7 @@ public interface EmployeePayrollComponentService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class EmployeePayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L70">  public static class EmployeePayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;EmployeePayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetAdministrativeUnitDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetAdministrativeUnitDto.java</span></div><h1>BudgetAdministrativeUnitDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasAdministrativeUnitAsStringDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasAdministrativeUnitIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetAsStringDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasExerciseAsStringDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasExerciseIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
@@ -16,14 +22,16 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class BudgetAdministrativeUnitDto extends AbstractIdentifiableDto</span>
-    implements EmployeeContainerDto, PayrollComponentProjectionContainerDto {
+<span class="fc" id="L25">public class BudgetAdministrativeUnitDto extends AbstractIdentifiableDto</span>
+    implements HasExerciseIdentifierDto, HasExerciseAsStringDto, HasBudgetIdentifierDto,
+    HasAdministrativeUnitIdentifierDto, HasAdministrativeUnitAsStringDto, HasBudgetAsStringDto,
+    EmployeeContainerDto, PayrollComponentProjectionContainerDto {
 
-  @JsonbProperty(JSON_BUDGET_EXERCISE_IDENTIFIER)
-  String budgetExerciseIdentifier;
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  String exerciseIdentifier;
 
-  @JsonbProperty(JSON_BUDGET_EXERCISE_AS_STRING)
-  String budgetExerciseAsString;
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  String exerciseAsString;
 
   /**
    * Identifiant de {@link BudgetDto}.
@@ -61,7 +69,7 @@ import lombok.Setter;
   @Transient
   @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
   String referenceAmountAsString;
-  
+
   /**
    * Représentation en chaine de caractères du montant.
    */
@@ -83,9 +91,8 @@ import lombok.Setter;
   String outgoingEmployeeCountAsString;
 
   /**
-   * Représentation en chaine de caractères du nombre de employé ayant
-   * {@link MovementDto} ayant {@link MovementTypeDto} avec
-   * {@link AdministrativeUnitEmployeeStatus#PRESENT}.
+   * Représentation en chaine de caractères du nombre de employé ayant {@link MovementDto} ayant
+   * {@link MovementTypeDto} avec {@link AdministrativeUnitEmployeeStatus#PRESENT}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_CHANGE_EMPLOYEE_COUNT_AS_STRING)
   String administrativeUnitChangeEmployeeCountAsString;
@@ -100,36 +107,6 @@ import lombok.Setter;
    * {@link BudgetAdministrativeUnitDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;uniteAdministrativeBudgetChaine&quot;;
-
-  /**
-   * Identifiant json {@link #budgetExerciseIdentifier}.
-   */
-  public static final String JSON_BUDGET_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #budgetExerciseAsString}.
-   */
-  public static final String JSON_BUDGET_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #budgetIdentifier}.
-   */
-  public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #budgetAsString}.
-   */
-  public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #administrativeUnitIdentifier}.
-   */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
-
-  /**
-   * Identifiant json {@link #administrativeUnitAsString}.
-   */
-  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
