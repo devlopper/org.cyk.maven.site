@@ -3,6 +3,7 @@
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasAdministrativeUnitEmployeeIdentifier;
+import ci.gouv.dgbf.system.employee.server.api.shared.FilterHasEmployeePayrollComponentIdentifier;
 import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayrollComponentIdentifier;
 import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayrollPeriodGroupIdentifier;
 import lombok.Getter;
@@ -17,8 +18,13 @@ import lombok.Setter;
 @Setter
 public class PayrollComponentProjectionFilter extends AbstractIdentifiableFilter
     implements FilterHasPayrollComponentIdentifier, FilterHasPayrollPeriodGroupIdentifier,
-    FilterHasAdministrativeUnitEmployeeIdentifier {
+    FilterHasAdministrativeUnitEmployeeIdentifier, FilterHasEmployeePayrollComponentIdentifier {
 
+  /**
+   * Identifiant {@link EmployeePayrollComponentDto}.
+   */
+  String employeePayrollComponentIdentifier;
+  
   /**
    * Identifiant #{@link AdministrativeUnitEmployeeDto}.
    */
@@ -40,28 +46,29 @@ public class PayrollComponentProjectionFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public PayrollComponentProjectionFilter(FilterDto dto) {
-<span class="fc" id="L43">    super(dto);</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L49">    super(dto);</span>
+<span class="fc" id="L50">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L49">  public PayrollComponentProjectionFilter() {}</span>
+<span class="fc" id="L55">  public PayrollComponentProjectionFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L53">    super.doInitialize(filter);</span>
-<span class="fc" id="L54">    updateAdministrativeUnitEmployeeIdentifier(filter);</span>
-<span class="fc" id="L55">    updatePayrollComponentIdentifier(filter);</span>
-<span class="fc" id="L56">    updatePayrollPeriodGroupIdentifier(filter);</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L59">    super.doInitialize(filter);</span>
+<span class="fc" id="L60">    updateEmployeePayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L61">    updateAdministrativeUnitEmployeeIdentifier(filter);</span>
+<span class="fc" id="L62">    updatePayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L63">    updatePayrollPeriodGroupIdentifier(filter);</span>
+<span class="fc" id="L64">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L61">    super.toDto(filter);</span>
-<span class="fc" id="L62">    updateFilterAdministrativeUnitEmployeeIdentifier(filter);</span>
-<span class="fc" id="L63">    updateFilterPayrollComponentIdentifier(filter);</span>
-<span class="fc" id="L64">    updateFilterPayrollPeriodGroupIdentifier(filter);</span>
-<span class="fc" id="L65">  }</span>
+<span class="fc" id="L68">    super.toDto(filter);</span>
+<span class="fc" id="L69">    updateFilterAdministrativeUnitEmployeeIdentifier(filter);</span>
+<span class="fc" id="L70">    updateFilterPayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L71">    updateFilterPayrollPeriodGroupIdentifier(filter);</span>
+<span class="fc" id="L72">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

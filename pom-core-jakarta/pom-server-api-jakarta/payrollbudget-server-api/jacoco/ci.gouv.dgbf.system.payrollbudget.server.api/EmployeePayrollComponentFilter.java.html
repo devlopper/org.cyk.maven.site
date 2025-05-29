@@ -2,9 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
-import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasAdministrativeUnitIdentifier;
-import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasBudgetIdentifier;
-import ci.gouv.dgbf.system.employee.server.api.shared.FilterHasEmployeeIdentifier;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasAdministrativeUnitEmployeeIdentifier;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,12 +14,13 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class EmployeePayrollComponentFilter extends AbstractIdentifiableFilter implements
-    FilterHasBudgetIdentifier, FilterHasAdministrativeUnitIdentifier, FilterHasEmployeeIdentifier {
+public class EmployeePayrollComponentFilter extends AbstractIdentifiableFilter
+    implements FilterHasAdministrativeUnitEmployeeIdentifier {
 
-  private String budgetIdentifier;
-  private String administrativeUnitIdentifier;
-  private String employeeIdentifier;
+  /**
+   * Identifiant {@link AdministrativeUnitEmployeeDto}.
+   */
+  String administrativeUnitEmployeeIdentifier;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -29,29 +28,25 @@ public class EmployeePayrollComponentFilter extends AbstractIdentifiableFilter i
    * @param dto filtre
    */
   public EmployeePayrollComponentFilter(FilterDto dto) {
-<span class="fc" id="L32">    super(dto);</span>
-<span class="fc" id="L33">  }</span>
+<span class="fc" id="L31">    super(dto);</span>
+<span class="fc" id="L32">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L38">  public EmployeePayrollComponentFilter() {}</span>
+<span class="fc" id="L37">  public EmployeePayrollComponentFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L42">    super.doInitialize(filter);</span>
-<span class="fc" id="L43">    updateBudgetIdentifier(filter);</span>
-<span class="fc" id="L44">    updateAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L45">    updateEmployeeIdentifier(filter);</span>
-<span class="fc" id="L46">  }</span>
+<span class="fc" id="L41">    super.doInitialize(filter);</span>
+<span class="fc" id="L42">    updateAdministrativeUnitEmployeeIdentifier(filter);</span>
+<span class="fc" id="L43">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L50">    super.toDto(filter);</span>
-<span class="fc" id="L51">    updateFilterBudgetIdentifier(filter);</span>
-<span class="fc" id="L52">    updateFilterAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L53">    updateFilterEmployeeIdentifier(filter);</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L47">    super.toDto(filter);</span>
+<span class="fc" id="L48">    updateFilterAdministrativeUnitEmployeeIdentifier(filter);</span>
+<span class="fc" id="L49">  }</span>
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
