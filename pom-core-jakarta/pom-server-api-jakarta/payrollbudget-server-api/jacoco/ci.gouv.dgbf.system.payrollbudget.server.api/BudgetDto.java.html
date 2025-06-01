@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetDto.java</span></div><h1>BudgetDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasIsDefaultAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasIsDefaultDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasExerciseAsStringDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasExerciseIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
@@ -16,14 +20,33 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements EmployeeContainerDto, PayrollComponentProjectionContainerDto {
+<span class="fc" id="L23">public class BudgetDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements EmployeeContainerDto, PayrollComponentProjectionContainerDto,
+    HasExerciseIdentifierDto, HasExerciseAsStringDto, HasIsDefaultDto, HasIsDefaultAsStringDto {
 
+  /**
+   * Identifiant {@link ExerciseDto}.
+   */
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   String exerciseIdentifier;
 
+  /**
+   * Représentation en chaine de caractères {@link ExerciseDto}.
+   */
   @JsonbProperty(JSON_EXERCISE_AS_STRING)
   String exerciseAsString;
+
+  /**
+   * Est par défaut.
+   */
+  @JsonbProperty(JSON_IS_DEFAULT)
+  Boolean isDefault;
+
+  /**
+   * Représentation en chaine de caractères de est par défaut.
+   */
+  @JsonbProperty(JSON_IS_DEFAULT_AS_STRING)
+  String isDefaultAsString;
 
   /**
    * Représentation en chaine de caractères du nombre de employé.
@@ -37,7 +60,7 @@ import lombok.Setter;
   @Transient
   @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
   String referenceAmountAsString;
-  
+
   /**
    * Représentation en chaine de caractères du montant.
    */
@@ -59,9 +82,8 @@ import lombok.Setter;
   String outgoingEmployeeCountAsString;
 
   /**
-   * Représentation en chaine de caractères du nombre de employé ayant
-   * {@link MovementDto} ayant {@link MovementTypeDto} avec
-   * {@link AdministrativeUnitEmployeeStatus#PRESENT}.
+   * Représentation en chaine de caractères du nombre de employé ayant {@link MovementDto} ayant
+   * {@link MovementTypeDto} avec {@link AdministrativeUnitEmployeeStatus#PRESENT}.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_CHANGE_EMPLOYEE_COUNT_AS_STRING)
   String administrativeUnitChangeEmployeeCountAsString;
@@ -75,16 +97,6 @@ import lombok.Setter;
    * Identifiant json de représentation en chaine de caractères de {@link BudgetDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;budgetChaine&quot;;
-
-  /**
-   * Identifiant json de {@link #exerciseIdentifier}.
-   */
-  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json de {@link #exerciseAsString}.
-   */
-  public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
 
   /**
    * Nom pour lecture humaine de la classe.
