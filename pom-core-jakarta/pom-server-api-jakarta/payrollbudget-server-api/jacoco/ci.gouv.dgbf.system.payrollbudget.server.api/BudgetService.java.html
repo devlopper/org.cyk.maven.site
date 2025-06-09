@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetService.java</span></div><h1>BudgetService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasIsDefaultDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -54,14 +56,14 @@ public interface BudgetService extends SpecificService {
      * @return identifiant {@link ExerciseDto}
      */
     String getExerciseIdentifier();
-    
+
     /**
      * Cette méthode permet d'assigner l'identifiant {@link ExerciseDto}.
      *
      * @param identifier identifiant {@link ExerciseDto}
      */
     void setExerciseIdentifier(String identifier);
-    
+
     /**
      * {@link ExerciseDto#JSON_THIS_IDENTIFIER}.
      */
@@ -102,9 +104,9 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L105">  class BudgetCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L107">  class BudgetCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements BudgetSaveRequestDto {
-    
+
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     String exerciseIdentifier;
   }
@@ -143,7 +145,7 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  public static class BudgetGetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
+<span class="fc" id="L148">  public static class BudgetGetManyResponseDto extends AbstractGetByPageResponseDto&lt;BudgetDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;BudgetDto&gt; datas;
@@ -235,11 +237,50 @@ public interface BudgetService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L238">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L240">  class BudgetUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements BudgetSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     String exerciseIdentifier;
+  }
+
+  /**
+   * Identifiant du service de mise à jour de est par défaut.
+   */
+  String UPDATE_IS_DEFAULT_IDENTIFIER = &quot;MISE_A_JOUR_EST_PAR_DEFAUT_BUDGET&quot;;
+
+  /**
+   * Chemin du service de mise à jour de est par défaut.
+   */
+  String UPDATE_IS_DEFAULT_PATH = &quot;est-par-defaut&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link BudgetDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_IS_DEFAULT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IS_DEFAULT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateIsDefault(BudgetUpdateIsDefaultRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L280">  class BudgetUpdateIsDefaultRequestDto extends ByIdentifierRequestDto implements HasIsDefaultDto {</span>
+
+    @JsonbProperty(JSON_IS_DEFAULT)
+    Boolean isDefault;
   }
 
   /**
