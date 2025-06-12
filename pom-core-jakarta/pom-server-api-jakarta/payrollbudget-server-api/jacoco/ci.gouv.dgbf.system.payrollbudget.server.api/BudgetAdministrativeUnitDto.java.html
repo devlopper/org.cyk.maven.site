@@ -7,6 +7,7 @@ import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetAs
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetIdentifierDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasExerciseAsStringDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasExerciseIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasSectionAsStringDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
@@ -22,10 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L25">public class BudgetAdministrativeUnitDto extends AbstractIdentifiableDto</span>
+<span class="fc" id="L26">public class BudgetAdministrativeUnitDto extends AbstractIdentifiableDto</span>
     implements HasExerciseIdentifierDto, HasExerciseAsStringDto, HasBudgetIdentifierDto,
-    HasAdministrativeUnitIdentifierDto, HasAdministrativeUnitAsStringDto, HasBudgetAsStringDto,
-    EmployeeContainerDto, PayrollComponentProjectionContainerDto {
+    HasAdministrativeUnitIdentifierDto, HasAdministrativeUnitAsStringDto, HasSectionAsStringDto,
+    HasBudgetAsStringDto, EmployeeContainerDto, PayrollComponentProjectionContainerDto {
 
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   String exerciseIdentifier;
@@ -56,6 +57,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
   String administrativeUnitAsString;
+
+  /**
+   * Représentation en chaine de caractères de section.
+   */
+  @JsonbProperty(JSON_SECTION_AS_STRING)
+  String sectionAsString;
 
   /**
    * Représentation en chaine de caractères du nombre de employé.
