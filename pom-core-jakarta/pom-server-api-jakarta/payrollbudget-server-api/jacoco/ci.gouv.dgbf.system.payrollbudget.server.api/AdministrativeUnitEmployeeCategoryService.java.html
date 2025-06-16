@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.Service;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetChartRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -68,7 +69,7 @@ public interface AdministrativeUnitEmployeeCategoryService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L71">  public static class AdministrativeUnitEmployeeCategoryGetManyResponseDto</span>
+<span class="fc" id="L72">  public static class AdministrativeUnitEmployeeCategoryGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;AdministrativeUnitEmployeeCategoryDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -123,5 +124,28 @@ public interface AdministrativeUnitEmployeeCategoryService extends Service {
   @APIResponse(responseCode = &quot;200&quot;, content = {
       @Content(schema = @Schema(implementation = AdministrativeUnitEmployeeCategoryDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
+  
+  /**
+   * Identifiant du service d'obtention de graphique.
+   */
+  String GET_CHART_IDENTIFIER = &quot;OBTENTION_GRAPHIQUE_CATEGORIE_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service d'obtention de graphique.
+   */
+  String GET_CHART_PATH = &quot;obtention/graphique&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir un graphique.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_CHART_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_CHART_IDENTIFIER)
+  Response getChart(GetChartRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

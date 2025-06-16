@@ -26,6 +26,12 @@ import lombok.Setter;
   Integer year;
 
   /**
+   * Nombre d'employé.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_COUNT)
+  Integer employeeCount;
+  
+  /**
    * Représentation en chaine de caractères du nombre de employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_COUNT_AS_STRING)
