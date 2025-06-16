@@ -122,6 +122,12 @@ import lombok.Setter;
   String amountAsString;
 
   /**
+   * Représentation en chaine de caractères de la variance du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_VARIANCE_AS_STRING)
+  String amountVarianceAsString;
+  
+  /**
    * Identifiant json de identifiant de {@link EmployeePayrollComponentDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idPostePaieEmploye&quot;;

@@ -90,6 +90,12 @@ import lombok.Setter;
   String amountAsString;
 
   /**
+   * Représentation en chaine de caractères de la variance du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_VARIANCE_AS_STRING)
+  String amountVarianceAsString;
+  
+  /**
    * Représentation en chaine de caractères du nombre de employé
    * {@link AdministrativeUnitEmployeeStatus#INCOMING}.
    */
