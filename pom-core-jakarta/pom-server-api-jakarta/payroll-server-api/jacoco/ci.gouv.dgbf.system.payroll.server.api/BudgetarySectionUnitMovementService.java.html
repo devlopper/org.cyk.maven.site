@@ -53,18 +53,19 @@ public interface BudgetarySectionUnitMovementService extends SpecificService {
   interface BudgetarySectionUnitMovementSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
+     * Cette méthode permet d'obtenir l'identifiant du fonctionnaire section.
      *
-     * @return identifiant du fonctionnaire
+     * @return identifiant du fonctionnaire section
      */
-    String getFunctionaryIdentifier();
+    String getFunctionaryBudgetarySectionUnitIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
      *
-     * @param functionaryIdentifier identifiant du fonctionnaire
+     * @param functionaryBugdetarySectionUnitIdentifier identifiant du fonctionnaire section
      */
-    void setFunctionaryIdentifier(String functionaryIdentifier);
+    void setFunctionaryBudgetarySectionUnitIdentifier(
+        String functionaryBugdetarySectionUnitIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant du service.
@@ -206,13 +207,13 @@ public interface BudgetarySectionUnitMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L209">  class BudgetarySectionUnitMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L210">  class BudgetarySectionUnitMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements BudgetarySectionUnitMovementSaveRequestDto {
     /**
-     * {@link BudgetarySectionUnitMovementDto#getFunctionaryIdentifier()}.
+     * {@link BudgetarySectionUnitMovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link BudgetarySectionUnitMovementDto#getBudgetarySectionUnitIdentifier()}.
      */
@@ -276,7 +277,7 @@ public interface BudgetarySectionUnitMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L279">  public static class BudgetarySectionUnitMovementGetManyResponseDto </span>
+<span class="fc" id="L280">  public static class BudgetarySectionUnitMovementGetManyResponseDto </span>
       extends AbstractGetByPageResponseDto&lt;BudgetarySectionUnitMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -368,13 +369,13 @@ public interface BudgetarySectionUnitMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L371">  class BudgetarySectionUnitMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L372">  class BudgetarySectionUnitMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements BudgetarySectionUnitMovementSaveRequestDto {
     /**
      * {@link BudgetarySectionUnitMovementDto#getFunctionaryIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link BudgetarySectionUnitMovementDto#getBudgetarySectionUnitIdentifier()}.
      */
