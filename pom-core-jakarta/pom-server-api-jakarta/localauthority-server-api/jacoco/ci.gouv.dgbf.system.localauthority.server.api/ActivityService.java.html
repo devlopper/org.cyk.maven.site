@@ -70,11 +70,172 @@ public interface ActivityService extends SpecificService {
   Response create(ActivityCreateRequestDto request);
 
   /**
+   * Identifiant du service d'obtention du nombre.
+   */
+  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_ACTIVITE&quot;;
+
+  /**
+   * Chemin du service d'obtention du nombre.
+   */
+  String GET_COUNT_PATH = &quot;obtention/compte&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir le nombre de {@link ActivityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = GET_COUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = Long.class))})
+  Response getCount(GetCountRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_ACTIVITE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link ActivityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir des activités&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ActivityGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_ACTIVITE&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link ActivityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir une activité&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ActivityDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_ACTIVITE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link ActivityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir par identifiant une activité&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ActivityDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_ACTIVITE&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link ActivityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour une activité&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ActivityUpdateRequestDto request);
+
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_ACTIVITE&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link ActivityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      description = &quot;Ce service permet de supprimer une activité&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+
+  /**
    * Cette interface représente une requête d'enregistrement.
    *
    * @author Christian
    */
   interface ActivitySaveRequestDto {
+
+
 
     /**
      * Cette méthode permet d'obtenir l'identitant de {@link LocalAuthorityDto}.
@@ -188,14 +349,12 @@ public interface ActivityService extends SpecificService {
      */
     void setCategoryEnum(ActivityCategory categoryEnum);
 
-
     /**
      * Cette méthode permet d'obtenir la description.
      *
      * @return la description de {@link ActivityDto}
      */
     String getDescription();
-
 
     /**
      * Cette méthode permet d'assigner la description.
@@ -204,6 +363,19 @@ public interface ActivityService extends SpecificService {
      */
     void setDescription(String description);
 
+    /**
+     * Cette méthode permet d'obtenir la justification.
+     *
+     * @return la justification de {@link ActivityDto}
+     */
+    String getJustification();
+
+    /**
+     * Cette méthode permet d'assigner la justification.
+     *
+     * @param justification justification
+     */
+    void setJustification(String justification);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant l'activité à laquelle on fait référence.
@@ -212,14 +384,12 @@ public interface ActivityService extends SpecificService {
      */
     String getReferencedActivityIdentifier();
 
-
     /**
      * Cette méthode permet d'assigner l'identifiant de l'activité à laquelle on fait référence.
      *
      * @param referencedActivityIdentifier identifiant de l'activity
      */
     void setReferencedActivityIdentifier(String referencedActivityIdentifier);
-
 
     /**
      * Cette méthode permet d'obtenir la référence au PND.
@@ -228,14 +398,12 @@ public interface ActivityService extends SpecificService {
      */
     String getPndReference();
 
-
     /**
      * Cette méthode permet d'assigner la référence au PND.
      *
      * @param pndReference référence du PND
      */
     void setPndReference(String pndReference);
-
 
     /**
      * Cette méthode permet d'obtenir la référence eventuelle.
@@ -244,7 +412,6 @@ public interface ActivityService extends SpecificService {
      */
     String getEventualReference();
 
-
     /**
      * Cette méthode permet d'assigner la référence éventuelle.
      *
@@ -252,66 +419,59 @@ public interface ActivityService extends SpecificService {
      */
     void setEventualReference(String eventualReference);
 
+
     /**
      * Identifiant json du champ de l'identitant de {@link ActivityNatureDto}.
      */
     public static final String JSON_NATURE_IDENTIFIER = ActivityDto.JSON_NATURE_IDENTIFIER;
-
     /**
      * Identifiant json du champ de l'identitant de {@link ActivityCategoryDto}.
      */
     public static final String JSON_CATEGORY_IDENTIFIER = ActivityDto.JSON_CATEGORY_IDENTIFIER;
-
     /**
      * Identifiant json du champ de l'identitant de {@link FunctionalAccountDto}.
      */
     public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER =
         ActivityDto.JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER;
-
     /**
      * Identifiant json du champ de l'identitant de {@link ExpenditureNatureDto}.
      */
     public static final String JSON_EXPENDITURE_NATURE_IDENTIFIER =
         ActivityDto.JSON_EXPENDITURE_NATURE_IDENTIFIER;
-
     /**
      * Identifiant json du champ de l'identitant de {@link WealthAccountDto}.
      */
     public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER =
         ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
-
     /**
      * Identifiant json du champ de l'identitant de {@link LocalAuthorityDto}.
      */
     public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
         ActivityDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
-
     /**
      * Identifiant json du champ de montant.
      */
     public static final String JSON_AMOUNT = ActivityDto.JSON_AMOUNT;
-
     /**
      * {@link ActivityCategory}.
      */
     public static final String JSON_CATEGORY = ActivityDto.JSON_CATEGORY;
-
     /**
      * Identifiant json desctiption.
      */
     String JSON_DESCRIPTION = ActivityDto.JSON_DESCRIPTION;
-
+    /**
+     * Identifiant json desctiption.
+     */
+    String JSON_JUSTIFICATION = ActivityDto.JSON_JUSTIFICATION;
     /**
      * Identifiant json de la référence de l'opération.
      */
     String REFERENCED_ACTIVITY_IDENTIFIER = ActivityDto.JSON_REFERENCED_ACTIVITY_IDENTIFIER;
-
-
     /**
      * Identifiant json de la référence au PND.
      */
     String PND_REFERENCE = ActivityDto.JSON_PND_REFERENCE;
-
     /**
      * Identifiant json de la référence eventuelle.
      */
@@ -327,7 +487,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L330">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L490">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -357,6 +517,9 @@ public interface ActivityService extends SpecificService {
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
 
+    @JsonbProperty(JSON_JUSTIFICATION)
+    private String justification;
+
     @JsonbProperty(REFERENCED_ACTIVITY_IDENTIFIER)
     private String referencedActivityIdentifier;
 
@@ -366,57 +529,6 @@ public interface ActivityService extends SpecificService {
     @JsonbProperty(EVENTUAL_REFERENCE)
     private String eventualReference;
   }
-
-  /**
-   * Identifiant du service d'obtention du nombre.
-   */
-  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_ACTIVITE&quot;;
-
-  /**
-   * Chemin du service d'obtention du nombre.
-   */
-  String GET_COUNT_PATH = &quot;obtention/compte&quot;;
-
-  /**
-   * Cette méthode permet d'obtenir le nombre de {@link ActivityDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(GET_COUNT_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.TEXT_PLAIN})
-  @Operation(operationId = GET_COUNT_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = Long.class))})
-  Response getCount(GetCountRequestDto request);
-
-  /**
-   * Identifiant du service d'obtention de plusieurs.
-   */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_ACTIVITE&quot;;
-
-  /**
-   * Chemin du service d'obtention de plusieurs.
-   */
-  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
-
-  /**
-   * Cette méthode permet d'obtenir plusieurs {@link ActivityDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(GET_MANY_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = GET_MANY_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir des activités&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = ActivityGetManyResponseDto.class))})
-  Response getMany(GetManyRequestDto request);
 
   /**
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
@@ -425,89 +537,11 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L428">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L540">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
   }
-
-  /**
-   * Identifiant du service d'obtention de un.
-   */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_ACTIVITE&quot;;
-
-  /**
-   * Chemin du service d'obtention de un.
-   */
-  String GET_ONE_PATH = &quot;obtention/un&quot;;
-
-  /**
-   * Cette méthode permet d'obtenir {@link ActivityDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(GET_ONE_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = GET_ONE_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir une activité&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = ActivityDto.class))})
-  Response getOne(GetOneRequestDto request);
-
-  /**
-   * Identifiant du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_ACTIVITE&quot;;
-
-  /**
-   * Chemin du service d'obtention par identifiant de un.
-   */
-  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
-
-  /**
-   * Cette méthode permet d'obtenir par identrifiant {@link ActivityDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(GET_BY_IDENTIFIER_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
-      description = &quot;Ce service permet d'obtenir par identifiant une activité&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = ActivityDto.class))})
-  Response getByIdentifier(GetByIdentifierRequestDto request);
-
-  /**
-   * Identifiant du service de mise à jour.
-   */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_ACTIVITE&quot;;
-
-  /**
-   * Chemin du service de mise à jour.
-   */
-  String UPDATE_PATH = &quot;&quot;;
-
-  /**
-   * Cette méthode permet de mettre à jour {@link ActivityDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(UPDATE_PATH)
-  @PUT
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = UPDATE_IDENTIFIER,
-      description = &quot;Ce service permet de mettre à jour une activité&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response update(ActivityUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -516,7 +550,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L519">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L553">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -546,6 +580,9 @@ public interface ActivityService extends SpecificService {
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
 
+    @JsonbProperty(JSON_JUSTIFICATION)
+    private String justification;
+
     @JsonbProperty(REFERENCED_ACTIVITY_IDENTIFIER)
     private String referencedActivityIdentifier;
 
@@ -555,31 +592,5 @@ public interface ActivityService extends SpecificService {
     @JsonbProperty(EVENTUAL_REFERENCE)
     private String eventualReference;
   }
-
-  /**
-   * Identifiant du service de suppression.
-   */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_ACTIVITE&quot;;
-
-  /**
-   * Chemin du service de suppression.
-   */
-  String DELETE_PATH = &quot;&quot;;
-
-  /**
-   * Cette méthode permet de supprimer {@link ActivityDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(DELETE_PATH)
-  @DELETE
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = DELETE_IDENTIFIER,
-      description = &quot;Ce service permet de supprimer une activité&quot;)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response delete(DeleteOneRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

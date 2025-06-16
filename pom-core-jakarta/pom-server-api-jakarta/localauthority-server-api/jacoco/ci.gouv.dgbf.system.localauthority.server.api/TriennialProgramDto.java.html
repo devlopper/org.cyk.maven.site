@@ -79,6 +79,14 @@ import lombok.Setter;
   @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING)
   private String totalFundingAmount3AsString;
 
+
+  /**
+   * Représentation en chaine de caractères la somme des totaux des financements
+   * des montants n, n+1 et n+2.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT_AS_STRING)
+  private String totalFundingAmountAsString;
+
   /**
    * Représentation en chaine de caractères du nombre d'actions.
    */
@@ -103,6 +111,14 @@ import lombok.Setter;
   @JsonbProperty(JSON_TOTAL_ACTION_FUNDING_AMOUNT3_AS_STRING)
   private String totalActionFundingAmount3AsString;
 
+
+  /**
+   * Représentation en chaine de caractères la sommes des totaux des financements
+   * des années n , n+1 et n+2.
+   */
+  @JsonbProperty(JSON_TOTAL_ACTION_FUNDING_AMOUNT_AS_STRING)
+  private String totalActionFundingAmountAsString;
+
   /**
    * Représentation en chaine de caractères du nombre d'opérations.
    */
@@ -126,6 +142,14 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_TOTAL_OPERATION_FUNDING_AMOUNT3_AS_STRING)
   private String totalOperationFundingAmount3AsString;
+
+
+  /**
+   * Représentation en chaine de caractères la sommes des totaux des financements des
+   * montants n, n+1 et n+2.
+   */
+  @JsonbProperty(JSON_TOTAL_OPERATION_FUNDING_AMOUNT_AS_STRING)
+  private String totalOperationFundingAmountAsString;
 
   /**
    * Statut du programme triennal.
@@ -263,14 +287,14 @@ import lombok.Setter;
    * @param statusUpdateResponse {@link TriennialProgramStatusUpdateResponseDto}
    */
   public void copy(TriennialProgramStatusUpdateResponseDto statusUpdateResponse) {
-<span class="fc" id="L266">    status = statusUpdateResponse.getStatus();</span>
-<span class="fc" id="L267">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
-<span class="fc" id="L268">    statusReason = statusUpdateResponse.getReason();</span>
-<span class="fc" id="L269">    transmitable = statusUpdateResponse.getTransmitable();</span>
-<span class="fc" id="L270">    acceptable = statusUpdateResponse.getAcceptable();</span>
-<span class="fc" id="L271">    approvable = statusUpdateResponse.getApprovable();</span>
-<span class="fc" id="L272">    returnable = statusUpdateResponse.getReturnable();</span>
-<span class="fc" id="L273">  }</span>
+<span class="fc" id="L290">    status = statusUpdateResponse.getStatus();</span>
+<span class="fc" id="L291">    statusAsString = statusUpdateResponse.getStatusAsString();</span>
+<span class="fc" id="L292">    statusReason = statusUpdateResponse.getReason();</span>
+<span class="fc" id="L293">    transmitable = statusUpdateResponse.getTransmitable();</span>
+<span class="fc" id="L294">    acceptable = statusUpdateResponse.getAcceptable();</span>
+<span class="fc" id="L295">    approvable = statusUpdateResponse.getApprovable();</span>
+<span class="fc" id="L296">    returnable = statusUpdateResponse.getReturnable();</span>
+<span class="fc" id="L297">  }</span>
 
   /**
    * Identifiant json de identifiant de {@link TriennialProgramDto}.
@@ -365,6 +389,13 @@ import lombok.Setter;
    */
   public static final String JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING = &quot;totalFinancementMontant3&quot;;
 
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmountAsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT_AS_STRING =
+      &quot;totalMontantFinancementChaine&quot;;
+
   /**
    * Identifiant json champ {@link #totalActionFundingAmount1AsString}.
    */
@@ -382,6 +413,15 @@ import lombok.Setter;
    */
   public static final String JSON_TOTAL_ACTION_FUNDING_AMOUNT3_AS_STRING =
       &quot;totalFinancementActionMontant3&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #totalActionFundingAmountAsString}.
+   */
+  public static final String JSON_TOTAL_ACTION_FUNDING_AMOUNT_AS_STRING =
+      &quot;totalMontantFinancementActionChaine&quot;;
+
+
 
   /**
    * Identifiant json champ {@link #operationCountAsString}.
@@ -405,6 +445,13 @@ import lombok.Setter;
    */
   public static final String JSON_TOTAL_OPERATION_FUNDING_AMOUNT3_AS_STRING =
       &quot;totalFinancementOperationMontant3&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #totalOperationFundingAmountAsString}.
+   */
+  public static final String JSON_TOTAL_OPERATION_FUNDING_AMOUNT_AS_STRING =
+      &quot;totalMontantFinancementOperationChaine&quot;;
 
   /**
    * Identifiant json champ {@link #acceptable}.

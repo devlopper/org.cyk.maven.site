@@ -137,6 +137,12 @@ import lombok.Setter;
   private String description;
 
   /**
+   * Justification de l'activité.
+   */
+  @JsonbProperty(JSON_JUSTIFICATION)
+  private String justification;
+
+  /**
    * Identifiant de l'activité à laquelle on fait référence.
    */
   @JsonbProperty(JSON_REFERENCED_ACTIVITY_IDENTIFIER)
@@ -275,6 +281,11 @@ import lombok.Setter;
    * Identifiant json {@link #description}.
    */
   public static final String JSON_DESCRIPTION = &quot;description&quot;;
+
+  /**
+   * Identifiant json {@link #justification}.
+   */
+  public static final String JSON_JUSTIFICATION = &quot;justification&quot;;
 
 
   /**

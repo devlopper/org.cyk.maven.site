@@ -107,6 +107,14 @@ import lombok.Setter;
   @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING)
   private String totalFundingAmount3AsString;
 
+
+  /**
+   * Représentation en chaine de caractères la somme des totaux des financements
+   * des années n, n+1 et n+2.
+   */
+  @JsonbProperty(JSON_TOTAL_FUNDING_AMOUNT_AS_STRING)
+  private String totalFundingAmountAsString;
+
   /**
    * Commentaires des {@link FundingDto} modifiable.
    */
@@ -254,6 +262,13 @@ import lombok.Setter;
    */
   public static final String JSON_TOTAL_FUNDING_AMOUNT3_AS_STRING =
       &quot;totalFinancementMontant3Chaine&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #totalFundingAmountAsString}.
+   */
+  public static final String JSON_TOTAL_FUNDING_AMOUNT_AS_STRING =
+      &quot;totalMontantFinancementChaine&quot;;
 
   /**
    * Identifiant json {@link #fundingsCommentsUpdatable}.
