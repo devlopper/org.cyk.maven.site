@@ -15,15 +15,21 @@ import lombok.Getter;
 public enum AdministrativeUnitEmployeeCategoryChart {
 
   /**
-   * Compte d'employée.
+   * Compte d'employé.
    */
 <span class="fc" id="L20">  EMPLOYEE_COUNT(AdministrativeUnitEmployeeCategoryChartCode.EMPLOYEE_COUNT,</span>
       &quot;Éffectif du personnel par catégorie&quot;),
 
   /**
+   * Montant d'employé.
+   */
+<span class="fc" id="L26">  EMPLOYEE_AMOUNT(AdministrativeUnitEmployeeCategoryChartCode.EMPLOYEE_AMOUNT,</span>
+      &quot;Montant du personnel par catégorie&quot;),
+
+  /**
    * Situation du personnel.
    */
-<span class="fc" id="L26">  EMPLOYEE_SITUATION(AdministrativeUnitEmployeeCategoryChartCode.EMPLOYEE_SITUATION,</span>
+<span class="fc" id="L32">  EMPLOYEE_SITUATION(AdministrativeUnitEmployeeCategoryChartCode.EMPLOYEE_SITUATION,</span>
       &quot;Situation du personnel par catégorie&quot;)
 
   ;
@@ -42,8 +48,8 @@ public enum AdministrativeUnitEmployeeCategoryChart {
    * @return {@link AdministrativeUnitEmployeeCategoryChart}
    */
   public static AdministrativeUnitEmployeeCategoryChart getByCode(String code) {
-<span class="fc" id="L45">    return Stream.of(AdministrativeUnitEmployeeCategoryChart.values())</span>
-<span class="fc" id="L46">        .filter(chart -&gt; chart.getCode().equals(code)).findFirst().orElse(null);</span>
+<span class="fc" id="L51">    return Stream.of(AdministrativeUnitEmployeeCategoryChart.values())</span>
+<span class="fc" id="L52">        .filter(chart -&gt; chart.getCode().equals(code)).findFirst().orElse(null);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
