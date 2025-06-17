@@ -57,14 +57,14 @@ public interface FunctionMovementService extends SpecificService {
      *
      * @return identifiant du fonctionnaire
      */
-    String getFunctionaryIdentifier();
+    String getFunctionaryBudgetarySectionUnitIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
      *
      * @param functionaryIdentifier identifiant du fonctionnaire
      */
-    void setFunctionaryIdentifier(String functionaryIdentifier);
+    void setFunctionaryBudgetarySectionUnitIdentifier(String functionaryIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de la fonction.
@@ -212,7 +212,7 @@ public interface FunctionMovementService extends SpecificService {
      * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link FunctionMovementDto#getFunctionIdentifier()}.
      */
@@ -369,10 +369,10 @@ public interface FunctionMovementService extends SpecificService {
 <span class="fc" id="L369">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionMovementSaveRequestDto {
     /**
-     * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
+     * {@link FunctionMovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link FunctionMovementDto#getFunctionIdentifier()}.
      */

@@ -57,14 +57,14 @@ public interface LocalityMovementService extends SpecificService {
      *
      * @return identifiant du fonctionnaire
      */
-    String getFunctionaryIdentifier();
+    String getFunctionaryBudgetarySectionUnitIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
      *
      * @param functionaryIdentifier identifiant du fonctionnaire
      */
-    void setFunctionaryIdentifier(String functionaryIdentifier);
+    void setFunctionaryBudgetarySectionUnitIdentifier(String functionaryIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de la localite.
@@ -209,10 +209,10 @@ public interface LocalityMovementService extends SpecificService {
 <span class="fc" id="L209">  class LocalityMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements LocalityMovementSaveRequestDto {
     /**
-     * {@link LocalityMovementDto#getFunctionaryIdentifier()}.
+     * {@link LocalityMovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link LocalityMovementDto#getLocalityIdentifier()}.
      */
@@ -369,10 +369,10 @@ public interface LocalityMovementService extends SpecificService {
 <span class="fc" id="L369">  class LocalityMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements LocalityMovementSaveRequestDto {
     /**
-     * {@link LocalityMovementDto#getFunctionaryIdentifier()}.
+     * {@link LocalityMovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link LocalityMovementDto#getLocalityIdentifier()}.
      */

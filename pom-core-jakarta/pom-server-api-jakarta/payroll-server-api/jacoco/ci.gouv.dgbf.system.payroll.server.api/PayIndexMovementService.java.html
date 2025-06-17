@@ -57,14 +57,14 @@ public interface PayIndexMovementService extends SpecificService {
      *
      * @return identifiant du fonctionnaire
      */
-    String getFunctionaryIdentifier();
+    String getFunctionaryBudgetarySectionUnitIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
      *
      * @param functionaryIdentifier identifiant du fonctionnaire
      */
-    void setFunctionaryIdentifier(String functionaryIdentifier);
+    void setFunctionaryBudgetarySectionUnitIdentifier(String functionaryIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de l'indice.
@@ -209,10 +209,10 @@ public interface PayIndexMovementService extends SpecificService {
 <span class="fc" id="L209">  class PayIndexMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayIndexMovementSaveRequestDto {
     /**
-     * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.
+     * {@link PayIndexMovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link PayIndexMovementDto#getPayIndexIdentifier()}.
      */
@@ -369,10 +369,10 @@ public interface PayIndexMovementService extends SpecificService {
 <span class="fc" id="L369">  class PayIndexMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayIndexMovementSaveRequestDto {
     /**
-     * {@link PayIndexMovementDto#getFunctionaryIdentifier()}.
+     * {@link PayIndexMovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
      */
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryIdentifier;
+    private String functionaryBudgetarySectionUnitIdentifier;
     /**
      * {@link PayIndexMovementDto#getPayIndexIdentifier()}.
      */
