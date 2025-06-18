@@ -10,6 +10,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ExistenceVerificationRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
@@ -36,13 +37,25 @@ import jakarta.ws.rs.core.Response;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L39">public class FunctionaryClient extends AbstractClient&lt;FunctionaryService&gt;</span>
+<span class="fc" id="L40">public class FunctionaryClient extends AbstractClient&lt;FunctionaryService&gt;</span>
     implements GetByIdentifier&lt;FunctionaryDto&gt;, GetMany&lt;FunctionaryGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public FunctionaryClient service(FunctionaryService service) {
-<span class="fc" id="L45">    return (FunctionaryClient) super.service(service);</span>
+<span class="fc" id="L46">    return (FunctionaryClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link FunctionaryService#getCount}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public Long getCount(GetCountRequestDto request) {
+<span class="fc" id="L56">    return new GetOneExecutor&lt;&gt;(Long.class, </span>
+        FunctionaryService.GET_COUNT_IDENTIFIER)
+<span class="fc" id="L58">        .execute(() -&gt; service().getCount(request));</span>
   }
 
   /**
@@ -52,8 +65,8 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public CreateResponseDto create(FunctionaryCreateRequestDto request) {
-<span class="fc" id="L55">    return new CreateExecutor(FunctionaryService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L56">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L68">    return new CreateExecutor(FunctionaryService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L69">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -63,8 +76,8 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public FunctionaryGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L66">    return new GetOneExecutor&lt;FunctionaryGetManyResponseDto&gt;(FunctionaryGetManyResponseDto.class,</span>
-<span class="fc" id="L67">        FunctionaryService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L79">    return new GetOneExecutor&lt;FunctionaryGetManyResponseDto&gt;(FunctionaryGetManyResponseDto.class,</span>
+<span class="fc" id="L80">        FunctionaryService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -79,13 +92,13 @@ import jakarta.ws.rs.core.Response;
    */
   public FunctionaryGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L83">    request.setProjection(projection);</span>
-<span class="fc" id="L84">    request.setFilter(filter);</span>
-<span class="fc" id="L85">    request.setPage(page);</span>
-<span class="fc" id="L86">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L87">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L88">    return getMany(request);</span>
+<span class="fc" id="L95">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L96">    request.setProjection(projection);</span>
+<span class="fc" id="L97">    request.setFilter(filter);</span>
+<span class="fc" id="L98">    request.setPage(page);</span>
+<span class="fc" id="L99">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L100">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L101">    return getMany(request);</span>
   }
 
   /**
@@ -95,8 +108,8 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public FunctionaryDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L98">    return new GetOneExecutor&lt;FunctionaryDto&gt;(FunctionaryDto.class,</span>
-<span class="fc" id="L99">        FunctionaryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L111">    return new GetOneExecutor&lt;FunctionaryDto&gt;(FunctionaryDto.class,</span>
+<span class="fc" id="L112">        FunctionaryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -110,12 +123,12 @@ import jakarta.ws.rs.core.Response;
    */
   public FunctionaryDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L113">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L114">    request.setProjection(projection);</span>
-<span class="fc" id="L115">    request.setFilter(filter);</span>
-<span class="fc" id="L116">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L117">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L118">    return getOne(request);</span>
+<span class="fc" id="L126">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L127">    request.setProjection(projection);</span>
+<span class="fc" id="L128">    request.setFilter(filter);</span>
+<span class="fc" id="L129">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L130">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L131">    return getOne(request);</span>
   }
 
   /**
@@ -125,8 +138,8 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public Boolean verifyExistence(ExistenceVerificationRequestDto request) {
-<span class="fc" id="L128">    return new GetBooleanExecutor(FunctionaryService.VERIFY_EXISTENCE_IDENTIFIER)</span>
-<span class="fc" id="L129">        .execute(() -&gt; service().verifyExistence(request));</span>
+<span class="fc" id="L141">    return new GetBooleanExecutor(FunctionaryService.VERIFY_EXISTENCE_IDENTIFIER)</span>
+<span class="fc" id="L142">        .execute(() -&gt; service().verifyExistence(request));</span>
   }
 
   /**
@@ -136,8 +149,8 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public Boolean verifyExistenceStrict(FunctionaryStrictExistenceVerificationRequestDto request) {
-<span class="fc" id="L139">    return new GetBooleanExecutor(FunctionaryService.VERIFY_EXISTENCE_STRICT_IDENTIFIER)</span>
-<span class="fc" id="L140">        .execute(() -&gt; service().verifyExistenceStrict(request));</span>
+<span class="fc" id="L152">    return new GetBooleanExecutor(FunctionaryService.VERIFY_EXISTENCE_STRICT_IDENTIFIER)</span>
+<span class="fc" id="L153">        .execute(() -&gt; service().verifyExistenceStrict(request));</span>
   }
 
   /**
@@ -147,9 +160,9 @@ import jakarta.ws.rs.core.Response;
    * @return groupe d'échéance
    */
   public FunctionaryDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L150">    return new GetOneExecutor&lt;FunctionaryDto&gt;(FunctionaryDto.class,</span>
+<span class="fc" id="L163">    return new GetOneExecutor&lt;FunctionaryDto&gt;(FunctionaryDto.class,</span>
         FunctionaryService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L152">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L165">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -164,12 +177,12 @@ import jakarta.ws.rs.core.Response;
   @Override
   public FunctionaryDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L167">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L168">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L169">    request.setProjection(projection);</span>
-<span class="fc" id="L170">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L171">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L172">    return getByIdentifier(request);</span>
+<span class="fc" id="L180">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L181">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L182">    request.setProjection(projection);</span>
+<span class="fc" id="L183">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L184">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L185">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -179,8 +192,8 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public IdentifiableResponseDto update(FunctionaryUpdateRequestDto request) {
-<span class="fc" id="L182">    return new IdentifiableExecutor(FunctionaryService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L183">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L195">    return new IdentifiableExecutor(FunctionaryService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L196">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -190,8 +203,8 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L193">    return new IdentifiableExecutor(FunctionaryService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L194">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L206">    return new IdentifiableExecutor(FunctionaryService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L207">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -205,11 +218,11 @@ import jakarta.ws.rs.core.Response;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L208">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L209">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L210">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L211">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L212">    return delete(request);</span>
+<span class="fc" id="L221">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L222">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L223">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L224">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L225">    return delete(request);</span>
   }
 
   /**
@@ -220,8 +233,8 @@ import jakarta.ws.rs.core.Response;
    */
   public IdentifiableResponseDto importByRegistrationNumber(
       FunctionaryImportByRegistrationNumberRequestDto request) {
-<span class="fc" id="L223">    return new IdentifiableExecutor(FunctionaryService.IMPORT_BY_REGISTRATION_NUMBER_IDENTIFIER)</span>
-<span class="fc" id="L224">        .execute(() -&gt; service().importByRegistrationNumber(request));</span>
+<span class="fc" id="L236">    return new IdentifiableExecutor(FunctionaryService.IMPORT_BY_REGISTRATION_NUMBER_IDENTIFIER)</span>
+<span class="fc" id="L237">        .execute(() -&gt; service().importByRegistrationNumber(request));</span>
   }
 
   /**
@@ -234,12 +247,12 @@ import jakarta.ws.rs.core.Response;
    */
   public IdentifiableResponseDto importByRegistrationNumber(String registrationNumber,
       String auditWho, String auditSession) {
-<span class="fc" id="L237">    FunctionaryImportByRegistrationNumberRequestDto request =</span>
+<span class="fc" id="L250">    FunctionaryImportByRegistrationNumberRequestDto request =</span>
         new FunctionaryImportByRegistrationNumberRequestDto();
-<span class="fc" id="L239">    request.setRegistrationNumber(registrationNumber);</span>
-<span class="fc" id="L240">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L241">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L242">    return importByRegistrationNumber(request);</span>
+<span class="fc" id="L252">    request.setRegistrationNumber(registrationNumber);</span>
+<span class="fc" id="L253">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L254">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L255">    return importByRegistrationNumber(request);</span>
   }
 
   /**
@@ -249,9 +262,9 @@ import jakarta.ws.rs.core.Response;
    * @return réponse
    */
   public CreateManyResponseDto importAll(FunctionaryImportAllRequestDto request) {
-<span class="fc" id="L252">    return new CreateManyExecutor(FunctionaryService.IMPORT_ALL_PATH)</span>
-<span class="fc" id="L253">        .setExpectedResponseStatusCode(Response.Status.OK.getStatusCode())</span>
-<span class="fc" id="L254">        .execute(() -&gt; service().importAll(request));</span>
+<span class="fc" id="L265">    return new CreateManyExecutor(FunctionaryService.IMPORT_ALL_PATH)</span>
+<span class="fc" id="L266">        .setExpectedResponseStatusCode(Response.Status.OK.getStatusCode())</span>
+<span class="fc" id="L267">        .execute(() -&gt; service().importAll(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
