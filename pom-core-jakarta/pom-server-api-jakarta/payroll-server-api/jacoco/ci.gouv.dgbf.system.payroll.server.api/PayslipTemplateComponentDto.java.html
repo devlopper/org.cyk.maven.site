@@ -40,6 +40,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_PAYSLIP_TEMPLATE_AS_STRING)
   private String payslipTemplateAsString;
+  
+  /**
+   * Numéro d'ordre.
+   */
+  @JsonbProperty(JSON_ORDER_NUMBER)
+  private Integer orderNumber;
 
   /**
    * Identifiant json de l'identifiant.
@@ -79,6 +85,11 @@ import lombok.Setter;
    */
   public static final String JSON_PAYSLIP_TEMPLATE_IDENTIFIER = PayslipTemplateDto
       .JSON_THIS_IDENTIFIER;
+  
+  /**
+   * Identifiant json {@link #orderNumber}.
+   */
+  public static final String JSON_ORDER_NUMBER = &quot;orderNumber&quot;;
 
   /**
    * Identifiant json champ {@link #payrollComponentAsString}.

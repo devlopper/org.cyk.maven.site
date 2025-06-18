@@ -76,6 +76,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EMPLOYER_AMOUNT_CALCULATION_MESSAGE)
   private String employerAmountCalculationMessage;
+  
+  /**
+   * Numéro d'ordre.
+   */
+  @JsonbProperty(JSON_ORDER_NUMBER)
+  private Integer orderNumber;
 
   /**
    * Identifiant json de l'identifiant.
@@ -139,6 +145,11 @@ import lombok.Setter;
    */
   public static final String JSON_EMPLOYER_AMOUNT_CALCULATION_MESSAGE =
       &quot;messageCalculMontantEmployeur&quot;;
+  
+  /**
+   * Identifiant json {@link #orderNumber}.
+   */
+  public static final String JSON_ORDER_NUMBER = &quot;orderNumber&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

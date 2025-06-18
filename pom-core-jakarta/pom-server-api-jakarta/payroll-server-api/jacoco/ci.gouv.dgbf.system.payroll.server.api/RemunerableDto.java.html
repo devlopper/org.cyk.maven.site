@@ -71,10 +71,10 @@ import lombok.Setter;
   @JsonbProperty(JSON_PAY_INDEX)
   private String payIndex;
   
-  @JsonbProperty(JSON_CHILD_NUMBER_AS_STRING)
+  @JsonbProperty(JSON_CHILD_NUMBER)
   private Integer childNumber;
   
-  @JsonbProperty(JSON_IS_MARRIED_AS_STRING)
+  @JsonbProperty(JSON_IS_MARRIED)
   private Boolean isMarried;
   
   @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
@@ -230,12 +230,12 @@ import lombok.Setter;
   /**
    * Identifiant json de {@link #isMarried}.
    */
-  public static final String JSON_IS_MARRIED_AS_STRING = &quot;estMarie&quot;;
+  public static final String JSON_IS_MARRIED = &quot;estMarie&quot;;
   
   /**
    * Identifiant json de {@link #childNumber}.
    */
-  public static final String JSON_CHILD_NUMBER_AS_STRING = &quot;nombreEnfant&quot;;
+  public static final String JSON_CHILD_NUMBER = &quot;nombreEnfant&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
