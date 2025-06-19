@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableC
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -106,7 +107,7 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L109">  class JobCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L110">  class JobCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements JobSaveRequestDto {
 
     @JsonbProperty(JSON_GRADE_IDENTIFIER)
@@ -147,7 +148,7 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class JobGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobDto&gt; {</span>
+<span class="fc" id="L151">  public static class JobGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;JobDto&gt; datas;
@@ -236,7 +237,7 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L239">  class JobUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L240">  class JobUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements JobSaveRequestDto {
 
     @JsonbProperty(JSON_GRADE_IDENTIFIER)
@@ -268,5 +269,31 @@ public interface JobService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+
+  /**
+   * Identifiant du service d'obtention du nombre.
+   */
+  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_EMPLOI&quot;;
+
+  /**
+   * Chemin du service d'obtention du nombre.
+   */
+  String GET_COUNT_PATH = &quot;obtention/compte&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir le nombre de {@link JobDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = GET_COUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = Long.class))})
+  Response getCount(GetCountRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

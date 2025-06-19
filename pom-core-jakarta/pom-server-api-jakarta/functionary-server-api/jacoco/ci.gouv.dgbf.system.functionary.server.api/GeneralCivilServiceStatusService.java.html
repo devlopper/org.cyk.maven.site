@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableC
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -86,7 +87,7 @@ public interface GeneralCivilServiceStatusService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class GeneralCivilServiceStatusCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L90">  class GeneralCivilServiceStatusCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements GeneralCivilServiceStatusSaveRequestDto {
 
   }
@@ -126,7 +127,7 @@ public interface GeneralCivilServiceStatusService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L129">  public static class GeneralCivilServiceStatusGetManyResponseDto extends </span>
+<span class="fc" id="L130">  public static class GeneralCivilServiceStatusGetManyResponseDto extends </span>
         AbstractGetByPageResponseDto&lt;GeneralCivilServiceStatusDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -216,7 +217,7 @@ public interface GeneralCivilServiceStatusService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  class GeneralCivilServiceStatusUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L220">  class GeneralCivilServiceStatusUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements GeneralCivilServiceStatusSaveRequestDto {
 
   }
@@ -245,5 +246,30 @@ public interface GeneralCivilServiceStatusService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention du nombre.
+   */
+  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_STATUT_GENERAL&quot;;
+
+  /**
+   * Chemin du service d'obtention du nombre.
+   */
+  String GET_COUNT_PATH = &quot;obtention/compte&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir le nombre de {@link GeneralCivilServiceStatusDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = GET_COUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = Long.class))})
+  Response getCount(GetCountRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
