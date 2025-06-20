@@ -50,7 +50,7 @@ import lombok.experimental.Accessors;
    */
   public Long getCount(GetCountRequestDto request) {
 <span class="fc" id="L52">    return new GetOneExecutor&lt;&gt;(Long.class,</span>
-        FunctionaryService.GET_COUNT_IDENTIFIER)
+        JobService.GET_COUNT_IDENTIFIER)
 <span class="fc" id="L54">        .execute(() -&gt; service().getCount(request));</span>
   }
 
