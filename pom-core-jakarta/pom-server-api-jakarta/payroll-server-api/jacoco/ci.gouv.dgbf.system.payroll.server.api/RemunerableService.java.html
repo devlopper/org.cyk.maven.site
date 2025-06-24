@@ -91,6 +91,35 @@ public interface RemunerableService extends SpecificService {
      * @param isEnabled vrai si c'est activé sinon faux
      */
     void setIsEnabled(Boolean isEnabled);
+    
+    /**
+     * Cette méthode permet d'obténir vrai si marié sinon faux.
+     *
+     * @return vrai si marié sinon faux
+     */
+    Boolean getIsMarried();
+
+    /**
+     * Cette méthode permet d'assigner vrai si marié sinon faux.
+     *
+     * @param isMarried vrai si marié sinon faux
+     */
+    void setIsMarried(Boolean isMarried);
+    
+    /**
+     * Cette méthode permet d'obtenir nombre d'enfant.
+     *
+     * @return nombre d'enfant
+     */
+    Integer getChildNumber();
+
+    /**
+     * Cette méthode permet d'assigner nombre d'enfant.
+     *
+     * @param childNumber nombre d'enfant
+     */
+    void setChildNumber(Integer childNumber);
+
 
     /**
      * {@link RemunerableDto #JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER}.
@@ -108,6 +137,16 @@ public interface RemunerableService extends SpecificService {
      * {@link RemunerableDto #JSON_IS_ENABLED}.
      */
     public static final String JSON_IS_ENABLED = RemunerableDto.JSON_IS_ENABLED;
+    
+    /**
+     * {@link RemunerableDto #JSON_IS_MARRIED}.
+     */
+    public static final String JSON_IS_MARRIED = RemunerableDto.JSON_IS_MARRIED;
+    
+    /**
+     * {@link RemunerableDto #JSON_CHILD_NUMBER}.
+     */
+    public static final String JSON_CHILD_NUMBER = RemunerableDto.JSON_CHILD_NUMBER;
   }
 
   /**
@@ -143,7 +182,7 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L185">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements RemunerableSaveRequestDto {
     /**
      * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
@@ -159,6 +198,18 @@ public interface RemunerableService extends SpecificService {
     
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;
+    
+    /**
+     * Est marié.
+     */
+    @JsonbProperty(JSON_IS_MARRIED)
+    private Boolean isMarried;
+    
+    /**
+     * Nombre d'enfant.
+     */
+    @JsonbProperty(JSON_CHILD_NUMBER)
+    private Integer childNumber;
 
   }
 
@@ -195,7 +246,7 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L198">  public static class RemunerableGetManyResponseDto</span>
+<span class="fc" id="L249">  public static class RemunerableGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;RemunerableDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -285,7 +336,7 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L288">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L339">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements RemunerableSaveRequestDto {
     /**
      * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
@@ -301,6 +352,18 @@ public interface RemunerableService extends SpecificService {
     
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;
+    
+    /**
+     * Est marié.
+     */
+    @JsonbProperty(JSON_IS_MARRIED)
+    private Boolean isMarried;
+    
+    /**
+     * Nombre d'enfant.
+     */
+    @JsonbProperty(JSON_CHILD_NUMBER)
+    private Integer childNumber;
 
   }
 

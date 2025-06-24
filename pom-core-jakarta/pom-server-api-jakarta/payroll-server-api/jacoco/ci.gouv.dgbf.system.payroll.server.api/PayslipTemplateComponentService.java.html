@@ -62,6 +62,12 @@ public interface PayslipTemplateComponentService extends SpecificService {
      */
     public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
         PayrollComponentDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * {@link PayslipTemplateComponentDto#JSON_ORDER_NUMBER}.
+     */
+    public static final String JSON_ORDER_NUMBER =
+        PayslipTemplateComponentDto.JSON_ORDER_NUMBER;
     
 
   }
@@ -99,7 +105,7 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L102">  class PayslipTemplateComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L108">  class PayslipTemplateComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipTemplateComponentSaveRequestDto {
     
     /**
@@ -113,6 +119,12 @@ public interface PayslipTemplateComponentService extends SpecificService {
     */
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     String payrollComponentIdentifier;
+   
+    /**
+    * Nombre d'enfant de {@link PayslipTemplateComponentDto}.
+    */
+    @JsonbProperty(JSON_ORDER_NUMBER)
+    Integer orderNumber;
     
   }
 
@@ -149,7 +161,7 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L152">  public static class PayslipTemplateComponentGetManyResponseDto</span>
+<span class="fc" id="L164">  public static class PayslipTemplateComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipTemplateComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -239,7 +251,7 @@ public interface PayslipTemplateComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L242">  class PayslipTemplateComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L254">  class PayslipTemplateComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipTemplateComponentSaveRequestDto {
     
     /**
@@ -253,6 +265,12 @@ public interface PayslipTemplateComponentService extends SpecificService {
      */
     @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
     String payslipTemplateIdentifier;
+   
+    /**
+    * Nombre d'enfant de {@link PayslipTemplateComponentDto}.
+    */
+    @JsonbProperty(JSON_ORDER_NUMBER)
+    Integer orderNumber;
 
   }
 

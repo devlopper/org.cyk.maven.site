@@ -107,6 +107,20 @@ public interface PayslipComponentService extends SpecificService {
     void setEmployerAmount(Integer employerAmount);
 
     /**
+     * Cette méthode permet d'obtenir le numéro d'ordre.
+     *
+     * @return numéro d'ordre
+     */
+    Integer getOrderNumber();
+
+    /**
+     * Cette méthode permet d'assigner le numéro d'ordre.
+     *
+     * @param orderdNumber numéro d'ordre
+     */
+    void setOrderNumber(Integer orderdNumber);
+
+    /**
      * {@link PayslipComponentDto#JSON_PAYSLIP_IDENTIFIER}.
      */
     public static final String JSON_PAYSLIP_IDENTIFIER =
@@ -127,6 +141,11 @@ public interface PayslipComponentService extends SpecificService {
      * {@link PayslipComponentDto#JSON_EMPLOYER_AMOUNT}.
      */
     public static final String JSON_EMPLOYER_AMOUNT = PayslipComponentDto.JSON_EMPLOYER_AMOUNT;
+
+    /**
+     * {@link PayslipComponentDto#JSON_EMPLOYER_AMOUNT}.
+     */
+    public static final String JSON_ORDER_NUMBER = PayslipComponentDto.JSON_ORDER_NUMBER;
   }
 
   /**
@@ -162,7 +181,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L165">  class PayslipComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L184">  class PayslipComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipComponentSaveRequestDto {
     /**
      * Identifiant de {@link PayslipDto}.
@@ -184,6 +203,11 @@ public interface PayslipComponentService extends SpecificService {
      */
     @JsonbProperty(JSON_EMPLOYER_AMOUNT)
     Integer employerAmount;
+    /**
+     * Numéro d'ordre.
+     */
+    @JsonbProperty(JSON_ORDER_NUMBER)
+    Integer orderNumber;
   }
 
   /**
@@ -219,7 +243,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L222">  public static class PayslipComponentGetManyResponseDto</span>
+<span class="fc" id="L246">  public static class PayslipComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -309,7 +333,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L312">  class PayslipComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L336">  class PayslipComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipComponentSaveRequestDto {
     /**
      * Identifiant de {@link PayslipDto}.
@@ -331,6 +355,11 @@ public interface PayslipComponentService extends SpecificService {
      */
     @JsonbProperty(JSON_EMPLOYER_AMOUNT)
     Integer employerAmount;
+    /**
+     * Numéro d'ordre.
+     */
+    @JsonbProperty(JSON_ORDER_NUMBER)
+    Integer orderNumber;
   }
 
   /**
