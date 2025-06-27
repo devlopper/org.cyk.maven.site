@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-03-13T08:10:19+0000&quot;,
+    date = &quot;2025-06-27T11:48:57+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,23 +27,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        domainCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        domainCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        domainCreateRequestDto.setValueSourceTableName( arg0.getValueSourceTableName() );</span>
+<span class="fc" id="L31">        domainCreateRequestDto.setValueSourceTableFilterColumnName( arg0.getValueSourceTableFilterColumnName() );</span>
 
-<span class="fc" id="L31">        return domainCreateRequestDto;</span>
+<span class="fc" id="L33">        return domainCreateRequestDto;</span>
     }
 
     @Override
     public DomainService.DomainUpdateRequestDto mapUpdate(DomainDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L40">        DomainService.DomainUpdateRequestDto domainUpdateRequestDto = new DomainService.DomainUpdateRequestDto();</span>
+<span class="fc" id="L42">        DomainService.DomainUpdateRequestDto domainUpdateRequestDto = new DomainService.DomainUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        domainUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        domainUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L44">        domainUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L44">        domainUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        domainUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        domainUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        domainUpdateRequestDto.setValueSourceTableName( arg0.getValueSourceTableName() );</span>
+<span class="fc" id="L48">        domainUpdateRequestDto.setValueSourceTableFilterColumnName( arg0.getValueSourceTableFilterColumnName() );</span>
 
-<span class="fc" id="L46">        return domainUpdateRequestDto;</span>
+<span class="fc" id="L50">        return domainUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

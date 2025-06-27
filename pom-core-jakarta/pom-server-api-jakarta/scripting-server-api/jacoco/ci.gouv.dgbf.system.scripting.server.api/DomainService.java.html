@@ -44,6 +44,55 @@ public interface DomainService extends SpecificService {
   String PATH = &quot;domaines&quot;;
 
   /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Christian
+   */
+  interface DomainSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir le nom de la table de {@link ValueSourceDto}.
+     *
+     * @return nom de table de {@link ValueSourceDto}
+     */
+    String getValueSourceTableName();
+
+    /**
+     * Cette méthode permet d'assigner le nom de la table de {@link ValueSourceDto}.
+     *
+     * @param valueSourceTableName nom de table de {@link ValueSourceDto}
+     */
+    void setValueSourceTableName(String valueSourceTableName);
+
+    /**
+     * Cette méthode permet d'obtenir le nom de la colonne de filtre de la table de
+     * {@link ValueSourceDto}.
+     *
+     * @return nom de la colonne de filtre de table de {@link ValueSourceDto}
+     */
+    String getValueSourceTableFilterColumnName();
+
+    /**
+     * Cette méthode permet d'assigner le nom de la colonne de filtre de la table de
+     * {@link ValueSourceDto}.
+     *
+     * @param valueSourceTableFilterColumnName nom de la colonne de filtre de table de
+     *        {@link ValueSourceDto}
+     */
+    void setValueSourceTableFilterColumnName(String valueSourceTableFilterColumnName);
+
+    /**
+     * Identifiant json nom de table de {@link ValueSourceDto}.
+     */
+    String JSON_VALUE_SOURCE_TABLE_NAME = &quot;nomTableSourceValeur&quot;;
+
+    /**
+     * Identifiant json nom de la colonne de filtre de table de {@link ValueSourceDto}.
+     */
+    String JSON_VALUE_SOURCE_TABLE_FILTER_COLUMN_NAME = &quot;nomColonneFiltreTableSourceValeur&quot;;
+  }
+
+  /**
    * Identifiant du service de création.
    */
   String CREATE_IDENTIFIER = &quot;CREATION_DOMAINE&quot;;
@@ -76,8 +125,14 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L79">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L128">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements DomainSaveRequestDto {
 
+    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_NAME)
+    String valueSourceTableName;
+
+    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_FILTER_COLUMN_NAME)
+    String valueSourceTableFilterColumnName;
   }
 
   /**
@@ -113,8 +168,7 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L116">  public static class DomainGetManyResponseDto</span>
-      extends AbstractGetByPageResponseDto&lt;DomainDto&gt; {
+<span class="fc" id="L171">  public static class DomainGetManyResponseDto extends AbstractGetByPageResponseDto&lt;DomainDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;DomainDto&gt; datas;
@@ -203,8 +257,13 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L206">  class DomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L260">  class DomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements DomainSaveRequestDto {
+    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_NAME)
+    String valueSourceTableName;
 
+    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_FILTER_COLUMN_NAME)
+    String valueSourceTableFilterColumnName;
   }
 
   /**
