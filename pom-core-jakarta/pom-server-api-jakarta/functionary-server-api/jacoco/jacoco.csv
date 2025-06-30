@@ -1,5 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionaryService.FunctionaryGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobGroupService.JobGroupGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayScaleClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayScaleService.PayScaleGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,EchelonFilter,3,43,0,0,0,15,1,8,1,8
@@ -17,6 +18,7 @@ API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.serv
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GradeService.GradeGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayScaleService.PayScaleCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionaryService.FunctionaryStrictExistenceVerificationRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobGroupFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GeneralCivilServiceStatusRequestMapperImpl,0,43,0,4,0,14,0,5,0,3
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionGroupFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GeneralCivilServiceStatusService.GeneralCivilServiceStatusUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -37,6 +39,7 @@ API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.serv
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GeneralCivilServiceStatusDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,EchelonService.EchelonUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobClient,0,212,0,0,0,40,0,20,0,20
+API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobGroupClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayIndexDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayIndexService.PayIndexUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobDto,0,3,0,0,0,1,0,1,0,1
@@ -47,6 +50,7 @@ API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.serv
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayIndexService.PayIndexCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionaryUnitSectionDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobGroupService.JobGroupUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GradeRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionService.FunctionGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -59,6 +63,7 @@ API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.serv
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GradeClassService.GradeClassGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobService.JobCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GradeClassService.GradeClassUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobGroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionService.FunctionUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayScaleDto,0,3,0,0,0,1,0,1,0,1
@@ -81,7 +86,9 @@ API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.serv
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobService.JobGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayIndexService.PayIndexGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GradeClassFilter,3,43,0,0,0,15,1,8,1,8
+API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobGroupService.JobGroupCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,PayScaleRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,EchelonRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,FunctionaryDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,JobGroupRequestMapperImpl,0,43,0,4,0,14,0,5,0,3
 API du serveur du module des fonctionnaires,ci.gouv.dgbf.system.functionary.server.api,GradeDto,0,3,0,0,0,1,0,1,0,1
