@@ -131,42 +131,42 @@ public interface FundingService extends SpecificService {
     void setExpenditureNatureIdentifier(String expenditureNatureIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir le montant 1.
+     * Cette méthode permet d'obtenir le le montant 1.
      *
      * @return montant 1
      */
     long getAmount1();
 
     /**
-     * Cette méthode permet d'assigner le montant 1.
+     * Cette méthode permet d'assigner le le montant 1.
      *
      * @param amount1 montant 1
      */
     void setAmount1(long amount1);
 
     /**
-     * Cette méthode permet d'obtenir le montant 2.
+     * Cette méthode permet d'obtenir le le montant 1.
      *
      * @return montant 2
      */
     long getAmount2();
 
     /**
-     * Cette méthode permet d'assigner le montant 2.
+     * Cette méthode permet d'assigner le le montant 1.
      *
      * @param amount2 montant 2
      */
     void setAmount2(long amount2);
 
     /**
-     * Cette méthode permet d'obtenir le montant 3.
+     * Cette méthode permet d'obtenir le le montant 2.
      *
      * @return montant 3
      */
     long getAmount3();
 
     /**
-     * Cette méthode permet d'assigner le montant 3.
+     * Cette méthode permet d'assigner le le montant 2.
      *
      * @param amount3 montant 3
      */
@@ -209,6 +209,34 @@ public interface FundingService extends SpecificService {
     String JSON_AMOUNT_3 = FundingDto.JSON_AMOUNT_3;
   }
 
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_FOR_ACTION_IDENTIFIER = &quot;CREATION_FINANCEMENT_POUR_ACTION&quot;;
+
+  /**
+   * Chemin du service de création du financement d'une action.
+   */
+  String CREATE_FOR_ACTION_PATH = &quot;pour-action&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link FundingDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_FOR_ACTION_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_FOR_ACTION_IDENTIFIER, summary = &quot;Création d'un financement &quot;
+      + &quot;d'action&quot;,
+      description = &quot;Ce service permet de créer un financement&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createForAction(FundingCreateForActionRequestDto request);
+
   /**
    * Cette classe représente la requête de création.
    *
@@ -216,7 +244,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
+<span class="fc" id="L247">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -237,6 +265,20 @@ public interface FundingService extends SpecificService {
 
     @JsonbProperty(JSON_AMOUNT_3)
     private long amount3;
+  }
+
+
+  /**
+   * Cette classe représente la requête de création du financement d'une action.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L278">  class FundingCreateForActionRequestDto extends AbstractAuditedRequestJsonDto {</span>
+
+    @JsonbProperty(FundingDto.JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER)
+    private String triennialProgramActivityIdentifier;
   }
 
   /**
@@ -274,7 +316,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L277">  class FundingCreateByTriennialProgramByActivityRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L319">  class FundingCreateByTriennialProgramByActivityRequestDto extends AbstractAuditedRequestJsonDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -351,7 +393,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L354">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
+<span class="fc" id="L396">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;FundingDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FundingDto&gt; datas;
@@ -443,7 +485,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L446">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
+<span class="fc" id="L488">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
     @JsonbProperty(JSON_MODE_IDENTIFIER)
     private String modeIdentifier;
 
@@ -498,7 +540,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L501">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L543">  class FundingUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Montant.
      */
@@ -555,7 +597,7 @@ public interface FundingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L558">  class FundingUpdateCommentRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L600">  class FundingUpdateCommentRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Commentaire.
      */

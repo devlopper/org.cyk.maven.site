@@ -421,6 +421,23 @@ public interface ActivityService extends SpecificService {
 
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de progrramme triennal
+     * permettant de créer une activité de programme triennal.
+     *
+     * @return l'identifiant de {@link TriennialProgramDto}
+     */
+    String getTriennialProgramIdentifier();
+
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de progrramme triennal.
+     *
+     * @param triennialProgramIdentifier identifiant de programme triennal
+     */
+    void setTriennialProgramIdentifier(String triennialProgramIdentifier);
+
+
+    /**
      * Identifiant json du champ de l'identitant de {@link ActivityNatureDto}.
      */
     public static final String JSON_NATURE_IDENTIFIER = ActivityDto.JSON_NATURE_IDENTIFIER;
@@ -478,6 +495,12 @@ public interface ActivityService extends SpecificService {
     String EVENTUAL_REFERENCE = ActivityDto.JSON_EVENTUAL_REFERENCE;
 
 
+    /**
+     * Identifiant json du programme triennal.
+     */
+    String TRIENNIAL_PROGRAM_IDENTIFIER = TriennialProgramDto.JSON_IDENTIFIER;
+
+
   }
 
   /**
@@ -487,7 +510,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L490">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L513">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -528,6 +551,9 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(EVENTUAL_REFERENCE)
     private String eventualReference;
+
+    @JsonbProperty(TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
   }
 
   /**
@@ -537,7 +563,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L540">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L566">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -550,7 +576,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L553">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L579">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -591,6 +617,9 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(EVENTUAL_REFERENCE)
     private String eventualReference;
+
+    @JsonbProperty(TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
