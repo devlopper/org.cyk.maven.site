@@ -79,6 +79,18 @@ public interface SubLocalityService extends SpecificService {
   @Setter
 <span class="fc" id="L80">  class SubLocalityCreateRequestDto extends AbstractNamableCreateRequestJsonDto {</span>
     
+    /*
+     * {@link SubLocalityDto#localityIdentifier}.
+     */
+    @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
+    private String localityIdentifier;
+
+    /**
+     * {@link SubLocalityDto#JSON_LOCALITY_IDENTIFIER}.
+     */
+    public static final String JSON_LOCALITY_IDENTIFIER =
+        SubLocalityDto.JSON_LOCALITY_IDENTIFIER;
+
   }
 
   /**
@@ -115,7 +127,7 @@ public interface SubLocalityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L118">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;SubLocalityDto&gt; {</span>
+<span class="fc" id="L130">  public static class GetManyResponseDto extends AbstractGetByPageResponseDto&lt;SubLocalityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;SubLocalityDto&gt; datas;
@@ -207,7 +219,19 @@ public interface SubLocalityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L210">  class SubLocalityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L222">  class SubLocalityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
+    
+    /*
+     * {@link SubLocalityDto#localityIdentifier}.
+     */
+    @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
+    private String localityIdentifier;
+
+    /**
+     * {@link SubLocalityDto#JSON_LOCALITY_IDENTIFIER}.
+     */
+    public static final String JSON_LOCALITY_IDENTIFIER =
+        SubLocalityDto.JSON_LOCALITY_IDENTIFIER;
     
   }
 
