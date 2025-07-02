@@ -5,7 +5,7 @@ import ci.gouv.dgbf.extension.core.enumeration.ValueType;
 import ci.gouv.dgbf.extension.core.segregation.HasComparisonOperatorDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
-import ci.gouv.dgbf.extension.core.segregation.HasValueSourceIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueReferenceIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
@@ -58,18 +58,18 @@ public interface ValueConditionService extends SpecificService {
   interface ValueConditionSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir identifiant de {@link ValueSourceDto}.
+     * Cette méthode permet d'obtenir identifiant de {@link ValueReferenceDto}.
      *
-     * @return identifiant de {@link ValueSourceDto}
+     * @return identifiant de {@link ValueReferenceDto}
      */
-    String getValueSourceIdentifier();
+    String getValueReferenceIdentifier();
 
     /**
-     * Cette méthode permet d'assigner identifiant de {@link ValueSourceDto}.
+     * Cette méthode permet d'assigner identifiant de {@link ValueReferenceDto}.
      *
-     * @param valueSourceIdentifier identifiant de {@link ValueSourceDto}
+     * @param valueReferenceIdentifier identifiant de {@link ValueReferenceDto}
      */
-    void setValueSourceIdentifier(String valueSourceIdentifier);
+    void setValueReferenceIdentifier(String valueReferenceIdentifier);
 
     /**
      * Cette méthode permet d'obtenir identifiant de {@link ConditionalValueDto}.
@@ -128,9 +128,10 @@ public interface ValueConditionService extends SpecificService {
     void setValueType(ValueType valueType);
 
     /**
-     * {@link HasValueSourceIdentifierDto#JSON_VALUE_SOURCE_IDENTIFIER}.
+     * {@link HasValueReferenceIdentifierDto#JSON_VALUE_REFERENCE_IDENTIFIER}.
      */
-    String JSON_VALUE_SOURCE_IDENTIFIER = HasValueSourceIdentifierDto.JSON_VALUE_SOURCE_IDENTIFIER;
+    String JSON_VALUE_REFERENCE_IDENTIFIER =
+        HasValueReferenceIdentifierDto.JSON_VALUE_REFERENCE_IDENTIFIER;
 
     /**
      * {@link HasConditionalValueIdentifierDto#JSON_CONDITIONAL_VALUE_IDENTIFIER}.
@@ -187,10 +188,10 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L190">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L191">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ValueConditionSaveRequestDto {
     @JsonbProperty
-    String valueSourceIdentifier;
+    String valueReferenceIdentifier;
 
     @JsonbProperty
     String conditionalValueIdentifier;
@@ -238,7 +239,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L241">  public static class ValueConditionGetManyResponseDto</span>
+<span class="fc" id="L242">  public static class ValueConditionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueConditionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -328,10 +329,10 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L331">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L332">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ValueConditionSaveRequestDto {
     @JsonbProperty
-    String valueSourceIdentifier;
+    String valueReferenceIdentifier;
 
     @JsonbProperty
     String conditionalValueIdentifier;

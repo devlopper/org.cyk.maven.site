@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DomainService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">DomainService.java</span></div><h1>DomainService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasValueReferenceTableFilterColumnNameDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueReferenceTableNameDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -51,45 +53,47 @@ public interface DomainService extends SpecificService {
   interface DomainSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir le nom de la table de {@link ValueSourceDto}.
+     * Cette méthode permet d'obtenir le nom de la table de {@link ValueReferenceDto}.
      *
-     * @return nom de table de {@link ValueSourceDto}
+     * @return nom de table de {@link ValueReferenceDto}
      */
-    String getValueSourceTableName();
+    String getValueReferenceTableName();
 
     /**
-     * Cette méthode permet d'assigner le nom de la table de {@link ValueSourceDto}.
+     * Cette méthode permet d'assigner le nom de la table de {@link ValueReferenceDto}.
      *
-     * @param valueSourceTableName nom de table de {@link ValueSourceDto}
+     * @param valueReferenceTableName nom de table de {@link ValueReferenceDto}
      */
-    void setValueSourceTableName(String valueSourceTableName);
+    void setValueReferenceTableName(String valueReferenceTableName);
 
     /**
      * Cette méthode permet d'obtenir le nom de la colonne de filtre de la table de
-     * {@link ValueSourceDto}.
+     * {@link ValueReferenceDto}.
      *
-     * @return nom de la colonne de filtre de table de {@link ValueSourceDto}
+     * @return nom de la colonne de filtre de table de {@link ValueReferenceDto}
      */
-    String getValueSourceTableFilterColumnName();
+    String getValueReferenceTableFilterColumnName();
 
     /**
      * Cette méthode permet d'assigner le nom de la colonne de filtre de la table de
-     * {@link ValueSourceDto}.
+     * {@link ValueReferenceDto}.
      *
-     * @param valueSourceTableFilterColumnName nom de la colonne de filtre de table de
-     *        {@link ValueSourceDto}
+     * @param valueReferenceTableFilterColumnName nom de la colonne de filtre de table de
+     *        {@link ValueReferenceDto}
      */
-    void setValueSourceTableFilterColumnName(String valueSourceTableFilterColumnName);
+    void setValueReferenceTableFilterColumnName(String valueReferenceTableFilterColumnName);
 
     /**
-     * Identifiant json nom de table de {@link ValueSourceDto}.
+     * Identifiant json nom de table de {@link ValueReferenceDto}.
      */
-    String JSON_VALUE_SOURCE_TABLE_NAME = &quot;nomTableSourceValeur&quot;;
+    String JSON_VALUE_REFERENCE_TABLE_NAME =
+        HasValueReferenceTableNameDto.JSON_VALUE_REFERENCE_TABLE_NAME;
 
     /**
-     * Identifiant json nom de la colonne de filtre de table de {@link ValueSourceDto}.
+     * Identifiant json nom de la colonne de filtre de table de {@link ValueReferenceDto}.
      */
-    String JSON_VALUE_SOURCE_TABLE_FILTER_COLUMN_NAME = &quot;nomColonneFiltreTableSourceValeur&quot;;
+    String JSON_VALUE_REFERENCE_TABLE_FILTER_COLUMN_NAME =
+        HasValueReferenceTableFilterColumnNameDto.JSON_VALUE_REFERENCE_TABLE_FILTER_COLUMN_NAME;
   }
 
   /**
@@ -125,14 +129,14 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L132">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DomainSaveRequestDto {
 
-    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_NAME)
-    String valueSourceTableName;
+    @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_NAME)
+    String valueReferenceTableName;
 
-    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_FILTER_COLUMN_NAME)
-    String valueSourceTableFilterColumnName;
+    @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_FILTER_COLUMN_NAME)
+    String valueReferenceTableFilterColumnName;
   }
 
   /**
@@ -168,7 +172,7 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L171">  public static class DomainGetManyResponseDto extends AbstractGetByPageResponseDto&lt;DomainDto&gt; {</span>
+<span class="fc" id="L175">  public static class DomainGetManyResponseDto extends AbstractGetByPageResponseDto&lt;DomainDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;DomainDto&gt; datas;
@@ -257,13 +261,13 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class DomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L264">  class DomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DomainSaveRequestDto {
-    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_NAME)
-    String valueSourceTableName;
+    @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_NAME)
+    String valueReferenceTableName;
 
-    @JsonbProperty(JSON_VALUE_SOURCE_TABLE_FILTER_COLUMN_NAME)
-    String valueSourceTableFilterColumnName;
+    @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_FILTER_COLUMN_NAME)
+    String valueReferenceTableFilterColumnName;
   }
 
   /**
