@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HierarchicalRelationDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de datastructures</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.datastructures.server.api</a> &gt; <span class="el_source">HierarchicalRelationDto.java</span></div><h1>HierarchicalRelationDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.datastructures.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasChildAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasChildIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasHierarchyAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasHierarchyIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasParentAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasParentIdentifierDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une relation hiérarchique.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L24">public class HierarchicalRelationDto extends AbstractIdentifiableAuditableDto implements</span>
+    HasHierarchyIdentifierDto, HasHierarchyAsStringDto, HasParentIdentifierDto,
+    HasParentAsStringDto, HasChildIdentifierDto, HasChildAsStringDto {
+
+  @JsonbProperty(JSON_HIERARCHY_IDENTIFIER)
+  String hierarchyIdentifier;
+
+  @JsonbProperty(JSON_HIERARCHY_AS_STRING)
+  String hierarchyAsString;
+
+  @JsonbProperty(JSON_PARENT_IDENTIFIER)
+  String parentIdentifier;
+
+  @JsonbProperty(JSON_PARENT_AS_STRING)
+  String parentAsString;
+
+  @JsonbProperty(JSON_CHILD_IDENTIFIER)
+  String childIdentifier;
+
+  @JsonbProperty(JSON_CHILD_AS_STRING)
+  String childAsString;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idRelationHierarchique&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;relationHierarchiqueChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;relation hiérarchique&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;relations hiérarchiques&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
