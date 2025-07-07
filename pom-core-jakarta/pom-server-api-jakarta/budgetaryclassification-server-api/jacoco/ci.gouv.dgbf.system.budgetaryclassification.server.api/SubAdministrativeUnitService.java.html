@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SubAdministrativeUnitService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de classification budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryclassification.server.api</a> &gt; <span class="el_source">SubAdministrativeUnitService.java</span></div><h1>SubAdministrativeUnitService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryclassification.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -86,7 +86,7 @@ public interface SubAdministrativeUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class SubAdministrativeUnitCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L89">  class SubAdministrativeUnitCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements SubAdministrativeUnitSaveRequestDto {
     private String administrativeUnitIdentifier;
   }
@@ -215,7 +215,7 @@ public interface SubAdministrativeUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L218">  class SubAdministrativeUnitUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L218">  class SubAdministrativeUnitUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements SubAdministrativeUnitSaveRequestDto {
     private String administrativeUnitIdentifier;
 
