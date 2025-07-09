@@ -75,16 +75,16 @@ public interface FundingService extends SpecificService {
    */
   interface SaveRequestDto {
     /**
-     * Cette méthode permet d'obtenir l'identifiant {@link FundingModeDto}.
+     * Cette méthode permet d'obtenir l'identifiant {@link FundingTypeDto}.
      *
-     * @return identifiant {@link FundingModeDto}
+     * @return identifiant {@link FundingTypeDto}
      */
     String getModeIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant {@link FundingModeDto}.
+     * Cette méthode permet d'assigner l'identifiant {@link FundingTypeDto}.
      *
-     * @param modeIdentifier identifiant {@link FundingModeDto}
+     * @param modeIdentifier identifiant {@link FundingTypeDto}
      */
     void setModeIdentifier(String modeIdentifier);
 
@@ -173,7 +173,7 @@ public interface FundingService extends SpecificService {
     void setAmount3(long amount3);
 
     /**
-     * Identifiant champ json de {@link FundingModeDto}.
+     * Identifiant champ json de {@link FundingTypeDto}.
      */
     String JSON_MODE_IDENTIFIER = FundingDto.JSON_MODE_IDENTIFIER;
 
@@ -333,7 +333,7 @@ public interface FundingService extends SpecificService {
     private String activityIdentifier;
 
     /**
-     * Identifiant champ json de {@link FundingModeDto}.
+     * Identifiant champ json de {@link FundingTypeDto}.
      */
     public static final String JSON_MODE_IDENTIFIER = FundingDto.JSON_MODE_IDENTIFIER;
 
