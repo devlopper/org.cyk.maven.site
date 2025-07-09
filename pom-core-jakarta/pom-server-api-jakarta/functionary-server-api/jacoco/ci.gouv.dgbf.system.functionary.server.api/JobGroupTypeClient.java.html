@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobGroupTypeClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">JobGroupTypeClient.java</span></div><h1>JobGroupTypeClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.functionary.server.api.JobGroupTypeService.JobGroupTypeCreateRequestDto;
+import ci.gouv.dgbf.system.functionary.server.api.JobGroupTypeService.JobGroupTypeGetManyResponseDto;
+import ci.gouv.dgbf.system.functionary.server.api.JobGroupTypeService.JobGroupTypeUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link JobGroupTypeService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L35">public class JobGroupTypeClient extends AbstractClient&lt;JobGroupTypeService&gt;</span>
+    implements GetByIdentifier&lt;JobGroupTypeDto&gt;, GetMany&lt;JobGroupTypeGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public JobGroupTypeClient service(JobGroupTypeService service) {
+<span class="fc" id="L41">    return (JobGroupTypeClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(JobGroupTypeCreateRequestDto request) {
+<span class="fc" id="L51">    return new CreateExecutor(JobGroupTypeService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public JobGroupTypeGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L62">    return new GetOneExecutor&lt;JobGroupTypeGetManyResponseDto&gt;(JobGroupTypeGetManyResponseDto.class,</span>
+<span class="fc" id="L63">        JobGroupTypeService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+
+  /**
+   * {@link JobGroupTypeService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+
+  @Override
+  public JobGroupTypeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L81">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L82">    request.setProjection(projection);</span>
+<span class="fc" id="L83">    request.setFilter(filter);</span>
+<span class="fc" id="L84">    request.setPage(page);</span>
+<span class="fc" id="L85">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L86">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L87">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public JobGroupTypeDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L97">    return new GetOneExecutor&lt;JobGroupTypeDto&gt;(JobGroupTypeDto.class,</span>
+<span class="fc" id="L98">        JobGroupTypeService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public JobGroupTypeDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L112">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L113">    request.setProjection(projection);</span>
+<span class="fc" id="L114">    request.setFilter(filter);</span>
+<span class="fc" id="L115">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L116">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L117">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public JobGroupTypeDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L127">    return new GetOneExecutor&lt;JobGroupTypeDto&gt;(JobGroupTypeDto.class,</span>
+        JobGroupTypeService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L129">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public JobGroupTypeDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L144">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L145">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L146">    request.setProjection(projection);</span>
+<span class="fc" id="L147">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L148">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L149">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(JobGroupTypeUpdateRequestDto request) {
+<span class="fc" id="L159">    return new IdentifiableExecutor(JobGroupTypeService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L160">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L170">    return new IdentifiableExecutor(JobGroupTypeService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L171">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link JobGroupTypeService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L185">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L186">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L187">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L188">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L189">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
