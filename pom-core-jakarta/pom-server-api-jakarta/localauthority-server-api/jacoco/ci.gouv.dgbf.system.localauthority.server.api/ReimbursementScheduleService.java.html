@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReimbursementScheduleService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ReimbursementScheduleService.java</span></div><h1>ReimbursementScheduleService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link ReimbursementScheduleDto}.
+ *
+ * @author Desysoft
+ */
+@Path(value = ReimbursementScheduleService.PATH)
+@Tag(name = &quot;Gestion des plannings de remboursements&quot;)
+public interface ReimbursementScheduleService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;planningremboursements&quot;;
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_PLANNING_REMBOURSEMENT&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link ReimbursementScheduleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Création d'un plannning de remboursement&quot;,
+      description = &quot;Ce service permet de créer un plannning de remboursement&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(ReimbursementScheduleCreateRequestDto request);
+
+  /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Desysoft
+   */
+  interface SaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link CommitmentDto}.
+     *
+     * @return identifiant {@link CommitmentDto}
+     */
+    String getCommitmentIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link CommitmentDto}.
+     *
+     * @param triennialProgramActivityIdentifier identifiant {@link CommitmentDto}
+     */
+    void setCommitmentIdentifier(String triennialProgramActivityIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant {@link TriennialProgramDto}.
+     *
+     * @return identifiant {@link TriennialProgramDto}
+     */
+    String getTriennialProgramIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant {@link TriennialProgramDto}.
+     *
+     * @param triennialProgramIdentifier identifiant {@link TriennialProgramDto}
+     */
+    void setTriennialProgramIdentifier(String triennialProgramIdentifier);
+
+
+    /**
+     * Cette méthode permet d'obtenir le montant 1.
+     *
+     * @return montant 1
+     */
+    long getAmount1();
+
+    /**
+     * Cette méthode permet d'assigner le montant 1.
+     *
+     * @param amount1 montant 1
+     */
+    void setAmount1(long amount1);
+
+    /**
+     * Cette méthode permet d'obtenir le montant 2.
+     *
+     * @return montant 2
+     */
+    long getAmount2();
+
+    /**
+     * Cette méthode permet d'assigner le montant 2.
+     *
+     * @param amount2 montant 2
+     */
+    void setAmount2(long amount2);
+
+    /**
+     * Cette méthode permet d'obtenir le montant 3.
+     *
+     * @return montant 3
+     */
+    long getAmount3();
+
+    /**
+     * Cette méthode permet d'assigner le montant 3.
+     *
+     * @param amount3 montant 3
+     */
+    void setAmount3(long amount3);
+
+
+    /**
+     * Cette méthode permet d'obtenir le montant total déja remboursé.
+     *
+     * @return montant remboursé
+     */
+    String getAmountReimbursed();
+
+    /**
+     * Cette méthode permet d'assigner le le montant total déja remboursé.
+     *
+     * @param amountReimbursed montant  remboursé
+     */
+    void setAmountReimbursed(String amountReimbursed);
+
+
+    /**
+     * Identifiant champ json de {@link ReimbursementScheduleDto}.
+     */
+    String JSON_IDENTIFIER = ReimbursementScheduleDto.JSON_IDENTIFIER;
+
+    /**
+     * Identifiant champ json de {@link CommitmentDto}.
+     */
+    String JSON_COMMITMENT_IDENTIFIER = ReimbursementScheduleDto.JSON_COMMITMENT_IDENTIFIER;
+
+
+    /**
+     * Identifiant champ json de {@link TriennialProgramDto}.
+     */
+    String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+        ReimbursementScheduleDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
+
+    /**
+     * Identifiant champ json du montant remboursé.
+     */
+    String JSON_AMOUNT_REIMBURSED =
+        ReimbursementScheduleDto.JSON_AMOUNT_REIMBURSED;
+
+    /**
+     * Identifiant champ json du montant 1.
+     */
+    String JSON_AMOUNT_1 = ReimbursementScheduleDto.JSON_AMOUNT_1;
+
+    /**
+     * Identifiant champ json du montant 2.
+     */
+    String JSON_AMOUNT_2 = ReimbursementScheduleDto.JSON_AMOUNT_2;
+
+    /**
+     * Identifiant champ json du montant 3.
+     */
+    String JSON_AMOUNT_3 = ReimbursementScheduleDto.JSON_AMOUNT_3;
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L210">  class ReimbursementScheduleCreateRequestDto extends ByIdentifierRequestDto</span>
+      implements SaveRequestDto {
+
+    @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
+    private String commitmentIdentifier;
+
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
+
+    @JsonbProperty(JSON_AMOUNT_REIMBURSED)
+    private String amountReimbursed;
+
+    @JsonbProperty(JSON_AMOUNT_1)
+    private long amount1;
+
+    @JsonbProperty(JSON_AMOUNT_2)
+    private long amount2;
+
+    @JsonbProperty(JSON_AMOUNT_3)
+    private long amount3;
+  }
+
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_PLANNING_REMBOURSEMENTS&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link ReimbursementScheduleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir des plannings de remboursements&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = GetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L266">  public static class GetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ReimbursementScheduleDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ReimbursementScheduleDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention d'un plannning de remboursement.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_PLANNING_REMBOURSEMENT&quot;;
+
+  /**
+   * Chemin du service d'obtention d'un plannning de remboursement.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link ReimbursementScheduleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir un plannning de remboursement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ReimbursementScheduleDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant d' un plannning de remboursement.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_PLANNING_REMBOURSEMENT&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant d'un plannning de remboursement.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link ReimbursementScheduleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir par identifiant un plannning de remboursement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ReimbursementScheduleDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_PLANNING_REMBOURSEMENT&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link ReimbursementScheduleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour un plannning de remboursement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ReimbursementScheduleUpdateRequestDto request);
+
+
+  /**
+   * Cette classe représente la requête de mise à jour d'un plannning de remboursement.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L359">  class ReimbursementScheduleUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements SaveRequestDto {
+
+    @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
+    private String commitmentIdentifier;
+
+    @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+    private String triennialProgramIdentifier;
+
+    @JsonbProperty(JSON_AMOUNT_REIMBURSED)
+    private String amountReimbursed;
+
+    @JsonbProperty(JSON_AMOUNT_1)
+    private long amount1;
+
+    @JsonbProperty(JSON_AMOUNT_2)
+    private long amount2;
+
+    @JsonbProperty(JSON_AMOUNT_3)
+    private long amount3;
+  }
+
+  /**
+   * Identifiant du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_IDENTIFIER = &quot;MISE_A_JOUR_MONTANT_PLANNING_REMBOURSEMENT&quot;;
+
+  /**
+   * Chemin du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_PATH = ReimbursementScheduleUpdateAmountRequestDto.JSON_AMOUNT;
+
+  /**
+   * Cette méthode permet de mettre à jour montant de {@link ReimbursementScheduleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_AMOUNT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_AMOUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateAmount(ReimbursementScheduleUpdateAmountRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour de montant.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L413">  class ReimbursementScheduleUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+    /**
+     * Montant.
+     */
+    @JsonbProperty(JSON_AMOUNT)
+    private long amount;
+
+    /**
+     * Index.
+     */
+    @JsonbProperty(JSON_INDEX)
+    private int index;
+
+    /**
+     * Identifiant json {@link #amount}.
+     */
+    public static final String JSON_AMOUNT = &quot;montant&quot;;
+
+    /**
+     * Identifiant json {@link #index}.
+     */
+    public static final String JSON_INDEX = &quot;index&quot;;
+  }
+
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_PLANNING_REMBOURSEMENT&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link ReimbursementScheduleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      description = &quot;Ce service permet de supprimer un plannning de remboursement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

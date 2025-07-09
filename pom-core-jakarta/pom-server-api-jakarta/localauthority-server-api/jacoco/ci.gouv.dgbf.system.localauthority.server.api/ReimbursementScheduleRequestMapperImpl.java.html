@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReimbursementScheduleRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ReimbursementScheduleRequestMapperImpl.java</span></div><h1>ReimbursementScheduleRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link ReimbursementScheduleDto}.
+*
+* @author Desysoft
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-07-09T19:04:29+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class ReimbursementScheduleRequestMapperImpl implements ReimbursementScheduleRequestMapper {</span>
+
+    @Override
+    public ReimbursementScheduleService.ReimbursementScheduleCreateRequestDto mapCreate(ReimbursementScheduleDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        ReimbursementScheduleService.ReimbursementScheduleCreateRequestDto reimbursementScheduleCreateRequestDto = new ReimbursementScheduleService.ReimbursementScheduleCreateRequestDto();</span>
+
+<span class="fc" id="L28">        reimbursementScheduleCreateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L29">        reimbursementScheduleCreateRequestDto.setCommitmentIdentifier( arg0.getCommitmentIdentifier() );</span>
+<span class="fc" id="L30">        reimbursementScheduleCreateRequestDto.setTriennialProgramIdentifier( arg0.getTriennialProgramIdentifier() );</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">        if ( arg0.getAmountReimbursed() != null ) {</span>
+<span class="fc" id="L32">            reimbursementScheduleCreateRequestDto.setAmountReimbursed( String.valueOf( arg0.getAmountReimbursed() ) );</span>
+        }
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
+<span class="fc" id="L35">            reimbursementScheduleCreateRequestDto.setAmount1( arg0.getAmount1() );</span>
+        }
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
+<span class="fc" id="L38">            reimbursementScheduleCreateRequestDto.setAmount2( arg0.getAmount2() );</span>
+        }
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
+<span class="fc" id="L41">            reimbursementScheduleCreateRequestDto.setAmount3( arg0.getAmount3() );</span>
+        }
+
+<span class="fc" id="L44">        return reimbursementScheduleCreateRequestDto;</span>
+    }
+
+    @Override
+    public ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto mapUpdate(ReimbursementScheduleDto arg0) {
+<span class="fc bfc" id="L49" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L50">            return null;</span>
+        }
+
+<span class="fc" id="L53">        ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto reimbursementScheduleUpdateRequestDto = new ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto();</span>
+
+<span class="fc" id="L55">        reimbursementScheduleUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L56">        reimbursementScheduleUpdateRequestDto.setCommitmentIdentifier( arg0.getCommitmentIdentifier() );</span>
+<span class="fc" id="L57">        reimbursementScheduleUpdateRequestDto.setTriennialProgramIdentifier( arg0.getTriennialProgramIdentifier() );</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if ( arg0.getAmountReimbursed() != null ) {</span>
+<span class="fc" id="L59">            reimbursementScheduleUpdateRequestDto.setAmountReimbursed( String.valueOf( arg0.getAmountReimbursed() ) );</span>
+        }
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
+<span class="fc" id="L62">            reimbursementScheduleUpdateRequestDto.setAmount1( arg0.getAmount1() );</span>
+        }
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
+<span class="fc" id="L65">            reimbursementScheduleUpdateRequestDto.setAmount2( arg0.getAmount2() );</span>
+        }
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
+<span class="fc" id="L68">            reimbursementScheduleUpdateRequestDto.setAmount3( arg0.getAmount3() );</span>
+        }
+
+<span class="fc" id="L71">        return reimbursementScheduleUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
