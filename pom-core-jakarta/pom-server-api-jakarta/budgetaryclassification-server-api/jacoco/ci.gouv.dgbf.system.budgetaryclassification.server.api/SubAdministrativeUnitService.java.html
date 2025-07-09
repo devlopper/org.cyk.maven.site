@@ -51,6 +51,16 @@ public interface SubAdministrativeUnitService extends SpecificService {
    */
   interface SubAdministrativeUnitSaveRequestDto {
 
+    /**
+     * Identifiant Json de identifiant de l'unité administrative.
+     */
+    String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = SubAdministrativeUnitDto
+        .JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+    
+    /**
+     * Identifiant Json de Type de sous-unité administrative.
+     */
+    String JSON_TYPE = SubAdministrativeUnitDto.JSON_TYPE;
   }
 
   /**
@@ -86,9 +96,14 @@ public interface SubAdministrativeUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class SubAdministrativeUnitCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L99">  class SubAdministrativeUnitCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements SubAdministrativeUnitSaveRequestDto {
+    
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
     private String administrativeUnitIdentifier;
+    
+    @JsonbProperty(JSON_TYPE)
+    private SubAdministrativeUnitType subAdministrativeUnitType;
   }
 
   /**
@@ -125,7 +140,7 @@ public interface SubAdministrativeUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  public static class SubAdministrativeUnitGetManyResponseDto</span>
+<span class="fc" id="L143">  public static class SubAdministrativeUnitGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;SubAdministrativeUnitDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -215,9 +230,14 @@ public interface SubAdministrativeUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L218">  class SubAdministrativeUnitUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L233">  class SubAdministrativeUnitUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements SubAdministrativeUnitSaveRequestDto {
+    
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
     private String administrativeUnitIdentifier;
+    
+    @JsonbProperty(JSON_TYPE)
+    private SubAdministrativeUnitType subAdministrativeUnitType;
 
   }
 

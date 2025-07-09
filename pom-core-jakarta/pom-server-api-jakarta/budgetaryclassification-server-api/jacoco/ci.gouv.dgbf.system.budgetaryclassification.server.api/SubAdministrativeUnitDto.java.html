@@ -30,6 +30,18 @@ import lombok.Setter;
   private String administrativeUnitAsString;
   
   /**
+   * Identifiant {@link #type}.
+   */
+  @JsonbProperty(JSON_TYPE)
+  private SubAdministrativeUnitType type;
+  
+  /**
+   * Représentation en chaine de caractères de {@link #type}.
+   */
+  @JsonbProperty(JSON_TYPE_AS_STRING)
+  private String typeAsString;
+  
+  /**
    * Identifiant json de identifiant de {@link SubAdministrativeUnitDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idSousUniteAdministrative&quot;;
@@ -51,6 +63,17 @@ import lombok.Setter;
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = AdministrativeUnitDto
       .JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json de {@link #type}.
+   */
+  public static final String JSON_TYPE = &quot;type&quot;;
+  
+  /**
+   * Représentation en chaine de caractères de {@link #type}.
+   */
+  public static final String JSON_TYPE_AS_STRING = 
+      &quot;typeChaine&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
