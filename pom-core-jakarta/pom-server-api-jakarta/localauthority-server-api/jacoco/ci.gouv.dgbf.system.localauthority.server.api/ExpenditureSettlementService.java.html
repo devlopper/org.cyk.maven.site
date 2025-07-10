@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExpenditureSettlementService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ExpenditureSettlementService.java</span></div><h1>ExpenditureSettlementService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link ExpenditureSettlementDto}.
+ *
+ * @author Desysoft
+ */
+@Path(value = ExpenditureSettlementService.PATH)
+@Tag(name = &quot;Gestion des activités&quot;)
+public interface ExpenditureSettlementService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;engagements&quot;;
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_LIQUIDATION&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link ExpenditureSettlementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Création d'une liquidation&quot;,
+      description = &quot;Ce service permet de créer une liquidation&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(ExpenditureSettlementCreateRequestDto request);
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Desysoft
+   */
+  interface ExpenditureSettlementSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link LocalAuthorityDto}.
+     *
+     * @return identifiant de {@link LocalAuthorityDto}
+     */
+    String getLocalAuthorityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link LocalAuthorityDto}.
+     *
+     * @param identifier identifiant de {@link LocalAuthorityDto}
+     */
+    void setLocalAuthorityIdentifier(String identifier);
+
+    /**
+     * Reprensentaion json de l'identifiant d'un fournisseur'.
+     */
+    String JSON_SUPPLIER_IDENTIFIER = &quot;idFournisseur&quot;;
+
+    /**
+     * Representaion json du code d'un fournisseur.
+     */
+    String JSON_SUPPLIER_CODE = &quot;codeFournisseur&quot;;
+
+    /**
+     * Representaion json du nom du fournisseur.
+     */
+    String JSON_SUPPLIER_NAME = &quot;nomfournisseur&quot;;
+
+    /**
+     * Representaion chaine du fournisseur.
+     */
+    String JSON_SUPPLIER_AS_STRING = &quot;fournisseurChaine&quot;;
+
+
+    /**
+     * Représentation en chaine de caractères de {@link SupplierDto}.
+     *
+     * @param supplierIdentifier identifiant de fournisseur
+     */
+    void setSupplierIdentifier(String supplierIdentifier);
+
+    /**
+     * Identifiant {@link SupplierDto}.
+     *
+     * @return supplier identifier
+     */
+    String getSupplierIdentifier();
+
+
+    /**
+     * Cette méthode permet d'obtenir le code du fournisseur.
+     *
+     * @return supplierCode
+     */
+    String getSupplierCode();
+
+    /**
+     * Cette méthode permet d'assigner le code du fournisseur.
+     *
+     * @param supplierCode code fournisseur
+     */
+
+    void setSupplierCode(String supplierCode);
+
+
+    /**
+     * Cette méthode permet d'obtenir le libellé du fournisseur.
+     *
+     * @return supplierName
+     */
+    String getSupplierName();
+
+    /**
+     * Cette méthode permet d'assigner le libellé du fournisseur.
+     *
+     * @param supplierName nom fournisseur
+     */
+    void setSupplierName(String supplierName);
+
+    /**
+     * Reprensentaion json de l'identifiant de la nature de dépense'.
+     *
+     */
+    String JSON_EXPENDITURE_NATURE_IDENTIFIER = &quot;idExpenditureNature&quot;;
+
+    /**
+     * Representaion json du code de la nature de dépense.
+     */
+    String JSON_EXPENDITURE_NATURE_CODE = &quot;codeExpenditureNature&quot;;
+
+    /**
+     * Representaion json du nom du fournisseur.
+     */
+    String JSON_EXPENDITURE_NATURE_NAME = &quot;nomfournisseur&quot;;
+
+
+    /**
+     * Représentation en chaine de caractères de {@link ExpenditureNatureDto}.
+     *
+     * @param expenditureNatureIdentifier identifiant de fournisseur
+     */
+    void setExpenditureNatureIdentifier(String expenditureNatureIdentifier);
+
+    /**
+     * Identifiant {@link ExpenditureNatureDto}.
+     *
+     * @return expenditureNature identifier
+     */
+    String getExpenditureNatureIdentifier();
+
+
+    /**
+     * Cette méthode permet d'obtenir le code de la nature de dépense.
+     *
+     * @return expenditureNatureCode
+     */
+    String getExpenditureNatureCode();
+
+    /**
+     * Cette méthode permet d'assigner le code de la nature de dépense.
+     *
+     * @param expenditureNatureCode code nature dépense
+     */
+
+    void setExpenditureNatureCode(String expenditureNatureCode);
+
+
+    /**
+     * Cette méthode permet d'obtenir le libellé de la nature de dépense.
+     *
+     * @return expenditureNatureName libellé nature dépense
+     */
+    String getExpenditureNatureName();
+
+    /**
+     * Cette méthode permet d'assigner le libellé de la nature de dépense.
+     *
+     * @param expenditureNatureName libellé nature dépense
+     */
+    void setExpenditureNatureName(String expenditureNatureName);
+
+
+    /**
+     * Cette methode permet d'obtenir le sujet de la liquidation.
+     *
+     * @return subject
+     */
+    String getSubject();
+
+    /**
+     * Cette méthode permet d'assigner le sujet.
+     *
+     * @param subject sujet
+     */
+    void setSubject(String subject);
+
+    /**
+     * Cette methode permet d'obtenir la référence de la liquidation.
+     *
+     * @return commitmentReference La référence de l'engagememnt
+     */
+    String getCommitmentReference();
+
+    /**
+     * Cette méthode permet d'assigner la référence de la liquidation.
+     *
+     * @param commitmentReference référence facture
+     */
+    void setCommitmentReference(String commitmentReference);
+
+    /**
+     * Cette methode permet d'obtenir le numéro de la facture décompte.
+     *
+     * @return numéro de la facture décompte
+     */
+    String getInvoiceReferenceNumber();
+
+    /**
+     * Cette méthode permet d'assigner le numéro de la facture décompte.
+     *
+     * @param invoiceReferenceNumber numéro facture décompte
+     */
+    void setInvoiceReferenceNumber(String invoiceReferenceNumber);
+
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    long getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(long amount);
+
+
+    /**
+     * Cette méthode permet d'obtenir la date de la liquidation.
+     *
+     * @return date
+     */
+    LocalDate getDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de la liquidation.
+     *
+     * @param date date
+     */
+    void setDate(LocalDate date);
+
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link LocalAuthorityDto}.
+     */
+    String JSON_LOCAL_AUTHORITY_IDENTIFIER =
+        ExpenditureSettlementDto.JSON_LOCAL_AUTHORITY_IDENTIFIER;
+
+
+    /**
+     * Identifiant json du champ sujet de {@link ExpenditureSettlementDto}.
+     */
+    String JSON_SUBJECT = ExpenditureSettlementDto.JSON_SUBJECT;
+
+
+    /**
+     * Identifiant json du champ référence de liquidation de {@link ExpenditureSettlementDto}.
+     */
+    String JSON_COMMITMENT_REFERENCE = ExpenditureSettlementDto.JSON_COMMITMENT_REFERENCE;
+
+
+    /**
+     * Identifiant json du champ numéro facture décompte de {@link ExpenditureSettlementDto}.
+     */
+    String JSON_INVOICE_REFERENCE_NUMBER = ExpenditureSettlementDto.JSON_INVOICE_REFERENCE_NUMBER;
+
+
+    /**
+     * Identifiant json du champ date.
+     */
+    String JSON_DATE = ExpenditureSettlementDto.JSON_DATE;
+
+    /**
+     * Identifiant json du champ de montant.
+     */
+    String JSON_AMOUNT = ExpenditureSettlementDto.JSON_AMOUNT;
+
+  }
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L338">  class ExpenditureSettlementCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+      implements ExpenditureSettlementSaveRequestDto {
+
+    @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+    private String localAuthorityIdentifier;
+
+    @JsonbProperty(JSON_SUPPLIER_IDENTIFIER)
+    private String supplierIdentifier;
+
+    @JsonbProperty(JSON_SUPPLIER_CODE)
+    private String supplierCode;
+
+    @JsonbProperty(JSON_SUPPLIER_NAME)
+    private String supplierName;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
+    private String expenditureNatureIdentifier;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_CODE)
+    private String expenditureNatureCode;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_NAME)
+    private String expenditureNatureName;
+
+    @JsonbProperty(JSON_SUBJECT)
+    private String subject;
+
+    @JsonbProperty(JSON_COMMITMENT_REFERENCE)
+    private String commitmentReference;
+
+    @JsonbProperty(JSON_INVOICE_REFERENCE_NUMBER)
+    private String invoiceReferenceNumber;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDate date;
+
+    @JsonbProperty(JSON_AMOUNT)
+    private long amount;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_LIQUIDATION&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link ExpenditureSettlementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir des activités&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {
+          @Content(schema = @Schema(implementation =
+              ExpenditureSettlementGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L413">  class ExpenditureSettlementGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ExpenditureSettlementDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ExpenditureSettlementDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_LIQUIDATION&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link ExpenditureSettlementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir une liquidation&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ExpenditureSettlementDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_LIQUIDATION&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link ExpenditureSettlementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir par identifiant une liquidation&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ExpenditureSettlementDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_LIQUIDATION&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link ExpenditureSettlementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour une liquidation&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ExpenditureSettlementUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Desysoft
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L505">  class ExpenditureSettlementUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+      implements ExpenditureSettlementSaveRequestDto {
+
+    @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
+    private String localAuthorityIdentifier;
+
+    @JsonbProperty(JSON_SUBJECT)
+    private String subject;
+
+    @JsonbProperty(JSON_SUPPLIER_IDENTIFIER)
+    private String supplierIdentifier;
+
+    @JsonbProperty(JSON_SUPPLIER_CODE)
+    private String supplierCode;
+
+    @JsonbProperty(JSON_SUPPLIER_NAME)
+    private String supplierName;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_IDENTIFIER)
+    private String expenditureNatureIdentifier;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_CODE)
+    private String expenditureNatureCode;
+
+    @JsonbProperty(JSON_EXPENDITURE_NATURE_NAME)
+    private String expenditureNatureName;
+
+    @JsonbProperty(JSON_COMMITMENT_REFERENCE)
+    private String commitmentReference;
+
+    @JsonbProperty(JSON_INVOICE_REFERENCE_NUMBER)
+    private String invoiceReferenceNumber;
+
+    @JsonbProperty(JSON_DATE)
+    private LocalDate date;
+
+    @JsonbProperty(JSON_AMOUNT)
+    private long amount;
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_LIQUIDATION&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link ExpenditureSettlementDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      description = &quot;Ce service permet de supprimer une liquidation&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -83,14 +83,14 @@ import lombok.Setter;
   /**
    * montant total déja remboursé.
    */
-  @JsonbProperty(JSON_AMOUNT_REIMBURSED)
+  @JsonbProperty(JSON_REIMBURSED_AMOUNT)
   private Long amountReimbursed;
 
 
   /**
    * Représentation en chaine de caractères de Remboursement precedent.
    */
-  @JsonbProperty(JSON_AMOUNT_REIMBURSED_AS_STRING)
+  @JsonbProperty(JSON_REIMBURSED_AMOUNT_AS_STRING)
   private String amountReimbursedAsString;
 
   /**
@@ -140,13 +140,13 @@ import lombok.Setter;
   /**
    * Identifiant json {@link #amountReimbursed}.
    */
-  public static final String JSON_AMOUNT_REIMBURSED = &quot;montantRembourse&quot;;
+  public static final String JSON_REIMBURSED_AMOUNT = &quot;montantRembourse&quot;;
 
 
   /**
    * Identifiant json {@link #amountReimbursedAsString}.
    */
-  public static final String JSON_AMOUNT_REIMBURSED_AS_STRING = &quot;montantRembourseChaine&quot;;
+  public static final String JSON_REIMBURSED_AMOUNT_AS_STRING = &quot;montantRembourseChaine&quot;;
 
   /**
    * Identifiant json {@link #amountsInputable}.

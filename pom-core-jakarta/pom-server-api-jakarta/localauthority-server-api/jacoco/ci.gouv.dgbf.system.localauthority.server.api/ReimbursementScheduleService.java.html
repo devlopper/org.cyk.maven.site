@@ -79,14 +79,14 @@ public interface ReimbursementScheduleService extends SpecificService {
      *
      * @return identifiant {@link CommitmentDto}
      */
-    String getCommitmentIdentifier();
+    String getExpenditureSettlementIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant {@link CommitmentDto}.
      *
      * @param triennialProgramActivityIdentifier identifiant {@link CommitmentDto}
      */
-    void setCommitmentIdentifier(String triennialProgramActivityIdentifier);
+    void setExpenditureSettlementIdentifier(String triennialProgramActivityIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant {@link TriennialProgramDto}.
@@ -182,7 +182,7 @@ public interface ReimbursementScheduleService extends SpecificService {
      * Identifiant champ json du montant remboursé.
      */
     String JSON_AMOUNT_REIMBURSED =
-        ReimbursementScheduleDto.JSON_AMOUNT_REIMBURSED;
+        ReimbursementScheduleDto.JSON_REIMBURSED_AMOUNT;
 
     /**
      * Identifiant champ json du montant 1.
@@ -211,7 +211,7 @@ public interface ReimbursementScheduleService extends SpecificService {
       implements SaveRequestDto {
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
-    private String commitmentIdentifier;
+    private String expenditureSettlementIdentifier;
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
@@ -360,7 +360,7 @@ public interface ReimbursementScheduleService extends SpecificService {
       implements SaveRequestDto {
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
-    private String commitmentIdentifier;
+    private String expenditureSettlementIdentifier;
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
