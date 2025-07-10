@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">JobGroupService.java</span></div><h1>JobGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasTypeIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -51,6 +52,24 @@ public interface JobGroupService extends SpecificService {
    */
   interface JobGroupSaveRequestDto {
 
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du type.
+     *
+     * @return l'identifiant du type
+     */
+    String getTypeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du type.
+     *
+     * @param typeIdentifier l'identifiant du type
+     */
+    void setTypeIdentifier(String typeIdentifier);
+
+    /**
+     * {@link HasTypeIdentifierDto#JSON_TYPE_IDENTIFIER}.
+     */
+    String JSON_TYPE_IDENTIFIER = HasTypeIdentifierDto.JSON_TYPE_IDENTIFIER;
   }
 
   /**
@@ -86,10 +105,11 @@ public interface JobGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class JobGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L108">  class JobGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements JobGroupSaveRequestDto {
 
-
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    String typeIdentifier;
   }
 
   /**
@@ -125,7 +145,7 @@ public interface JobGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  public static class JobGroupGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobGroupDto&gt; {</span>
+<span class="fc" id="L148">  public static class JobGroupGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobGroupDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;JobGroupDto&gt; datas;
@@ -214,9 +234,11 @@ public interface JobGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L217">  class JobGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L237">  class JobGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements JobGroupSaveRequestDto {
-
+    
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    String typeIdentifier;
   }
 
   /**
