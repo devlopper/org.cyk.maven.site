@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.system.gateway.server.api.functionary.FunctionaryDto;
@@ -94,7 +95,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L97">  public static class PayslipGetByRegistrationNumberRequestDto</span>
+<span class="fc" id="L98">  public static class PayslipGetByRegistrationNumberRequestDto</span>
       extends AbstractAuditedRequestJsonDto {
 
     @JsonbProperty(JSON_REGISTRATION_NUMBER)
@@ -114,10 +115,37 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L117">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L118">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
   }
+  
+  /**
+   * Identifiant du service d'obtention d'identifiant de fichier de bulletin de salaire par
+   * identifiant de bulletin de salaire.
+   */
+  String GET_FILE_IDENTIFIER_BY_IDENTIFIER_IDENTIFIER =
+      &quot;OBTENIR_IDENTIFIANT_FICHIER_PAR_IDENTIFIANT&quot;;
+
+  /**
+   * Chemin du service d'obtention d'identifiant de fichier de bulletin de salaire par identifiant.
+   */
+  String GET_FILE_IDENTIFIER_BY_IDENTIFIER_PATH = &quot;obtention/identifiant-fichier-par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de fichier de bulletin de salaire par identifiant.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_FILE_IDENTIFIER_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.TEXT_PLAIN)
+  @Operation(operationId = GET_FILE_IDENTIFIER_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = String.class))})
+  Response getFileIdentifierByIdentifier(ByIdentifierRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
