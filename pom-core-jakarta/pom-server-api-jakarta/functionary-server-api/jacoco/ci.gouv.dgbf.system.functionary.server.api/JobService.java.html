@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">JobService.java</span></div><h1>JobService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -53,6 +54,20 @@ public interface JobService extends SpecificService {
   interface JobSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe.
+     *
+     * @return l'identifiant du groupe
+     */
+    String getGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe.
+     *
+     * @param groupIdentifier l'identifiant du groupe
+     */
+    void setGroupIdentifier(String groupIdentifier);
+
+    /**
      * Cette méthode me permet d'obtenir l'identifiant de {@link GradeDto}.
      *
      * @return identifiant de {@link GradeDto}
@@ -67,10 +82,14 @@ public interface JobService extends SpecificService {
     void setGradeIdentifier(String identifier);
 
     /**
+     * {@link HasGroupIdentifierDto#JSON_GROUP_IDENTIFIER}.
+     */
+    String JSON_GROUP_IDENTIFIER = HasGroupIdentifierDto.JSON_GROUP_IDENTIFIER;
+    
+    /**
      * Identifiant json de {@link GradeDto}.
      */
-    String JSON_GRADE_IDENTIFIER =
-        JobDto.JSON_GRADE_IDENTIFIER;
+    String JSON_GRADE_IDENTIFIER = JobDto.JSON_GRADE_IDENTIFIER;
 
   }
 
@@ -107,11 +126,14 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L110">  class JobCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L129">  class JobCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements JobSaveRequestDto {
 
+    @JsonbProperty(JSON_GROUP_IDENTIFIER)
+    String groupIdentifier;
+    
     @JsonbProperty(JSON_GRADE_IDENTIFIER)
-    private String gradeIdentifier;
+    String gradeIdentifier;
 
   }
 
@@ -148,7 +170,7 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L151">  public static class JobGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobDto&gt; {</span>
+<span class="fc" id="L173">  public static class JobGetManyResponseDto extends AbstractGetByPageResponseDto&lt;JobDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;JobDto&gt; datas;
@@ -237,11 +259,14 @@ public interface JobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class JobUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L262">  class JobUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements JobSaveRequestDto {
 
+    @JsonbProperty(JSON_GROUP_IDENTIFIER)
+    String groupIdentifier;
+    
     @JsonbProperty(JSON_GRADE_IDENTIFIER)
-    private String gradeIdentifier;
+    String gradeIdentifier;
 
   }
 

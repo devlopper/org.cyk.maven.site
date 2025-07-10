@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JobDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">JobDto.java</span></div><h1>JobDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasGroupAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -15,8 +17,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class JobDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L20">public class JobDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasGroupIdentifierDto, HasGroupAsStringDto {
 
+  @JsonbProperty(JSON_GROUP_IDENTIFIER)
+  private String groupIdentifier;
+
+  @JsonbProperty(JSON_GROUP_AS_STRING)
+  private String groupAsString;
+  
   @JsonbProperty(JSON_GRADE_IDENTIFIER)
   private String gradeIdentifier;
 
@@ -27,7 +36,7 @@ import lombok.Setter;
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idEmploi&quot;;
-  
+
   /**
    * Identifiant json de la représentation en chaine de caractères.
    */
@@ -36,20 +45,18 @@ import lombok.Setter;
   /**
    * Identifiant json de {@link #gradeIdentifier}.
    */
-  public static final String JSON_GRADE_IDENTIFIER =
-      GradeDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_GRADE_IDENTIFIER = GradeDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json de {@link #gradeAsString}.
    */
-  public static final String JSON_GRADE_AS_STRING =
-      GradeDto.JSON_THIS_AS_STRING;
-  
+  public static final String JSON_GRADE_AS_STRING = GradeDto.JSON_THIS_AS_STRING;
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;emploi&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
