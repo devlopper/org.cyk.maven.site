@@ -79,14 +79,14 @@ public interface FundingService extends SpecificService {
      *
      * @return identifiant {@link FundingTypeDto}
      */
-    String getModeIdentifier();
+    String getFundingTypeIdentifier();
 
     /**
      * Cette méthode permet d'assigner l'identifiant {@link FundingTypeDto}.
      *
      * @param modeIdentifier identifiant {@link FundingTypeDto}
      */
-    void setModeIdentifier(String modeIdentifier);
+    void setFundingTypeIdentifier(String modeIdentifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant {@link LessorDto}.
@@ -175,7 +175,7 @@ public interface FundingService extends SpecificService {
     /**
      * Identifiant champ json de {@link FundingTypeDto}.
      */
-    String JSON_MODE_IDENTIFIER = FundingDto.JSON_MODE_IDENTIFIER;
+    String JSON_FUNDING_TYPE_IDENTIFIER = FundingDto.JSON_FUNDING_TYPE_IDENTIFIER;
 
     /**
      * Identifiant champ json de {@link LessorDto}.
@@ -245,8 +245,8 @@ public interface FundingService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L247">  class FundingCreateRequestDto extends AbstractAuditedRequestJsonDto implements SaveRequestDto {</span>
-    @JsonbProperty(JSON_MODE_IDENTIFIER)
-    private String modeIdentifier;
+    @JsonbProperty(JSON_FUNDING_TYPE_IDENTIFIER)
+    private String fundingTypeIdentifier;
 
     @JsonbProperty(JSON_LESSOR_IDENTIFIER)
     private String lessorIdentifier;
@@ -335,7 +335,7 @@ public interface FundingService extends SpecificService {
     /**
      * Identifiant champ json de {@link FundingTypeDto}.
      */
-    public static final String JSON_MODE_IDENTIFIER = FundingDto.JSON_MODE_IDENTIFIER;
+    public static final String JSON_MODE_IDENTIFIER = FundingDto.JSON_FUNDING_TYPE_IDENTIFIER;
 
     /**
      * Identifiant champ json de {@link LessorDto}.
@@ -486,8 +486,8 @@ public interface FundingService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L488">  class FundingUpdateRequestDto extends ByIdentifierRequestDto implements SaveRequestDto {</span>
-    @JsonbProperty(JSON_MODE_IDENTIFIER)
-    private String modeIdentifier;
+    @JsonbProperty(JSON_FUNDING_TYPE_IDENTIFIER)
+    private String fundingTypeIdentifier;
 
     @JsonbProperty(JSON_LESSOR_IDENTIFIER)
     private String lessorIdentifier;

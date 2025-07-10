@@ -20,14 +20,14 @@ import lombok.Setter;
   /**
    * Identifiant {@link FundingTypeDto}.
    */
-  @JsonbProperty(JSON_MODE_IDENTIFIER)
-  private String modeIdentifier;
+  @JsonbProperty(JSON_FUNDING_TYPE_IDENTIFIER)
+  private String fundingTypeIdentifier;
 
   /**
    * Représentation en chaine de caractères de {@link FundingTypeDto}.
    */
-  @JsonbProperty(JSON_MODE_AS_STRING)
-  private String modeAsString;
+  @JsonbProperty(JSON_FUNDING_TYPE_AS_STRING)
+  private String fundingTypeAsString;
 
   /**
    * Identifiant {@link LessorDto}.
@@ -150,14 +150,14 @@ import lombok.Setter;
   private ActivityCategory activityCategory;
 
   /**
-   * Identifiant json {@link #modeIdentifier}.
+   * Identifiant json {@link #fundingTypeIdentifier}.
    */
-  public static final String JSON_MODE_IDENTIFIER = &quot;idMode&quot;;
+  public static final String JSON_FUNDING_TYPE_IDENTIFIER = &quot;idTypeFinancement&quot;;
 
   /**
-   * Identifiant json {@link #modeAsString}.
+   * Identifiant json {@link #fundingTypeAsString}.
    */
-  public static final String JSON_MODE_AS_STRING = &quot;modeChaine&quot;;
+  public static final String JSON_FUNDING_TYPE_AS_STRING = &quot;typeFinancementChaine&quot;;
 
   /**
    * Identifiant json {@link #lessorIdentifier}.

@@ -19,14 +19,14 @@ import lombok.Setter;
   /**
    * Identifiant {@link CommitmentDto}.
    */
-  @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
-  private String commitmentIdentifier;
+  @JsonbProperty(JSON_EXPENDITURE_SETTLEMENT_IDENTIFIER)
+  private String expenditureSettlementIdentifier;
 
   /**
    * Représentation en chaine de caractères de {@link CommitmentDto}.
    */
-  @JsonbProperty(JSON_COMMITMENT_AS_STRING)
-  private String commitmentAsString;
+  @JsonbProperty(JSON_EXPENDITURE_SETTLEMENT_AS_STRING)
+  private String expenditureSettlementAsString;
 
 
   /**
@@ -101,14 +101,14 @@ import lombok.Setter;
 
 
   /**
-   * Identifiant json {@link #commitmentIdentifier}.
+   * Identifiant json {@link #expenditureSettlementIdentifier}.
    */
-  public static final String JSON_COMMITMENT_IDENTIFIER = &quot;idEngagement&quot;;
+  public static final String JSON_EXPENDITURE_SETTLEMENT_IDENTIFIER = &quot;idLiquidation&quot;;
 
   /**
-   * Identifiant json {@link #commitmentAsString}.
+   * Identifiant json {@link #expenditureSettlementAsString}.
    */
-  public static final String JSON_COMMITMENT_AS_STRING = &quot;commitmentChaine&quot;;
+  public static final String JSON_EXPENDITURE_SETTLEMENT_AS_STRING = &quot;liquidationChaine&quot;;
 
 
   /**

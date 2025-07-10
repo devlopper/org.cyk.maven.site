@@ -169,7 +169,8 @@ public interface ReimbursementScheduleService extends SpecificService {
     /**
      * Identifiant champ json de {@link CommitmentDto}.
      */
-    String JSON_COMMITMENT_IDENTIFIER = ReimbursementScheduleDto.JSON_COMMITMENT_IDENTIFIER;
+    String JSON_COMMITMENT_IDENTIFIER =
+        ReimbursementScheduleDto.JSON_EXPENDITURE_SETTLEMENT_IDENTIFIER;
 
 
     /**
@@ -207,7 +208,7 @@ public interface ReimbursementScheduleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L210">  class ReimbursementScheduleCreateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L211">  class ReimbursementScheduleCreateRequestDto extends ByIdentifierRequestDto</span>
       implements SaveRequestDto {
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
@@ -263,7 +264,7 @@ public interface ReimbursementScheduleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L266">  public static class GetManyResponseDto</span>
+<span class="fc" id="L267">  public static class GetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ReimbursementScheduleDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -356,7 +357,7 @@ public interface ReimbursementScheduleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L359">  class ReimbursementScheduleUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L360">  class ReimbursementScheduleUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements SaveRequestDto {
 
     @JsonbProperty(JSON_COMMITMENT_IDENTIFIER)
@@ -410,7 +411,7 @@ public interface ReimbursementScheduleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L413">  class ReimbursementScheduleUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L414">  class ReimbursementScheduleUpdateAmountRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Montant.
      */
