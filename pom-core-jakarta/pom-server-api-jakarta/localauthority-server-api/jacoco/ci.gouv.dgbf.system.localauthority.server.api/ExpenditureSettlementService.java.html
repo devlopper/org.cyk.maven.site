@@ -90,26 +90,6 @@ public interface ExpenditureSettlementService extends SpecificService {
      */
     void setLocalAuthorityIdentifier(String identifier);
 
-    /**
-     * Reprensentaion json de l'identifiant d'un fournisseur'.
-     */
-    String JSON_SUPPLIER_IDENTIFIER = &quot;idFournisseur&quot;;
-
-    /**
-     * Representaion json du code d'un fournisseur.
-     */
-    String JSON_SUPPLIER_CODE = &quot;codeFournisseur&quot;;
-
-    /**
-     * Representaion json du nom du fournisseur.
-     */
-    String JSON_SUPPLIER_NAME = &quot;nomfournisseur&quot;;
-
-    /**
-     * Representaion chaine du fournisseur.
-     */
-    String JSON_SUPPLIER_AS_STRING = &quot;fournisseurChaine&quot;;
-
 
     /**
      * Représentation en chaine de caractères de {@link SupplierDto}.
@@ -155,23 +135,6 @@ public interface ExpenditureSettlementService extends SpecificService {
      * @param supplierName nom fournisseur
      */
     void setSupplierName(String supplierName);
-
-    /**
-     * Reprensentaion json de l'identifiant de la nature de dépense'.
-     *
-     */
-    String JSON_EXPENDITURE_NATURE_IDENTIFIER = &quot;idExpenditureNature&quot;;
-
-    /**
-     * Representaion json du code de la nature de dépense.
-     */
-    String JSON_EXPENDITURE_NATURE_CODE = &quot;codeExpenditureNature&quot;;
-
-    /**
-     * Representaion json du nom du fournisseur.
-     */
-    String JSON_EXPENDITURE_NATURE_NAME = &quot;nomfournisseur&quot;;
-
 
     /**
      * Représentation en chaine de caractères de {@link ExpenditureNatureDto}.
@@ -277,6 +240,36 @@ public interface ExpenditureSettlementService extends SpecificService {
 
 
     /**
+     * Cette méthode permet d'obtenir le montant mandaté.
+     *
+     * @return montant mandaté
+     */
+    long getAuthorizedAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant mandaté.
+     *
+     * @param authorizedAmount montant mandaté
+     */
+    void setAuthorizedAmount(long authorizedAmount);
+
+    /**
+     * Cette méthode permet d'assigner le montant restant à payér.
+     *
+     * @param remainingAmountToAuthorize montant restant à payér
+     */
+    void setRemainingAmountToAuthorize(long remainingAmountToAuthorize);
+
+
+    /**
+     * Cette méthode permet d'obtenir le montant restant à payér.
+     *
+     * @return remainingAmountToAuthorize restant à payér
+     */
+    long getRemainingAmountToAuthorize();
+
+
+    /**
      * Cette méthode permet d'obtenir la date de la liquidation.
      *
      * @return date
@@ -289,6 +282,42 @@ public interface ExpenditureSettlementService extends SpecificService {
      * @param date date
      */
     void setDate(LocalDate date);
+
+
+    /**
+     * Reprensentaion json de l'identifiant d'un fournisseur'.
+     */
+    String JSON_SUPPLIER_IDENTIFIER = &quot;idFournisseur&quot;;
+
+    /**
+     * Representaion json du code d'un fournisseur.
+     */
+    String JSON_SUPPLIER_CODE = &quot;codeFournisseur&quot;;
+
+    /**
+     * Representaion json du nom du fournisseur.
+     */
+    String JSON_SUPPLIER_NAME = &quot;nomfournisseur&quot;;
+
+    /**
+     * Representaion chaine du fournisseur.
+     */
+    String JSON_SUPPLIER_AS_STRING = &quot;fournisseurChaine&quot;;
+
+    /**
+     * Reprensentaion json de l'identifiant de la nature de dépense'.
+     */
+    String JSON_EXPENDITURE_NATURE_IDENTIFIER = &quot;idExpenditureNature&quot;;
+
+    /**
+     * Representaion json du code de la nature de dépense.
+     */
+    String JSON_EXPENDITURE_NATURE_CODE = &quot;codeExpenditureNature&quot;;
+
+    /**
+     * Representaion json du nom du fournisseur.
+     */
+    String JSON_EXPENDITURE_NATURE_NAME = &quot;nomfournisseur&quot;;
 
 
     /**
@@ -326,6 +355,19 @@ public interface ExpenditureSettlementService extends SpecificService {
      */
     String JSON_AMOUNT = ExpenditureSettlementDto.JSON_AMOUNT;
 
+
+    /**
+     * Identifiant json du champ de montant mandaté.
+     */
+    String JSON_AUTHORIZED_AMOUNT = ExpenditureSettlementDto.JSON_AUTHORIZED_AMOUNT;
+
+
+    /**
+     * Identifiant json du champ de montant  restant à payer.
+     */
+    String JSON_REMAINING_AMOUNT_TO_AUTHORIZE =
+        ExpenditureSettlementDto.JSON_REMAINING_AMOUNT_TO_AUTHORIZE;
+
   }
 
   /**
@@ -335,7 +377,7 @@ public interface ExpenditureSettlementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L338">  class ExpenditureSettlementCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L380">  class ExpenditureSettlementCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ExpenditureSettlementSaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -373,6 +415,13 @@ public interface ExpenditureSettlementService extends SpecificService {
 
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
+
+
+    @JsonbProperty(JSON_AUTHORIZED_AMOUNT)
+    private long authorizedAmount;
+
+    @JsonbProperty(JSON_REMAINING_AMOUNT_TO_AUTHORIZE)
+    private long remainingAmountToAuthorize;
   }
 
   /**
@@ -410,7 +459,7 @@ public interface ExpenditureSettlementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L413">  class ExpenditureSettlementGetManyResponseDto</span>
+<span class="fc" id="L462">  class ExpenditureSettlementGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ExpenditureSettlementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -502,7 +551,7 @@ public interface ExpenditureSettlementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L505">  class ExpenditureSettlementUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L554">  class ExpenditureSettlementUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ExpenditureSettlementSaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -540,6 +589,12 @@ public interface ExpenditureSettlementService extends SpecificService {
 
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
+
+    @JsonbProperty(JSON_AUTHORIZED_AMOUNT)
+    private long authorizedAmount;
+
+    @JsonbProperty(JSON_REMAINING_AMOUNT_TO_AUTHORIZE)
+    private long remainingAmountToAuthorize;
   }
 
   /**

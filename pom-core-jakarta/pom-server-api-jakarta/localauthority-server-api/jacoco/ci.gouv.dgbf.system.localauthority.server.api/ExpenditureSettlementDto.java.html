@@ -161,6 +161,32 @@ import lombok.Setter;
   @JsonbProperty(JSON_AMOUNT_AS_STRING)
   private String amountAsString;
 
+
+  /**
+   * Montant mandaté.
+   */
+  @JsonbProperty(JSON_AUTHORIZED_AMOUNT)
+  private Long authorizedAmount;
+
+  /**
+   * Représentation en chaine de caractères du montant mandaté.
+   */
+  @JsonbProperty(JSON_AUTHORIZED_AMOUNT_AS_STRING)
+  private String authorizedAmountAsString;
+
+
+  /**
+   * Montant restant à mandater.
+   */
+  @JsonbProperty(JSON_REMAINING_AMOUNT_TO_AUTHORIZE)
+  private Long remainingAmountToAuthorize;
+
+  /**
+   * Représentation en chaine de caractères du montant restant à mandater.
+   */
+  @JsonbProperty(JSON_REMAINING_AMOUNT_TO_AUTHORIZE_AS_STRING)
+  private String remainingAmountToAuthorizeAsString;
+
   /**
    * Représentation en chaine de caractères de la date.
    */
@@ -200,6 +226,29 @@ import lombok.Setter;
    * Identifiant json {@link #amountAsString}.
    */
   public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
+
+
+  /**
+   * Identifiant json {@link #authorizedAmount}.
+   */
+  public static final String JSON_AUTHORIZED_AMOUNT = &quot;montantMandate&quot;;
+
+  /**
+   * Identifiant json {@link #authorizedAmountAsString}.
+   */
+  public static final String JSON_AUTHORIZED_AMOUNT_AS_STRING = &quot;montantMandateChaine&quot;;
+
+
+  /**
+   * Identifiant json {@link #remainingAmountToAuthorize}.
+   */
+  public static final String JSON_REMAINING_AMOUNT_TO_AUTHORIZE = &quot;montantRestantAPayer&quot;;
+
+  /**
+   * Identifiant json {@link #remainingAmountToAuthorizeAsString}.
+   */
+  public static final String JSON_REMAINING_AMOUNT_TO_AUTHORIZE_AS_STRING =
+      &quot;montantRestantAPayerChaine&quot;;
 
 
   /**
