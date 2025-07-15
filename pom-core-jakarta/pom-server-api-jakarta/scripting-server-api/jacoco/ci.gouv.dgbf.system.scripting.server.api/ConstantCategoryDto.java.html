@@ -21,10 +21,10 @@ import lombok.Setter;
     implements HasDomainIdentifierDto, HasDomainAsStringDto {
 
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
-  String domainIdentifier;
+  private String domainIdentifier;
   
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
-  String domainAsString;
+  private String domainAsString;
   
   /**
    * Identifiant json de l'identifiant.

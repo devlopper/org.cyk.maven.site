@@ -149,13 +149,13 @@ public interface ConstantService extends SpecificService {
       implements ConstantSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
-    String domainIdentifier;
+    private String domainIdentifier;
 
     @JsonbProperty(JSON_VALUE)
-    String value;
+    private String value;
 
     @JsonbProperty(JSON_VALUE_TYPE)
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**
@@ -284,13 +284,13 @@ public interface ConstantService extends SpecificService {
       implements ConstantSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
-    String domainIdentifier;
+    private String domainIdentifier;
 
     @JsonbProperty(JSON_VALUE)
-    String value;
+    private String value;
 
     @JsonbProperty(JSON_VALUE_TYPE)
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**

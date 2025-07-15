@@ -20,17 +20,11 @@ import lombok.Setter;
 <span class="fc" id="L20">public class ConditionalValueDto extends AbstractIdentifiableAuditableDto</span>
     implements HasGroupIdentifierDto, HasStringValueDto {
 
-  /**
-   * Identifiant {@link ConditionalValueGroupDto}.
-   */
   @JsonbProperty(JSON_GROUP_IDENTIFIER)
-  String groupIdentifier;
+  private String groupIdentifier;
 
-  /**
-   * Valeur.
-   */
   @JsonbProperty(JSON_VALUE)
-  String value;
+  private String value;
 
   /**
    * Identifiant json de l'identifiant.
