@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContextualConstantDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ContextualConstantDto.java</span></div><h1>ContextualConstantDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
+
+
+import ci.gouv.dgbf.extension.core.segregation.HasCategoryAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasConstantAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasConstantIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFromDateAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFromDateDto;
+import ci.gouv.dgbf.extension.core.segregation.HasGroupAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasToDateAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasToDateDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une constante contextuelle.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L30">public class ContextualConstantDto extends AbstractIdentifiableAuditableDto implements</span>
+    HasConstantIdentifierDto, HasConstantAsStringDto, HasGroupIdentifierDto, HasGroupAsStringDto,
+    HasCategoryIdentifierDto, HasCategoryAsStringDto, HasFromDateDto&lt;LocalDateTime&gt;,
+    HasFromDateAsStringDto, HasToDateDto&lt;LocalDateTime&gt;, HasToDateAsStringDto {
+
+  @JsonbProperty(JSON_CONSTANT_IDENTIFIER)
+  String constantIdentifier;
+
+  @JsonbProperty(JSON_CONSTANT_AS_STRING)
+  String constantAsString;
+  
+  @JsonbProperty(JSON_GROUP_IDENTIFIER)
+  String groupIdentifier;
+
+  @JsonbProperty(JSON_GROUP_AS_STRING)
+  String groupAsString;
+
+  @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+  String categoryIdentifier;
+
+  @JsonbProperty(JSON_CATEGORY_AS_STRING)
+  String categoryAsString;
+
+  @JsonbProperty(JSON_FROM_DATE)
+  LocalDateTime fromDate;
+
+  @JsonbProperty(JSON_FROM_DATE_AS_STRING)
+  String fromDateAsString;
+
+  @JsonbProperty(JSON_TO_DATE)
+  LocalDateTime toDate;
+
+  @JsonbProperty(JSON_TO_DATE_AS_STRING)
+  String toDateAsString;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idConstanteContextuelle&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;constanteContextuelleChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;constante contextuelle&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;constantes contextuelles&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
