@@ -148,14 +148,17 @@ public interface ConditionalValueService extends SpecificService {
 <span class="fc" id="L148">  class ConditionalValueCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ConditionalValueSaveRequestDto {
 
+    /**
+     * Identifiant {@link ConditionalValueGroupDto}.
+     */
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     String groupIdentifier;
 
     @JsonbProperty(JSON_VALUE)
-    String value;
+    private String value;
 
     @JsonbProperty(JSON_VALUE_TYPE)
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**
@@ -191,7 +194,7 @@ public interface ConditionalValueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L194">  public static class ConditionalValueGetManyResponseDto</span>
+<span class="fc" id="L197">  public static class ConditionalValueGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConditionalValueDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -281,17 +284,17 @@ public interface ConditionalValueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L284">  class ConditionalValueUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L287">  class ConditionalValueUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ConditionalValueSaveRequestDto {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
-    String groupIdentifier;
+    private String groupIdentifier;
 
     @JsonbProperty(JSON_VALUE)
-    String value;
+    private String value;
 
     @JsonbProperty(JSON_VALUE_TYPE)
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**

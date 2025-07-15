@@ -107,6 +107,9 @@ public interface ConditionalValueGroupService extends SpecificService {
 <span class="fc" id="L107">  class ConditionalValueGroupCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ConditionalValueGroupSaveRequestDto {
     
+    /**
+     * Description.
+     */
     @JsonbProperty(JSON_DESCRIPTION)
     String description;
   }
@@ -144,7 +147,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L147">  public static class ConditionalValueGroupGetManyResponseDto</span>
+<span class="fc" id="L150">  public static class ConditionalValueGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConditionalValueGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -234,9 +237,12 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L237">  class ConditionalValueGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L240">  class ConditionalValueGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ConditionalValueGroupSaveRequestDto {
     
+    /**
+     * Description.
+     */
     @JsonbProperty(JSON_DESCRIPTION)
     String description;
   }
