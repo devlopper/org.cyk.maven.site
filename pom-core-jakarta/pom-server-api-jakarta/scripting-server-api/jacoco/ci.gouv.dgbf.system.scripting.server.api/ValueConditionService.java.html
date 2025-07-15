@@ -191,19 +191,19 @@ public interface ValueConditionService extends SpecificService {
 <span class="fc" id="L191">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ValueConditionSaveRequestDto {
     @JsonbProperty
-    String valueReferenceIdentifier;
+    private String valueReferenceIdentifier;
 
     @JsonbProperty
-    String conditionalValueIdentifier;
+    private String conditionalValueIdentifier;
 
     @JsonbProperty
-    ComparisonOperator comparisonOperator;
+    private ComparisonOperator comparisonOperator;
 
     @JsonbProperty
-    String value;
+    private String value;
 
     @JsonbProperty
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**
@@ -332,19 +332,19 @@ public interface ValueConditionService extends SpecificService {
 <span class="fc" id="L332">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ValueConditionSaveRequestDto {
     @JsonbProperty
-    String valueReferenceIdentifier;
+    private String valueReferenceIdentifier;
 
     @JsonbProperty
-    String conditionalValueIdentifier;
+    private String conditionalValueIdentifier;
 
     @JsonbProperty
-    ComparisonOperator comparisonOperator;
+    private ComparisonOperator comparisonOperator;
 
     @JsonbProperty
-    String value;
+    private String value;
 
     @JsonbProperty
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**

@@ -21,10 +21,10 @@ import lombok.Setter;
     implements HasValueReferenceTableNameDto, HasValueReferenceTableFilterColumnNameDto {
 
   @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_NAME)
-  String valueReferenceTableName;
+  private String valueReferenceTableName;
 
   @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_FILTER_COLUMN_NAME)
-  String valueReferenceTableFilterColumnName;
+  private String valueReferenceTableFilterColumnName;
 
   /**
    * Identifiant json de l'identifiant.

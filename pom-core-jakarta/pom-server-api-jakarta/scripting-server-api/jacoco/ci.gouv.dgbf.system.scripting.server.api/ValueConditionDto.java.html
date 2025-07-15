@@ -25,16 +25,16 @@ import lombok.Setter;
     HasComparisonOperatorDto, HasStringValueDto {
 
   @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
-  String conditionalValueIdentifier;
+  private String conditionalValueIdentifier;
   
   @JsonbProperty(JSON_VALUE_REFERENCE_IDENTIFIER)
-  String valueReferenceIdentifier;
+  private String valueReferenceIdentifier;
 
   @JsonbProperty(JSON_COMPARISON_OPERATOR)
-  ComparisonOperator comparisonOperator;
+  private ComparisonOperator comparisonOperator;
 
   @JsonbProperty(JSON_VALUE)
-  String value;
+  private String value;
 
   /**
    * Identifiant json de l'identifiant.

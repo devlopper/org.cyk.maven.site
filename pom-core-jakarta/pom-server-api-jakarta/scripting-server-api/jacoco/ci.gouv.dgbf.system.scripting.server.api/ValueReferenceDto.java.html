@@ -28,25 +28,25 @@ import lombok.Setter;
     HasProjectionColumnNameDto, HasFilterColumnNameDto, HasValueTypeDto, HasValueTypeAsStringDto {
 
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
-  String domainIdentifier;
+  private String domainIdentifier;
   
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
-  String domainAsString;
+  private String domainAsString;
   
   @JsonbProperty(JSON_TABLE_NAME)
-  String tableName;
+  private String tableName;
 
   @JsonbProperty(JSON_PROJECTION_COLUMN_NAME)
-  String projectionColumnName;
+  private String projectionColumnName;
 
   @JsonbProperty(JSON_FILTER_COLUMN_NAME)
-  String filterColumnName;
+  private String filterColumnName;
 
   @JsonbProperty(JSON_VALUE_TYPE)
-  ValueType valueType;
+  private ValueType valueType;
 
   @JsonbProperty(JSON_VALUE_TYPE_AS_STRING)
-  String valueTypeAsString;
+  private String valueTypeAsString;
 
   /**
    * Identifiant json de l'identifiant.

@@ -239,7 +239,7 @@ public interface ScriptEvaluationService extends SpecificService {
      * Collection de {@link GroupDto}.
      */
     @JsonbProperty(JSON_GROUPS)
-    Collection&lt;GroupDto&gt; groups;
+    private Collection&lt;GroupDto&gt; groups;
 
     /**
      * {@link StringFormat} de la représentation en chaine de caractères du résultat.
@@ -319,13 +319,13 @@ public interface ScriptEvaluationService extends SpecificService {
        * Numéro d'ordre.
        */
       @JsonbProperty(JSON_ORDER_NUMBER)
-      Integer orderNumber;
+      private Integer orderNumber;
 
       /**
        * Carte d'identifiants {@link ScriptDto} et index.
        */
       @JsonbProperty(JSON_SCRIPT_IDENTIFIERS)
-      Map&lt;String, Integer&gt; scriptIdentifiers;
+      private Map&lt;String, Integer&gt; scriptIdentifiers;
 
       /**
        * Arguments.
@@ -386,7 +386,7 @@ public interface ScriptEvaluationService extends SpecificService {
      * Collection de {@link GroupDto}.
      */
     @JsonbProperty(&quot;groupes&quot;)
-    Collection&lt;GroupDto&gt; groups;
+    private Collection&lt;GroupDto&gt; groups;
 
     /**
      * Cette méthode permet d'obtenir {@link GroupDto} par numéro d'ordre.
@@ -413,7 +413,7 @@ public interface ScriptEvaluationService extends SpecificService {
        * Numéro d'ordre.
        */
       @JsonbProperty(JSON_ORDER_NUMBER)
-      Integer orderNumber;
+      private Integer orderNumber;
 
       /**
        * Collection de {@link ResultDto}.

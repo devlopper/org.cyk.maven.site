@@ -33,34 +33,34 @@ import lombok.Setter;
     HasFromDateAsStringDto, HasToDateDto&lt;LocalDateTime&gt;, HasToDateAsStringDto {
 
   @JsonbProperty(JSON_CONSTANT_IDENTIFIER)
-  String constantIdentifier;
+  private String constantIdentifier;
 
   @JsonbProperty(JSON_CONSTANT_AS_STRING)
-  String constantAsString;
+  private String constantAsString;
   
   @JsonbProperty(JSON_GROUP_IDENTIFIER)
-  String groupIdentifier;
+  private String groupIdentifier;
 
   @JsonbProperty(JSON_GROUP_AS_STRING)
-  String groupAsString;
+  private String groupAsString;
 
   @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
-  String categoryIdentifier;
+  private String categoryIdentifier;
 
   @JsonbProperty(JSON_CATEGORY_AS_STRING)
-  String categoryAsString;
+  private String categoryAsString;
 
   @JsonbProperty(JSON_FROM_DATE)
-  LocalDateTime fromDate;
+  private LocalDateTime fromDate;
 
   @JsonbProperty(JSON_FROM_DATE_AS_STRING)
-  String fromDateAsString;
+  private String fromDateAsString;
 
   @JsonbProperty(JSON_TO_DATE)
-  LocalDateTime toDate;
+  private LocalDateTime toDate;
 
   @JsonbProperty(JSON_TO_DATE_AS_STRING)
-  String toDateAsString;
+  private String toDateAsString;
 
   /**
    * Identifiant json de l'identifiant.
