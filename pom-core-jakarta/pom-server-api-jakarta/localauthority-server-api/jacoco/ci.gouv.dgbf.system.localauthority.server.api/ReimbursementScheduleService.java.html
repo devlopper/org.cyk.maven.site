@@ -151,14 +151,14 @@ public interface ReimbursementScheduleService extends SpecificService {
      *
      * @return montant remboursé
      */
-    String getAmountReimbursed();
+    long getReimbursedAmount();
 
     /**
      * Cette méthode permet d'assigner le le montant total déja remboursé.
      *
-     * @param amountReimbursed montant  remboursé
+     * @param reimbursedAmount montant  remboursé
      */
-    void setAmountReimbursed(String amountReimbursed);
+    void setReimbursedAmount(long reimbursedAmount);
 
 
     /**
@@ -218,7 +218,7 @@ public interface ReimbursementScheduleService extends SpecificService {
     private String triennialProgramIdentifier;
 
     @JsonbProperty(JSON_AMOUNT_REIMBURSED)
-    private String amountReimbursed;
+    private long reimbursedAmount;
 
     @JsonbProperty(JSON_AMOUNT_1)
     private long amount1;
@@ -367,7 +367,7 @@ public interface ReimbursementScheduleService extends SpecificService {
     private String triennialProgramIdentifier;
 
     @JsonbProperty(JSON_AMOUNT_REIMBURSED)
-    private String amountReimbursed;
+    private long reimbursedAmount;
 
     @JsonbProperty(JSON_AMOUNT_1)
     private long amount1;
