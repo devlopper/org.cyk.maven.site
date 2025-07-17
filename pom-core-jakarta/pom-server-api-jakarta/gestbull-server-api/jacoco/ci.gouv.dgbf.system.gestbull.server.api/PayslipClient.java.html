@@ -2,7 +2,13 @@
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.gestbull.server.api.PayslipService.GetBytesRequestDto;
+import ci.gouv.dgbf.system.gestbull.server.api.PayslipService.PayslipGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -16,11 +22,45 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L19">public class PayslipClient extends AbstractClient&lt;PayslipService&gt; {</span>
+<span class="fc" id="L25">public class PayslipClient extends AbstractClient&lt;PayslipService&gt;</span>
+    implements GetMany&lt;PayslipGetManyResponseDto&gt; {
 
   @Override
   public PayslipClient service(PayslipService service) {
-<span class="fc" id="L23">    return (PayslipClient) super.service(service);</span>
+<span class="fc" id="L30">    return (PayslipClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link PayslipService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public PayslipGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L40">    return new GetOneExecutor&lt;PayslipGetManyResponseDto&gt;(PayslipGetManyResponseDto.class,</span>
+<span class="fc" id="L41">        PayslipService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link PayslipService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public PayslipGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
+<span class="fc" id="L57">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L58">    request.setProjection(projection);</span>
+<span class="fc" id="L59">    request.setFilter(filter);</span>
+<span class="fc" id="L60">    request.setPage(page);</span>
+<span class="fc" id="L61">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L62">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L63">    return getMany(request);</span>
   }
 
   /**
@@ -30,8 +70,8 @@ import lombok.experimental.Accessors;
    * @return octets
    */
   public byte[] getFileBytes(GetBytesRequestDto request) {
-<span class="fc" id="L33">    return new GetOneExecutor&lt;byte[]&gt;(byte[].class, PayslipService.GET_FILE_BYTES_IDENTIFIER)</span>
-<span class="fc" id="L34">        .execute(() -&gt; service().getFileBytes(request));</span>
+<span class="fc" id="L73">    return new GetOneExecutor&lt;byte[]&gt;(byte[].class, PayslipService.GET_FILE_BYTES_IDENTIFIER)</span>
+<span class="fc" id="L74">        .execute(() -&gt; service().getFileBytes(request));</span>
   }
 
   /**
@@ -46,13 +86,13 @@ import lombok.experimental.Accessors;
    */
   public byte[] getFileBytes(Integer year, Integer month, String registrationNumber,
       String auditWho, String auditSession) {
-<span class="fc" id="L49">    GetBytesRequestDto request = new GetBytesRequestDto();</span>
-<span class="fc" id="L50">    request.setYear(year);</span>
-<span class="fc" id="L51">    request.setMonth(month);</span>
-<span class="fc" id="L52">    request.setRegistrationNumber(registrationNumber);</span>
-<span class="fc" id="L53">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L54">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L55">    return getFileBytes(request);</span>
+<span class="fc" id="L89">    GetBytesRequestDto request = new GetBytesRequestDto();</span>
+<span class="fc" id="L90">    request.setYear(year);</span>
+<span class="fc" id="L91">    request.setMonth(month);</span>
+<span class="fc" id="L92">    request.setRegistrationNumber(registrationNumber);</span>
+<span class="fc" id="L93">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L94">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L95">    return getFileBytes(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

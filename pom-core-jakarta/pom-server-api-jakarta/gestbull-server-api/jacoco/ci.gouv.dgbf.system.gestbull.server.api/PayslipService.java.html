@@ -2,6 +2,8 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Consumes;
@@ -10,6 +12,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -33,6 +36,45 @@ public interface PayslipService extends SpecificService {
    */
   String PATH = &quot;bulletins-salaire&quot;;
 
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_BULLETIN_SALAIRE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = PayslipGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L72">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;PayslipDto&gt; datas;
+  }
+  
   /**
    * Identifiant du service d'obtention d'octects de fichier de bulletin de salaire.
    */
@@ -67,7 +109,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L70">  class GetBytesRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L112">  class GetBytesRequestDto extends AbstractAuditedRequestJsonDto {</span>
 
     /**
      * Année.
