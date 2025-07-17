@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-15T12:18:18+0000&quot;,
+    date = &quot;2025-07-17T16:00:33+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,25 +25,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ExpenditureNatureWealthAccountService.ExpenditureNatureWealthAccountCreateRequestDto expenditureNatureWealthAccountCreateRequestDto = new ExpenditureNatureWealthAccountService.ExpenditureNatureWealthAccountCreateRequestDto();</span>
 
-<span class="fc" id="L28">        expenditureNatureWealthAccountCreateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
-<span class="fc" id="L29">        expenditureNatureWealthAccountCreateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
+<span class="fc" id="L28">        expenditureNatureWealthAccountCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        expenditureNatureWealthAccountCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        expenditureNatureWealthAccountCreateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
+<span class="fc" id="L31">        expenditureNatureWealthAccountCreateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
 
-<span class="fc" id="L31">        return expenditureNatureWealthAccountCreateRequestDto;</span>
+<span class="fc" id="L33">        return expenditureNatureWealthAccountCreateRequestDto;</span>
     }
 
     @Override
     public ExpenditureNatureWealthAccountService.ExpenditureNatureWealthAccountUpdateRequestDto mapUpdate(ExpenditureNatureWealthAccountDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L40">        ExpenditureNatureWealthAccountService.ExpenditureNatureWealthAccountUpdateRequestDto expenditureNatureWealthAccountUpdateRequestDto = new ExpenditureNatureWealthAccountService.ExpenditureNatureWealthAccountUpdateRequestDto();</span>
+<span class="fc" id="L42">        ExpenditureNatureWealthAccountService.ExpenditureNatureWealthAccountUpdateRequestDto expenditureNatureWealthAccountUpdateRequestDto = new ExpenditureNatureWealthAccountService.ExpenditureNatureWealthAccountUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        expenditureNatureWealthAccountUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        expenditureNatureWealthAccountUpdateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
-<span class="fc" id="L44">        expenditureNatureWealthAccountUpdateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
+<span class="fc" id="L44">        expenditureNatureWealthAccountUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L45">        expenditureNatureWealthAccountUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L46">        expenditureNatureWealthAccountUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        expenditureNatureWealthAccountUpdateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
+<span class="fc" id="L48">        expenditureNatureWealthAccountUpdateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
 
-<span class="fc" id="L46">        return expenditureNatureWealthAccountUpdateRequestDto;</span>
+<span class="fc" id="L50">        return expenditureNatureWealthAccountUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

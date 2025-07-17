@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-15T12:18:18+0000&quot;,
+    date = &quot;2025-07-17T16:00:33+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,25 +25,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        JustificationStructureService.JustificationStructureCreateRequestDto justificationStructureCreateRequestDto = new JustificationStructureService.JustificationStructureCreateRequestDto();</span>
 
-<span class="fc" id="L28">        justificationStructureCreateRequestDto.setTitle( arg0.getTitle() );</span>
-<span class="fc" id="L29">        justificationStructureCreateRequestDto.setOrder( arg0.getOrder() );</span>
+<span class="fc" id="L28">        justificationStructureCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        justificationStructureCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        justificationStructureCreateRequestDto.setTitle( arg0.getTitle() );</span>
+<span class="fc" id="L31">        justificationStructureCreateRequestDto.setOrder( arg0.getOrder() );</span>
 
-<span class="fc" id="L31">        return justificationStructureCreateRequestDto;</span>
+<span class="fc" id="L33">        return justificationStructureCreateRequestDto;</span>
     }
 
     @Override
     public JustificationStructureService.JustificationStructureUpdateRequestDto mapUpdate(JustificationStructureDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L40">        JustificationStructureService.JustificationStructureUpdateRequestDto justificationStructureUpdateRequestDto = new JustificationStructureService.JustificationStructureUpdateRequestDto();</span>
+<span class="fc" id="L42">        JustificationStructureService.JustificationStructureUpdateRequestDto justificationStructureUpdateRequestDto = new JustificationStructureService.JustificationStructureUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        justificationStructureUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        justificationStructureUpdateRequestDto.setTitle( arg0.getTitle() );</span>
-<span class="fc" id="L44">        justificationStructureUpdateRequestDto.setOrder( arg0.getOrder() );</span>
+<span class="fc" id="L44">        justificationStructureUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L45">        justificationStructureUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L46">        justificationStructureUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        justificationStructureUpdateRequestDto.setTitle( arg0.getTitle() );</span>
+<span class="fc" id="L48">        justificationStructureUpdateRequestDto.setOrder( arg0.getOrder() );</span>
 
-<span class="fc" id="L46">        return justificationStructureUpdateRequestDto;</span>
+<span class="fc" id="L50">        return justificationStructureUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
