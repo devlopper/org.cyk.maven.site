@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-18T18:51:19+0000&quot;,
+    date = &quot;2025-07-21T14:17:03+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -30,43 +30,49 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L30">        reimbursementScheduleCreateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
 <span class="fc" id="L31">        reimbursementScheduleCreateRequestDto.setExpenditureSettlementIdentifier( arg0.getExpenditureSettlementIdentifier() );</span>
 <span class="fc" id="L32">        reimbursementScheduleCreateRequestDto.setTriennialProgramIdentifier( arg0.getTriennialProgramIdentifier() );</span>
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
-<span class="fc" id="L34">            reimbursementScheduleCreateRequestDto.setAmount1( arg0.getAmount1() );</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        if ( arg0.getReimbursedAmount() != null ) {</span>
+<span class="fc" id="L34">            reimbursementScheduleCreateRequestDto.setReimbursedAmount( arg0.getReimbursedAmount() );</span>
         }
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
-<span class="fc" id="L37">            reimbursementScheduleCreateRequestDto.setAmount2( arg0.getAmount2() );</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
+<span class="fc" id="L37">            reimbursementScheduleCreateRequestDto.setAmount1( arg0.getAmount1() );</span>
         }
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
-<span class="fc" id="L40">            reimbursementScheduleCreateRequestDto.setAmount3( arg0.getAmount3() );</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
+<span class="fc" id="L40">            reimbursementScheduleCreateRequestDto.setAmount2( arg0.getAmount2() );</span>
+        }
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
+<span class="fc" id="L43">            reimbursementScheduleCreateRequestDto.setAmount3( arg0.getAmount3() );</span>
         }
 
-<span class="fc" id="L43">        return reimbursementScheduleCreateRequestDto;</span>
+<span class="fc" id="L46">        return reimbursementScheduleCreateRequestDto;</span>
     }
 
     @Override
     public ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto mapUpdate(ReimbursementScheduleDto arg0) {
-<span class="fc bfc" id="L48" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L49">            return null;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L52">            return null;</span>
         }
 
-<span class="fc" id="L52">        ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto reimbursementScheduleUpdateRequestDto = new ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto();</span>
+<span class="fc" id="L55">        ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto reimbursementScheduleUpdateRequestDto = new ReimbursementScheduleService.ReimbursementScheduleUpdateRequestDto();</span>
 
-<span class="fc" id="L54">        reimbursementScheduleUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L55">        reimbursementScheduleUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L56">        reimbursementScheduleUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L57">        reimbursementScheduleUpdateRequestDto.setExpenditureSettlementIdentifier( arg0.getExpenditureSettlementIdentifier() );</span>
-<span class="fc" id="L58">        reimbursementScheduleUpdateRequestDto.setTriennialProgramIdentifier( arg0.getTriennialProgramIdentifier() );</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
-<span class="fc" id="L60">            reimbursementScheduleUpdateRequestDto.setAmount1( arg0.getAmount1() );</span>
+<span class="fc" id="L57">        reimbursementScheduleUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L58">        reimbursementScheduleUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L59">        reimbursementScheduleUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L60">        reimbursementScheduleUpdateRequestDto.setExpenditureSettlementIdentifier( arg0.getExpenditureSettlementIdentifier() );</span>
+<span class="fc" id="L61">        reimbursementScheduleUpdateRequestDto.setTriennialProgramIdentifier( arg0.getTriennialProgramIdentifier() );</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if ( arg0.getReimbursedAmount() != null ) {</span>
+<span class="fc" id="L63">            reimbursementScheduleUpdateRequestDto.setReimbursedAmount( arg0.getReimbursedAmount() );</span>
         }
-<span class="fc bfc" id="L62" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
-<span class="fc" id="L63">            reimbursementScheduleUpdateRequestDto.setAmount2( arg0.getAmount2() );</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if ( arg0.getAmount1() != null ) {</span>
+<span class="fc" id="L66">            reimbursementScheduleUpdateRequestDto.setAmount1( arg0.getAmount1() );</span>
         }
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
-<span class="fc" id="L66">            reimbursementScheduleUpdateRequestDto.setAmount3( arg0.getAmount3() );</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if ( arg0.getAmount2() != null ) {</span>
+<span class="fc" id="L69">            reimbursementScheduleUpdateRequestDto.setAmount2( arg0.getAmount2() );</span>
+        }
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if ( arg0.getAmount3() != null ) {</span>
+<span class="fc" id="L72">            reimbursementScheduleUpdateRequestDto.setAmount3( arg0.getAmount3() );</span>
         }
 
-<span class="fc" id="L69">        return reimbursementScheduleUpdateRequestDto;</span>
+<span class="fc" id="L75">        return reimbursementScheduleUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
