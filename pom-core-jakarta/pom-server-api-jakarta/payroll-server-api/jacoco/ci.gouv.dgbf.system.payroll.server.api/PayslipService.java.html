@@ -65,7 +65,7 @@ public interface PayslipService extends SpecificService {
      * @param identifier identifiant {@link PayrollDto}
      */
     void setPayrollIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link RemunerableDto}.
      *
@@ -79,7 +79,7 @@ public interface PayslipService extends SpecificService {
      * @param identifier identifiant {@link RemunerableDto}
      */
     void setRemunerableIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link FunctionMovementDto}.
      *
@@ -93,7 +93,7 @@ public interface PayslipService extends SpecificService {
      * @param identifier identifiant {@link FunctionMovementDto}
      */
     void setFunctionMovementIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link LocalityMovementDto}.
      *
@@ -107,7 +107,7 @@ public interface PayslipService extends SpecificService {
      * @param identifier identifiant {@link LocalityMovementDto}
      */
     void setLocalityMovementIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link BudgetarySectionUnitMovementDto}.
      *
@@ -121,7 +121,7 @@ public interface PayslipService extends SpecificService {
      * @param identifier identifiant {@link BudgetarySectionUnitMovementDto}
      */
     void setBudgetarySectionUnitMovementIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link PayIndexMovementDto}.
      *
@@ -135,7 +135,7 @@ public interface PayslipService extends SpecificService {
      * @param identifier identifiant {@link PayIndexMovementDto}
      */
     void setPayIndexMovementIdentifier(String identifier);
-    
+
     /**
      * Cette méthode permet d'obtenir le nombre d'enfants.
      *
@@ -165,20 +165,6 @@ public interface PayslipService extends SpecificService {
     void setIsMarried(Boolean isMarried);
 
     /**
-     * Cette méthode permet d'obtenir vrai si recalculable ou non.
-     *
-     * @return vrai si est marié ou non
-     */
-    Boolean getIsRecalculable();
-
-    /**
-     * Cette méthode permet d'assigner vrai si recalculable ou non.
-     *
-     * @param isRecalculable vrai si est recalculable ou non
-     */
-    void setIsRecalculable(Boolean isRecalculable);
-
-    /**
      * {@link PayslipDto#JSON_PAYROLL_IDENTIFIER}.
      */
     public static final String JSON_PAYROLL_IDENTIFIER = PayslipDto.JSON_PAYROLL_IDENTIFIER;
@@ -186,32 +172,31 @@ public interface PayslipService extends SpecificService {
     /**
      * {@link PayslipDto#JSON_REMUNERABLE_IDENTIFIER}.
      */
-    public static final String JSON_REMUNERABLE_IDENTIFIER = 
-                PayslipDto.JSON_REMUNERABLE_IDENTIFIER;
+    public static final String JSON_REMUNERABLE_IDENTIFIER = PayslipDto.JSON_REMUNERABLE_IDENTIFIER;
 
     /**
      * {@link PayslipDto#JSON_FUNCTION_MOVEMENT_IDENTIFIER}.
      */
-    public static final String JSON_FUNCTION_MOVEMENT_IDENTIFIER = 
-                PayslipDto.JSON_FUNCTION_MOVEMENT_IDENTIFIER;
+    public static final String JSON_FUNCTION_MOVEMENT_IDENTIFIER =
+        PayslipDto.JSON_FUNCTION_MOVEMENT_IDENTIFIER;
 
     /**
      * {@link PayslipDto#JSON_LOCALITY_MOVEMENT_IDENTIFIER}.
      */
-    public static final String JSON_LOCALITY_MOVEMENT_IDENTIFIER = 
-                PayslipDto.JSON_LOCALITY_MOVEMENT_IDENTIFIER;
+    public static final String JSON_LOCALITY_MOVEMENT_IDENTIFIER =
+        PayslipDto.JSON_LOCALITY_MOVEMENT_IDENTIFIER;
 
     /**
      * {@link PayslipDto#JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER}.
      */
-    public static final String JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER = 
-                PayslipDto.JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER;
+    public static final String JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER =
+        PayslipDto.JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER;
 
     /**
      * {@link PayslipDto#JSON_PAY_INDEX_MOVEMENT_IDENTIFIER}.
      */
-    public static final String JSON_PAY_INDEX_MOVEMENT_IDENTIFIER = 
-              PayslipDto.JSON_PAY_INDEX_MOVEMENT_IDENTIFIER;
+    public static final String JSON_PAY_INDEX_MOVEMENT_IDENTIFIER =
+        PayslipDto.JSON_PAY_INDEX_MOVEMENT_IDENTIFIER;
 
     /**
      * {@link PayslipDto#JSON_CHILD_NUMBER}.
@@ -222,11 +207,6 @@ public interface PayslipService extends SpecificService {
      * {@link PayslipDto#JSON_IS_MARRIED}.
      */
     public static final String JSON_IS_MARRIED = PayslipDto.JSON_IS_MARRIED;
-
-    /**
-     * {@link PayslipDto#JSON_IS_MARRIED}.
-     */
-    public static final String JSON_IS_RECALCULABLE = PayslipDto.JSON_IS_RECALCULABLE;
 
   }
 
@@ -263,7 +243,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L266">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L246">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -306,9 +286,6 @@ public interface PayslipService extends SpecificService {
 
     @JsonbProperty(JSON_IS_MARRIED)
     private Boolean isMarried;
-
-    @JsonbProperty(JSON_IS_RECALCULABLE)
-    private Boolean isRecalculable;
   }
 
   /**
@@ -344,7 +321,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L347">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L324">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -433,14 +410,14 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L436">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L413">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
      */
     @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
     String payrollIdentifier;
-    
+
     /**
      * Identifiant de {@link RemunerableDto}.
      */
@@ -476,10 +453,6 @@ public interface PayslipService extends SpecificService {
 
     @JsonbProperty(JSON_IS_MARRIED)
     private Boolean isMarried;
-
-    @JsonbProperty(JSON_IS_RECALCULABLE)
-    private Boolean isRecalculable;
-
   }
 
   /**
@@ -506,19 +479,44 @@ public interface PayslipService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
-  
-  /**
-   * Identifiant du service de controle bulletin.
-   */
-  String CONTROL_IDENTIFIER = &quot;CONTROLE_BULLETIN&quot;;
 
   /**
-   * Chemin du service de controle bulletin.
+   * Identifiant du service d'initialisation.
    */
-  String CONTROL_PATH = &quot;controle-bulletin&quot;;
+  String INITIALIZE_IDENTIFIER = &quot;INITIALISATION_BULLETIN_PAIE&quot;;
 
   /**
-   * Cette méthode permet de controler un bulletin {@link PayslipDto}.
+   * Chemin du service d'initialisation.
+   */
+  String INITIALIZE_PATH = &quot;initialisation&quot;;
+
+  /**
+   * Cette méthode permet d'initialiser {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(INITIALIZE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = INITIALIZE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
+  Response initialize(ByFilterRequestDto request);
+
+  /**
+   * Identifiant du service de controle.
+   */
+  String CONTROL_IDENTIFIER = &quot;CONTROLE_BULLETIN_PAIE&quot;;
+
+  /**
+   * Chemin du service de controle.
+   */
+  String CONTROL_PATH = &quot;controle&quot;;
+
+  /**
+   * Cette méthode permet de controler {@link PayslipDto}.
    *
    * @param request requête
    * @return réponse
@@ -531,66 +529,66 @@ public interface PayslipService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
   Response control(ByFilterRequestDto request);
-  
-  /**
-   * Identifiant du service de acceptation bulletin.
-   */
-  String ACCEPTATION_IDENTIFIER = &quot;ACCEPTATION_BULLETIN&quot;;
 
   /**
-   * Chemin du service de acceptation bulletin.
+   * Identifiant du service d'acceptation.
    */
-  String ACCEPTATION_PATH = &quot;acceptation-bulletin&quot;;
+  String ACCEPT_IDENTIFIER = &quot;ACCEPTATION_BULLETIN_PAIE&quot;;
 
   /**
-   * Cette méthode permet de accepter un bulletin {@link PayslipDto}.
+   * Chemin du service d'acceptation.
+   */
+  String ACCEPT_PATH = &quot;acceptation&quot;;
+
+  /**
+   * Cette méthode permet de accepter {@link PayslipDto}.
    *
    * @param request requête
    * @return réponse
    */
-  @Path(ACCEPTATION_PATH)
+  @Path(ACCEPT_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = ACCEPTATION_IDENTIFIER)
+  @Operation(operationId = ACCEPT_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
   Response accept(ByFilterRequestDto request);
-  
-  /**
-   * Identifiant du service de recalcul bulletin.
-   */
-  String RECALCULATION_IDENTIFIER = &quot;RECALCUL_BULLETIN&quot;;
 
   /**
-   * Chemin du service de recalcul bulletin.
+   * Identifiant du service de recalcul.
    */
-  String RECALCULATION_PATH = &quot;recalcul-bulletin&quot;;
+  String RECALCULATE_IDENTIFIER = &quot;RECALCUL_BULLETIN_PAIE&quot;;
 
   /**
-   * Cette méthode permet de recalculer un bulletin {@link PayslipDto}.
+   * Chemin du service de recalcul.
+   */
+  String RECALCULATE_PATH = &quot;recalcul&quot;;
+
+  /**
+   * Cette méthode permet de recalculer {@link PayslipDto}.
    *
    * @param request requête
    * @return réponse
    */
-  @Path(RECALCULATION_PATH)
+  @Path(RECALCULATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = RECALCULATION_IDENTIFIER)
+  @Operation(operationId = RECALCULATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
   Response recalculate(ByFilterRequestDto request);
-  
+
   /**
    * Identifiant du service de validation bulletin.
    */
-  String VALIDATION_IDENTIFIER = &quot;VALIDATION_BULLETIN&quot;;
+  String VALIDATE_IDENTIFIER = &quot;VALIDATION_BULLETIN_PAIE&quot;;
 
   /**
    * Chemin du service de validation bulletin.
    */
-  String VALIDATION_PATH = &quot;validation-bulletin&quot;;
+  String VALIDATE_PATH = &quot;validation&quot;;
 
   /**
    * Cette méthode permet de valider un bulletin {@link PayslipDto}.
@@ -598,11 +596,11 @@ public interface PayslipService extends SpecificService {
    * @param request requête
    * @return réponse
    */
-  @Path(VALIDATION_PATH)
+  @Path(VALIDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = VALIDATION_IDENTIFIER)
+  @Operation(operationId = VALIDATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
   Response validate(ByFilterRequestDto request);
@@ -615,7 +613,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L618">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L616">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link PayslipDto#getStatus()}.
@@ -677,17 +675,17 @@ public interface PayslipService extends SpecificService {
      * @param status {@link PayslipStatus}
      */
     public void initialize(PayslipStatus status) {
-<span class="fc" id="L680">      this.status = status;</span>
-<span class="fc" id="L681">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L682">      transmittableForControl = </span>
-<span class="fc" id="L683">            PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L684">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L685">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L686">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
-<span class="fc" id="L687">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
-<span class="fc" id="L688">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L689">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L690">    }</span>
+<span class="fc" id="L678">      this.status = status;</span>
+<span class="fc" id="L679">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L680">      transmittableForControl =</span>
+<span class="fc" id="L681">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L682">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L683">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L684">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="fc" id="L685">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="fc" id="L686">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L687">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L688">    }</span>
 
     /**
      * {@link PayslipDto#JSON_STATUS}.
@@ -697,14 +695,13 @@ public interface PayslipService extends SpecificService {
     /**
      * {@link PayslipDto#JSON_INITIALIZABLE}.
      */
-    public static final String JSON_INITIALIZABLE = 
-                  PayslipDto.JSON_INITIALIZABLE;
+    public static final String JSON_INITIALIZABLE = PayslipDto.JSON_INITIALIZABLE;
 
     /**
      * {@link PayslipDto#JSON_TRANSMITTABLE_FOR_CONTROL}.
      */
-    public static final String JSON_TRANSMITTABLE_FOR_CONTROL = 
-                  PayslipDto.JSON_TRANSMITTABLE_FOR_CONTROL;
+    public static final String JSON_TRANSMITTABLE_FOR_CONTROL =
+        PayslipDto.JSON_TRANSMITTABLE_FOR_CONTROL;
 
     /**
      * {@link PayslipDto#JSON_CONTROLLABLE}.
@@ -714,7 +711,7 @@ public interface PayslipService extends SpecificService {
     /**
      * {@link PayslipDto#JSON_ACCEPTABLE}.
      */
-    public static final String JSON_ACCEPTABLE =  PayslipDto.JSON_ACCEPTABLE;
+    public static final String JSON_ACCEPTABLE = PayslipDto.JSON_ACCEPTABLE;
 
     /**
      * {@link PayslipDto#JSON_RECALCULABLE}.

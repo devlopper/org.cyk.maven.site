@@ -15,61 +15,66 @@ import lombok.Getter;
  */
 <span class="fc" id="L16">@Getter</span>
 public enum PayslipStatus {
-  
+
   /**
-   * Initialisée.
+   * {@link PayslipStatusCode#CREATED}.
    */
-<span class="fc" id="L22">  INITIALIZED(PayslipStatusCode.INITIALIZED, &quot;Initialisée&quot;, &quot;Initialisation&quot;),</span>
-  
+<span class="fc" id="L22">  CREATED(PayslipStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+
   /**
-   * Transmis pour Controle.
+   * {@link PayslipStatusCode#INITIALIZED}.
    */
-<span class="fc" id="L27">  TRANSMITTED_FOR_CONTROL(PayslipStatusCode.TRANSMITTED_FOR_CONTROL, </span>
-        &quot;Transmis pour contrôle&quot;, &quot;Transmission pour contrôle&quot;),
-  
+<span class="fc" id="L27">  INITIALIZED(PayslipStatusCode.INITIALIZED, &quot;Initialisé&quot;, &quot;Initialisation&quot;),</span>
+
   /**
-   * Controlée.
+   * {@link PayslipStatusCode#TRANSMITTED_FOR_CONTROL}.
    */
-<span class="fc" id="L33">  CONTROLLED(PayslipStatusCode.CONTROLLED, &quot;Controlée&quot;, &quot;Contrôle&quot;),</span>
-  
+<span class="fc" id="L32">  TRANSMITTED_FOR_CONTROL(PayslipStatusCode.TRANSMITTED_FOR_CONTROL, &quot;Transmis pour contrôle&quot;,</span>
+      &quot;Transmission pour contrôle&quot;),
+
   /**
-   * Acceptée.
+   * {@link PayslipStatusCode#CONTROLLED}.
    */
-<span class="fc" id="L38">  ACCEPTED(PayslipStatusCode.ACCEPTED, &quot;Acceptée&quot;, &quot;Acceptation&quot;),</span>
-  
+<span class="fc" id="L38">  CONTROLLED(PayslipStatusCode.CONTROLLED, &quot;Controlé&quot;, &quot;Contrôle&quot;),</span>
+
   /**
-   * Validée.
+   * {@link PayslipStatusCode#ACCEPTED}.
    */
-<span class="fc" id="L43">  VALIDATED(PayslipStatusCode.VALIDATED, &quot;Validée&quot;, &quot;Validation&quot;),</span>
-  
+<span class="fc" id="L43">  ACCEPTED(PayslipStatusCode.ACCEPTED, &quot;Accepté&quot;, &quot;Acceptation&quot;),</span>
+
   /**
-   * Recalculée.
+   * {@link PayslipStatusCode#VALIDATED}.
    */
-<span class="fc" id="L48">  RECALCULATED(PayslipStatusCode.RECALCULATED, &quot;Recalculée&quot;, &quot;Recalcul&quot;),</span>
-  
+<span class="fc" id="L48">  VALIDATED(PayslipStatusCode.VALIDATED, &quot;Validé&quot;, &quot;Validation&quot;),</span>
+
   /**
-   * Transmis pour arbitrage.
+   * {@link PayslipStatusCode#RECALCULATED}.
    */
-<span class="fc" id="L53">  TRANSMITTED_FOR_ARBITRATION(PayrollStatusCode.TRANSMITTED_FOR_ARBITRATION, </span>
-  &quot;Transmis pour arbitrage&quot;, &quot;Transmission pour arbitrage&quot;),
-  
+<span class="fc" id="L53">  RECALCULATED(PayslipStatusCode.RECALCULATED, &quot;Recalculé&quot;, &quot;Recalcul&quot;),</span>
+
   /**
-   * Arbitrée.
+   * {@link PayslipStatusCode#TRANSMITTED_FOR_ARBITRATION}.
    */
-<span class="fc" id="L59">  ARBITRATED(PayslipStatusCode.ARBITRATED, &quot;Arbitrée&quot;, &quot;Arbitrage&quot;),</span>
-  
+<span class="fc" id="L58">  TRANSMITTED_FOR_ARBITRATION(PayrollStatusCode.TRANSMITTED_FOR_ARBITRATION,</span>
+      &quot;Transmis pour arbitrage&quot;, &quot;Transmission pour arbitrage&quot;),
+
   /**
-   * Clôturée.
+   * {@link PayslipStatusCode#ARBITRATED}.
    */
-<span class="fc" id="L64">  CLOSED(PayslipStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
+<span class="fc" id="L64">  ARBITRATED(PayslipStatusCode.ARBITRATED, &quot;Arbitré&quot;, &quot;Arbitrage&quot;),</span>
+
+  /**
+   * {@link PayslipStatusCode#CLOSED}.
+   */
+<span class="fc" id="L69">  CLOSED(PayslipStatusCode.CLOSED, &quot;Clôturé&quot;, &quot;Clôture&quot;)</span>
 
   ;
 
-<span class="fc" id="L68">  private PayslipStatus(String code, String name, String action) {</span>
-<span class="fc" id="L69">    this.code = code;</span>
-<span class="fc" id="L70">    this.name = name;</span>
-<span class="fc" id="L71">    this.action = action;</span>
-<span class="fc" id="L72">  }</span>
+<span class="fc" id="L73">  private PayslipStatus(String code, String name, String action) {</span>
+<span class="fc" id="L74">    this.code = code;</span>
+<span class="fc" id="L75">    this.name = name;</span>
+<span class="fc" id="L76">    this.action = action;</span>
+<span class="fc" id="L77">  }</span>
 
   private String code;
   private String name;
@@ -78,7 +83,7 @@ public enum PayslipStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L81">    return name;</span>
+<span class="fc" id="L86">    return name;</span>
   }
 
   /**
@@ -88,21 +93,22 @@ public enum PayslipStatus {
    * @return statut
    */
   public static PayslipStatus getByCode(String code) {
-<span class="fc" id="L91">    return Stream.of(PayslipStatus.values())</span>
-<span class="fc" id="L92">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="pc" id="L93">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
+<span class="fc" id="L96">    return Stream.of(PayslipStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L97">        .findFirst()</span>
+<span class="pc" id="L98">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {
-<span class="fc" id="L97">    INITIALIZED.previous = Collections.emptySet();</span>
-<span class="fc" id="L98">    TRANSMITTED_FOR_CONTROL.previous = Core.getSet(List.of(INITIALIZED));</span>
-<span class="fc" id="L99">    CONTROLLED.previous = Core.getSet(List.of(TRANSMITTED_FOR_CONTROL));</span>
-<span class="fc" id="L100">    ACCEPTED.previous = Core.getSet(List.of(CONTROLLED));</span>
-<span class="fc" id="L101">    RECALCULATED.previous = Core.getSet(List.of(ACCEPTED, RECALCULATED));</span>
-<span class="fc" id="L102">    VALIDATED.previous = Core.getSet(List.of(ACCEPTED, RECALCULATED));</span>
-<span class="fc" id="L103">    TRANSMITTED_FOR_ARBITRATION.previous = Core.getSet(List.of(VALIDATED));</span>
-<span class="fc" id="L104">    ARBITRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_ARBITRATION));</span>
-<span class="fc" id="L105">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
-<span class="fc" id="L106">  }</span>
+<span class="fc" id="L102">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L103">    INITIALIZED.previous = Core.getSet(List.of(CREATED));</span>
+<span class="fc" id="L104">    TRANSMITTED_FOR_CONTROL.previous = Core.getSet(List.of(INITIALIZED));</span>
+<span class="fc" id="L105">    CONTROLLED.previous = Core.getSet(List.of(TRANSMITTED_FOR_CONTROL));</span>
+<span class="fc" id="L106">    ACCEPTED.previous = Core.getSet(List.of(CONTROLLED));</span>
+<span class="fc" id="L107">    RECALCULATED.previous = Core.getSet(List.of(ACCEPTED, RECALCULATED));</span>
+<span class="fc" id="L108">    VALIDATED.previous = Core.getSet(List.of(ACCEPTED, RECALCULATED));</span>
+<span class="fc" id="L109">    TRANSMITTED_FOR_ARBITRATION.previous = Core.getSet(List.of(VALIDATED));</span>
+<span class="fc" id="L110">    ARBITRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_ARBITRATION));</span>
+<span class="fc" id="L111">    CLOSED.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="fc" id="L112">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-08T12:11:34+0000&quot;,
+    date = &quot;2025-07-21T11:49:30+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,33 +25,37 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementCreateRequestDto budgetarySectionUnitMovementCreateRequestDto = new BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementCreateRequestDto();</span>
 
-<span class="fc" id="L28">        budgetarySectionUnitMovementCreateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
-<span class="fc" id="L29">        budgetarySectionUnitMovementCreateRequestDto.setBudgetarySectionUnitIdentifier( arg0.getBudgetarySectionUnitIdentifier() );</span>
-<span class="fc" id="L30">        budgetarySectionUnitMovementCreateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
-<span class="fc" id="L31">        budgetarySectionUnitMovementCreateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
-<span class="fc" id="L32">        budgetarySectionUnitMovementCreateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
-<span class="fc" id="L33">        budgetarySectionUnitMovementCreateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
+<span class="fc" id="L28">        budgetarySectionUnitMovementCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        budgetarySectionUnitMovementCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        budgetarySectionUnitMovementCreateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L31">        budgetarySectionUnitMovementCreateRequestDto.setBudgetarySectionUnitIdentifier( arg0.getBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L32">        budgetarySectionUnitMovementCreateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L33">        budgetarySectionUnitMovementCreateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
+<span class="fc" id="L34">        budgetarySectionUnitMovementCreateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
+<span class="fc" id="L35">        budgetarySectionUnitMovementCreateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
 
-<span class="fc" id="L35">        return budgetarySectionUnitMovementCreateRequestDto;</span>
+<span class="fc" id="L37">        return budgetarySectionUnitMovementCreateRequestDto;</span>
     }
 
     @Override
     public BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementUpdateRequestDto mapUpdate(BudgetarySectionUnitMovementDto arg0) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L41">            return null;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L43">            return null;</span>
         }
 
-<span class="fc" id="L44">        BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementUpdateRequestDto budgetarySectionUnitMovementUpdateRequestDto = new BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementUpdateRequestDto();</span>
+<span class="fc" id="L46">        BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementUpdateRequestDto budgetarySectionUnitMovementUpdateRequestDto = new BudgetarySectionUnitMovementService.BudgetarySectionUnitMovementUpdateRequestDto();</span>
 
-<span class="fc" id="L46">        budgetarySectionUnitMovementUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        budgetarySectionUnitMovementUpdateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
-<span class="fc" id="L48">        budgetarySectionUnitMovementUpdateRequestDto.setBudgetarySectionUnitIdentifier( arg0.getBudgetarySectionUnitIdentifier() );</span>
-<span class="fc" id="L49">        budgetarySectionUnitMovementUpdateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
-<span class="fc" id="L50">        budgetarySectionUnitMovementUpdateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
-<span class="fc" id="L51">        budgetarySectionUnitMovementUpdateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
-<span class="fc" id="L52">        budgetarySectionUnitMovementUpdateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
+<span class="fc" id="L48">        budgetarySectionUnitMovementUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L49">        budgetarySectionUnitMovementUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L50">        budgetarySectionUnitMovementUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L51">        budgetarySectionUnitMovementUpdateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L52">        budgetarySectionUnitMovementUpdateRequestDto.setBudgetarySectionUnitIdentifier( arg0.getBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L53">        budgetarySectionUnitMovementUpdateRequestDto.setMovementTrackingIdentifier( arg0.getMovementTrackingIdentifier() );</span>
+<span class="fc" id="L54">        budgetarySectionUnitMovementUpdateRequestDto.setEffectDate( arg0.getEffectDate() );</span>
+<span class="fc" id="L55">        budgetarySectionUnitMovementUpdateRequestDto.setDateTakeInCounts( arg0.getDateTakeInCounts() );</span>
+<span class="fc" id="L56">        budgetarySectionUnitMovementUpdateRequestDto.setDateReminder( arg0.getDateReminder() );</span>
 
-<span class="fc" id="L54">        return budgetarySectionUnitMovementUpdateRequestDto;</span>
+<span class="fc" id="L58">        return budgetarySectionUnitMovementUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

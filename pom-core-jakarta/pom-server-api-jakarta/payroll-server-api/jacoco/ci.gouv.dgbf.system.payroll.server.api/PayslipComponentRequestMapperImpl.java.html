@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-08T12:11:34+0000&quot;,
+    date = &quot;2025-07-21T11:49:29+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,31 +25,35 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PayslipComponentService.PayslipComponentCreateRequestDto payslipComponentCreateRequestDto = new PayslipComponentService.PayslipComponentCreateRequestDto();</span>
 
-<span class="fc" id="L28">        payslipComponentCreateRequestDto.setPayslipIdentifier( arg0.getPayslipIdentifier() );</span>
-<span class="fc" id="L29">        payslipComponentCreateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
-<span class="fc" id="L30">        payslipComponentCreateRequestDto.setEmployeeAmount( arg0.getEmployeeAmount() );</span>
-<span class="fc" id="L31">        payslipComponentCreateRequestDto.setEmployerAmount( arg0.getEmployerAmount() );</span>
-<span class="fc" id="L32">        payslipComponentCreateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
+<span class="fc" id="L28">        payslipComponentCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        payslipComponentCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        payslipComponentCreateRequestDto.setPayslipIdentifier( arg0.getPayslipIdentifier() );</span>
+<span class="fc" id="L31">        payslipComponentCreateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
+<span class="fc" id="L32">        payslipComponentCreateRequestDto.setEmployeeAmount( arg0.getEmployeeAmount() );</span>
+<span class="fc" id="L33">        payslipComponentCreateRequestDto.setEmployerAmount( arg0.getEmployerAmount() );</span>
+<span class="fc" id="L34">        payslipComponentCreateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
 
-<span class="fc" id="L34">        return payslipComponentCreateRequestDto;</span>
+<span class="fc" id="L36">        return payslipComponentCreateRequestDto;</span>
     }
 
     @Override
     public PayslipComponentService.PayslipComponentUpdateRequestDto mapUpdate(PayslipComponentDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L43">        PayslipComponentService.PayslipComponentUpdateRequestDto payslipComponentUpdateRequestDto = new PayslipComponentService.PayslipComponentUpdateRequestDto();</span>
+<span class="fc" id="L45">        PayslipComponentService.PayslipComponentUpdateRequestDto payslipComponentUpdateRequestDto = new PayslipComponentService.PayslipComponentUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        payslipComponentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        payslipComponentUpdateRequestDto.setPayslipIdentifier( arg0.getPayslipIdentifier() );</span>
-<span class="fc" id="L47">        payslipComponentUpdateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
-<span class="fc" id="L48">        payslipComponentUpdateRequestDto.setEmployeeAmount( arg0.getEmployeeAmount() );</span>
-<span class="fc" id="L49">        payslipComponentUpdateRequestDto.setEmployerAmount( arg0.getEmployerAmount() );</span>
-<span class="fc" id="L50">        payslipComponentUpdateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
+<span class="fc" id="L47">        payslipComponentUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        payslipComponentUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        payslipComponentUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        payslipComponentUpdateRequestDto.setPayslipIdentifier( arg0.getPayslipIdentifier() );</span>
+<span class="fc" id="L51">        payslipComponentUpdateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
+<span class="fc" id="L52">        payslipComponentUpdateRequestDto.setEmployeeAmount( arg0.getEmployeeAmount() );</span>
+<span class="fc" id="L53">        payslipComponentUpdateRequestDto.setEmployerAmount( arg0.getEmployerAmount() );</span>
+<span class="fc" id="L54">        payslipComponentUpdateRequestDto.setOrderNumber( arg0.getOrderNumber() );</span>
 
-<span class="fc" id="L52">        return payslipComponentUpdateRequestDto;</span>
+<span class="fc" id="L56">        return payslipComponentUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

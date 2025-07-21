@@ -177,6 +177,17 @@ import lombok.experimental.Accessors;
   }
 
   /**
+   * {@link PayslipService#initialize}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProcessResponseDto initialize(ByFilterRequestDto request) {
+<span class="fc" id="L186">    return new ProcessExecutor(PayslipService.INITIALIZE_IDENTIFIER)</span>
+<span class="fc" id="L187">        .execute(() -&gt; service().initialize(request));</span>
+  }
+  
+  /**
    * {@link PayslipService#delete}.
    *
    * @param identifier identifiant
@@ -187,11 +198,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L190">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L191">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L192">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L193">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L194">    return delete(request);</span>
+<span class="fc" id="L201">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L202">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L203">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L204">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L205">    return delete(request);</span>
   }
 
   /**
@@ -201,8 +212,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto control(ByFilterRequestDto request) {
-<span class="fc" id="L204">    return new ProcessExecutor(PayslipService.CONTROL_IDENTIFIER)</span>
-<span class="fc" id="L205">        .execute(() -&gt; service().control(request));</span>
+<span class="fc" id="L215">    return new ProcessExecutor(PayslipService.CONTROL_IDENTIFIER)</span>
+<span class="fc" id="L216">        .execute(() -&gt; service().control(request));</span>
   }
 
   /**
@@ -212,8 +223,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto accept(ByFilterRequestDto request) {
-<span class="fc" id="L215">    return new ProcessExecutor(PayslipService.ACCEPTATION_IDENTIFIER)</span>
-<span class="fc" id="L216">        .execute(() -&gt; service().accept(request));</span>
+<span class="fc" id="L226">    return new ProcessExecutor(PayslipService.ACCEPT_IDENTIFIER)</span>
+<span class="fc" id="L227">        .execute(() -&gt; service().accept(request));</span>
   }
 
   /**
@@ -223,8 +234,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto recalculate(ByFilterRequestDto request) {
-<span class="fc" id="L226">    return new ProcessExecutor(PayslipService.RECALCULATION_IDENTIFIER)</span>
-<span class="fc" id="L227">        .execute(() -&gt; service().recalculate(request));</span>
+<span class="fc" id="L237">    return new ProcessExecutor(PayslipService.RECALCULATE_IDENTIFIER)</span>
+<span class="fc" id="L238">        .execute(() -&gt; service().recalculate(request));</span>
   }
 
   /**
@@ -234,8 +245,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto validate(ByFilterRequestDto request) {
-<span class="fc" id="L237">    return new ProcessExecutor(PayslipService.VALIDATION_IDENTIFIER)</span>
-<span class="fc" id="L238">        .execute(() -&gt; service().validate(request));</span>
+<span class="fc" id="L248">    return new ProcessExecutor(PayslipService.VALIDATE_IDENTIFIER)</span>
+<span class="fc" id="L249">        .execute(() -&gt; service().validate(request));</span>
   }
 
   /**
@@ -251,9 +262,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L254">    public ProcessExecutor(String identifier) {</span>
-<span class="fc" id="L255">      super(ProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L256">    }</span>
+<span class="fc" id="L265">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L266">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L267">    }</span>
 
   }
 }
