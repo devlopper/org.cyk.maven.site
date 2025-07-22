@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-10T22:04:06+0000&quot;,
+    date = &quot;2025-07-22T10:23:54+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,23 +25,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        FunctionaryUnitSectionService.FunctionaryUnitSectionCreateRequestDto functionaryUnitSectionCreateRequestDto = new FunctionaryUnitSectionService.FunctionaryUnitSectionCreateRequestDto();</span>
 
-<span class="fc" id="L28">        functionaryUnitSectionCreateRequestDto.setUnitSectionIdentifier( arg0.getUnitSectionIdentifier() );</span>
+<span class="fc" id="L28">        functionaryUnitSectionCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        functionaryUnitSectionCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        functionaryUnitSectionCreateRequestDto.setUnitSectionIdentifier( arg0.getUnitSectionIdentifier() );</span>
 
-<span class="fc" id="L30">        return functionaryUnitSectionCreateRequestDto;</span>
+<span class="fc" id="L32">        return functionaryUnitSectionCreateRequestDto;</span>
     }
 
     @Override
     public FunctionaryUnitSectionService.FunctionaryUnitSectionUpdateRequestDto mapUpdate(FunctionaryUnitSectionDto arg0) {
-<span class="fc bfc" id="L35" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L36">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L39">        FunctionaryUnitSectionService.FunctionaryUnitSectionUpdateRequestDto functionaryUnitSectionUpdateRequestDto = new FunctionaryUnitSectionService.FunctionaryUnitSectionUpdateRequestDto();</span>
+<span class="fc" id="L41">        FunctionaryUnitSectionService.FunctionaryUnitSectionUpdateRequestDto functionaryUnitSectionUpdateRequestDto = new FunctionaryUnitSectionService.FunctionaryUnitSectionUpdateRequestDto();</span>
 
-<span class="fc" id="L41">        functionaryUnitSectionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L42">        functionaryUnitSectionUpdateRequestDto.setUnitSectionIdentifier( arg0.getUnitSectionIdentifier() );</span>
+<span class="fc" id="L43">        functionaryUnitSectionUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L44">        functionaryUnitSectionUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L45">        functionaryUnitSectionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        functionaryUnitSectionUpdateRequestDto.setUnitSectionIdentifier( arg0.getUnitSectionIdentifier() );</span>
 
-<span class="fc" id="L44">        return functionaryUnitSectionUpdateRequestDto;</span>
+<span class="fc" id="L48">        return functionaryUnitSectionUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
