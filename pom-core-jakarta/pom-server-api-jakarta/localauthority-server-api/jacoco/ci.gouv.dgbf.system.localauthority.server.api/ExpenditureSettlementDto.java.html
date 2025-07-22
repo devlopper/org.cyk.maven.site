@@ -88,6 +88,13 @@ import lombok.Setter;
 
 
   /**
+   * Identifiant de {@link TriennialProgramDto}.
+   */
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
+  public String triennialProgramIdentifier;
+
+
+  /**
    * Identitiant json de l'identifiant du fournisseur.
    */
   public static final String JSON_SUPPLIER_IDENTIFIER = &quot;idFournisseur&quot;;
@@ -276,6 +283,12 @@ import lombok.Setter;
    * Identifiant json {@link #dateAsString}.
    */
   public static final String JSON_DATE_AS_STRING = &quot;dateChaine&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramIdentifier}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
+      TriennialProgramDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Nom pour lecture humaine de la classe.

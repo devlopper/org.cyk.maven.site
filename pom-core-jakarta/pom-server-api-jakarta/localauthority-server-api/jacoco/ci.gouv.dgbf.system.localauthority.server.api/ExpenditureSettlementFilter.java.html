@@ -20,31 +20,45 @@ public class ExpenditureSettlementFilter extends AbstractIdentifiableFilter {
   String localAuthorityIdentifier;
 
   /**
+   * Identifiant de critère d'appartenance à un {@link TriennialProgramDto}.
+   */
+  String inTriennialProgramIdentifier;
+
+  /**
+   * Identifiant de critère de non appartenance à un {@link TriennialProgramDto}.
+   */
+  String notInTriennialProgramIdentifier;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public ExpenditureSettlementFilter(FilterDto dto) {
-<span class="fc" id="L28">    super(dto);</span>
-<span class="fc" id="L29">  }</span>
+<span class="fc" id="L38">    super(dto);</span>
+<span class="fc" id="L39">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L34">  public ExpenditureSettlementFilter() {</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L44">  public ExpenditureSettlementFilter() {</span>
+<span class="fc" id="L45">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L49">    super.doInitialize(filter);</span>
+<span class="fc" id="L50">    localAuthorityIdentifier = getLocalAuthorityIdentifier(filter);</span>
+<span class="fc" id="L51">    inTriennialProgramIdentifier = getInTriennialProgramIdentifier(filter);</span>
+<span class="fc" id="L52">    notInTriennialProgramIdentifier = getNotInTriennialProgramIdentifier(filter);</span>
+<span class="fc" id="L53">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L57">    super.toDto(filter);</span>
+<span class="fc" id="L58">    setLocalAuthorityIdentifier(filter, localAuthorityIdentifier);</span>
+<span class="fc" id="L59">    setInTriennialProgramIdentifier(filter, inTriennialProgramIdentifier);</span>
+<span class="fc" id="L60">    setNotInTriennialProgramIdentifier(filter, notInTriennialProgramIdentifier);</span>
+<span class="fc" id="L61">  }</span>
 
 
   /**
@@ -54,9 +68,9 @@ public class ExpenditureSettlementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant de {@link LocalAuthorityDto}
    */
   public static void setLocalAuthorityIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L57">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L58">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L59">  }</span>
+<span class="pc" id="L71">    set(filter, JSON_LOCAL_AUTHORITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L72">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L73">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link LocalAuthorityDto}.
@@ -65,15 +79,75 @@ public class ExpenditureSettlementFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link LocalAuthorityDto}
    */
   public static String getLocalAuthorityIdentifier(FilterDto filter) {
-<span class="fc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_LOCAL_AUTHORITY_IDENTIFIER));</span>
+<span class="fc" id="L82">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_IN_TRIENNIAL_PROGRAM_IDENTIFIER));</span>
   }
 
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link TriennialProgramDto}
+   * pour lequel on veut vérifier l'appartenance de la liquidation.
+   *
+   * @param filter     filtre
+   * @param identifier identifiant de {@link TriennialProgramDto}
+   */
+  public static void setInTriennialProgramIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L93">    set(filter, JSON_IN_TRIENNIAL_PROGRAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L94">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L95">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link TriennialProgramDto}
+   * pour lequel on veut vérifier l'appartenance de la liquidation.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link TriennialProgramDto}
+   */
+  public static String getInTriennialProgramIdentifier(FilterDto filter) {
+<span class="fc" id="L105">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_IN_TRIENNIAL_PROGRAM_IDENTIFIER));</span>
+  }
+
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link TriennialProgramDto}
+   * pour lequel on veut vérifier la non appartenance de la liquidation.
+   *
+   * @param filter     filtre
+   * @param identifier identifiant de {@link TriennialProgramDto}
+   */
+  public static void setNotInTriennialProgramIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L117">    set(filter, JSON_NOT_IN_TRIENNIAL_PROGRAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L118">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L119">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link TriennialProgramDto}
+   * pour lequel on veut vérifier la non appartenance de la liquidation.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link TriennialProgramDto}
+   */
+  public static String getNotInTriennialProgramIdentifier(FilterDto filter) {
+<span class="fc" id="L129">    return get(filter,</span>
+<span class="fc" id="L130">        d -&gt; d.getFieldValueAsStringByName(JSON_NOT_IN_TRIENNIAL_PROGRAM_IDENTIFIER));</span>
+  }
 
   /**
    * Identifiant json champ {@link #localAuthorityIdentifier}.
    */
   public static final String JSON_LOCAL_AUTHORITY_IDENTIFIER =
       LocalAuthorityDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #inTriennialProgramIdentifier}.
+   */
+  public static final String JSON_IN_TRIENNIAL_PROGRAM_IDENTIFIER = &quot;EstDansCeProgrammeTriennal&quot;;
+
+
+  /**
+   * Identifiant json champ {@link #notInTriennialProgramIdentifier}.
+   */
+  public static final String JSON_NOT_IN_TRIENNIAL_PROGRAM_IDENTIFIER =
+      &quot;nestPasDansCeProgrammeTriennal&quot;;
+
 }
 
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
