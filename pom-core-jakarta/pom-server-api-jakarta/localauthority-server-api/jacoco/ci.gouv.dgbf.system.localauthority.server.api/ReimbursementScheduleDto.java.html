@@ -41,6 +41,18 @@ import lombok.Setter;
   @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
   private String triennialProgramAsString;
 
+  /**
+   * Montant initial de la créance (montant de la dette à l'origine).
+   */
+  @JsonbProperty(JSON_PRINCIPAL_AMOUNT)
+  private Long principalAmount;
+
+  /**
+   * Représentation en chaîne de caractères du montant initial de la créance.
+   */
+  @JsonbProperty(JSON_PRINCIPAL_AMOUNT_AS_STRING)
+  private String principalAmountAsString;
+
 
   /**
    * Montant 1.
@@ -86,12 +98,24 @@ import lombok.Setter;
   @JsonbProperty(JSON_REIMBURSED_AMOUNT)
   private Long reimbursedAmount;
 
-
   /**
    * Représentation en chaine de caractères de Remboursement precedent.
    */
   @JsonbProperty(JSON_REIMBURSED_AMOUNT_AS_STRING)
   private String reimbursedAmountAsString;
+
+
+  /**
+   * Montant restant à rembourser.
+   */
+  @JsonbProperty(JSON_OUTSTANDING_AMOUNT)
+  private Long outstandingAmount;
+
+  /**
+   * Représentation en chaine de caractères du montant restant à rembourser.
+   */
+  @JsonbProperty(JSON_OUTSTANDING_AMOUNT_AS_STRING)
+  private String outstandingAmountAsString;
 
   /**
    * Montant modifiable.
@@ -171,6 +195,28 @@ import lombok.Setter;
    * Identifiant json {@link #reimbursedAmountAsString}.
    */
   public static final String JSON_REIMBURSED_AMOUNT_AS_STRING = &quot;montantRembourseChaine&quot;;
+
+
+  /**
+   * Identifiant json {@link #outstandingAmount}.
+   */
+  public static final String JSON_OUTSTANDING_AMOUNT = &quot;montantRestantARembourser&quot;;
+
+  /**
+   * Identifiant json {@link #outstandingAmountAsString}.
+   */
+  public static final String JSON_OUTSTANDING_AMOUNT_AS_STRING = &quot;montantRestantARembourserChaine&quot;;
+
+
+  /**
+   * Identifiant json {@link #principalAmount}.
+   */
+  public static final String JSON_PRINCIPAL_AMOUNT = &quot;montantInitialCreance&quot;;
+
+  /**
+   * Identifiant json {@link #principalAmountAsString}.
+   */
+  public static final String JSON_PRINCIPAL_AMOUNT_AS_STRING = &quot;montantInitialCreanceChaine&quot;;
 
   /**
    * Identifiant json {@link #amountsInputable}.
