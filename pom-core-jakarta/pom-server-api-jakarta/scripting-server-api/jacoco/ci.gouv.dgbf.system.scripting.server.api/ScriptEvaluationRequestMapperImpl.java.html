@@ -13,7 +13,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-15T08:30:19+0000&quot;,
+    date = &quot;2025-07-24T13:55:12+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,43 +27,47 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        ScriptEvaluationService.ScriptEvaluationCreateRequestDto scriptEvaluationCreateRequestDto = new ScriptEvaluationService.ScriptEvaluationCreateRequestDto();</span>
 
-<span class="fc" id="L30">        scriptEvaluationCreateRequestDto.setScriptIdentifier( arg0.getScriptIdentifier() );</span>
-<span class="fc" id="L31">        scriptEvaluationCreateRequestDto.setArguments( stringStringMapToStringObjectMap( arg0.getArguments() ) );</span>
-<span class="fc" id="L32">        scriptEvaluationCreateRequestDto.setResultAsStringFormat( arg0.getResultAsStringFormat() );</span>
+<span class="fc" id="L30">        scriptEvaluationCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L31">        scriptEvaluationCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L32">        scriptEvaluationCreateRequestDto.setScriptIdentifier( arg0.getScriptIdentifier() );</span>
+<span class="fc" id="L33">        scriptEvaluationCreateRequestDto.setArguments( stringStringMapToStringObjectMap( arg0.getArguments() ) );</span>
+<span class="fc" id="L34">        scriptEvaluationCreateRequestDto.setResultAsStringFormat( arg0.getResultAsStringFormat() );</span>
 
-<span class="fc" id="L34">        return scriptEvaluationCreateRequestDto;</span>
+<span class="fc" id="L36">        return scriptEvaluationCreateRequestDto;</span>
     }
 
     @Override
     public ScriptEvaluationService.ScriptEvaluationUpdateRequestDto mapUpdate(ScriptEvaluationDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L43">        ScriptEvaluationService.ScriptEvaluationUpdateRequestDto scriptEvaluationUpdateRequestDto = new ScriptEvaluationService.ScriptEvaluationUpdateRequestDto();</span>
+<span class="fc" id="L45">        ScriptEvaluationService.ScriptEvaluationUpdateRequestDto scriptEvaluationUpdateRequestDto = new ScriptEvaluationService.ScriptEvaluationUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        scriptEvaluationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        scriptEvaluationUpdateRequestDto.setScriptIdentifier( arg0.getScriptIdentifier() );</span>
-<span class="fc" id="L47">        scriptEvaluationUpdateRequestDto.setArguments( stringStringMapToStringObjectMap( arg0.getArguments() ) );</span>
-<span class="fc" id="L48">        scriptEvaluationUpdateRequestDto.setResultAsStringFormat( arg0.getResultAsStringFormat() );</span>
+<span class="fc" id="L47">        scriptEvaluationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        scriptEvaluationUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        scriptEvaluationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        scriptEvaluationUpdateRequestDto.setScriptIdentifier( arg0.getScriptIdentifier() );</span>
+<span class="fc" id="L51">        scriptEvaluationUpdateRequestDto.setArguments( stringStringMapToStringObjectMap( arg0.getArguments() ) );</span>
+<span class="fc" id="L52">        scriptEvaluationUpdateRequestDto.setResultAsStringFormat( arg0.getResultAsStringFormat() );</span>
 
-<span class="fc" id="L50">        return scriptEvaluationUpdateRequestDto;</span>
+<span class="fc" id="L54">        return scriptEvaluationUpdateRequestDto;</span>
     }
 
     protected Map&lt;String, Object&gt; stringStringMapToStringObjectMap(Map&lt;String, String&gt; map) {
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if ( map == null ) {</span>
-<span class="fc" id="L55">            return null;</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">        if ( map == null ) {</span>
+<span class="fc" id="L59">            return null;</span>
         }
 
-<span class="fc" id="L58">        Map&lt;String, Object&gt; map1 = new LinkedHashMap&lt;String, Object&gt;( Math.max( (int) ( map.size() / .75f ) + 1, 16 ) );</span>
+<span class="fc" id="L62">        Map&lt;String, Object&gt; map1 = new LinkedHashMap&lt;String, Object&gt;( Math.max( (int) ( map.size() / .75f ) + 1, 16 ) );</span>
 
-<span class="fc bfc" id="L60" title="All 2 branches covered.">        for ( java.util.Map.Entry&lt;String, String&gt; entry : map.entrySet() ) {</span>
-<span class="fc" id="L61">            String key = entry.getKey();</span>
-<span class="fc" id="L62">            Object value = entry.getValue();</span>
-<span class="fc" id="L63">            map1.put( key, value );</span>
-<span class="fc" id="L64">        }</span>
+<span class="fc bfc" id="L64" title="All 2 branches covered.">        for ( java.util.Map.Entry&lt;String, String&gt; entry : map.entrySet() ) {</span>
+<span class="fc" id="L65">            String key = entry.getKey();</span>
+<span class="fc" id="L66">            Object value = entry.getValue();</span>
+<span class="fc" id="L67">            map1.put( key, value );</span>
+<span class="fc" id="L68">        }</span>
 
-<span class="fc" id="L66">        return map1;</span>
+<span class="fc" id="L70">        return map1;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

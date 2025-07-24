@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-15T08:30:19+0000&quot;,
+    date = &quot;2025-07-24T13:55:12+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,31 +25,35 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ValueReferenceService.ValueReferenceCreateRequestDto valueReferenceCreateRequestDto = new ValueReferenceService.ValueReferenceCreateRequestDto();</span>
 
-<span class="fc" id="L28">        valueReferenceCreateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
-<span class="fc" id="L29">        valueReferenceCreateRequestDto.setTableName( arg0.getTableName() );</span>
-<span class="fc" id="L30">        valueReferenceCreateRequestDto.setProjectionColumnName( arg0.getProjectionColumnName() );</span>
-<span class="fc" id="L31">        valueReferenceCreateRequestDto.setFilterColumnName( arg0.getFilterColumnName() );</span>
-<span class="fc" id="L32">        valueReferenceCreateRequestDto.setValueType( arg0.getValueType() );</span>
+<span class="fc" id="L28">        valueReferenceCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        valueReferenceCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        valueReferenceCreateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L31">        valueReferenceCreateRequestDto.setTableName( arg0.getTableName() );</span>
+<span class="fc" id="L32">        valueReferenceCreateRequestDto.setProjectionColumnName( arg0.getProjectionColumnName() );</span>
+<span class="fc" id="L33">        valueReferenceCreateRequestDto.setFilterColumnName( arg0.getFilterColumnName() );</span>
+<span class="fc" id="L34">        valueReferenceCreateRequestDto.setValueType( arg0.getValueType() );</span>
 
-<span class="fc" id="L34">        return valueReferenceCreateRequestDto;</span>
+<span class="fc" id="L36">        return valueReferenceCreateRequestDto;</span>
     }
 
     @Override
     public ValueReferenceService.ValueReferenceUpdateRequestDto mapUpdate(ValueReferenceDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L43">        ValueReferenceService.ValueReferenceUpdateRequestDto valueReferenceUpdateRequestDto = new ValueReferenceService.ValueReferenceUpdateRequestDto();</span>
+<span class="fc" id="L45">        ValueReferenceService.ValueReferenceUpdateRequestDto valueReferenceUpdateRequestDto = new ValueReferenceService.ValueReferenceUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        valueReferenceUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        valueReferenceUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
-<span class="fc" id="L47">        valueReferenceUpdateRequestDto.setTableName( arg0.getTableName() );</span>
-<span class="fc" id="L48">        valueReferenceUpdateRequestDto.setProjectionColumnName( arg0.getProjectionColumnName() );</span>
-<span class="fc" id="L49">        valueReferenceUpdateRequestDto.setFilterColumnName( arg0.getFilterColumnName() );</span>
-<span class="fc" id="L50">        valueReferenceUpdateRequestDto.setValueType( arg0.getValueType() );</span>
+<span class="fc" id="L47">        valueReferenceUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        valueReferenceUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        valueReferenceUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        valueReferenceUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L51">        valueReferenceUpdateRequestDto.setTableName( arg0.getTableName() );</span>
+<span class="fc" id="L52">        valueReferenceUpdateRequestDto.setProjectionColumnName( arg0.getProjectionColumnName() );</span>
+<span class="fc" id="L53">        valueReferenceUpdateRequestDto.setFilterColumnName( arg0.getFilterColumnName() );</span>
+<span class="fc" id="L54">        valueReferenceUpdateRequestDto.setValueType( arg0.getValueType() );</span>
 
-<span class="fc" id="L52">        return valueReferenceUpdateRequestDto;</span>
+<span class="fc" id="L56">        return valueReferenceUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

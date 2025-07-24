@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-15T08:30:19+0000&quot;,
+    date = &quot;2025-07-24T13:55:12+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,25 +25,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ScriptRelationService.ScriptRelationCreateRequestDto scriptRelationCreateRequestDto = new ScriptRelationService.ScriptRelationCreateRequestDto();</span>
 
-<span class="fc" id="L28">        scriptRelationCreateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
-<span class="fc" id="L29">        scriptRelationCreateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
+<span class="fc" id="L28">        scriptRelationCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        scriptRelationCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        scriptRelationCreateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
+<span class="fc" id="L31">        scriptRelationCreateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
 
-<span class="fc" id="L31">        return scriptRelationCreateRequestDto;</span>
+<span class="fc" id="L33">        return scriptRelationCreateRequestDto;</span>
     }
 
     @Override
     public ScriptRelationService.ScriptRelationUpdateRequestDto mapUpdate(ScriptRelationDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L40">        ScriptRelationService.ScriptRelationUpdateRequestDto scriptRelationUpdateRequestDto = new ScriptRelationService.ScriptRelationUpdateRequestDto();</span>
+<span class="fc" id="L42">        ScriptRelationService.ScriptRelationUpdateRequestDto scriptRelationUpdateRequestDto = new ScriptRelationService.ScriptRelationUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        scriptRelationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        scriptRelationUpdateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
-<span class="fc" id="L44">        scriptRelationUpdateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
+<span class="fc" id="L44">        scriptRelationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L45">        scriptRelationUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L46">        scriptRelationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        scriptRelationUpdateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
+<span class="fc" id="L48">        scriptRelationUpdateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
 
-<span class="fc" id="L46">        return scriptRelationUpdateRequestDto;</span>
+<span class="fc" id="L50">        return scriptRelationUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

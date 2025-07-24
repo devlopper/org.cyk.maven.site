@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-15T08:30:19+0000&quot;,
+    date = &quot;2025-07-24T13:55:12+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,29 +25,33 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ValueConditionService.ValueConditionCreateRequestDto valueConditionCreateRequestDto = new ValueConditionService.ValueConditionCreateRequestDto();</span>
 
-<span class="fc" id="L28">        valueConditionCreateRequestDto.setValueReferenceIdentifier( arg0.getValueReferenceIdentifier() );</span>
-<span class="fc" id="L29">        valueConditionCreateRequestDto.setConditionalValueIdentifier( arg0.getConditionalValueIdentifier() );</span>
-<span class="fc" id="L30">        valueConditionCreateRequestDto.setComparisonOperator( arg0.getComparisonOperator() );</span>
-<span class="fc" id="L31">        valueConditionCreateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L28">        valueConditionCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        valueConditionCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        valueConditionCreateRequestDto.setValueReferenceIdentifier( arg0.getValueReferenceIdentifier() );</span>
+<span class="fc" id="L31">        valueConditionCreateRequestDto.setConditionalValueIdentifier( arg0.getConditionalValueIdentifier() );</span>
+<span class="fc" id="L32">        valueConditionCreateRequestDto.setComparisonOperator( arg0.getComparisonOperator() );</span>
+<span class="fc" id="L33">        valueConditionCreateRequestDto.setValue( arg0.getValue() );</span>
 
-<span class="fc" id="L33">        return valueConditionCreateRequestDto;</span>
+<span class="fc" id="L35">        return valueConditionCreateRequestDto;</span>
     }
 
     @Override
     public ValueConditionService.ValueConditionUpdateRequestDto mapUpdate(ValueConditionDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L41">            return null;</span>
         }
 
-<span class="fc" id="L42">        ValueConditionService.ValueConditionUpdateRequestDto valueConditionUpdateRequestDto = new ValueConditionService.ValueConditionUpdateRequestDto();</span>
+<span class="fc" id="L44">        ValueConditionService.ValueConditionUpdateRequestDto valueConditionUpdateRequestDto = new ValueConditionService.ValueConditionUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        valueConditionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L45">        valueConditionUpdateRequestDto.setValueReferenceIdentifier( arg0.getValueReferenceIdentifier() );</span>
-<span class="fc" id="L46">        valueConditionUpdateRequestDto.setConditionalValueIdentifier( arg0.getConditionalValueIdentifier() );</span>
-<span class="fc" id="L47">        valueConditionUpdateRequestDto.setComparisonOperator( arg0.getComparisonOperator() );</span>
-<span class="fc" id="L48">        valueConditionUpdateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L46">        valueConditionUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L47">        valueConditionUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L48">        valueConditionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L49">        valueConditionUpdateRequestDto.setValueReferenceIdentifier( arg0.getValueReferenceIdentifier() );</span>
+<span class="fc" id="L50">        valueConditionUpdateRequestDto.setConditionalValueIdentifier( arg0.getConditionalValueIdentifier() );</span>
+<span class="fc" id="L51">        valueConditionUpdateRequestDto.setComparisonOperator( arg0.getComparisonOperator() );</span>
+<span class="fc" id="L52">        valueConditionUpdateRequestDto.setValue( arg0.getValue() );</span>
 
-<span class="fc" id="L50">        return valueConditionUpdateRequestDto;</span>
+<span class="fc" id="L54">        return valueConditionUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

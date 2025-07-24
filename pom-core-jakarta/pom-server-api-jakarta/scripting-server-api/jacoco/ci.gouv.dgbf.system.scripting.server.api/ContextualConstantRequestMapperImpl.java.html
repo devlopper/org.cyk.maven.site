@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-15T08:30:19+0000&quot;,
+    date = &quot;2025-07-24T13:55:12+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,31 +25,35 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ContextualConstantService.ContextualConstantCreateRequestDto contextualConstantCreateRequestDto = new ContextualConstantService.ContextualConstantCreateRequestDto();</span>
 
-<span class="fc" id="L28">        contextualConstantCreateRequestDto.setConstantIdentifier( arg0.getConstantIdentifier() );</span>
-<span class="fc" id="L29">        contextualConstantCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L30">        contextualConstantCreateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
-<span class="fc" id="L31">        contextualConstantCreateRequestDto.setFromDate( arg0.getFromDate() );</span>
-<span class="fc" id="L32">        contextualConstantCreateRequestDto.setToDate( arg0.getToDate() );</span>
+<span class="fc" id="L28">        contextualConstantCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        contextualConstantCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        contextualConstantCreateRequestDto.setConstantIdentifier( arg0.getConstantIdentifier() );</span>
+<span class="fc" id="L31">        contextualConstantCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L32">        contextualConstantCreateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L33">        contextualConstantCreateRequestDto.setFromDate( arg0.getFromDate() );</span>
+<span class="fc" id="L34">        contextualConstantCreateRequestDto.setToDate( arg0.getToDate() );</span>
 
-<span class="fc" id="L34">        return contextualConstantCreateRequestDto;</span>
+<span class="fc" id="L36">        return contextualConstantCreateRequestDto;</span>
     }
 
     @Override
     public ContextualConstantService.ContextualConstantUpdateRequestDto mapUpdate(ContextualConstantDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L43">        ContextualConstantService.ContextualConstantUpdateRequestDto contextualConstantUpdateRequestDto = new ContextualConstantService.ContextualConstantUpdateRequestDto();</span>
+<span class="fc" id="L45">        ContextualConstantService.ContextualConstantUpdateRequestDto contextualConstantUpdateRequestDto = new ContextualConstantService.ContextualConstantUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        contextualConstantUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        contextualConstantUpdateRequestDto.setConstantIdentifier( arg0.getConstantIdentifier() );</span>
-<span class="fc" id="L47">        contextualConstantUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L48">        contextualConstantUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
-<span class="fc" id="L49">        contextualConstantUpdateRequestDto.setFromDate( arg0.getFromDate() );</span>
-<span class="fc" id="L50">        contextualConstantUpdateRequestDto.setToDate( arg0.getToDate() );</span>
+<span class="fc" id="L47">        contextualConstantUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        contextualConstantUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        contextualConstantUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        contextualConstantUpdateRequestDto.setConstantIdentifier( arg0.getConstantIdentifier() );</span>
+<span class="fc" id="L51">        contextualConstantUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L52">        contextualConstantUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L53">        contextualConstantUpdateRequestDto.setFromDate( arg0.getFromDate() );</span>
+<span class="fc" id="L54">        contextualConstantUpdateRequestDto.setToDate( arg0.getToDate() );</span>
 
-<span class="fc" id="L52">        return contextualConstantUpdateRequestDto;</span>
+<span class="fc" id="L56">        return contextualConstantUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
