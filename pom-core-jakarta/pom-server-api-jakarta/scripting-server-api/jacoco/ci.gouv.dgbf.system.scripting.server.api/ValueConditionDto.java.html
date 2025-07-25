@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.enumeration.ComparisonOperator;
 import ci.gouv.dgbf.extension.core.segregation.HasComparisonOperatorDto;
+import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueReferenceAsStringDto;
@@ -21,19 +22,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class ValueConditionDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasValueReferenceIdentifierDto, HasValueReferenceAsStringDto,
-    HasConditionalValueIdentifierDto, HasComparisonOperatorDto, HasStringValueDto {
+<span class="fc" id="L25">public class ValueConditionDto extends AbstractIdentifiableAuditableDto implements</span>
+    HasValueReferenceIdentifierDto, HasValueReferenceAsStringDto, HasConditionalValueIdentifierDto,
+    HasConditionalValueAsStringDto, HasComparisonOperatorDto, HasStringValueDto {
 
   @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
   private String conditionalValueIdentifier;
+
+  @JsonbProperty(JSON_CONDITIONAL_VALUE_AS_STRING)
+  private String conditionalValueAsString;
 
   @JsonbProperty(JSON_VALUE_REFERENCE_IDENTIFIER)
   private String valueReferenceIdentifier;
 
   @JsonbProperty(JSON_VALUE_REFERENCE_AS_STRING)
   private String valueReferenceAsString;
-  
+
   @JsonbProperty(JSON_COMPARISON_OPERATOR)
   private ComparisonOperator comparisonOperator;
 
