@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-08T08:30:41+0000&quot;,
+    date = &quot;2025-07-25T17:19:57+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,27 +25,31 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        HierarchicalRelationService.HierarchicalRelationCreateRequestDto hierarchicalRelationCreateRequestDto = new HierarchicalRelationService.HierarchicalRelationCreateRequestDto();</span>
 
-<span class="fc" id="L28">        hierarchicalRelationCreateRequestDto.setHierarchyIdentifier( arg0.getHierarchyIdentifier() );</span>
-<span class="fc" id="L29">        hierarchicalRelationCreateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
-<span class="fc" id="L30">        hierarchicalRelationCreateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
+<span class="fc" id="L28">        hierarchicalRelationCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        hierarchicalRelationCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        hierarchicalRelationCreateRequestDto.setHierarchyIdentifier( arg0.getHierarchyIdentifier() );</span>
+<span class="fc" id="L31">        hierarchicalRelationCreateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
+<span class="fc" id="L32">        hierarchicalRelationCreateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
 
-<span class="fc" id="L32">        return hierarchicalRelationCreateRequestDto;</span>
+<span class="fc" id="L34">        return hierarchicalRelationCreateRequestDto;</span>
     }
 
     @Override
     public HierarchicalRelationService.HierarchicalRelationUpdateRequestDto mapUpdate(HierarchicalRelationDto arg0) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L38">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L41">        HierarchicalRelationService.HierarchicalRelationUpdateRequestDto hierarchicalRelationUpdateRequestDto = new HierarchicalRelationService.HierarchicalRelationUpdateRequestDto();</span>
+<span class="fc" id="L43">        HierarchicalRelationService.HierarchicalRelationUpdateRequestDto hierarchicalRelationUpdateRequestDto = new HierarchicalRelationService.HierarchicalRelationUpdateRequestDto();</span>
 
-<span class="fc" id="L43">        hierarchicalRelationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L44">        hierarchicalRelationUpdateRequestDto.setHierarchyIdentifier( arg0.getHierarchyIdentifier() );</span>
-<span class="fc" id="L45">        hierarchicalRelationUpdateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
-<span class="fc" id="L46">        hierarchicalRelationUpdateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
+<span class="fc" id="L45">        hierarchicalRelationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L46">        hierarchicalRelationUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L47">        hierarchicalRelationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        hierarchicalRelationUpdateRequestDto.setHierarchyIdentifier( arg0.getHierarchyIdentifier() );</span>
+<span class="fc" id="L49">        hierarchicalRelationUpdateRequestDto.setParentIdentifier( arg0.getParentIdentifier() );</span>
+<span class="fc" id="L50">        hierarchicalRelationUpdateRequestDto.setChildIdentifier( arg0.getChildIdentifier() );</span>
 
-<span class="fc" id="L48">        return hierarchicalRelationUpdateRequestDto;</span>
+<span class="fc" id="L52">        return hierarchicalRelationUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
