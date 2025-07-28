@@ -5,8 +5,8 @@ import ci.gouv.dgbf.extension.core.segregation.HasComparisonOperatorDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
-import ci.gouv.dgbf.extension.core.segregation.HasValueReferenceAsStringDto;
-import ci.gouv.dgbf.extension.core.segregation.HasValueReferenceIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -23,7 +23,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L25">public class ValueConditionDto extends AbstractIdentifiableAuditableDto implements</span>
-    HasValueReferenceIdentifierDto, HasValueReferenceAsStringDto, HasConditionalValueIdentifierDto,
+    HasValueSelectorIdentifierDto, HasValueSelectorAsStringDto, HasConditionalValueIdentifierDto,
     HasConditionalValueAsStringDto, HasComparisonOperatorDto, HasStringValueDto {
 
   @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
@@ -32,11 +32,11 @@ import lombok.Setter;
   @JsonbProperty(JSON_CONDITIONAL_VALUE_AS_STRING)
   private String conditionalValueAsString;
 
-  @JsonbProperty(JSON_VALUE_REFERENCE_IDENTIFIER)
-  private String valueReferenceIdentifier;
+  @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
+  private String valueSelectorIdentifier;
 
-  @JsonbProperty(JSON_VALUE_REFERENCE_AS_STRING)
-  private String valueReferenceAsString;
+  @JsonbProperty(JSON_VALUE_SELECTOR_AS_STRING)
+  private String valueSelectorAsString;
 
   @JsonbProperty(JSON_COMPARISON_OPERATOR)
   private ComparisonOperator comparisonOperator;
