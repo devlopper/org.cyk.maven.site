@@ -148,13 +148,13 @@ public interface HierarchicalRelationService extends SpecificService {
       implements HierarchicalRelationSaveRequestDto {
 
     @JsonbProperty(JSON_HIERARCHY_IDENTIFIER)
-    String hierarchyIdentifier;
+    private String hierarchyIdentifier;
 
     @JsonbProperty(JSON_PARENT_IDENTIFIER)
-    String parentIdentifier;
+    private String parentIdentifier;
 
     @JsonbProperty(JSON_CHILD_IDENTIFIER)
-    String childIdentifier;
+    private String childIdentifier;
   }
 
   /**
@@ -284,13 +284,13 @@ public interface HierarchicalRelationService extends SpecificService {
       implements HierarchicalRelationSaveRequestDto {
 
     @JsonbProperty(JSON_HIERARCHY_IDENTIFIER)
-    String hierarchyIdentifier;
+    private String hierarchyIdentifier;
 
     @JsonbProperty(JSON_PARENT_IDENTIFIER)
-    String parentIdentifier;
+    private String parentIdentifier;
 
     @JsonbProperty(JSON_CHILD_IDENTIFIER)
-    String childIdentifier;
+    private String childIdentifier;
   }
 
   /**

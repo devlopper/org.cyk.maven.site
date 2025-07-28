@@ -24,16 +24,16 @@ import lombok.Setter;
     implements HasTableNameDto, HasColumnNameDto, HasValueTypeDto, HasValueTypeAsStringDto {
 
   @JsonbProperty(JSON_TABLE_NAME)
-  String tableName;
+  private String tableName;
 
   @JsonbProperty(JSON_COLUMN_NAME)
-  String columnName;
+  private String columnName;
 
   @JsonbProperty(JSON_VALUE_TYPE)
-  ValueType valueType;
+  private ValueType valueType;
   
   @JsonbProperty(JSON_VALUE_TYPE_AS_STRING)
-  String valueTypeAsString;
+  private String valueTypeAsString;
   
   /**
    * Identifiant json de l'identifiant.

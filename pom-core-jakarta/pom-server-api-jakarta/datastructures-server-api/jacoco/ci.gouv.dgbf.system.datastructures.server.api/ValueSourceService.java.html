@@ -149,13 +149,13 @@ public interface ValueSourceService extends SpecificService {
       implements ValueSourceSaveRequestDto {
 
     @JsonbProperty(JSON_TABLE_NAME)
-    String tableName;
+    private String tableName;
 
     @JsonbProperty(JSON_COLUMN_NAME)
-    String columnName;
+    private String columnName;
     
     @JsonbProperty(JSON_VALUE_TYPE)
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**
@@ -285,13 +285,13 @@ public interface ValueSourceService extends SpecificService {
       implements ValueSourceSaveRequestDto {
     
     @JsonbProperty(JSON_TABLE_NAME)
-    String tableName;
+    private String tableName;
 
     @JsonbProperty(JSON_COLUMN_NAME)
-    String columnName;
+    private String columnName;
     
     @JsonbProperty(JSON_VALUE_TYPE)
-    ValueType valueType;
+    private ValueType valueType;
   }
 
   /**
