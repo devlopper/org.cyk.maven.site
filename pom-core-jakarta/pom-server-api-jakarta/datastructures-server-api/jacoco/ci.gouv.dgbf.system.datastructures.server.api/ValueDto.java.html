@@ -22,13 +22,13 @@ import lombok.Setter;
     implements HasStringDataDto, HasSourceIdentifierDto, HasSourceAsStringDto {
 
   @JsonbProperty(JSON_SOURCE_IDENTIFIER)
-  String sourceIdentifier;
+  private String sourceIdentifier;
 
   @JsonbProperty(JSON_SOURCE_AS_STRING)
-  String sourceAsString;
+  private String sourceAsString;
 
   @JsonbProperty(JSON_DATA)
-  String data;
+  private String data;
 
   /**
    * Identifiant json de l'identifiant.

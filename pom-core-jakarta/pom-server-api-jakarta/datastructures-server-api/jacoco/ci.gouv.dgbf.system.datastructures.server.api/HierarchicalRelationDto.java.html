@@ -26,22 +26,22 @@ import lombok.Setter;
     HasParentAsStringDto, HasChildIdentifierDto, HasChildAsStringDto {
 
   @JsonbProperty(JSON_HIERARCHY_IDENTIFIER)
-  String hierarchyIdentifier;
+  private String hierarchyIdentifier;
 
   @JsonbProperty(JSON_HIERARCHY_AS_STRING)
-  String hierarchyAsString;
+  private String hierarchyAsString;
 
   @JsonbProperty(JSON_PARENT_IDENTIFIER)
-  String parentIdentifier;
+  private String parentIdentifier;
 
   @JsonbProperty(JSON_PARENT_AS_STRING)
-  String parentAsString;
+  private String parentAsString;
 
   @JsonbProperty(JSON_CHILD_IDENTIFIER)
-  String childIdentifier;
+  private String childIdentifier;
 
   @JsonbProperty(JSON_CHILD_AS_STRING)
-  String childAsString;
+  private String childAsString;
 
   /**
    * Identifiant json de l'identifiant.

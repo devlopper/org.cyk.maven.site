@@ -23,16 +23,16 @@ import lombok.Setter;
     HasSourceIdentifierDto, HasSourceAsStringDto, HasFilterColumnNameDto {
 
   @JsonbProperty(JSON_NAME)
-  String name;
+  private String name;
 
   @JsonbProperty(JSON_SOURCE_IDENTIFIER)
-  String sourceIdentifier;
+  private String sourceIdentifier;
 
   @JsonbProperty(JSON_SOURCE_AS_STRING)
-  String sourceAsString;
+  private String sourceAsString;
 
   @JsonbProperty(JSON_FILTER_COLUMN_NAME)
-  String filterColumnName;
+  private String filterColumnName;
 
   /**
    * Identifiant json de l'identifiant.

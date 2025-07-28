@@ -21,10 +21,10 @@ import lombok.Setter;
     implements HasValueSourceIdentifierDto, HasValueSourceAsStringDto {
 
   @JsonbProperty(JSON_VALUE_SOURCE_IDENTIFIER)
-  String valueSourceIdentifier;
+  private String valueSourceIdentifier;
 
   @JsonbProperty(JSON_VALUE_SOURCE_AS_STRING)
-  String valueSourceAsString;
+  private String valueSourceAsString;
 
   /**
    * Identifiant json de l'identifiant.
