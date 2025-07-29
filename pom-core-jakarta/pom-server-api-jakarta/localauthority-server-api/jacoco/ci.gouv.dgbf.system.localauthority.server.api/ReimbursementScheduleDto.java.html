@@ -41,6 +41,20 @@ import lombok.Setter;
   @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
   private String triennialProgramAsString;
 
+
+
+  /**
+   * Identifiant de {@link LocalAuthorityDto}.
+   */
+  @JsonbProperty(JSON_LOCALAUTHORITY_IDENTIFIER)
+  private String localAuthorityIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link LocalAuthorityDto}.
+   */
+  @JsonbProperty(JSON_LOCALAUTHORITY_AS_STRING)
+  private String localAuthorityAsString;
+
   /**
    * Montant initial de la créance (montant de la dette à l'origine).
    */
@@ -240,6 +254,18 @@ import lombok.Setter;
    */
   public static final String JSON_TRIENNIAL_PROGRAM_AS_STRING =
       TriennialProgramDto.JSON_THIS_AS_STRING;
+
+
+  /**
+   * Identifiant json {@link #localAuthorityIdentifier}.
+   */
+  public static final String JSON_LOCALAUTHORITY_IDENTIFIER = &quot;identifiantCollectivite&quot;;
+
+  /**
+   * Identifiant json {@link #localAuthorityAsString}.
+   */
+  public static final String JSON_LOCALAUTHORITY_AS_STRING =
+      LocalAuthorityDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #subject}.
