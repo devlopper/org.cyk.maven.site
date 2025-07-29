@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-28T17:03:27+0000&quot;,
+    date = &quot;2025-07-29T19:21:45+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,27 +25,25 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PartitionUnitService.PartitionUnitCreateRequestDto partitionUnitCreateRequestDto = new PartitionUnitService.PartitionUnitCreateRequestDto();</span>
 
-<span class="fc" id="L28">        partitionUnitCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L29">        partitionUnitCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L30">        partitionUnitCreateRequestDto.setPartitionIdentifier( arg0.getPartitionIdentifier() );</span>
+<span class="fc" id="L28">        partitionUnitCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L29">        partitionUnitCreateRequestDto.setPartitionIdentifier( arg0.getPartitionIdentifier() );</span>
 
-<span class="fc" id="L32">        return partitionUnitCreateRequestDto;</span>
+<span class="fc" id="L31">        return partitionUnitCreateRequestDto;</span>
     }
 
     @Override
     public PartitionUnitService.PartitionUnitUpdateRequestDto mapUpdate(PartitionUnitDto arg0) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L38">            return null;</span>
+<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L37">            return null;</span>
         }
 
-<span class="fc" id="L41">        PartitionUnitService.PartitionUnitUpdateRequestDto partitionUnitUpdateRequestDto = new PartitionUnitService.PartitionUnitUpdateRequestDto();</span>
+<span class="fc" id="L40">        PartitionUnitService.PartitionUnitUpdateRequestDto partitionUnitUpdateRequestDto = new PartitionUnitService.PartitionUnitUpdateRequestDto();</span>
 
-<span class="fc" id="L43">        partitionUnitUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L44">        partitionUnitUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L45">        partitionUnitUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        partitionUnitUpdateRequestDto.setPartitionIdentifier( arg0.getPartitionIdentifier() );</span>
+<span class="fc" id="L42">        partitionUnitUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L43">        partitionUnitUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L44">        partitionUnitUpdateRequestDto.setPartitionIdentifier( arg0.getPartitionIdentifier() );</span>
 
-<span class="fc" id="L48">        return partitionUnitUpdateRequestDto;</span>
+<span class="fc" id="L46">        return partitionUnitUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

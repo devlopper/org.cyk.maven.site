@@ -2,7 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasPartitionAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPartitionIdentifierDto;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class PartitionUnitDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L19">public class PartitionUnitDto extends AbstractIdentifiableNamableAuditableDto</span>
     implements HasPartitionIdentifierDto, HasPartitionAsStringDto {
 
   @JsonbProperty(JSON_PARTITION_IDENTIFIER)
