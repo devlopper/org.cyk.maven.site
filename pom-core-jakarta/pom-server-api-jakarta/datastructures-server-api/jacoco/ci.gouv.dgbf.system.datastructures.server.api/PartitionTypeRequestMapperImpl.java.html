@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-29T21:29:24+0000&quot;,
+    date = &quot;2025-07-30T17:13:12+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -28,24 +28,26 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L28">        partitionTypeCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        partitionTypeCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L30">        partitionTypeCreateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L31">        partitionTypeCreateRequestDto.setValueSourceIdentifier( arg0.getValueSourceIdentifier() );</span>
 
-<span class="fc" id="L32">        return partitionTypeCreateRequestDto;</span>
+<span class="fc" id="L33">        return partitionTypeCreateRequestDto;</span>
     }
 
     @Override
     public PartitionTypeService.PartitionTypeUpdateRequestDto mapUpdate(PartitionTypeDto arg0) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L38">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L41">        PartitionTypeService.PartitionTypeUpdateRequestDto partitionTypeUpdateRequestDto = new PartitionTypeService.PartitionTypeUpdateRequestDto();</span>
+<span class="fc" id="L42">        PartitionTypeService.PartitionTypeUpdateRequestDto partitionTypeUpdateRequestDto = new PartitionTypeService.PartitionTypeUpdateRequestDto();</span>
 
-<span class="fc" id="L43">        partitionTypeUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L44">        partitionTypeUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L45">        partitionTypeUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L46">        partitionTypeUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L44">        partitionTypeUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        partitionTypeUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        partitionTypeUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        partitionTypeUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L48">        partitionTypeUpdateRequestDto.setValueSourceIdentifier( arg0.getValueSourceIdentifier() );</span>
 
-<span class="fc" id="L48">        return partitionTypeUpdateRequestDto;</span>
+<span class="fc" id="L50">        return partitionTypeUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

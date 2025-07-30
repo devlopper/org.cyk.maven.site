@@ -2,6 +2,8 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueSourceAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueSourceIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -16,14 +18,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class PartitionTypeDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasDomainIdentifierDto, HasDomainAsStringDto {
+<span class="fc" id="L21">public class PartitionTypeDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasDomainIdentifierDto, HasDomainAsStringDto, HasValueSourceIdentifierDto,
+    HasValueSourceAsStringDto {
 
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
   private String domainIdentifier;
 
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
   private String domainAsString;
+
+  @JsonbProperty(JSON_VALUE_SOURCE_IDENTIFIER)
+  private String valueSourceIdentifier;
+
+  @JsonbProperty(JSON_VALUE_SOURCE_AS_STRING)
+  private String valueSourceAsString;
 
   /**
    * Identifiant json de l'identifiant.

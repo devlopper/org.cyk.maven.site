@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartitionDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de datastructures</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.datastructures.server.api</a> &gt; <span class="el_source">PartitionDto.java</span></div><h1>PartitionDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.datastructures.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasReferenceAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasReferenceDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTypeAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTypeIdentifierDto;
@@ -17,8 +18,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L20">public class PartitionDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasTypeIdentifierDto, HasTypeAsStringDto, HasReferenceDto {
+<span class="fc" id="L21">public class PartitionDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasTypeIdentifierDto, HasTypeAsStringDto, HasReferenceDto, HasReferenceAsStringDto {
 
   @JsonbProperty(JSON_TYPE_IDENTIFIER)
   private String typeIdentifier;
@@ -26,9 +27,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_TYPE_AS_STRING)
   private String typeAsString;
 
-  @JsonbProperty(value = JSON_REFERENCE)
+  @JsonbProperty(JSON_REFERENCE)
   private String reference;
 
+  @JsonbProperty(JSON_REFERENCE_AS_STRING)
+  private String referenceAsString;
+  
   /**
    * Identifiant json de l'identifiant.
    */
