@@ -63,31 +63,28 @@ public interface PartitionService extends SpecificService {
     void setTypeIdentifier(String identifier);
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de la valeur.
+     *
+     * @return l'identifiant de la valeur
+     */
+    String getValueIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la valeur.
+     *
+     * @param valueIdentifier l'identifiant de la valeur
+     */
+    void setValueIdentifier(String valueIdentifier);
+
+    /**
      * Identifiant json de {@link PartitionTypeDto}.
      */
-    String JSON_TYPE_IDENTIFIER =
-        PartitionDto.JSON_TYPE_IDENTIFIER;
-
+    String JSON_TYPE_IDENTIFIER = PartitionDto.JSON_TYPE_IDENTIFIER;
 
     /**
-     * Cette méthode permet d'obtenir la référence.
-     *
-     * @return référence
+     * {@link PartitionDto#JSON_VALUE_IDENTIFIER}.
      */
-    String getReference();
-
-    /**
-     * Cette méthode permet d'assigner la référence.
-     *
-     * @param reference référence
-     */
-    void setReference(String reference);
-
-
-    /**
-     * {@link PartitionDto#JSON_REFERENCE}.
-     */
-    String JSON_REFERENCE = PartitionDto.JSON_REFERENCE;
+    String JSON_VALUE_IDENTIFIER = PartitionDto.JSON_VALUE_IDENTIFIER;
   }
 
   /**
@@ -122,14 +119,14 @@ public interface PartitionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L125">  class PartitionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L122">  class PartitionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PartitionSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
     private String typeIdentifier;
 
-    @JsonbProperty(value = JSON_REFERENCE)
-    private String reference;
+    @JsonbProperty(JSON_VALUE_IDENTIFIER)
+    private String valueIdentifier;
   }
 
   /**
@@ -154,8 +151,7 @@ public interface PartitionService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-          @Content(schema = @Schema(implementation = PartitionGetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = PartitionGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -165,7 +161,7 @@ public interface PartitionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L168">  public static class PartitionGetManyResponseDto</span>
+<span class="fc" id="L164">  public static class PartitionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PartitionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -254,14 +250,14 @@ public interface PartitionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L257">  class PartitionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L253">  class PartitionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PartitionSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
     private String typeIdentifier;
 
-    @JsonbProperty(value = JSON_REFERENCE)
-    private String reference;
+    @JsonbProperty(JSON_VALUE_IDENTIFIER)
+    private String valueIdentifier;
   }
 
   /**
