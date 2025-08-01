@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.enumeration.ValueType;
 import ci.gouv.dgbf.extension.core.segregation.HasColumnNameDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRequestAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTableNameDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
@@ -20,8 +21,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L23">public class ValueSourceDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasTableNameDto, HasColumnNameDto, HasValueTypeDto, HasValueTypeAsStringDto {
+<span class="fc" id="L24">public class ValueSourceDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasTableNameDto, HasColumnNameDto, HasValueTypeDto, HasValueTypeAsStringDto,
+    HasRequestAsStringDto {
 
   @JsonbProperty(JSON_TABLE_NAME)
   private String tableName;
@@ -31,9 +33,12 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_VALUE_TYPE)
   private ValueType valueType;
-  
+
   @JsonbProperty(JSON_VALUE_TYPE_AS_STRING)
   private String valueTypeAsString;
+
+  @JsonbProperty(JSON_REQUEST_AS_STRING)
+  private String requestAsString;
   
   /**
    * Identifiant json de l'identifiant.
