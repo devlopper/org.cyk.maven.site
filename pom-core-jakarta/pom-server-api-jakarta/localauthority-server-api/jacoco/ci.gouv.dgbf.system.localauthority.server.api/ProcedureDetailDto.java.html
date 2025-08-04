@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
 import java.util.Date;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class ProcedureDetailDto extends AbstractIdentifiableNamableAuditableDto {</span>
+<span class="fc" id="L20">public class ProcedureDetailDto extends AbstractIdentifiableNamableAuditableDto {</span>
 
   /**
    * Identifiant de {@link ProcedureDto}.
@@ -43,16 +44,16 @@ import lombok.Setter;
   private String orderAsString;
 
   /**
-   * Ordre.
+   * Date.
    */
-  @JsonbProperty(JSON_DETAIL_DATE)
-  private Date  detailDate;
+  @JsonbProperty(JSON_DATE)
+  private LocalDate date;
 
   /**
    * Représentation en chaine de caractères de detailDate.
    */
-  @JsonbProperty(JSON_DETAIL_DATE_AS_STRING)
-  private String detailDateAsString;
+  @JsonbProperty(JSON_DATE_AS_STRING)
+  private String dateAsString;
 
   /**
    * Identitiant json {@link ProcedureDetailDto#procedureIdentifier}.
@@ -76,15 +77,15 @@ import lombok.Setter;
   public static final String JSON_ORDER_AS_STRING = &quot;orderChaine&quot;;
 
   /**
-   * Identifiant json {@link ProcedureDetailDto#detailDate}.
+   * Identifiant json {@link ProcedureDetailDto#date}.
    */
-  public static final String JSON_DETAIL_DATE = &quot;detailDate&quot;;
+  public static final String JSON_DATE = &quot;date&quot;;
 
 
   /**
-   * Identifiant json {@link ProcedureDetailDto#detailDateAsString}.
+   * Identifiant json {@link ProcedureDetailDto#dateAsString}.
    */
-  public static final String JSON_DETAIL_DATE_AS_STRING  = &quot;detailDateChaine&quot;;
+  public static final String JSON_DATE_AS_STRING  = &quot;dateChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

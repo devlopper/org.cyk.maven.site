@@ -19,7 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -205,7 +205,7 @@ public interface ProcedureDetailService extends SpecificService {
     /**
      * Identifiant json du champ de date detail.
      */
-    public static final String JSON_DETAIL_DATE = ProcedureDetailDto.JSON_DETAIL_DATE;
+    public static final String JSON_DATE = ProcedureDetailDto.JSON_DATE;
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link ProcedureDto}.
@@ -238,8 +238,8 @@ public interface ProcedureDetailService extends SpecificService {
     @JsonbProperty(JSON_ORDER)
     private Integer order;
 
-    @JsonbProperty(JSON_DETAIL_DATE)
-    private Date detailDate;
+    @JsonbProperty(JSON_DATE)
+    private LocalDate date;
 
   }
 
@@ -273,8 +273,8 @@ public interface ProcedureDetailService extends SpecificService {
     @JsonbProperty(JSON_ORDER)
     private Integer order;
 
-    @JsonbProperty(JSON_DETAIL_DATE)
-    private Date detailDate;
+    @JsonbProperty(JSON_DATE)
+    private LocalDate date;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
