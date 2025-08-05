@@ -16,27 +16,61 @@ import lombok.Setter;
 public class ProcedureFilter extends AbstractIdentifiableFilter {
 
   /**
+   * Identifiant {@link TriennialProgramDto}.
+   */
+  String triennialProgramIdentifier;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public ProcedureFilter(FilterDto dto) {
-<span class="fc" id="L24">    super(dto);</span>
-<span class="fc" id="L25">  }</span>
+<span class="fc" id="L29">    super(dto);</span>
+<span class="fc" id="L30">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L30">  public ProcedureFilter() {}</span>
+<span class="fc" id="L35">  public ProcedureFilter() {}</span>
   
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L34">    super.doInitialize(filter);</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L39">    super.doInitialize(filter);</span>
+<span class="fc" id="L40">    triennialProgramIdentifier = getTriennialProgramIdentifier(filter);</span>
+<span class="fc" id="L41">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L39">    super.toDto(filter);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L45">    super.toDto(filter);</span>
+<span class="fc" id="L46">    setTriennialProgramIdentifier(filter, triennialProgramIdentifier);</span>
+<span class="fc" id="L47">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant {@link TriennialProgramDto}.
+   *
+   * @param filter filtre
+   * @return identifiant {@link TriennialProgramDto}
+   */
+  public static String getTriennialProgramIdentifier(FilterDto filter) {
+<span class="fc" id="L56">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TRIENNIAL_PROGRAM_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant {@link TriennialProgramDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant {@link TriennialProgramDto}
+   */
+  public static void setTriennialProgramIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L66">    set(filter, JSON_TRIENNIAL_PROGRAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L67">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L68">  }</span>
+
+
+  /**
+   * Identifiant json champ {@link #triennialProgramIdentifier}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER = &quot;idProgrammeTriennal&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
