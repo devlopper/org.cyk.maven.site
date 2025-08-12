@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasSourceIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasStringData;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,9 +15,12 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class ValueFilter extends AbstractIdentifiableFilter implements FilterHasSourceIdentifier {
-  
+public class ValueFilter extends AbstractIdentifiableFilter
+    implements FilterHasSourceIdentifier, FilterHasStringData {
+
   private String sourceIdentifier;
+
+  private String data;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -24,25 +28,27 @@ public class ValueFilter extends AbstractIdentifiableFilter implements FilterHas
    * @param dto filtre
    */
   public ValueFilter(FilterDto dto) {
-<span class="fc" id="L27">    super(dto);</span>
-<span class="fc" id="L28">  }</span>
+<span class="fc" id="L31">    super(dto);</span>
+<span class="fc" id="L32">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L33">  public ValueFilter() {}</span>
+<span class="fc" id="L37">  public ValueFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L37">    super.doInitialize(filter);</span>
-<span class="fc" id="L38">    updateSourceIdentifier(filter);</span>
-<span class="fc" id="L39">  }</span>
+<span class="fc" id="L41">    super.doInitialize(filter);</span>
+<span class="fc" id="L42">    updateSourceIdentifier(filter);</span>
+<span class="fc" id="L43">    updateData(filter);</span>
+<span class="fc" id="L44">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L43">    super.toDto(filter);</span>
-<span class="fc" id="L44">    updateFilterSourceIdentifier(filter);</span>
-<span class="fc" id="L45">  }</span>
-  
+<span class="fc" id="L48">    super.toDto(filter);</span>
+<span class="fc" id="L49">    updateFilterSourceIdentifier(filter);</span>
+<span class="fc" id="L50">    updateFilterData(filter);</span>
+<span class="fc" id="L51">  }</span>
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
