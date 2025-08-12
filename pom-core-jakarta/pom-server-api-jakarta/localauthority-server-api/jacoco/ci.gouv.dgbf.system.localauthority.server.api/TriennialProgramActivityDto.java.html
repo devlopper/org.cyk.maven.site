@@ -53,6 +53,13 @@ import lombok.Setter;
   @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
   private String activityIdentifier;
 
+
+  /**
+   * Identifiant {@link ActivityDto}.
+   */
+  @JsonbProperty(JSON_ACTIVITY_CODE)
+  private String activityCode;
+
   /**
    * Représentation en chaine de caractères de {@link ActivityDto}.
    */
@@ -208,6 +215,11 @@ import lombok.Setter;
    * Identifiant json {@link #activityIdentifier}.
    */
   public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
+
+  /**
+   * Identifiant json {@link #activityCode}.
+   */
+  public static final String JSON_ACTIVITY_CODE = &quot;codeActivite&quot;;
 
   /**
    * Identifiant json {@link #activityAsString}.

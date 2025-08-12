@@ -16,27 +16,64 @@ import lombok.Setter;
 public class PhaseFilter extends AbstractIdentifiableFilter {
 
   /**
+   * Identifiant {@link TriennialProgramActivityDto}.
+   */
+  String triennialProgramActivityIdentifier;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public PhaseFilter(FilterDto dto) {
-<span class="fc" id="L24">    super(dto);</span>
-<span class="fc" id="L25">  }</span>
+<span class="fc" id="L29">    super(dto);</span>
+<span class="fc" id="L30">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L30">  public PhaseFilter() {}</span>
+<span class="fc" id="L35">  public PhaseFilter() {}</span>
   
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L34">    super.doInitialize(filter);</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L39">    super.doInitialize(filter);</span>
+<span class="fc" id="L40">    triennialProgramActivityIdentifier = getTriennialProgramActivityIdentifier(filter);</span>
+<span class="fc" id="L41">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L39">    super.toDto(filter);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L45">    super.toDto(filter);</span>
+<span class="fc" id="L46">    setTriennialProgramActivityIdentifier(filter, triennialProgramActivityIdentifier);</span>
+<span class="fc" id="L47">  }</span>
+
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant {@link TriennialProgramActivityDto}.
+   *
+   * @param filter filtre
+   * @return identifiant {@link TriennialProgramActivityDto}
+   */
+  public static String getTriennialProgramActivityIdentifier(FilterDto filter) {
+<span class="fc" id="L57">    return get(filter,</span>
+<span class="fc" id="L58">        d -&gt; d.getFieldValueAsStringByName(JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant {@link TriennialProgramActivityDto}.
+   *
+   * @param filter filtre
+   * @param identifier identifiant {@link TriennialProgramActivityDto}
+   */
+  public static void setTriennialProgramActivityIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L68">    set(filter, JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L70">  }</span>
+
+
+  /**
+   * Identifiant json champ {@link #triennialProgramActivityIdentifier}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER =
+      PhaseDto.JSON_TRIENNIAL_PROGRAM_ACTIVITY_IDENTIFIER;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
