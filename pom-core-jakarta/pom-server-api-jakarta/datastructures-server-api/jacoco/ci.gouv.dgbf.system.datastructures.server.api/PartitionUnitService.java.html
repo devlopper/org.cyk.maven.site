@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PartitionUnitService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de datastructures</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.datastructures.server.api</a> &gt; <span class="el_source">PartitionUnitService.java</span></div><h1>PartitionUnitService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.datastructures.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasNameDto;
+import ci.gouv.dgbf.extension.core.segregation.HasPartitionTypeCodeDto;
+import ci.gouv.dgbf.extension.core.segregation.HasPartitionValueDataDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
@@ -65,8 +68,7 @@ public interface PartitionUnitService extends SpecificService {
     /**
      * Identifiant json de {@link PartitionUnitDto}.
      */
-    String JSON_PARTITION_IDENTIFIER =
-        PartitionUnitDto.JSON_PARTITION_IDENTIFIER;
+    String JSON_PARTITION_IDENTIFIER = PartitionUnitDto.JSON_PARTITION_IDENTIFIER;
   }
 
   /**
@@ -101,11 +103,122 @@ public interface PartitionUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L104">  class PartitionUnitCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L106">  class PartitionUnitCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements PartitionUnitSaveRequestDto {
 
     @JsonbProperty(JSON_PARTITION_IDENTIFIER)
     private String partitionIdentifier;
+  }
+
+  /**
+   * Cette interface représente la requête d'enregistrement par libellé.
+   *
+   * @author Arnaud
+   */
+  interface PartitionUnitSaveByNameRequestDto {
+    /**
+     * Cette méthode permet d'obtenir le libellé.
+     *
+     * @return le libellé
+     */
+    String getName();
+
+    /**
+     * Cette méthode permet d'assigner le libellé.
+     *
+     * @param name le libellé
+     */
+    void setName(String name);
+
+    /**
+     * Cette méthode permet d'obtenir la donnée de la valeur de la partition.
+     *
+     * @return la donnée de la valeur de la partition
+     */
+    String getPartitionValueData();
+
+    /**
+     * Cette méthode permet d'assigner la donnée de la valeur de la partition.
+     *
+     * @param partitionValueData la donnée de la valeur de la partition
+     */
+    void setPartitionValueData(String partitionValueData);
+
+    /**
+     * {@link HasNameDto#JSON_NAME}.
+     */
+    String JSON_NAME = HasNameDto.JSON_NAME;
+
+    /**
+     * {@link HasPartitionValueDataDto#JSON_PARTITION_VALUE_DATA}.
+     */
+    String JSON_PARTITION_VALUE_DATA = HasPartitionValueDataDto.JSON_PARTITION_VALUE_DATA;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_BY_NAME_IDENTIFIER = &quot;CREATION_PAR_LIBELLE_UNITE_PARTITION&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_BY_NAME_PATH = &quot;creation-par-libelle&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link PartitionUnitDto} par libellé.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_BY_NAME_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_BY_NAME_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createByName(PartitionUnitCreateByNameRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Arnaud
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L190">  class PartitionUnitCreateByNameRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+      implements PartitionUnitSaveByNameRequestDto {
+
+    @JsonbProperty(JSON_PARTITION_TYPE_CODE)
+    private String partitionTypeCode;
+
+    @JsonbProperty(JSON_PARTITION_VALUE_DATA)
+    private String partitionValueData;
+
+    @JsonbProperty(JSON_SHOULD_CREATE_PARTITION_IF_DOES_NOT_EXIST)
+    private Boolean shouldCreatePartitionIfDoesNotExist;
+
+    @JsonbProperty(JSON_SHOULD_DELETE_PARTITION_WHEN_ALL_UNITS_DELETED)
+    private Boolean shouldDeletePartitionWhenAllUnitsDeleted;
+
+    /**
+     * {@link HasPartitionTypeCodeDto#JSON_PARTITION_TYPE_CODE}.
+     */
+    public static final String JSON_PARTITION_TYPE_CODE =
+        HasPartitionTypeCodeDto.JSON_PARTITION_TYPE_CODE;
+
+    /**
+     * Identifiant json {@link #shouldCreatePartitionIfDoesNotExist}.
+     */
+    public static final String JSON_SHOULD_CREATE_PARTITION_IF_DOES_NOT_EXIST =
+        &quot;doitCreerPartitionSiInexistante&quot;;
+
+    /**
+     * Identifiant json {@link #shouldDeletePartitionWhenAllUnitsDeleted}.
+     */
+    public static final String JSON_SHOULD_DELETE_PARTITION_WHEN_ALL_UNITS_DELETED =
+        &quot;doitSupprimerPartitionSiTousEnfantsSupprimes&quot;;
   }
 
   /**
@@ -129,9 +242,8 @@ public interface PartitionUnitService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {
-          @Content(schema = @Schema(implementation = PartitionUnitGetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PartitionUnitGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -141,7 +253,7 @@ public interface PartitionUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L144">  public static class PartitionUnitGetManyResponseDto</span>
+<span class="fc" id="L256">  public static class PartitionUnitGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PartitionUnitDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -230,11 +342,50 @@ public interface PartitionUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L233">  class PartitionUnitUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L345">  class PartitionUnitUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements PartitionUnitSaveRequestDto {
 
     @JsonbProperty(JSON_PARTITION_IDENTIFIER)
     private String partitionIdentifier;
+  }
+
+  /**
+   * Identifiant du service de mise à jour par libellé.
+   */
+  String UPDATE_BY_NAME_IDENTIFIER = &quot;MISE_A_JOUR_PAR_LIBELLE_UNITE_PARTITION&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_BY_NAME_PATH = &quot;mise-a-jour-par-libelle&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link PartitionUnitDto} par libellé.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_BY_NAME_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_BY_NAME_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateByName(PartitionUnitUpdateByNameRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Arnaud
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L384">  class PartitionUnitUpdateByNameRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+      implements PartitionUnitSaveByNameRequestDto {
+
+    @JsonbProperty(JSON_PARTITION_VALUE_DATA)
+    private String partitionValueData;
   }
 
   /**
