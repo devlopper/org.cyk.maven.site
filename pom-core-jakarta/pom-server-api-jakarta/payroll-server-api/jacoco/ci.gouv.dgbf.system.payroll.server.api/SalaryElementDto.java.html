@@ -22,6 +22,12 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_SALARY_ELEMENT_GROUP_AS_STRING)
   private String salaryElementGroupAsString;
+  
+  @JsonbProperty(JSON_CONDITIONAL_VALUE_GROUP_IDENTIFIER)
+  private String conditionalValueGroupIdentifier;
+
+  @JsonbProperty(JSON_CONDITIONAL_VALUE_GROUP_AS_STRING)
+  private String conditionalValueGroupAsString;
 
 
   /**
@@ -39,12 +45,24 @@ import lombok.Setter;
    */
   public static final String JSON_SALARY_ELEMENT_GROUP_IDENTIFIER =
       SalaryElementGroupDto.JSON_THIS_IDENTIFIER;
-
+  
   /**
    * Identifiant json de {@link #salaryElementGroupAsString}.
    */
   public static final String JSON_SALARY_ELEMENT_GROUP_AS_STRING =
       SalaryElementGroupDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #salaryElementGroupAsString}.
+   */
+  public static final String JSON_CONDITIONAL_VALUE_GROUP_IDENTIFIER =
+      &quot;idElementConditonnee&quot;;
+  
+  /**
+   * Identifiant json de {@link #conditionalValueGroupIdentifier}.
+   */
+  public static final String JSON_CONDITIONAL_VALUE_GROUP_AS_STRING =
+      &quot;elementConditonneeChaine&quot;;
 
 
   /**

@@ -64,12 +64,13 @@ public interface SalaryElementService extends SpecificService {
      * @param identifier identifiant de {@link SalaryElementGroupDto}
      */
     void setSalaryElementGroupIdentifier(String identifier);
+    
 
     /**
      * Identifiant json de {@link SalaryElementGroupDto}.
      */
     String JSON_SALARY_ELEMENT_GROUP_IDENTIFIER = SalaryElementGroupDto.JSON_THIS_IDENTIFIER;
-
+    
   } 
 
   /**
@@ -105,12 +106,12 @@ public interface SalaryElementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L108">  class SalaryElementCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L109">  class SalaryElementCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements SalaryElementSaveRequestDto {
 
     @JsonbProperty(JSON_SALARY_ELEMENT_GROUP_IDENTIFIER)
     private String salaryElementGroupIdentifier;
-
+    
   }
 
   /**
@@ -147,7 +148,7 @@ public interface SalaryElementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class SalaryElementGetManyResponseDto extends </span>
+<span class="fc" id="L151">  public static class SalaryElementGetManyResponseDto extends </span>
                       AbstractGetByPageResponseDto&lt;SalaryElementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -237,12 +238,12 @@ public interface SalaryElementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class SalaryElementUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L241">  class SalaryElementUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SalaryElementSaveRequestDto {
 
     @JsonbProperty(JSON_SALARY_ELEMENT_GROUP_IDENTIFIER)
     private String salaryElementGroupIdentifier;
-
+    
   }
 
   /**
