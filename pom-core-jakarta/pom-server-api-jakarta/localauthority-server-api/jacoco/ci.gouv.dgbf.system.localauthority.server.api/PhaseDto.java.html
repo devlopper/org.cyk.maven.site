@@ -47,6 +47,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_COMMENT)
   private String comment;
+
+
+  /**
+   * Commentaire {@link PhaseDto}.
+   */
+  @JsonbProperty(JSON_REDUCED_COMMENT)
+  private String reducedComment;
   
   /**
    * Date de début {@link PhaseDto}.
@@ -90,6 +97,11 @@ import lombok.Setter;
    * Identitiant json {@link PhaseDto#comment}.
    */
   public static final String JSON_COMMENT = &quot;commentaire&quot;;
+
+  /**
+   * Identitiant json {@link PhaseDto#reducedComment}.
+   */
+  public static final String JSON_REDUCED_COMMENT = &quot;commentaireReduit&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
