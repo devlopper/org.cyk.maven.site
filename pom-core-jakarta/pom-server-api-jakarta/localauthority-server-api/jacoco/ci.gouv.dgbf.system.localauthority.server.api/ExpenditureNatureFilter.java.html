@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExpenditureNatureFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">ExpenditureNatureFilter.java</span></div><h1>ExpenditureNatureFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
+import ci.gouv.dgbf.extension.core.Core;
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
@@ -36,40 +37,41 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public ExpenditureNatureFilter(FilterDto dto) {
-<span class="fc" id="L39">    super(dto);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L40">    super(dto);</span>
+<span class="fc" id="L41">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L45">  public ExpenditureNatureFilter() {}</span>
+<span class="fc" id="L46">  public ExpenditureNatureFilter() {</span>
+<span class="fc" id="L47">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L49">    super.doInitialize(filter);</span>
-<span class="fc" id="L50">    categoryIdentifier = getCategoryIdentifier(filter);</span>
-<span class="fc" id="L51">    domainIdentifier = getDomainIdentifier(filter);</span>
-<span class="fc" id="L52">    activityCategory = getActivityCategory(filter);</span>
-<span class="fc" id="L53">  }</span>
+<span class="fc" id="L51">    super.doInitialize(filter);</span>
+<span class="fc" id="L52">    categoryIdentifier = getCategoryIdentifier(filter);</span>
+<span class="fc" id="L53">    domainIdentifier = getDomainIdentifier(filter);</span>
+<span class="fc" id="L54">    activityCategory = getActivityCategory(filter);</span>
+<span class="fc" id="L55">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L57">    super.toDto(filter);</span>
-<span class="fc" id="L58">    setCategoryIdentifier(filter, categoryIdentifier);</span>
-<span class="fc" id="L59">    setDomainIdentifier(filter, domainIdentifier);</span>
-<span class="fc" id="L60">    setActivityCategory(filter, activityCategory);</span>
-<span class="fc" id="L61">  }</span>
+<span class="fc" id="L59">    super.toDto(filter);</span>
+<span class="fc" id="L60">    setCategoryIdentifier(filter, categoryIdentifier);</span>
+<span class="fc" id="L61">    setDomainIdentifier(filter, domainIdentifier);</span>
+<span class="fc" id="L62">    setActivityCategory(filter, activityCategory);</span>
+<span class="fc" id="L63">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link ExpenditureNatureCategoryDto}.
    *
-   * @param filter filtre
+   * @param filter     filtre
    * @param identifier identifiant de {@link ExpenditureNatureCategoryDto}
    */
   public static void setCategoryIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L70">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L71">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L72">  }</span>
+<span class="pc" id="L72">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L73">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L74">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ExpenditureNatureCategoryDto}.
@@ -78,19 +80,19 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link ExpenditureNatureCategoryDto}
    */
   public static String getCategoryIdentifier(FilterDto filter) {
-<span class="fc" id="L81">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
+<span class="fc" id="L83">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
   }
 
   /**
    * Cette méthode permet d'assigner {@link ActivityCategory}.
    *
-   * @param filter filtre
+   * @param filter           filtre
    * @param activityCategory {@link ActivityCategory}
    */
   public static void setActivityCategory(FilterDto filter, ActivityCategory activityCategory) {
-<span class="pc" id="L91">    set(filter, JSON_ACTIVITY_CATEGORY, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L92">        f -&gt; f.setValueAsEnum(activityCategory));</span>
-<span class="fc" id="L93">  }</span>
+<span class="pc" id="L93">    set(filter, JSON_ACTIVITY_CATEGORY, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L94">        f -&gt; f.setValueAsEnum(activityCategory));</span>
+<span class="fc" id="L95">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link ActivityCategory}.
@@ -99,20 +101,20 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @return {@link ActivityCategory}
    */
   public static ActivityCategory getActivityCategory(FilterDto filter) {
-<span class="fc" id="L102">    return get(filter,</span>
-<span class="fc" id="L103">        d -&gt; d.getFieldValueAsEnum(JSON_ACTIVITY_CATEGORY, ActivityCategory.class));</span>
+<span class="fc" id="L104">    return get(filter,</span>
+<span class="fc" id="L105">        d -&gt; d.getFieldValueAsEnum(JSON_ACTIVITY_CATEGORY, ActivityCategory.class));</span>
   }
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link ExpenditureNatureDomainDto}.
    *
-   * @param filter filtre
+   * @param filter     filtre
    * @param identifier identifiant de {@link ExpenditureNatureDomainDto}
    */
   public static void setDomainIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L113">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L114">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L115">  }</span>
+<span class="pc" id="L115">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L116">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L117">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link ExpenditureNatureDomainDto}.
@@ -121,8 +123,34 @@ public class ExpenditureNatureFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link ExpenditureNatureDomainDto}
    */
   public static String getDomainIdentifier(FilterDto filter) {
-<span class="fc" id="L124">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
+<span class="fc" id="L126">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
   }
+
+
+  /**
+   * Methode permettant d'initialiser le fillre.
+   *
+   * @param activityCategory catégorie d'activité
+   * @param expenditureNatureDomainDto domaine nature de dépense
+   * @param expenditureNatureCategoryDto catégorie nature de dépense
+   */
+  public void initialize(ActivityCategory activityCategory,
+                         ExpenditureNatureDomainDto expenditureNatureDomainDto,
+                         ExpenditureNatureCategoryDto expenditureNatureCategoryDto) {
+<span class="fc bfc" id="L140" title="All 2 branches covered.">    Core.runIfTrue(activityCategory == ActivityCategory.ACTION, () -&gt; {</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">      Core.runIfTrue(expenditureNatureDomainDto != null, () -&gt; {</span>
+<span class="fc" id="L142">        setDomainIdentifier(expenditureNatureDomainDto.getIdentifier());</span>
+<span class="fc" id="L143">      });</span>
+<span class="fc bfc" id="L144" title="All 2 branches covered.">      Core.runIfTrue(expenditureNatureCategoryDto != null, () -&gt; {</span>
+<span class="fc" id="L145">        setCategoryIdentifier(expenditureNatureCategoryDto.getIdentifier());</span>
+<span class="fc" id="L146">      });</span>
+<span class="fc" id="L147">    });</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">    Core.runIfTrue(activityCategory == ActivityCategory.OPERATION, () -&gt; {</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">      Core.runIfTrue(expenditureNatureDomainDto != null, () -&gt; {</span>
+<span class="fc" id="L150">        setDomainIdentifier(expenditureNatureDomainDto.getIdentifier());</span>
+<span class="fc" id="L151">      });</span>
+<span class="fc" id="L152">    });</span>
+<span class="fc" id="L153">  }</span>
 
   /**
    * Identifiant json champ {@link ExpenditureNatureFilter#categoryIdentifier}.
