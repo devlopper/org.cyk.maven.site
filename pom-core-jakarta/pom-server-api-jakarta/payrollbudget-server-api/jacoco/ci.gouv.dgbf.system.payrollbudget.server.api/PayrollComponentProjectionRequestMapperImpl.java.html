@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-06-19T19:52:24+0000&quot;,
+    date = &quot;2025-08-20T18:44:32+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,31 +25,35 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PayrollComponentProjectionService.PayrollComponentProjectionCreateRequestDto payrollComponentProjectionCreateRequestDto = new PayrollComponentProjectionService.PayrollComponentProjectionCreateRequestDto();</span>
 
-<span class="fc" id="L28">        payrollComponentProjectionCreateRequestDto.setAdministrativeUnitEmployeeIdentifier( arg0.getAdministrativeUnitEmployeeIdentifier() );</span>
-<span class="fc" id="L29">        payrollComponentProjectionCreateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
-<span class="fc" id="L30">        payrollComponentProjectionCreateRequestDto.setPayrollPeriodGroupIdentifier( arg0.getPayrollPeriodGroupIdentifier() );</span>
-<span class="fc" id="L31">        payrollComponentProjectionCreateRequestDto.setReferenceAmount( arg0.getReferenceAmount() );</span>
-<span class="fc" id="L32">        payrollComponentProjectionCreateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L28">        payrollComponentProjectionCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        payrollComponentProjectionCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        payrollComponentProjectionCreateRequestDto.setAdministrativeUnitEmployeeIdentifier( arg0.getAdministrativeUnitEmployeeIdentifier() );</span>
+<span class="fc" id="L31">        payrollComponentProjectionCreateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
+<span class="fc" id="L32">        payrollComponentProjectionCreateRequestDto.setPayrollPeriodGroupIdentifier( arg0.getPayrollPeriodGroupIdentifier() );</span>
+<span class="fc" id="L33">        payrollComponentProjectionCreateRequestDto.setReferenceAmount( arg0.getReferenceAmount() );</span>
+<span class="fc" id="L34">        payrollComponentProjectionCreateRequestDto.setAmount( arg0.getAmount() );</span>
 
-<span class="fc" id="L34">        return payrollComponentProjectionCreateRequestDto;</span>
+<span class="fc" id="L36">        return payrollComponentProjectionCreateRequestDto;</span>
     }
 
     @Override
     public PayrollComponentProjectionService.PayrollComponentProjectionUpdateRequestDto mapUpdate(PayrollComponentProjectionDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L43">        PayrollComponentProjectionService.PayrollComponentProjectionUpdateRequestDto payrollComponentProjectionUpdateRequestDto = new PayrollComponentProjectionService.PayrollComponentProjectionUpdateRequestDto();</span>
+<span class="fc" id="L45">        PayrollComponentProjectionService.PayrollComponentProjectionUpdateRequestDto payrollComponentProjectionUpdateRequestDto = new PayrollComponentProjectionService.PayrollComponentProjectionUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        payrollComponentProjectionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        payrollComponentProjectionUpdateRequestDto.setAdministrativeUnitEmployeeIdentifier( arg0.getAdministrativeUnitEmployeeIdentifier() );</span>
-<span class="fc" id="L47">        payrollComponentProjectionUpdateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
-<span class="fc" id="L48">        payrollComponentProjectionUpdateRequestDto.setPayrollPeriodGroupIdentifier( arg0.getPayrollPeriodGroupIdentifier() );</span>
-<span class="fc" id="L49">        payrollComponentProjectionUpdateRequestDto.setReferenceAmount( arg0.getReferenceAmount() );</span>
-<span class="fc" id="L50">        payrollComponentProjectionUpdateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L47">        payrollComponentProjectionUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        payrollComponentProjectionUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        payrollComponentProjectionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        payrollComponentProjectionUpdateRequestDto.setAdministrativeUnitEmployeeIdentifier( arg0.getAdministrativeUnitEmployeeIdentifier() );</span>
+<span class="fc" id="L51">        payrollComponentProjectionUpdateRequestDto.setPayrollComponentIdentifier( arg0.getPayrollComponentIdentifier() );</span>
+<span class="fc" id="L52">        payrollComponentProjectionUpdateRequestDto.setPayrollPeriodGroupIdentifier( arg0.getPayrollPeriodGroupIdentifier() );</span>
+<span class="fc" id="L53">        payrollComponentProjectionUpdateRequestDto.setReferenceAmount( arg0.getReferenceAmount() );</span>
+<span class="fc" id="L54">        payrollComponentProjectionUpdateRequestDto.setAmount( arg0.getAmount() );</span>
 
-<span class="fc" id="L52">        return payrollComponentProjectionUpdateRequestDto;</span>
+<span class="fc" id="L56">        return payrollComponentProjectionUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

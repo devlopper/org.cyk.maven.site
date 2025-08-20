@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EmployeePayrollComponentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">EmployeePayrollComponentService.java</span></div><h1>EmployeePayrollComponentService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.Service;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
@@ -67,7 +68,7 @@ public interface EmployeePayrollComponentService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L70">  public static class EmployeePayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L71">  public static class EmployeePayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;EmployeePayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -121,5 +122,88 @@ public interface EmployeePayrollComponentService extends Service {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = EmployeePayrollComponentDto.class))})
   Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création de plusieurs postes de paie.
+   *
+   * @author misat
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L134">  class CreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER)
+    private String administrativeUnitEmployeeIdentifier;
+
+    @JsonbProperty(JSON_PAYROLL_COMPONENTS)
+    private List&lt;ProjectionDto&gt; payrollComponents;
+    
+    /**
+     * Cette classe représente la projection des postes de paie.
+     */
+    @Getter
+    @Setter
+<span class="fc" id="L147">    public static class ProjectionDto {</span>
+      /**
+       * Identifiant du poste de paie.
+       */
+      @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+      private String payrollComponentIdentifier;
+
+      /**
+       * Montant.
+       */
+      @JsonbProperty(JSON_AMOUNT)
+      private Integer amount;
+
+      /**
+       * Identifiant json champ {@link #payrollComponentIdentifier}.
+       */
+      static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = &quot;idPostePaie&quot;;
+
+      /**
+       * Identifiant json champ {@link #amount}.
+       */
+      static final String JSON_AMOUNT = &quot;montant&quot;;
+    }
+
+    /**
+     * Identifiant json de l'identifiant de {@link AdministrativeUnitEmployeeDto}.
+     */
+    static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_IDENTIFIER;
+
+    /**
+     * Identifiant json des postes de paie.
+     */
+    static final String JSON_PAYROLL_COMPONENTS = &quot;postesPaie&quot;;
+
+  }
+
+  /**
+   * Identifiant du service de création de plusieurs.
+   */
+  String CREATE_MANY_IDENTIFIER = &quot;CREATION_PLUSIEURS_POSTE_PAIE_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service de création de plusieurs.
+   */
+  String CREATE_MANY_PATH = &quot;plusieurs&quot;;
+
+  /**
+   * Cette méthode permet de créer plusieurs {@link EmployeePayrollComponentDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateManyRequestDto.class))})
+  Response createMany(CreateManyRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

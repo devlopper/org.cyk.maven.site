@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdministrativeUnitBudgetExecutionDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">AdministrativeUnitBudgetExecutionDto.java</span></div><h1>AdministrativeUnitBudgetExecutionDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente la base de mouvement {@link AdministrativeUnitBudgetExecutionDto}.
+ *
+ * @author parfait
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class AdministrativeUnitBudgetExecutionDto extends AbstractIdentifiableDto </span>
+        implements AdministrativeUnitBudgetExecutionContainerDto {
+
+  /**
+   * Identifiant de {@link BudgetAdministrativeUnitDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  String budgetAdministrativeUnitIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link BudgetAdministrativeUnitDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_AS_STRING)
+  String budgetAdministrativeUnitAsString;
+  
+  /**
+   * Identifiant de {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_EXERCISE_IDENTIFIER)
+  String budgetExerciseIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link ExerciseDto} de {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_EXERCISE_AS_STRING)
+  String budgetExerciseAsString;
+  
+  /**
+   * Représentation de l'activité du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_ACTIVITY_AS_STRING)
+  String activityAsString;
+
+  /**
+   * Représentation de la nature économique du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_ECONOMIC_NATURE_AS_STRING)
+  String economicNatureAsString;
+  
+  /**
+   * Représentation en chaine de caractères du montant mandaté.
+   */
+  @JsonbProperty(JSON_MANDATE_AMOUNT_AS_STRING)
+  String mandateAmountAsString;
+  
+  /**
+   * Représentation en chaine de caractères du montant mandaté précédent.
+   */
+  @JsonbProperty(JSON_MANDATE_AMOUNT_PRECEDENT_AS_STRING)
+  String mandateAmountPrecedentAsString;
+  
+  /**
+   * Représentation en chaine de caractères du budget initial.
+   */
+  @JsonbProperty(JSON_INITIAL_BUDGET_AS_STRING)
+  String initialBudgetAsString;
+  
+  /**
+   * Représentation en chaine de caractères du budget initial précédent.
+   */
+  @JsonbProperty(JSON_INITIAL_BUDGET_PRECEDENT_AS_STRING)
+  String initialBudgetPrecedentAsString;
+  
+  /**
+   * Représentation en chaine de caractères du budget actuel.
+   */
+  @JsonbProperty(JSON_ACTUAL_BUDGET_AS_STRING)
+  String actualBudgetAsString;
+  
+  /**
+   * Représentation en chaine de caractères du budget actuel précédent.
+   */
+  @JsonbProperty(JSON_ACTUAL_BUDGET_PRECEDENT_AS_STRING)
+  String actualBudgetPrecedentAsString;
+  
+  /**
+   * Représentation en chaine de caractères du reste du budget exécuté.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_BUDGET_AS_STRING)
+  String remainingExecutedBudgetAsString;
+  
+  /**
+   * Représentation en chaine de caractères du reste du budget précédent exécuté.
+   */
+  @JsonbProperty(JSON_REMAINING_EXECUTED_BUDGET_PRECEDENT_AS_STRING)
+  String remainingExecutedBudgetPrecedentAsString;
+  
+  /**
+   * Représentation en chaine de caractères du montant de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
+  String referenceAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_VARIANCE_AS_STRING)
+  String amountVariationAsString;
+  
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  String amountAsString;
+  
+  /**
+   * Identifiant json {@link #budgetAdministrativeUnitIdentifier}.
+   */
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_IDENTIFIER = 
+      BudgetAdministrativeUnitDto.JSON_THIS_IDENTIFIER;
+  
+  /**
+   * Identifiant json {@link #budgetAdministrativeUnitAsString}.
+   */
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_AS_STRING = 
+      BudgetAdministrativeUnitDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json {@link #budgetExerciseIdentifier}.
+   */
+  public static final String JSON_BUDGET_EXERCISE_IDENTIFIER = 
+      ExerciseDto.JSON_THIS_IDENTIFIER;
+  
+  /**
+   * Identifiant json {@link #budgetExerciseAsString}.
+   */
+  public static final String JSON_BUDGET_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json {@link AdministrativeUnitBudgetExecutionDto#activityAsString}.
+   */
+  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
+
+  /**
+   * Identifiant json {@link AdministrativeUnitBudgetExecutionDto#economicNatureAsString}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_AS_STRING =
+      &quot;natureEconomiqueChaine&quot;;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
