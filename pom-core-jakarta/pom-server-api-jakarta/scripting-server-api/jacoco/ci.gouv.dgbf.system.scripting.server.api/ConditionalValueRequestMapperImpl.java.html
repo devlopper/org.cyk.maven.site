@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-28T21:44:53+0000&quot;,
+    date = &quot;2025-08-22T18:57:18+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,31 +25,28 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ConditionalValueService.ConditionalValueCreateRequestDto conditionalValueCreateRequestDto = new ConditionalValueService.ConditionalValueCreateRequestDto();</span>
 
-<span class="fc" id="L28">        conditionalValueCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L29">        conditionalValueCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L30">        conditionalValueCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L31">        conditionalValueCreateRequestDto.setValue( arg0.getValue() );</span>
-<span class="fc" id="L32">        conditionalValueCreateRequestDto.setValueType( arg0.getValueType() );</span>
+<span class="fc" id="L28">        conditionalValueCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L29">        conditionalValueCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L30">        conditionalValueCreateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L31">        conditionalValueCreateRequestDto.setValueType( arg0.getValueType() );</span>
 
-<span class="fc" id="L34">        return conditionalValueCreateRequestDto;</span>
+<span class="fc" id="L33">        return conditionalValueCreateRequestDto;</span>
     }
 
     @Override
     public ConditionalValueService.ConditionalValueUpdateRequestDto mapUpdate(ConditionalValueDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L43">        ConditionalValueService.ConditionalValueUpdateRequestDto conditionalValueUpdateRequestDto = new ConditionalValueService.ConditionalValueUpdateRequestDto();</span>
+<span class="fc" id="L42">        ConditionalValueService.ConditionalValueUpdateRequestDto conditionalValueUpdateRequestDto = new ConditionalValueService.ConditionalValueUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        conditionalValueUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L46">        conditionalValueUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L47">        conditionalValueUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L48">        conditionalValueUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L49">        conditionalValueUpdateRequestDto.setValue( arg0.getValue() );</span>
-<span class="fc" id="L50">        conditionalValueUpdateRequestDto.setValueType( arg0.getValueType() );</span>
+<span class="fc" id="L44">        conditionalValueUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        conditionalValueUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L46">        conditionalValueUpdateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L47">        conditionalValueUpdateRequestDto.setValueType( arg0.getValueType() );</span>
 
-<span class="fc" id="L52">        return conditionalValueUpdateRequestDto;</span>
+<span class="fc" id="L49">        return conditionalValueUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

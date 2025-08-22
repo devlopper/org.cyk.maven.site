@@ -6,7 +6,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class ConditionalValueDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L24">public class ConditionalValueDto extends AbstractIdentifiableCodableAuditableDto</span>
     implements HasGroupIdentifierDto, HasGroupAsStringDto, HasStringValueDto, HasValueTypeDto,
     HasValueTypeAsStringDto {
 
