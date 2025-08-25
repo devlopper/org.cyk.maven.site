@@ -2,8 +2,8 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -64,7 +64,7 @@ public interface ConditionalValueGroupService extends SpecificService {
      * @param description description
      */
     void setDescription(String description);
-    
+
     /**
      * {@link HasDescriptionDto#JSON_DESCRIPTION}.
      */
@@ -104,9 +104,9 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L107">  class ConditionalValueGroupCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L107">  class ConditionalValueGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ConditionalValueGroupSaveRequestDto {
-    
+
     /**
      * Description.
      */
@@ -237,9 +237,9 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class ConditionalValueGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L240">  class ConditionalValueGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ConditionalValueGroupSaveRequestDto {
-    
+
     /**
      * Description.
      */

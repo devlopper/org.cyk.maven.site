@@ -2,7 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValuesCountAsStringDto;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,15 +17,15 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L20">public class ConditionalValueGroupDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L20">public class ConditionalValueGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDescriptionDto, HasValuesCountAsStringDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
-  
+
   @JsonbProperty(JSON_VALUES_COUNT_AS_STRING)
   private String valuesCountAsString;
-  
+
   /**
    * Identifiant json de l'identifiant.
    */
