@@ -135,7 +135,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L138">  class ScriptEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L138">  class ScriptEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ScriptEvaluationSaveRequestDto {
     @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
     private String scriptIdentifier;
@@ -154,7 +154,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L157">  class ScriptEvaluationCreateResponseDto extends CreateResponseDto {</span>
+<span class="fc" id="L157">  class ScriptEvaluationCreateResponseDto extends CreateResponseDto {</span>
     /**
      * Représentation en chaine de caractères du résultat.
      */
@@ -234,7 +234,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L237">  class ScriptEvaluationCreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L237">  class ScriptEvaluationCreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
     /**
      * Collection de {@link GroupDto}.
      */
@@ -256,11 +256,11 @@ public interface ScriptEvaluationService extends SpecificService {
      */
     public void addGroup(int orderNumber, Collection&lt;String&gt; scriptIdentifiers,
         Map&lt;String, Object&gt; arguments) {
-<span class="nc" id="L259">      GroupDto group = group();</span>
-<span class="nc" id="L260">      group.orderNumber = orderNumber;</span>
-<span class="nc" id="L261">      group.addScriptIdentifiers(scriptIdentifiers);</span>
-<span class="nc" id="L262">      group.arguments = arguments;</span>
-<span class="nc" id="L263">    }</span>
+<span class="fc" id="L259">      GroupDto group = group();</span>
+<span class="fc" id="L260">      group.orderNumber = orderNumber;</span>
+<span class="fc" id="L261">      group.addScriptIdentifiers(scriptIdentifiers);</span>
+<span class="fc" id="L262">      group.arguments = arguments;</span>
+<span class="fc" id="L263">    }</span>
 
     /**
      * Cette méthode permet d'ajouter {@link GroupDto}.
@@ -269,9 +269,9 @@ public interface ScriptEvaluationService extends SpecificService {
      * @param arguments arguments
      */
     public void addGroup(Collection&lt;String&gt; scriptIdentifiers, Map&lt;String, Object&gt; arguments) {
-<span class="nc" id="L272">      addGroup(Optional.ofNullable(groups).orElse(Collections.emptyList()).size(),</span>
+<span class="fc" id="L272">      addGroup(Optional.ofNullable(groups).orElse(Collections.emptyList()).size(),</span>
           scriptIdentifiers, arguments);
-<span class="nc" id="L274">    }</span>
+<span class="fc" id="L274">    }</span>
 
     /**
      * Cette méthode permet d'obtenir une collection de groupe non nulle.
@@ -279,10 +279,10 @@ public interface ScriptEvaluationService extends SpecificService {
      * @return collection de groupe non nulle
      */
     public Collection&lt;GroupDto&gt; groups() {
-<span class="nc bnc" id="L282" title="All 2 branches missed.">      if (groups == null) {</span>
-<span class="nc" id="L283">        groups = new ArrayList&lt;GroupDto&gt;();</span>
+<span class="fc bfc" id="L282" title="All 2 branches covered.">      if (groups == null) {</span>
+<span class="fc" id="L283">        groups = new ArrayList&lt;GroupDto&gt;();</span>
       }
-<span class="nc" id="L285">      return groups;</span>
+<span class="fc" id="L285">      return groups;</span>
     }
 
     /**
@@ -291,9 +291,9 @@ public interface ScriptEvaluationService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto group() {
-<span class="nc" id="L294">      GroupDto group = new GroupDto();</span>
-<span class="nc" id="L295">      groups().add(group);</span>
-<span class="nc" id="L296">      return group;</span>
+<span class="fc" id="L294">      GroupDto group = new GroupDto();</span>
+<span class="fc" id="L295">      groups().add(group);</span>
+<span class="fc" id="L296">      return group;</span>
     }
 
     /**
@@ -314,7 +314,7 @@ public interface ScriptEvaluationService extends SpecificService {
      */
     @Getter
     @Setter
-<span class="nc" id="L317">    public static class GroupDto {</span>
+<span class="fc" id="L317">    public static class GroupDto {</span>
       /**
        * Numéro d'ordre.
        */
@@ -339,10 +339,10 @@ public interface ScriptEvaluationService extends SpecificService {
        * @param identifiers identifiants de {@link ScriptDto}
        */
       public void addScriptIdentifiers(Collection&lt;String&gt; identifiers) {
-<span class="nc" id="L342">        Optional.ofNullable(identifiers).orElse(Collections.emptyList()).forEach(identifier -&gt; {</span>
-<span class="nc" id="L343">          scriptIdentifiers().put(identifier, scriptIdentifiers.size());</span>
-<span class="nc" id="L344">        });</span>
-<span class="nc" id="L345">      }</span>
+<span class="fc" id="L342">        Optional.ofNullable(identifiers).orElse(Collections.emptyList()).forEach(identifier -&gt; {</span>
+<span class="fc" id="L343">          scriptIdentifiers().put(identifier, scriptIdentifiers.size());</span>
+<span class="fc" id="L344">        });</span>
+<span class="fc" id="L345">      }</span>
 
       /**
        * Cette méthode permet d'obtenir une carte non nulle.
@@ -350,10 +350,10 @@ public interface ScriptEvaluationService extends SpecificService {
        * @return carte non nulle
        */
       public Map&lt;String, Integer&gt; scriptIdentifiers() {
-<span class="nc bnc" id="L353" title="All 2 branches missed.">        if (scriptIdentifiers == null) {</span>
-<span class="nc" id="L354">          scriptIdentifiers = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L353" title="All 2 branches covered.">        if (scriptIdentifiers == null) {</span>
+<span class="fc" id="L354">          scriptIdentifiers = new HashMap&lt;&gt;();</span>
         }
-<span class="nc" id="L356">        return scriptIdentifiers;</span>
+<span class="fc" id="L356">        return scriptIdentifiers;</span>
       }
 
       /**
@@ -380,7 +380,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L383">  class ScriptEvaluationCreateManyResponseDto extends CreateManyResponseDto {</span>
+<span class="fc" id="L383">  class ScriptEvaluationCreateManyResponseDto extends CreateManyResponseDto {</span>
 
     /**
      * Collection de {@link GroupDto}.
@@ -395,8 +395,8 @@ public interface ScriptEvaluationService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto getGroupByOrderNumber(Integer orderNumber) {
-<span class="nc" id="L398">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
-<span class="nc" id="L399">          .filter(group -&gt; Objects.equals(group.orderNumber, orderNumber)).findFirst().orElse(null);</span>
+<span class="fc" id="L398">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L399">          .filter(group -&gt; Objects.equals(group.orderNumber, orderNumber)).findFirst().orElse(null);</span>
     }
 
     /**
@@ -408,7 +408,7 @@ public interface ScriptEvaluationService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(of = {&quot;orderNumber&quot;})
-<span class="nc" id="L411">    public static class GroupDto {</span>
+<span class="fc" id="L411">    public static class GroupDto {</span>
       /**
        * Numéro d'ordre.
        */
@@ -428,9 +428,9 @@ public interface ScriptEvaluationService extends SpecificService {
        * @return {@link ResultDto}
        */
       public ResultDto getResultByOrderNumber(Integer orderNumber) {
-<span class="nc" id="L431">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
-<span class="nc" id="L432">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
-<span class="nc" id="L433">            .orElse(null);</span>
+<span class="fc" id="L431">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L432">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
+<span class="fc" id="L433">            .orElse(null);</span>
       }
 
       /**
@@ -465,7 +465,7 @@ public interface ScriptEvaluationService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(callSuper = true)
-<span class="nc" id="L468">    public static class ResultDto extends OrderedIdentifierDto {</span>
+<span class="fc" id="L468">    public static class ResultDto extends OrderedIdentifierDto {</span>
       /**
        * Représentation en chaine de caractères de la valeur.
        */
@@ -559,7 +559,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L562">  public static class ScriptEvaluationGetManyResponseDto</span>
+<span class="fc" id="L562">  public static class ScriptEvaluationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptEvaluationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -649,7 +649,7 @@ public interface ScriptEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L652">  class ScriptEvaluationUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L652">  class ScriptEvaluationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ScriptEvaluationSaveRequestDto {
     @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
     private String scriptIdentifier;
