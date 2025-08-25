@@ -129,7 +129,7 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L132">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="nc" id="L132">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DomainSaveRequestDto {
 
     @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_NAME)
@@ -172,7 +172,7 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L175">  public static class DomainGetManyResponseDto extends AbstractGetByPageResponseDto&lt;DomainDto&gt; {</span>
+<span class="nc" id="L175">  public static class DomainGetManyResponseDto extends AbstractGetByPageResponseDto&lt;DomainDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;DomainDto&gt; datas;
@@ -261,7 +261,7 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L264">  class DomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="nc" id="L264">  class DomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DomainSaveRequestDto {
     @JsonbProperty(JSON_VALUE_REFERENCE_TABLE_NAME)
     private String valueReferenceTableName;

@@ -163,7 +163,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L166">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="nc" id="L166">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -211,7 +211,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L214">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
+<span class="nc" id="L214">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ScriptDto&gt; datas;
@@ -300,7 +300,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L303">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="nc" id="L303">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -348,7 +348,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L351">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L351">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(ScriptSaveRequestDto.JSON_TEXT)
     private String text;
   }
@@ -411,7 +411,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L414">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L414">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(JSON_ARGUMENTS)
     private Map&lt;String, Object&gt; arguments;
 
@@ -431,7 +431,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L434">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
+<span class="nc" id="L434">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
     @JsonbProperty(JSON_RESULT_AS_STRING)
     private String resultValueAsString;
 
@@ -444,7 +444,7 @@ public interface ScriptService extends SpecificService {
      * @return résultat
      */
     public Object getResult() {
-<span class="fc" id="L447">      return ValueType.parse(resultValueAsString, resultType);</span>
+<span class="nc" id="L447">      return ValueType.parse(resultValueAsString, resultType);</span>
     }
 
     /**

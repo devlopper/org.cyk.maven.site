@@ -100,7 +100,7 @@ public interface ScriptEvaluatorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L103">  class ScriptEvaluatorCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="nc" id="L103">  class ScriptEvaluatorCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptEvaluatorSaveRequestDto {
 
     @JsonbProperty(JSON_ENGINE_NAME)
@@ -140,7 +140,7 @@ public interface ScriptEvaluatorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L143">  public static class ScriptEvaluatorGetManyResponseDto</span>
+<span class="nc" id="L143">  public static class ScriptEvaluatorGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptEvaluatorDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -230,7 +230,7 @@ public interface ScriptEvaluatorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L233">  class ScriptEvaluatorUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="nc" id="L233">  class ScriptEvaluatorUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptEvaluatorSaveRequestDto {
     @JsonbProperty(JSON_ENGINE_NAME)
     private String engineName;
