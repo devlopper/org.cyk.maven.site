@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasSourceIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -124,7 +125,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  class ValueSelectorCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L128">  class ValueSelectorCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ValueSelectorSaveRequestDto {
 
     @JsonbProperty(JSON_SOURCE_IDENTIFIER)
@@ -167,7 +168,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  public static class ValueSelectorGetManyResponseDto</span>
+<span class="fc" id="L171">  public static class ValueSelectorGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueSelectorDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -257,7 +258,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class ValueSelectorUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L261">  class ValueSelectorUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ValueSelectorSaveRequestDto {
 
     @JsonbProperty(JSON_SOURCE_IDENTIFIER)
@@ -265,6 +266,53 @@ public interface ValueSelectorService extends SpecificService {
 
     @JsonbProperty(JSON_FILTER_COLUMN_NAME)
     private String filterColumnName;
+  }
+
+  /**
+   * Identifiant du service de d'obtention de la valeur.
+   */
+  String GET_VALUE_IDENTIFIER = &quot;OBTENTION_VALEUR_SELECTEUR_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention de la valeur.
+   */
+  String GET_VALUE_PATH = &quot;obtention-valeur&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir la valeur.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_VALUE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = GET_VALUE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response getValue(ValueSelectorGetValueRequestDto request);
+
+  /**
+   * Cette classe représente la requête de sélection de valeur.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L304">  class ValueSelectorGetValueRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Valeur de la colonne de filtre.
+     */
+    @JsonbProperty(JSON_FILTER_COLUMN_VALUE)
+    private String filterColumnValue;
+
+    /**
+     * Identifiant json {@link #filterColumnValue}.
+     */
+    public static final String JSON_FILTER_COLUMN_VALUE = &quot;valeurColonneFiltre&quot;;
   }
 
   /**

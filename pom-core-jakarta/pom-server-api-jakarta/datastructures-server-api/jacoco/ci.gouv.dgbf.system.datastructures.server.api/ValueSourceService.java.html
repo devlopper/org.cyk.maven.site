@@ -7,6 +7,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -95,7 +96,7 @@ public interface ValueSourceService extends SpecificService {
      * @param valueType le type de valeur
      */
     void setValueType(ValueType valueType);
-    
+
     /**
      * {@link HasTableNameDto#JSON_TABLE_NAME}.
      */
@@ -105,7 +106,7 @@ public interface ValueSourceService extends SpecificService {
      * {@link HasColumnNameDto#JSON_COLUMN_NAME}.
      */
     String JSON_COLUMN_NAME = HasColumnNameDto.JSON_COLUMN_NAME;
-    
+
     /**
      * {@link HasValueTypeDto#JSON_VALUE_TYPE}.
      */
@@ -145,7 +146,7 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">  class ValueSourceCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L149">  class ValueSourceCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ValueSourceSaveRequestDto {
 
     @JsonbProperty(JSON_TABLE_NAME)
@@ -153,7 +154,7 @@ public interface ValueSourceService extends SpecificService {
 
     @JsonbProperty(JSON_COLUMN_NAME)
     private String columnName;
-    
+
     @JsonbProperty(JSON_VALUE_TYPE)
     private ValueType valueType;
   }
@@ -191,11 +192,62 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L194">  public static class ValueSourceGetManyResponseDto</span>
+<span class="fc" id="L195">  public static class ValueSourceGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueSourceDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ValueSourceDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention des valeurs.
+   */
+  String GET_VALUES_IDENTIFIER = &quot;OBTENTION_VALEURS_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention des valeurs.
+   */
+  String GET_VALUES_PATH = &quot;obtention/valeurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir les valeurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_VALUES_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_VALUES_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSourceGetValuesResponseDto.class))})
+  Response getValues(ValueSourceGetValuesRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'obtention des valeurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L235">  class ValueSourceGetValuesRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
+  
+  /**
+   * Cette classe représente la réponse d'obtention des valeurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L247">  class ValueSourceGetValuesResponseDto extends IdentifiableResponseDto {</span>
+
+    @JsonbProperty(&quot;valeurs&quot;)
+    private List&lt;String&gt; values;
   }
 
   /**
@@ -281,15 +333,15 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L284">  class ValueSourceUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L336">  class ValueSourceUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ValueSourceSaveRequestDto {
-    
+
     @JsonbProperty(JSON_TABLE_NAME)
     private String tableName;
 
     @JsonbProperty(JSON_COLUMN_NAME)
     private String columnName;
-    
+
     @JsonbProperty(JSON_VALUE_TYPE)
     private ValueType valueType;
   }
@@ -313,7 +365,7 @@ public interface ValueSourceService extends SpecificService {
   @Path(DELETE_PATH)
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = DELETE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})

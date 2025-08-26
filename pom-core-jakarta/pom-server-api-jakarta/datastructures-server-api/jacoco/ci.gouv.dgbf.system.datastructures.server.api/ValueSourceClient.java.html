@@ -18,6 +18,8 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSourceService.ValueSourceCreateRequestDto;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSourceService.ValueSourceGetManyResponseDto;
+import ci.gouv.dgbf.system.datastructures.server.api.ValueSourceService.ValueSourceGetValuesRequestDto;
+import ci.gouv.dgbf.system.datastructures.server.api.ValueSourceService.ValueSourceGetValuesResponseDto;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSourceService.ValueSourceUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -32,13 +34,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L35">public class ValueSourceClient extends AbstractClient&lt;ValueSourceService&gt;</span>
+<span class="fc" id="L37">public class ValueSourceClient extends AbstractClient&lt;ValueSourceService&gt;</span>
     implements GetByIdentifier&lt;ValueSourceDto&gt;, GetMany&lt;ValueSourceGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public ValueSourceClient service(ValueSourceService service) {
-<span class="fc" id="L41">    return (ValueSourceClient) super.service(service);</span>
+<span class="fc" id="L43">    return (ValueSourceClient) super.service(service);</span>
   }
 
   /**
@@ -48,8 +50,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(ValueSourceCreateRequestDto request) {
-<span class="fc" id="L51">    return new CreateExecutor(ValueSourceService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L53">    return new CreateExecutor(ValueSourceService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L54">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -59,8 +61,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ValueSourceGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L62">    return new GetOneExecutor&lt;ValueSourceGetManyResponseDto&gt;(ValueSourceGetManyResponseDto.class,</span>
-<span class="fc" id="L63">        ValueSourceService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L64">    return new GetOneExecutor&lt;ValueSourceGetManyResponseDto&gt;(ValueSourceGetManyResponseDto.class,</span>
+<span class="fc" id="L65">        ValueSourceService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -76,13 +78,25 @@ import lombok.experimental.Accessors;
   @Override
   public ValueSourceGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L79">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L80">    request.setProjection(projection);</span>
-<span class="fc" id="L81">    request.setFilter(filter);</span>
-<span class="fc" id="L82">    request.setPage(page);</span>
-<span class="fc" id="L83">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L84">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L85">    return getMany(request);</span>
+<span class="fc" id="L81">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L82">    request.setProjection(projection);</span>
+<span class="fc" id="L83">    request.setFilter(filter);</span>
+<span class="fc" id="L84">    request.setPage(page);</span>
+<span class="fc" id="L85">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L86">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L87">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ValueSourceService#getValues}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ValueSourceGetValuesResponseDto getValues(ValueSourceGetValuesRequestDto request) {
+<span class="fc" id="L97">    return new GetOneExecutor&lt;ValueSourceGetValuesResponseDto&gt;(</span>
+        ValueSourceGetValuesResponseDto.class, ValueSourceService.GET_VALUES_IDENTIFIER)
+<span class="fc" id="L99">            .execute(() -&gt; service().getValues(request));</span>
   }
 
   /**
@@ -92,8 +106,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ValueSourceDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L95">    return new GetOneExecutor&lt;ValueSourceDto&gt;(ValueSourceDto.class,</span>
-<span class="fc" id="L96">        ValueSourceService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L109">    return new GetOneExecutor&lt;ValueSourceDto&gt;(ValueSourceDto.class,</span>
+<span class="fc" id="L110">        ValueSourceService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -107,12 +121,12 @@ import lombok.experimental.Accessors;
    */
   public ValueSourceDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L110">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L111">    request.setProjection(projection);</span>
-<span class="fc" id="L112">    request.setFilter(filter);</span>
-<span class="fc" id="L113">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L114">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L115">    return getOne(request);</span>
+<span class="fc" id="L124">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L125">    request.setProjection(projection);</span>
+<span class="fc" id="L126">    request.setFilter(filter);</span>
+<span class="fc" id="L127">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L128">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L129">    return getOne(request);</span>
   }
 
   /**
@@ -122,9 +136,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public ValueSourceDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L125">    return new GetOneExecutor&lt;ValueSourceDto&gt;(ValueSourceDto.class,</span>
+<span class="fc" id="L139">    return new GetOneExecutor&lt;ValueSourceDto&gt;(ValueSourceDto.class,</span>
         ValueSourceService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L127">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L141">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -139,12 +153,12 @@ import lombok.experimental.Accessors;
   @Override
   public ValueSourceDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L142">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L143">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L144">    request.setProjection(projection);</span>
-<span class="fc" id="L145">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L146">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L147">    return getByIdentifier(request);</span>
+<span class="fc" id="L156">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L157">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L158">    request.setProjection(projection);</span>
+<span class="fc" id="L159">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L160">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L161">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -154,8 +168,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(ValueSourceUpdateRequestDto request) {
-<span class="fc" id="L157">    return new IdentifiableExecutor(ValueSourceService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L158">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L171">    return new IdentifiableExecutor(ValueSourceService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L172">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -165,8 +179,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L168">    return new IdentifiableExecutor(ValueSourceService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L169">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L182">    return new IdentifiableExecutor(ValueSourceService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L183">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -180,11 +194,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L183">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L184">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L185">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L186">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L187">    return delete(request);</span>
+<span class="fc" id="L197">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L198">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L199">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L200">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L201">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
