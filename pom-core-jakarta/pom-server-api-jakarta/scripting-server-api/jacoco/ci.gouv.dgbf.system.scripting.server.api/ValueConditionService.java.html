@@ -188,7 +188,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L191">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L191">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ValueConditionSaveRequestDto {
     @JsonbProperty
     private String valueSelectorIdentifier;
@@ -239,7 +239,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L242">  public static class ValueConditionGetManyResponseDto</span>
+<span class="fc" id="L242">  public static class ValueConditionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueConditionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -329,7 +329,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L332">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L332">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ValueConditionSaveRequestDto {
     @JsonbProperty
     private String valueSelectorIdentifier;
