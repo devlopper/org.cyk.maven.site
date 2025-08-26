@@ -6,7 +6,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -284,7 +284,7 @@ public interface ConditionalValueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L287">  class ConditionalValueUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L287">  class ConditionalValueUpdateRequestDto extends AbstractCodableUpdateRequestJsonDto</span>
       implements ConditionalValueSaveRequestDto {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
