@@ -24,8 +24,8 @@ public abstract class AbstractScriptDataFilter extends AbstractIdentifiableFilte
    * Cette méthode permet d'instancier un objet.
    */
   public AbstractScriptDataFilter() {
-<span class="fc" id="L27">    super();</span>
-<span class="fc" id="L28">  }</span>
+<span class="nc" id="L27">    super();</span>
+<span class="nc" id="L28">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -33,20 +33,20 @@ public abstract class AbstractScriptDataFilter extends AbstractIdentifiableFilte
    * @param dto filtre
    */
   public AbstractScriptDataFilter(FilterDto dto) {
-<span class="fc" id="L36">    super(dto);</span>
-<span class="fc" id="L37">  }</span>
+<span class="nc" id="L36">    super(dto);</span>
+<span class="nc" id="L37">  }</span>
   
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L41">    super.doInitialize(filter);</span>
-<span class="fc" id="L42">    scriptIdentifier = getScriptIdentifier(filter);</span>
-<span class="fc" id="L43">  }</span>
+<span class="nc" id="L41">    super.doInitialize(filter);</span>
+<span class="nc" id="L42">    scriptIdentifier = getScriptIdentifier(filter);</span>
+<span class="nc" id="L43">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L47">    super.toDto(filter);</span>
-<span class="fc" id="L48">    setScriptIdentifier(filter, scriptIdentifier);</span>
-<span class="fc" id="L49">  }</span>
+<span class="nc" id="L47">    super.toDto(filter);</span>
+<span class="nc" id="L48">    setScriptIdentifier(filter, scriptIdentifier);</span>
+<span class="nc" id="L49">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant {@link ScriptDto}.
@@ -55,7 +55,7 @@ public abstract class AbstractScriptDataFilter extends AbstractIdentifiableFilte
    * @return identifiant {@link ScriptDto}
    */
   public static String getScriptIdentifier(FilterDto filter) {
-<span class="fc" id="L58">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SCRIPT_IDENTIFIER));</span>
+<span class="nc" id="L58">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SCRIPT_IDENTIFIER));</span>
   }
 
   /**
@@ -65,9 +65,9 @@ public abstract class AbstractScriptDataFilter extends AbstractIdentifiableFilte
    * @param identifier identifiant {@link ScriptDto}
    */
   public static void setScriptIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L68">    set(filter, JSON_SCRIPT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L70">  }</span>
+<span class="nc" id="L68">    set(filter, JSON_SCRIPT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="nc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="nc" id="L70">  }</span>
 
   /**
    * Identifiant json champ {@link #scriptIdentifier}.
