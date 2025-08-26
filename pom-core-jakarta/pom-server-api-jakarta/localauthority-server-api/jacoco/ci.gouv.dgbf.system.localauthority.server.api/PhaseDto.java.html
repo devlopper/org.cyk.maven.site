@@ -31,12 +31,6 @@ import lombok.Setter;
   private String triennialProgramActivityAsString;
   
   /**
-   * Numéro d'ordre {@link PhaseDto}.
-   */
-  @JsonbProperty(JSON_ORDER_NUMBER)
-  private Integer orderNumber;
-  
-  /**
    * Numéro de la phase {@link PhaseDto}.
    */
   @JsonbProperty(JSON_PHASE_NUMBER)
@@ -76,11 +70,7 @@ import lombok.Setter;
    * Identitiant json {@link PhaseDto#triennialProgramActivityAsString}.
    */
   public static final String JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING = &quot;activiteBudgetChaine&quot;;
-  
-  /**
-   * Identitiant json {@link PhaseDto#orderNumber}.
-   */
-  public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
+
   /**
    * Identitiant json {@link PhaseDto#phaseNumber}.
    */
