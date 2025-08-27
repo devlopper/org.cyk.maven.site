@@ -3,7 +3,6 @@
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
-import ci.gouv.dgbf.extension.server.service.api.client.executor.GetStringExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
@@ -20,6 +19,7 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorCreateRequestDto;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorGetManyResponseDto;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorGetValueRequestDto;
+import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorGetValueResponseDto;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -160,16 +160,17 @@ import lombok.experimental.Accessors;
 <span class="fc" id="L160">    return new IdentifiableExecutor(ValueSelectorService.UPDATE_IDENTIFIER)</span>
 <span class="fc" id="L161">        .execute(() -&gt; service().update(request));</span>
   }
-  
+
   /**
    * {@link ValueSelectorService#getValue}.
    *
    * @param request requête
    * @return réponse
    */
-  public String getValue(ValueSelectorGetValueRequestDto request) {
-<span class="fc" id="L171">    return new GetStringExecutor(ValueSelectorService.GET_VALUE_IDENTIFIER)</span>
-<span class="fc" id="L172">        .execute(() -&gt; service().getValue(request));</span>
+  public ValueSelectorGetValueResponseDto getValue(ValueSelectorGetValueRequestDto request) {
+<span class="fc" id="L171">    return new GetOneExecutor&lt;ValueSelectorGetValueResponseDto&gt;(</span>
+        ValueSelectorGetValueResponseDto.class, ValueSelectorService.GET_VALUE_IDENTIFIER)
+<span class="fc" id="L173">            .execute(() -&gt; service().getValue(request));</span>
   }
 
   /**
@@ -179,8 +180,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L182">    return new IdentifiableExecutor(ValueSelectorService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L183">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L183">    return new IdentifiableExecutor(ValueSelectorService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L184">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -194,11 +195,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L197">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L198">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L199">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L200">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L201">    return delete(request);</span>
+<span class="fc" id="L198">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L199">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L200">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L201">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L202">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

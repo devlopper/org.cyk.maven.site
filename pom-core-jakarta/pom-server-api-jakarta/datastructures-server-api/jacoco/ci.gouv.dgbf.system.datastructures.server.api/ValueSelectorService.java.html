@@ -289,8 +289,8 @@ public interface ValueSelectorService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = GET_VALUE_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSelectorGetValueResponseDto.class))})
   Response getValue(ValueSelectorGetValueRequestDto request);
 
   /**
@@ -313,6 +313,28 @@ public interface ValueSelectorService extends SpecificService {
      * Identifiant json {@link #filterColumnValue}.
      */
     public static final String JSON_FILTER_COLUMN_VALUE = &quot;valeurColonneFiltre&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse de sélection de valeur.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L326">  class ValueSelectorGetValueResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Valeur de la colonne de filtre.
+     */
+    @JsonbProperty(JSON_VALUE)
+    private String value;
+
+    /**
+     * Identifiant json {@link #value}.
+     */
+    public static final String JSON_VALUE = &quot;valeur&quot;;
   }
 
   /**

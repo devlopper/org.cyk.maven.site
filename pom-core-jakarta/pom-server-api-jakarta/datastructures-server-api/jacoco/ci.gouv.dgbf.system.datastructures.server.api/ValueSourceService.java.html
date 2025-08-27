@@ -12,6 +12,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
@@ -146,7 +147,7 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L149">  class ValueSourceCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L150">  class ValueSourceCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ValueSourceSaveRequestDto {
 
     @JsonbProperty(JSON_TABLE_NAME)
@@ -192,7 +193,7 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L195">  public static class ValueSourceGetManyResponseDto</span>
+<span class="fc" id="L196">  public static class ValueSourceGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueSourceDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -232,8 +233,15 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L235">  class ValueSourceGetValuesRequestDto extends ByIdentifierRequestDto {</span>
-
+<span class="fc" id="L236">  class ValueSourceGetValuesRequestDto extends ByIdentifierRequestDto {</span>
+    
+    @JsonbProperty(JSON_PAGE)
+    PageDto page;
+    
+    /**
+     * Identifiant json {@link #page}.
+     */
+    public static final String JSON_PAGE = &quot;page&quot;;
   }
   
   /**
@@ -244,7 +252,7 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L247">  class ValueSourceGetValuesResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L255">  class ValueSourceGetValuesResponseDto extends IdentifiableResponseDto {</span>
 
     @JsonbProperty(&quot;valeurs&quot;)
     private List&lt;String&gt; values;
@@ -333,7 +341,7 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L336">  class ValueSourceUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L344">  class ValueSourceUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ValueSourceSaveRequestDto {
 
     @JsonbProperty(JSON_TABLE_NAME)
