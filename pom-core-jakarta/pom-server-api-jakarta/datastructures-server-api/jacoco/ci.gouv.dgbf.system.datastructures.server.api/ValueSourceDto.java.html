@@ -6,6 +6,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasRequestAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTableNameDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValuesCountAsStringDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -21,9 +22,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class ValueSourceDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L25">public class ValueSourceDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasTableNameDto, HasColumnNameDto, HasValueTypeDto, HasValueTypeAsStringDto,
-    HasRequestAsStringDto {
+    HasRequestAsStringDto, HasValuesCountAsStringDto {
 
   @JsonbProperty(JSON_TABLE_NAME)
   private String tableName;
@@ -39,6 +40,9 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_REQUEST_AS_STRING)
   private String requestAsString;
+  
+  @JsonbProperty(JSON_VALUES_COUNT_AS_STRING)
+  private String valuesCountAsString;
   
   /**
    * Identifiant json de l'identifiant.
