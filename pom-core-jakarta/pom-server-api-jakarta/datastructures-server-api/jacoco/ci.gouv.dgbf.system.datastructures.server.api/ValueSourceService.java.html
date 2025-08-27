@@ -240,13 +240,13 @@ public interface ValueSourceService extends SpecificService {
      */
     @JsonbProperty(JSON_PAGE)
     PageDto page;
-    
+
     /**
      * Identifiant json {@link #page}.
      */
     public static final String JSON_PAGE = &quot;page&quot;;
   }
-  
+
   /**
    * Cette classe représente la réponse d'obtention des valeurs.
    *
@@ -259,7 +259,47 @@ public interface ValueSourceService extends SpecificService {
 
     @JsonbProperty(&quot;valeurs&quot;)
     private List&lt;String&gt; values;
-    
+
+    @JsonbProperty(JSON_TOTAL)
+    private Long total;
+  }
+
+  /**
+   * Identifiant du service d'obtention du nombre de valeurs.
+   */
+  String GET_VALUES_COUNT_IDENTIFIER = &quot;OBTENTION_NOMBRE_VALEURS_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention du nombre de valeurs.
+   */
+  String GET_VALUES_COUNT_PATH = &quot;obtention/nombre-valeurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir le nombre de valeurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_VALUES_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_VALUES_COUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSourceGetValuesCountResponseDto.class))})
+  Response getValuesCount(ByIdentifierRequestDto request);
+
+  /**
+   * Cette classe représente la réponse d'obtention du nombre de valeurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L300">  class ValueSourceGetValuesCountResponseDto extends IdentifiableResponseDto</span>
+      implements HasLongTotalDto {
+
     @JsonbProperty(JSON_TOTAL)
     private Long total;
   }
@@ -347,7 +387,7 @@ public interface ValueSourceService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L350">  class ValueSourceUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L390">  class ValueSourceUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ValueSourceSaveRequestDto {
 
     @JsonbProperty(JSON_TABLE_NAME)
