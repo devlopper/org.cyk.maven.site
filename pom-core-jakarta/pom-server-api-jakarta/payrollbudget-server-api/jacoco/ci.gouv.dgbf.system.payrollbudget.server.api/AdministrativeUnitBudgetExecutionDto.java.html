@@ -103,16 +103,34 @@ import lombok.Setter;
   String remainingExecutedBudgetPrecedentAsString;
   
   /**
+   * Montant de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_AMOUNT)
+  Long referenceAmount;
+  
+  /**
    * Représentation en chaine de caractères du montant de référence.
    */
   @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
   String referenceAmountAsString;
 
   /**
+   * Variation du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_VARIANCE)
+  Long amountVariation;
+  
+  /**
    * Représentation en chaine de caractères de la variation du montant.
    */
   @JsonbProperty(JSON_AMOUNT_VARIANCE_AS_STRING)
   String amountVariationAsString;
+  
+  /**
+   * Montant.
+   */
+  @JsonbProperty(JSON_AMOUNT)
+  Long amount;
   
   /**
    * Représentation en chaine de caractères du montant.
