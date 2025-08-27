@@ -80,16 +80,16 @@ public interface PhaseService extends SpecificService {
     /**
      * Cette méthode permet d'assigner le numero de la phase.
      *
-     * @param phaseNumber numéro de la phase
+     * @param orderNumber numéro de la phase
      */
-    void setPhaseNumber(Integer phaseNumber);
+    void setOrderNumber(Integer orderNumber);
 
     /**
      * Cette méthode permet d'obténir le numero de la phase.
      *
      * @return numéro de la phase
      */
-    Integer getPhaseNumber();
+    Integer getOrderNumber();
 
     /**
      * Cette méthode permet d'assigner le commentaire.
@@ -146,9 +146,9 @@ public interface PhaseService extends SpecificService {
         PhaseDto.JSON_TRIENNIAL_PROGRAM_ACTIVITY_AS_STRING;
 
     /**
-     * Identitiant json {@link PhaseDto#phaseNumber}.
+     * Identitiant json {@link PhaseDto#orderNumber}.
      */
-    public static final String JSON_PHASE_NUMBER = PhaseDto.JSON_PHASE_NUMBER;
+    public static final String JSON_ORDER_NUMBER = PhaseDto.JSON_ORDER_NUMBER;
     /**
      * Identitiant json {@link PhaseDto#startDate}.
      */
@@ -205,8 +205,8 @@ public interface PhaseService extends SpecificService {
     /**
      * Numéro de la phase {@link PhaseDto}.
      */
-    @JsonbProperty(JSON_PHASE_NUMBER)
-    private Integer phaseNumber;
+    @JsonbProperty(JSON_ORDER_NUMBER)
+    private Integer orderNumber;
 
     /**
      * Commentaire {@link PhaseDto}.
@@ -368,8 +368,8 @@ public interface PhaseService extends SpecificService {
     /**
      * Numéro de la phase {@link PhaseDto}.
      */
-    @JsonbProperty(JSON_PHASE_NUMBER)
-    private Integer phaseNumber;
+    @JsonbProperty(JSON_ORDER_NUMBER)
+    private Integer orderNumber;
 
     /**
      * Commentaire {@link PhaseDto}.
