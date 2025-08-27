@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasFilterColumnNameDto;
 import ci.gouv.dgbf.extension.core.segregation.HasNameDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRequestAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasSourceAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasSourceIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
@@ -19,8 +20,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L22">public class ValueSelectorDto extends AbstractIdentifiableAuditableDto implements HasNameDto,</span>
-    HasSourceIdentifierDto, HasSourceAsStringDto, HasFilterColumnNameDto {
+<span class="fc" id="L23">public class ValueSelectorDto extends AbstractIdentifiableAuditableDto implements HasNameDto,</span>
+    HasSourceIdentifierDto, HasSourceAsStringDto, HasFilterColumnNameDto, HasRequestAsStringDto {
 
   @JsonbProperty(JSON_NAME)
   private String name;
@@ -34,6 +35,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_FILTER_COLUMN_NAME)
   private String filterColumnName;
 
+  @JsonbProperty(JSON_REQUEST_AS_STRING)
+  private String requestAsString;
+  
   /**
    * Identifiant json de l'identifiant.
    */
