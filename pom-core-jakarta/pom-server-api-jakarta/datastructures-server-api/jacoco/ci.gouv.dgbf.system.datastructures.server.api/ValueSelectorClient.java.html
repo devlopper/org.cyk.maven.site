@@ -17,9 +17,9 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorCreateRequestDto;
+import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorEvaluateRequestDto;
+import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorEvaluateResponseDto;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorGetManyResponseDto;
-import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorGetValueRequestDto;
-import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorGetValueResponseDto;
 import ci.gouv.dgbf.system.datastructures.server.api.ValueSelectorService.ValueSelectorUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -162,15 +162,15 @@ import lombok.experimental.Accessors;
   }
 
   /**
-   * {@link ValueSelectorService#getValue}.
+   * {@link ValueSelectorService#evaluate}.
    *
    * @param request requête
    * @return réponse
    */
-  public ValueSelectorGetValueResponseDto getValue(ValueSelectorGetValueRequestDto request) {
-<span class="fc" id="L171">    return new GetOneExecutor&lt;ValueSelectorGetValueResponseDto&gt;(</span>
-        ValueSelectorGetValueResponseDto.class, ValueSelectorService.GET_VALUE_IDENTIFIER)
-<span class="fc" id="L173">            .execute(() -&gt; service().getValue(request));</span>
+  public ValueSelectorEvaluateResponseDto evaluate(ValueSelectorEvaluateRequestDto request) {
+<span class="fc" id="L171">    return new GetOneExecutor&lt;ValueSelectorEvaluateResponseDto&gt;(</span>
+        ValueSelectorEvaluateResponseDto.class, ValueSelectorService.EVALUATE_IDENTIFIER)
+<span class="fc" id="L173">            .execute(() -&gt; service().evaluate(request));</span>
   }
 
   /**
