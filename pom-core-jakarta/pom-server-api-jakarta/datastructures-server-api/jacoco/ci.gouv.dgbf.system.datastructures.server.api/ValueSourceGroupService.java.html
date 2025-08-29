@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValueSourceGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de datastructures</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.datastructures.server.api</a> &gt; <span class="el_source">ValueSourceGroupService.java</span></div><h1>ValueSourceGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.datastructures.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasLongTotalDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTableNameDto;
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link ValueSourceGroupDto}.
+ *
+ * @author Christian Yao Komenan
+ *
+ */
+@Path(value = ValueSourceGroupService.PATH)
+@Tag(name = &quot;Gestion des sources de valeur&quot;)
+public interface ValueSourceGroupService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;sources-valeurs&quot;;
+
+  /**
+   * Cette interface représente la requête d'enregistrement.
+   *
+   * @author Christian
+   */
+  interface ValueSourceGroupSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir le nom de la table.
+     *
+     * @return le nom de la table
+     */
+    String getTableName();
+
+    /**
+     * Cette méthode permet d'assigner le nom de la table.
+     *
+     * @param tableName le nom de la table
+     */
+    void setTableName(String tableName);
+
+    /**
+     * {@link HasTableNameDto#JSON_TABLE_NAME}.
+     */
+    String JSON_TABLE_NAME = HasTableNameDto.JSON_TABLE_NAME;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link ValueSourceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(ValueSourceGroupCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L110">  class ValueSourceGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements ValueSourceGroupSaveRequestDto {
+
+    @JsonbProperty(JSON_TABLE_NAME)
+    private String tableName;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link ValueSourceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSourceGroupGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L150">  public static class ValueSourceGroupGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ValueSourceGroupDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ValueSourceGroupDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention des valeurs.
+   */
+  String GET_VALUES_IDENTIFIER = &quot;OBTENTION_VALEURS_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention des valeurs.
+   */
+  String GET_VALUES_PATH = &quot;obtention/valeurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir les valeurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_VALUES_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_VALUES_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSourceGroupGetValuesResponseDto.class))})
+  Response getValues(ValueSourceGroupGetValuesRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'obtention des valeurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L190">  class ValueSourceGroupGetValuesRequestDto extends ByIdentifierRequestDto {</span>
+    /**
+     * Page.
+     */
+    @JsonbProperty(JSON_PAGE)
+    PageDto page;
+
+    /**
+     * Identifiant json {@link #page}.
+     */
+    public static final String JSON_PAGE = &quot;page&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse d'obtention des valeurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L211">  class ValueSourceGroupGetValuesResponseDto extends IdentifiableResponseDto</span>
+      implements HasLongTotalDto {
+
+    @JsonbProperty(&quot;valeurs&quot;)
+    private List&lt;String&gt; values;
+
+    @JsonbProperty(JSON_TOTAL)
+    private Long total;
+  }
+
+  /**
+   * Identifiant du service d'obtention du nombre de valeurs.
+   */
+  String GET_VALUES_COUNT_IDENTIFIER = &quot;OBTENTION_NOMBRE_VALEURS_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention du nombre de valeurs.
+   */
+  String GET_VALUES_COUNT_PATH = &quot;obtention/nombre-valeurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir le nombre de valeurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_VALUES_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_VALUES_COUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSourceGroupGetValuesCountResponseDto.class))})
+  Response getValuesCount(ByIdentifierRequestDto request);
+
+  /**
+   * Cette classe représente la réponse d'obtention du nombre de valeurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L254">  class ValueSourceGroupGetValuesCountResponseDto extends IdentifiableResponseDto</span>
+      implements HasLongTotalDto {
+
+    @JsonbProperty(JSON_TOTAL)
+    private Long total;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link ValueSourceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ValueSourceGroupDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link ValueSourceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ValueSourceGroupDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link ValueSourceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ValueSourceGroupUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L344">  class ValueSourceGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements ValueSourceGroupSaveRequestDto {
+
+    @JsonbProperty(JSON_TABLE_NAME)
+    private String tableName;
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_SOURCE_VALEUR&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link ValueSourceGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
