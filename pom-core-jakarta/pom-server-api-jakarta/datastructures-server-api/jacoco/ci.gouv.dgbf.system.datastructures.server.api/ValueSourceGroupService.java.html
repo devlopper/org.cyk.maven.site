@@ -39,13 +39,13 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = ValueSourceGroupService.PATH)
-@Tag(name = &quot;Gestion des sources de valeur&quot;)
+@Tag(name = &quot;Gestion des groupes de sources de valeur&quot;)
 public interface ValueSourceGroupService extends SpecificService {
 
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;sources-valeurs&quot;;
+  String PATH = &quot;groupes-sources-valeurs&quot;;
 
   /**
    * Cette interface représente la requête d'enregistrement.
@@ -77,7 +77,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service de création.
    */
-  String CREATE_IDENTIFIER = &quot;CREATION_SOURCE_VALEUR&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service de création.
@@ -117,7 +117,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_SOURCE_VALEUR&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -157,7 +157,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service d'obtention des valeurs.
    */
-  String GET_VALUES_IDENTIFIER = &quot;OBTENTION_VALEURS_SOURCE_VALEUR&quot;;
+  String GET_VALUES_IDENTIFIER = &quot;OBTENTION_VALEURS_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service d'obtention des valeurs.
@@ -221,7 +221,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service d'obtention du nombre de valeurs.
    */
-  String GET_VALUES_COUNT_IDENTIFIER = &quot;OBTENTION_NOMBRE_VALEURS_SOURCE_VALEUR&quot;;
+  String GET_VALUES_COUNT_IDENTIFIER = &quot;OBTENTION_NOMBRE_VALEURS_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service d'obtention du nombre de valeurs.
@@ -261,7 +261,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_SOURCE_VALEUR&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -286,7 +286,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_SOURCE_VALEUR&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -311,7 +311,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_SOURCE_VALEUR&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -351,7 +351,7 @@ public interface ValueSourceGroupService extends SpecificService {
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_SOURCE_VALEUR&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_GROUPE_SOURCE_VALEUR&quot;;
 
   /**
    * Chemin du service de suppression.
