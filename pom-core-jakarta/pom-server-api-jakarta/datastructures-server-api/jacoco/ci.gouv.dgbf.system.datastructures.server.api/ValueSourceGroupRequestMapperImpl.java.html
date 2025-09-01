@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-08-29T17:25:49+0000&quot;,
+    date = &quot;2025-09-01T16:01:27+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,25 +27,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        valueSourceGroupCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        valueSourceGroupCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        valueSourceGroupCreateRequestDto.setTableName( arg0.getTableName() );</span>
+<span class="fc" id="L30">        valueSourceGroupCreateRequestDto.setStructureName( arg0.getStructureName() );</span>
+<span class="fc" id="L31">        valueSourceGroupCreateRequestDto.setStructureCreationScript( arg0.getStructureCreationScript() );</span>
 
-<span class="fc" id="L32">        return valueSourceGroupCreateRequestDto;</span>
+<span class="fc" id="L33">        return valueSourceGroupCreateRequestDto;</span>
     }
 
     @Override
     public ValueSourceGroupService.ValueSourceGroupUpdateRequestDto mapUpdate(ValueSourceGroupDto arg0) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L38">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L41">        ValueSourceGroupService.ValueSourceGroupUpdateRequestDto valueSourceGroupUpdateRequestDto = new ValueSourceGroupService.ValueSourceGroupUpdateRequestDto();</span>
+<span class="fc" id="L42">        ValueSourceGroupService.ValueSourceGroupUpdateRequestDto valueSourceGroupUpdateRequestDto = new ValueSourceGroupService.ValueSourceGroupUpdateRequestDto();</span>
 
-<span class="fc" id="L43">        valueSourceGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L44">        valueSourceGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L45">        valueSourceGroupUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L46">        valueSourceGroupUpdateRequestDto.setTableName( arg0.getTableName() );</span>
+<span class="fc" id="L44">        valueSourceGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        valueSourceGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        valueSourceGroupUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        valueSourceGroupUpdateRequestDto.setStructureName( arg0.getStructureName() );</span>
+<span class="fc" id="L48">        valueSourceGroupUpdateRequestDto.setStructureCreationScript( arg0.getStructureCreationScript() );</span>
 
-<span class="fc" id="L48">        return valueSourceGroupUpdateRequestDto;</span>
+<span class="fc" id="L50">        return valueSourceGroupUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
