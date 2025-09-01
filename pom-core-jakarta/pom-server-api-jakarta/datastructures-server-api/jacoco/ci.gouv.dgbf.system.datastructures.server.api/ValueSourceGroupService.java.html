@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValueSourceGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de datastructures</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.datastructures.server.api</a> &gt; <span class="el_source">ValueSourceGroupService.java</span></div><h1>ValueSourceGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.datastructures.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDataEntityIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLongTotalDto;
-import ci.gouv.dgbf.extension.core.segregation.HasStructureCreationScriptDto;
-import ci.gouv.dgbf.extension.core.segregation.HasStructureNameDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -56,43 +55,23 @@ public interface ValueSourceGroupService extends SpecificService {
   interface ValueSourceGroupSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir le nom de la structure.
+     * Cette méthode permet d'obtenir l'identifiant de l'entité de données.
      *
-     * @return le nom de la structure
+     * @return l'identifiant de l'entité de données
      */
-    String getStructureName();
+    String getDataEntityIdentifier();
 
     /**
-     * Cette méthode permet d'assigner le nom de la structure.
+     * Cette méthode permet d'assigner l'identifiant de l'entité de données.
      *
-     * @param structureName le nom de la structure
+     * @param dataEntityIdentifier l'identifiant de l'entité de données
      */
-    void setStructureName(String structureName);
+    void setDataEntityIdentifier(String dataEntityIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir le script de création de la structure.
-     *
-     * @return le script de création de la structure
+     * {@link HasDataEntityIdentifierDto#JSON_DATA_ENTITY_IDENTIFIER}.
      */
-    String getStructureCreationScript();
-
-    /**
-     * Cette méthode permet d'assigner le script de création de la structure.
-     *
-     * @param structureCreationScript le script de création de la structure
-     */
-    void setStructureCreationScript(String structureCreationScript);
-
-    /**
-     * {@link HasStructureNameDto#JSON_STRUCTURE_NAME}.
-     */
-    String JSON_STRUCTURE_NAME = HasStructureNameDto.JSON_STRUCTURE_NAME;
-
-    /**
-     * {@link HasStructureCreationScriptDto#JSON_STRUCTURE_CREATION_SCRIPT}.
-     */
-    String JSON_STRUCTURE_CREATION_SCRIPT =
-        HasStructureCreationScriptDto.JSON_STRUCTURE_CREATION_SCRIPT;
+    String JSON_DATA_ENTITY_IDENTIFIER = HasDataEntityIdentifierDto.JSON_DATA_ENTITY_IDENTIFIER;
   }
 
   /**
@@ -128,14 +107,11 @@ public interface ValueSourceGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L131">  class ValueSourceGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L110">  class ValueSourceGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ValueSourceGroupSaveRequestDto {
 
-    @JsonbProperty(JSON_STRUCTURE_NAME)
-    private String structureName;
-
-    @JsonbProperty(JSON_STRUCTURE_CREATION_SCRIPT)
-    private String structureCreationScript;
+    @JsonbProperty(JSON_DATA_ENTITY_IDENTIFIER)
+    private String dataEntityIdentifier;
   }
 
   /**
@@ -171,7 +147,7 @@ public interface ValueSourceGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L174">  public static class ValueSourceGroupGetManyResponseDto</span>
+<span class="fc" id="L150">  public static class ValueSourceGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueSourceGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -211,7 +187,7 @@ public interface ValueSourceGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L214">  class ValueSourceGroupGetValuesRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L190">  class ValueSourceGroupGetValuesRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Page.
      */
@@ -232,7 +208,7 @@ public interface ValueSourceGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L235">  class ValueSourceGroupGetValuesResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L211">  class ValueSourceGroupGetValuesResponseDto extends IdentifiableResponseDto</span>
       implements HasLongTotalDto {
 
     @JsonbProperty(&quot;valeurs&quot;)
@@ -275,7 +251,7 @@ public interface ValueSourceGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L278">  class ValueSourceGroupGetValuesCountResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L254">  class ValueSourceGroupGetValuesCountResponseDto extends IdentifiableResponseDto</span>
       implements HasLongTotalDto {
 
     @JsonbProperty(JSON_TOTAL)
@@ -365,14 +341,11 @@ public interface ValueSourceGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L368">  class ValueSourceGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L344">  class ValueSourceGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ValueSourceGroupSaveRequestDto {
 
-    @JsonbProperty(JSON_STRUCTURE_NAME)
-    private String structureName;
-
-    @JsonbProperty(JSON_STRUCTURE_CREATION_SCRIPT)
-    private String structureCreationScript;
+    @JsonbProperty(JSON_DATA_ENTITY_IDENTIFIER)
+    private String dataEntityIdentifier;
   }
 
   /**
