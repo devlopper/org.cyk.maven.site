@@ -46,6 +46,14 @@ import lombok.Setter;
    */
   @JsonbProperty(value = JSON_ACTIVITY_CATEGORY)
   private ActivityCategory activityCategory;
+
+
+  /**
+   * Répresentation en chaine de caractère de l'opbjet avec la catégorie de naturde de dépense.
+   */
+
+  @JsonbProperty(value = JSON_AS_STRING_WITH_CATEGORY)
+  private String asStringWithCategory;
   
   /**
    * Identifiant json de {@link ExpenditureNatureDto#categoryIdentifier}.
@@ -71,6 +79,12 @@ import lombok.Setter;
    * Identifiant json de {@link ExpenditureNatureDto#activityCategory}.
    */
   public static final String JSON_ACTIVITY_CATEGORY = &quot;categorieActivite&quot;;
+
+
+  /**
+   * Identifiant json de {@link ExpenditureNatureDto#asStringWithCategory}.
+   */
+  public static final String JSON_AS_STRING_WITH_CATEGORY = &quot;chaineAvecCategorie&quot;;
   
   /**
    * Nom pour lecture humaine de la classe.
