@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SalaryElementComponentDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">SalaryElementComponentDto.java</span></div><h1>SalaryElementComponentDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente {@link PayrollComponentDto} de {@link SalaryElementDto}.
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class SalaryElementComponentDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant {@link SalaryElementDto}.
+   */
+  @JsonbProperty(JSON_SALARY_ELEMENT_IDENTIFIER)
+  private String salaryElementIdentifier;
+
+  /**
+   * Identifiant {@link PayrollComponentDto}.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+  private String payrollComponentIdentifier;
+
+  /**
+   * Représentation en chaine de caractères du poste de bulletin.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
+  private String payrollComponentAsString;
+
+  /**
+   * Taux employé.
+   */
+  @JsonbProperty(JSON_EMPLOYEE_RATE)
+  private Integer employeeRate;
+
+  /**
+   * Taux employeur.
+   */
+  @JsonbProperty(JSON_EMPLOYER_RATE)
+  private Integer employerRate;
+
+  /**
+   * Plancher.
+   */
+  @JsonbProperty(JSON_FLOOR)
+  private Integer floor;
+
+  /**
+   * Représentation en chaine de caractères de {@link #floor}.
+   */
+  @JsonbProperty(JSON_FLOOR_AS_STRING)
+  private String floorAsString;
+
+  /**
+   * Plafond.
+   */
+  @JsonbProperty(JSON_CAP)
+  private Integer cap;
+
+  /**
+   * Représentation en chaine de caractères de {@link #cap}.
+   */
+  @JsonbProperty(JSON_CAP_AS_STRING)
+  private String capAsString;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idPosteElementSalaire&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;posteElementSalaireChaine&quot;;
+
+  /**
+   * Identifiant json {@link #salaryElementIdentifier}.
+   */
+  public static final String JSON_SALARY_ELEMENT_IDENTIFIER = SalaryElementDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #payrollComponentIdentifier}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+      PayrollComponentDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #payrollComponentAsString}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;posteChaine&quot;;
+
+  /**
+   * Identifiant json {@link #employeeRate}.
+   */
+  public static final String JSON_EMPLOYEE_RATE = &quot;tauxEmploye&quot;;
+
+  /**
+   * Identifiant json {@link #employerRate}.
+   */
+  public static final String JSON_EMPLOYER_RATE = &quot;tauxEmployeur&quot;;
+
+  /**
+   * Identifiant json {@link #floor}.
+   */
+  public static final String JSON_FLOOR = &quot;plancher&quot;;
+
+  /**
+   * Identifiant json {@link #floorAsString}.
+   */
+  public static final String JSON_FLOOR_AS_STRING = JSON_FLOOR + &quot;Chaine&quot;;
+
+  /**
+   * Identifiant json {@link #cap}.
+   */
+  public static final String JSON_CAP = &quot;plafond&quot;;
+
+  /**
+   * Identifiant json {@link #capAsString}.
+   */
+  public static final String JSON_CAP_AS_STRING = JSON_CAP + &quot;Chaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;poste d'élément de salaire&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;postes d'éléments de salaires&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
