@@ -17,11 +17,11 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L18">public class PayrollElementDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
-  @JsonbProperty(JSON_SOURCE_VALUE_IDENTIFIER)
-  private String sourceValueIdentifier;
+  @JsonbProperty(JSON_VALUE_SOURCE_IDENTIFIER)
+  private String valueSourceIdentifier;
 
-  @JsonbProperty(JSON_SOURCE_VALUE_AS_STRING)
-  private String sourceValueAsString;
+  @JsonbProperty(JSON_VALUE_SOURCE_AS_STRING)
+  private String valueSourceAsString;
 
 
   /**
@@ -35,14 +35,14 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;elementPaieChaine&quot;;
 
   /**
-   * Identifiant json de {@link #sourceValueIdentifier}.
+   * Identifiant json de {@link #valueSourceIdentifier}.
    */
-  public static final String JSON_SOURCE_VALUE_IDENTIFIER = &quot;idSourceValue&quot;;
+  public static final String JSON_VALUE_SOURCE_IDENTIFIER = &quot;idSourceValeur&quot;;
 
   /**
-   * Identifiant json de {@link #sourceValueAsString}.
+   * Identifiant json de {@link #valueSourceAsString}.
    */
-  public static final String JSON_SOURCE_VALUE_AS_STRING = &quot;sourceValueAsString&quot;;
+  public static final String JSON_VALUE_SOURCE_AS_STRING = &quot;sourceValeurChaine&quot;;
 
 
   /**

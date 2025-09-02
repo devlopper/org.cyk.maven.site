@@ -56,20 +56,20 @@ public interface PayrollElementService extends SpecificService {
      *
      * @return identifiant source valeur
      */
-    String getSourceValueIdentifier();
+    String getValueSourceIdentifier();
 
     /**
      * Cette méthode me permet d'assigner l'identifiant de source valeur.
      *
      * @param identifier identifiant source valeur
      */
-    void setSourceValueIdentifier(String identifier);
+    void setValueSourceIdentifier(String identifier);
     
 
     /**
      * Identifiant json de source valeur.
      */
-    String JSON_SOURCE_VALUE_IDENTIFIER = &quot;idSourceValue&quot;;
+    String JSON_VALUE_SOURCE_IDENTIFIER = &quot;idSourceValeur&quot;;
 
   }
 
@@ -109,8 +109,8 @@ public interface PayrollElementService extends SpecificService {
 <span class="fc" id="L109">  class PayrollElementCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollElementSaveRequestDto {
 
-    @JsonbProperty(JSON_SOURCE_VALUE_IDENTIFIER)
-    private String sourceValueIdentifier;
+    @JsonbProperty(JSON_VALUE_SOURCE_IDENTIFIER)
+    private String valueSourceIdentifier;
     
   }
 
@@ -241,8 +241,8 @@ public interface PayrollElementService extends SpecificService {
 <span class="fc" id="L241">  class PayrollElementUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollElementSaveRequestDto {
 
-    @JsonbProperty(JSON_SOURCE_VALUE_IDENTIFIER)
-    private String sourceValueIdentifier;
+    @JsonbProperty(JSON_VALUE_SOURCE_IDENTIFIER)
+    private String valueSourceIdentifier;
     
   }
 

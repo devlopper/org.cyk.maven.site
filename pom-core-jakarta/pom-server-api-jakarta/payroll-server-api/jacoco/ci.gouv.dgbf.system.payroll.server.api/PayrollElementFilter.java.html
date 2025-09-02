@@ -18,7 +18,7 @@ public class PayrollElementFilter extends AbstractIdentifiableFilter {
   /**
    * Identifiant de la source de valeur.
    */
-  String sourceValueIdentifier;
+  String valueSourceIdentifier;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -37,13 +37,13 @@ public class PayrollElementFilter extends AbstractIdentifiableFilter {
   @Override
   protected void doInitialize(FilterDto filter) {
 <span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    sourceValueIdentifier = getSourceValueIdentifier(filter);</span>
+<span class="fc" id="L40">    valueSourceIdentifier = getValueSourceIdentifier(filter);</span>
 <span class="fc" id="L41">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
 <span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    setSourceValueIdentifier(filter, sourceValueIdentifier);</span>
+<span class="fc" id="L46">    setValueSourceIdentifier(filter, valueSourceIdentifier);</span>
 <span class="fc" id="L47">  }</span>
 
   /**
@@ -52,8 +52,8 @@ public class PayrollElementFilter extends AbstractIdentifiableFilter {
    * @param filter filtre
    * @param identifier identifiant
    */
-  public static void setSourceValueIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L56">    set(filter, JSON_SOURCE_VALUE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+  public static void setValueSourceIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L56">    set(filter, JSON_VALUE_SOURCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
 <span class="fc" id="L57">        f -&gt; f.setValueAsString(identifier));</span>
 <span class="fc" id="L58">  }</span>
 
@@ -63,15 +63,15 @@ public class PayrollElementFilter extends AbstractIdentifiableFilter {
    * @param filter filtre
    * @return identifiant de la source de valeur
    */
-  public static String getSourceValueIdentifier(FilterDto filter) {
-<span class="fc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SOURCE_VALUE_IDENTIFIER));</span>
+  public static String getValueSourceIdentifier(FilterDto filter) {
+<span class="fc" id="L67">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_VALUE_SOURCE_IDENTIFIER));</span>
   }
 
   /**
-   * Identifiant json champ {@link PayrollElementFilter#sourceValueIdentifier}.
+   * Identifiant json champ {@link PayrollElementFilter#valueSourceIdentifier}.
    */
-  public static final String JSON_SOURCE_VALUE_IDENTIFIER =
-          PayrollElementDto.JSON_SOURCE_VALUE_IDENTIFIER;
+  public static final String JSON_VALUE_SOURCE_IDENTIFIER =
+          PayrollElementDto.JSON_VALUE_SOURCE_IDENTIFIER;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
