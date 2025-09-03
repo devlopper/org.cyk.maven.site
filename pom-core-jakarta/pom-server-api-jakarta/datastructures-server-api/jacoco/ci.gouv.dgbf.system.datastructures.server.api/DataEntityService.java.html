@@ -3,17 +3,18 @@
 import ci.gouv.dgbf.extension.core.segregation.HasCreationScriptDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDeletionScriptDto;
 import ci.gouv.dgbf.extension.core.segregation.HasExistenceVerificationScriptDto;
-import ci.gouv.dgbf.extension.core.segregation.HasLongTotalDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierGetValuesRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesCountResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesMapResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -69,7 +70,7 @@ public interface DataEntityService extends SpecificService {
      * @param type le type
      */
     void setType(DataEntityType type);
-    
+
     /**
      * Cette méthode permet d'obtenir le script de création.
      *
@@ -116,7 +117,7 @@ public interface DataEntityService extends SpecificService {
      * Identifiant json du type.
      */
     String JSON_TYPE = &quot;type&quot;;
-    
+
     /**
      * {@link HasCreationScriptDto#JSON_CREATION_SCRIPT}.
      */
@@ -167,12 +168,12 @@ public interface DataEntityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  class DataEntityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L171">  class DataEntityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DataEntitySaveRequestDto {
 
     @JsonbProperty(JSON_TYPE)
     private DataEntityType type;
-    
+
     @JsonbProperty(JSON_CREATION_SCRIPT)
     private String creationScript;
 
@@ -216,7 +217,7 @@ public interface DataEntityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  public static class DataEntityGetManyResponseDto</span>
+<span class="fc" id="L220">  public static class DataEntityGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DataEntityDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -244,47 +245,9 @@ public interface DataEntityService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_VALUES_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = DataEntityGetValuesResponseDto.class))})
-  Response getValues(DataEntityGetValuesRequestDto request);
-
-  /**
-   * Cette classe représente la requête d'obtention des valeurs.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L259">  class DataEntityGetValuesRequestDto extends ByIdentifierRequestDto {</span>
-    /**
-     * Page.
-     */
-    @JsonbProperty(JSON_PAGE)
-    PageDto page;
-
-    /**
-     * Identifiant json {@link #page}.
-     */
-    public static final String JSON_PAGE = &quot;page&quot;;
-  }
-
-  /**
-   * Cette classe représente la réponse d'obtention des valeurs.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L280">  class DataEntityGetValuesResponseDto extends IdentifiableResponseDto implements HasLongTotalDto {</span>
-
-    @JsonbProperty(&quot;valeurs&quot;)
-    private List&lt;String&gt; values;
-
-    @JsonbProperty(JSON_TOTAL)
-    private Long total;
-  }
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ByIdentifierGetValuesMapResponseDto.class))})
+  Response getValues(ByIdentifierGetValuesRequestDto request);
 
   /**
    * Identifiant du service d'obtention du nombre de valeurs.
@@ -308,23 +271,8 @@ public interface DataEntityService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_VALUES_COUNT_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;, content = {
-      @Content(schema = @Schema(implementation = DataEntityGetValuesCountResponseDto.class))})
+      @Content(schema = @Schema(implementation = ByIdentifierGetValuesCountResponseDto.class))})
   Response getValuesCount(ByIdentifierRequestDto request);
-
-  /**
-   * Cette classe représente la réponse d'obtention du nombre de valeurs.
-   *
-   * @author Christian
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L322">  class DataEntityGetValuesCountResponseDto extends IdentifiableResponseDto</span>
-      implements HasLongTotalDto {
-
-    @JsonbProperty(JSON_TOTAL)
-    private Long total;
-  }
 
   /**
    * Identifiant du service d'obtention de un.
@@ -409,12 +357,12 @@ public interface DataEntityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L412">  class DataEntityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L360">  class DataEntityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DataEntitySaveRequestDto {
 
     @JsonbProperty(JSON_TYPE)
     private DataEntityType type;
-    
+
     @JsonbProperty(JSON_CREATION_SCRIPT)
     private String creationScript;
 

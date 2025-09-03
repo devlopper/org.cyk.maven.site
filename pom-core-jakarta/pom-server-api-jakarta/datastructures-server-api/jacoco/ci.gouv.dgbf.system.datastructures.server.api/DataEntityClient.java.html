@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierGetValuesRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
@@ -12,6 +13,8 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesCountResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesMapResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
@@ -19,9 +22,6 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.datastructures.server.api.DataEntityService.DataEntityCreateRequestDto;
 import ci.gouv.dgbf.system.datastructures.server.api.DataEntityService.DataEntityGetManyResponseDto;
-import ci.gouv.dgbf.system.datastructures.server.api.DataEntityService.DataEntityGetValuesCountResponseDto;
-import ci.gouv.dgbf.system.datastructures.server.api.DataEntityService.DataEntityGetValuesRequestDto;
-import ci.gouv.dgbf.system.datastructures.server.api.DataEntityService.DataEntityGetValuesResponseDto;
 import ci.gouv.dgbf.system.datastructures.server.api.DataEntityService.DataEntityUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -63,9 +63,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public DataEntityGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L66">    return new GetOneExecutor&lt;DataEntityGetManyResponseDto&gt;(</span>
-        DataEntityGetManyResponseDto.class, DataEntityService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L68">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L66">    return new GetOneExecutor&lt;DataEntityGetManyResponseDto&gt;(DataEntityGetManyResponseDto.class,</span>
+<span class="fc" id="L67">        DataEntityService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -81,13 +80,13 @@ import lombok.experimental.Accessors;
   @Override
   public DataEntityGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L84">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L85">    request.setProjection(projection);</span>
-<span class="fc" id="L86">    request.setFilter(filter);</span>
-<span class="fc" id="L87">    request.setPage(page);</span>
-<span class="fc" id="L88">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L89">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L90">    return getMany(request);</span>
+<span class="fc" id="L83">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L84">    request.setProjection(projection);</span>
+<span class="fc" id="L85">    request.setFilter(filter);</span>
+<span class="fc" id="L86">    request.setPage(page);</span>
+<span class="fc" id="L87">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L88">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L89">    return getMany(request);</span>
   }
 
   /**
@@ -96,11 +95,10 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public DataEntityGetValuesResponseDto getValues(
-      DataEntityGetValuesRequestDto request) {
-<span class="fc" id="L101">    return new GetOneExecutor&lt;DataEntityGetValuesResponseDto&gt;(</span>
-        DataEntityGetValuesResponseDto.class, DataEntityService.GET_VALUES_IDENTIFIER)
-<span class="fc" id="L103">            .execute(() -&gt; service().getValues(request));</span>
+  public ByIdentifierGetValuesMapResponseDto getValues(ByIdentifierGetValuesRequestDto request) {
+<span class="fc" id="L99">    return new GetOneExecutor&lt;ByIdentifierGetValuesMapResponseDto&gt;(</span>
+        ByIdentifierGetValuesMapResponseDto.class, DataEntityService.GET_VALUES_IDENTIFIER)
+<span class="fc" id="L101">            .execute(() -&gt; service().getValues(request));</span>
   }
 
   /**
@@ -109,11 +107,10 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public DataEntityGetValuesCountResponseDto getValuesCount(ByIdentifierRequestDto request) {
-<span class="fc" id="L113">    return new GetOneExecutor&lt;DataEntityGetValuesCountResponseDto&gt;(</span>
-        DataEntityGetValuesCountResponseDto.class,
-        DataEntityService.GET_VALUES_COUNT_IDENTIFIER)
-<span class="fc" id="L116">            .execute(() -&gt; service().getValuesCount(request));</span>
+  public ByIdentifierGetValuesCountResponseDto getValuesCount(ByIdentifierRequestDto request) {
+<span class="fc" id="L111">    return new GetOneExecutor&lt;ByIdentifierGetValuesCountResponseDto&gt;(</span>
+        ByIdentifierGetValuesCountResponseDto.class, DataEntityService.GET_VALUES_COUNT_IDENTIFIER)
+<span class="fc" id="L113">            .execute(() -&gt; service().getValuesCount(request));</span>
   }
 
   /**
@@ -123,8 +120,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public DataEntityDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L126">    return new GetOneExecutor&lt;DataEntityDto&gt;(DataEntityDto.class,</span>
-<span class="fc" id="L127">        DataEntityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L123">    return new GetOneExecutor&lt;DataEntityDto&gt;(DataEntityDto.class,</span>
+<span class="fc" id="L124">        DataEntityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -138,12 +135,12 @@ import lombok.experimental.Accessors;
    */
   public DataEntityDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L141">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L142">    request.setProjection(projection);</span>
-<span class="fc" id="L143">    request.setFilter(filter);</span>
-<span class="fc" id="L144">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L145">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L146">    return getOne(request);</span>
+<span class="fc" id="L138">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L139">    request.setProjection(projection);</span>
+<span class="fc" id="L140">    request.setFilter(filter);</span>
+<span class="fc" id="L141">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L142">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L143">    return getOne(request);</span>
   }
 
   /**
@@ -153,9 +150,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public DataEntityDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L156">    return new GetOneExecutor&lt;DataEntityDto&gt;(DataEntityDto.class,</span>
+<span class="fc" id="L153">    return new GetOneExecutor&lt;DataEntityDto&gt;(DataEntityDto.class,</span>
         DataEntityService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L158">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L155">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -168,14 +165,14 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public DataEntityDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
-<span class="fc" id="L173">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L174">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L175">    request.setProjection(projection);</span>
-<span class="fc" id="L176">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L177">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L178">    return getByIdentifier(request);</span>
+  public DataEntityDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
+<span class="fc" id="L170">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L171">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L172">    request.setProjection(projection);</span>
+<span class="fc" id="L173">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L174">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L175">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -185,8 +182,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(DataEntityUpdateRequestDto request) {
-<span class="fc" id="L188">    return new IdentifiableExecutor(DataEntityService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L189">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L185">    return new IdentifiableExecutor(DataEntityService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L186">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -196,8 +193,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L199">    return new IdentifiableExecutor(DataEntityService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L200">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L196">    return new IdentifiableExecutor(DataEntityService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L197">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -211,11 +208,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L214">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L215">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L216">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L217">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L218">    return delete(request);</span>
+<span class="fc" id="L211">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L212">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L213">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L214">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L215">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
