@@ -13,8 +13,8 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetGridValuesResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesCountResponseDto;
-import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesMapResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -246,7 +246,7 @@ public interface DataEntityService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_VALUES_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;, content = {
-      @Content(schema = @Schema(implementation = ByIdentifierGetValuesMapResponseDto.class))})
+      @Content(schema = @Schema(implementation = ByIdentifierGetGridValuesResponseDto.class))})
   Response getValues(ByIdentifierGetValuesRequestDto request);
 
   /**

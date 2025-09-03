@@ -13,8 +13,8 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetGridValuesResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesCountResponseDto;
-import ci.gouv.dgbf.extension.server.service.api.response.ByIdentifierGetValuesMapResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
@@ -95,9 +95,9 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public ByIdentifierGetValuesMapResponseDto getValues(ByIdentifierGetValuesRequestDto request) {
-<span class="fc" id="L99">    return new GetOneExecutor&lt;ByIdentifierGetValuesMapResponseDto&gt;(</span>
-        ByIdentifierGetValuesMapResponseDto.class, DataEntityService.GET_VALUES_IDENTIFIER)
+  public ByIdentifierGetGridValuesResponseDto getValues(ByIdentifierGetValuesRequestDto request) {
+<span class="fc" id="L99">    return new GetOneExecutor&lt;ByIdentifierGetGridValuesResponseDto&gt;(</span>
+        ByIdentifierGetGridValuesResponseDto.class, DataEntityService.GET_VALUES_IDENTIFIER)
 <span class="fc" id="L101">            .execute(() -&gt; service().getValues(request));</span>
   }
 

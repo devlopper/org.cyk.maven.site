@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasDeletionScriptDto;
 import ci.gouv.dgbf.extension.core.segregation.HasExistenceVerificationScriptDto;
 import ci.gouv.dgbf.extension.core.segregation.HasIsExistsDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTypeAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValuesCountAsStringDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -20,9 +21,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L23">public class DataEntityDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L24">public class DataEntityDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasTypeAsStringDto, HasCreationScriptDto, HasDeletionScriptDto,
-    HasExistenceVerificationScriptDto, HasIsExistsDto {
+    HasExistenceVerificationScriptDto, HasIsExistsDto, HasValuesCountAsStringDto {
 
   @JsonbProperty(JSON_TYPE)
   private DataEntityType type;
@@ -42,6 +43,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_IS_EXISTS)
   private Boolean isExists;
 
+  @JsonbProperty(JSON_VALUES_COUNT_AS_STRING)
+  private String valuesCountAsString;
+  
   /**
    * Identifiant json de l'identifiant.
    */
