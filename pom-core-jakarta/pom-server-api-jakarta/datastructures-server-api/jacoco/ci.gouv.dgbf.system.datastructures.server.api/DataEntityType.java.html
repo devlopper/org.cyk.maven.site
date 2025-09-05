@@ -33,17 +33,30 @@ public enum DataEntityType {
    */
 <span class="fc" id="L34">  API(DataEntityTypeCode.API, &quot;API&quot;);</span>
 
+  /**
+   * Code.
+   */
   String code;
+  
+  /**
+   * Libellé.
+   */
   String name;
 
-<span class="fc" id="L39">  private DataEntityType(String code, String name) {</span>
-<span class="fc" id="L40">    this.code = code;</span>
-<span class="fc" id="L41">    this.name = name;</span>
-<span class="fc" id="L42">  }</span>
+  /**
+   * Cette méthode perme de construire.
+   *
+   * @param code code
+   * @param name libellé
+   */
+<span class="fc" id="L52">  private DataEntityType(String code, String name) {</span>
+<span class="fc" id="L53">    this.code = code;</span>
+<span class="fc" id="L54">    this.name = name;</span>
+<span class="fc" id="L55">  }</span>
 
   @Override
   public String toString() {
-<span class="fc" id="L46">    return name;</span>
+<span class="fc" id="L59">    return name;</span>
   }
 
   /**
@@ -53,8 +66,8 @@ public enum DataEntityType {
    * @return {@link DataEntityType}
    */
   public static DataEntityType getByCode(String code) {
-<span class="fc" id="L56">    return Stream.of(DataEntityType.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L57">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L69">    return Stream.of(DataEntityType.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L70">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
