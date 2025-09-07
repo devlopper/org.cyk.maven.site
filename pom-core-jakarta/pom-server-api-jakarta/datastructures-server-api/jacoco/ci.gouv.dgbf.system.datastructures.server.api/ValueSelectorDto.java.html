@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ValueSelectorDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de datastructures</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.datastructures.server.api</a> &gt; <span class="el_source">ValueSelectorDto.java</span></div><h1>ValueSelectorDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.datastructures.server.api;
 
-import ci.gouv.dgbf.extension.core.segregation.HasFilterColumnNameDto;
-import ci.gouv.dgbf.extension.core.segregation.HasFilterColumnValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFilterAttributeNameDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFilterAttributeValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasNameDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRequestAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasSourceAsStringDto;
@@ -22,8 +22,8 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L24">public class ValueSelectorDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasNameDto, HasSourceIdentifierDto, HasSourceAsStringDto, HasFilterColumnNameDto,
-    HasRequestAsStringDto, HasFilterColumnValueDto {
+    implements HasNameDto, HasSourceIdentifierDto, HasSourceAsStringDto, HasFilterAttributeNameDto,
+    HasRequestAsStringDto, HasFilterAttributeValueDto {
 
   @JsonbProperty(JSON_NAME)
   private String name;
@@ -34,14 +34,14 @@ import lombok.Setter;
   @JsonbProperty(JSON_SOURCE_AS_STRING)
   private String sourceAsString;
 
-  @JsonbProperty(JSON_FILTER_COLUMN_NAME)
-  private String filterColumnName;
+  @JsonbProperty(JSON_FILTER_ATTRIBUTE_NAME)
+  private String filterAttributeName;
 
   @JsonbProperty(JSON_REQUEST_AS_STRING)
   private String requestAsString;
 
-  @JsonbProperty(JSON_FILTER_COLUMN_VALUE)
-  private String filterColumnValue;
+  @JsonbProperty(JSON_FILTER_ATTRIBUTE_VALUE)
+  private String filterAttributeValue;
 
   /**
    * Identifiant json de l'identifiant.

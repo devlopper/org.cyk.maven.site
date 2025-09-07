@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-09-05T21:13:01+0000&quot;,
+    date = &quot;2025-09-07T22:44:07+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -29,7 +29,7 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L29">        valueSelectorCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
 <span class="fc" id="L30">        valueSelectorCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L31">        valueSelectorCreateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
-<span class="fc" id="L32">        valueSelectorCreateRequestDto.setFilterColumnName( arg0.getFilterColumnName() );</span>
+<span class="fc" id="L32">        valueSelectorCreateRequestDto.setFilterAttributeName( arg0.getFilterAttributeName() );</span>
 
 <span class="fc" id="L34">        return valueSelectorCreateRequestDto;</span>
     }
@@ -47,7 +47,7 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L47">        valueSelectorUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
 <span class="fc" id="L48">        valueSelectorUpdateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L49">        valueSelectorUpdateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
-<span class="fc" id="L50">        valueSelectorUpdateRequestDto.setFilterColumnName( arg0.getFilterColumnName() );</span>
+<span class="fc" id="L50">        valueSelectorUpdateRequestDto.setFilterAttributeName( arg0.getFilterAttributeName() );</span>
 
 <span class="fc" id="L52">        return valueSelectorUpdateRequestDto;</span>
     }
@@ -63,9 +63,8 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L63">        valueSelectorEvaluateRequestDto.setAuditWho( valueSelector.getAuditWho() );</span>
 <span class="fc" id="L64">        valueSelectorEvaluateRequestDto.setAuditSession( valueSelector.getAuditSession() );</span>
 <span class="fc" id="L65">        valueSelectorEvaluateRequestDto.setIdentifier( valueSelector.getIdentifier() );</span>
-<span class="fc" id="L66">        valueSelectorEvaluateRequestDto.setFilterColumnValue( valueSelector.getFilterColumnValue() );</span>
 
-<span class="fc" id="L68">        return valueSelectorEvaluateRequestDto;</span>
+<span class="fc" id="L67">        return valueSelectorEvaluateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
