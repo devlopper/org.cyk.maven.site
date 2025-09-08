@@ -384,16 +384,16 @@ public interface ValueConditionService extends SpecificService {
 <span class="fc" id="L384">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
-     * Valeur de la colonne de filtre du sélecteur.
+     * Valeur de l'attribut de filtre du sélecteur.
      */
-    @JsonbProperty(JSON_VALUE_SELECTOR_FILTER_COLUMN_VALUE)
-    private String valueSelectorFilterColumnValue;
+    @JsonbProperty(JSON_VALUE_SELECTOR_FILTER_ATTRIBUTE_VALUE)
+    private String valueSelectorFilterAttributeValue;
 
     /**
-     * Identifiant json {@link #valueSelectorFilterColumnValue}.
+     * Identifiant json {@link #valueSelectorFilterAttributeValue}.
      */
-    public static final String JSON_VALUE_SELECTOR_FILTER_COLUMN_VALUE =
-        &quot;valeurColonneFiltreSelecteur&quot;;
+    public static final String JSON_VALUE_SELECTOR_FILTER_ATTRIBUTE_VALUE =
+        &quot;valeurAttributFiltreSelecteur&quot;;
   }
 
   /**
