@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConditionalValueService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ConditionalValueService.java</span></div><h1>ConditionalValueService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
 import ci.gouv.dgbf.extension.core.enumeration.ValueType;
+import ci.gouv.dgbf.extension.core.segregation.HasBooleanValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -145,7 +147,7 @@ public interface ConditionalValueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">  class ConditionalValueCreateRequestDto extends AbstractCodableCreateRequestJsonDto</span>
+<span class="fc" id="L150">  class ConditionalValueCreateRequestDto extends AbstractCodableCreateRequestJsonDto</span>
       implements ConditionalValueSaveRequestDto {
 
     /**
@@ -194,7 +196,7 @@ public interface ConditionalValueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L197">  public static class ConditionalValueGetManyResponseDto</span>
+<span class="fc" id="L199">  public static class ConditionalValueGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConditionalValueDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -284,7 +286,7 @@ public interface ConditionalValueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L287">  class ConditionalValueUpdateRequestDto extends AbstractCodableUpdateRequestJsonDto</span>
+<span class="fc" id="L289">  class ConditionalValueUpdateRequestDto extends AbstractCodableUpdateRequestJsonDto</span>
       implements ConditionalValueSaveRequestDto {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
@@ -295,6 +297,68 @@ public interface ConditionalValueService extends SpecificService {
 
     @JsonbProperty(JSON_VALUE_TYPE)
     private ValueType valueType;
+  }
+
+  /**
+   * Identifiant du service de vérification d'applicabilité.
+   */
+  String CHECK_APPLICABILITY_IDENTIFIER = &quot;VERIFICATION_APPLICABILITE_VALEUR_CONDITIONNEE&quot;;
+
+  /**
+   * Chemin du service de vérification d'applicabilité.
+   */
+  String CHECK_APPLICABILITY_PATH = &quot;verification-applicabilite&quot;;
+
+  /**
+   * Cette méthode permet de vérifier l'applicabilité.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CHECK_APPLICABILITY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CHECK_APPLICABILITY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(
+      schema = @Schema(implementation = ConditionalValueCheckApplicabilityResponseDto.class))})
+  Response checkApplicability(ConditionalValueCheckApplicabilityRequestDto request);
+
+  /**
+   * Cette classe représente la requête de vérification d'applicabilité.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L335">  class ConditionalValueCheckApplicabilityRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Valeur de filtre.
+     */
+    @JsonbProperty(JSON_FILTER_VALUE)
+    private String filterValue;
+
+    /**
+     * Identifiant json {@link #filterValue}.
+     */
+    public static final String JSON_FILTER_VALUE = &quot;filterValue&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse de vérification d'applicabilité.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L357">  class ConditionalValueCheckApplicabilityResponseDto extends IdentifiableResponseDto</span>
+      implements HasBooleanValueDto {
+
+    @JsonbProperty(JSON_VALUE)
+    private Boolean value;
   }
 
   /**

@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConditionalValueGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ConditionalValueGroupService.java</span></div><h1>ConditionalValueGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
+import ci.gouv.dgbf.extension.core.enumeration.ValueType;
 import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
+import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -104,7 +108,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L107">  class ConditionalValueGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L111">  class ConditionalValueGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ConditionalValueGroupSaveRequestDto {
 
     /**
@@ -147,7 +151,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class ConditionalValueGroupGetManyResponseDto</span>
+<span class="fc" id="L154">  public static class ConditionalValueGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConditionalValueGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -237,7 +241,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class ConditionalValueGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L244">  class ConditionalValueGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ConditionalValueGroupSaveRequestDto {
 
     /**
@@ -245,6 +249,71 @@ public interface ConditionalValueGroupService extends SpecificService {
      */
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
+  }
+
+  /**
+   * Identifiant du service d'obtention de la valeur applicable.
+   */
+  String GET_APPLICABLE_VALUE_IDENTIFIER = &quot;OBTENIR_VALEUR_APPLICABLE_GROUPE_VALEUR_CONDITIONNEE&quot;;
+
+  /**
+   * Chemin du service d'obtention de la valeur applicable.
+   */
+  String GET_APPLICABLE_VALUE_PATH = &quot;obtention/valeur-applicable&quot;;
+
+  /**
+   * Cette méthode permet de d'obtenir la valeur applicable.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_APPLICABLE_VALUE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = GET_APPLICABLE_VALUE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = GetApplicableValueResponseDto.class))})
+  Response getApplicableValue(GetApplicableValueRequestDto request);
+
+  /**
+   * Cette classe représente la requête de vérification d'applicabilité.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L287">  class GetApplicableValueRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Valeur de filtre.
+     */
+    @JsonbProperty(JSON_FILTER_VALUE)
+    private String filterValue;
+
+    /**
+     * Identifiant json {@link #filterValue}.
+     */
+    public static final String JSON_FILTER_VALUE = &quot;filterValue&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse de vérification d'applicabilité.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L309">  class GetApplicableValueResponseDto extends IdentifiableResponseDto</span>
+      implements HasStringValueDto, HasValueTypeDto {
+
+    @JsonbProperty(JSON_VALUE)
+    private String value;
+
+    @JsonbProperty(JSON_VALUE_TYPE)
+    private ValueType valueType;
   }
 
   /**
