@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-09-09T12:03:40+0000&quot;,
+    date = &quot;2025-09-09T12:57:07+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -48,6 +48,20 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L48">        conditionalValueUpdateRequestDto.setValueType( arg0.getValueType() );</span>
 
 <span class="fc" id="L50">        return conditionalValueUpdateRequestDto;</span>
+    }
+
+    @Override
+    public ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto mapCheckApplicability(ConditionalValueDto conditionalValue) {
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if ( conditionalValue == null ) {</span>
+<span class="fc" id="L56">            return null;</span>
+        }
+
+<span class="fc" id="L59">        ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto conditionalValueCheckApplicabilityRequestDto = new ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto();</span>
+
+<span class="fc" id="L61">        conditionalValueCheckApplicabilityRequestDto.setIdentifier( conditionalValue.getIdentifier() );</span>
+<span class="fc" id="L62">        conditionalValueCheckApplicabilityRequestDto.setFilterValue( conditionalValue.getFilterValue() );</span>
+
+<span class="fc" id="L64">        return conditionalValueCheckApplicabilityRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
