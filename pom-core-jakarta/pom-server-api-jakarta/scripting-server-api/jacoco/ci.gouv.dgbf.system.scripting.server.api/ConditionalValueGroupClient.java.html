@@ -17,10 +17,10 @@ import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.scripting.server.api.ConditionalValueGroupService.ConditionalValueGroupCreateRequestDto;
+import ci.gouv.dgbf.system.scripting.server.api.ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueRequestDto;
+import ci.gouv.dgbf.system.scripting.server.api.ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueResponseDto;
 import ci.gouv.dgbf.system.scripting.server.api.ConditionalValueGroupService.ConditionalValueGroupGetManyResponseDto;
 import ci.gouv.dgbf.system.scripting.server.api.ConditionalValueGroupService.ConditionalValueGroupUpdateRequestDto;
-import ci.gouv.dgbf.system.scripting.server.api.ConditionalValueGroupService.GetApplicableValueRequestDto;
-import ci.gouv.dgbf.system.scripting.server.api.ConditionalValueGroupService.GetApplicableValueResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -156,10 +156,12 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public GetApplicableValueResponseDto getApplicableValue(GetApplicableValueRequestDto request) {
-<span class="fc" id="L160">    return new GetOneExecutor&lt;GetApplicableValueResponseDto&gt;(GetApplicableValueResponseDto.class,</span>
+  public ConditionalValueGroupGetApplicableValueResponseDto getApplicableValue(
+      ConditionalValueGroupGetApplicableValueRequestDto request) {
+<span class="fc" id="L161">    return new GetOneExecutor&lt;ConditionalValueGroupGetApplicableValueResponseDto&gt;(</span>
+        ConditionalValueGroupGetApplicableValueResponseDto.class,
         ConditionalValueGroupService.GET_APPLICABLE_VALUE_IDENTIFIER)
-<span class="fc" id="L162">            .execute(() -&gt; service().getApplicableValue(request));</span>
+<span class="fc" id="L164">            .execute(() -&gt; service().getApplicableValue(request));</span>
   }
 
   /**
@@ -169,8 +171,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(ConditionalValueGroupUpdateRequestDto request) {
-<span class="fc" id="L172">    return new IdentifiableExecutor(ConditionalValueGroupService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L173">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L174">    return new IdentifiableExecutor(ConditionalValueGroupService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L175">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -180,8 +182,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L183">    return new IdentifiableExecutor(ConditionalValueGroupService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L184">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L185">    return new IdentifiableExecutor(ConditionalValueGroupService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L186">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -195,11 +197,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L198">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L199">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L200">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L201">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L202">    return delete(request);</span>
+<span class="fc" id="L200">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L201">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L202">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L203">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L204">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
