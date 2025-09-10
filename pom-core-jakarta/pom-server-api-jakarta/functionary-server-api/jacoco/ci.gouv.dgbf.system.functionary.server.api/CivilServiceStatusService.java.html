@@ -36,13 +36,13 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = CivilServiceStatusService.PATH)
-@Tag(name = &quot;Gestion des statut général&quot;)
+@Tag(name = &quot;Gestion des statut de la fonction publique&quot;)
 public interface CivilServiceStatusService extends SpecificService {
 
   /**
    * Chemin de base des services.
    */
-  String PATH = &quot;statutgeneral&quot;;
+  String PATH = &quot;statuts-fonction-publique&quot;;
 
   /**
    * Cette interface représente une requête d'enregistrement.
@@ -57,7 +57,7 @@ public interface CivilServiceStatusService extends SpecificService {
   /**
    * Identifiant du service de création.
    */
-  String CREATE_IDENTIFIER = &quot;CREATION_STATUT_GENERAL&quot;;
+  String CREATE_IDENTIFIER = &quot;CREATION_STATUT_FONCTION_PUBLIQUE&quot;;
 
   /**
    * Chemin du service de création.
@@ -95,7 +95,7 @@ public interface CivilServiceStatusService extends SpecificService {
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_STATUT_GENERAL&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_STATUT_FONCTION_PUBLIQUE&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -137,7 +137,7 @@ public interface CivilServiceStatusService extends SpecificService {
   /**
    * Identifiant du service d'obtention de un.
    */
-  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_STATUT_GENERAL&quot;;
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_STATUT_FONCTION_PUBLIQUE&quot;;
 
   /**
    * Chemin du service d'obtention de un.
@@ -162,7 +162,7 @@ public interface CivilServiceStatusService extends SpecificService {
   /**
    * Identifiant du service d'obtention par identifiant de un.
    */
-  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_STATUT_GENERAL&quot;;
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_STATUT_FONCTION_PUBLIQUE&quot;;
 
   /**
    * Chemin du service d'obtention par identifiant de un.
@@ -187,7 +187,7 @@ public interface CivilServiceStatusService extends SpecificService {
   /**
    * Identifiant du service de mise à jour.
    */
-  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_STATUT_GENERAL&quot;;
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_STATUT_FONCTION_PUBLIQUE&quot;;
 
   /**
    * Chemin du service de mise à jour.
@@ -225,7 +225,7 @@ public interface CivilServiceStatusService extends SpecificService {
   /**
    * Identifiant du service de suppression.
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_STATUT_GENERAL&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_STATUT_FONCTION_PUBLIQUE&quot;;
 
   /**
    * Chemin du service de suppression.
@@ -250,7 +250,7 @@ public interface CivilServiceStatusService extends SpecificService {
   /**
    * Identifiant du service d'obtention du nombre.
    */
-  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_STATUT_GENERAL&quot;;
+  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_STATUT_FONCTION_PUBLIQUE&quot;;
 
   /**
    * Chemin du service d'obtention du nombre.
