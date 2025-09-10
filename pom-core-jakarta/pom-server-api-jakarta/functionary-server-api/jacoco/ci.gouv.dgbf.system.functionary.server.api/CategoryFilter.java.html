@@ -18,10 +18,10 @@ public class CategoryFilter extends AbstractIdentifiableFilter {
 
 
   /**
-   * Identifiant de {@link GeneralCivilServiceStatusDto}.
+   * Identifiant de {@link CivilServiceStatusDto}.
    */
-  @JsonbProperty(value = JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER)
-  String generalCivilServiceStatusIdentifier;
+  @JsonbProperty(value = JSON_CIVIL_SERVICE_STATUS_IDENTIFIER)
+  String civilServiceStatusIdentifier;
 
 
   /**
@@ -43,44 +43,44 @@ public class CategoryFilter extends AbstractIdentifiableFilter {
   @Override
   protected void doInitialize(FilterDto filter) {
 <span class="fc" id="L45">    super.doInitialize(filter);</span>
-<span class="fc" id="L46">    generalCivilServiceStatusIdentifier = getGeneralCivilServiceStatusIdentifier(filter);</span>
+<span class="fc" id="L46">    civilServiceStatusIdentifier = getCivilServiceStatusIdentifier(filter);</span>
 
 <span class="fc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
 <span class="fc" id="L52">    super.toDto(filter);</span>
-<span class="fc" id="L53">    setGeneralCivilServiceStatusIdentifier(filter, generalCivilServiceStatusIdentifier);</span>
+<span class="fc" id="L53">    setCivilServiceStatusIdentifier(filter, civilServiceStatusIdentifier);</span>
 <span class="fc" id="L54">  }</span>
 
   /**
-   * Cette méthode permet d'assigner {@link #generalCivilServiceStatusIdentifier}.
+   * Cette méthode permet d'assigner {@link #civilServiceStatusIdentifier}.
    *
-   * @param filter                              filtre
-   * @param generalCivilServiceStatusIdentifier {@link #generalCivilServiceStatusIdentifier}
+   * @param filter                            filtre
+   * @param civilServiceStatusIdentifier {@link #civilServiceStatusIdentifier}
    */
-  public static void setGeneralCivilServiceStatusIdentifier(FilterDto filter, 
-      String generalCivilServiceStatusIdentifier) {
-<span class="pc" id="L64">    set(filter, JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L65">              f -&gt; f.setValueAsString(generalCivilServiceStatusIdentifier));</span>
+  public static void setCivilServiceStatusIdentifier(FilterDto filter,
+      String civilServiceStatusIdentifier) {
+<span class="pc" id="L64">    set(filter, JSON_CIVIL_SERVICE_STATUS_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L65">              f -&gt; f.setValueAsString(civilServiceStatusIdentifier));</span>
 <span class="fc" id="L66">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir {@link #generalCivilServiceStatusIdentifier}.
+   * Cette méthode permet d'obtenir {@link #civilServiceStatusIdentifier}.
    *
    * @param filter filtre
-   * @return {@link #generalCivilServiceStatusIdentifier}
+   * @return {@link #civilServiceStatusIdentifier}
    */
-  public static String getGeneralCivilServiceStatusIdentifier(FilterDto filter) {
+  public static String getCivilServiceStatusIdentifier(FilterDto filter) {
 <span class="fc" id="L75">    return get(filter, d -&gt; d</span>
-<span class="fc" id="L76">      .getFieldValueAsStringByName(JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER));</span>
+<span class="fc" id="L76">      .getFieldValueAsStringByName(JSON_CIVIL_SERVICE_STATUS_IDENTIFIER));</span>
   }
 
   /**
-   * Identifiant json du {@link #generalCivilServiceStatusIdentifier}.
+   * Identifiant json du {@link #civilServiceStatusIdentifier}.
    */
-  public static final String JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER = 
-      CategoryDto.JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER;
-  
+  public static final String JSON_CIVIL_SERVICE_STATUS_IDENTIFIER = 
+      CategoryDto.JSON_CIVIL_SERVICE_STATUS_IDENTIFIER;
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

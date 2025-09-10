@@ -17,11 +17,11 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L18">public class EchelonDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
-  @JsonbProperty(JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER)
-  private String generalCivilServiceStatusIdentifier;
+  @JsonbProperty(JSON_CIVIL_SERVICE_STATUS_IDENTIFIER)
+  private String civilServiceStatusIdentifier;
 
-  @JsonbProperty(JSON_GENERAL_CIVIL_SERVICE_STATUS_AS_STRING)
-  private String generalCivilServiceStatusAsString;
+  @JsonbProperty(JSON_CIVIL_SERVICE_STATUS_AS_STRING)
+  private String civilServiceStatusAsString;
 
   /**
    * Identifiant json de l'identifiant.
@@ -34,17 +34,17 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;echelonChaine&quot;;
 
   /**
-   * Identifiant json de {@link #generalCivilServiceStatusIdentifier}.
+   * Identifiant json de {@link #civilServiceStatusIdentifier}.
    */
-  public static final String JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER =
-      GeneralCivilServiceStatusDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_CIVIL_SERVICE_STATUS_IDENTIFIER =
+      CivilServiceStatusDto.JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json de {@link #generalCivilServiceStatusAsString}.
+   * Identifiant json de {@link #civilServiceStatusAsString}.
    */
-  public static final String JSON_GENERAL_CIVIL_SERVICE_STATUS_AS_STRING =
-      GeneralCivilServiceStatusDto.JSON_THIS_AS_STRING;
-  
+  public static final String JSON_CIVIL_SERVICE_STATUS_AS_STRING =
+      CivilServiceStatusDto.JSON_THIS_AS_STRING;
+
   /**
    * Nom pour lecture humaine de la classe.
    */

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CivilServiceStatusDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">CivilServiceStatusDto.java</span></div><h1>CivilServiceStatusDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un statut de la fonction publique.
+ *
+ * @author Arnaud
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class CivilServiceStatusDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link CategoryDto}.
+   */
+  @JsonbProperty(JSON_CATEGORY_COUNT_AS_STRING)
+  private String categoryCountAsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link GradeClassDto}.
+   */
+  @JsonbProperty(JSON_GRADE_CLASS_COUNT_AS_STRING)
+  private String gradeClassCountAsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link EchelonDto}.
+   */
+  @JsonbProperty(JSON_ECHELON_COUNT_AS_STRING)
+  private String echelonCountAsString;
+
+  /**
+   * Représentation en chaine de caractères du nombre de {@link PayScaleDto}.
+   */
+  @JsonbProperty(JSON_PAYSCALE_COUNT_AS_STRING)
+  private String payScaleCountAsString;
+
+  /**
+   * Identifiant JSON de {@link #categoryCountAsString}.
+   */
+  public static final String JSON_CATEGORY_COUNT_AS_STRING = &quot;nombreCategorieChaine&quot;;
+
+  /**
+   * Identifiant JSON de {@link #gradeClassCountAsString}.
+   */
+  public static final String JSON_GRADE_CLASS_COUNT_AS_STRING = &quot;nombreClasseChaine&quot;;
+
+  /**
+   * Identifiant JSON de {@link #echelonCountAsString}.
+   */
+  public static final String JSON_ECHELON_COUNT_AS_STRING = &quot;nombreEchelonChaine&quot;;
+
+  /**
+   * Identifiant JSON de {@link #payScaleCountAsString}.
+   */
+  public static final String JSON_PAYSCALE_COUNT_AS_STRING = &quot;nombreGrilleIndiciaireChaine&quot;;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idStatutFonctionPublique&quot;;
+  
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;statutFonctionPubliqueChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;Statut de la fonction publique&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;Statuts de la fonction publique&quot;;
+  
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

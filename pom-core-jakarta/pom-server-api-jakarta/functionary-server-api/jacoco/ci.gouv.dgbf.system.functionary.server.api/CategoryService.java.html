@@ -52,24 +52,24 @@ public interface CategoryService extends SpecificService {
   interface CategorySaveRequestDto {
 
     /**
-     * Cette méthode me permet d'obtenir l'identifiant de {@link GeneralCivilServiceStatusDto}.
+     * Cette méthode me permet d'obtenir l'identifiant de {@link CivilServiceStatusDto}.
      *
-     * @return identifiant de {@link GeneralCivilServiceStatusDto}
+     * @return identifiant de {@link CivilServiceStatusDto}
      */
-    String getGeneralCivilServiceStatusIdentifier();
+    String getCivilServiceStatusIdentifier();
 
     /**
-     * Cette méthode me permet d'assigner l'identifiant de {@link GeneralCivilServiceStatusDto}.
+     * Cette méthode me permet d'assigner l'identifiant de {@link CivilServiceStatusDto}.
      *
-     * @param identifier identifiant de {@link GeneralCivilServiceStatusDto}
+     * @param identifier identifiant de {@link CivilServiceStatusDto}
      */
-    void setGeneralCivilServiceStatusIdentifier(String identifier);
+    void setCivilServiceStatusIdentifier(String identifier);
 
     /**
-     * Identifiant json de {@link GeneralCivilServiceStatusDto}.
+     * Identifiant json de {@link CivilServiceStatusDto}.
      */
-    String JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER =
-        CategoryDto.JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER;
+    String JSON_CIVIL_SERVICE_STATUS_IDENTIFIER =
+        CategoryDto.JSON_CIVIL_SERVICE_STATUS_IDENTIFIER;
   }
 
   /**
@@ -108,8 +108,8 @@ public interface CategoryService extends SpecificService {
 <span class="fc" id="L108">  class CategoryCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements CategorySaveRequestDto {
 
-    @JsonbProperty(JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER)
-    private String generalCivilServiceStatusIdentifier;
+    @JsonbProperty(JSON_CIVIL_SERVICE_STATUS_IDENTIFIER)
+    private String civilServiceStatusIdentifier;
   }
 
   /**
@@ -237,8 +237,8 @@ public interface CategoryService extends SpecificService {
 <span class="fc" id="L237">  class CategoryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements CategorySaveRequestDto {
 
-    @JsonbProperty(JSON_GENERAL_CIVIL_SERVICE_STATUS_IDENTIFIER)
-    private String generalCivilServiceStatusIdentifier;
+    @JsonbProperty(JSON_CIVIL_SERVICE_STATUS_IDENTIFIER)
+    private String civilServiceStatusIdentifier;
   }
 
   /**
