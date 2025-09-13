@@ -224,16 +224,20 @@ public interface PayslipService extends SpecificService {
    * Cette méthode permet de créer un nouveau bulletin de paie.&lt;br/&gt;
    * Le processus de création suit les étapes suivantes :
    * &lt;ol&gt;
-   * &lt;li&gt;Génération des éléments de paie issus du référentiel global. Ces éléments tracent les
+   * &lt;li&gt;&lt;b&gt;Génération des éléments de paie issus du référentiel global.&lt;/b&gt;&lt;br/&gt;
+   * Ces éléments seront utilisés pour les différents calculs et permettront aussi de tracer les
    * changements effectués lors des opérations nécessaires pour actualiser la situation de
    * l'employé&lt;/li&gt;
-   * &lt;li&gt;Identification du modèle de paie basé sur l'emploi&lt;/li&gt;
-   * &lt;li&gt;Récupération des modèles de poste de paie selon le modèle identifié&lt;/li&gt;
-   * &lt;li&gt;Génération des postes de paie du bulletin&lt;/li&gt;
-   * &lt;li&gt;Calcul des montants des postes de paie si les données le permettent&lt;/li&gt;
-   * &lt;li&gt;Attribution du statut : {@link PayslipStatusCode#INITIALIZED} si les montants sont
-   * calculés, {@link PayslipStatusCode#CREATED} sinon&lt;/li&gt;
+   * &lt;li&gt;&lt;b&gt;Génération des postes de paie du bulletin.&lt;/b&gt;&lt;br/&gt;
+   * Les postes sont générés sur la base des modèles de poste de paie de l'emploi de l'employé&lt;/li&gt;
+   * &lt;li&gt;&lt;b&gt;Calcul des montants des postes de paie.&lt;/b&gt;&lt;br/&gt;
+   * Le calcul est effectué à la demande&lt;/li&gt;
+   * &lt;li&gt;&lt;b&gt;Attribution du statut.&lt;/b&gt;&lt;br/&gt;
+   * {@link PayslipStatusCode#INITIALIZED} si les montants sont calculés,
+   * {@link PayslipStatusCode#CREATED} sinon&lt;/li&gt;
    * &lt;/ol&gt;
+   * &lt;img src=&quot;diagram/image/diagramme_sequence_creation_bulletin.png&quot; alt=
+   * &quot;diagramme_sequence_creation_bulletin&quot;&gt;
    *
    * @param request {@link PayslipCreateRequestDto}
    * @return réponse {@link CreateResponseDto}
@@ -255,7 +259,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L258">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L262">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -271,7 +275,7 @@ public interface PayslipService extends SpecificService {
 
     @JsonbProperty(JSON_IS_COMPUTE_AMOUNTS)
     private Boolean isComputeAmounts;
-    
+
     /**
      * Identifiant de {@link FunctionMovementDto}.
      */
@@ -301,7 +305,10 @@ public interface PayslipService extends SpecificService {
 
     @JsonbProperty(JSON_IS_MARRIED)
     private Boolean isMarried;
-    
+
+    /**
+     * Identifiant json de {@link #isComputeAmounts}.
+     */
     public static final String JSON_IS_COMPUTE_AMOUNTS = &quot;calculerMontant&quot;;
   }
 
@@ -338,7 +345,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L341">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L348">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -427,7 +434,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L430">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L437">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -630,7 +637,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L633">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L640">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link PayslipDto#getStatus()}.
@@ -692,17 +699,17 @@ public interface PayslipService extends SpecificService {
      * @param status {@link PayslipStatus}
      */
     public void initialize(PayslipStatus status) {
-<span class="fc" id="L695">      this.status = status;</span>
-<span class="fc" id="L696">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L697">      transmittableForControl =</span>
-<span class="fc" id="L698">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L699">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L700">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L701">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
-<span class="fc" id="L702">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
-<span class="fc" id="L703">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L704">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L705">    }</span>
+<span class="fc" id="L702">      this.status = status;</span>
+<span class="fc" id="L703">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L704">      transmittableForControl =</span>
+<span class="fc" id="L705">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L706">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L707">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L708">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="fc" id="L709">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="fc" id="L710">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L711">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L712">    }</span>
 
     /**
      * {@link PayslipDto#JSON_STATUS}.

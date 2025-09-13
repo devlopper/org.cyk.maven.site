@@ -92,8 +92,13 @@ public class PayrollCorrectionProposalFilter extends AbstractIdentifiableFilter 
     
 <span class="fc" id="L93">  }</span>
 
+  /**
+   * Cette méthode permet.
+   *
+   * @return fonction
+   */
   static Function&lt;FieldDto, Object&gt; functionaryBudgetarySectionUnitIdentifier() {
-<span class="fc" id="L96">    return f -&gt; f.getValueAsString();</span>
+<span class="fc" id="L101">    return f -&gt; f.getValueAsString();</span>
   }
   
   /**
@@ -103,8 +108,8 @@ public class PayrollCorrectionProposalFilter extends AbstractIdentifiableFilter 
    * @return identifiant de {@link FunctionaryBudgetarySectionUnitDto}
    */
   public static String getFunctionaryBudgetarySectionUnitIdentifier(FilterDto filter) {
-<span class="fc" id="L106">    return get(filter, </span>
-<span class="fc" id="L107">        d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER));</span>
+<span class="fc" id="L111">    return get(filter, </span>
+<span class="fc" id="L112">        d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER));</span>
   }
   
   /**

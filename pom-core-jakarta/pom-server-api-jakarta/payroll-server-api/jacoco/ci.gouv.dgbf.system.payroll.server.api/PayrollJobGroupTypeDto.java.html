@@ -21,10 +21,10 @@ import lombok.Setter;
     implements HasTypeIdentifierDto, HasTypeAsStringDto {
 
   @JsonbProperty(JSON_TYPE_IDENTIFIER)
-  String typeIdentifier;
+  private String typeIdentifier;
 
   @JsonbProperty(JSON_TYPE_AS_STRING)
-  String typeAsString;
+  private String typeAsString;
 
   /**
    * Identifiant json de l'identifiant.
