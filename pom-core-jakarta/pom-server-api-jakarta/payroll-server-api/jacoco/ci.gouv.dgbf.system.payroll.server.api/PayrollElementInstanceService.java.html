@@ -35,7 +35,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  *
  */
 @Path(value = PayrollElementInstanceService.PATH)
-@Tag(name = &quot;Gestion d'éléments de paies&quot;)
+@Tag(name = &quot;Gestion d'occurrences d'éléments de paies&quot;)
 public interface PayrollElementInstanceService extends SpecificService {
 
   /**
@@ -52,24 +52,24 @@ public interface PayrollElementInstanceService extends SpecificService {
   interface PayrollElementInstanceSaveRequestDto {
 
     /**
-     * Cette méthode me permet d'obtenir l'identifiant de source valeur.
+     * Cette méthode me permet d'obtenir l'identifiant d'élément paie.
      *
-     * @return identifiant source valeur
+     * @return identifiant d'élément paie
      */
     String getPayrollElementIdentifier();
 
     /**
-     * Cette méthode me permet d'assigner l'identifiant de source valeur.
+     * Cette méthode me permet d'assigner l'identifiant d'élément paie.
      *
-     * @param identifier identifiant source valeur
+     * @param identifier identifiant élément paie
      */
     void setPayrollElementIdentifier(String identifier);
     
 
     /**
-     * Identifiant json de source valeur.
+     * Identifiant json d'élément paie.
      */
-    String JSON_PAYROLL_ELEMENT_IDENTIFIER = &quot;idSourceValeur&quot;;
+    String JSON_PAYROLL_ELEMENT_IDENTIFIER = &quot;idElementPaie&quot;;
 
   }
 

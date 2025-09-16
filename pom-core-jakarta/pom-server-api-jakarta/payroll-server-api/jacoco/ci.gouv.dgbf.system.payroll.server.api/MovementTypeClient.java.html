@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementTypeClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">MovementTypeClient.java</span></div><h1>MovementTypeClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payroll.server.api.MovementTypeService.MovementTypeCreateRequestDto;
 import ci.gouv.dgbf.system.payroll.server.api.MovementTypeService.MovementTypeGetManyResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.MovementTypeService.MovementTypeUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 
 /**
@@ -20,12 +28,13 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L23">public class MovementTypeClient extends AbstractClient&lt;MovementTypeService&gt; implements</span>
-    GetByIdentifier&lt;MovementTypeDto&gt;, GetMany&lt;MovementTypeGetManyResponseDto&gt; {
+<span class="fc" id="L31">public class MovementTypeClient extends AbstractClient&lt;MovementTypeService&gt; implements</span>
+    GetByIdentifier&lt;MovementTypeDto&gt;, GetMany&lt;MovementTypeGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public MovementTypeClient service(MovementTypeService service) {
-<span class="fc" id="L28">    return (MovementTypeClient) super.service(service);</span>
+<span class="fc" id="L37">    return (MovementTypeClient) super.service(service);</span>
   }
 
   /**
@@ -35,11 +44,11 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public MovementTypeGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L38">    return new GetOneExecutor&lt;MovementTypeGetManyResponseDto&gt;(</span>
+<span class="fc" id="L47">    return new GetOneExecutor&lt;MovementTypeGetManyResponseDto&gt;(</span>
         MovementTypeGetManyResponseDto.class, MovementTypeService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L40">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L49">            .execute(() -&gt; service().getMany(request));</span>
   }
-
+  
   /**
    * {@link MovementTypeService#getMany}.
    *
@@ -52,13 +61,35 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public MovementTypeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L55">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L56">    request.setProjection(projection);</span>
-<span class="fc" id="L57">    request.setFilter(filter);</span>
-<span class="fc" id="L58">    request.setPage(page);</span>
-<span class="fc" id="L59">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L60">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L61">    return getMany(request);</span>
+<span class="fc" id="L64">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L65">    request.setProjection(projection);</span>
+<span class="fc" id="L66">    request.setFilter(filter);</span>
+<span class="fc" id="L67">    request.setPage(page);</span>
+<span class="fc" id="L68">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L69">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L70">    return getMany(request);</span>
+  }
+  
+  /**
+   * {@link MovementTypeService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(MovementTypeCreateRequestDto request) {
+<span class="fc" id="L80">    return new CreateExecutor(MovementTypeService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L81">        .execute(() -&gt; service().create(request));</span>
+  }
+  
+  /**
+   * {@link MovementTypeService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(MovementTypeUpdateRequestDto request) {
+<span class="fc" id="L91">    return new IdentifiableExecutor(MovementTypeService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L92">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -68,8 +99,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public MovementTypeDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L71">    return new GetOneExecutor&lt;MovementTypeDto&gt;(MovementTypeDto.class,</span>
-<span class="fc" id="L72">        MovementTypeService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L102">    return new GetOneExecutor&lt;MovementTypeDto&gt;(MovementTypeDto.class,</span>
+<span class="fc" id="L103">        MovementTypeService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -83,12 +114,12 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public MovementTypeDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L86">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L87">    request.setProjection(projection);</span>
-<span class="fc" id="L88">    request.setFilter(filter);</span>
-<span class="fc" id="L89">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L90">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L91">    return getOne(request);</span>
+<span class="fc" id="L117">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L118">    request.setProjection(projection);</span>
+<span class="fc" id="L119">    request.setFilter(filter);</span>
+<span class="fc" id="L120">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L121">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L122">    return getOne(request);</span>
   }
 
   /**
@@ -98,9 +129,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return groupe d'échéance
    */
   public MovementTypeDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L101">    return new GetOneExecutor&lt;MovementTypeDto&gt;(MovementTypeDto.class,</span>
+<span class="fc" id="L132">    return new GetOneExecutor&lt;MovementTypeDto&gt;(MovementTypeDto.class,</span>
         MovementTypeService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L103">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L134">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -115,12 +146,41 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public MovementTypeDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L118">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L119">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L120">    request.setProjection(projection);</span>
-<span class="fc" id="L121">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L122">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L123">    return getByIdentifier(request);</span>
+<span class="fc" id="L149">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L150">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L151">    request.setProjection(projection);</span>
+<span class="fc" id="L152">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L153">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L154">    return getByIdentifier(request);</span>
+  }
+  
+  /**
+   * {@link MovementTypeService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L164">    return new IdentifiableExecutor(MovementTypeService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L165">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link MovementTypeService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L179">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L180">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L181">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L182">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L183">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

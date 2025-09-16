@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">MovementDto.java</span></div><h1>MovementDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasEffectiveDateAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasEffectiveDateDto;
+import ci.gouv.dgbf.extension.core.segregation.HasProcessedDateAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasProcessedDateDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRetroactiveProcessedDateAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRetroactiveProcessedDateDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTypeAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTypeIdentifierDto;
@@ -9,6 +15,7 @@ import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCoda
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollElementInstanceAsStringDto;
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollElementInstanceIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,17 +29,19 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L25">public class MovementDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L32">public class MovementDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasPayrollElementInstanceIdentifierDto, HasPayrollElementInstanceAsStringDto,
     HasTypeIdentifierDto, HasTypeAsStringDto, HasStatusAsStringDto, HasRemunerableIdentifierDto,
-    HasRemunerableAsStringDto {
+    HasRemunerableAsStringDto, HasEffectiveDateDto&lt;LocalDate&gt;, HasEffectiveDateAsStringDto,
+    HasProcessedDateDto&lt;LocalDate&gt;, HasProcessedDateAsStringDto,
+    HasRetroactiveProcessedDateDto&lt;LocalDate&gt;, HasRetroactiveProcessedDateAsStringDto {
 
   @JsonbProperty(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER)
   private String payrollElementInstanceIdentifier;
 
   @JsonbProperty(JSON_PAYROLL_ELEMENT_INSTANCE_AS_STRING)
   private String payrollElementInstanceAsString;
-  
+
   @JsonbProperty(JSON_TYPE_IDENTIFIER)
   private String typeIdentifier;
 
@@ -50,7 +59,25 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_REMUNERABLE_AS_STRING)
   private String remunerableAsString;
-  
+
+  @JsonbProperty(JSON_EFFECTIVE_DATE)
+  private LocalDate effectiveDate;
+
+  @JsonbProperty(JSON_EFFECTIVE_DATE_AS_STRING)
+  private String effectiveDateAsString;
+
+  @JsonbProperty(JSON_PROCESSED_DATE)
+  private LocalDate processedDate;
+
+  @JsonbProperty(JSON_PROCESSED_DATE_AS_STRING)
+  private String processedDateAsString;
+
+  @JsonbProperty(JSON_RETROACTIVE_PROCESSED_DATE)
+  private LocalDate retroactiveProcessedDate;
+
+  @JsonbProperty(JSON_RETROACTIVE_PROCESSED_DATE_AS_STRING)
+  private String retroactiveProcessedDateAsString;
+
   /**
    * Identifiant json de identifiant de {@link MovementDto}.
    */
@@ -65,7 +92,7 @@ import lombok.Setter;
    * Identifiant json de {@link #status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */

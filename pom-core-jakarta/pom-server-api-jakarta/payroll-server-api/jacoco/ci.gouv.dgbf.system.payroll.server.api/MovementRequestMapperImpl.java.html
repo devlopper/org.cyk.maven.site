@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-09-16T13:32:48+0000&quot;,
+    date = &quot;2025-09-16T18:52:44+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,20 +25,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        MovementService.MovementCreateRequestDto movementCreateRequestDto = new MovementService.MovementCreateRequestDto();</span>
 
-<span class="fc" id="L28">        return movementCreateRequestDto;</span>
+<span class="fc" id="L28">        movementCreateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
+<span class="fc" id="L29">        movementCreateRequestDto.setPayrollElementInstanceIdentifier( arg0.getPayrollElementInstanceIdentifier() );</span>
+<span class="fc" id="L30">        movementCreateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L31">        movementCreateRequestDto.setEffectiveDate( arg0.getEffectiveDate() );</span>
+
+<span class="fc" id="L33">        return movementCreateRequestDto;</span>
     }
 
     @Override
     public MovementService.MovementUpdateRequestDto mapUpdate(MovementDto arg0) {
-<span class="fc bfc" id="L33" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L34">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L37">        MovementService.MovementUpdateRequestDto movementUpdateRequestDto = new MovementService.MovementUpdateRequestDto();</span>
+<span class="fc" id="L42">        MovementService.MovementUpdateRequestDto movementUpdateRequestDto = new MovementService.MovementUpdateRequestDto();</span>
 
-<span class="fc" id="L39">        movementUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        movementUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        movementUpdateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
+<span class="fc" id="L46">        movementUpdateRequestDto.setPayrollElementInstanceIdentifier( arg0.getPayrollElementInstanceIdentifier() );</span>
+<span class="fc" id="L47">        movementUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L48">        movementUpdateRequestDto.setEffectiveDate( arg0.getEffectiveDate() );</span>
 
-<span class="fc" id="L41">        return movementUpdateRequestDto;</span>
+<span class="fc" id="L50">        return movementUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

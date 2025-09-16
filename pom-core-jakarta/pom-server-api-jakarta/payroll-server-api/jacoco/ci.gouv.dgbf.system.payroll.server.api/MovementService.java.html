@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">MovementService.java</span></div><h1>MovementService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasEffectiveDateDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTypeIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -10,6 +13,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollElementInstanceIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -53,118 +57,81 @@ public interface MovementService extends SpecificService {
   interface MovementSaveRequestDto {
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
+     * Cette méthode permet d'obtenir l'identifiant de {@link RemunerableDto}.
      *
-     * @return identifiant du fonctionnaire
+     * @return l'identifiant de {@link RemunerableDto}
      */
-    String getFunctionaryBudgetarySectionUnitIdentifier();
+    String getRemunerableIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
+     * Cette méthode permet d'assigner l'identifiant de {@link RemunerableDto}.
      *
-     * @param functionaryIdentifier identifiant du fonctionnaire
+     * @param remunerableIdentifier l'identifiant de {@link RemunerableDto}
      */
-    void setFunctionaryBudgetarySectionUnitIdentifier(String functionaryIdentifier);
+    void setRemunerableIdentifier(String remunerableIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de la fonction.
+     * Cette méthode permet d'obtenir l'identifiant de l'instance de l'élément de paie.
      *
-     * @return identifiant de la fonction
+     * @return l'identifiant de l'instance de l'élément de paie
      */
-    String getFunctionIdentifier();
+    String getPayrollElementInstanceIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de la fonction.
+     * Cette méthode permet d'assigner l'identifiant de l'instance de l'élément de paie.
      *
-     * @param functionIdentifier identifiant de la fonction
+     * @param payrollElementInstanceIdentifier l'identifiant de l'instance de l'élément de paie
      */
-    void setFunctionIdentifier(String functionIdentifier);
+    void setPayrollElementInstanceIdentifier(String payrollElementInstanceIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir le suivi de mouvement.
+     * Cette méthode permet d'obtenir l'identifiant du type.
      *
-     * @return suivi de mouvement
+     * @return l'identifiant du type
      */
-    String getMovementTrackingIdentifier();
+    String getTypeIdentifier();
 
     /**
-     * Cette méthode permet d'assigner le suivi de mouvement.
+     * Cette méthode permet d'assigner l'identifiant du type.
      *
-     * @param movementTrackingIdentifier identifiant du suivi de mouvement
+     * @param typeIdentifier l'identifiant du type
      */
-    void setMovementTrackingIdentifier(String movementTrackingIdentifier);
+    void setTypeIdentifier(String typeIdentifier);
 
     /**
      * Cette méthode permet d'obtenir la date d'effet.
      *
-     * @return date d'effet
+     * @return la date d'effet
      */
-    LocalDate getEffectDate();
+    LocalDate getEffectiveDate();
 
     /**
      * Cette méthode permet d'assigner la date d'effet.
      *
-     * @param effetDate date d'effet
+     * @param effectiveDate la date d'effet
      */
-    void setEffectDate(LocalDate effetDate);
+    void setEffectiveDate(LocalDate effectiveDate);
 
     /**
-     * Cette méthode permet d'obtenir la date de prise en compte.
-     *
-     * @return date de prise en compte
+     * {@link HasRemunerableIdentifierDto#JSON_REMUNERABLE_IDENTIFIER}.
      */
-    LocalDate getDateTakeInCounts();
+    String JSON_REMUNERABLE_IDENTIFIER = HasRemunerableIdentifierDto.JSON_REMUNERABLE_IDENTIFIER;
 
     /**
-     * Cette méthode permet d'assigner la date de prise en compte.
-     *
-     * @param dateTakeInCounts date de prise en compte
+     * {@link HasPayrollElementInstanceIdentifierDto#JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER}.
      */
-    void setDateTakeInCounts(LocalDate dateTakeInCounts);
+    String JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER =
+        HasPayrollElementInstanceIdentifierDto.JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER;
 
     /**
-     * Cette méthode permet d'obtenir la date de rappel.
-     *
-     * @return date de rappel
+     * {@link HasTypeIdentifierDto#JSON_TYPE_IDENTIFIER}.
      */
-    LocalDate getDateReminder();
+    String JSON_TYPE_IDENTIFIER = HasTypeIdentifierDto.JSON_TYPE_IDENTIFIER;
 
     /**
-     * Cette méthode permet d'assigner la date de rappel.
-     *
-     * @param dateReminder date de rappel
+     * {@link HasEffectiveDateDto#JSON_EFFECTIVE_DATE}.
      */
-    void setDateReminder(LocalDate dateReminder);
-
-    /**
-     * a.
-     */
-    public static final String JSON_FUNCTIONARY_IDENTIFIER = &quot;&quot;;
-
-    /**
-     * a.
-     */
-    public static final String JSON_FUNCTION_IDENTIFIER = &quot;&quot;;
-
-    /**
-     * a.
-     */
-    public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = &quot;&quot;;
-
-    /**
-     * a.
-     */
-    public static final String JSON_EFFECT_DATE = &quot;&quot;;
-
-    /**
-     * a.
-     */
-    public static final String JSON_DATE_TAKEN_IN_COUNTS = &quot;&quot;;
-
-    /**
-     * a.
-     */
-    public static final String JSON_DATE_REMINDER = &quot;&quot;;
+    String JSON_EFFECTIVE_DATE = HasEffectiveDateDto.JSON_EFFECTIVE_DATE;
   }
 
   /**
@@ -200,40 +167,20 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L203">  class MovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L170">  class MovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements MovementSaveRequestDto {
-    /**
-     * {@link MovementDto#getFunctionaryIdentifier()}.
-     */
-    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryBudgetarySectionUnitIdentifier;
-    /**
-     * {@link MovementDto#getFunctionIdentifier()}.
-     */
-    @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
-    private String functionIdentifier;
-    /**
-     * {@link MovementDto#getMovementTrackingIdentifier()}.
-     */
-    @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
-    private String movementTrackingIdentifier;
 
-    /**
-     * {@link MovementDto#getEffectDate()}.
-     */
-    @JsonbProperty(JSON_EFFECT_DATE)
-    private LocalDate effectDate;
-    /**
-     * {@link MovementDto#getDateTakeInCounts()}.
-     */
-    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
-    private LocalDate dateTakeInCounts;
-    /**
-     * {@link MovementDto#getDateReminder()}.
-     */
-    @JsonbProperty(JSON_DATE_REMINDER)
-    private LocalDate dateReminder;
+    @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
+    private String remunerableIdentifier;
 
+    @JsonbProperty(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER)
+    private String payrollElementInstanceIdentifier;
+
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
+    @JsonbProperty(JSON_EFFECTIVE_DATE)
+    private LocalDate effectiveDate;
   }
 
   /**
@@ -269,7 +216,7 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L272">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
+<span class="fc" id="L219">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;MovementDto&gt; datas;
@@ -358,39 +305,19 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L361">  class MovementUpdateRequestDto extends ByIdentifierRequestDto implements MovementSaveRequestDto {</span>
-    /**
-     * {@link MovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
-     */
-    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
-    private String functionaryBudgetarySectionUnitIdentifier;
-    /**
-     * {@link MovementDto#getFunctionIdentifier()}.
-     */
-    @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
-    private String functionIdentifier;
-    /**
-     * {@link MovementDto#getMovementTrackingIdentifier()}.
-     */
-    @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
-    private String movementTrackingIdentifier;
+<span class="fc" id="L308">  class MovementUpdateRequestDto extends ByIdentifierRequestDto implements MovementSaveRequestDto {</span>
 
-    /**
-     * {@link MovementDto#getEffectDate()}.
-     */
-    @JsonbProperty(JSON_EFFECT_DATE)
-    private LocalDate effectDate;
-    /**
-     * {@link MovementDto#getDateTakeInCounts()}.
-     */
-    @JsonbProperty(JSON_DATE_TAKEN_IN_COUNTS)
-    private LocalDate dateTakeInCounts;
-    /**
-     * {@link MovementDto#getDateReminder()}.
-     */
-    @JsonbProperty(JSON_DATE_REMINDER)
-    private LocalDate dateReminder;
+    @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
+    private String remunerableIdentifier;
 
+    @JsonbProperty(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER)
+    private String payrollElementInstanceIdentifier;
+
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
+    @JsonbProperty(JSON_EFFECTIVE_DATE)
+    private LocalDate effectiveDate;
   }
 
   /**
