@@ -9,42 +9,43 @@ import lombok.Getter;
  * @author akm
  *
  */
-<span class="fc" id="L12">@Getter</span>
+<span class="fc" id="L12">@Deprecated(forRemoval = true)</span>
+@Getter
 public enum MovementType {
 
   /**
    * Fonction.
    */
-<span class="fc" id="L18">  FUNCTION(MovementTypeCode.FUNCTION, &quot;Fonction&quot;),</span>
+<span class="fc" id="L19">  FUNCTION(MovementTypeCode.FUNCTION, &quot;Fonction&quot;),</span>
   
   /**
    * Localité.
    */
-<span class="fc" id="L23">  LOCALITY(MovementTypeCode.LOCALITY, &quot;Localité&quot;),</span>
+<span class="fc" id="L24">  LOCALITY(MovementTypeCode.LOCALITY, &quot;Localité&quot;),</span>
   
   /**
    * Service.
    */
-<span class="fc" id="L28">  SERVICE(MovementTypeCode.SERVICE, &quot;Service&quot;),</span>
+<span class="fc" id="L29">  SERVICE(MovementTypeCode.SERVICE, &quot;Service&quot;),</span>
   
   /**
    * Indice.
    */
-<span class="fc" id="L33">  PAY_INDEX(MovementTypeCode.PAY_INDEX, &quot;Indice&quot;)</span>
+<span class="fc" id="L34">  PAY_INDEX(MovementTypeCode.PAY_INDEX, &quot;Indice&quot;)</span>
 
   ;
 
-<span class="fc" id="L37">  private MovementType(String code, String name) {</span>
-<span class="fc" id="L38">    this.code = code;</span>
-<span class="fc" id="L39">    this.name = name;</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L38">  private MovementType(String code, String name) {</span>
+<span class="fc" id="L39">    this.code = code;</span>
+<span class="fc" id="L40">    this.name = name;</span>
+<span class="fc" id="L41">  }</span>
 
   private String code;
   private String name;
 
   @Override
   public String toString() {
-<span class="fc" id="L47">    return name;</span>
+<span class="fc" id="L48">    return name;</span>
   }
 
   /**
@@ -54,9 +55,9 @@ public enum MovementType {
    * @return type movement
    */
   public static MovementType getByCode(String code) {
-<span class="fc" id="L57">    return Stream.of(MovementType.values())</span>
-<span class="fc" id="L58">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L59">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L58">    return Stream.of(MovementType.values())</span>
+<span class="fc" id="L59">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L60">        .orElseThrow(IllegalArgumentException::new);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

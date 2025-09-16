@@ -311,6 +311,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
     /**
      * {@link PayrollCorrectionProposalDto#getMovementType()}.
      */
+    @Deprecated(forRemoval = true)
     @JsonbProperty(JSON_MOVEMENT_TYPE)
     private MovementType movementType;
 
@@ -350,7 +351,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L353">  public static class PayrollCorrectionProposalGetManyResponseDto </span>
+<span class="fc" id="L354">  public static class PayrollCorrectionProposalGetManyResponseDto </span>
       extends AbstractGetByPageResponseDto&lt;PayrollCorrectionProposalDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -440,7 +441,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L443">  class PayrollCorrectionProposalUpdateRequestDto </span>
+<span class="fc" id="L444">  class PayrollCorrectionProposalUpdateRequestDto </span>
       extends ByIdentifierRequestDto implements PayrollCorrectionProposalSaveRequestDto {
     /**
      * {@link PayrollCorrectionProposalDto#getPayrollIdentifier()}.
@@ -492,6 +493,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
     /**
      * {@link PayrollCorrectionProposalDto#getMovementType()}.
      */
+    @Deprecated(forRemoval = true)
     @JsonbProperty(JSON_MOVEMENT_TYPE)
     private MovementType movementType;
 
@@ -580,7 +582,7 @@ public interface PayrollCorrectionProposalService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L583">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L585">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link MovementStatusDto}.
@@ -618,13 +620,13 @@ public interface PayrollCorrectionProposalService extends SpecificService {
      * @param status {@link MovementStatus}
      */
     public void initialize(MovementStatus status) {
-<span class="fc" id="L621">      this.status = status;</span>
-<span class="fc" id="L622">      activable = MovementStatus.ACTIVATED.getPrevious().contains(status);</span>
-<span class="fc" id="L623">      suggestable = </span>
-<span class="fc" id="L624">          MovementStatus.SUGGESTED.getPrevious().contains(status);</span>
-<span class="fc" id="L625">      refusable = MovementStatus.REFUSED.getPrevious().contains(status);</span>
-<span class="fc" id="L626">      closable = MovementStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L627">    }</span>
+<span class="fc" id="L623">      this.status = status;</span>
+<span class="fc" id="L624">      activable = MovementStatus.ACTIVATED.getPrevious().contains(status);</span>
+<span class="fc" id="L625">      suggestable = </span>
+<span class="fc" id="L626">          MovementStatus.SUGGESTED.getPrevious().contains(status);</span>
+<span class="fc" id="L627">      refusable = MovementStatus.REFUSED.getPrevious().contains(status);</span>
+<span class="fc" id="L628">      closable = MovementStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L629">    }</span>
 
     /**
      * {@link PayrollCorrectionProposalDto}.

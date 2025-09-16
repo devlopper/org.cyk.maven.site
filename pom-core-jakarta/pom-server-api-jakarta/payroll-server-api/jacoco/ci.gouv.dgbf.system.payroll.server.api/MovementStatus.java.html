@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import lombok.Getter;
 
 /**
- * Cette classe représente les statuts de {@link MovementStatus }.
+ * Cette classe représente les statuts de {@link MovementDto}.
  *
  * @author stephane
  *
@@ -20,17 +20,17 @@ public enum MovementStatus {
    * Activé.
    */
 <span class="fc" id="L22">  ACTIVATED(MovementStatusCode.ACTIVATED, &quot;Activé&quot;, &quot;Activation&quot;),</span>
-  
+
   /**
    * Proposé.
    */
 <span class="fc" id="L27">  SUGGESTED(MovementStatusCode.SUGGESTED, &quot;Proposé&quot;, &quot;Proposition&quot;),</span>
-  
+
   /**
    * Refusé.
    */
 <span class="fc" id="L32">  REFUSED(MovementStatusCode.REFUSED, &quot;Refusé&quot;, &quot;Refus&quot;),</span>
-  
+
   /**
    * Clôturée.
    */
@@ -55,22 +55,21 @@ public enum MovementStatus {
   }
 
   /**
-   * Cette méthode permet d'obtenir le statut par code.
+   * Cette méthode permet d'obtenir le {@link MovementStatus} par code.
    *
    * @param code code
-   * @return statut
+   * @return {@link MovementStatus}
    */
   public static MovementStatus getByCode(String code) {
-<span class="fc" id="L64">    return Stream.of(MovementStatus.values())</span>
-<span class="fc" id="L65">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="fc" id="L66">        .orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L64">    return Stream.of(MovementStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L65">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L70">    ACTIVATED.previous = Core.getSet(List.of(SUGGESTED));</span>
-<span class="fc" id="L71">    SUGGESTED.previous = Collections.emptySet();</span>
-<span class="fc" id="L72">    REFUSED.previous = Core.getSet(List.of(SUGGESTED));</span>
-<span class="fc" id="L73">    CLOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
-<span class="fc" id="L74">  }</span>
+<span class="fc" id="L69">    ACTIVATED.previous = Core.getSet(List.of(SUGGESTED));</span>
+<span class="fc" id="L70">    SUGGESTED.previous = Collections.emptySet();</span>
+<span class="fc" id="L71">    REFUSED.previous = Core.getSet(List.of(SUGGESTED));</span>
+<span class="fc" id="L72">    CLOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L73">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
