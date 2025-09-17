@@ -14,130 +14,138 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MovementFilter extends AbstractIdentifiableFilter {
+  
   /**
-    * Identifiant du fonctionnaire.
+    * Identifiant du remunerable.
     */
-  String functionaryIdentifier;
+  String remunerableIdentifier;
+  
   /**
-    * Identifiant de la fonction.
-    */
-  String functionIdentifier;
+   * Identifiant du type de mouvement.
+   */
+  String typeIdentifier;
+ 
+  /**
+  * Identifiant de l'occurence d'élément de paie.
+  */
+  String payrollElementInstanceIdentifier;
 
-  /**
-    * Identifiant du suivi mouvement.
-    */
-  String movementTrackingIdentifier;
-
+  
   /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public MovementFilter(FilterDto dto) {
-<span class="fc" id="L37">    super(dto);</span>
-<span class="fc" id="L38">  }</span>
+<span class="fc" id="L40">    super(dto);</span>
+<span class="fc" id="L41">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L43">  public MovementFilter() {}</span>
+<span class="fc" id="L46">  public MovementFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L47">    super.doInitialize(filter);</span>
-<span class="fc" id="L48">    functionaryIdentifier = getFunctionaryIdentifier(filter);</span>
-<span class="fc" id="L49">    functionIdentifier = getFunctionIdentifier(filter);</span>
-<span class="fc" id="L50">    movementTrackingIdentifier = getMovementTrackingIdentifier(filter);</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L50">    super.doInitialize(filter);</span>
+<span class="fc" id="L51">    remunerableIdentifier = getRemunerableIdentifier(filter);</span>
+<span class="fc" id="L52">    typeIdentifier = getTypeIdentifier(filter);</span>
+<span class="fc" id="L53">    payrollElementInstanceIdentifier = getPayrollElementInstanceIdentifier(filter);</span>
+   
+<span class="fc" id="L55">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L55">    super.toDto(filter);</span>
-<span class="fc" id="L56">    setFunctionaryIdentifier(filter, functionaryIdentifier);</span>
-<span class="fc" id="L57">    setFunctionIdentifier(filter, functionIdentifier);</span>
-<span class="fc" id="L58">    setMovementTrackingIdentifier(filter, movementTrackingIdentifier);</span>
-<span class="fc" id="L59">  }</span>
+<span class="fc" id="L59">    super.toDto(filter);</span>
+<span class="fc" id="L60">    setRemunerableIdentifier(filter, remunerableIdentifier);</span>
+<span class="fc" id="L61">    setTypeIdentifier(filter, typeIdentifier);</span>
+<span class="fc" id="L62">    setPayrollElementInstanceIdentifier(filter, payrollElementInstanceIdentifier);</span>
+    
+<span class="fc" id="L64">  }</span>
 
   /**
-   * Cette méthode permet d'assigner l'identifiant du fonctionnaire.
+   * Cette méthode permet d'assigner l'identifiant du remunerable.
    *
    * @param filter filtre
    * @param identifier identifiant
    */
-  public static void setFunctionaryIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L68">    set(filter, JSON_FUNCTIONARY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L69">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L70">  }</span>
+  public static void setRemunerableIdentifier(FilterDto filter, String identifier) {
+<span class="fc" id="L73">    set(filter, JSON_REMUNERABLE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L74">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L75">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant du fonctionnaire.
+   * Cette méthode permet d'obtenir l'identifiant du remunerable.
    *
    * @param filter filtre
-   * @return identifiant du fonctionnaire
+   * @return identifiant du remunerable
    */
-  public static String getFunctionaryIdentifier(FilterDto filter) {
-<span class="fc" id="L79">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_IDENTIFIER));</span>
+  public static String getRemunerableIdentifier(FilterDto filter) {
+<span class="fc" id="L84">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REMUNERABLE_IDENTIFIER));</span>
   }
-
+  
   /**
-   * Cette méthode permet d'assigner l'identifiant de la fonction.
+   * Cette méthode permet d'assigner l'identifiant du type de mouvement.
    *
    * @param filter filtre
    * @param identifier identifiant
    */
-  public static void setFunctionIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L89">    set(filter, JSON_FUNCTION_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L90">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L91">  }</span>
+  public static void setTypeIdentifier(FilterDto filter, String identifier) {
+<span class="fc" id="L94">    set(filter, JSON_TYPE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L95">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L96">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant de la fonction.
+   * Cette méthode permet d'obtenir l'identifiant du type de mouvement.
    *
    * @param filter filtre
-   * @return identifiant de la fonction
+   * @return identifiant du type de mouvement
    */
-  public static String getFunctionIdentifier(FilterDto filter) {
-<span class="fc" id="L100">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTION_IDENTIFIER));</span>
+  public static String getTypeIdentifier(FilterDto filter) {
+<span class="fc" id="L105">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TYPE_IDENTIFIER));</span>
   }
-
+  
   /**
-   * Cette méthode permet d'assigner l'identifiant du suivi de mouvement.
+   * Cette méthode permet d'assigner l'identifiant de l'occurence d'un élément de paie.
    *
    * @param filter filtre
    * @param identifier identifiant
    */
-  public static void setMovementTrackingIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L110">    set(filter, JSON_MOVEMENT_TRACKING_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L111">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L112">  }</span>
+  public static void setPayrollElementInstanceIdentifier(FilterDto filter, String identifier) {
+<span class="fc" id="L115">    set(filter, JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L116">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L117">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir l'identifiant du suivi de mouvement.
+   * Cette méthode permet d'obtenir l'identifiant de l'occurence d'un élément de paie.
    *
    * @param filter filtre
-   * @return identifiant du suivi de mouvement
+   * @return identifiant de l'occurence d'un élément de paie
    */
-  public static String getMovementTrackingIdentifier(FilterDto filter) {
-<span class="fc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_MOVEMENT_TRACKING_IDENTIFIER));</span>
+  public static String getPayrollElementInstanceIdentifier(FilterDto filter) {
+<span class="fc" id="L126">    return get(filter, d -&gt; d</span>
+<span class="fc" id="L127">        .getFieldValueAsStringByName(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER));</span>
   }
 
   /**
-   * Identifiant json champ {@link FunctionMovementFilter#functionaryIdentifier}.
+   * Identifiant json champ {@link MovementFilter#remunerableIdentifier}.
    */
-  public static final String JSON_FUNCTIONARY_IDENTIFIER = 
-          FunctionMovementDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
-
+  public static final String JSON_REMUNERABLE_IDENTIFIER = 
+      RemunerableDto.JSON_IDENTIFIER;
+  
   /**
-   * Identifiant json champ {@link FunctionMovementFilter#functionIdentifier}.
+   * Identifiant json champ {@link MovementFilter#typeIdentifier}.
    */
-  public static final String JSON_FUNCTION_IDENTIFIER = 
-          FunctionMovementDto.JSON_FUNCTION_IDENTIFIER;
-
+  public static final String JSON_TYPE_IDENTIFIER = 
+      MovementTypeDto.JSON_IDENTIFIER;
+  
   /**
-   * Identifiant json champ {@link FunctionMovementFilter#movementTrackingIdentifier}.
+   * Identifiant json champ {@link MovementFilter#payrollElementInstanceIdentifier}.
    */
-  public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = 
-                FunctionMovementDto.JSON_MOVEMENT_TRACKING_IDENTIFIER;
+  public static final String JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER = 
+      PayrollElementInstanceDto.JSON_IDENTIFIER;
+
+ 
   
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
