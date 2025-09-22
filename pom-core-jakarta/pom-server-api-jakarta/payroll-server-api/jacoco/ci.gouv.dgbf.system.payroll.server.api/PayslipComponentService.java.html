@@ -3,6 +3,7 @@
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -10,6 +11,8 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollComponentIdentifierDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -79,34 +82,6 @@ public interface PayslipComponentService extends SpecificService {
     void setPayrollComponentIdentifier(String identifier);
 
     /**
-     * Cette méthode permet d'obtenir le montant employé.
-     *
-     * @return montant employé
-     */
-    Integer getEmployeeAmount();
-
-    /**
-     * Cette méthode permet d'assigner le montant employé.
-     *
-     * @param employeeAmount montant employé
-     */
-    void setEmployeeAmount(Integer employeeAmount);
-
-    /**
-     * Cette méthode permet d'obtenir le montant employeur.
-     *
-     * @return montant employeur
-     */
-    Integer getEmployerAmount();
-
-    /**
-     * Cette méthode permet d'assigner le montant employeur.
-     *
-     * @param employerAmount montant employeur
-     */
-    void setEmployerAmount(Integer employerAmount);
-
-    /**
      * Cette méthode permet d'obtenir le numéro d'ordre.
      *
      * @return numéro d'ordre
@@ -124,23 +99,13 @@ public interface PayslipComponentService extends SpecificService {
      * {@link PayslipComponentDto#JSON_PAYSLIP_IDENTIFIER}.
      */
     public static final String JSON_PAYSLIP_IDENTIFIER =
-        PayslipComponentDto.JSON_PAYSLIP_IDENTIFIER;
+        HasPayslipIdentifierDto.JSON_PAYSLIP_IDENTIFIER;
 
     /**
      * {@link PayslipComponentDto#JSON_PAYROLL_COMPONENT_IDENTIFIER}.
      */
     public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
-        PayslipComponentDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
-
-    /**
-     * {@link PayslipComponentDto#JSON_EMPLOYEE_AMOUNT}.
-     */
-    public static final String JSON_EMPLOYEE_AMOUNT = PayslipComponentDto.JSON_EMPLOYEE_AMOUNT;
-
-    /**
-     * {@link PayslipComponentDto#JSON_EMPLOYER_AMOUNT}.
-     */
-    public static final String JSON_EMPLOYER_AMOUNT = PayslipComponentDto.JSON_EMPLOYER_AMOUNT;
+        HasPayrollComponentIdentifierDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
 
     /**
      * {@link PayslipComponentDto#JSON_EMPLOYER_AMOUNT}.
@@ -181,7 +146,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L184">  class PayslipComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L149">  class PayslipComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipComponentSaveRequestDto {
     /**
      * Identifiant de {@link PayslipDto}.
@@ -193,16 +158,6 @@ public interface PayslipComponentService extends SpecificService {
      */
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     String payrollComponentIdentifier;
-    /**
-     * Montant employé.
-     */
-    @JsonbProperty(JSON_EMPLOYEE_AMOUNT)
-    Integer employeeAmount;
-    /**
-     * Montant employeur.
-     */
-    @JsonbProperty(JSON_EMPLOYER_AMOUNT)
-    Integer employerAmount;
     /**
      * Numéro d'ordre.
      */
@@ -243,7 +198,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L246">  public static class PayslipComponentGetManyResponseDto</span>
+<span class="fc" id="L201">  public static class PayslipComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -333,7 +288,7 @@ public interface PayslipComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L336">  class PayslipComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L291">  class PayslipComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipComponentSaveRequestDto {
     /**
      * Identifiant de {@link PayslipDto}.
@@ -345,16 +300,6 @@ public interface PayslipComponentService extends SpecificService {
      */
     @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
     String payrollComponentIdentifier;
-    /**
-     * Montant employé.
-     */
-    @JsonbProperty(JSON_EMPLOYEE_AMOUNT)
-    Integer employeeAmount;
-    /**
-     * Montant employeur.
-     */
-    @JsonbProperty(JSON_EMPLOYER_AMOUNT)
-    Integer employerAmount;
     /**
      * Numéro d'ordre.
      */
@@ -386,5 +331,42 @@ public interface PayslipComponentService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service de calcul des montants.
+   */
+  String COMPUTE_AMOUNTS_IDENTIFIER = &quot;CALCUL_MONTANTS_POSTE_BULLETIN_PAIE&quot;;
+
+  /**
+   * Chemin du service de calcul des montants.
+   */
+  String COMPUTE_AMOUNTS_PATH = &quot;calcul-montants&quot;;
+
+  /**
+   * Cette méthode permet de calculer les montants {@link PayslipComponentDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(COMPUTE_AMOUNTS_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = COMPUTE_AMOUNTS_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response computeAmounts(PayslipComponentComputeAmountsRequestDto request);
+
+  /**
+   * Cette classe représente la requête de calcul de montants.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L368">  class PayslipComponentComputeAmountsRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
