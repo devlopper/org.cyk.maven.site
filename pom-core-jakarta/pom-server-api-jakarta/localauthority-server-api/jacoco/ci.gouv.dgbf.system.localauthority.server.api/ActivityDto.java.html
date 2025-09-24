@@ -169,6 +169,13 @@ import lombok.Setter;
   private String eventualReference;
 
   /**
+   * Nombre d’occurance.
+   */
+  @JsonbProperty(JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING)
+  private String triennialProgramCountAsString;
+
+
+  /**
    * Identifiant json de identifiant de {@link ActivityDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idActivite&quot;;
@@ -271,6 +278,11 @@ import lombok.Setter;
    * Identifiant json {@link #amount}.
    */
   public static final String JSON_EXECUTED_AMOUNT = &quot;montantExecute&quot;;
+
+  /**
+   * Identifiant json {@link #triennialProgramCountAsString}.
+   */
+  public static final String JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING = &quot;nombreProgrammeTriennal&quot;;
 
   /**
    * Identifiant json {@link #amountAsString}.
