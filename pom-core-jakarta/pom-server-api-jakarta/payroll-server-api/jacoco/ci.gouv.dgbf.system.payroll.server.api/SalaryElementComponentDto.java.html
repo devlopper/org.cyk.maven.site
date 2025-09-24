@@ -22,6 +22,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_SALARY_ELEMENT_IDENTIFIER)
   private String salaryElementIdentifier;
+  
+  /**
+   * Représentation en chaine de caractères de l'élément de salaire.
+   */
+  @JsonbProperty(JSON_SALARY_ELEMENT_AS_STRING)
+  private String salaryElementAsString;
 
   /**
    * Identifiant {@link PayrollComponentDto}.
@@ -95,7 +101,13 @@ import lombok.Setter;
   /**
    * Identifiant json {@link #payrollComponentAsString}.
    */
-  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;posteChaine&quot;;
+  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = PayrollComponentDto
+      .JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json {@link #salaryElementAsString}.
+   */
+  public static final String JSON_SALARY_ELEMENT_AS_STRING = SalaryElementDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #employeeRate}.
