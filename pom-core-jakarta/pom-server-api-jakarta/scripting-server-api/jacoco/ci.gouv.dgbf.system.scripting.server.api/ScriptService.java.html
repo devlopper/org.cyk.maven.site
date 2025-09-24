@@ -438,13 +438,16 @@ public interface ScriptService extends SpecificService {
     @JsonbProperty(JSON_RESULT_TYPE)
     private ValueType resultType;
 
+    @JsonbProperty(JSON_RESULT_MESSAGE)
+    private String resultMessage;
+    
     /**
      * Cette méthode permet d'obtenir le résultat.
      *
      * @return résultat
      */
     public Object getResult() {
-<span class="fc" id="L447">      return ValueType.parse(resultValueAsString, resultType);</span>
+<span class="fc" id="L450">      return ValueType.parse(resultValueAsString, resultType);</span>
     }
 
     /**
@@ -456,6 +459,11 @@ public interface ScriptService extends SpecificService {
      * Identifiant json {@link #resultType}.
      */
     public static final String JSON_RESULT_TYPE = &quot;typeResultat&quot;;
+    
+    /**
+     * Identifiant json {@link #resultMessage}.
+     */
+    public static final String JSON_RESULT_MESSAGE = &quot;resultMessage&quot;;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
