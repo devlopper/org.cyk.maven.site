@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-09-19T09:32:57+0000&quot;,
+    date = &quot;2025-09-24T18:05:27+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,45 +27,47 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        valueSelectorCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
 <span class="fc" id="L29">        valueSelectorCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L30">        valueSelectorCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L31">        valueSelectorCreateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
-<span class="fc" id="L32">        valueSelectorCreateRequestDto.setFilterAttributeName( arg0.getFilterAttributeName() );</span>
+<span class="fc" id="L30">        valueSelectorCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L31">        valueSelectorCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L32">        valueSelectorCreateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
+<span class="fc" id="L33">        valueSelectorCreateRequestDto.setFilterAttributeName( arg0.getFilterAttributeName() );</span>
 
-<span class="fc" id="L34">        return valueSelectorCreateRequestDto;</span>
+<span class="fc" id="L35">        return valueSelectorCreateRequestDto;</span>
     }
 
     @Override
     public ValueSelectorService.ValueSelectorUpdateRequestDto mapUpdate(ValueSelectorDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L41">            return null;</span>
         }
 
-<span class="fc" id="L43">        ValueSelectorService.ValueSelectorUpdateRequestDto valueSelectorUpdateRequestDto = new ValueSelectorService.ValueSelectorUpdateRequestDto();</span>
+<span class="fc" id="L44">        ValueSelectorService.ValueSelectorUpdateRequestDto valueSelectorUpdateRequestDto = new ValueSelectorService.ValueSelectorUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        valueSelectorUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L46">        valueSelectorUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L47">        valueSelectorUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L48">        valueSelectorUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L49">        valueSelectorUpdateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
-<span class="fc" id="L50">        valueSelectorUpdateRequestDto.setFilterAttributeName( arg0.getFilterAttributeName() );</span>
+<span class="fc" id="L46">        valueSelectorUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L47">        valueSelectorUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L48">        valueSelectorUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L49">        valueSelectorUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L50">        valueSelectorUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L51">        valueSelectorUpdateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
+<span class="fc" id="L52">        valueSelectorUpdateRequestDto.setFilterAttributeName( arg0.getFilterAttributeName() );</span>
 
-<span class="fc" id="L52">        return valueSelectorUpdateRequestDto;</span>
+<span class="fc" id="L54">        return valueSelectorUpdateRequestDto;</span>
     }
 
     @Override
     public ValueSelectorService.ValueSelectorEvaluateRequestDto mapEvaluate(ValueSelectorDto valueSelector) {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">        if ( valueSelector == null ) {</span>
-<span class="fc" id="L58">            return null;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if ( valueSelector == null ) {</span>
+<span class="fc" id="L60">            return null;</span>
         }
 
-<span class="fc" id="L61">        ValueSelectorService.ValueSelectorEvaluateRequestDto valueSelectorEvaluateRequestDto = new ValueSelectorService.ValueSelectorEvaluateRequestDto();</span>
+<span class="fc" id="L63">        ValueSelectorService.ValueSelectorEvaluateRequestDto valueSelectorEvaluateRequestDto = new ValueSelectorService.ValueSelectorEvaluateRequestDto();</span>
 
-<span class="fc" id="L63">        valueSelectorEvaluateRequestDto.setAuditWho( valueSelector.getAuditWho() );</span>
-<span class="fc" id="L64">        valueSelectorEvaluateRequestDto.setAuditSession( valueSelector.getAuditSession() );</span>
-<span class="fc" id="L65">        valueSelectorEvaluateRequestDto.setIdentifier( valueSelector.getIdentifier() );</span>
-<span class="fc" id="L66">        valueSelectorEvaluateRequestDto.setFilterAttributeValue( valueSelector.getFilterAttributeValue() );</span>
+<span class="fc" id="L65">        valueSelectorEvaluateRequestDto.setAuditWho( valueSelector.getAuditWho() );</span>
+<span class="fc" id="L66">        valueSelectorEvaluateRequestDto.setAuditSession( valueSelector.getAuditSession() );</span>
+<span class="fc" id="L67">        valueSelectorEvaluateRequestDto.setIdentifier( valueSelector.getIdentifier() );</span>
+<span class="fc" id="L68">        valueSelectorEvaluateRequestDto.setFilterAttributeValue( valueSelector.getFilterAttributeValue() );</span>
 
-<span class="fc" id="L68">        return valueSelectorEvaluateRequestDto;</span>
+<span class="fc" id="L70">        return valueSelectorEvaluateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

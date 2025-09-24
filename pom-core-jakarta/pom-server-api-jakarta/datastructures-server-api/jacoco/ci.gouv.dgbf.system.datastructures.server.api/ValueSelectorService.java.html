@@ -5,8 +5,8 @@ import ci.gouv.dgbf.extension.core.segregation.HasFilterAttributeValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasSourceIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -127,7 +127,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L130">  class ValueSelectorCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L130">  class ValueSelectorCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ValueSelectorSaveRequestDto {
 
     @JsonbProperty(JSON_SOURCE_IDENTIFIER)
@@ -260,7 +260,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L263">  class ValueSelectorUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L263">  class ValueSelectorUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ValueSelectorSaveRequestDto {
 
     @JsonbProperty(JSON_SOURCE_IDENTIFIER)
