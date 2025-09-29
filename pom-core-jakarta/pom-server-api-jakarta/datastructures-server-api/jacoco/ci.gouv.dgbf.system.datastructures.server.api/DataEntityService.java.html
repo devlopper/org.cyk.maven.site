@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DataEntityService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de datastructures</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.datastructures.server.api</a> &gt; <span class="el_source">DataEntityService.java</span></div><h1>DataEntityService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.datastructures.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasAddressDto;
 import ci.gouv.dgbf.extension.core.segregation.HasCreationScriptDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDeletionScriptDto;
 import ci.gouv.dgbf.extension.core.segregation.HasExistenceVerificationScriptDto;
@@ -72,6 +73,20 @@ public interface DataEntityService extends SpecificService {
     void setType(DataEntityType type);
 
     /**
+     * Cette méthode permet d'obtenir l'adresse.
+     *
+     * @return l'adresse
+     */
+    String getAddress();
+
+    /**
+     * Cette méthode permet d'assigner l'adresse.
+     *
+     * @param address l'adresse
+     */
+    void setAddress(String address);
+    
+    /**
      * Cette méthode permet d'obtenir le script de création.
      *
      * @return le script de création
@@ -118,6 +133,11 @@ public interface DataEntityService extends SpecificService {
      */
     String JSON_TYPE = &quot;type&quot;;
 
+    /**
+     * {@link HasAddressDto#JSON_ADDRESS}.
+     */
+    String JSON_ADDRESS = HasAddressDto.JSON_ADDRESS;
+    
     /**
      * {@link HasCreationScriptDto#JSON_CREATION_SCRIPT}.
      */
@@ -168,12 +188,15 @@ public interface DataEntityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L171">  class DataEntityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L191">  class DataEntityCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DataEntitySaveRequestDto {
 
     @JsonbProperty(JSON_TYPE)
     private DataEntityType type;
 
+    @JsonbProperty(JSON_ADDRESS)
+    private String address;
+    
     @JsonbProperty(JSON_CREATION_SCRIPT)
     private String creationScript;
 
@@ -217,7 +240,7 @@ public interface DataEntityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L220">  public static class DataEntityGetManyResponseDto</span>
+<span class="fc" id="L243">  public static class DataEntityGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DataEntityDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -357,12 +380,15 @@ public interface DataEntityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L360">  class DataEntityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L383">  class DataEntityUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DataEntitySaveRequestDto {
 
     @JsonbProperty(JSON_TYPE)
     private DataEntityType type;
 
+    @JsonbProperty(JSON_ADDRESS)
+    private String address;
+    
     @JsonbProperty(JSON_CREATION_SCRIPT)
     private String creationScript;
 

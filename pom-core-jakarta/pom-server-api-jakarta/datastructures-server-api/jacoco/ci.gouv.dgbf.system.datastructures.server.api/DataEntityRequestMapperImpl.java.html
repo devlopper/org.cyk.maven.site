@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-09-24T18:05:27+0000&quot;,
+    date = &quot;2025-09-29T06:49:00+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -28,30 +28,32 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L28">        dataEntityCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        dataEntityCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L30">        dataEntityCreateRequestDto.setType( arg0.getType() );</span>
-<span class="fc" id="L31">        dataEntityCreateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
-<span class="fc" id="L32">        dataEntityCreateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
-<span class="fc" id="L33">        dataEntityCreateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
+<span class="fc" id="L31">        dataEntityCreateRequestDto.setAddress( arg0.getAddress() );</span>
+<span class="fc" id="L32">        dataEntityCreateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
+<span class="fc" id="L33">        dataEntityCreateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
+<span class="fc" id="L34">        dataEntityCreateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
 
-<span class="fc" id="L35">        return dataEntityCreateRequestDto;</span>
+<span class="fc" id="L36">        return dataEntityCreateRequestDto;</span>
     }
 
     @Override
     public DataEntityService.DataEntityUpdateRequestDto mapUpdate(DataEntityDto arg0) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L41">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L44">        DataEntityService.DataEntityUpdateRequestDto dataEntityUpdateRequestDto = new DataEntityService.DataEntityUpdateRequestDto();</span>
+<span class="fc" id="L45">        DataEntityService.DataEntityUpdateRequestDto dataEntityUpdateRequestDto = new DataEntityService.DataEntityUpdateRequestDto();</span>
 
-<span class="fc" id="L46">        dataEntityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        dataEntityUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L48">        dataEntityUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L49">        dataEntityUpdateRequestDto.setType( arg0.getType() );</span>
-<span class="fc" id="L50">        dataEntityUpdateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
-<span class="fc" id="L51">        dataEntityUpdateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
-<span class="fc" id="L52">        dataEntityUpdateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
+<span class="fc" id="L47">        dataEntityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        dataEntityUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L49">        dataEntityUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L50">        dataEntityUpdateRequestDto.setType( arg0.getType() );</span>
+<span class="fc" id="L51">        dataEntityUpdateRequestDto.setAddress( arg0.getAddress() );</span>
+<span class="fc" id="L52">        dataEntityUpdateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
+<span class="fc" id="L53">        dataEntityUpdateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
+<span class="fc" id="L54">        dataEntityUpdateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
 
-<span class="fc" id="L54">        return dataEntityUpdateRequestDto;</span>
+<span class="fc" id="L56">        return dataEntityUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
