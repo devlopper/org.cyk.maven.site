@@ -366,7 +366,17 @@ public interface PayslipComponentService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L368">  class PayslipComponentComputeAmountsRequestDto extends ByIdentifierRequestDto {</span>
-
+    
+    /**
+     * Le résultat du calcul doit être persisté.
+     */
+    @JsonbProperty(JSON_PERSIST)
+    private Boolean persist;
+    
+    /**
+     * {@link #persist}.
+     */
+    public static final String JSON_PERSIST = &quot;persister&quot;;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

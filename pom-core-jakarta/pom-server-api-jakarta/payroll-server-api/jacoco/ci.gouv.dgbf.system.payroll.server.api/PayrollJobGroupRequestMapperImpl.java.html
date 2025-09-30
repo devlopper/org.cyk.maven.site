@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-09-29T11:37:43+0000&quot;,
+    date = &quot;2025-09-30T14:56:21+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,23 +27,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        payrollJobGroupCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        payrollJobGroupCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        payrollJobGroupCreateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L31">        payrollJobGroupCreateRequestDto.setPayScaleIdentifier( arg0.getPayScaleIdentifier() );</span>
 
-<span class="fc" id="L31">        return payrollJobGroupCreateRequestDto;</span>
+<span class="fc" id="L33">        return payrollJobGroupCreateRequestDto;</span>
     }
 
     @Override
     public PayrollJobGroupService.PayrollJobGroupUpdateRequestDto mapUpdate(PayrollJobGroupDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L40">        PayrollJobGroupService.PayrollJobGroupUpdateRequestDto payrollJobGroupUpdateRequestDto = new PayrollJobGroupService.PayrollJobGroupUpdateRequestDto();</span>
+<span class="fc" id="L42">        PayrollJobGroupService.PayrollJobGroupUpdateRequestDto payrollJobGroupUpdateRequestDto = new PayrollJobGroupService.PayrollJobGroupUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        payrollJobGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        payrollJobGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L44">        payrollJobGroupUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L44">        payrollJobGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        payrollJobGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        payrollJobGroupUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        payrollJobGroupUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L48">        payrollJobGroupUpdateRequestDto.setPayScaleIdentifier( arg0.getPayScaleIdentifier() );</span>
 
-<span class="fc" id="L46">        return payrollJobGroupUpdateRequestDto;</span>
+<span class="fc" id="L50">        return payrollJobGroupUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -51,6 +51,46 @@ public interface PayrollJobGroupService extends SpecificService {
    */
   interface PayrollJobGroupSaveRequestDto {
 
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du type groupe emploi.
+     *
+     * @return identifiant du type groupe emploi
+     */
+    String getTypeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du type groupe emploi.
+     *
+     * @param typeIdentifier identifiant du type groupe emploi
+     */
+    void setTypeIdentifier(String typeIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la grille indiciaire.
+     *
+     * @return identifiant de la grille indiciaire
+     */
+    String getPayScaleIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la grille indiciaire.
+     *
+     * @param payScaleIdentifier identifiant de la grille indiciaire
+     */
+    void setPayScaleIdentifier(String payScaleIdentifier);
+
+    /**
+     * {@link PayrollJobGroupDto#JSON_TYPE_IDENTIFIER}.
+     */
+    public static final String JSON_TYPE_IDENTIFIER = 
+              PayrollJobGroupDto.JSON_TYPE_IDENTIFIER;
+
+    /**
+     * {@link PayrollJobGroupDto#JSON_PAY_SCALE_IDENTIFIER}.
+     */
+    public static final String JSON_PAY_SCALE_IDENTIFIER = 
+              PayrollJobGroupDto.JSON_PAY_SCALE_IDENTIFIER;
+
   }
 
   /**
@@ -86,16 +126,27 @@ public interface PayrollJobGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class PayrollJobGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L129">  class PayrollJobGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollJobGroupSaveRequestDto {
 
+    /**
+     * {@link PayrollJobGroupDto#getTypeIdentifier()}.
+     */
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
+    /**
+     * {@link PayrollJobGroupDto#getPayScaleIdentifier()}.
+     */
+    @JsonbProperty(JSON_PAY_SCALE_IDENTIFIER)
+    private String payScaleIdentifier;
 
   }
 
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
-  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_GROUPES_EMPLOIS_PAIE&quot;;
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_GROUPE_EMPLOI_PAIE&quot;;
 
   /**
    * Chemin du service d'obtention de plusieurs.
@@ -126,7 +177,7 @@ public interface PayrollJobGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L129">  public static class PayrollJobGroupGetManyResponseDto extends </span>
+<span class="fc" id="L180">  public static class PayrollJobGroupGetManyResponseDto extends </span>
                 AbstractGetByPageResponseDto&lt;PayrollJobGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -216,8 +267,20 @@ public interface PayrollJobGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  class PayrollJobGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L270">  class PayrollJobGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollJobGroupSaveRequestDto {
+
+    /**
+     * {@link PayrollJobGroupDto#getTypeIdentifier()}.
+     */
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
+    /**
+     * {@link PayrollJobGroupDto#getPayScaleIdentifier()}.
+     */
+    @JsonbProperty(JSON_PAY_SCALE_IDENTIFIER)
+    private String payScaleIdentifier;
 
   }
 

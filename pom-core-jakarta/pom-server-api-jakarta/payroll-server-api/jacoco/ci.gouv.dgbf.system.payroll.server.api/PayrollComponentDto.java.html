@@ -78,6 +78,30 @@ import lombok.Setter;
   private String employerCalculationFormulaAsString;
 
   /**
+   * Identifiant {@link PayrollComponentCategory}.
+   */
+  @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+  private String categoryIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link #categoryIdentifier}.
+   */
+  @JsonbProperty(JSON_CATEGORY_AS_STRING)
+  private String categoryAsString;
+
+  /**
+   * Identifiant {@link PayrollComponentNature}.
+   */
+  @JsonbProperty(JSON_NATURE_IDENTIFIER)
+  private String natureIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link #natureIdentifier}.
+   */
+  @JsonbProperty(JSON_NATURE_AS_STRING)
+  private String natureAsString;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idPostePaie&quot;;
@@ -140,6 +164,30 @@ import lombok.Setter;
    */
   public static final String JSON_EMPLOYER_CALCULATION_FORMULA_AS_STRING =
       &quot;formuleCalculEmployeurChaine&quot;;
+
+  /**
+   * Identifiant json {@link #categoryIdentifier}.
+   */
+  public static final String JSON_CATEGORY_IDENTIFIER =
+      &quot;idCategoriePostePaie&quot;;
+
+  /**
+   * Identifiant json {@link #categoryAsString}.
+   */
+  public static final String JSON_CATEGORY_AS_STRING =
+      &quot;categoriePosteChaine&quot;;
+
+  /**
+   * Identifiant json {@link #natureIdentifier}.
+   */
+  public static final String JSON_NATURE_IDENTIFIER =
+      &quot;idNaturePostePaie&quot;;
+
+  /**
+   * Identifiant json {@link #natureAsString}.
+   */
+  public static final String JSON_NATURE_AS_STRING =
+      &quot;naturePostePaieChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

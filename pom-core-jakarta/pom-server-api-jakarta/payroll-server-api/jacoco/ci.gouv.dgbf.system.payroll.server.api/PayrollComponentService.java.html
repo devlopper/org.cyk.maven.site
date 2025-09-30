@@ -121,6 +121,34 @@ public interface PayrollComponentService extends SpecificService {
     void setEmployerCalculationFormulaIdentifier(String employerCalculationFormulaIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de la catégorie de poste de paie.
+     *
+     * @return identifiant de la catégorie de poste de paie
+     */
+    String getCategoryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la catégorie de poste de paie.
+     *
+     * @param categoryIdentifier identifiant de la catégorie de poste de paie
+     */
+    void setCategoryIdentifier(String categoryIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la nature de poste de paie.
+     *
+     * @return identifiant de la nature de poste de paie
+     */
+    String getNatureIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la nature de poste de paie.
+     *
+     * @param natureIdentifier identifiant de la nature de poste de paie
+     */
+    void setNatureIdentifier(String natureIdentifier);
+
+    /**
      * {@link PayrollComponentDto#JSON_IS_EARNING}.
      */
     String JSON_IS_EARNING = PayrollComponentDto.JSON_IS_EARNING;
@@ -146,6 +174,18 @@ public interface PayrollComponentService extends SpecificService {
      */
     String JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER =
         PayrollComponentDto.JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER;
+
+    /**
+     * {@link PayrollComponentDto#JSON_CATEGORY_IDENTIFIER}.
+     */
+    String JSON_CATEGORY_IDENTIFIER =
+        PayrollComponentDto.JSON_CATEGORY_IDENTIFIER;
+
+    /**
+     * {@link PayrollComponentDto#JSON_NATURE_IDENTIFIER}.
+     */
+    String JSON_NATURE_IDENTIFIER =
+        PayrollComponentDto.JSON_NATURE_IDENTIFIER;
   }
 
   /**
@@ -181,7 +221,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L184">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L224">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
 
     @JsonbProperty(JSON_IS_EARNING)
@@ -198,6 +238,12 @@ public interface PayrollComponentService extends SpecificService {
 
     @JsonbProperty(JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER)
     private String employerCalculationFormulaIdentifier;
+
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String categoryIdentifier;
+
+    @JsonbProperty(JSON_NATURE_IDENTIFIER)
+    private String natureIdentifier;
   }
 
   /**
@@ -233,7 +279,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L236">  public static class PayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L282">  public static class PayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -323,7 +369,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L326">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L372">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
     @JsonbProperty(JSON_IS_EARNING)
     private Boolean isEarning;
@@ -339,6 +385,12 @@ public interface PayrollComponentService extends SpecificService {
 
     @JsonbProperty(JSON_EMPLOYER_CALCULATION_FORMULA_IDENTIFIER)
     private String employerCalculationFormulaIdentifier;
+
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String categoryIdentifier;
+
+    @JsonbProperty(JSON_NATURE_IDENTIFIER)
+    private String natureIdentifier;
   }
 
   /**
