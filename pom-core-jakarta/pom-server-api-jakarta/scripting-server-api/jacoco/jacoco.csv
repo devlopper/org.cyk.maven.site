@@ -64,6 +64,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,C
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptGroupAssociationService.ScriptGroupAssociationVerifyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantService.ContextualConstantCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueService.ConditionalValueCreateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantCategoryService.ConstantCategoryEvaluateResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueService.ConditionalValueGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptGroupService.ScriptGroupCreateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -76,6 +77,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,C
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantCategoryRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantService.ConstantCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueGroupDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantCategoryService.ConstantCategoryEvaluateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptRequestMapperImpl,0,75,0,4,0,22,0,5,0,3
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluatorService.ScriptEvaluatorUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -86,7 +88,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,C
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationService.ScriptEvaluationCreateManyRequestDto,0,51,0,2,0,14,0,6,0,5
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptUpdateTextRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ValueConditionService.ValueConditionCreateRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantCategoryClient,0,195,0,0,0,38,0,18,0,18
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantCategoryClient,0,212,0,0,0,40,0,20,0,20
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueGroupService.ConditionalValueGroupUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluatorFilter,0,3,0,0,0,1,0,1,0,1
@@ -96,7 +98,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,S
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptParameterService.ScriptParameterUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,DomainService.DomainUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptGroupAssociationRequestMapperImpl,0,65,0,6,0,21,0,7,0,4
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptGroupAssociationRequestMapperImpl,0,73,0,6,0,23,0,7,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,AbstractScriptDataFilter,3,43,0,0,0,14,1,8,1,8
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantService.ContextualConstantGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptGroupDto,0,3,0,0,0,1,0,1,0,1

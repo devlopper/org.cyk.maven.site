@@ -41,6 +41,29 @@ import lombok.Setter;
   public static final String JSON_MAX_VALUE = &quot;maxValue&quot;;
 
   /**
+   * Réprésentation en chaine de caractères de {@link ScriptGroupDto}.
+   */
+  @JsonbProperty(JSON_GROUP_IDENTIFIER)
+  private String groupIdentifier;
+
+
+  /**
+   * Réprésentation en chaine de caractères de {@link ScriptGroupDto}.
+   */
+  @JsonbProperty(JSON_GROUP_AS_STRING)
+  private String groupAsString;
+
+  /**
+   * Identifiant champ java {@link #groupIdentifier}.
+   */
+  public static final String JSON_GROUP_IDENTIFIER = ScriptGroupDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #groupAsString}.
+   */
+  public static final String JSON_GROUP_AS_STRING = ScriptGroupDto.JSON_THIS_AS_STRING;
+
+  /**
    * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idConditionValeur&quot;;

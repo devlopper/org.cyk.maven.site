@@ -87,6 +87,22 @@ public interface ScriptGroupAssociationService extends SpecificService {
      * {@link ScriptGroupAssociationDto#JSON_MAX_VALUE}.
      */
     String JSON_MAX_VALUE = ScriptGroupAssociationDto.JSON_MAX_VALUE;
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ScriptGroupDto}.
+     *
+     * @return identifiant de {@link ScriptGroupDto}
+     */
+    String getGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ScriptGroupDto}.
+     *
+     * @param groupIdentifier identifiant de {@link ScriptGroupDto}
+     */
+    void setGroupIdentifier(String groupIdentifier);
+
+
   }
 
   /**
@@ -122,7 +138,7 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L125">  class ScriptGroupAssociationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L141">  class ScriptGroupAssociationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptGroupAssociationSaveRequestDto {
    
 
@@ -131,6 +147,9 @@ public interface ScriptGroupAssociationService extends SpecificService {
 
     @JsonbProperty
     private String maxValue;
+
+    @JsonbProperty
+    private String groupIdentifier;
 
   }
 
@@ -167,7 +186,7 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  public static class ScriptGroupAssociationGetManyResponseDto</span>
+<span class="fc" id="L189">  public static class ScriptGroupAssociationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptGroupAssociationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -257,13 +276,16 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class ScriptGroupAssociationUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L279">  class ScriptGroupAssociationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ScriptGroupAssociationSaveRequestDto {
     @JsonbProperty
     private String minValue;
 
     @JsonbProperty
     private String maxValue;
+
+    @JsonbProperty
+    private String groupIdentifier;
   }
 
   /**
@@ -299,7 +321,7 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L302">  class ScriptGroupAssociationVerifyRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L324">  class ScriptGroupAssociationVerifyRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Valeur de l'attribut de filtre du sélecteur.
@@ -322,7 +344,7 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L325">  class ScriptGroupAssociationVerifyResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L347">  class ScriptGroupAssociationVerifyResponseDto extends IdentifiableResponseDto</span>
       implements HasBooleanValueDto {
 
     @JsonbProperty(JSON_VALUE)
