@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContextualConstantFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ContextualConstantFilter.java</span></div><h1>ContextualConstantFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasCategoryIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasGroupIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasLocalDateTimeFromDate;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasLocalDateTimeToDate;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +18,48 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-<span class="fc" id="L15">public class ContextualConstantFilter extends AbstractIdentifiableFilter {</span>
+public class ContextualConstantFilter extends AbstractIdentifiableFilter
+    implements FilterHasCategoryIdentifier, FilterHasGroupIdentifier,
+    FilterHasLocalDateTimeFromDate, FilterHasLocalDateTimeToDate {
+
+  private String categoryIdentifier;
   
+  private String groupIdentifier;
+  
+  private LocalDateTime fromDate;
+  
+  private LocalDateTime toDate;
+  
+  /**
+   * Cette méthode permet d'instantier un objet.
+   *
+   * @param dto filtre
+   */
+  public ContextualConstantFilter(FilterDto dto) {
+<span class="fc" id="L39">    super(dto);</span>
+<span class="fc" id="L40">  }</span>
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   */
+<span class="fc" id="L45">  public ContextualConstantFilter() {}</span>
+  
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L49">    super.doInitialize(filter);</span>
+<span class="fc" id="L50">    updateCategoryIdentifier(filter);</span>
+<span class="fc" id="L51">    updateGroupIdentifier(filter);</span>
+<span class="fc" id="L52">    updateFromDate(filter);</span>
+<span class="fc" id="L53">    updateToDate(filter);</span>
+<span class="fc" id="L54">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L58">    super.toDto(filter);</span>
+<span class="fc" id="L59">    updateFilterCategoryIdentifier(filter);</span>
+<span class="fc" id="L60">    updateFilterGroupIdentifier(filter);</span>
+<span class="fc" id="L61">    updateFilterFromDate(filter);</span>
+<span class="fc" id="L62">    updateFilterToDate(filter);</span>
+<span class="fc" id="L63">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
