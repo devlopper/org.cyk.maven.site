@@ -3,6 +3,8 @@
 import ci.gouv.dgbf.extension.core.segregation.HasBooleanValueDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -115,7 +117,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L118">  class ScriptGroupCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L120">  class ScriptGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptGroupSaveRequestDto {
 
 
@@ -160,7 +162,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L163">  public static class ScriptGroupGetManyResponseDto</span>
+<span class="fc" id="L165">  public static class ScriptGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -250,7 +252,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L253">  class ScriptGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L255">  class ScriptGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptGroupSaveRequestDto {
 
     @JsonbProperty
@@ -294,7 +296,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L297">  class ScriptGroupVerifyRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L299">  class ScriptGroupVerifyRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Valeur de l'attribut de filtre du sélecteur.
@@ -317,7 +319,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L320">  class ScriptGroupVerifyResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L322">  class ScriptGroupVerifyResponseDto extends IdentifiableResponseDto</span>
       implements HasBooleanValueDto {
 
     @JsonbProperty(JSON_VALUE)

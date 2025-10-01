@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-09-30T21:30:22+0000&quot;,
+    date = &quot;2025-10-01T09:24:17+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,38 +25,42 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ScriptGroupService.ScriptGroupCreateRequestDto scriptGroupCreateRequestDto = new ScriptGroupService.ScriptGroupCreateRequestDto();</span>
 
-<span class="fc" id="L28">        scriptGroupCreateRequestDto.setMinValue( arg0.getMinValue() );</span>
-<span class="fc" id="L29">        scriptGroupCreateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
+<span class="fc" id="L28">        scriptGroupCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L29">        scriptGroupCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        scriptGroupCreateRequestDto.setMinValue( arg0.getMinValue() );</span>
+<span class="fc" id="L31">        scriptGroupCreateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
 
-<span class="fc" id="L31">        return scriptGroupCreateRequestDto;</span>
+<span class="fc" id="L33">        return scriptGroupCreateRequestDto;</span>
     }
 
     @Override
     public ScriptGroupService.ScriptGroupUpdateRequestDto mapUpdate(ScriptGroupDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L40">        ScriptGroupService.ScriptGroupUpdateRequestDto scriptGroupUpdateRequestDto = new ScriptGroupService.ScriptGroupUpdateRequestDto();</span>
+<span class="fc" id="L42">        ScriptGroupService.ScriptGroupUpdateRequestDto scriptGroupUpdateRequestDto = new ScriptGroupService.ScriptGroupUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        scriptGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        scriptGroupUpdateRequestDto.setMinValue( arg0.getMinValue() );</span>
-<span class="fc" id="L44">        scriptGroupUpdateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
+<span class="fc" id="L44">        scriptGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        scriptGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        scriptGroupUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        scriptGroupUpdateRequestDto.setMinValue( arg0.getMinValue() );</span>
+<span class="fc" id="L48">        scriptGroupUpdateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
 
-<span class="fc" id="L46">        return scriptGroupUpdateRequestDto;</span>
+<span class="fc" id="L50">        return scriptGroupUpdateRequestDto;</span>
     }
 
     @Override
     public ScriptGroupService.ScriptGroupVerifyRequestDto mapVerify(ScriptGroupDto scriptGroupDto) {
-<span class="fc bfc" id="L51" title="All 2 branches covered.">        if ( scriptGroupDto == null ) {</span>
-<span class="fc" id="L52">            return null;</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if ( scriptGroupDto == null ) {</span>
+<span class="fc" id="L56">            return null;</span>
         }
 
-<span class="fc" id="L55">        ScriptGroupService.ScriptGroupVerifyRequestDto scriptGroupVerifyRequestDto = new ScriptGroupService.ScriptGroupVerifyRequestDto();</span>
+<span class="fc" id="L59">        ScriptGroupService.ScriptGroupVerifyRequestDto scriptGroupVerifyRequestDto = new ScriptGroupService.ScriptGroupVerifyRequestDto();</span>
 
-<span class="fc" id="L57">        scriptGroupVerifyRequestDto.setIdentifier( scriptGroupDto.getIdentifier() );</span>
+<span class="fc" id="L61">        scriptGroupVerifyRequestDto.setIdentifier( scriptGroupDto.getIdentifier() );</span>
 
-<span class="fc" id="L59">        return scriptGroupVerifyRequestDto;</span>
+<span class="fc" id="L63">        return scriptGroupVerifyRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
