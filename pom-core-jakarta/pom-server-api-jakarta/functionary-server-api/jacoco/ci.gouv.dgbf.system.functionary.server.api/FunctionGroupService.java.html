@@ -50,6 +50,25 @@ public interface FunctionGroupService extends SpecificService {
    *
    */
   interface FunctionGroupSaveRequestDto {
+    
+    /**
+     * Cette méthode me permet d'obtenir l'identifiant de {@link FunctionGroupTypeDto}.
+     *
+     * @return identifiant de {@link FunctionGroupTypeDto}
+     */
+    String getTypeIdentifier();
+
+    /**
+     * Cette méthode me permet d'assigner l'identifiant de {@link FunctionGroupTypeDto}.
+     *
+     * @param identifier identifiant de {@link FunctionGroupTypeDto}
+     */
+    void setTypeIdentifier(String identifier);
+
+    /**
+     * Identifiant json de {@link CivilServiceStatusDto}.
+     */
+    String JSON_TYPE_IDENTIFIER = FunctionGroupTypeDto.JSON_THIS_IDENTIFIER;
 
   }
 
@@ -86,9 +105,11 @@ public interface FunctionGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L89">  class FunctionGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L108">  class FunctionGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements FunctionGroupSaveRequestDto {
-
+    
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
   }
 
   /**
@@ -125,7 +146,7 @@ public interface FunctionGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  public static class FunctionGroupGetManyResponseDto extends </span>
+<span class="fc" id="L149">  public static class FunctionGroupGetManyResponseDto extends </span>
           AbstractGetByPageResponseDto&lt;FunctionGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -215,9 +236,11 @@ public interface FunctionGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L218">  class FunctionGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L239">  class FunctionGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements FunctionGroupSaveRequestDto {
 
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
   }
 
   /**

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>FunctionFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module des fonctionnaires</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.functionary.server.api</a> &gt; <span class="el_source">FunctionFilter.java</span></div><h1>FunctionFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.functionary.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +14,107 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-<span class="fc" id="L15">public class FunctionFilter extends AbstractIdentifiableFilter {</span>
+public class FunctionFilter extends AbstractIdentifiableFilter {
   
+  /**
+   * Identifiant de {@link FunctionTypeDto}.
+   */
+  @JsonbProperty(value = JSON_TYPE_IDENTIFIER)
+  String typeIdentifier;
+  
+  /**
+   * Identifiant de {@link FunctionGroupDto}.
+   */
+  @JsonbProperty(value = JSON_GROUP_IDENTIFIER)
+  String groupIdentifier;
+
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   */
+  public FunctionFilter() {
+<span class="fc" id="L36">    super();</span>
+<span class="fc" id="L37">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   *
+   * @param dto filtre
+   */
+  public FunctionFilter(FilterDto dto) {
+<span class="fc" id="L45">    super(dto);</span>
+<span class="fc" id="L46">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L50">    super.doInitialize(filter);</span>
+<span class="fc" id="L51">    typeIdentifier = getTypeIdentifier(filter);</span>
+<span class="fc" id="L52">    groupIdentifier = getGroupIdentifier(filter);</span>
+<span class="fc" id="L53">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L57">    super.toDto(filter);</span>
+<span class="fc" id="L58">    setTypeIdentifier(filter, typeIdentifier);</span>
+<span class="fc" id="L59">    setGroupIdentifier(filter, groupIdentifier);</span>
+<span class="fc" id="L60">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link #typeIdentifier}.
+   *
+   * @param filter filtre
+   * @param typeIdentifier {@link #typeIdentifier}
+   */
+  public static void setTypeIdentifier(FilterDto filter,
+      String typeIdentifier) {
+<span class="pc" id="L70">    set(filter, JSON_TYPE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L71">              f -&gt; f.setValueAsString(typeIdentifier));</span>
+<span class="fc" id="L72">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #typeIdentifier}.
+   *
+   * @param filter filtre
+   * @return {@link #typeIdentifier}
+   */
+  public static String getTypeIdentifier(FilterDto filter) {
+<span class="fc" id="L81">    return get(filter, d -&gt; d</span>
+<span class="fc" id="L82">      .getFieldValueAsStringByName(JSON_TYPE_IDENTIFIER));</span>
+  }
+  
+  /**
+   * Cette méthode permet d'assigner {@link #groupIdentifier}.
+   *
+   * @param filter filtre
+   * @param groupIdentifier {@link #groupIdentifier}
+   */
+  public static void setGroupIdentifier(FilterDto filter,
+      String groupIdentifier) {
+<span class="pc" id="L93">    set(filter, JSON_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L94">              f -&gt; f.setValueAsString(groupIdentifier));</span>
+<span class="fc" id="L95">  }</span>
+  
+  /**
+   * Cette méthode permet d'obtenir {@link #groupIdentifier}.
+   *
+   * @param filter filtre
+   * @return {@link #groupIdentifier}
+   */
+  public static String getGroupIdentifier(FilterDto filter) {
+<span class="fc" id="L104">    return get(filter, d -&gt; d</span>
+<span class="fc" id="L105">      .getFieldValueAsStringByName(JSON_GROUP_IDENTIFIER));</span>
+  }
+
+  /**
+   * Identifiant json du {@link #typeIdentifier}.
+   */
+  public static final String JSON_TYPE_IDENTIFIER =
+      FunctionTypeDto.JSON_THIS_IDENTIFIER;
+  
+  /**
+   * Identifiant json du {@link #typeIdentifier}.
+   */
+  public static final String JSON_GROUP_IDENTIFIER =
+      FunctionGroupDto.JSON_THIS_IDENTIFIER;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
