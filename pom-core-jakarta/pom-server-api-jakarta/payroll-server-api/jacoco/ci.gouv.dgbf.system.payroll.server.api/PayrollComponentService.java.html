@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollComponentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollComponentService.java</span></div><h1>PayrollComponentService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasIsEvaluableInSecondaryContextDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -93,6 +94,20 @@ public interface PayrollComponentService extends SpecificService {
     void setIsPensionable(Boolean isPensionable);
 
     /**
+     * Cette méthode permet d'obtenir si évalué dans le contexte secondaire.
+     *
+     * @return si évalué dans le contexte secondaire
+     */
+    Boolean getIsEvaluableInSecondaryContext();
+
+    /**
+     * Cette méthode permet d'assigner si évalué dans le contexte secondaire.
+     *
+     * @param isEvaluableInSecondaryContext si évalué dans le contexte secondaire
+     */
+    void setIsEvaluableInSecondaryContext(Boolean isEvaluableInSecondaryContext);
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant de la formule de calcul employé.
      *
      * @return identifiant de la formule de calcul employé
@@ -164,6 +179,12 @@ public interface PayrollComponentService extends SpecificService {
     String JSON_IS_PENSIONABLE = PayrollComponentDto.JSON_IS_PENSIONABLE;
 
     /**
+     * {@link HasIsEvaluableInSecondaryContextDto#JSON_IS_EVALUABLE_IN_SECONDARY_CONTEXT}.
+     */
+    String JSON_IS_EVALUABLE_IN_SECONDARY_CONTEXT =
+        HasIsEvaluableInSecondaryContextDto.JSON_IS_EVALUABLE_IN_SECONDARY_CONTEXT;
+
+    /**
      * {@link PayrollComponentDto#JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER}.
      */
     String JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER =
@@ -178,14 +199,12 @@ public interface PayrollComponentService extends SpecificService {
     /**
      * {@link PayrollComponentDto#JSON_CATEGORY_IDENTIFIER}.
      */
-    String JSON_CATEGORY_IDENTIFIER =
-        PayrollComponentDto.JSON_CATEGORY_IDENTIFIER;
+    String JSON_CATEGORY_IDENTIFIER = PayrollComponentDto.JSON_CATEGORY_IDENTIFIER;
 
     /**
      * {@link PayrollComponentDto#JSON_NATURE_IDENTIFIER}.
      */
-    String JSON_NATURE_IDENTIFIER =
-        PayrollComponentDto.JSON_NATURE_IDENTIFIER;
+    String JSON_NATURE_IDENTIFIER = PayrollComponentDto.JSON_NATURE_IDENTIFIER;
   }
 
   /**
@@ -221,7 +240,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L224">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L243">  class PayrollComponentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
 
     @JsonbProperty(JSON_IS_EARNING)
@@ -244,6 +263,9 @@ public interface PayrollComponentService extends SpecificService {
 
     @JsonbProperty(JSON_NATURE_IDENTIFIER)
     private String natureIdentifier;
+    
+    @JsonbProperty(JSON_IS_EVALUABLE_IN_SECONDARY_CONTEXT)
+    private Boolean isEvaluableInSecondaryContext;
   }
 
   /**
@@ -279,7 +301,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L282">  public static class PayrollComponentGetManyResponseDto</span>
+<span class="fc" id="L304">  public static class PayrollComponentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollComponentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -369,7 +391,7 @@ public interface PayrollComponentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L372">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L394">  class PayrollComponentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollComponentSaveRequestDto {
     @JsonbProperty(JSON_IS_EARNING)
     private Boolean isEarning;
@@ -391,6 +413,9 @@ public interface PayrollComponentService extends SpecificService {
 
     @JsonbProperty(JSON_NATURE_IDENTIFIER)
     private String natureIdentifier;
+    
+    @JsonbProperty(JSON_IS_EVALUABLE_IN_SECONDARY_CONTEXT)
+    private Boolean isEvaluableInSecondaryContext;
   }
 
   /**
