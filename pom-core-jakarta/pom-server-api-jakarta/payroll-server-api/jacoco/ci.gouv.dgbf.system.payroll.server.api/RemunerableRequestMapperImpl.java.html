@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-10-02T17:48:10+0000&quot;,
+    date = &quot;2025-10-02T18:48:52+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -31,30 +31,32 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L31">        remunerableCreateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
 <span class="fc" id="L32">        remunerableCreateRequestDto.setPayslipTemplateIdentifier( arg0.getPayslipTemplateIdentifier() );</span>
 <span class="fc" id="L33">        remunerableCreateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
-<span class="fc" id="L34">        remunerableCreateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
-<span class="fc" id="L35">        remunerableCreateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
+<span class="fc" id="L34">        remunerableCreateRequestDto.setIsSecondary( arg0.getIsSecondary() );</span>
+<span class="fc" id="L35">        remunerableCreateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
+<span class="fc" id="L36">        remunerableCreateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
 
-<span class="fc" id="L37">        return remunerableCreateRequestDto;</span>
+<span class="fc" id="L38">        return remunerableCreateRequestDto;</span>
     }
 
     @Override
     public RemunerableService.RemunerableUpdateRequestDto mapUpdate(RemunerableDto arg0) {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L43">            return null;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L44">            return null;</span>
         }
 
-<span class="fc" id="L46">        RemunerableService.RemunerableUpdateRequestDto remunerableUpdateRequestDto = new RemunerableService.RemunerableUpdateRequestDto();</span>
+<span class="fc" id="L47">        RemunerableService.RemunerableUpdateRequestDto remunerableUpdateRequestDto = new RemunerableService.RemunerableUpdateRequestDto();</span>
 
-<span class="fc" id="L48">        remunerableUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L49">        remunerableUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L50">        remunerableUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L51">        remunerableUpdateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
-<span class="fc" id="L52">        remunerableUpdateRequestDto.setPayslipTemplateIdentifier( arg0.getPayslipTemplateIdentifier() );</span>
-<span class="fc" id="L53">        remunerableUpdateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
-<span class="fc" id="L54">        remunerableUpdateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
-<span class="fc" id="L55">        remunerableUpdateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
+<span class="fc" id="L49">        remunerableUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L50">        remunerableUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L51">        remunerableUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L52">        remunerableUpdateRequestDto.setFunctionaryBudgetarySectionUnitIdentifier( arg0.getFunctionaryBudgetarySectionUnitIdentifier() );</span>
+<span class="fc" id="L53">        remunerableUpdateRequestDto.setPayslipTemplateIdentifier( arg0.getPayslipTemplateIdentifier() );</span>
+<span class="fc" id="L54">        remunerableUpdateRequestDto.setIsSecondary( arg0.getIsSecondary() );</span>
+<span class="fc" id="L55">        remunerableUpdateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
+<span class="fc" id="L56">        remunerableUpdateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
+<span class="fc" id="L57">        remunerableUpdateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
 
-<span class="fc" id="L57">        return remunerableUpdateRequestDto;</span>
+<span class="fc" id="L59">        return remunerableUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
