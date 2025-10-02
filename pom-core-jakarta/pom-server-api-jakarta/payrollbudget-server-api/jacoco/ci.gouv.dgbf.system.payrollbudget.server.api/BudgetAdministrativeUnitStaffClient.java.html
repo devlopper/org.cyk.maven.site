@@ -16,9 +16,9 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitStaffService.AdministrativeUnitStaffCreateRequestDto;
-import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitStaffService.AdministrativeUnitStaffGetManyResponseDto;
-import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitStaffService.AdministrativeUnitStaffUpdateRequestDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffCreateRequestDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffGetManyResponseDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -35,7 +35,7 @@ import lombok.experimental.Accessors;
 <span class="fc" id="L35">public class BudgetAdministrativeUnitStaffClient </span>
     extends AbstractClient&lt;BudgetAdministrativeUnitStaffService&gt;
     implements GetByIdentifier&lt;BudgetAdministrativeUnitStaffDto&gt;, 
-        GetMany&lt;AdministrativeUnitStaffGetManyResponseDto&gt;,
+        GetMany&lt;BudgetAdministrativeUnitStaffGetManyResponseDto&gt;,
         DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
@@ -49,7 +49,7 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public CreateResponseDto create(AdministrativeUnitStaffCreateRequestDto request) {
+  public CreateResponseDto create(BudgetAdministrativeUnitStaffCreateRequestDto request) {
 <span class="fc" id="L53">    return new CreateExecutor(BudgetAdministrativeUnitStaffService.CREATE_IDENTIFIER)</span>
 <span class="fc" id="L54">        .execute(() -&gt; service().create(request));</span>
   }
@@ -60,9 +60,9 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public AdministrativeUnitStaffGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L64">    return new GetOneExecutor&lt;AdministrativeUnitStaffGetManyResponseDto&gt;(</span>
-            AdministrativeUnitStaffGetManyResponseDto.class,
+  public BudgetAdministrativeUnitStaffGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L64">    return new GetOneExecutor&lt;BudgetAdministrativeUnitStaffGetManyResponseDto&gt;(</span>
+            BudgetAdministrativeUnitStaffGetManyResponseDto.class,
         BudgetAdministrativeUnitStaffService.GET_MANY_IDENTIFIER)
 <span class="fc" id="L67">            .execute(() -&gt; service().getMany(request));</span>
   }
@@ -78,7 +78,7 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   @Override
-  public AdministrativeUnitStaffGetManyResponseDto getMany(ProjectionDto projection, 
+  public BudgetAdministrativeUnitStaffGetManyResponseDto getMany(ProjectionDto projection, 
           FilterDto filter, PageDto page, String auditWho, String auditSession) {
 <span class="fc" id="L83">    GetManyRequestDto request = new GetManyRequestDto();</span>
 <span class="fc" id="L84">    request.setProjection(projection);</span>
@@ -160,7 +160,7 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto update(AdministrativeUnitStaffUpdateRequestDto request) {
+  public IdentifiableResponseDto update(BudgetAdministrativeUnitStaffUpdateRequestDto request) {
 <span class="fc" id="L164">    return new IdentifiableExecutor(BudgetAdministrativeUnitStaffService.UPDATE_IDENTIFIER)</span>
 <span class="fc" id="L165">        .execute(() -&gt; service().update(request));</span>
   }

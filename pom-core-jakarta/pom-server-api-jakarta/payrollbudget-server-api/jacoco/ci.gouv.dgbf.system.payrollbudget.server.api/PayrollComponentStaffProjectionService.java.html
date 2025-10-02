@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollComponentStaffProjectionService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">PayrollComponentStaffProjectionService.java</span></div><h1>PayrollComponentStaffProjectionService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasIntegerAmountDto;
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link PayrollComponentStaffProjectionDto}.
+ *
+ * @author parfait
+ *
+ */
+@Path(value = PayrollComponentStaffProjectionService.PATH)
+@Tag(name = &quot;Gestion des projections de poste de paie sur un effectif&quot;)
+public interface PayrollComponentStaffProjectionService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;projections-postes-paie-effectif&quot;;
+
+  /**
+   * Cette interface représente les données d'enregistrement.
+   *
+   * @author parfait
+   *
+   */
+  interface SaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de .
+     *
+     * @return identifiant de 
+     */
+    String getBudgetAdministrativeUnitStaffIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de .
+     *
+     * @param identifier identifiant de 
+     */
+    void setBudgetAdministrativeUnitStaffIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du poste de paie.
+     *
+     * @return identifiant du poste de paie
+     */
+    String getPayrollComponentIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du poste de paie.
+     *
+     * @param identifier identifiant du poste de paie
+     */
+    void setPayrollComponentIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe de la période de paie.
+     *
+     * @return identifiant du groupe de la période de paie
+     */
+    String getPayrollPeriodGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe de la période de paie.
+     *
+     * @param identifier identifiant du groupe de la période de paie
+     */
+    void setPayrollPeriodGroupIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    Integer getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(Integer amount);
+
+    /**
+     * Cette méthode permet d'obtenir le montant de référence.
+     *
+     * @return montant de référence
+     */
+    Integer getReferenceAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant de référence.
+     *
+     * @param amount montant de référence
+     */
+    void setReferenceAmount(Integer amount);
+
+    /**
+     * Identifiant json champ identifiant de {@link BudgetAdministrativeUnitStaffDto}.
+     */
+    String JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_IDENTIFIER =
+        BudgetAdministrativeUnitStaffDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json champ identifiant du poste de paie.
+     */
+    String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
+
+    /**
+     * Identifiant json champ identifiant du groupe de la periode de paie.
+     */
+    String JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER =
+        PayrollComponentProjectionDto.JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER;
+
+    /**
+     * Identifiant json champ montant de référence.
+     */
+    String JSON_REFERENCE_AMOUNT = PayrollComponentProjectionDto.JSON_REFERENCE_AMOUNT;
+
+    /**
+     * Identifiant json champ montant.
+     */
+    String JSON_AMOUNT = PayrollComponentProjectionDto.JSON_AMOUNT;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_PROJECTION_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER,
+      summary = &quot;Création d'une projection de poste de paie sur effectif&quot;,
+      description = &quot;Ce service permet de créer une projection de poste de paie sur un effectif&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(PayrollComponentStaffProjectionCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author parfait
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L189">  class PayrollComponentStaffProjectionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_IDENTIFIER)
+    private String budgetAdministrativeUnitStaffIdentifier;
+
+    @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+    private String payrollComponentIdentifier;
+
+    @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER)
+    private String payrollPeriodGroupIdentifier;
+
+    @JsonbProperty(JSON_REFERENCE_AMOUNT)
+    private Integer referenceAmount;
+
+    @JsonbProperty(JSON_AMOUNT)
+    private Integer amount;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_PROJECTIONS_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir des projections de poste de paie sur effectif&quot;)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(
+      schema = @Schema(implementation = PayrollComponentStaffProjectionGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L242">  public static class PayrollComponentStaffProjectionGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;PayrollComponentStaffProjectionDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;PayrollComponentStaffProjectionDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UNE_PROJECTION_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir une projection de poste de paie sur effectif&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = 
+              PayrollComponentStaffProjectionDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_PROJECTION_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER,
+      description = &quot;Ce service permet d'obtenir par identifiant une projection &quot;
+              + &quot;de poste de paie sur effectif&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = 
+              PayrollComponentStaffProjectionDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_PROJECTION_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER,
+      description = &quot;Ce service permet de mettre à jour une projection &quot;
+              + &quot;de poste de paie sur effectif&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(PayrollComponentStaffProjectionUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L339">  class PayrollComponentStaffProjectionUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements SaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_IDENTIFIER)
+    private String budgetAdministrativeUnitStaffIdentifier;
+
+    @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+    private String payrollComponentIdentifier;
+
+    @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER)
+    private String payrollPeriodGroupIdentifier;
+
+    @JsonbProperty(JSON_REFERENCE_AMOUNT)
+    private Integer referenceAmount;
+
+    @JsonbProperty(JSON_AMOUNT)
+    private Integer amount;
+  }
+
+  /**
+   * Identifiant du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_IDENTIFIER = &quot;MISE_A_JOUR_MONTANT_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service de mise à jour de montant.
+   */
+  String UPDATE_AMOUNT_PATH = PayrollComponentStaffProjectionUpdateAmountRequestDto.JSON_AMOUNT;
+
+  /**
+   * Cette méthode permet de mettre à jour montant de {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_AMOUNT_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_AMOUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateAmount(PayrollComponentStaffProjectionUpdateAmountRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour de montant.
+   *
+   * @author parfait
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L390">  class PayrollComponentStaffProjectionUpdateAmountRequestDto extends ByIdentifierRequestDto</span>
+      implements HasIntegerAmountDto {
+    /**
+     * Montant.
+     */
+    @JsonbProperty(JSON_AMOUNT)
+    private Integer amount;
+
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_PROJECTION_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      description = &quot;Ce service permet de supprimer une projection de poste de paie sur effectif&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+  
+  /**
+   * Cette classe représente la requête de création de plusieurs postes de paie.
+   *
+   * @author misat
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L434">  class CreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+
+    @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_IDENTIFIER)
+    private String bugetAdministrativeUnitStaffIdentifier;
+
+    @JsonbProperty(JSON_PAYROLL_COMPONENTS)
+    private List&lt;ProjectionDto&gt; payrollComponents;
+    
+    /**
+     * Cette classe représente la projection des postes de paie.
+     */
+    @Getter
+    @Setter
+<span class="fc" id="L447">    public static class ProjectionDto {</span>
+      /**
+       * Identifiant du poste de paie.
+       */
+      @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+      private String payrollComponentIdentifier;
+
+      /**
+       * Montant.
+       */
+      @JsonbProperty(JSON_AMOUNT)
+      private Integer amount;
+
+      /**
+       * Identifiant json champ {@link #payrollComponentIdentifier}.
+       */
+      static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = &quot;idPostePaie&quot;;
+
+      /**
+       * Identifiant json champ {@link #amount}.
+       */
+      static final String JSON_AMOUNT = &quot;montant&quot;;
+    }
+
+    /**
+     * Identifiant json de l'identifiant de {@link BudgetAdministrativeUnitStaffDto}.
+     */
+    static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_IDENTIFIER =
+        BudgetAdministrativeUnitStaffDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json des postes de paie.
+     */
+    static final String JSON_PAYROLL_COMPONENTS = &quot;postesPaie&quot;;
+
+  }
+
+  /**
+   * Identifiant du service de création de plusieurs.
+   */
+  String CREATE_MANY_IDENTIFIER = &quot;CREATION_PLUSIEURS_POSTE_PAIE_EFFECTIF&quot;;
+
+  /**
+   * Chemin du service de création de plusieurs.
+   */
+  String CREATE_MANY_PATH = &quot;plusieurs&quot;;
+
+  /**
+   * Cette méthode permet de créer plusieurs {@link PayrollComponentStaffProjectionDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateManyRequestDto.class))})
+  Response createMany(CreateManyRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

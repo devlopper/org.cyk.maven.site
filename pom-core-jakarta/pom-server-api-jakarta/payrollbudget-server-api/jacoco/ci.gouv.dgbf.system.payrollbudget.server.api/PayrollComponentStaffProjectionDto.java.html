@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollComponentStaffProjectionDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">PayrollComponentStaffProjectionDto.java</span></div><h1>PayrollComponentStaffProjectionDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une projection de poste de paie sur un effectif.
+ *
+ * @author parfait
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class PayrollComponentStaffProjectionDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant {@link BudgetAdministrativeUnitStaffDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_IDENTIFIER)
+  private String budgetAdministrativeUnitStaffIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link BudgetAdministrativeUnitStaffDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_AS_STRING)
+  private String budgetAdministrativeUnitStaffAsString;
+  
+  /**
+   * Identifiant {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  private String exerciseIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link ExerciseDto}.
+   */
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  private String exerciseAsString;
+
+  /**
+   * Identifiant {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+  private String budgetIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link BudgetDto}.
+   */
+  @JsonbProperty(JSON_BUDGET_AS_STRING)
+  private String budgetAsString;
+
+  /**
+   * Identifiant unité administrative.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String administrativeUnitIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de unité administrative.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String administrativeUnitAsString;
+  
+  /**
+   * Identifiant {@link PayrollComponentDto}.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+  private String payrollComponentIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link PayrollComponentDto}.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
+  private String payrollComponentAsString;
+
+  /**
+   * Identifiant {@link PayrollPeriodGroupDto}.
+   */
+  @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER)
+  private String payrollPeriodGroupIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link PayrollPeriodGroupDto}.
+   */
+  @JsonbProperty(JSON_PAYROLL_PERIOD_GROUP_AS_STRING)
+  private String payrollPeriodGroupAsString;
+
+  /**
+   * Représentation de l'activité du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_ACTIVITY_AS_STRING)
+  private String activityAsString;
+
+  /**
+   * Représentation de la nature économique du poste de dépense en chaine de caractères.
+   */
+  @JsonbProperty(JSON_ECONOMIC_NATURE_AS_STRING)
+  private String economicNatureAsString;
+  
+  /**
+   * Montant de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_AMOUNT)
+  private Integer referenceAmount;
+
+  /**
+   * Représentation en chaine de caractères du montant de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
+  private String referenceAmountAsString;
+
+  /**
+   * Montant.
+   */
+  @JsonbProperty(JSON_AMOUNT)
+  private Integer amount;
+
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  private String amountAsString;
+
+  /**
+   * Identifiant json champ {@link #budgetAdministrativeUnitStaffIdentifier}.
+   */
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_IDENTIFIER = 
+          BudgetAdministrativeUnitStaffDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #budgetAdministrativeUnitStaffAsString}.
+   */
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_STAFF_AS_STRING = 
+          BudgetAdministrativeUnitStaffDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant json champ {@link #budgetIdentifier}.
+   */
+  public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #budgetAsString}.
+   */
+  public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
+
+  /**
+   * Identifiant json {@link #administrativeUnitAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link #payrollComponentIdentifier}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = &quot;idPostePaie&quot;;
+
+  /**
+   * Identifiant json champ {@link #payrollComponentAsString}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = &quot;postePaieChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #payrollPeriodGroupIdentifier}.
+   */
+  public static final String JSON_PAYROLL_PERIOD_GROUP_IDENTIFIER = &quot;idGroupePeriodePaie&quot;;
+
+  /**
+   * Identifiant json champ {@link #payrollPeriodGroupAsString}.
+   */
+  public static final String JSON_PAYROLL_PERIOD_GROUP_AS_STRING = &quot;groupePeriodePaieChaine&quot;;
+
+  /**
+   * Identifiant json {@link AdministrativeUnitBudgetExecutionDto#activityAsString}.
+   */
+  public static final String JSON_ACTIVITY_AS_STRING = &quot;activiteChaine&quot;;
+
+  /**
+   * Identifiant json {@link AdministrativeUnitBudgetExecutionDto#economicNatureAsString}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_AS_STRING =
+      &quot;natureEconomiqueChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link #referenceAmount}.
+   */
+  public static final String JSON_REFERENCE_AMOUNT = &quot;montantReference&quot;;
+
+  /**
+   * Identifiant json champ {@link #referenceAmountAsString}.
+   */
+  public static final String JSON_REFERENCE_AMOUNT_AS_STRING = &quot;montantReferenceChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #amount}.
+   */
+  public static final String JSON_AMOUNT = &quot;montant&quot;;
+
+  /**
+   * Identifiant json champ {@link #amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;projection de poste de paie sur effectif&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;projections de poste de paie sur effectif&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

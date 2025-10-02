@@ -187,7 +187,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
   @Operation(operationId = CREATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;201&quot;,
       content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
-  Response create(AdministrativeUnitStaffCreateRequestDto request);
+  Response create(BudgetAdministrativeUnitStaffCreateRequestDto request);
 
   /**
    * Cette classe représente la requête de création.
@@ -197,7 +197,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L200">  class AdministrativeUnitStaffCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L200">  class BudgetAdministrativeUnitStaffCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
     
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -242,7 +242,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
   @Operation(operationId = GET_MANY_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = 
-              AdministrativeUnitStaffGetManyResponseDto.class))})
+              BudgetAdministrativeUnitStaffGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -253,7 +253,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L256">  public static class AdministrativeUnitStaffGetManyResponseDto </span>
+<span class="fc" id="L256">  public static class BudgetAdministrativeUnitStaffGetManyResponseDto </span>
           extends AbstractGetByPageResponseDto&lt;BudgetAdministrativeUnitStaffDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -335,7 +335,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
   @Operation(operationId = UPDATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response update(AdministrativeUnitStaffUpdateRequestDto request);
+  Response update(BudgetAdministrativeUnitStaffUpdateRequestDto request);
 
   /**
    * Cette classe représente la requête de mise à jour.
@@ -345,7 +345,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L348">  class AdministrativeUnitStaffUpdateRequestDto extends ByIdentifierRequestDto </span>
+<span class="fc" id="L348">  class BudgetAdministrativeUnitStaffUpdateRequestDto extends ByIdentifierRequestDto </span>
           implements SaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)

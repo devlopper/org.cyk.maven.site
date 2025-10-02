@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollComponentStaffProjectionFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">PayrollComponentStaffProjectionFilter.java</span></div><h1>PayrollComponentStaffProjectionFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayrollComponentIdentifier;
+import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayrollPeriodGroupIdentifier;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link PayrollComponentStaffProjectionDto}.
+ *
+ * @author parfait
+ */
+@Getter
+@Setter
+public class PayrollComponentStaffProjectionFilter extends AbstractIdentifiableFilter
+    implements FilterHasBudgetAdministrativeUnitStaffIdentifier, 
+    FilterHasPayrollComponentIdentifier, FilterHasPayrollPeriodGroupIdentifier {
+
+  /**
+   * Identifiant {@link BudgetAdministrativeUnitStaffDto}.
+   */
+  String budgetAdministrativeUnitStaffIdentifier;
+
+  /**
+   * Identifiant poste de paie.
+   */
+  String payrollComponentIdentifier;
+
+  /**
+   * Identifiant groupe de période de paie.
+   */
+  String payrollPeriodGroupIdentifier;
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   *
+   * @param dto filtre
+   */
+  public PayrollComponentStaffProjectionFilter(FilterDto dto) {
+<span class="fc" id="L42">    super(dto);</span>
+<span class="fc" id="L43">  }</span>
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   */
+<span class="fc" id="L48">  public PayrollComponentStaffProjectionFilter() {}</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L52">    super.doInitialize(filter);</span>
+<span class="fc" id="L53">    updateHasBudgetAdministrativeUnitStaffIdentifier(filter);</span>
+<span class="fc" id="L54">    updatePayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L55">    updatePayrollPeriodGroupIdentifier(filter);</span>
+<span class="fc" id="L56">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L60">    super.toDto(filter);</span>
+<span class="fc" id="L61">    updateFilterHasBudgetAdministrativeUnitStaffIdentifier(filter);</span>
+<span class="fc" id="L62">    updateFilterPayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L63">    updateFilterPayrollPeriodGroupIdentifier(filter);</span>
+<span class="fc" id="L64">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
