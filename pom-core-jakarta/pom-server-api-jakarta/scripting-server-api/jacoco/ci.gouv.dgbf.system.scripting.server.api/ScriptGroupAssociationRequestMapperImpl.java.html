@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-10-01T09:24:18+0000&quot;,
+    date = &quot;2025-10-02T13:58:13+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -43,24 +43,13 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L43">        ScriptGroupAssociationService.ScriptGroupAssociationUpdateRequestDto scriptGroupAssociationUpdateRequestDto = new ScriptGroupAssociationService.ScriptGroupAssociationUpdateRequestDto();</span>
 
 <span class="fc" id="L45">        scriptGroupAssociationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        scriptGroupAssociationUpdateRequestDto.setMinValue( arg0.getMinValue() );</span>
-<span class="fc" id="L47">        scriptGroupAssociationUpdateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
-<span class="fc" id="L48">        scriptGroupAssociationUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L46">        scriptGroupAssociationUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L47">        scriptGroupAssociationUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L48">        scriptGroupAssociationUpdateRequestDto.setMinValue( arg0.getMinValue() );</span>
+<span class="fc" id="L49">        scriptGroupAssociationUpdateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
+<span class="fc" id="L50">        scriptGroupAssociationUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
 
-<span class="fc" id="L50">        return scriptGroupAssociationUpdateRequestDto;</span>
-    }
-
-    @Override
-    public ScriptGroupAssociationService.ScriptGroupAssociationVerifyRequestDto mapVerify(ScriptGroupAssociationDto scriptGroupAssociationDto) {
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        if ( scriptGroupAssociationDto == null ) {</span>
-<span class="fc" id="L56">            return null;</span>
-        }
-
-<span class="fc" id="L59">        ScriptGroupAssociationService.ScriptGroupAssociationVerifyRequestDto scriptGroupAssociationVerifyRequestDto = new ScriptGroupAssociationService.ScriptGroupAssociationVerifyRequestDto();</span>
-
-<span class="fc" id="L61">        scriptGroupAssociationVerifyRequestDto.setIdentifier( scriptGroupAssociationDto.getIdentifier() );</span>
-
-<span class="fc" id="L63">        return scriptGroupAssociationVerifyRequestDto;</span>
+<span class="fc" id="L52">        return scriptGroupAssociationUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-10-01T09:24:17+0000&quot;,
+    date = &quot;2025-10-02T13:58:13+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -48,19 +48,6 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L48">        scriptGroupUpdateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
 
 <span class="fc" id="L50">        return scriptGroupUpdateRequestDto;</span>
-    }
-
-    @Override
-    public ScriptGroupService.ScriptGroupVerifyRequestDto mapVerify(ScriptGroupDto scriptGroupDto) {
-<span class="fc bfc" id="L55" title="All 2 branches covered.">        if ( scriptGroupDto == null ) {</span>
-<span class="fc" id="L56">            return null;</span>
-        }
-
-<span class="fc" id="L59">        ScriptGroupService.ScriptGroupVerifyRequestDto scriptGroupVerifyRequestDto = new ScriptGroupService.ScriptGroupVerifyRequestDto();</span>
-
-<span class="fc" id="L61">        scriptGroupVerifyRequestDto.setIdentifier( scriptGroupDto.getIdentifier() );</span>
-
-<span class="fc" id="L63">        return scriptGroupVerifyRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

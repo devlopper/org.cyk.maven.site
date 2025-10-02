@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptGroupService.java</span></div><h1>ScriptGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
-import ci.gouv.dgbf.extension.core.segregation.HasBooleanValueDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -117,7 +114,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L120">  class ScriptGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L117">  class ScriptGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptGroupSaveRequestDto {
 
 
@@ -162,7 +159,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L165">  public static class ScriptGroupGetManyResponseDto</span>
+<span class="fc" id="L162">  public static class ScriptGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -252,7 +249,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L255">  class ScriptGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L252">  class ScriptGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptGroupSaveRequestDto {
 
     @JsonbProperty
@@ -261,69 +258,6 @@ public interface ScriptGroupService extends SpecificService {
     @JsonbProperty
     private String maxValue;
 
-  }
-
-  /**
-   * Identifiant du service de vérification.
-   */
-  String VERIFY_IDENTIFIER = &quot;VERIFICATION_GROUPE_SCRIPT&quot;;
-
-  /**
-   * Chemin du service de vérification.
-   */
-  String VERIFY_PATH = &quot;verification&quot;;
-
-  /**
-   * Cette méthode permet de vérifier.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(VERIFY_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = VERIFY_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;, content = {
-      @Content(schema = @Schema(implementation = ScriptGroupVerifyResponseDto.class))})
-  Response verify(ScriptGroupVerifyRequestDto request);
-
-  /**
-   * Cette classe représente la requête de vérification.
-   *
-   * @author Arnaud
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L299">  class ScriptGroupVerifyRequestDto extends ByIdentifierRequestDto {</span>
-
-    /**
-     * Valeur de l'attribut de filtre du sélecteur.
-     */
-    @JsonbProperty(JSON_VALUE_SELECTOR_FILTER_ATTRIBUTE_VALUE)
-    private String valueSelectorFilterAttributeValue;
-
-    /**
-     * Identifiant json {@link #valueSelectorFilterAttributeValue}.
-     */
-    public static final String JSON_VALUE_SELECTOR_FILTER_ATTRIBUTE_VALUE =
-        &quot;valeurAttributFiltreSelecteur&quot;;
-  }
-
-  /**
-   * Cette classe représente la réponse de vérification.
-   *
-   * @author Arnaud
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L322">  class ScriptGroupVerifyResponseDto extends IdentifiableResponseDto</span>
-      implements HasBooleanValueDto {
-
-    @JsonbProperty(JSON_VALUE)
-    private Boolean value;
   }
 
   /**
