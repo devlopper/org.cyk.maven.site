@@ -5,7 +5,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableC
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -87,7 +86,7 @@ public interface FunctionTypeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L90">  class FunctionTypeCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L89">  class FunctionTypeCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements FunctionTypeSaveRequestDto {
 
   }
@@ -125,7 +124,7 @@ public interface FunctionTypeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  public static class FunctionTypeGetManyResponseDto </span>
+<span class="fc" id="L127">  public static class FunctionTypeGetManyResponseDto </span>
       extends AbstractGetByPageResponseDto&lt;FunctionTypeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -215,7 +214,7 @@ public interface FunctionTypeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L218">  class FunctionTypeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L217">  class FunctionTypeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements FunctionTypeSaveRequestDto {
 
   }
@@ -245,30 +244,5 @@ public interface FunctionTypeService extends SpecificService {
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
 
-
-  /**
-   * Identifiant du service d'obtention du nombre.
-   */
-  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_TYPE_FONCTION&quot;;
-
-  /**
-   * Chemin du service d'obtention du nombre.
-   */
-  String GET_COUNT_PATH = &quot;obtention/compte&quot;;
-
-  /**
-   * Cette méthode permet d'obtenir le nombre de {@link FunctionTypeDto}.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(GET_COUNT_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.TEXT_PLAIN})
-  @Operation(operationId = GET_COUNT_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = Long.class))})
-  Response getCount(GetCountRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
