@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -259,7 +260,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L262">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L263">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -345,7 +346,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L348">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L349">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -434,7 +435,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L437">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L438">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -504,6 +505,40 @@ public interface PayslipService extends SpecificService {
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
 
+  /**
+   * Identifiant du service de calcul.
+   */
+  String CALCULATE_IDENTIFIER = &quot;CALCUL_BULLETIN_PAIE&quot;;
+
+  /**
+   * Chemin du service de calcul.
+   */
+  String CALCULATE_PATH = &quot;calcul&quot;;
+
+  /**
+   * Cette méthode permet de calculer {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CALCULATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = CALCULATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response calculate(PayslipCalculateRequestDto request);
+  
+  /**
+   * Cette classe représente la requête de calcul.
+   *
+   * @author Christian
+   */
+<span class="fc" id="L538">  class PayslipCalculateRequestDto extends ByIdentifierRequestDto {</span>
+    
+  }
+  
   /**
    * Identifiant du service d'initialisation.
    */
@@ -637,7 +672,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L640">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L675">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link PayslipDto#getStatus()}.
@@ -699,17 +734,17 @@ public interface PayslipService extends SpecificService {
      * @param status {@link PayslipStatus}
      */
     public void initialize(PayslipStatus status) {
-<span class="fc" id="L702">      this.status = status;</span>
-<span class="fc" id="L703">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L704">      transmittableForControl =</span>
-<span class="fc" id="L705">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L706">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L707">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L708">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
-<span class="fc" id="L709">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
-<span class="fc" id="L710">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L711">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L712">    }</span>
+<span class="fc" id="L737">      this.status = status;</span>
+<span class="fc" id="L738">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L739">      transmittableForControl =</span>
+<span class="fc" id="L740">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L741">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L742">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L743">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="fc" id="L744">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="fc" id="L745">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L746">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L747">    }</span>
 
     /**
      * {@link PayslipDto#JSON_STATUS}.
