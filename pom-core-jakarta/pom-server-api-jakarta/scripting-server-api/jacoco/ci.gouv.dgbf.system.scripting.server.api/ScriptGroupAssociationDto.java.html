@@ -4,14 +4,14 @@ import ci.gouv.dgbf.extension.core.segregation.HasGroupAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMaxValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueDto;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente une Association de groupe de scripts.
+ * Cette classe représente un script de groupe de scripts.
  *
  * @author Arnaud
  *
@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L22">public class ScriptGroupAssociationDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L22">public class ScriptGroupAssociationDto extends AbstractIdentifiableAuditableDto</span>
     implements HasGroupIdentifierDto, HasGroupAsStringDto, HasMinValueDto&lt;Integer&gt;,
     HasMaxValueDto&lt;Integer&gt; {
 

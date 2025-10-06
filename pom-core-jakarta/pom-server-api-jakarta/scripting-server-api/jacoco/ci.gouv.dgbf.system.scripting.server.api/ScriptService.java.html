@@ -6,11 +6,13 @@ import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableC
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.EvaluateRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.EvaluateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -22,7 +24,6 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
-import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -163,7 +164,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L166">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L167">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -211,7 +212,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L214">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
+<span class="fc" id="L215">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ScriptDto&gt; datas;
@@ -300,7 +301,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L303">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L304">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -348,7 +349,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L351">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L352">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(ScriptSaveRequestDto.JSON_TEXT)
     private String text;
   }
@@ -411,16 +412,8 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L414">  class ScriptEvaluateRequestDto extends ByIdentifierRequestDto {</span>
-    @JsonbProperty(JSON_ARGUMENTS)
-    private Map&lt;String, Object&gt; arguments;
-
-    /**
-     * Identifiant json {@link #arguments}.
-     */
-    public static final String JSON_ARGUMENTS = &quot;arguments&quot;;
-
-
+<span class="fc" id="L415">  class ScriptEvaluateRequestDto extends EvaluateRequestDto {</span>
+    
   }
 
   /**
@@ -431,39 +424,8 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L434">  class ScriptEvaluateResponseDto extends IdentifiableResponseDto {</span>
-    @JsonbProperty(JSON_RESULT_AS_STRING)
-    private String resultValueAsString;
-
-    @JsonbProperty(JSON_RESULT_TYPE)
-    private ValueType resultType;
-
-    @JsonbProperty(JSON_RESULT_MESSAGE)
-    private String resultMessage;
+<span class="fc" id="L427">  class ScriptEvaluateResponseDto extends EvaluateResponseDto {</span>
     
-    /**
-     * Cette méthode permet d'obtenir le résultat.
-     *
-     * @return résultat
-     */
-    public Object getResult() {
-<span class="fc" id="L450">      return ValueType.parse(resultValueAsString, resultType);</span>
-    }
-
-    /**
-     * Identifiant json {@link #resultValueAsString}.
-     */
-    public static final String JSON_RESULT_AS_STRING = &quot;valeurResultatChaine&quot;;
-
-    /**
-     * Identifiant json {@link #resultType}.
-     */
-    public static final String JSON_RESULT_TYPE = &quot;typeResultat&quot;;
-    
-    /**
-     * Identifiant json {@link #resultMessage}.
-     */
-    public static final String JSON_RESULT_MESSAGE = &quot;resultMessage&quot;;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

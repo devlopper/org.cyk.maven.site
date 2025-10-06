@@ -4,14 +4,16 @@ import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMaxValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.EvaluateRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.EvaluateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -143,7 +145,7 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  class ScriptGroupAssociationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L148">  class ScriptGroupAssociationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ScriptGroupAssociationSaveRequestDto {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
@@ -189,7 +191,7 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L192">  public static class ScriptGroupAssociationGetManyResponseDto</span>
+<span class="fc" id="L194">  public static class ScriptGroupAssociationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptGroupAssociationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -279,7 +281,7 @@ public interface ScriptGroupAssociationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L282">  class ScriptGroupAssociationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L284">  class ScriptGroupAssociationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ScriptGroupAssociationSaveRequestDto {
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
@@ -291,7 +293,31 @@ public interface ScriptGroupAssociationService extends SpecificService {
     private Integer maxValue;
   }
 
+  /**
+   * Identifiant du service d'évaluation.
+   */
+  String EVALUATE_IDENTIFIER = &quot;EVALUATION_ASSOCIATION_GROUPE_SCRIPTS&quot;;
 
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String EVALUATE_PATH = &quot;evaluation&quot;;
+
+  /**
+   * Cette méthode permet d'évaluer {@link ScriptGroupAssociationDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EVALUATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = EvaluateResponseDto.class))})
+  Response evaluate(EvaluateRequestDto request);
+  
   /**
    * Identifiant du service de suppression.
    */

@@ -6,11 +6,13 @@ import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.EvaluateRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.EvaluateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -124,7 +126,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L127">  class ScriptGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L129">  class ScriptGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptGroupSaveRequestDto {
 
     @JsonbProperty(JSON_MIN_VALUE)
@@ -167,7 +169,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  public static class ScriptGroupGetManyResponseDto</span>
+<span class="fc" id="L172">  public static class ScriptGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -243,7 +245,7 @@ public interface ScriptGroupService extends SpecificService {
   @Path(UPDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = UPDATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
@@ -257,7 +259,7 @@ public interface ScriptGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class ScriptGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L262">  class ScriptGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptGroupSaveRequestDto {
 
     @JsonbProperty(JSON_MIN_VALUE)
@@ -266,6 +268,31 @@ public interface ScriptGroupService extends SpecificService {
     @JsonbProperty(JSON_MAX_VALUE)
     private Integer maxValue;
   }
+
+  /**
+   * Identifiant du service d'évaluation.
+   */
+  String EVALUATE_IDENTIFIER = &quot;EVALUATION_GROUPE_SCRIPT&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String EVALUATE_PATH = &quot;evaluation&quot;;
+
+  /**
+   * Cette méthode permet d'évaluer {@link ScriptGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EVALUATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = EvaluateResponseDto.class))})
+  Response evaluate(EvaluateRequestDto request);
 
   /**
    * Identifiant du service de suppression.
@@ -286,7 +313,7 @@ public interface ScriptGroupService extends SpecificService {
   @Path(DELETE_PATH)
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = DELETE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
