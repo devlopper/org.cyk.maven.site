@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptContextFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptContextFilter.java</span></div><h1>ScriptContextFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasValueIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link ScriptContextDto}.
+ *
+ * @author Arnaud
+ *
+ */
+@Getter
+@Setter
+public class ScriptContextFilter extends AbstractIdentifiableFilter
+    implements FilterHasValueIdentifier {
+
+  /**
+   * Identifiant {@link ConditionalValueDto}.
+   */
+  private String valueIdentifier;
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   */
+  public ScriptContextFilter() {
+<span class="fc" id="L29">    super();</span>
+<span class="fc" id="L30">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   *
+   * @param dto filtre
+   */
+  public ScriptContextFilter(FilterDto dto) {
+<span class="fc" id="L38">    super(dto);</span>
+<span class="fc" id="L39">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L43">    super.doInitialize(filter);</span>
+<span class="fc" id="L44">    updateValueIdentifier(filter);</span>
+<span class="fc" id="L45">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L49">    super.toDto(filter);</span>
+<span class="fc" id="L50">    updateFilterValueIdentifier(filter);</span>
+<span class="fc" id="L51">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
