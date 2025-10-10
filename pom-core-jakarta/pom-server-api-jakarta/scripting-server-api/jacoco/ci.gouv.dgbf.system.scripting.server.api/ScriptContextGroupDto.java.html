@@ -4,8 +4,10 @@ import ci.gouv.dgbf.extension.core.segregation.HasMaxValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMaxValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasScriptIdentifiersDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,9 +21,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L22">public class ScriptContextGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L24">public class ScriptContextGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasMinValueDto&lt;Integer&gt;, HasMinValueAsStringDto, HasMaxValueDto&lt;Integer&gt;,
-    HasMaxValueAsStringDto {
+    HasMaxValueAsStringDto, HasScriptIdentifiersDto {
 
   @JsonbProperty(value = JSON_MIN_VALUE)
   private Integer minValue;
@@ -35,6 +37,9 @@ import lombok.Setter;
   @JsonbProperty(value = JSON_MAX_VALUE_AS_STRING)
   private String maxValueAsString;
 
+  @JsonbProperty(value = JSON_SCRIPT_IDENTIFIERS)
+  private Set&lt;String&gt; scriptIdentifiers;
+  
   /**
    * Identifiant json de l'identifiant.
    */
