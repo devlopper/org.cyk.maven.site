@@ -5,9 +5,12 @@ import ci.gouv.dgbf.extension.core.segregation.HasMaxValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMaxValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasMultiplierAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasMultiplierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasScriptIdentifiersDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.math.BigDecimal;
 import java.util.Set;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,15 +19,22 @@ import lombok.Setter;
 /**
  * Cette classe représente un groupe de contextes de script.
  *
- * @author Arnaud
+ * @author Christian
  *
  */
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L25">public class ScriptContextGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasMinValueDto&lt;Integer&gt;, HasMinValueAsStringDto, HasMaxValueDto&lt;Integer&gt;,
-    HasMaxValueAsStringDto, HasScriptIdentifiersDto, HasContextsCountAsStringDto {
+<span class="fc" id="L28">public class ScriptContextGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasMultiplierDto&lt;BigDecimal&gt;, HasMultiplierAsStringDto, HasMinValueDto&lt;Integer&gt;,
+    HasMinValueAsStringDto, HasMaxValueDto&lt;Integer&gt;, HasMaxValueAsStringDto,
+    HasScriptIdentifiersDto, HasContextsCountAsStringDto {
+
+  @JsonbProperty(value = JSON_MULTIPLIER)
+  private BigDecimal multiplier;
+
+  @JsonbProperty(value = JSON_MULTIPLIER_AS_STRING)
+  private String multiplierAsString;
 
   @JsonbProperty(value = JSON_MIN_VALUE)
   private Integer minValue;
@@ -40,10 +50,10 @@ import lombok.Setter;
 
   @JsonbProperty(value = JSON_SCRIPT_IDENTIFIERS)
   private Set&lt;String&gt; scriptIdentifiers;
-  
+
   @JsonbProperty(value = JSON_CONTEXTS_COUNT_AS_STRING)
   private String contextsCountAsString;
-  
+
   /**
    * Identifiant json de l'identifiant.
    */

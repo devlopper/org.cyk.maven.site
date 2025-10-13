@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasMaxValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasMultiplierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -23,6 +24,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.math.BigDecimal;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -55,6 +57,20 @@ public interface ScriptContextGroupService extends SpecificService {
   interface ScriptContextGroupSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir le multiplicateur.
+     *
+     * @return le multiplicateur
+     */
+    BigDecimal getMultiplier();
+
+    /**
+     * Cette méthode permet d'assigner le multiplicateur.
+     *
+     * @param multiplier le multiplicateur
+     */
+    void setMultiplier(BigDecimal multiplier);
+    
+    /**
      * Cette méthode permet d'obtenir la valeur minimale.
      *
      * @return la valeur minimale
@@ -82,6 +98,11 @@ public interface ScriptContextGroupService extends SpecificService {
      */
     void setMaxValue(Integer maxValue);
 
+    /**
+     * {@link HasMultiplierDto#JSON_MULTIPLIER}.
+     */
+    String JSON_MULTIPLIER = HasMultiplierDto.JSON_MULTIPLIER;
+    
     /**
      * {@link HasMinValueDto#JSON_MIN_VALUE}.
      */
@@ -126,9 +147,12 @@ public interface ScriptContextGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L129">  class ScriptContextGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L150">  class ScriptContextGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptContextGroupSaveRequestDto {
 
+    @JsonbProperty(JSON_MULTIPLIER)
+    private BigDecimal multiplier;
+    
     @JsonbProperty(JSON_MIN_VALUE)
     private Integer minValue;
 
@@ -169,7 +193,7 @@ public interface ScriptContextGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L172">  public static class ScriptContextGroupGetManyResponseDto</span>
+<span class="fc" id="L196">  public static class ScriptContextGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptContextGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -259,9 +283,12 @@ public interface ScriptContextGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L262">  class ScriptContextGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L286">  class ScriptContextGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptContextGroupSaveRequestDto {
 
+    @JsonbProperty(JSON_MULTIPLIER)
+    private BigDecimal multiplier;
+    
     @JsonbProperty(JSON_MIN_VALUE)
     private Integer minValue;
 

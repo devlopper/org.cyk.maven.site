@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-10-10T15:32:55+0000&quot;,
+    date = &quot;2025-10-13T13:30:12+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -29,29 +29,31 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L29">        scriptContextCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
 <span class="fc" id="L30">        scriptContextCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
 <span class="fc" id="L31">        scriptContextCreateRequestDto.setScriptIdentifier( arg0.getScriptIdentifier() );</span>
-<span class="fc" id="L32">        scriptContextCreateRequestDto.setMinValue( arg0.getMinValue() );</span>
-<span class="fc" id="L33">        scriptContextCreateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
+<span class="fc" id="L32">        scriptContextCreateRequestDto.setMultiplier( arg0.getMultiplier() );</span>
+<span class="fc" id="L33">        scriptContextCreateRequestDto.setMinValue( arg0.getMinValue() );</span>
+<span class="fc" id="L34">        scriptContextCreateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
 
-<span class="fc" id="L35">        return scriptContextCreateRequestDto;</span>
+<span class="fc" id="L36">        return scriptContextCreateRequestDto;</span>
     }
 
     @Override
     public ScriptContextService.ScriptContextUpdateRequestDto mapUpdate(ScriptContextDto arg0) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L41">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L44">        ScriptContextService.ScriptContextUpdateRequestDto scriptContextUpdateRequestDto = new ScriptContextService.ScriptContextUpdateRequestDto();</span>
+<span class="fc" id="L45">        ScriptContextService.ScriptContextUpdateRequestDto scriptContextUpdateRequestDto = new ScriptContextService.ScriptContextUpdateRequestDto();</span>
 
-<span class="fc" id="L46">        scriptContextUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L47">        scriptContextUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L48">        scriptContextUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L49">        scriptContextUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L50">        scriptContextUpdateRequestDto.setScriptIdentifier( arg0.getScriptIdentifier() );</span>
-<span class="fc" id="L51">        scriptContextUpdateRequestDto.setMinValue( arg0.getMinValue() );</span>
-<span class="fc" id="L52">        scriptContextUpdateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
+<span class="fc" id="L47">        scriptContextUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        scriptContextUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        scriptContextUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        scriptContextUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L51">        scriptContextUpdateRequestDto.setScriptIdentifier( arg0.getScriptIdentifier() );</span>
+<span class="fc" id="L52">        scriptContextUpdateRequestDto.setMultiplier( arg0.getMultiplier() );</span>
+<span class="fc" id="L53">        scriptContextUpdateRequestDto.setMinValue( arg0.getMinValue() );</span>
+<span class="fc" id="L54">        scriptContextUpdateRequestDto.setMaxValue( arg0.getMaxValue() );</span>
 
-<span class="fc" id="L54">        return scriptContextUpdateRequestDto;</span>
+<span class="fc" id="L56">        return scriptContextUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

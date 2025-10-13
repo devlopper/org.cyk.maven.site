@@ -6,10 +6,13 @@ import ci.gouv.dgbf.extension.core.segregation.HasMaxValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMaxValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasMinValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasMultiplierAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasMultiplierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasScriptAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasScriptIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.math.BigDecimal;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -23,10 +26,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L26">public class ScriptContextDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasGroupIdentifierDto, HasScriptIdentifierDto, HasScriptAsStringDto,
-    HasGroupAsStringDto, HasMinValueDto&lt;Integer&gt;, HasMinValueAsStringDto, HasMaxValueDto&lt;Integer&gt;,
-    HasMaxValueAsStringDto {
+<span class="fc" id="L29">public class ScriptContextDto extends AbstractIdentifiableAuditableDto implements</span>
+    HasGroupIdentifierDto, HasScriptIdentifierDto, HasScriptAsStringDto, HasGroupAsStringDto,
+    HasMultiplierDto&lt;BigDecimal&gt;, HasMultiplierAsStringDto, HasMinValueDto&lt;Integer&gt;,
+    HasMinValueAsStringDto, HasMaxValueDto&lt;Integer&gt;, HasMaxValueAsStringDto {
 
   @JsonbProperty(JSON_GROUP_IDENTIFIER)
   private String groupIdentifier;
@@ -39,6 +42,12 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_SCRIPT_AS_STRING)
   private String scriptAsString;
+
+  @JsonbProperty(value = JSON_MULTIPLIER)
+  private BigDecimal multiplier;
+
+  @JsonbProperty(value = JSON_MULTIPLIER_AS_STRING)
+  private String multiplierAsString;
   
   @JsonbProperty(value = JSON_MIN_VALUE)
   private Integer minValue;
