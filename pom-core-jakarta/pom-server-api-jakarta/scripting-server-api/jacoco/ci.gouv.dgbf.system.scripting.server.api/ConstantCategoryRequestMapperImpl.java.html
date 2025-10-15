@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-10-15T09:46:24+0000&quot;,
+    date = &quot;2025-10-15T17:34:56+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -28,24 +28,26 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L28">        constantCategoryCreateRequestDto.setCode( arg0.getCode() );</span>
 <span class="fc" id="L29">        constantCategoryCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L30">        constantCategoryCreateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L31">        constantCategoryCreateRequestDto.setDefaultConstantIdentifier( arg0.getDefaultConstantIdentifier() );</span>
 
-<span class="fc" id="L32">        return constantCategoryCreateRequestDto;</span>
+<span class="fc" id="L33">        return constantCategoryCreateRequestDto;</span>
     }
 
     @Override
     public ConstantCategoryService.ConstantCategoryUpdateRequestDto mapUpdate(ConstantCategoryDto arg0) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L38">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L41">        ConstantCategoryService.ConstantCategoryUpdateRequestDto constantCategoryUpdateRequestDto = new ConstantCategoryService.ConstantCategoryUpdateRequestDto();</span>
+<span class="fc" id="L42">        ConstantCategoryService.ConstantCategoryUpdateRequestDto constantCategoryUpdateRequestDto = new ConstantCategoryService.ConstantCategoryUpdateRequestDto();</span>
 
-<span class="fc" id="L43">        constantCategoryUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L44">        constantCategoryUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L45">        constantCategoryUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L46">        constantCategoryUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L44">        constantCategoryUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        constantCategoryUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        constantCategoryUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        constantCategoryUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L48">        constantCategoryUpdateRequestDto.setDefaultConstantIdentifier( arg0.getDefaultConstantIdentifier() );</span>
 
-<span class="fc" id="L48">        return constantCategoryUpdateRequestDto;</span>
+<span class="fc" id="L50">        return constantCategoryUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
