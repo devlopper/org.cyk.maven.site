@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContextualConstantEvaluationGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ContextualConstantEvaluationGroupService.java</span></div><h1>ContextualConstantEvaluationGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
+import ci.gouv.dgbf.extension.core.enumeration.ValueType;
+import ci.gouv.dgbf.extension.core.segregation.HasCategoryCodeDto;
+import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -85,7 +90,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L88">  class ContextualConstantEvaluationGroupCreateRequestDto</span>
+<span class="fc" id="L93">  class ContextualConstantEvaluationGroupCreateRequestDto</span>
       extends AbstractNamableCreateRequestJsonDto
       implements ContextualConstantEvaluationGroupSaveRequestDto {
   }
@@ -123,7 +128,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  public static class ContextualConstantEvaluationGroupGetManyResponseDto</span>
+<span class="fc" id="L131">  public static class ContextualConstantEvaluationGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ContextualConstantEvaluationGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -200,7 +205,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
   @Path(UPDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = UPDATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
@@ -214,7 +219,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L217">  class ContextualConstantEvaluationGroupUpdateRequestDto</span>
+<span class="fc" id="L222">  class ContextualConstantEvaluationGroupUpdateRequestDto</span>
       extends AbstractNamableUpdateRequestJsonDto
       implements ContextualConstantEvaluationGroupSaveRequestDto {
 
@@ -239,10 +244,68 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
   @Path(DELETE_PATH)
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = DELETE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention de valeur.
+   */
+  String GET_VALUE_IDENTIFIER = &quot;OBTENIR_VALEUR_EVALUATION_CONSTANTE_CONTEXTUELLE&quot;;
+
+  /**
+   * Chemin du service d'obtention de valeur.
+   */
+  String GET_VALUE_PATH = &quot;obtention/valeur&quot;;
+
+  /**
+   * Cette méthode permet de d'obtenir la valeur par le code de la catégorie.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_VALUE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_VALUE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(schema = @Schema(
+      implementation = ContextualConstantEvaluationGroupGetValueResponseDto.class))})
+  Response getValue(ContextualConstantEvaluationGroupGetValueRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'obtention de valeur.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L286">  class ContextualConstantEvaluationGroupGetValueRequestDto extends ByIdentifierRequestDto</span>
+      implements HasCategoryCodeDto {
+
+    @JsonbProperty(JSON_CATEGORY_CODE)
+    private String categoryCode;
+  }
+
+  /**
+   * Cette classe représente la réponse d'obtention de valeur.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L301">  class ContextualConstantEvaluationGroupGetValueResponseDto extends IdentifiableResponseDto</span>
+      implements HasStringValueDto, HasValueTypeDto {
+
+    @JsonbProperty(JSON_VALUE)
+    private String value;
+
+    @JsonbProperty(JSON_VALUE_TYPE)
+    private ValueType valueType;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
