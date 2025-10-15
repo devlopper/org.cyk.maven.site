@@ -10,6 +10,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.extension.server.service.api.segregation.OneRetrievable;
 import ci.gouv.dgbf.system.localauthority.server.api.LocalAuthorityService.LocalAuthorityGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -20,12 +21,13 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L23">public class LocalAuthorityClient extends AbstractClient&lt;LocalAuthorityService&gt; implements</span>
-    GetByIdentifier&lt;LocalAuthorityDto&gt;, GetMany&lt;LocalAuthorityGetManyResponseDto&gt; {
+<span class="fc" id="L24">public class LocalAuthorityClient extends AbstractClient&lt;LocalAuthorityService&gt; implements</span>
+    GetByIdentifier&lt;LocalAuthorityDto&gt;, GetMany&lt;LocalAuthorityGetManyResponseDto&gt;,
+    OneRetrievable&lt;LocalAuthorityDto&gt; {
 
   @Override
   public LocalAuthorityClient service(LocalAuthorityService service) {
-<span class="fc" id="L28">    return (LocalAuthorityClient) super.service(service);</span>
+<span class="fc" id="L30">    return (LocalAuthorityClient) super.service(service);</span>
   }
 
   /**
@@ -35,30 +37,30 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public LocalAuthorityGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L38">    return new GetOneExecutor&lt;LocalAuthorityGetManyResponseDto&gt;(</span>
+<span class="fc" id="L40">    return new GetOneExecutor&lt;LocalAuthorityGetManyResponseDto&gt;(</span>
         LocalAuthorityGetManyResponseDto.class, LocalAuthorityService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L40">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L42">        .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
    * {@link LocalAuthorityService#getMany}.
    *
-   * @param projection projection
-   * @param filter filtre
-   * @param page page
-   * @param auditWho audit acteur
+   * @param projection   projection
+   * @param filter       filtre
+   * @param page         page
+   * @param auditWho     audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public LocalAuthorityGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L55">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L56">    request.setProjection(projection);</span>
-<span class="fc" id="L57">    request.setFilter(filter);</span>
-<span class="fc" id="L58">    request.setPage(page);</span>
-<span class="fc" id="L59">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L60">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L61">    return getMany(request);</span>
+<span class="fc" id="L57">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L58">    request.setProjection(projection);</span>
+<span class="fc" id="L59">    request.setFilter(filter);</span>
+<span class="fc" id="L60">    request.setPage(page);</span>
+<span class="fc" id="L61">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L62">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L63">    return getMany(request);</span>
   }
 
   /**
@@ -68,27 +70,27 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public LocalAuthorityDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L71">    return new GetOneExecutor&lt;LocalAuthorityDto&gt;(LocalAuthorityDto.class,</span>
-<span class="fc" id="L72">        LocalAuthorityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L73">    return new GetOneExecutor&lt;LocalAuthorityDto&gt;(LocalAuthorityDto.class,</span>
+<span class="fc" id="L74">        LocalAuthorityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
    * {@link LocalAuthorityService#getOne}.
    *
-   * @param projection projection
-   * @param filter filtre
-   * @param auditWho audit acteur
+   * @param projection   projection
+   * @param filter       filtre
+   * @param auditWho     audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public LocalAuthorityDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L86">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L87">    request.setProjection(projection);</span>
-<span class="fc" id="L88">    request.setFilter(filter);</span>
-<span class="fc" id="L89">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L90">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L91">    return getOne(request);</span>
+<span class="fc" id="L88">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L89">    request.setProjection(projection);</span>
+<span class="fc" id="L90">    request.setFilter(filter);</span>
+<span class="fc" id="L91">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L92">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L93">    return getOne(request);</span>
   }
 
   /**
@@ -98,29 +100,29 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return groupe d'échéance
    */
   public LocalAuthorityDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L101">    return new GetOneExecutor&lt;LocalAuthorityDto&gt;(LocalAuthorityDto.class,</span>
+<span class="fc" id="L103">    return new GetOneExecutor&lt;LocalAuthorityDto&gt;(LocalAuthorityDto.class,</span>
         LocalAuthorityService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L103">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L105">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
    * {@link LocalAuthorityService#getByIdentifier}.
    *
-   * @param identifier identifiant
-   * @param projection projection
-   * @param auditWho audit acteur
+   * @param identifier   identifiant
+   * @param projection   projection
+   * @param auditWho     audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   @Override
   public LocalAuthorityDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L118">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L119">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L120">    request.setProjection(projection);</span>
-<span class="fc" id="L121">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L122">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L123">    return getByIdentifier(request);</span>
+<span class="fc" id="L120">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L121">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L122">    request.setProjection(projection);</span>
+<span class="fc" id="L123">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L124">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L125">    return getByIdentifier(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
