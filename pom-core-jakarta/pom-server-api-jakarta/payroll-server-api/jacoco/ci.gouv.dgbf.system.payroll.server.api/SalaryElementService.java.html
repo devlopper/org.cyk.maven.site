@@ -64,12 +64,31 @@ public interface SalaryElementService extends SpecificService {
      * @param identifier identifiant de {@link SalaryElementGroupDto}
      */
     void setSalaryElementGroupIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir vrai si c'est un gain sinon faux.
+     *
+     * @return vrai si c'est un gain sinon faux
+     */
+    Boolean getIsEarning();
+
+    /**
+     * Cette méthode permet d'assigner vrai si c'est un gain sinon faux.
+     *
+     * @param isEarning vrai si c'est un gain sinon faux
+     */
+    void setIsEarning(Boolean isEarning);
     
 
     /**
      * Identifiant json de {@link SalaryElementGroupDto}.
      */
     String JSON_SALARY_ELEMENT_GROUP_IDENTIFIER = SalaryElementGroupDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * {@link SalaryElementDto#JSON_IS_EARNING}.
+     */
+    String JSON_IS_EARNING = SalaryElementDto.JSON_IS_EARNING;
     
   } 
 
@@ -106,11 +125,14 @@ public interface SalaryElementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L109">  class SalaryElementCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L128">  class SalaryElementCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements SalaryElementSaveRequestDto {
 
     @JsonbProperty(JSON_SALARY_ELEMENT_GROUP_IDENTIFIER)
     private String salaryElementGroupIdentifier;
+
+    @JsonbProperty(JSON_IS_EARNING)
+    private Boolean isEarning;
     
   }
 
@@ -148,7 +170,7 @@ public interface SalaryElementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L151">  public static class SalaryElementGetManyResponseDto extends </span>
+<span class="fc" id="L173">  public static class SalaryElementGetManyResponseDto extends </span>
                       AbstractGetByPageResponseDto&lt;SalaryElementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -238,12 +260,15 @@ public interface SalaryElementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L241">  class SalaryElementUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L263">  class SalaryElementUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SalaryElementSaveRequestDto {
 
     @JsonbProperty(JSON_SALARY_ELEMENT_GROUP_IDENTIFIER)
     private String salaryElementGroupIdentifier;
-    
+
+    @JsonbProperty(JSON_IS_EARNING)
+    private Boolean isEarning;
+
   }
 
   /**

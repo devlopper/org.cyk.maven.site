@@ -22,12 +22,24 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_SALARY_ELEMENT_GROUP_AS_STRING)
   private String salaryElementGroupAsString;
+
+  @JsonbProperty(JSON_IS_EARNING)
+  private Boolean isEarning;
+
+  @JsonbProperty(JSON_IS_EARNING_AS_STRING)
+  private String isEarningAsString;
   
   @JsonbProperty(JSON_CONDITIONAL_VALUE_GROUP_IDENTIFIER)
   private String conditionalValueGroupIdentifier;
 
   @JsonbProperty(JSON_CONDITIONAL_VALUE_GROUP_AS_STRING)
   private String conditionalValueGroupAsString;
+
+  @JsonbProperty(JSON_SCRIPT_CONTEXT_GROUP_IDENTIFIER)
+  private String scriptContextGroupIdentifier;
+
+  @JsonbProperty(JSON_SCRIPT_CONTEXT_GROUP_AS_STRING)
+  private String scriptContextGroupAsString;
 
 
   /**
@@ -53,16 +65,38 @@ import lombok.Setter;
       SalaryElementGroupDto.JSON_THIS_AS_STRING;
 
   /**
-   * Identifiant json de {@link #salaryElementGroupAsString}.
+   * Identifiant json {@link #isEarning}.
+   */
+  public static final String JSON_IS_EARNING = &quot;estGain&quot;;
+
+  /**
+   * Identifiant json {@link #isEarningAsString}.
+   */
+  public static final String JSON_IS_EARNING_AS_STRING = JSON_IS_EARNING + &quot;Chaine&quot;;
+
+  /**
+   * Identifiant json de {@link #conditionalValueGroupIdentifier}.
    */
   public static final String JSON_CONDITIONAL_VALUE_GROUP_IDENTIFIER =
       &quot;idElementConditonnee&quot;;
   
   /**
-   * Identifiant json de {@link #conditionalValueGroupIdentifier}.
+   * Identifiant json de {@link #conditionalValueGroupAsString}.
    */
   public static final String JSON_CONDITIONAL_VALUE_GROUP_AS_STRING =
       &quot;elementConditonneeChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #scriptContextGroupIdentifier}.
+   */
+  public static final String JSON_SCRIPT_CONTEXT_GROUP_IDENTIFIER =
+      &quot;idGroupContexteScript&quot;;
+  
+  /**
+   * Identifiant json de {@link #scriptContextGroupAsString}.
+   */
+  public static final String JSON_SCRIPT_CONTEXT_GROUP_AS_STRING =
+      &quot;groupeContexteScriptChaine&quot;;
 
 
   /**
