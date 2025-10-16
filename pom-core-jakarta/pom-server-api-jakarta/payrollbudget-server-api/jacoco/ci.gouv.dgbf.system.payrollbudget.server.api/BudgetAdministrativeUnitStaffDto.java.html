@@ -76,6 +76,12 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_JOB_AS_STRING)
   String jobAsString;
+  
+  /**
+   * Compétence demandée.
+   */
+  @JsonbProperty(JSON_COMPETENCE)
+  String competence;
  
   /**
    * Identifiant de la catégorie de employé.
@@ -178,6 +184,11 @@ import lombok.Setter;
    */
   public static final String JSON_JOB_AS_STRING = &quot;emploiChaine&quot;;
 
+  /**
+   * Identifiant json {@link #competence}.
+   */
+  public static final String JSON_COMPETENCE = &quot;competence&quot;;
+  
   /**
    * Identifiant json {@link #categoryIdentifier}.
    */

@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-10-02T12:06:09+0000&quot;,
+    date = &quot;2025-10-16T16:52:24+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -30,32 +30,34 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L30">        budgetAdministrativeUnitStaffCreateRequestDto.setBudgetIdentifier( arg0.getBudgetIdentifier() );</span>
 <span class="fc" id="L31">        budgetAdministrativeUnitStaffCreateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
 <span class="fc" id="L32">        budgetAdministrativeUnitStaffCreateRequestDto.setJobIdentifier( arg0.getJobIdentifier() );</span>
-<span class="fc" id="L33">        budgetAdministrativeUnitStaffCreateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
-<span class="fc" id="L34">        budgetAdministrativeUnitStaffCreateRequestDto.setIsFunctionary( arg0.getIsFunctionary() );</span>
-<span class="fc" id="L35">        budgetAdministrativeUnitStaffCreateRequestDto.setStaff( arg0.getStaff() );</span>
+<span class="fc" id="L33">        budgetAdministrativeUnitStaffCreateRequestDto.setCompetence( arg0.getCompetence() );</span>
+<span class="fc" id="L34">        budgetAdministrativeUnitStaffCreateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L35">        budgetAdministrativeUnitStaffCreateRequestDto.setIsFunctionary( arg0.getIsFunctionary() );</span>
+<span class="fc" id="L36">        budgetAdministrativeUnitStaffCreateRequestDto.setStaff( arg0.getStaff() );</span>
 
-<span class="fc" id="L37">        return budgetAdministrativeUnitStaffCreateRequestDto;</span>
+<span class="fc" id="L38">        return budgetAdministrativeUnitStaffCreateRequestDto;</span>
     }
 
     @Override
     public BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffUpdateRequestDto mapUpdate(BudgetAdministrativeUnitStaffDto arg0) {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L43">            return null;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L44">            return null;</span>
         }
 
-<span class="fc" id="L46">        BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffUpdateRequestDto budgetAdministrativeUnitStaffUpdateRequestDto = new BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffUpdateRequestDto();</span>
+<span class="fc" id="L47">        BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffUpdateRequestDto budgetAdministrativeUnitStaffUpdateRequestDto = new BudgetAdministrativeUnitStaffService.BudgetAdministrativeUnitStaffUpdateRequestDto();</span>
 
-<span class="fc" id="L48">        budgetAdministrativeUnitStaffUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L49">        budgetAdministrativeUnitStaffUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L50">        budgetAdministrativeUnitStaffUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L51">        budgetAdministrativeUnitStaffUpdateRequestDto.setBudgetIdentifier( arg0.getBudgetIdentifier() );</span>
-<span class="fc" id="L52">        budgetAdministrativeUnitStaffUpdateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
-<span class="fc" id="L53">        budgetAdministrativeUnitStaffUpdateRequestDto.setJobIdentifier( arg0.getJobIdentifier() );</span>
-<span class="fc" id="L54">        budgetAdministrativeUnitStaffUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
-<span class="fc" id="L55">        budgetAdministrativeUnitStaffUpdateRequestDto.setIsFunctionary( arg0.getIsFunctionary() );</span>
-<span class="fc" id="L56">        budgetAdministrativeUnitStaffUpdateRequestDto.setStaff( arg0.getStaff() );</span>
+<span class="fc" id="L49">        budgetAdministrativeUnitStaffUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L50">        budgetAdministrativeUnitStaffUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L51">        budgetAdministrativeUnitStaffUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L52">        budgetAdministrativeUnitStaffUpdateRequestDto.setBudgetIdentifier( arg0.getBudgetIdentifier() );</span>
+<span class="fc" id="L53">        budgetAdministrativeUnitStaffUpdateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L54">        budgetAdministrativeUnitStaffUpdateRequestDto.setJobIdentifier( arg0.getJobIdentifier() );</span>
+<span class="fc" id="L55">        budgetAdministrativeUnitStaffUpdateRequestDto.setCompetence( arg0.getCompetence() );</span>
+<span class="fc" id="L56">        budgetAdministrativeUnitStaffUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L57">        budgetAdministrativeUnitStaffUpdateRequestDto.setIsFunctionary( arg0.getIsFunctionary() );</span>
+<span class="fc" id="L58">        budgetAdministrativeUnitStaffUpdateRequestDto.setStaff( arg0.getStaff() );</span>
 
-<span class="fc" id="L58">        return budgetAdministrativeUnitStaffUpdateRequestDto;</span>
+<span class="fc" id="L60">        return budgetAdministrativeUnitStaffUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

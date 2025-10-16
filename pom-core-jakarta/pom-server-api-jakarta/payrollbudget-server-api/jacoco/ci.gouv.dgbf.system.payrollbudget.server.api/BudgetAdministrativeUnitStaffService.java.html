@@ -91,6 +91,20 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
     void setJobIdentifier(String identifier);
     
     /**
+     * Cette méthode permet d'obtenir la compétence.
+     *
+     * @return competence
+     */
+    String getCompetence();
+
+    /**
+     * Cette méthode permet d'assigner la compétence.
+     *
+     * @param competence la competence
+     */
+    void setCompetence(String competence);
+    
+    /**
      * Cette méthode permet d'obtenir l'identifiant {@link BudgetDto}.
      *
      * @return identifiant {@link BudgetDto}
@@ -149,6 +163,11 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
     String JSON_JOB_IDENTIFIER = BudgetAdministrativeUnitStaffDto.JSON_JOB_IDENTIFIER;
     
     /**
+     * {@link BudgetAdministrativeUnitStaffDto#JSON_COMPETENCE}.
+     */
+    String JSON_COMPETENCE = BudgetAdministrativeUnitStaffDto.JSON_COMPETENCE;
+    
+    /**
      * {@link BudgetAdministrativeUnitStaffDto#JSON_CATEGORY_IDENTIFIER}.
      */
     String JSON_CATEGORY_IDENTIFIER = BudgetAdministrativeUnitStaffDto.JSON_CATEGORY_IDENTIFIER;
@@ -197,7 +216,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L200">  class BudgetAdministrativeUnitStaffCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L219">  class BudgetAdministrativeUnitStaffCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
     
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -208,6 +227,9 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
 
     @JsonbProperty(JSON_JOB_IDENTIFIER)
     String jobIdentifier;
+    
+    @JsonbProperty(JSON_COMPETENCE)
+    String competence;
     
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     String categoryIdentifier;
@@ -253,7 +275,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L256">  public static class BudgetAdministrativeUnitStaffGetManyResponseDto </span>
+<span class="fc" id="L278">  public static class BudgetAdministrativeUnitStaffGetManyResponseDto </span>
           extends AbstractGetByPageResponseDto&lt;BudgetAdministrativeUnitStaffDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -345,7 +367,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L348">  class BudgetAdministrativeUnitStaffUpdateRequestDto extends ByIdentifierRequestDto </span>
+<span class="fc" id="L370">  class BudgetAdministrativeUnitStaffUpdateRequestDto extends ByIdentifierRequestDto </span>
           implements SaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -356,6 +378,9 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
 
     @JsonbProperty(JSON_JOB_IDENTIFIER)
     String jobIdentifier;
+    
+    @JsonbProperty(JSON_COMPETENCE)
+    String competence;
     
     @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
     String categoryIdentifier;
