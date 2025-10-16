@@ -1,110 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">MovementFilter.java</span></div><h1>MovementFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasRemunerableIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasTypeIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollElementInstanceIdentifierDto;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
  * Cette classe représente le filtre de {@link FunctionMovementDto}.
  *
- * @author akm
+ * @author Christian
  *
  */
 @Getter
 @Setter
-public class MovementFilter extends AbstractIdentifiableFilter {
-  
+public class MovementFilter extends AbstractIdentifiableFilter
+    implements FilterHasRemunerableIdentifier, FilterHasTypeIdentifier {
+
   /**
-    * Identifiant du remunerable.
-    */
+   * Identifiant du remunerable.
+   */
   String remunerableIdentifier;
-  
+
   /**
    * Identifiant du type de mouvement.
    */
   String typeIdentifier;
- 
+
   /**
-  * Identifiant de l'occurence d'élément de paie.
-  */
+   * Identifiant de l'occurence d'élément de paie.
+   */
   String payrollElementInstanceIdentifier;
 
-  
+
   /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public MovementFilter(FilterDto dto) {
-<span class="fc" id="L40">    super(dto);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L44">    super(dto);</span>
+<span class="fc" id="L45">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L46">  public MovementFilter() {}</span>
+<span class="fc" id="L50">  public MovementFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L50">    super.doInitialize(filter);</span>
-<span class="fc" id="L51">    remunerableIdentifier = getRemunerableIdentifier(filter);</span>
-<span class="fc" id="L52">    typeIdentifier = getTypeIdentifier(filter);</span>
-<span class="fc" id="L53">    payrollElementInstanceIdentifier = getPayrollElementInstanceIdentifier(filter);</span>
-   
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L54">    super.doInitialize(filter);</span>
+<span class="fc" id="L55">    updateRemunerableIdentifier(filter);</span>
+<span class="fc" id="L56">    updateTypeIdentifier(filter);</span>
+<span class="fc" id="L57">    payrollElementInstanceIdentifier = getPayrollElementInstanceIdentifier(filter);</span>
+
+<span class="fc" id="L59">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L59">    super.toDto(filter);</span>
-<span class="fc" id="L60">    setRemunerableIdentifier(filter, remunerableIdentifier);</span>
-<span class="fc" id="L61">    setTypeIdentifier(filter, typeIdentifier);</span>
-<span class="fc" id="L62">    setPayrollElementInstanceIdentifier(filter, payrollElementInstanceIdentifier);</span>
-    
-<span class="fc" id="L64">  }</span>
+<span class="fc" id="L63">    super.toDto(filter);</span>
+<span class="fc" id="L64">    updateFilterRemunerableIdentifier(filter);</span>
+<span class="fc" id="L65">    updateFilterTypeIdentifier(filter);</span>
+<span class="fc" id="L66">    setPayrollElementInstanceIdentifier(filter, payrollElementInstanceIdentifier);</span>
+<span class="fc" id="L67">  }</span>
 
-  /**
-   * Cette méthode permet d'assigner l'identifiant du remunerable.
-   *
-   * @param filter filtre
-   * @param identifier identifiant
-   */
-  public static void setRemunerableIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L73">    set(filter, JSON_REMUNERABLE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L74">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L75">  }</span>
-
-  /**
-   * Cette méthode permet d'obtenir l'identifiant du remunerable.
-   *
-   * @param filter filtre
-   * @return identifiant du remunerable
-   */
-  public static String getRemunerableIdentifier(FilterDto filter) {
-<span class="fc" id="L84">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REMUNERABLE_IDENTIFIER));</span>
-  }
-  
-  /**
-   * Cette méthode permet d'assigner l'identifiant du type de mouvement.
-   *
-   * @param filter filtre
-   * @param identifier identifiant
-   */
-  public static void setTypeIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L94">    set(filter, JSON_TYPE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L95">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L96">  }</span>
-
-  /**
-   * Cette méthode permet d'obtenir l'identifiant du type de mouvement.
-   *
-   * @param filter filtre
-   * @return identifiant du type de mouvement
-   */
-  public static String getTypeIdentifier(FilterDto filter) {
-<span class="fc" id="L105">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TYPE_IDENTIFIER));</span>
-  }
-  
   /**
    * Cette méthode permet d'assigner l'identifiant de l'occurence d'un élément de paie.
    *
@@ -112,9 +73,9 @@ public class MovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setPayrollElementInstanceIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L115">    set(filter, JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L116">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L117">  }</span>
+<span class="pc" id="L76">    set(filter, JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L77">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L78">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de l'occurence d'un élément de paie.
@@ -123,29 +84,17 @@ public class MovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant de l'occurence d'un élément de paie
    */
   public static String getPayrollElementInstanceIdentifier(FilterDto filter) {
-<span class="fc" id="L126">    return get(filter, d -&gt; d</span>
-<span class="fc" id="L127">        .getFieldValueAsStringByName(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER));</span>
+<span class="fc" id="L87">    return get(filter,</span>
+<span class="fc" id="L88">        d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER));</span>
   }
 
   /**
-   * Identifiant json champ {@link MovementFilter#remunerableIdentifier}.
-   */
-  public static final String JSON_REMUNERABLE_IDENTIFIER = 
-      RemunerableDto.JSON_IDENTIFIER;
-  
-  /**
-   * Identifiant json champ {@link MovementFilter#typeIdentifier}.
-   */
-  public static final String JSON_TYPE_IDENTIFIER = 
-      MovementTypeDto.JSON_IDENTIFIER;
-  
-  /**
    * Identifiant json champ {@link MovementFilter#payrollElementInstanceIdentifier}.
    */
-  public static final String JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER = 
-      PayrollElementInstanceDto.JSON_IDENTIFIER;
+  public static final String JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER =
+      HasPayrollElementInstanceIdentifierDto.JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER;
 
- 
-  
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
