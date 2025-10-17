@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasEffectiveDateAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasEffectiveDateDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFunctionaryRegistrationNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasProcessedDateAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasProcessedDateDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRetroactiveProcessedDateAsStringDto;
@@ -23,11 +24,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L26">public class AbstractMovementDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasStatusAsStringDto, HasEffectiveDateDto&lt;LocalDate&gt;, HasEffectiveDateAsStringDto,
-    HasProcessedDateDto&lt;LocalDate&gt;, HasProcessedDateAsStringDto,
+<span class="fc" id="L27">public abstract class AbstractMovementDto extends AbstractIdentifiableAuditableDto implements</span>
+    HasFunctionaryRegistrationNumberDto, HasStatusAsStringDto, HasEffectiveDateDto&lt;LocalDate&gt;,
+    HasEffectiveDateAsStringDto, HasProcessedDateDto&lt;LocalDate&gt;, HasProcessedDateAsStringDto,
     HasRetroactiveProcessedDateDto&lt;LocalDate&gt;, HasRetroactiveProcessedDateAsStringDto {
 
+  @JsonbProperty(JSON_FUNCTIONARY_REGISTRATION_NUMBER)
+  private String functionaryRegistrationNumber;
+  
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
 
