@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-10-17T15:44:25+0000&quot;,
+    date = &quot;2025-10-21T10:00:46+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -30,37 +30,25 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L30">        payslipCreateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
 <span class="fc" id="L31">        payslipCreateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
 <span class="fc" id="L32">        payslipCreateRequestDto.setIsComputeAmounts( arg0.getIsComputeAmounts() );</span>
-<span class="fc" id="L33">        payslipCreateRequestDto.setFunctionMovementIdentifier( arg0.getFunctionMovementIdentifier() );</span>
-<span class="fc" id="L34">        payslipCreateRequestDto.setLocalityMovementIdentifier( arg0.getLocalityMovementIdentifier() );</span>
-<span class="fc" id="L35">        payslipCreateRequestDto.setBudgetarySectionUnitMovementIdentifier( arg0.getBudgetarySectionUnitMovementIdentifier() );</span>
-<span class="fc" id="L36">        payslipCreateRequestDto.setPayIndexMovementIdentifier( arg0.getPayIndexMovementIdentifier() );</span>
-<span class="fc" id="L37">        payslipCreateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
-<span class="fc" id="L38">        payslipCreateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
 
-<span class="fc" id="L40">        return payslipCreateRequestDto;</span>
+<span class="fc" id="L34">        return payslipCreateRequestDto;</span>
     }
 
     @Override
     public PayslipService.PayslipUpdateRequestDto mapUpdate(PayslipDto arg0) {
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L46">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L49">        PayslipService.PayslipUpdateRequestDto payslipUpdateRequestDto = new PayslipService.PayslipUpdateRequestDto();</span>
+<span class="fc" id="L43">        PayslipService.PayslipUpdateRequestDto payslipUpdateRequestDto = new PayslipService.PayslipUpdateRequestDto();</span>
 
-<span class="fc" id="L51">        payslipUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L52">        payslipUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L53">        payslipUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L54">        payslipUpdateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
-<span class="fc" id="L55">        payslipUpdateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
-<span class="fc" id="L56">        payslipUpdateRequestDto.setFunctionMovementIdentifier( arg0.getFunctionMovementIdentifier() );</span>
-<span class="fc" id="L57">        payslipUpdateRequestDto.setLocalityMovementIdentifier( arg0.getLocalityMovementIdentifier() );</span>
-<span class="fc" id="L58">        payslipUpdateRequestDto.setBudgetarySectionUnitMovementIdentifier( arg0.getBudgetarySectionUnitMovementIdentifier() );</span>
-<span class="fc" id="L59">        payslipUpdateRequestDto.setPayIndexMovementIdentifier( arg0.getPayIndexMovementIdentifier() );</span>
-<span class="fc" id="L60">        payslipUpdateRequestDto.setChildNumber( arg0.getChildNumber() );</span>
-<span class="fc" id="L61">        payslipUpdateRequestDto.setIsMarried( arg0.getIsMarried() );</span>
+<span class="fc" id="L45">        payslipUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L46">        payslipUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L47">        payslipUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        payslipUpdateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
+<span class="fc" id="L49">        payslipUpdateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
 
-<span class="fc" id="L63">        return payslipUpdateRequestDto;</span>
+<span class="fc" id="L51">        return payslipUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

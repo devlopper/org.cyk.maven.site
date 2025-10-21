@@ -82,90 +82,6 @@ public interface PayslipService extends SpecificService {
     void setRemunerableIdentifier(String identifier);
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link FunctionMovementDto}.
-     *
-     * @return identifiant {@link FunctionMovementDto}
-     */
-    String getFunctionMovementIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link FunctionMovementDto}.
-     *
-     * @param identifier identifiant {@link FunctionMovementDto}
-     */
-    void setFunctionMovementIdentifier(String identifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link LocalityMovementDto}.
-     *
-     * @return identifiant {@link LocalityMovementDto}
-     */
-    String getLocalityMovementIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link LocalityMovementDto}.
-     *
-     * @param identifier identifiant {@link LocalityMovementDto}
-     */
-    void setLocalityMovementIdentifier(String identifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetarySectionUnitMovementDto}.
-     *
-     * @return identifiant {@link BudgetarySectionUnitMovementDto}
-     */
-    String getBudgetarySectionUnitMovementIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link BudgetarySectionUnitMovementDto}.
-     *
-     * @param identifier identifiant {@link BudgetarySectionUnitMovementDto}
-     */
-    void setBudgetarySectionUnitMovementIdentifier(String identifier);
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link PayIndexMovementDto}.
-     *
-     * @return identifiant {@link PayIndexMovementDto}
-     */
-    String getPayIndexMovementIdentifier();
-
-    /**
-     * Cette méthode permet d'assigner l'identifiant de {@link PayIndexMovementDto}.
-     *
-     * @param identifier identifiant {@link PayIndexMovementDto}
-     */
-    void setPayIndexMovementIdentifier(String identifier);
-
-    /**
-     * Cette méthode permet d'obtenir le nombre d'enfants.
-     *
-     * @return nombre enfants
-     */
-    Integer getChildNumber();
-
-    /**
-     * Cette méthode permet d'assigner le nombre d'enfants.
-     *
-     * @param childNumber nombre d'enfants
-     */
-    void setChildNumber(Integer childNumber);
-
-    /**
-     * Cette méthode permet d'obtenir vrai si est marié ou non.
-     *
-     * @return vrai si est marié ou non
-     */
-    Boolean getIsMarried();
-
-    /**
-     * Cette méthode permet d'assigner vrai si est marié ou non.
-     *
-     * @param isMarried vrai si est marié ou non
-     */
-    void setIsMarried(Boolean isMarried);
-
-    /**
      * {@link PayslipDto#JSON_PAYROLL_IDENTIFIER}.
      */
     public static final String JSON_PAYROLL_IDENTIFIER = PayslipDto.JSON_PAYROLL_IDENTIFIER;
@@ -174,40 +90,6 @@ public interface PayslipService extends SpecificService {
      * {@link PayslipDto#JSON_REMUNERABLE_IDENTIFIER}.
      */
     public static final String JSON_REMUNERABLE_IDENTIFIER = PayslipDto.JSON_REMUNERABLE_IDENTIFIER;
-
-    /**
-     * {@link PayslipDto#JSON_FUNCTION_MOVEMENT_IDENTIFIER}.
-     */
-    public static final String JSON_FUNCTION_MOVEMENT_IDENTIFIER =
-        PayslipDto.JSON_FUNCTION_MOVEMENT_IDENTIFIER;
-
-    /**
-     * {@link PayslipDto#JSON_LOCALITY_MOVEMENT_IDENTIFIER}.
-     */
-    public static final String JSON_LOCALITY_MOVEMENT_IDENTIFIER =
-        PayslipDto.JSON_LOCALITY_MOVEMENT_IDENTIFIER;
-
-    /**
-     * {@link PayslipDto#JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER}.
-     */
-    public static final String JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER =
-        PayslipDto.JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER;
-
-    /**
-     * {@link PayslipDto#JSON_PAY_INDEX_MOVEMENT_IDENTIFIER}.
-     */
-    public static final String JSON_PAY_INDEX_MOVEMENT_IDENTIFIER =
-        PayslipDto.JSON_PAY_INDEX_MOVEMENT_IDENTIFIER;
-
-    /**
-     * {@link PayslipDto#JSON_CHILD_NUMBER}.
-     */
-    public static final String JSON_CHILD_NUMBER = PayslipDto.JSON_CHILD_NUMBER;
-
-    /**
-     * {@link PayslipDto#JSON_IS_MARRIED}.
-     */
-    public static final String JSON_IS_MARRIED = PayslipDto.JSON_IS_MARRIED;
 
   }
 
@@ -260,7 +142,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L263">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L145">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -276,36 +158,6 @@ public interface PayslipService extends SpecificService {
 
     @JsonbProperty(JSON_IS_COMPUTE_AMOUNTS)
     private Boolean isComputeAmounts;
-
-    /**
-     * Identifiant de {@link FunctionMovementDto}.
-     */
-    @JsonbProperty(JSON_FUNCTION_MOVEMENT_IDENTIFIER)
-    private String functionMovementIdentifier;
-
-    /**
-     * Identifiant de {@link LocalityMovementDto}.
-     */
-    @JsonbProperty(JSON_LOCALITY_MOVEMENT_IDENTIFIER)
-    private String localityMovementIdentifier;
-
-    /**
-     * Identifiant de {@link BudgetarySectionUnitMovementDto}.
-     */
-    @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER)
-    private String budgetarySectionUnitMovementIdentifier;
-
-    /**
-     * Identifiant de {@link PayIndexMovementDto}.
-     */
-    @JsonbProperty(JSON_PAY_INDEX_MOVEMENT_IDENTIFIER)
-    private String payIndexMovementIdentifier;
-
-    @JsonbProperty(JSON_CHILD_NUMBER)
-    private Integer childNumber;
-
-    @JsonbProperty(JSON_IS_MARRIED)
-    private Boolean isMarried;
 
     /**
      * Identifiant json de {@link #isComputeAmounts}.
@@ -346,7 +198,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L349">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L201">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -435,7 +287,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L438">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L290">  class PayslipUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -448,36 +300,6 @@ public interface PayslipService extends SpecificService {
      */
     @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
     String remunerableIdentifier;
-
-    /**
-     * Identifiant de {@link FunctionMovementDto}.
-     */
-    @JsonbProperty(JSON_FUNCTION_MOVEMENT_IDENTIFIER)
-    String functionMovementIdentifier;
-
-    /**
-     * Identifiant de {@link LocalityMovementDto}.
-     */
-    @JsonbProperty(JSON_LOCALITY_MOVEMENT_IDENTIFIER)
-    String localityMovementIdentifier;
-
-    /**
-     * Identifiant de {@link BudgetarySectionUnitMovementDto}.
-     */
-    @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER)
-    String budgetarySectionUnitMovementIdentifier;
-
-    /**
-     * Identifiant de {@link PayIndexMovementDto}.
-     */
-    @JsonbProperty(JSON_PAY_INDEX_MOVEMENT_IDENTIFIER)
-    String payIndexMovementIdentifier;
-
-    @JsonbProperty(JSON_CHILD_NUMBER)
-    private Integer childNumber;
-
-    @JsonbProperty(JSON_IS_MARRIED)
-    private Boolean isMarried;
   }
 
   /**
@@ -535,7 +357,7 @@ public interface PayslipService extends SpecificService {
    *
    * @author Christian
    */
-<span class="fc" id="L538">  class PayslipCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L360">  class PayslipCalculateRequestDto extends ByIdentifierRequestDto {</span>
     
   }
   
@@ -672,7 +494,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L675">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L497">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link PayslipDto#getStatus()}.
@@ -734,17 +556,17 @@ public interface PayslipService extends SpecificService {
      * @param status {@link PayslipStatus}
      */
     public void initialize(PayslipStatus status) {
-<span class="fc" id="L737">      this.status = status;</span>
-<span class="fc" id="L738">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L739">      transmittableForControl =</span>
-<span class="fc" id="L740">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L741">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L742">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L743">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
-<span class="fc" id="L744">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
-<span class="fc" id="L745">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L746">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L747">    }</span>
+<span class="fc" id="L559">      this.status = status;</span>
+<span class="fc" id="L560">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L561">      transmittableForControl =</span>
+<span class="fc" id="L562">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L563">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L564">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L565">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="fc" id="L566">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="fc" id="L567">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L568">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L569">    }</span>
 
     /**
      * {@link PayslipDto#JSON_STATUS}.

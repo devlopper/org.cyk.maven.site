@@ -37,6 +37,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
  */
 @Path(value = FunctionMovementService.PATH)
 @Tag(name = &quot;Gestion des mouvements de fonctions&quot;)
+@Deprecated(forRemoval = true)
 public interface FunctionMovementService extends SpecificService {
 
   /**
@@ -50,6 +51,7 @@ public interface FunctionMovementService extends SpecificService {
    * @author A.K.M
    *
    */
+  @Deprecated(forRemoval = true)
   interface FunctionMovementSaveRequestDto {
 
     /**
@@ -139,38 +141,36 @@ public interface FunctionMovementService extends SpecificService {
     /**
      * {@link FunctionMovementDto#JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER}.
      */
-    public static final String JSON_FUNCTIONARY_IDENTIFIER = 
-              FunctionMovementDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
+    public static final String JSON_FUNCTIONARY_IDENTIFIER =
+        FunctionMovementDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
 
     /**
      * {@link FunctionMovementDto#JSON_FUNCTION_IDENTIFIER}.
      */
-    public static final String JSON_FUNCTION_IDENTIFIER = 
-              FunctionMovementDto.JSON_FUNCTION_IDENTIFIER;
+    public static final String JSON_FUNCTION_IDENTIFIER =
+        FunctionMovementDto.JSON_FUNCTION_IDENTIFIER;
 
     /**
      * {@link FunctionMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
      */
-    public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER = 
-                      FunctionMovementDto.JSON_MOVEMENT_TRACKING_IDENTIFIER;
+    public static final String JSON_MOVEMENT_TRACKING_IDENTIFIER =
+        FunctionMovementDto.JSON_MOVEMENT_TRACKING_IDENTIFIER;
 
     /**
      * {@link FunctionMovementDto#JSON_EFFECT_DATE}.
      */
-    public static final String JSON_EFFECT_DATE = 
-                      FunctionMovementDto.JSON_EFFECT_DATE;
+    public static final String JSON_EFFECT_DATE = FunctionMovementDto.JSON_EFFECT_DATE;
 
     /**
      * {@link FunctionMovementDto#JSON_DATE_TAKEN_IN_COUNTS}.
      */
-    public static final String JSON_DATE_TAKEN_IN_COUNTS = 
-                      FunctionMovementDto.JSON_DATE_TAKEN_IN_COUNTS;
+    public static final String JSON_DATE_TAKEN_IN_COUNTS =
+        FunctionMovementDto.JSON_DATE_TAKEN_IN_COUNTS;
 
     /**
      * {@link FunctionMovementDto#JSON_MOVEMENT_TRACKING_IDENTIFIER}.
      */
-    public static final String JSON_DATE_REMINDER = 
-                      FunctionMovementDto.JSON_DATE_REMINDER;
+    public static final String JSON_DATE_REMINDER = FunctionMovementDto.JSON_DATE_REMINDER;
   }
 
   /**
@@ -206,7 +206,8 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L209">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+  @Deprecated(forRemoval = true)
+<span class="fc" id="L210">  class FunctionMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements FunctionMovementSaveRequestDto {
     /**
      * {@link FunctionMovementDto#getFunctionaryIdentifier()}.
@@ -223,9 +224,9 @@ public interface FunctionMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
-  
+
     /**
-     *{@link FunctionMovementDto#getEffectDate()}.
+     * {@link FunctionMovementDto#getEffectDate()}.
      */
     @JsonbProperty(JSON_EFFECT_DATE)
     private LocalDate effectDate;
@@ -263,9 +264,8 @@ public interface FunctionMovementService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = 
-                        FunctionMovementGetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = FunctionMovementGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -276,8 +276,8 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L279">  public static class FunctionMovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;</span>
-              FunctionMovementDto&gt; {
+<span class="fc" id="L279">  public static class FunctionMovementGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;FunctionMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;FunctionMovementDto&gt; datas;
@@ -366,7 +366,8 @@ public interface FunctionMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L369">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+  @Deprecated(forRemoval = true)
+<span class="fc" id="L370">  class FunctionMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements FunctionMovementSaveRequestDto {
     /**
      * {@link FunctionMovementDto#getFunctionaryBudgetarySectionUnitIdentifier()}.
@@ -383,9 +384,9 @@ public interface FunctionMovementService extends SpecificService {
      */
     @JsonbProperty(JSON_MOVEMENT_TRACKING_IDENTIFIER)
     private String movementTrackingIdentifier;
-  
+
     /**
-     *{@link FunctionMovementDto#getEffectDate()}.
+     * {@link FunctionMovementDto#getEffectDate()}.
      */
     @JsonbProperty(JSON_EFFECT_DATE)
     private LocalDate effectDate;
@@ -426,7 +427,7 @@ public interface FunctionMovementService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
-  
-  
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
