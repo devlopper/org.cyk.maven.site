@@ -11,6 +11,8 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasActualMovementIdentifierDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPreviousMovementIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -80,7 +82,7 @@ public interface PayslipMovementService extends SpecificService {
      * @param actualMovementIdentifier l'identifiant ddu mouvement actuel
      */
     void setActualMovementIdentifier(String actualMovementIdentifier);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant du mouvement précédent.
      *
@@ -117,12 +119,14 @@ public interface PayslipMovementService extends SpecificService {
     /**
      * {@link MovementDto#JSON_THIS_IDENTIFIER}.
      */
-    String JSON_ACTUAL_MOVEMENT_IDENTIFIER = MovementDto.JSON_THIS_IDENTIFIER;
-    
+    String JSON_ACTUAL_MOVEMENT_IDENTIFIER =
+        HasActualMovementIdentifierDto.JSON_ACTUAL_MOVEMENT_IDENTIFIER;
+
     /**
      * {@link MovementDto#JSON_THIS_IDENTIFIER}.
      */
-    String JSON_PREVIOUS_MOVEMENT_IDENTIFIER = MovementDto.JSON_THIS_IDENTIFIER;
+    String JSON_PREVIOUS_MOVEMENT_IDENTIFIER =
+        HasPreviousMovementIdentifierDto.JSON_PREVIOUS_MOVEMENT_IDENTIFIER;
 
     /**
      * {@link HasEffectiveDateDto#JSON_EFFECTIVE_DATE}.
@@ -163,7 +167,7 @@ public interface PayslipMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L166">  class PayslipMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L170">  class PayslipMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayslipMovementSaveRequestDto {
 
     @JsonbProperty(JSON_PAYSPLIP_IDENTIFIER)
@@ -200,9 +204,8 @@ public interface PayslipMovementService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = 
-          @Schema(implementation = PayslipMovementGetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayslipMovementGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -213,7 +216,7 @@ public interface PayslipMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L216">  public static class PayslipMovementGetManyResponseDto </span>
+<span class="fc" id="L219">  public static class PayslipMovementGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -303,7 +306,7 @@ public interface PayslipMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L306">  class PayslipMovementUpdateRequestDto extends ByIdentifierRequestDto </span>
+<span class="fc" id="L309">  class PayslipMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayslipMovementSaveRequestDto {
 
     @JsonbProperty(JSON_PAYSPLIP_IDENTIFIER)
