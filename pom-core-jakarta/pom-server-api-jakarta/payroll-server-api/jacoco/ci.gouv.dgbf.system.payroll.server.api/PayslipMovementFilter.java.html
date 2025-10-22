@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayslipIdentifier;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,77 +14,52 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class PayslipMovementFilter extends AbstractIdentifiableFilter {
-  
-  /**
-    * Identifiant du bulletin.
-    */
-  String payslipIdentifier;
-  
+public class PayslipMovementFilter extends AbstractIdentifiableFilter
+    implements FilterHasPayslipIdentifier {
+
+  private String payslipIdentifier;
+
   /**
    * Identifiant du mouvement actuel.
    */
   String actualMovementIdentifier;
- 
+
   /**
-  * Identifiant du mouvement precedent.
-  */
+   * Identifiant du mouvement precedent.
+   */
   String previousMovementIdentifier;
 
-  
+
   /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public PayslipMovementFilter(FilterDto dto) {
-<span class="fc" id="L40">    super(dto);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L39">    super(dto);</span>
+<span class="fc" id="L40">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L46">  public PayslipMovementFilter() {}</span>
+<span class="fc" id="L45">  public PayslipMovementFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L50">    super.doInitialize(filter);</span>
-<span class="fc" id="L51">    payslipIdentifier = getPayslipIdentifier(filter);</span>
-<span class="fc" id="L52">    actualMovementIdentifier = getActualMovementIdentifier(filter);</span>
-<span class="fc" id="L53">    previousMovementIdentifier = getPreviousMovementIdentifier(filter);</span>
-   
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L49">    super.doInitialize(filter);</span>
+<span class="fc" id="L50">    updatePayslipIdentifier(filter);</span>
+<span class="fc" id="L51">    actualMovementIdentifier = getActualMovementIdentifier(filter);</span>
+<span class="fc" id="L52">    previousMovementIdentifier = getPreviousMovementIdentifier(filter);</span>
+<span class="fc" id="L53">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L59">    super.toDto(filter);</span>
-<span class="fc" id="L60">    setPayslipIdentifier(filter, payslipIdentifier);</span>
-<span class="fc" id="L61">    setActualMovementIdentifier(filter, actualMovementIdentifier);</span>
-<span class="fc" id="L62">    setPreviousMovementIdentifier(filter, previousMovementIdentifier);</span>
-    
-<span class="fc" id="L64">  }</span>
+<span class="fc" id="L57">    super.toDto(filter);</span>
+<span class="fc" id="L58">    updateFilterPayslipIdentifier(filter);</span>
+<span class="fc" id="L59">    setActualMovementIdentifier(filter, actualMovementIdentifier);</span>
+<span class="fc" id="L60">    setPreviousMovementIdentifier(filter, previousMovementIdentifier);</span>
+<span class="fc" id="L61">  }</span>
 
-  /**
-   * Cette méthode permet d'assigner l'identifiant du bulletin.
-   *
-   * @param filter filtre
-   * @param identifier identifiant
-   */
-  public static void setPayslipIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L73">    set(filter, JSON_PAYSLIP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L74">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L75">  }</span>
-
-  /**
-   * Cette méthode permet d'obtenir l'identifiant du bulletin.
-   *
-   * @param filter filtre
-   * @return identifiant du bulletin
-   */
-  public static String getPayslipIdentifier(FilterDto filter) {
-<span class="fc" id="L84">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYSLIP_IDENTIFIER));</span>
-  }
-  
   /**
    * Cette méthode permet d'assigner l'identifiant du mouvement actuel.
    *
@@ -91,9 +67,9 @@ public class PayslipMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setActualMovementIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L94">    set(filter, JSON_ACTUAL_MOVEMENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L95">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L96">  }</span>
+<span class="fc" id="L70">    set(filter, JSON_ACTUAL_MOVEMENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L71">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L72">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du mouvement actuel.
@@ -102,9 +78,9 @@ public class PayslipMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant du mouvement actuel
    */
   public static String getActualMovementIdentifier(FilterDto filter) {
-<span class="fc" id="L105">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ACTUAL_MOVEMENT_IDENTIFIER));</span>
+<span class="fc" id="L81">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ACTUAL_MOVEMENT_IDENTIFIER));</span>
   }
-  
+
   /**
    * Cette méthode permet d'assigner l'identifiant du mouvement précédent.
    *
@@ -112,9 +88,9 @@ public class PayslipMovementFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setPreviousMovementIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L115">    set(filter, JSON_PREVIOUS_MOVEMENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L116">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L117">  }</span>
+<span class="fc" id="L91">    set(filter, JSON_PREVIOUS_MOVEMENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L92">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L93">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du mouvement précédent.
@@ -123,29 +99,20 @@ public class PayslipMovementFilter extends AbstractIdentifiableFilter {
    * @return identifiant du mouvement précédent
    */
   public static String getPreviousMovementIdentifier(FilterDto filter) {
-<span class="fc" id="L126">    return get(filter, d -&gt; d</span>
-<span class="fc" id="L127">        .getFieldValueAsStringByName(JSON_PREVIOUS_MOVEMENT_IDENTIFIER));</span>
+<span class="fc" id="L102">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PREVIOUS_MOVEMENT_IDENTIFIER));</span>
   }
 
   /**
-   * Identifiant json champ {@link PayslipMovementFilter#payslipIdentifier}.
-   */
-  public static final String JSON_PAYSLIP_IDENTIFIER = 
-      PayslipDto.JSON_IDENTIFIER;
-  
-  /**
    * Identifiant json champ {@link PayslipMovementFilter#actualMovementIdentifier}.
    */
-  public static final String JSON_ACTUAL_MOVEMENT_IDENTIFIER = 
-      MovementDto.JSON_IDENTIFIER;
-  
+  public static final String JSON_ACTUAL_MOVEMENT_IDENTIFIER = MovementDto.JSON_IDENTIFIER;
+
   /**
    * Identifiant json champ {@link PayslipMovementFilter#previousMovementIdentifier}.
    */
-  public static final String JSON_PREVIOUS_MOVEMENT_IDENTIFIER = 
-      MovementDto.JSON_IDENTIFIER;
+  public static final String JSON_PREVIOUS_MOVEMENT_IDENTIFIER = MovementDto.JSON_IDENTIFIER;
 
- 
-  
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
