@@ -3,6 +3,8 @@
 import ci.gouv.dgbf.extension.core.segregation.HasFunctionaryRegistrationNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasIsSecondaryAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasIsSecondaryDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRemunerableAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -18,7 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L21">public class RemunerableDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L23">public class RemunerableDto extends AbstractIdentifiableAuditableDto</span>
     implements HasFunctionaryRegistrationNumberDto, HasIsSecondaryDto, HasIsSecondaryAsStringDto {
 
   @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
@@ -38,7 +40,7 @@ import lombok.Setter;
 
   @Deprecated(forRemoval = true)
   private String registrationNumber;
-  
+
   @JsonbProperty(JSON_FUNCTIONARY_REGISTRATION_NUMBER)
   private String functionaryRegistrationNumber;
 
@@ -113,7 +115,7 @@ import lombok.Setter;
    */
   @Deprecated(forRemoval = true)
   public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
-  
+
   /**
    * Identifiant json {@link #isEnabled}.
    */
@@ -127,14 +129,15 @@ import lombok.Setter;
   /**
    * Identifiant json de identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
    */
-  public static final String JSON_THIS_IDENTIFIER = &quot;idFonctionnaireUniteSectionBudgetairePayable&quot;;
+  public static final String JSON_THIS_IDENTIFIER =
+      HasRemunerableIdentifierDto.JSON_REMUNERABLE_IDENTIFIER;
 
   /**
    * Identifiant json de représentation en chaine de caractères de
    * {@link FunctionaryBudgetarySectionUnitDto}.
    */
   public static final String JSON_THIS_AS_STRING =
-      &quot;fonctionnaireUniteSectionBudgetairePayableChaine&quot;;
+      HasRemunerableAsStringDto.JSON_REMUNERABLE_AS_STRING;
 
   /**
    * Identifiant json de {@link #functionaryBudgetarySectionUnitIdentifier}.

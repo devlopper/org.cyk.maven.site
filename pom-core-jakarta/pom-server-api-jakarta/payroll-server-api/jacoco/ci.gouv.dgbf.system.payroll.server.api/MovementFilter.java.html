@@ -5,12 +5,13 @@ import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasFunctionaryRegi
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasRemunerableIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasTypeIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayslipIdentifier;
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollElementInstanceIdentifierDto;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente le filtre de {@link FunctionMovementDto}.
+ * Cette classe représente le filtre de {@link MovementDto}.
  *
  * @author Christian
  *
@@ -18,19 +19,16 @@ import lombok.Setter;
 @Getter
 @Setter
 public class MovementFilter extends AbstractIdentifiableFilter
-    implements FilterHasRemunerableIdentifier, FilterHasFunctionaryRegistrationNumber,
-    FilterHasTypeIdentifier {
+    implements FilterHasRemunerableIdentifier, FilterHasPayslipIdentifier,
+    FilterHasFunctionaryRegistrationNumber, FilterHasTypeIdentifier {
 
-  /**
-   * Identifiant du remunerable.
-   */
-  String remunerableIdentifier;
+  private String remunerableIdentifier;
 
   /**
    * Matricule du fonctionnaire.
    */
   String functionaryRegistrationNumber;
-  
+
   /**
    * Identifiant du type de mouvement.
    */
@@ -41,6 +39,7 @@ public class MovementFilter extends AbstractIdentifiableFilter
    */
   String payrollElementInstanceIdentifier;
 
+  private String payslipIdentifier;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -48,20 +47,21 @@ public class MovementFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public MovementFilter(FilterDto dto) {
-<span class="fc" id="L51">    super(dto);</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L50">    super(dto);</span>
+<span class="fc" id="L51">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L57">  public MovementFilter() {}</span>
+<span class="fc" id="L56">  public MovementFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L61">    super.doInitialize(filter);</span>
-<span class="fc" id="L62">    updateRemunerableIdentifier(filter);</span>
-<span class="fc" id="L63">    updateFunctionaryRegistrationNumber(filter);</span>
-<span class="fc" id="L64">    updateTypeIdentifier(filter);</span>
+<span class="fc" id="L60">    super.doInitialize(filter);</span>
+<span class="fc" id="L61">    updateRemunerableIdentifier(filter);</span>
+<span class="fc" id="L62">    updateFunctionaryRegistrationNumber(filter);</span>
+<span class="fc" id="L63">    updateTypeIdentifier(filter);</span>
+<span class="fc" id="L64">    updatePayslipIdentifier(filter);</span>
 <span class="fc" id="L65">    payrollElementInstanceIdentifier = getPayrollElementInstanceIdentifier(filter);</span>
 
 <span class="fc" id="L67">  }</span>
@@ -72,8 +72,9 @@ public class MovementFilter extends AbstractIdentifiableFilter
 <span class="fc" id="L72">    updateFilterRemunerableIdentifier(filter);</span>
 <span class="fc" id="L73">    updateFilterTypeIdentifier(filter);</span>
 <span class="fc" id="L74">    updateFilterFunctionaryRegistrationNumber(filter);</span>
-<span class="fc" id="L75">    setPayrollElementInstanceIdentifier(filter, payrollElementInstanceIdentifier);</span>
-<span class="fc" id="L76">  }</span>
+<span class="fc" id="L75">    updateFilterPayslipIdentifier(filter);</span>
+<span class="fc" id="L76">    setPayrollElementInstanceIdentifier(filter, payrollElementInstanceIdentifier);</span>
+<span class="fc" id="L77">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de l'occurence d'un élément de paie.
@@ -82,9 +83,9 @@ public class MovementFilter extends AbstractIdentifiableFilter
    * @param identifier identifiant
    */
   public static void setPayrollElementInstanceIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L85">    set(filter, JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L86">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L87">  }</span>
+<span class="pc" id="L86">    set(filter, JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L87">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L88">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de l'occurence d'un élément de paie.
@@ -93,8 +94,8 @@ public class MovementFilter extends AbstractIdentifiableFilter
    * @return identifiant de l'occurence d'un élément de paie
    */
   public static String getPayrollElementInstanceIdentifier(FilterDto filter) {
-<span class="fc" id="L96">    return get(filter,</span>
-<span class="fc" id="L97">        d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER));</span>
+<span class="fc" id="L97">    return get(filter,</span>
+<span class="fc" id="L98">        d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER));</span>
   }
 
   /**
