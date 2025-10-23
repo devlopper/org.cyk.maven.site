@@ -96,12 +96,6 @@ import lombok.Setter;
   private String amount3AsString;
 
   /**
-   * Représentation en chaine de caractères du montant exécuté.
-   */
-  @JsonbProperty(JSON_EXECUTED_AMOUNT_AS_STRING)
-  private String executedAmountAsString;
-
-  /**
    * Représentation en chaine de caractères du montant de l'activité.
    */
   @JsonbProperty(JSON_ACTIVITY_AMOUNT_AS_STRING)
@@ -167,11 +161,6 @@ import lombok.Setter;
   public static final String JSON_AMOUNT_3_AS_STRING = &quot;montant3Chaine&quot;;
 
   /**
-   * Identifiant json {@link #executedAmountAsString}.
-   */
-  public static final String JSON_EXECUTED_AMOUNT_AS_STRING = &quot;montantExecuteChaine&quot;;
-
-  /**
    * Identifiant json {@link #activityAmountAsString}.
    */
   public static final String JSON_ACTIVITY_AMOUNT_AS_STRING = &quot;montantActiviteChaine&quot;;
@@ -211,11 +200,11 @@ import lombok.Setter;
   /**
    * Nom pour lecture humaine de la classe.
    */
-  public static final String NAME = &quot;moyen de financement&quot;;
+  public static final String NAME = &quot;moyen de financement par activité programme triennal&quot;;
 
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
-  public static final String PLURAL_NAME = &quot;moyens de financement&quot;;
+  public static final String PLURAL_NAME = &quot;moyens de financement par activité programme triennal&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
