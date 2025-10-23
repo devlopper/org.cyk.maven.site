@@ -95,8 +95,15 @@ public interface ProcedureService extends SpecificService {
    */
   String DELETE_PATH = &quot;&quot;;
 
+  /**
+   * Identifiant du service de création d'une procedure par modèle de procédure.
+   */
   String CREATE_BY_MODEL_IDENTIFIER = &quot;CREATION_PAR_MODELE_PROCEDURE&quot;;
 
+
+  /**
+   * Chemin du service de création d'une procedure par modèle de procédure.
+   */
   String CREATE_BY_MODEL_PATH = &quot;creation-par-modele&quot;;
 
   /**
@@ -222,17 +229,17 @@ public interface ProcedureService extends SpecificService {
     /**
      * Identifiant json du champ d'ordre.
      */
-    public static final String JSON_ORDER = ProcedureDto.JSON_ORDER;
+    String JSON_ORDER = ProcedureDto.JSON_ORDER;
 
     /**
      * Identifiant json du champ de date detail.
      */
-    public static final String JSON_DATE = ProcedureDto.JSON_DATE;
+    String JSON_DATE = ProcedureDto.JSON_DATE;
 
     /**
      * Identifiant json du champ de date .
      */
-    public static final String JSON_OBSERVATION = ProcedureDto.JSON_OBSERVATION;
+    String JSON_OBSERVATION = ProcedureDto.JSON_OBSERVATION;
 
 
     /**
@@ -257,7 +264,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L267">  class ProcedureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
@@ -281,13 +288,21 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L284">  class ProcedureCreateByModeleProcedureRequestDto</span>
+<span class="fc" id="L291">  class ProcedureCreateByModeleProcedureRequestDto</span>
       extends AbstractCreateRequestDto {
 
+    /**
+     * Identifiant json de l'identifiant du modèle de procédure.
+     */
     public static final String JSON_PROCEDURE_MODEL_IDENTIFIER =
         ProcedureDetailModelDto.JSON_PROCEDURE_MODEL_IDENTIFIER;
+
+    /**
+     * Identifiant json de l'identifiant du programme triennal.
+     */
     public static final String JSON_TRIENNIAL_PROGRAM_IDENTIFIER =
         ProcedureDto.JSON_TRIENNIAL_PROGRAM_IDENTIFIER;
+
     @JsonbProperty(JSON_PROCEDURE_MODEL_IDENTIFIER)
     private String procedureModelIdentifier;
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)
@@ -302,7 +317,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L305">  public static class ProcedureGetManyResponseDto</span>
+<span class="fc" id="L320">  class ProcedureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -316,7 +331,7 @@ public interface ProcedureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L319">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L334">  class ProcedureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ProcedureSaveRequestDto {
 
     @JsonbProperty(JSON_TRIENNIAL_PROGRAM_IDENTIFIER)

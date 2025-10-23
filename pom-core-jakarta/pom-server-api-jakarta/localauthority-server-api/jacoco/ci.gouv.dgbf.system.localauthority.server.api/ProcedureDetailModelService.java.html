@@ -227,19 +227,12 @@ public interface ProcedureDetailModelService extends SpecificService {
     /**
      * Identifiant json du champ d'ordre.
      */
-    public static final String JSON_ORDER = ProcedureDetailModelDto.JSON_ORDER;
+    String JSON_ORDER = ProcedureDetailModelDto.JSON_ORDER;
 
     /**
      * Identifiant json du champ de date detail.
      */
-    public static final String JSON_DETAIL_DATE = ProcedureDetailModelDto.JSON_DETAIL_DATE;
-
-    /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link ProcedureDto}.
-     *
-     * @return identifiant de {@link ProcedureDto}
-     */
-    String getProcedureModelIdentifier();
+    String JSON_DETAIL_DATE = ProcedureDetailModelDto.JSON_DETAIL_DATE;
 
     /**
      * Cette méthode permet d'assigner l'identifiant de {@link ProcedureDto}.
@@ -256,7 +249,7 @@ public interface ProcedureDetailModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L259">  class ProcedureDetailModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L252">  class ProcedureDetailModelCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ProcedureDetailModelSaveRequestDto {
 
     @JsonbProperty(JSON_PROCEDURE_MODEL_IDENTIFIER)
@@ -277,7 +270,7 @@ public interface ProcedureDetailModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L280">  class ProcedureDetailCreateByProcedureDetailModelRequestDto</span>
+<span class="fc" id="L273">  class ProcedureDetailCreateByProcedureDetailModelRequestDto</span>
       extends AbstractCodableNamableCreateRequestJsonDto {
     @JsonbProperty(JSON_PROCEDURE_DETAIL_MODEL_IDENTIFIER)
     private String procedureDetailModelIdentifier;
@@ -285,9 +278,16 @@ public interface ProcedureDetailModelService extends SpecificService {
     @JsonbProperty(JSON_PROCEDURE_IDENTIFIER)
     private String procedureIdentifier;
 
+    /**
+     * Identifiant champ json du modèle de détail de procédure.
+     */
     public static final String JSON_PROCEDURE_DETAIL_MODEL_IDENTIFIER =
         &quot;idProcedureDetailModel&quot;;
 
+
+    /**
+     * Identifiant champ json de l'identifiant de procédure.
+     */
     public static final String JSON_PROCEDURE_IDENTIFIER =
         &quot;idProcedure&quot;;
 
@@ -300,7 +300,7 @@ public interface ProcedureDetailModelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L303">  public static class ProcedureDetailModelGetManyResponseDto</span>
+<span class="fc" id="L303">  class ProcedureDetailModelGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcedureDetailModelDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
