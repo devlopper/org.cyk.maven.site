@@ -52,18 +52,18 @@ public interface RemunerableService extends SpecificService {
    */
   interface RemunerableSaveRequestDto {
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link FunctionaryDto}.
      *
-     * @return identifiant {@link FunctionaryBudgetarySectionUnitDto}
+     * @return identifiant {@link FunctionaryDto}
      */
-    String getFunctionaryBudgetarySectionUnitIdentifier();
+    String getFunctionaryIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
+     * Cette méthode permet d'assigner l'identifiant de {@link FunctionaryDto}.
      *
-     * @param identifier identifiant {@link FunctionaryBudgetarySectionUnitDto}
+     * @param identifier identifiant {@link FunctionaryDto}
      */
-    void setFunctionaryBudgetarySectionUnitIdentifier(String identifier);
+    void setFunctionaryIdentifier(String identifier);
 
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link PayslipTemplateDto}.
@@ -107,40 +107,12 @@ public interface RemunerableService extends SpecificService {
      */
     void setIsEnabled(Boolean isEnabled);
 
-    /**
-     * Cette méthode permet d'obténir vrai si marié sinon faux.
-     *
-     * @return vrai si marié sinon faux
-     */
-    Boolean getIsMarried();
 
     /**
-     * Cette méthode permet d'assigner vrai si marié sinon faux.
-     *
-     * @param isMarried vrai si marié sinon faux
+     * {@link RemunerableDto#JSON_FUNCTIONARY_IDENTIFIER}.
      */
-    void setIsMarried(Boolean isMarried);
-
-    /**
-     * Cette méthode permet d'obtenir nombre d'enfant.
-     *
-     * @return nombre d'enfant
-     */
-    Integer getChildNumber();
-
-    /**
-     * Cette méthode permet d'assigner nombre d'enfant.
-     *
-     * @param childNumber nombre d'enfant
-     */
-    void setChildNumber(Integer childNumber);
-
-
-    /**
-     * {@link RemunerableDto#JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER}.
-     */
-    public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER =
-        RemunerableDto.JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER;
+    public static final String JSON_FUNCTIONARY_IDENTIFIER =
+        RemunerableDto.JSON_FUNCTIONARY_IDENTIFIER;
 
     /**
      * {@link RemunerableDto#JSON_PAYSLIP_TEMPLATE_IDENTIFIER}.
@@ -157,16 +129,6 @@ public interface RemunerableService extends SpecificService {
      * {@link RemunerableDto#JSON_IS_ENABLED}.
      */
     public static final String JSON_IS_ENABLED = RemunerableDto.JSON_IS_ENABLED;
-
-    /**
-     * {@link RemunerableDto#JSON_IS_MARRIED}.
-     */
-    public static final String JSON_IS_MARRIED = RemunerableDto.JSON_IS_MARRIED;
-
-    /**
-     * {@link RemunerableDto#JSON_CHILD_NUMBER}.
-     */
-    public static final String JSON_CHILD_NUMBER = RemunerableDto.JSON_CHILD_NUMBER;
   }
 
   /**
@@ -202,37 +164,20 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L205">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L167">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements RemunerableSaveRequestDto {
-    /**
-     * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
-     */
-    @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
-    String functionaryBudgetarySectionUnitIdentifier;
 
-    /**
-     * Identifiant de {@link PayslipTemplateDto}.
-     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
+
     @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
-    String payslipTemplateIdentifier;
+    private String payslipTemplateIdentifier;
 
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;
 
     @JsonbProperty(JSON_IS_SECONDARY)
     private Boolean isSecondary;
-    
-    /**
-     * Est marié.
-     */
-    @JsonbProperty(JSON_IS_MARRIED)
-    private Boolean isMarried;
-
-    /**
-     * Nombre d'enfant.
-     */
-    @JsonbProperty(JSON_CHILD_NUMBER)
-    private Integer childNumber;
 
   }
 
@@ -269,7 +214,7 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L272">  public static class RemunerableGetManyResponseDto</span>
+<span class="fc" id="L217">  public static class RemunerableGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;RemunerableDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -359,38 +304,20 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L362">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L307">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements RemunerableSaveRequestDto {
-    /**
-     * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
-     */
-    @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
-    String functionaryBudgetarySectionUnitIdentifier;
 
-    /**
-     * Identifiant de {@link PayslipTemplateDto}.
-     */
+    @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
+    private String functionaryIdentifier;
+
     @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
-    String payslipTemplateIdentifier;
+    private String payslipTemplateIdentifier;
 
     @JsonbProperty(JSON_IS_SECONDARY)
     private Boolean isSecondary;
-    
+
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;
-
-    /**
-     * Est marié.
-     */
-    @JsonbProperty(JSON_IS_MARRIED)
-    private Boolean isMarried;
-
-    /**
-     * Nombre d'enfant.
-     */
-    @JsonbProperty(JSON_CHILD_NUMBER)
-    private Integer childNumber;
-
   }
 
   /**

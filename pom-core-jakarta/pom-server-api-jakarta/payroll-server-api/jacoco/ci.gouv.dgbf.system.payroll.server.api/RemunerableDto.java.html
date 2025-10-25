@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RemunerableDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">RemunerableDto.java</span></div><h1>RemunerableDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
-import ci.gouv.dgbf.extension.core.segregation.HasFunctionaryRegistrationNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasIsSecondaryAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasIsSecondaryDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRegistrationNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
@@ -21,7 +21,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L23">public class RemunerableDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasFunctionaryRegistrationNumberDto, HasIsSecondaryDto, HasIsSecondaryAsStringDto {
+    implements HasRegistrationNumberDto, HasIsSecondaryDto, HasIsSecondaryAsStringDto {
 
   @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER)
   private String functionaryBudgetarySectionUnitIdentifier;
@@ -33,16 +33,14 @@ import lombok.Setter;
   private String functionaryAsString;
 
   @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_AS_STRING)
+  @Deprecated(forRemoval = true)
   private String budgetarySectionUnitAsString;
 
   @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
   private String functionaryIdentifier;
 
-  @Deprecated(forRemoval = true)
+  @JsonbProperty(JSON_REGISTRATION_NUMBER)
   private String registrationNumber;
-
-  @JsonbProperty(JSON_FUNCTIONARY_REGISTRATION_NUMBER)
-  private String functionaryRegistrationNumber;
 
   @JsonbProperty(JSON_IS_SECONDARY)
   private Boolean isSecondary;
@@ -109,13 +107,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_IS_ENABLED_AS_STRING)
   private String isEnabledAsString;
-
-  /**
-   * Identifiant json {@link #registrationNumber}.
-   */
-  @Deprecated(forRemoval = true)
-  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
-
+  
   /**
    * Identifiant json {@link #isEnabled}.
    */
@@ -159,6 +151,7 @@ import lombok.Setter;
   /**
    * Identifiant json de {@link #budgetarySectionUnitAsString}.
    */
+  @Deprecated(forRemoval = true)
   public static final String JSON_BUDGETARY_SECTION_UNIT_AS_STRING =
       BudgetarySectionUnitDto.JSON_THIS_AS_STRING;
 

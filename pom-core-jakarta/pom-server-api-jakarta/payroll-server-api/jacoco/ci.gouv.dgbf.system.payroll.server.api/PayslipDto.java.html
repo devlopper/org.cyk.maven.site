@@ -43,54 +43,6 @@ import lombok.Setter;
   private String remunerableAsString;
 
   /**
-   * Identifiant {@link FunctionMovementDto}.
-   */
-  @JsonbProperty(JSON_FUNCTION_MOVEMENT_IDENTIFIER)
-  private String functionMovementIdentifier;
-
-  /**
-   * Représentation en chaine de caractère de {@link FunctionMovementDto}.
-   */
-  @JsonbProperty(JSON_FUNCTION_MOVEMENT_AS_STRING)
-  private String functionMovementAsString;
-
-  /**
-   * Identifiant {@link LocalityMovementDto}.
-   */
-  @JsonbProperty(JSON_LOCALITY_MOVEMENT_IDENTIFIER)
-  private String localityMovementIdentifier;
-
-  /**
-   * Représentation en chaine de caractère de {@link LocalityMovementDto}.
-   */
-  @JsonbProperty(JSON_LOCALITY_MOVEMENT_AS_STRING)
-  private String localityMovementAsString;
-
-  /**
-   * Identifiant {@link ServiceMovementDto}.
-   */
-  @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER)
-  private String budgetarySectionUnitMovementIdentifier;
-
-  /**
-   * Représentation en chaine de caractère de {@link ServiceMovementDto}.
-   */
-  @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_AS_STRING)
-  private String budgetarySectionUnitMovementAsString;
-
-  /**
-   * Identifiant {@link PayIndexMovementDto}.
-   */
-  @JsonbProperty(JSON_PAY_INDEX_MOVEMENT_IDENTIFIER)
-  private String payIndexMovementIdentifier;
-
-  /**
-   * Représentation en chaine de caractère de {@link PayIndexMovementDto}.
-   */
-  @JsonbProperty(JSON_PAY_INDEX_MOVEMENT_AS_STRING)
-  private String payIndexMovementAsString;
-
-  /**
    * Nombre d'enfants.
    */
   @JsonbProperty(JSON_CHILD_NUMBER)
@@ -388,17 +340,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L391">    status = response.getStatus();</span>
-<span class="fc" id="L392">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L393">    initializable = response.getInitializable();</span>
-<span class="fc" id="L394">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L395">    controllable = response.getControllable();</span>
-<span class="fc" id="L396">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L397">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L398">    validable = response.getValidable();</span>
-<span class="fc" id="L399">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L400">    closable = response.getClosable();</span>
-<span class="fc" id="L401">  }</span>
+<span class="fc" id="L343">    status = response.getStatus();</span>
+<span class="fc" id="L344">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L345">    initializable = response.getInitializable();</span>
+<span class="fc" id="L346">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L347">    controllable = response.getControllable();</span>
+<span class="fc" id="L348">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L349">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L350">    validable = response.getValidable();</span>
+<span class="fc" id="L351">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L352">    closable = response.getClosable();</span>
+<span class="fc" id="L353">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -429,54 +381,6 @@ import lombok.Setter;
    * Identifiant json {@link #remunerableAsString}.
    */
   public static final String JSON_REMUNERABLE_AS_STRING = RemunerableDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #functionMovementIdentifier}.
-   */
-  public static final String JSON_FUNCTION_MOVEMENT_IDENTIFIER = 
-                  FunctionMovementDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #functionMovementAsString}.
-   */
-  public static final String JSON_FUNCTION_MOVEMENT_AS_STRING = 
-                  FunctionMovementDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #localityMovementIdentifier}.
-   */
-  public static final String JSON_LOCALITY_MOVEMENT_IDENTIFIER = 
-                  LocalityMovementDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #localityMovementAsString}.
-   */
-  public static final String JSON_LOCALITY_MOVEMENT_AS_STRING = 
-                  LocalityMovementDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #budgetarySectionUnitMovementIdentifier}.
-   */
-  public static final String JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_IDENTIFIER = 
-                  BudgetarySectionUnitMovementDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #budgetarySectionUnitMovementAsString}.
-   */
-  public static final String JSON_BUDGETARY_SECTION_UNIT_MOVEMENT_AS_STRING = 
-                  BudgetarySectionUnitMovementDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #payIndexMovementIdentifier}.
-   */
-  public static final String JSON_PAY_INDEX_MOVEMENT_IDENTIFIER = 
-                  PayIndexMovementDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #payIndexMovementAsString}.
-   */
-  public static final String JSON_PAY_INDEX_MOVEMENT_AS_STRING = 
-                  PayIndexMovementDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #childNumber}.
