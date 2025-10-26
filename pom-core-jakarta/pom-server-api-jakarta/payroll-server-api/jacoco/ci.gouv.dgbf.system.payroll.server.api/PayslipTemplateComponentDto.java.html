@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipTemplateComponentDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayslipTemplateComponentDto.java</span></div><h1>PayslipTemplateComponentDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasOrderNumberDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollComponentAsStringDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollComponentIdentifierDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipTemplateAsStringDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipTemplateIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -15,35 +20,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class PayslipTemplateComponentDto extends AbstractIdentifiableAuditableDto {</span>
-  
-  /**
-   * Identifiant {@link PayrollComponentDto}.
-   */
+<span class="fc" id="L23">public class PayslipTemplateComponentDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasPayslipTemplateIdentifierDto, HasPayslipTemplateAsStringDto,
+    HasPayrollComponentIdentifierDto, HasPayrollComponentAsStringDto, HasOrderNumberDto {
+
   @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
   private String payrollComponentIdentifier;
-  
-  /**
-   * Représentation en chaine de caractères {@link PayrollComponentDto}.
-   */
+
   @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
   private String payrollComponentAsString;
-  
-  /**
-   * Identifiant {@link PayslipTemplateDto}.
-   */
+
   @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
   private String payslipTemplateIdentifier;
-  
-  /**
-   * Représentation en chaine de caractères {@link PayslipTemplateDto}.
-   */
+
   @JsonbProperty(JSON_PAYSLIP_TEMPLATE_AS_STRING)
   private String payslipTemplateAsString;
-  
-  /**
-   * Numéro d'ordre.
-   */
+
   @JsonbProperty(JSON_ORDER_NUMBER)
   private Integer orderNumber;
 
@@ -56,7 +48,7 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;posteModeleBulletinPaieChaine&quot;;
-  
+
 
   /**
    * Nom pour lecture humaine de la classe.
@@ -67,35 +59,5 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = &quot;postes de modèle de bulletin de paie&quot;;
-  
-  /**
-   * Identifiant json de champ {@link #payrollComponentIdentifier}.
-   */
-  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER = PayrollComponentDto
-      .JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json champ {@link #payrollComponentAsString}.
-   */
-  public static final String JSON_PAYROLL_COMPONENT_AS_STRING = PayrollComponentDto
-      .JSON_THIS_AS_STRING;
-  
-  /**
-   * Identifiant json de champ {@link #payrollComponentIdentifier}.
-   */
-  public static final String JSON_PAYSLIP_TEMPLATE_IDENTIFIER = PayslipTemplateDto
-      .JSON_THIS_IDENTIFIER;
-  
-  /**
-   * Identifiant json {@link #orderNumber}.
-   */
-  public static final String JSON_ORDER_NUMBER = &quot;orderNumber&quot;;
-
-  /**
-   * Identifiant json champ {@link #payrollComponentAsString}.
-   */
-  public static final String JSON_PAYSLIP_TEMPLATE_AS_STRING = PayslipTemplateDto
-      .JSON_THIS_AS_STRING;
-  
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

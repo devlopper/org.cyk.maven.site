@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RemunerableService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">RemunerableService.java</span></div><h1>RemunerableService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
-import ci.gouv.dgbf.extension.core.segregation.HasIsSecondaryDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFunctionaryIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasIsEnabledDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -11,6 +12,8 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipTemplateIdentifierDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipTypeIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -66,6 +69,20 @@ public interface RemunerableService extends SpecificService {
     void setFunctionaryIdentifier(String identifier);
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link PayslipTypeDto}.
+     *
+     * @return identifiant {@link PayslipTypeDto}
+     */
+    String getPayslipTypeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link PayslipTypeDto}.
+     *
+     * @param identifier identifiant {@link PayslipTypeDto}
+     */
+    void setPayslipTypeIdentifier(String identifier);
+
+    /**
      * Cette méthode permet d'obtenir l'identifiant de {@link PayslipTemplateDto}.
      *
      * @return identifiant {@link PayslipTemplateDto}
@@ -78,20 +95,6 @@ public interface RemunerableService extends SpecificService {
      * @param identifier identifiant {@link PayslipTemplateDto}
      */
     void setPayslipTemplateIdentifier(String identifier);
-
-    /**
-     * Cette méthode permet d'obtenir est secondaire.
-     *
-     * @return est secondaire
-     */
-    Boolean getIsSecondary();
-
-    /**
-     * Cette méthode permet d'assigner est secondaire.
-     *
-     * @param isSecondary est secondaire
-     */
-    void setIsSecondary(Boolean isSecondary);
 
     /**
      * Cette méthode permet d'obténir vrai si c'est activé sinon faux.
@@ -109,26 +112,27 @@ public interface RemunerableService extends SpecificService {
 
 
     /**
-     * {@link RemunerableDto#JSON_FUNCTIONARY_IDENTIFIER}.
+     * {@link HasFunctionaryIdentifierDto#JSON_FUNCTIONARY_IDENTIFIER}.
      */
     public static final String JSON_FUNCTIONARY_IDENTIFIER =
-        RemunerableDto.JSON_FUNCTIONARY_IDENTIFIER;
+        HasFunctionaryIdentifierDto.JSON_FUNCTIONARY_IDENTIFIER;
 
     /**
-     * {@link RemunerableDto#JSON_PAYSLIP_TEMPLATE_IDENTIFIER}.
+     * {@link HasPayslipTypeIdentifierDto#JSON_PAYSLIP_TYPE_IDENTIFIER}.
+     */
+    public static final String JSON_PAYSLIP_TYPE_IDENTIFIER =
+        HasPayslipTypeIdentifierDto.JSON_PAYSLIP_TYPE_IDENTIFIER;
+
+    /**
+     * {@link HasPayslipTemplateIdentifierDto#JSON_PAYSLIP_TEMPLATE_IDENTIFIER}.
      */
     public static final String JSON_PAYSLIP_TEMPLATE_IDENTIFIER =
-        RemunerableDto.JSON_PAYSLIP_TEMPLATE_IDENTIFIER;
+        HasPayslipTemplateIdentifierDto.JSON_PAYSLIP_TEMPLATE_IDENTIFIER;
 
     /**
-     * {@link HasIsSecondaryDto#JSON_IS_SECONDARY}.
+     * {@link HasIsEnabledDto#JSON_IS_ENABLED}.
      */
-    public static final String JSON_IS_SECONDARY = HasIsSecondaryDto.JSON_IS_SECONDARY;
-
-    /**
-     * {@link RemunerableDto#JSON_IS_ENABLED}.
-     */
-    public static final String JSON_IS_ENABLED = RemunerableDto.JSON_IS_ENABLED;
+    public static final String JSON_IS_ENABLED = HasIsEnabledDto.JSON_IS_ENABLED;
   }
 
   /**
@@ -164,21 +168,20 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L167">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L171">  class RemunerableCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements RemunerableSaveRequestDto {
 
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
     private String functionaryIdentifier;
 
+    @JsonbProperty(JSON_PAYSLIP_TYPE_IDENTIFIER)
+    private String payslipTypeIdentifier;
+    
     @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
     private String payslipTemplateIdentifier;
 
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;
-
-    @JsonbProperty(JSON_IS_SECONDARY)
-    private Boolean isSecondary;
-
   }
 
   /**
@@ -214,7 +217,7 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L217">  public static class RemunerableGetManyResponseDto</span>
+<span class="fc" id="L220">  public static class RemunerableGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;RemunerableDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -304,17 +307,17 @@ public interface RemunerableService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L307">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L310">  class RemunerableUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements RemunerableSaveRequestDto {
 
     @JsonbProperty(JSON_FUNCTIONARY_IDENTIFIER)
     private String functionaryIdentifier;
 
+    @JsonbProperty(JSON_PAYSLIP_TYPE_IDENTIFIER)
+    private String payslipTypeIdentifier;
+    
     @JsonbProperty(JSON_PAYSLIP_TEMPLATE_IDENTIFIER)
     private String payslipTemplateIdentifier;
-
-    @JsonbProperty(JSON_IS_SECONDARY)
-    private Boolean isSecondary;
 
     @JsonbProperty(JSON_IS_ENABLED)
     private Boolean isEnabled;
