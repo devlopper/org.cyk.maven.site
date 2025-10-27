@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-07-09T08:06:39+0000&quot;,
+    date = &quot;2025-10-27T11:36:30+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,23 +27,25 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        subAdministrativeUnitCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L29">        subAdministrativeUnitCreateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L30">        subAdministrativeUnitCreateRequestDto.setType( arg0.getType() );</span>
 
-<span class="fc" id="L31">        return subAdministrativeUnitCreateRequestDto;</span>
+<span class="fc" id="L32">        return subAdministrativeUnitCreateRequestDto;</span>
     }
 
     @Override
     public SubAdministrativeUnitService.SubAdministrativeUnitUpdateRequestDto mapUpdate(SubAdministrativeUnitDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L40">        SubAdministrativeUnitService.SubAdministrativeUnitUpdateRequestDto subAdministrativeUnitUpdateRequestDto = new SubAdministrativeUnitService.SubAdministrativeUnitUpdateRequestDto();</span>
+<span class="fc" id="L41">        SubAdministrativeUnitService.SubAdministrativeUnitUpdateRequestDto subAdministrativeUnitUpdateRequestDto = new SubAdministrativeUnitService.SubAdministrativeUnitUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        subAdministrativeUnitUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        subAdministrativeUnitUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L44">        subAdministrativeUnitUpdateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L43">        subAdministrativeUnitUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        subAdministrativeUnitUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L45">        subAdministrativeUnitUpdateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L46">        subAdministrativeUnitUpdateRequestDto.setType( arg0.getType() );</span>
 
-<span class="fc" id="L46">        return subAdministrativeUnitUpdateRequestDto;</span>
+<span class="fc" id="L48">        return subAdministrativeUnitUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
