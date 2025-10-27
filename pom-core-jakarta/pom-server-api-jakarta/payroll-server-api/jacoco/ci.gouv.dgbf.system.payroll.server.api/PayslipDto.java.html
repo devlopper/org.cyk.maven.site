@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayslipDto.java</span></div><h1>PayslipDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasRegistrationNumberDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRemunerableAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayslipService.ProcessResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollAsStringDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,95 +21,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class PayslipDto extends AbstractIdentifiableAuditableDto implements PayslipContainerDto {</span>
+<span class="fc" id="L24">public class PayslipDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasPayrollIdentifierDto, HasPayrollAsStringDto, HasRemunerableIdentifierDto,
+    HasRemunerableAsStringDto, HasRegistrationNumberDto, PayslipContainerDto {
 
-  /**
-   * Identifiant {@link PayrollDto}.
-   */
   @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
   private String payrollIdentifier;
 
-  /**
-   * Représentation en chaine de caractère de {@link PayrollDto}.
-   */
   @JsonbProperty(JSON_PAYROLL_AS_STRING)
   private String payrollAsString;
 
-  /**
-   * Identifiant {@link RemunerableDto}.
-   */
   @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
   private String remunerableIdentifier;
 
-  /**
-   * Représentation en chaine de caractère de {@link RemunerableDto}.
-   */
   @JsonbProperty(JSON_REMUNERABLE_AS_STRING)
   private String remunerableAsString;
 
-  /**
-   * Nombre d'enfants.
-   */
-  @JsonbProperty(JSON_CHILD_NUMBER)
-  private Integer childNumber;
-
-  /**
-   * Est marié.
-   */
-  @JsonbProperty(JSON_IS_MARRIED)
-  private Boolean isMarried;
-
-  /**
-   * Représentation en chaine de caractère de Est marié.
-   */
-  @JsonbProperty(JSON_IS_MARRIED_AS_STRING)
-  private String isMarriedAsString;
-  
-  /**
-   * Est recalculable.
-   */
-  @JsonbProperty(JSON_IS_RECALCULABLE)
-  private Boolean isRecalculable;
-  
-  /**
-   * {@link PayslipStatus}.
-   */
-  @JsonbProperty(JSON_STATUS)
-  private PayslipStatus status;
-
-  /**
-   * Représentation en chaine de caractères de {@link PayslipStatus}.
-   */
-  @JsonbProperty(JSON_STATUS_AS_STRING)
-  private String statusAsString;
-  
-  /**
-   * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
-   */
-  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT)
-  private String functionaryBudgetarySectionUnit;
-  
-  /**
-   * Représentation en chaine de caractère de {@link FunctionaryBudgetarySectionUnitDto}.
-   */
-  @JsonbProperty(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_AS_STRING)
-  private String functionaryBudgetarySectionUnitAsString;
-
-  /**
-   * Représentation en chaine de caractère de {@link BudgetarySectionUnitDto}.
-   */
-  @JsonbProperty(JSON_BUDGETARY_SECTION_UNIT_AS_STRING)
-  private String budgetarySectionUnitAsString;
-
-  /**
-   * Représentation en chaine de caractère de la section.
-   */
-  @JsonbProperty(JSON_BUDGETARY_SECTION_AS_STRING)
-  private String budgetarySectionAsString;
-
-  /**
-   * Matricule.
-   */
   @JsonbProperty(JSON_REGISTRATION_NUMBER)
   private String registrationNumber;
 
@@ -115,28 +47,19 @@ import lombok.Setter;
   private String firstNameAndLastNames;
 
   /**
-   * Représentation en chaine de caractère de l'indice.
+   * {@link PayslipStatus}.
    */
-  @JsonbProperty(JSON_PAY_INDEX_AS_STRING)
-  private String payIndexAsString;
+  @JsonbProperty(JSON_STATUS)
+  private PayslipStatus status;
+
+  @JsonbProperty(JSON_STATUS_AS_STRING)
+  private String statusAsString;
 
   /**
-   * Représentation en chaine de caractère de la fonction.
+   * Est recalculable.
    */
-  @JsonbProperty(JSON_FUNCTION_AS_STRING)
-  private String functionAsString;
-
-  /**
-   * Représentation en chaine de caractère du service.
-   */
-  @JsonbProperty(JSON_LOCALITY_AS_STRING)
-  private String localityAsString;
-
-  /**
-   * Représentation en chaine de caractère du nombre d'enfants.
-   */
-  @JsonbProperty(JSON_CHILDREN_COUNT_AS_STRING)
-  private String childrenCountAsString;
+  @JsonbProperty(JSON_IS_RECALCULABLE)
+  private Boolean isRecalculable;
 
   /*-- Début définition des montants --*/
 
@@ -267,13 +190,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_PROPOSITION_COUNT_AS_STRING)
   private String propositionCountAsString;
-  
+
   /**
    * Est à controler prioritairement.
    */
   @JsonbProperty(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY)
   private Boolean isToBeControlledInPriority;
-  
+
   /**
    * Code statut.
    */
@@ -340,17 +263,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L343">    status = response.getStatus();</span>
-<span class="fc" id="L344">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L345">    initializable = response.getInitializable();</span>
-<span class="fc" id="L346">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L347">    controllable = response.getControllable();</span>
-<span class="fc" id="L348">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L349">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L350">    validable = response.getValidable();</span>
-<span class="fc" id="L351">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L352">    closable = response.getClosable();</span>
-<span class="fc" id="L353">  }</span>
+<span class="fc" id="L266">    status = response.getStatus();</span>
+<span class="fc" id="L267">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L268">    initializable = response.getInitializable();</span>
+<span class="fc" id="L269">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L270">    controllable = response.getControllable();</span>
+<span class="fc" id="L271">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L272">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L273">    validable = response.getValidable();</span>
+<span class="fc" id="L274">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L275">    closable = response.getClosable();</span>
+<span class="fc" id="L276">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -363,101 +286,14 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;bulletinPaieChaine&quot;;
 
   /**
-   * Identifiant json {@link #payrollIdentifier}.
-   */
-  public static final String JSON_PAYROLL_IDENTIFIER = PayrollDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #payrollAsString}.
-   */
-  public static final String JSON_PAYROLL_AS_STRING = PayrollDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #remunerableIdentifier}.
-   */
-  public static final String JSON_REMUNERABLE_IDENTIFIER = RemunerableDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant json {@link #remunerableAsString}.
-   */
-  public static final String JSON_REMUNERABLE_AS_STRING = RemunerableDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json {@link #childNumber}.
-   */
-  public static final String JSON_CHILD_NUMBER = &quot;nombreEnfant&quot;;
-
-  /**
-   * Identifiant json {@link #isMarried}.
-   */
-  public static final String JSON_IS_MARRIED = &quot;estMarie&quot;;
-
-  /**
-   * Identifiant json {@link #isMarriedAsString}.
-   */
-  public static final String JSON_IS_MARRIED_AS_STRING = &quot;estMarieChaine&quot;;
-
-  /**
    * Identifiant json {@link #isRecalculable}.
    */
   public static final String JSON_IS_RECALCULABLE = &quot;estRecalculable&quot;;
-  
+
   /**
    * Identifiant json champ {@link #status}.
    */
   public static final String JSON_STATUS = &quot;statut&quot;;
-
-  /**
-   * Identifiant json champ {@link #statusAsString}.
-   */
-  public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
-  
-  /**
-   * Identifiant json {@link #functionaryBudgetarySectionUnit}.
-   */
-  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT =
-      &quot;idFonctionnaireUniteSectionBudgetaire&quot;;
-
-  /**
-   * Identifiant json {@link #functionaryBudgetarySectionUnitAsString}.
-   */
-  public static final String JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_AS_STRING =
-      &quot;fonctionnaireUniteSectionBudgetaireChaine&quot;;
-
-  /**
-   * Identifiant json {@link #budgetarySectionUnitAsString}.
-   */
-  public static final String JSON_BUDGETARY_SECTION_UNIT_AS_STRING = &quot;uniteSectionBudgetaireChaine&quot;;
-
-  /**
-   * Identifiant json {@link #budgetarySectionAsString}.
-   */
-  public static final String JSON_BUDGETARY_SECTION_AS_STRING = &quot;sectionBudgetaireChaine&quot;;
-
-  /**
-   * Identifiant json {@link #payIndexAsString}.
-   */
-  public static final String JSON_PAY_INDEX_AS_STRING = &quot;indiceChaine&quot;;
-
-  /**
-   * Identifiant json {@link #functionAsString}.
-   */
-  public static final String JSON_FUNCTION_AS_STRING = &quot;fonctionChaine&quot;;
-
-  /**
-   * Identifiant json {@link #localityAsString}.
-   */
-  public static final String JSON_LOCALITY_AS_STRING = &quot;localiteChaine&quot;;
-
-  /**
-   * Identifiant json {@link #childrenCountAsString}.
-   */
-  public static final String JSON_CHILDREN_COUNT_AS_STRING = &quot;nombreEnfantChaine&quot;;
-  
-  /**
-   * Identifiant json {@link #registrationNumber}.
-   */
-  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
 
   /**
    * Identifiant json {@link #firstNameAndLastNames}.
@@ -473,12 +309,12 @@ import lombok.Setter;
    * Identifiant json {@link #propositionCountAsString}.
    */
   public static final String JSON_PROPOSITION_COUNT_AS_STRING = &quot;nombrePropositionChaine&quot;;
-  
+
   /**
    * Identifiant json {@link #isToBeControlledInPriority}.
    */
   public static final String JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY = &quot;estAControlerPrioritairement&quot;;
-  
+
   /**
    * Identifiant json {@link #statusCode}.
    */
