@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayslipDto.java</span></div><h1>PayslipDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasConstantGroupAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasConstantGroupIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRegistrationNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
@@ -21,9 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class PayslipDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L26">public class PayslipDto extends AbstractIdentifiableAuditableDto</span>
     implements HasPayrollIdentifierDto, HasPayrollAsStringDto, HasRemunerableIdentifierDto,
-    HasRemunerableAsStringDto, HasRegistrationNumberDto, PayslipContainerDto {
+    HasRemunerableAsStringDto, HasRegistrationNumberDto, PayslipContainerDto,
+    HasConstantGroupIdentifierDto, HasConstantGroupAsStringDto {
 
   @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
   private String payrollIdentifier;
@@ -61,6 +64,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_IS_RECALCULABLE)
   private Boolean isRecalculable;
 
+  @JsonbProperty(JSON_CONSTANT_GROUP_IDENTIFIER)
+  private String constantGroupIdentifier;
+
+  @JsonbProperty(JSON_CONSTANT_GROUP_AS_STRING)
+  private String constantGroupAsString;
+  
   /*-- Début définition des montants --*/
 
   /**
@@ -263,17 +272,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L266">    status = response.getStatus();</span>
-<span class="fc" id="L267">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L268">    initializable = response.getInitializable();</span>
-<span class="fc" id="L269">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L270">    controllable = response.getControllable();</span>
-<span class="fc" id="L271">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L272">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L273">    validable = response.getValidable();</span>
-<span class="fc" id="L274">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L275">    closable = response.getClosable();</span>
-<span class="fc" id="L276">  }</span>
+<span class="fc" id="L275">    status = response.getStatus();</span>
+<span class="fc" id="L276">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L277">    initializable = response.getInitializable();</span>
+<span class="fc" id="L278">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L279">    controllable = response.getControllable();</span>
+<span class="fc" id="L280">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L281">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L282">    validable = response.getValidable();</span>
+<span class="fc" id="L283">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L284">    closable = response.getClosable();</span>
+<span class="fc" id="L285">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
