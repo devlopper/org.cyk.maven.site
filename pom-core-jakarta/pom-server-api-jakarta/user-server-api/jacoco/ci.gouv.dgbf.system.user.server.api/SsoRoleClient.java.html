@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SsoRoleClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">SsoRoleClient.java</span></div><h1>SsoRoleClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.user.server.api.SsoRoleService.SsoRoleCreateRequestDto;
+import ci.gouv.dgbf.system.user.server.api.SsoRoleService.SsoRoleGetManyResponseDto;
+import ci.gouv.dgbf.system.user.server.api.SsoRoleService.SsoRoleUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link SsoRoleService}.
+ *
+ * @author BoobaCool
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L36">public class SsoRoleClient extends AbstractClient&lt;SsoRoleService&gt;</span>
+    implements GetByIdentifier&lt;SsoRoleDto&gt;,
+    GetMany&lt;SsoRoleGetManyResponseDto&gt;, DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public SsoRoleClient service(SsoRoleService service) {
+<span class="fc" id="L42">    return (SsoRoleClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link SsoRoleService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(SsoRoleCreateRequestDto request) {
+<span class="fc" id="L52">    return new CreateExecutor(SsoRoleService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link SsoRoleService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public SsoRoleGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L63">    return new GetOneExecutor&lt;SsoRoleGetManyResponseDto&gt;(SsoRoleGetManyResponseDto.class,</span>
+<span class="fc" id="L64">        SsoRoleService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link SsoRoleService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public SsoRoleGetManyResponseDto getMany(ProjectionDto projection,
+      FilterDto filter, PageDto page,
+      String auditWho, String auditSession) {
+<span class="fc" id="L81">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L82">    request.setProjection(projection);</span>
+<span class="fc" id="L83">    request.setFilter(filter);</span>
+<span class="fc" id="L84">    request.setPage(page);</span>
+<span class="fc" id="L85">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L86">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L87">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link SsoRoleService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public SsoRoleDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L97">    return new GetOneExecutor&lt;SsoRoleDto&gt;(SsoRoleDto.class, SsoRoleService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L98">        .execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link SsoRoleService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public SsoRoleDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L112">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L113">    request.setProjection(projection);</span>
+<span class="fc" id="L114">    request.setFilter(filter);</span>
+<span class="fc" id="L115">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L116">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L117">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link SsoRoleService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public SsoRoleDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L127">    return new GetOneExecutor&lt;SsoRoleDto&gt;(SsoRoleDto.class,</span>
+     SsoRoleService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L129">        .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link SsoRoleService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public SsoRoleDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+      String auditSession) {
+<span class="fc" id="L144">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L145">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L146">    request.setProjection(projection);</span>
+<span class="fc" id="L147">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L148">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L149">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link SsoRoleService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(SsoRoleUpdateRequestDto request) {
+<span class="fc" id="L159">    return new IdentifiableExecutor(SsoRoleService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L160">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link SsoRoleService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L170">    return new IdentifiableExecutor(DeviceService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L171">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link SsoRoleService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L185">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L186">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L187">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L188">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L189">    return delete(request);</span>
+  }
+
+  /**
+   * {@link SsoRoleService#doImport}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto doImport(ByIdentifierRequestDto request) {
+<span class="fc" id="L199">    return new IdentifiableExecutor(SsoRoleService.IMPORT_IDENTIFIER)</span>
+<span class="fc" id="L200">        .execute(() -&gt; service().doImport(request));</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserRoleDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserRoleDto.java</span></div><h1>UserRoleDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un utilisateur.
+ *
+ * @author BoobaCool
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L17">public class UserRoleDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant de {@link UserDto}.
+   */
+  @JsonbProperty(JSON_USER_IDENTIFIER)
+  private String userIdentifier;
+
+  /**
+   * Réprésentation en chaine de caractères de {@link UserDto}.
+   */
+  @JsonbProperty(JSON_USER_AS_STRING)
+  private String userAsString;
+
+  /**
+   * Identifiant de {@link RoleDto}.
+   */
+  @JsonbProperty(JSON_ROLE_IDENTIFIER)
+  private String roleIdentifier;
+
+  /**
+   * Réprésentation en chaine de caractères de {@link RoleDto}.
+   */
+  @JsonbProperty(JSON_ROLE_AS_STRING)
+  private String roleAsString;
+
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idUserRole&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;roleUtilisateurChaine&quot;;
+
+  /**
+   * Identifiant champ java {@link #userIdentifier}.
+   */
+  public static final String JSON_USER_IDENTIFIER = UserDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #userAsString}.
+   */
+  public static final String JSON_USER_AS_STRING = UserDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant champ java {@link #roleIdentifier}.
+   */
+  public static final String JSON_ROLE_IDENTIFIER = RoleDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #roleAsString}.
+   */
+  public static final String JSON_ROLE_AS_STRING = RoleDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;role utilisateur&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;roles utilisateurs&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

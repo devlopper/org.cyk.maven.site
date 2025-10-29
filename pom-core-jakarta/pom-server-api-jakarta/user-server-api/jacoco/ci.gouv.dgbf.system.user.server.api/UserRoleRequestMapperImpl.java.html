@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserRoleRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserRoleRequestMapperImpl.java</span></div><h1>UserRoleRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link UserRoleDto}.
+*
+* @author BoobaCool
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2025-10-29T09:14:53+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class UserRoleRequestMapperImpl implements UserRoleRequestMapper {</span>
+
+    @Override
+    public UserRoleService.UserRoleCreateRequestDto mapCreate(UserRoleDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        UserRoleService.UserRoleCreateRequestDto userRoleCreateRequestDto = new UserRoleService.UserRoleCreateRequestDto();</span>
+
+<span class="fc" id="L28">        userRoleCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        userRoleCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        userRoleCreateRequestDto.setUserIdentifier( arg0.getUserIdentifier() );</span>
+<span class="fc" id="L31">        userRoleCreateRequestDto.setRoleIdentifier( arg0.getRoleIdentifier() );</span>
+
+<span class="fc" id="L33">        return userRoleCreateRequestDto;</span>
+    }
+
+    @Override
+    public UserRoleService.UserRoleUpdateRequestDto mapUpdate(UserRoleDto arg0) {
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
+        }
+
+<span class="fc" id="L42">        UserRoleService.UserRoleUpdateRequestDto userRoleUpdateRequestDto = new UserRoleService.UserRoleUpdateRequestDto();</span>
+
+<span class="fc" id="L44">        userRoleUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L45">        userRoleUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L46">        userRoleUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        userRoleUpdateRequestDto.setUserIdentifier( arg0.getUserIdentifier() );</span>
+<span class="fc" id="L48">        userRoleUpdateRequestDto.setRoleIdentifier( arg0.getRoleIdentifier() );</span>
+
+<span class="fc" id="L50">        return userRoleUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

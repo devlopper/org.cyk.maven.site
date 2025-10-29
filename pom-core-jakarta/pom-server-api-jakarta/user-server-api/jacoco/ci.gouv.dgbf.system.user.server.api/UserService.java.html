@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserService.java</span></div><h1>UserService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link UserDto}.
+ *
+ * @author Christian Yao Komenan
+ */
+@Path(value = UserService.PATH)
+@Tag(name = &quot;Gestion des utilisateurs&quot;)
+public interface UserService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;utilisateurs&quot;;
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Christian
+   */
+  interface UserSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link DomainDto}.
+     *
+     * @return identifiant de {@link DomainDto}
+     */
+    String getDomainIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link DomainDto}.
+     *
+     * @param domainIdentifier identifiant de {@link DomainDto}
+     */
+    void setDomainIdentifier(String domainIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'identité.
+     *
+     * @return identifiant de l'identité
+     */
+    String getIdentityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'identité.
+     *
+     * @param identityIdentifier identifiant de l'identité
+     */
+    void setIdentityIdentifier(String identityIdentifier);
+
+    /**
+     * Identifiant json identifiant de {@link DomainDto}.
+     */
+    String JSON_DOMAIN_IDENTIFIER = DomainDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link IdentityDto}.
+     */
+    String JSON_IDENTITY_IDENTIFIER = IdentityDto.JSON_THIS_IDENTIFIER;
+  }
+
+  /**
+   * Cette interface représente une requête de création.
+   *
+   * @author Christian
+   */
+  interface UserSaveCreateRequestDto {
+    /**
+     * Cette méthode permet d'obtenir le passe.
+     *
+     * @return passe
+     */
+    String getPass();
+
+    /**
+     * Cette méthode permet d'assigner le passe.
+     *
+     * @param pass passe
+     */
+    void setPass(String pass);
+
+    /**
+     * {@link UserDto#JSON_PASS}.
+     */
+    String JSON_PASS = UserDto.JSON_PASS;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_UTILISATEUR&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link UserDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(UserCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L152">  class UserCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+      implements UserSaveRequestDto, UserSaveCreateRequestDto {
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
+
+    @JsonbProperty(JSON_IDENTITY_IDENTIFIER)
+    private String identityIdentifier;
+
+    @JsonbProperty(JSON_PASS)
+    private String pass;
+  }
+
+  /**
+   * Identifiant du service de création de compte.
+   */
+  String CREATE_ACCOUNT_IDENTIFIER = &quot;CREATION_COMPTE_UTILISATEUR&quot;;
+
+  /**
+   * Chemin du service de création de compte.
+   */
+  String CREATE_ACCOUNT_PATH = &quot;compte&quot;;
+
+  /**
+   * Cette méthode permet de créer un compte {@link UserDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_ACCOUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_ACCOUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createAccount(UserCreateAccountRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création de compte.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L196">  class UserCreateAccountRequestDto extends ByIdentifierRequestDto</span>
+      implements UserSaveCreateRequestDto {
+    @JsonbProperty(JSON_PASS)
+    private String pass;
+  }
+
+
+  /**
+   * Identifiant du service de création pour fonctionnaire.
+   */
+  String CREATE_FOR_FUNCTIONARY_IDENTIFIER = &quot;CREATION_UTILISATEUR_POUR_FONCTIONNAIRE&quot;;
+
+  /**
+   * Chemin du service de création pour fonctionnaire.
+   */
+  String CREATE_FOR_FUNCTIONARY_PATH = &quot;creation/fonctionnaire&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link UserDto} pour fonctionnaire.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_FOR_FUNCTIONARY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_FOR_FUNCTIONARY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createForFunctionary(UserCreateForFunctionaryRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création pour fonctionnaire.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L235">  class UserCreateForFunctionaryRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements UserSaveCreateRequestDto {
+    @JsonbProperty(JSON_PASS)
+    private String pass;
+
+    /* Identity verification data */
+
+    /**
+     * Matricule.
+     */
+    @JsonbProperty(JSON_REGISTRATION_NUMBER)
+    private String registrationNumber;
+
+    /**
+     * Nom et prénoms.
+     */
+    @JsonbProperty(JSON_NAMES)
+    private String names;
+
+    /**
+     * Date de naissance.
+     */
+    @JsonbProperty(JSON_BIRTH_DATE)
+    private LocalDate birthDate;
+
+    /**
+     * Date de première prise de service.
+     */
+    @JsonbProperty(JSON_FIRST_SERVICE_START_DATE)
+    private LocalDate firstServiceStartDate;
+
+    /**
+     * Identifiant json {@link #registrationNumber}.
+     */
+    public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+
+    /**
+     * Identifiant json {@link #names}.
+     */
+    public static final String JSON_NAMES = &quot;noms&quot;;
+
+    /**
+     * Identifiant json {@link #birthDate}.
+     */
+    public static final String JSON_BIRTH_DATE = &quot;dateNaissance&quot;;
+
+    /**
+     * Identifiant json {@link #firstServiceStartDate}.
+     */
+    public static final String JSON_FIRST_SERVICE_START_DATE = &quot;datePremierePriseService&quot;;
+  }
+
+  /**
+   * Identifiant du service de création pour non fonctionnaire.
+   */
+  String CREATE_FOR_NON_FUNCTIONARY_IDENTIFIER = &quot;CREATION_UTILISATEUR_POUR_NON_FONCTIONNAIRE&quot;;
+
+  /**
+   * Chemin du service de création pour non fonctionnaire.
+   */
+  String CREATE_FOR_NON_FUNCTIONARY_PATH = &quot;creation/non-fonctionnaire&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link UserDto} pour non fonctionnaire.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_FOR_NON_FUNCTIONARY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_FOR_NON_FUNCTIONARY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createForNonFunctionary(UserCreateForNonFunctionaryRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création pour non fonctionnaire.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L319">  class UserCreateForNonFunctionaryRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+      implements UserSaveCreateRequestDto {
+    @JsonbProperty(JSON_PASS)
+    private String pass;
+
+    /* Identity data */
+
+    @JsonbProperty(JSON_EMAIL_ADDRESS)
+    private String emailAddress;
+
+    @JsonbProperty(JSON_FIRST_NAME)
+    private String firstName;
+
+    @JsonbProperty(JSON_LAST_NAMES)
+    private String lastNames;
+
+    /**
+     * Identifiant json {@link #emailAddress}.
+     */
+    public static final String JSON_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
+
+    /**
+     * Identifiant json {@link #firstName}.
+     */
+    public static final String JSON_FIRST_NAME = &quot;nom&quot;;
+
+    /**
+     * Identifiant json {@link #lastNames}.
+     */
+    public static final String JSON_LAST_NAMES = &quot;prenoms&quot;;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_UTILISATEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link UserDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = UserGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L383">  public static class UserGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserDto&gt; {</span>
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;UserDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_UTILISATEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link UserDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = UserDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_UTILISATEUR&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link UserDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = UserDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_UTILISATEUR&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link UserDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(UserUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L471">  class UserUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+      implements UserSaveRequestDto {
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
+
+    @JsonbProperty(JSON_IDENTITY_IDENTIFIER)
+    private String identityIdentifier;
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_UTILISATEUR&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link UserDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+
+
+  /**
+   * Identifiant du service d'attribution de rôles.
+   */
+  String ASSIGN_ROLES_IDENTIFIER = &quot;ATTRIBUTION_ROLES&quot;;
+
+  /**
+   * Chemin du service d'attribution de rôles.
+   */
+  String ASSIGN_ROLES_PATH = &quot;attribution-roles&quot;;
+
+  /**
+   * Cette méthode permet d'attribuer des rôles à un utilisateur.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ASSIGN_ROLES_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = ASSIGN_ROLES_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = UserAssignRolesResponseDto.class))})
+  Response assignRoles(UserAssignRolesRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'attribution de rôles.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L538">  class UserAssignRolesRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Liste des identifiants des rôles.
+     */
+    @JsonbProperty(JSON_ROLE_IDENTIFIERS)
+    private Set&lt;String&gt; roleIdentifiers;
+
+    /**
+     * Identifiant json {@link #roleIdentifiers}.
+     */
+    public static final String JSON_ROLE_IDENTIFIERS = &quot;idRoles&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse d'attribution de rôles.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L559">  class UserAssignRolesResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Nombre total de rôles attribués.
+     */
+    @JsonbProperty(JSON_CREATED_COUNT)
+    private Integer createdCount;
+
+    /**
+     * Nombre d'attributions déjà existantes.
+     */
+    @JsonbProperty(JSON_EXISTING_COUNT)
+    private Integer existingCount;
+
+    /**
+     * Identifiant json {@link #createdCount}.
+     */
+    public static final String JSON_CREATED_COUNT = &quot;nombreCree&quot;;
+
+    /**
+     * Identifiant json {@link #existingCount}.
+     */
+    public static final String JSON_EXISTING_COUNT = &quot;nombreExistant&quot;;
+  }
+
+  /**
+   * Identifiant du service de retrait de rôles.
+   */
+  String REVOKE_ROLES_IDENTIFIER = &quot;RETRAIT_ROLES&quot;;
+
+  /**
+   * Chemin du service de retrait de rôles.
+   */
+  String REVOKE_ROLES_PATH = &quot;retrait-roles&quot;;
+
+  /**
+   * Cette méthode permet de retirer des rôles à un utilisateur.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(REVOKE_ROLES_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = REVOKE_ROLES_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = UserRevokeRolesResponseDto.class))})
+  Response revokeRoles(UserRevokeRolesRequestDto request);
+
+  /**
+   * Cette classe représente la requête de retrait de rôles.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L616">  class UserRevokeRolesRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Liste des identifiants des rôles.
+     */
+    @JsonbProperty(JSON_ROLE_IDENTIFIERS)
+    private Set&lt;String&gt; roleIdentifiers;
+
+    /**
+     * Identifiant json {@link #roleIdentifiers}.
+     */
+    public static final String JSON_ROLE_IDENTIFIERS = &quot;idRoles&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse de retrait de rôles.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L637">  class UserRevokeRolesResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Nombre de retraits réussis.
+     */
+    @JsonbProperty(JSON_REVOKED_COUNT)
+    private Integer revokedCount;
+
+    /**
+     * Nombre de rôles non trouvés.
+     */
+    @JsonbProperty(JSON_NOT_FOUND_COUNT)
+    private Integer notFoundCount;
+
+    /**
+     * Identifiant json {@link #revokedCount}.
+     */
+    public static final String JSON_REVOKED_COUNT = &quot;nombreRetire&quot;;
+
+    /**
+     * Identifiant json {@link #notFoundCount}.
+     */
+    public static final String JSON_NOT_FOUND_COUNT = &quot;nombreNonTrouve&quot;;
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IdentityFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">IdentityFilter.java</span></div><h1>IdentityFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link IdentityDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+<span class="fc" id="L17">public class IdentityFilter extends AbstractIdentifiableFilter {</span>
+
+  /**
+   * Adresse email.
+   */
+  @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+  String emailAddress;
+
+  /**
+   * Matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  String registrationNumber;
+
+  /**
+   * Identifiant unité administrative.
+   */
+  @JsonbProperty(value = JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  String administrativeUnitIdentifier;
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L39">    super.doInitialize(filter);</span>
+<span class="fc" id="L40">    emailAddress = getEmailAddress(filter);</span>
+<span class="fc" id="L41">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L42">    administrativeUnitIdentifier = getAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L43">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L47">    super.toDto(filter);</span>
+<span class="fc" id="L48">    setEmailAddress(filter, emailAddress);</span>
+<span class="fc" id="L49">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L50">    setAdministrativeUnitIdentifier(filter, administrativeUnitIdentifier);</span>
+<span class="fc" id="L51">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner {@link #emailAddress}.
+   *
+   * @param filter filtre
+   * @param emailAddress {@link #emailAddress}
+   */
+  public static void setEmailAddress(FilterDto filter, String emailAddress) {
+<span class="pc" id="L60">    set(filter, JSON_EMAIL_ADDRESS, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L61">        f -&gt; f.setValueAsString(emailAddress));</span>
+<span class="fc" id="L62">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #emailAddress}.
+   *
+   * @param filter filtre
+   * @return {@link #emailAddress}
+   */
+  public static String getEmailAddress(FilterDto filter) {
+<span class="fc" id="L71">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMAIL_ADDRESS));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner {@link #registrationNumber}.
+   *
+   * @param filter filtre
+   * @param registrationNumber {@link #registrationNumber}
+   */
+  public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
+<span class="pc" id="L81">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L82">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="fc" id="L83">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #registrationNumber}.
+   *
+   * @param filter filtre
+   * @return {@link #registrationNumber}
+   */
+  public static String getRegistrationNumber(FilterDto filter) {
+<span class="fc" id="L92">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner {@link #administrativeUnitIdentifier}.
+   *
+   * @param filter filtre
+   * @param administrativeUnitIdentifier {@link #administrativeUnitIdentifier}
+   */
+  public static void setAdministrativeUnitIdentifier(FilterDto filter,
+      String administrativeUnitIdentifier) {
+<span class="pc" id="L103">    set(filter, JSON_ADMINISTRATIVE_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L104">        f -&gt; f.setValueAsString(administrativeUnitIdentifier));</span>
+<span class="fc" id="L105">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir {@link #administrativeUnitIdentifier}.
+   *
+   * @param filter filtre
+   * @return {@link #administrativeUnitIdentifier}
+   */
+  public static String getAdministrativeUnitIdentifier(FilterDto filter) {
+<span class="fc" id="L114">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER));</span>
+  }
+
+  /**
+   * Identifiant JSON {@link #emailAddress}.
+   */
+  public static final String JSON_EMAIL_ADDRESS = IdentityDto.JSON_EMAIL_ADDRESS;
+
+  /**
+   * Identifiant JSON {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = IdentityDto.JSON_REGISTRATION_NUMBER;
+
+  /**
+   * Identifiant JSON {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      &quot;idUniteAdministrative&quot;;
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

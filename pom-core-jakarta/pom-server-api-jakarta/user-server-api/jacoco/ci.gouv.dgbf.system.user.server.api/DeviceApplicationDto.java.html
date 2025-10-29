@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeviceApplicationDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">DeviceApplicationDto.java</span></div><h1>DeviceApplicationDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un equipement d'application.
+ *
+ * @author Arnaud
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L20">public class DeviceApplicationDto extends AbstractIdentifiableNamableAuditableDto {</span>
+
+  /**
+   * Identifiant {@link ApplicationDto}.
+   */
+  @JsonbProperty(JSON_APPLICATION_IDENTIFIER)
+  private String applicationIdentifier;
+
+
+  /**
+   * Identifiant json champ {@link #applicationIdentifier}.
+   */
+  public static final String JSON_APPLICATION_IDENTIFIER = &quot;applicationIdentifier&quot;;
+
+  /**
+   * Représentation en chaine de caractères {@link ApplicationDto}.
+   */
+  @JsonbProperty(JSON_APPLICATION_AS_STRING)
+  private String applicationAsString;
+
+
+  /**
+   * Identifiant json champ {@link #applicationAsString}.
+   */
+  public static final String JSON_APPLICATION_AS_STRING = &quot;applicationAsString&quot;;
+
+
+  /**
+   * Identifiant {@link DeviceDto}.
+   */
+  @JsonbProperty(JSON_DEVICE_IDENTIFIER)
+  private String deviceIdentifier;
+
+
+  /**
+   * Identifiant json champ {@link #deviceIdentifier}.
+   */
+  public static final String JSON_DEVICE_IDENTIFIER = &quot;deviceIdentifier&quot;;
+
+  /**
+   * Représentation en chaine de caractères {@link DeviceDto}.
+   */
+  @JsonbProperty(JSON_DEVICE_AS_STRING)
+  private String deviceAsString;
+
+
+  /**
+   * Identifiant json champ {@link #deviceAsString}.
+   */
+  public static final String JSON_DEVICE_AS_STRING = &quot;deviceAsString&quot;;
+
+  /**
+   * Matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+
+  /**
+   * Identifiant json champ {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;registrationNumber&quot;;
+
+  /**
+   * Email.
+   */
+  @JsonbProperty(value = JSON_EMAIL)
+  private String email;
+
+  /**
+   * Identifiant json champ {@link #email}.
+   */
+  public static final String JSON_EMAIL = &quot;email&quot;;
+
+  /**
+   * Numéro de téléphone.
+   */
+  @JsonbProperty(value = JSON_PHONE_NUMBER)
+  private String phoneNumber;
+
+  /**
+   * Identifiant json champ {@link #phoneNumber}.
+   */
+  public static final String JSON_PHONE_NUMBER = &quot;phoneNumber&quot;;
+
+  /**
+   * Date de début.
+   */
+  @JsonbProperty(value = JSON_START_DATE)
+  private LocalDate startDate;
+
+  /**
+   * Identifiant json champ {@link #startDate}.
+   */
+  public static final String JSON_START_DATE = &quot;startDate&quot;;
+
+  /**
+   * Date de fin.
+   */
+  @JsonbProperty(value = JSON_END_DATE)
+  private LocalDate endDate;
+
+  /**
+   * Identifiant json champ {@link #endDate}.
+   */
+  public static final String JSON_END_DATE = &quot;endDate&quot;;
+
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idEquipementApplication&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;equipementApplicationChaine&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;equipement application&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;equipements applications&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

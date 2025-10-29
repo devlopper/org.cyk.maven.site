@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserClient.java</span></div><h1>UserClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserAssignRolesRequestDto;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserAssignRolesResponseDto;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserCreateAccountRequestDto;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserCreateForFunctionaryRequestDto;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserCreateForNonFunctionaryRequestDto;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserCreateRequestDto;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserGetManyResponseDto;
+import ci.gouv.dgbf.system.user.server.api.UserService.UserUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.ws.rs.core.Response;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link UserService}.
+ *
+ * @author Christian
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L40">public class UserClient extends AbstractClient&lt;UserService&gt; implements GetByIdentifier&lt;UserDto&gt;,</span>
+    GetMany&lt;UserGetManyResponseDto&gt;, DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public UserClient service(UserService service) {
+<span class="fc" id="L45">    return (UserClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link UserService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(UserCreateRequestDto request) {
+<span class="fc" id="L55">    return new CreateExecutor(UserService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L56">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link UserService#createAccount}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto createAccount(UserCreateAccountRequestDto request) {
+<span class="fc" id="L66">    return new IdentifiableExecutor(UserService.CREATE_ACCOUNT_IDENTIFIER)</span>
+<span class="fc" id="L67">        .setExpectedResponseStatusCode(Response.Status.CREATED.getStatusCode())</span>
+<span class="fc" id="L68">        .execute(() -&gt; service().createAccount(request));</span>
+  }
+
+  /**
+   * {@link UserService#createForFunctionary}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto createForFunctionary(UserCreateForFunctionaryRequestDto request) {
+<span class="fc" id="L78">    return new CreateExecutor(UserService.CREATE_FOR_FUNCTIONARY_IDENTIFIER)</span>
+<span class="fc" id="L79">        .execute(() -&gt; service().createForFunctionary(request));</span>
+  }
+
+  /**
+   * {@link UserService#createForNonFunctionary}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto createForNonFunctionary(UserCreateForNonFunctionaryRequestDto request) {
+<span class="fc" id="L89">    return new CreateExecutor(UserService.CREATE_FOR_NON_FUNCTIONARY_IDENTIFIER)</span>
+<span class="fc" id="L90">        .execute(() -&gt; service().createForNonFunctionary(request));</span>
+  }
+
+  /**
+   * {@link UserService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public UserGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L100">    return new GetOneExecutor&lt;UserGetManyResponseDto&gt;(UserGetManyResponseDto.class,</span>
+<span class="fc" id="L101">        UserService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link UserService#getMany}.
+   *
+   * @param projection   projection
+   * @param filter       filtre
+   * @param page         page
+   * @param auditWho     audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public UserGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
+                                        String auditWho, String auditSession) {
+<span class="fc" id="L117">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L118">    request.setProjection(projection);</span>
+<span class="fc" id="L119">    request.setFilter(filter);</span>
+<span class="fc" id="L120">    request.setPage(page);</span>
+<span class="fc" id="L121">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L122">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L123">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link UserService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public UserDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L133">    return new GetOneExecutor&lt;UserDto&gt;(UserDto.class, UserService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L134">        .execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link UserService#getOne}.
+   *
+   * @param projection   projection
+   * @param filter       filtre
+   * @param auditWho     audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public UserDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+                        String auditSession) {
+<span class="fc" id="L148">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L149">    request.setProjection(projection);</span>
+<span class="fc" id="L150">    request.setFilter(filter);</span>
+<span class="fc" id="L151">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L152">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L153">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link UserService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public UserDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L163">    return new GetOneExecutor&lt;UserDto&gt;(UserDto.class, UserService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
+<span class="fc" id="L164">        .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link UserService#getByIdentifier}.
+   *
+   * @param identifier   identifiant
+   * @param projection   projection
+   * @param auditWho     audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public UserDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
+                                 String auditSession) {
+<span class="fc" id="L179">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L180">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L181">    request.setProjection(projection);</span>
+<span class="fc" id="L182">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L183">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L184">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link UserService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(UserUpdateRequestDto request) {
+<span class="fc" id="L194">    return new IdentifiableExecutor(UserService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L195">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link UserService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L205">    return new IdentifiableExecutor(UserService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L206">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link UserService#delete}.
+   *
+   * @param identifier   identifiant
+   * @param auditWho     audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+                                                    String auditSession) {
+<span class="fc" id="L220">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L221">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L222">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L223">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L224">    return delete(request);</span>
+  }
+
+  /**
+   * {@link UserService#assignRoles}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public UserAssignRolesResponseDto assignRoles(UserAssignRolesRequestDto request) {
+<span class="fc" id="L234">    return new GetOneExecutor&lt;UserService.UserAssignRolesResponseDto&gt;(UserService</span>
+        .UserAssignRolesResponseDto.class,
+<span class="fc" id="L236">        UserService.ASSIGN_ROLES_IDENTIFIER).execute(() -&gt; service().assignRoles(request));</span>
+  }
+
+  /**
+   * {@link UserService#revokeRoles}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public UserService.UserRevokeRolesResponseDto revokeRoles(
+      UserService.UserRevokeRolesRequestDto request) {
+<span class="fc" id="L247">    return new GetOneExecutor&lt;UserService.UserRevokeRolesResponseDto&gt;(</span>
+        UserService.UserRevokeRolesResponseDto.class,
+<span class="fc" id="L249">        UserService.REVOKE_ROLES_IDENTIFIER).execute(() -&gt; service().revokeRoles(request));</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

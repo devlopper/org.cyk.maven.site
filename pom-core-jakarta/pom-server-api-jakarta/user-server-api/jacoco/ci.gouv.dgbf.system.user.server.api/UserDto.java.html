@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserDto.java</span></div><h1>UserDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un utilisateur.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L18">public class UserDto extends AbstractIdentifiableNamableAuditableDto {</span>
+
+  /**
+   * Identifiant de {@link DomainDto}.
+   */
+  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
+
+  /**
+   * Réprésentation en chaine de caractères de {@link DomainDto}.
+   */
+  @JsonbProperty(JSON_DOMAIN_AS_STRING)
+  private String domainAsString;
+
+  /**
+   * Identifiant de {@link IdentityDto}.
+   */
+  @JsonbProperty(JSON_IDENTITY_IDENTIFIER)
+  private String identityIdentifier;
+
+  /**
+   * Réprésentation en chaine de caractères de {@link IdentityDto}.
+   */
+  @JsonbProperty(JSON_IDENTITY_AS_STRING)
+  private String identityAsString;
+
+  /**
+   * Passe.
+   */
+  @JsonbProperty(JSON_PASS)
+  private String pass;
+
+  /**
+   * Compte existe.
+   */
+  @JsonbProperty(JSON_ACCOUNT_EXISTS)
+  private Boolean accountExists;
+  
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idUtilisateur&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;utilisateurChaine&quot;;
+
+  /**
+   * Identifiant champ java {@link #domainIdentifier}.
+   */
+  public static final String JSON_DOMAIN_IDENTIFIER = DomainDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #domainAsString}.
+   */
+  public static final String JSON_DOMAIN_AS_STRING = DomainDto.JSON_THIS_AS_STRING;
+  
+  /**
+   * Identifiant champ java {@link #identityIdentifier}.
+   */
+  public static final String JSON_IDENTITY_IDENTIFIER = IdentityDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #identityAsString}.
+   */
+  public static final String JSON_IDENTITY_AS_STRING = IdentityDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant champ java {@link #pass}.
+   */
+  public static final String JSON_PASS = &quot;passe&quot;;
+
+  /**
+   * Identifiant champ java {@link #accountExists}.
+   */
+  public static final String JSON_ACCOUNT_EXISTS = &quot;compteExiste&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;utilisateur&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

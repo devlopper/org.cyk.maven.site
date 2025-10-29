@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoleService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">RoleService.java</span></div><h1>RoleService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link RoleDto}.
+ *
+ * @author Christian
+ */
+@Path(value = RoleService.PATH)
+@Tag(name = &quot;Gestion des roles&quot;)
+public interface RoleService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;roles&quot;;
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Arnaud
+   */
+  interface RoleSaveRequestDto {
+
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ApplicationDto}.
+     *
+     * @return identifiant de {@link ApplicationDto}
+     */
+    String getApplicationIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ApplicationDto}.
+     *
+     * @param applicationIdentifier identifiant de {@link ApplicationDto}
+     */
+    void setApplicationIdentifier(String applicationIdentifier);
+
+    /**
+     * Identifiant json identifiant de {@link ApplicationDto}.
+     */
+    String JSON_APPLICATION_IDENTIFIER = ApplicationDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Cette méthode permet d'obtenir la description.
+     *
+     * @return la description
+     */
+    String getDescription();
+
+    /**
+     * Cette méthode permet d'assigner la description.
+     *
+     * @param description la description
+     */
+    void setDescription(String description);
+
+    /**
+     * {@link RoleDto#JSON_DESCRIPTION}.
+     */
+    String JSON_DESCRIPTION = RoleDto.JSON_DESCRIPTION;
+
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_ROLE&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link RoleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(RoleCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Arnaud
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L127">  class RoleCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements RoleSaveRequestDto {
+
+    @JsonbProperty(JSON_APPLICATION_IDENTIFIER)
+    private String applicationIdentifier;
+
+    @JsonbProperty(JSON_DESCRIPTION)
+    private String description;
+
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_ROLE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link RoleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = RoleGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Arnaud
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L170">  public static class RoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;RoleDto&gt; {</span>
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;RoleDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_ROLE&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link RoleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = RoleDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_ROLE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link RoleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = RoleDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_ROLE&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link RoleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(RoleUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Arnaud
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L258">  class RoleUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements RoleSaveRequestDto {
+
+    @JsonbProperty(JSON_APPLICATION_IDENTIFIER)
+    private String applicationIdentifier;
+
+    @JsonbProperty(JSON_DESCRIPTION)
+    private String description;
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_UN_ROLE&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link RoleDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service d'attribution.
+   */
+  String ASSIGN_IDENTIFIER = &quot;ATTRIBUTION_ROLE&quot;;
+
+  /**
+   * Chemin du service d'attribution.
+   */
+  String ASSIGN_ROLE_PATH = &quot;attribution&quot;;
+
+  /**
+   * Cette méthode permet d'attribuer.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ASSIGN_ROLE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = ASSIGN_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = RoleAssignResponseDto.class))})
+  Response assign(RoleAssignRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'attribution.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L325">  class RoleAssignRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Liste des identifiants des utilisateurs.
+     */
+    @JsonbProperty(JSON_USER_IDENTIFIERS)
+    private Set&lt;String&gt; userIdentifiers;
+
+    /**
+     * Identifiant json {@link #userIdentifiers}.
+     */
+    public static final String JSON_USER_IDENTIFIERS = &quot;idUtilisateurs&quot;;
+
+  }
+
+  /**
+   * Cette classe représente la réponse d'attribution.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L347">  class RoleAssignResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Nombre total d'utilisateurs traités.
+     */
+    @JsonbProperty(JSON_CREATED_COUNT)
+    private Integer createdCount;
+
+    /**
+     * Nombre d'attributions réussies.
+     */
+    @JsonbProperty(JSON_EXISTING_COUNT)
+    private Integer existingCount;
+
+    /**
+     * Identifiant json {@link #createdCount}.
+     */
+    public static final String JSON_CREATED_COUNT = &quot;nombreCree&quot;;
+
+    /**
+     * Identifiant json {@link #existingCount}.
+     */
+    public static final String JSON_EXISTING_COUNT = &quot;nombreExistant&quot;;
+  }
+
+  /**
+   * Identifiant du service de retrait.
+   */
+  String REVOKE_IDENTIFIER = &quot;RETRAIT_ROLE&quot;;
+
+  /**
+   * Chemin du service de retrait.
+   */
+  String REVOKE_ROLE_PATH = &quot;retrait&quot;;
+
+  /**
+   * Cette méthode permet de retirer un rôle.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(REVOKE_ROLE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = REVOKE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = RoleRevokeResponseDto.class))})
+  Response revoke(RoleRevokeRequestDto request);
+
+  /**
+   * Cette classe représente la requête de retrait.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L404">  class RoleRevokeRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Liste des identifiants des utilisateurs.
+     */
+    @JsonbProperty(JSON_USER_IDENTIFIERS)
+    private Set&lt;String&gt; userIdentifiers;
+
+    /**
+     * Identifiant json {@link #userIdentifiers}.
+     */
+    public static final String JSON_USER_IDENTIFIERS = &quot;idUtilisateurs&quot;;
+
+  }
+
+  /**
+   * Cette classe représente la réponse de retrait.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L426">  class RoleRevokeResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Nombre de retraits réussis.
+     */
+    @JsonbProperty(JSON_REVOKED_COUNT)
+    private Integer revokedCount;
+
+    /**
+     * Nombre d'utilisateurs n'ayant pas le rôle.
+     */
+    @JsonbProperty(JSON_NOT_FOUND_COUNT)
+    private Integer notFoundCount;
+
+    /**
+     * Identifiant json {@link #revokedCount}.
+     */
+    public static final String JSON_REVOKED_COUNT = &quot;nombreRetire&quot;;
+
+    /**
+     * Identifiant json {@link #notFoundCount}.
+     */
+    public static final String JSON_NOT_FOUND_COUNT = &quot;nombreNonTrouve&quot;;
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>IdentityDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">IdentityDto.java</span></div><h1>IdentityDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.core.Constant;
+import ci.gouv.dgbf.extension.core.Core;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une identité.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L20">public class IdentityDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Adresse email.
+   */
+  @JsonbProperty(value = JSON_EMAIL_ADDRESS)
+  private String emailAddress;
+
+  /**
+   * Matricule.
+   */
+  @JsonbProperty(value = JSON_REGISTRATION_NUMBER)
+  private String registrationNumber;
+
+  /**
+   * Nom.
+   */
+  @JsonbProperty(value = JSON_FIRST_NAME)
+  private String firstName;
+
+  /**
+   * Prénoms.
+   */
+  @JsonbProperty(value = JSON_LAST_NAMES)
+  private String lastNames;
+
+  /**
+   * Représentation en chaine de caractères du genre.
+   */
+  @JsonbProperty(value = JSON_GENDER_AS_STRING)
+  private String genderAsString;
+
+  /**
+   * Représentation en chaine de caractères de l'unité administrative.
+   */
+  @JsonbProperty(value = JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String administrativeUnitAsString;
+  
+  /**
+   * Cette méthode permet de formatter la réprésentation en chaine de caractères.
+   *
+   * @param registrationNumber matricule
+   * @param emailAddress adresse email
+   * @param firstName nom
+   * @param lastNames prénoms
+   * @return réprésentation en chaine de caractères
+   */
+  public static String formatAsString(String registrationNumber, String emailAddress,
+      String firstName, String lastNames) {
+<span class="fc" id="L69">    registrationNumber = Core.getOrDefaultIfBlank(registrationNumber, null);</span>
+<span class="fc" id="L70">    emailAddress = Core.getOrDefaultIfBlank(emailAddress, null);</span>
+<span class="fc" id="L71">    firstName = Core.getOrDefaultIfBlank(firstName, null);</span>
+<span class="fc" id="L72">    lastNames = Core.getOrDefaultIfBlank(lastNames, null);</span>
+<span class="fc" id="L73">    String identifier = Core.getOrDefaultIfNull(registrationNumber, emailAddress);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    if (Core.isAllNull(identifier, firstName, lastNames)) {</span>
+<span class="fc" id="L75">      return Constant.EMPTY_STRING;</span>
+    }
+<span class="fc" id="L77">    return String.format(&quot;%s - %s %s&quot;, identifier, firstName, lastNames);</span>
+  }
+
+  /**
+   * Identifiant json de {@link IdentityDto}.
+   */
+  public static final String JSON_THIS = &quot;identite&quot;;
+  
+  /**
+   * Identifiant json identifiant de {@link IdentityDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idIdentite&quot;;
+  
+  /**
+   * Identifiant json représentation en chaine de caractères de {@link IdentityDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;identiteChaine&quot;;
+  
+  /**
+   * Identifiant json champ {@link #emailAddress}.
+   */
+  public static final String JSON_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
+  
+  /**
+   * Identifiant json champ {@link #registrationNumber}.
+   */
+  public static final String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+  
+  /**
+   * Identifiant json champ {@link #firstName}.
+   */
+  public static final String JSON_FIRST_NAME = &quot;nom&quot;;
+  
+  /**
+   * Identifiant json champ {@link #lastNames}.
+   */
+  public static final String JSON_LAST_NAMES = &quot;prenoms&quot;;
+
+  /**
+   * Identifiant json champ {@link #administrativeUnitAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #genderAsString}.
+   */
+  public static final String JSON_GENDER_AS_STRING = &quot;genreChaine&quot;;
+  
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;identité&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

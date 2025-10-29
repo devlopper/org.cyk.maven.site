@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AccountFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">AccountFilter.java</span></div><h1>AccountFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link AccountDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class AccountFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Identifiant {@link DomainDto}.
+   */
+  private String domainIdentifier;
+  
+  /**
+   * Nom.
+   */
+  private String name;
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   *
+   * @param dto filtre
+   */
+  public AccountFilter(FilterDto dto) {
+<span class="fc" id="L35">    super(dto);</span>
+<span class="fc" id="L36">  }</span>
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   */
+<span class="fc" id="L41">  public AccountFilter() {}</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L45">    super.doInitialize(filter);</span>
+<span class="fc" id="L46">    name = getName(filter);</span>
+<span class="fc" id="L47">    domainIdentifier = getDomainIdentifier(filter);</span>
+<span class="fc" id="L48">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L53">    setName(filter, name);</span>
+<span class="fc" id="L54">    setDomainIdentifier(filter, domainIdentifier);</span>
+<span class="fc" id="L55">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de {@link DomainDto}.
+   *
+   * @param filter filtre
+   * @param domainIdentifier identifiant de {@link DomainDto}
+   */
+  public static void setDomainIdentifier(FilterDto filter, String domainIdentifier) {
+<span class="pc" id="L64">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L65">        f -&gt; f.setValueAsString(domainIdentifier));</span>
+<span class="fc" id="L66">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de {@link DomainDto}.
+   *
+   * @param filter filtre
+   * @return identifiant de {@link DomainDto}
+   */
+  public static String getDomainIdentifier(FilterDto filter) {
+<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le nom.
+   *
+   * @param filter filtre
+   * @param name nom
+   */
+  public static void setName(FilterDto filter, String name) {
+<span class="pc" id="L85">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(name));</span>
+<span class="fc" id="L86">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le nom.
+   *
+   * @param filter filtre
+   * @return nom
+   */
+  public static String getName(FilterDto filter) {
+<span class="fc" id="L95">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
+  }
+
+  /**
+   * Identifiant json champ {@link #domainIdentifier}.
+   */
+  public static final String JSON_DOMAIN_IDENTIFIER = AccountDto.JSON_DOMAIN_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #name}.
+   */
+  public static final String JSON_NAME = AbstractIdentifiableNamableDto.JSON_NAME;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
