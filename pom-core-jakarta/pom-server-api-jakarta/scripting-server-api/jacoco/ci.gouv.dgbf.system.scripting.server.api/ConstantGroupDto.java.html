@@ -2,8 +2,11 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFromDateDto;
+import ci.gouv.dgbf.extension.core.segregation.HasToDateDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,15 +20,30 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L20">public class ConstantGroupDto extends AbstractIdentifiableNamableAuditableDto</span>
-    implements HasDomainIdentifierDto, HasDomainAsStringDto {
+<span class="fc" id="L23">public class ConstantGroupDto extends AbstractIdentifiableNamableAuditableDto</span>
+    implements HasDomainIdentifierDto, HasDomainAsStringDto, HasFromDateDto&lt;LocalDateTime&gt;,
+    HasToDateDto&lt;LocalDateTime&gt; {
 
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
   private String domainIdentifier;
 
+  @JsonbProperty(JSON_GROUP_NAME)
+  private String groupName;
+  
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
   private String domainAsString;
 
+  @JsonbProperty(JSON_FROM_DATE)
+  private LocalDateTime fromDate;
+
+  @JsonbProperty(JSON_TO_DATE)
+  private LocalDateTime toDate;
+  
+  /**
+   * Identifiant json de {@link #groupName}.
+   */
+  public static final String JSON_GROUP_NAME = &quot;nomGroupe&quot;;
+  
   /**
    * Identifiant json de l'identifiant.
    */
