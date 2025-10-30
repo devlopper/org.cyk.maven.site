@@ -60,6 +60,18 @@ import lombok.Setter;
   private String isPensionableAsString;
 
   /**
+   * Est pensionnable.
+   */
+  @JsonbProperty(JSON_IS_NET_CUMULABLE)
+  private Boolean isNetCumulable;
+
+  /**
+   * Représentation en chaine de caractères de {@link #isNetCumulable}.
+   */
+  @JsonbProperty(JSON_IS_NET_CUMULABLE_AS_STRING)
+  private String isNetCumulableAsString;
+
+  /**
    * Identifiant {@link Script} employé.
    */
   @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
@@ -146,6 +158,16 @@ import lombok.Setter;
    * Identifiant json {@link #isPensionableAsString}.
    */
   public static final String JSON_IS_PENSIONABLE_AS_STRING = JSON_IS_PENSIONABLE + &quot;Chaine&quot;;
+
+  /**
+   * Identifiant json {@link #isNetCumulable}.
+   */
+  public static final String JSON_IS_NET_CUMULABLE = &quot;estCumulableNet&quot;;
+
+  /**
+   * Identifiant json {@link #isNetCumulableAsString}.
+   */
+  public static final String JSON_IS_NET_CUMULABLE_AS_STRING = JSON_IS_NET_CUMULABLE + &quot;Chaine&quot;;
 
   /**
    * Identifiant json {@link #employeeCalculationFormulaIdentifier}.

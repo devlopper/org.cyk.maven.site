@@ -66,9 +66,28 @@ public interface PayrollJobService extends SpecificService {
     void setGroupIdentifier(String identifier);
 
     /**
+     * Cette méthode me permet d'obtenir l'identifiant de grade.
+     *
+     * @return identifiant de grade
+     */
+    String getGradeIdentifier();
+
+    /**
+     * Cette méthode me permet d'assigner l'identifiant de grade.
+     *
+     * @param identifier identifiant de grade
+     */
+    void setGradeIdentifier(String identifier);
+
+    /**
      * Identifiant json de {@link PayrollJobGroupDto}.
      */
     String JSON_GROUP_IDENTIFIER = PayrollJobGroupDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json de grade.
+     */
+    String JSON_GRADE_IDENTIFIER = &quot;idGrade&quot;;
 
   } 
 
@@ -105,11 +124,14 @@ public interface PayrollJobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L108">  class PayrollJobCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L127">  class PayrollJobCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements PayrollJobSaveRequestDto {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
+
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    private String gradeIdentifier;
 
   }
 
@@ -147,7 +169,7 @@ public interface PayrollJobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class PayrollJobGetManyResponseDto extends </span>
+<span class="fc" id="L172">  public static class PayrollJobGetManyResponseDto extends </span>
                       AbstractGetByPageResponseDto&lt;PayrollJobDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -237,11 +259,14 @@ public interface PayrollJobService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class PayrollJobUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L262">  class PayrollJobUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements PayrollJobSaveRequestDto {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
+
+    @JsonbProperty(JSON_GRADE_IDENTIFIER)
+    private String gradeIdentifier;
 
   }
 
