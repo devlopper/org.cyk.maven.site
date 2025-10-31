@@ -398,10 +398,10 @@ public interface PayslipMovementService extends SpecificService {
     private Boolean deferrable;
 
     /**
-     * {@link PayslipMovementDto#getRejetableProposal()}.
+     * {@link PayslipMovementDto#getRejectableProposal()}.
      */
-    @JsonbProperty(JSON_REJETABLE_PROPOSAL)
-    private Boolean rejetableProposal;
+    @JsonbProperty(JSON_REJECTABLE_PROPOSAL)
+    private Boolean rejectableProposal;
 
     /**
      * {@link PayslipMovementDto#getRejectable()}.
@@ -419,7 +419,7 @@ public interface PayslipMovementService extends SpecificService {
 <span class="fc" id="L419">      activatable = PayslipMovementStatus.ACTIVATED.getPrevious().contains(status);</span>
 <span class="fc" id="L420">      deferrableProposal = PayslipMovementStatus.DEFERRED_PROPOSED.getPrevious().contains(status);</span>
 <span class="fc" id="L421">      deferrable = PayslipMovementStatus.DEFERRED.getPrevious().contains(status);</span>
-<span class="fc" id="L422">      rejetableProposal = PayslipMovementStatus.REJECTION_PROPOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L422">      rejectableProposal = PayslipMovementStatus.REJECTION_PROPOSED.getPrevious().contains(status);</span>
 <span class="fc" id="L423">      rejectable = PayslipMovementStatus.REJECTED.getPrevious().contains(status);</span>
 <span class="fc" id="L424">    }</span>
 
@@ -447,7 +447,7 @@ public interface PayslipMovementService extends SpecificService {
     /**
      * {@link PayslipMovementDto#JSON_REJECTABLE_PROPOSAL}.
      */
-    public static final String JSON_REJETABLE_PROPOSAL =
+    public static final String JSON_REJECTABLE_PROPOSAL =
         PayslipMovementDto.JSON_REJECTABLE_PROPOSAL;
 
     /**
