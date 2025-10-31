@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipMovementService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayslipMovementService.java</span></div><h1>PayslipMovementService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
 import ci.gouv.dgbf.extension.core.segregation.HasEffectiveDateDto;
+import ci.gouv.dgbf.extension.core.segregation.HasStatusReasonDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -167,7 +168,7 @@ public interface PayslipMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  class PayslipMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L171">  class PayslipMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayslipMovementSaveRequestDto {
 
     @JsonbProperty(JSON_PAYSPLIP_IDENTIFIER)
@@ -216,7 +217,7 @@ public interface PayslipMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  public static class PayslipMovementGetManyResponseDto</span>
+<span class="fc" id="L220">  public static class PayslipMovementGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayslipMovementDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -306,7 +307,7 @@ public interface PayslipMovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L309">  class PayslipMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L310">  class PayslipMovementUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements PayslipMovementSaveRequestDto {
 
     @JsonbProperty(JSON_PAYSPLIP_IDENTIFIER)
@@ -347,6 +348,236 @@ public interface PayslipMovementService extends SpecificService {
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
 
+  /**
+   * Cette classe représente la requête de flux de traitement.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L359">  class PayslipMovementProcessRequestDto extends ByIdentifierRequestDto</span>
+      implements HasStatusReasonDto {
 
+    @JsonbProperty(JSON_STATUS_REASON)
+    private String statusReason;
+  }
+
+  /**
+   * Cette classe représente la réponse de traitement.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L374">  class PayslipMovementProcessResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * {@link PayslipMovementDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private PayslipMovementStatus status;
+
+    /**
+     * {@link PayslipMovementDto#getActivatable()}.
+     */
+    @JsonbProperty(JSON_ACTIVATABLE)
+    private Boolean activatable;
+
+    /**
+     * {@link PayslipMovementDto#getDeferrableProposal()}.
+     */
+    @JsonbProperty(JSON_DEFERRABLE_PROPOSAL)
+    private Boolean deferrableProposal;
+
+    /**
+     * {@link PayslipMovementDto#getDeferrable()}.
+     */
+    @JsonbProperty(JSON_DEFERRABLE)
+    private Boolean deferrable;
+
+    /**
+     * {@link PayslipMovementDto#getRejetableProposal()}.
+     */
+    @JsonbProperty(JSON_REJETABLE_PROPOSAL)
+    private Boolean rejetableProposal;
+
+    /**
+     * {@link PayslipMovementDto#getRejetable()}.
+     */
+    @JsonbProperty(JSON_REJETABLE)
+    private Boolean rejetable;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status {@link PayrollStatus}
+     */
+    public void initialize(PayslipMovementStatus status) {
+<span class="fc" id="L418">      this.status = status;</span>
+<span class="fc" id="L419">      activatable = PayslipMovementStatus.ACTIVATED.getPrevious().contains(status);</span>
+<span class="fc" id="L420">      deferrableProposal = PayslipMovementStatus.DEFERRED_PROPOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L421">      deferrable = PayslipMovementStatus.DEFERRED.getPrevious().contains(status);</span>
+<span class="fc" id="L422">      rejetableProposal = PayslipMovementStatus.REJECTION_PROPOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L423">      rejetable = PayslipMovementStatus.REJECTED.getPrevious().contains(status);</span>
+<span class="fc" id="L424">    }</span>
+
+    /**
+     * {@link PayslipMovementDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = PayslipMovementDto.JSON_STATUS;
+
+    /**
+     * {@link PayslipMovementDto#JSON_ACTIVATABLE}.
+     */
+    public static final String JSON_ACTIVATABLE = PayslipMovementDto.JSON_ACTIVATABLE;
+
+    /**
+     * {@link PayslipMovementDto#JSON_DEFERRABLE_PROPOSAL}.
+     */
+    public static final String JSON_DEFERRABLE_PROPOSAL =
+        PayslipMovementDto.JSON_DEFERRABLE_PROPOSAL;
+
+    /**
+     * {@link PayslipMovementDto#JSON_DEFERRABLE}.
+     */
+    public static final String JSON_DEFERRABLE = PayslipMovementDto.JSON_DEFERRABLE;
+
+    /**
+     * {@link PayslipMovementDto#JSON_REJETABLE_PROPOSAL}.
+     */
+    public static final String JSON_REJETABLE_PROPOSAL = PayslipMovementDto.JSON_REJETABLE_PROPOSAL;
+
+    /**
+     * {@link PayslipMovementDto#JSON_REJETABLE}.
+     */
+    public static final String JSON_REJETABLE = PayslipMovementDto.JSON_REJETABLE;
+  }
+
+  /**
+   * Identifiant du service d'activiation.
+   */
+  String ACTIVATE_IDENTIFIER = &quot;ACTIVATION_MOUVEMENT_BULLETIN&quot;;
+
+  /**
+   * Chemin du service d'activiation.
+   */
+  String ACTIVATE_PATH = &quot;activation&quot;;
+
+  /**
+   * Cette méthode permet d'activer.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ACTIVATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = ACTIVATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayslipMovementProcessResponseDto.class))})
+  Response activate(PayslipMovementProcessRequestDto request);
+
+  /**
+   * Identifiant du service de différé.
+   */
+  String DEFER_IDENTIFIER = &quot;DIFFERE_MOUVEMENT_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de différé.
+   */
+  String DEFER_PATH = &quot;differe&quot;;
+
+  /**
+   * Cette méthode permet de différer.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DEFER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = DEFER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayslipMovementProcessResponseDto.class))})
+  Response defer(PayslipMovementProcessRequestDto request);
+
+  /**
+   * Identifiant du service de rejet.
+   */
+  String REJECT_IDENTIFIER = &quot;REJET_MOUVEMENT_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de rejet.
+   */
+  String REJECT_PATH = &quot;rejet&quot;;
+
+  /**
+   * Cette méthode permet de rejeter.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(REJECT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = REJECT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayslipMovementProcessResponseDto.class))})
+  Response reject(PayslipMovementProcessRequestDto request);
+
+  /**
+   * Identifiant du service de proposition de différé.
+   */
+  String PROPOSE_DEFERRAL_IDENTIFIER = &quot;PROPOSITION_DIFFERE_MOUVEMENT_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de proposition de différé.
+   */
+  String PROPOSE_DEFERRAL_PATH = &quot;proposition-differe&quot;;
+
+  /**
+   * Cette méthode permet de proposer un différé.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(PROPOSE_DEFERRAL_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = PROPOSE_DEFERRAL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayslipMovementProcessResponseDto.class))})
+  Response proposeDeferral(PayslipMovementProcessRequestDto request);
+
+  /**
+   * Identifiant du service de proposition de rejet.
+   */
+  String PROPOSE_REJECTION_IDENTIFIER = &quot;REJET_MOUVEMENT_BULLETIN&quot;;
+
+  /**
+   * Chemin du service de proposition de rejet.
+   */
+  String PROPOSE_REJECTION_PATH = &quot;proposition-rejet&quot;;
+
+  /**
+   * Cette méthode permet de proposer un rejet.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(PROPOSE_REJECTION_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = PROPOSE_REJECTION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayslipMovementProcessResponseDto.class))})
+  Response proposeRejection(PayslipMovementProcessRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
