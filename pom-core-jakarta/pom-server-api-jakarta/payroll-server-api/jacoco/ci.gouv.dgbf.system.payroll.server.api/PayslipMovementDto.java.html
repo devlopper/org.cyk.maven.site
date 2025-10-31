@@ -59,11 +59,11 @@ import lombok.Setter;
   @JsonbProperty(JSON_DEFERRABLE)
   private Boolean deferrable;
 
-  @JsonbProperty(JSON_REJETABLE_PROPOSAL)
-  private Boolean rejetableProposal;
+  @JsonbProperty(JSON_REJECTABLE_PROPOSAL)
+  private Boolean rejectableProposal;
 
-  @JsonbProperty(JSON_REJETABLE)
-  private Boolean rejetable;
+  @JsonbProperty(JSON_REJECTABLE)
+  private Boolean rejectable;
 
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
@@ -76,8 +76,8 @@ import lombok.Setter;
 <span class="fc" id="L76">    activatable = response.getActivatable();</span>
 <span class="fc" id="L77">    deferrableProposal = response.getDeferrableProposal();</span>
 <span class="fc" id="L78">    deferrable = response.getDeferrable();</span>
-<span class="fc" id="L79">    rejetableProposal = response.getRejetableProposal();</span>
-<span class="fc" id="L80">    rejetable = response.getRejetable();</span>
+<span class="fc" id="L79">    rejectableProposal = response.getRejetableProposal();</span>
+<span class="fc" id="L80">    rejectable = response.getRejectable();</span>
 <span class="fc" id="L81">  }</span>
 
   /**
@@ -113,14 +113,14 @@ import lombok.Setter;
   public static final String JSON_DEFERRABLE = &quot;diferrable&quot;;
 
   /**
-   * Identifiant json {@link #rejetableProposal}.
+   * Identifiant json {@link #rejectableProposal}.
    */
-  public static final String JSON_REJETABLE_PROPOSAL = &quot;propositionRejetable&quot;;
+  public static final String JSON_REJECTABLE_PROPOSAL = &quot;propositionRejetable&quot;;
 
   /**
-   * Identifiant json {@link #rejetable}.
+   * Identifiant json {@link #rejectable}.
    */
-  public static final String JSON_REJETABLE = &quot;rejetable&quot;;
+  public static final String JSON_REJECTABLE = &quot;rejetable&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

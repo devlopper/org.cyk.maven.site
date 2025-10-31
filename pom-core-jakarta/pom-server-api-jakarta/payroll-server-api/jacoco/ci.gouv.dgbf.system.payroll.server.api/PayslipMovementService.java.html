@@ -404,10 +404,10 @@ public interface PayslipMovementService extends SpecificService {
     private Boolean rejetableProposal;
 
     /**
-     * {@link PayslipMovementDto#getRejetable()}.
+     * {@link PayslipMovementDto#getRejectable()}.
      */
-    @JsonbProperty(JSON_REJETABLE)
-    private Boolean rejetable;
+    @JsonbProperty(JSON_REJECTABLE)
+    private Boolean rejectable;
 
     /**
      * Cette méthode permet d'initialiser la réponse à partir du statut.
@@ -420,7 +420,7 @@ public interface PayslipMovementService extends SpecificService {
 <span class="fc" id="L420">      deferrableProposal = PayslipMovementStatus.DEFERRED_PROPOSED.getPrevious().contains(status);</span>
 <span class="fc" id="L421">      deferrable = PayslipMovementStatus.DEFERRED.getPrevious().contains(status);</span>
 <span class="fc" id="L422">      rejetableProposal = PayslipMovementStatus.REJECTION_PROPOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L423">      rejetable = PayslipMovementStatus.REJECTED.getPrevious().contains(status);</span>
+<span class="fc" id="L423">      rejectable = PayslipMovementStatus.REJECTED.getPrevious().contains(status);</span>
 <span class="fc" id="L424">    }</span>
 
     /**
@@ -445,14 +445,15 @@ public interface PayslipMovementService extends SpecificService {
     public static final String JSON_DEFERRABLE = PayslipMovementDto.JSON_DEFERRABLE;
 
     /**
-     * {@link PayslipMovementDto#JSON_REJETABLE_PROPOSAL}.
+     * {@link PayslipMovementDto#JSON_REJECTABLE_PROPOSAL}.
      */
-    public static final String JSON_REJETABLE_PROPOSAL = PayslipMovementDto.JSON_REJETABLE_PROPOSAL;
+    public static final String JSON_REJETABLE_PROPOSAL =
+        PayslipMovementDto.JSON_REJECTABLE_PROPOSAL;
 
     /**
-     * {@link PayslipMovementDto#JSON_REJETABLE}.
+     * {@link PayslipMovementDto#JSON_REJECTABLE}.
      */
-    public static final String JSON_REJETABLE = PayslipMovementDto.JSON_REJETABLE;
+    public static final String JSON_REJECTABLE = PayslipMovementDto.JSON_REJECTABLE;
   }
 
   /**
