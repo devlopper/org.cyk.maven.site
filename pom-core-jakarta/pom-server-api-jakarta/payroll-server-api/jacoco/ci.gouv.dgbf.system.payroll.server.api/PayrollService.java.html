@@ -111,8 +111,8 @@ public interface PayrollService extends SpecificService {
     /**
      * {@link PayrollDto#JSON_PERIOD_GROUP_IDENTIFIER}.
      */
-    public static final String JSON_PERIOD_GROUP_IDENTIFIER = 
-          PayrollDto.JSON_PERIOD_GROUP_IDENTIFIER;
+    public static final String JSON_PERIOD_GROUP_IDENTIFIER =
+        PayrollDto.JSON_PERIOD_GROUP_IDENTIFIER;
 
     /**
      * {@link PayrollDto#JSON_EXERCISE_IDENTIFIER}.
@@ -372,6 +372,119 @@ public interface PayrollService extends SpecificService {
   Response delete(DeleteOneRequestDto request);
 
   /**
+   * Identifiant du service de création des {@link PayslipDto}.
+   */
+  String CREATE_PAYSLIPS_IDENTIFIER = &quot;CREATION_BULLETINS_PAIE&quot;;
+
+  /**
+   * Chemin du service de création des {@link PayslipDto}.
+   */
+  String CREATE_PAYSLIPS_PATH = &quot;creation-bulletins&quot;;
+
+  /**
+   * Cette méthode permet de créer des {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PAYSLIPS_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = CREATE_PAYSLIPS_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayrollCreatePayslipsResponseDto.class))})
+  Response createPayslips(PayrollCreatePayslipsRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création des {@link PayslipDto}.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L407">  class PayrollCreatePayslipsRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
+
+  /**
+   * Cette classe représente la réponse de création des {@link PayslipDto}.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L419">  class PayrollCreatePayslipsResponseDto extends ProcessResponseDto {</span>
+
+    @JsonbProperty(JSON_PROCESSED_REMUNERABLES_COUNT)
+    private Integer processedRemunerablesCount;
+
+    @JsonbProperty(JSON_CREATED_PAYSLIPS_COUNT)
+    private Integer createdPayslipsCount;
+
+    /**
+     * Identifiant json {@link #processedRemunerablesCount}.
+     */
+    public static final String JSON_PROCESSED_REMUNERABLES_COUNT = &quot;nombreRemunerableTraites&quot;;
+
+    /**
+     * Identifiant json {@link #createdPayslipsCount}.
+     */
+    public static final String JSON_CREATED_PAYSLIPS_COUNT = &quot;nombreBulletinPaieCree&quot;;
+  }
+
+  /**
+   * Identifiant du service de calcul.
+   */
+  String CALCULATE_IDENTIFIER = &quot;CALCUL_PAIE&quot;;
+
+  /**
+   * Chemin du service de calcul.
+   */
+  String CALCULATE_PATH = &quot;calcul&quot;;
+
+  /**
+   * Cette méthode permet de calculer.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CALCULATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = CALCULATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = PayrollCalculateResponseDto.class))})
+  Response calculate(PayrollCalculateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de calcul.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L471">  class PayrollCalculateRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
+
+  /**
+   * Cette classe représente la réponse de calcul.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L483">  class PayrollCalculateResponseDto extends ProcessResponseDto {</span>
+
+  }
+
+  /**
    * Cette classe représente la réponse de traitement.
    *
    * @author Christian
@@ -379,7 +492,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L382">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L495">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link PayrollDto#getStatus()}.
@@ -429,16 +542,16 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="fc" id="L432">      this.status = status;</span>
-<span class="fc" id="L433">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L434">      transmittableForControl = </span>
-<span class="fc" id="L435">            PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L436">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L437">      transmittableForArbitration = PayrollStatus.TRANSMITTED_FOR_ARBITRATION</span>
-<span class="fc" id="L438">                                  .getPrevious().contains(status);</span>
-<span class="fc" id="L439">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L440">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L441">    }</span>
+<span class="fc" id="L545">      this.status = status;</span>
+<span class="fc" id="L546">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L547">      transmittableForControl =</span>
+<span class="fc" id="L548">          PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L549">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L550">      transmittableForArbitration =</span>
+<span class="fc" id="L551">          PayrollStatus.TRANSMITTED_FOR_ARBITRATION.getPrevious().contains(status);</span>
+<span class="fc" id="L552">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L553">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L554">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.
@@ -453,8 +566,8 @@ public interface PayrollService extends SpecificService {
     /**
      * {@link PayrollDto#JSON_TRANSMITTABLE_FOR_CONTROL}.
      */
-    public static final String JSON_TRANSMITTABLE_FOR_CONTROL = 
-                  PayrollDto.JSON_TRANSMITTABLE_FOR_CONTROL;
+    public static final String JSON_TRANSMITTABLE_FOR_CONTROL =
+        PayrollDto.JSON_TRANSMITTABLE_FOR_CONTROL;
 
     /**
      * {@link PayrollDto#JSON_CONTROLLABLE}.
@@ -464,8 +577,8 @@ public interface PayrollService extends SpecificService {
     /**
      * {@link PayrollDto#JSON_TRANSMITTABLE_FOR_ARBITRATION}.
      */
-    public static final String JSON_TRANSMITTABLE_FOR_ARBITRATION = 
-                  PayrollDto.JSON_TRANSMITTABLE_FOR_ARBITRATION;
+    public static final String JSON_TRANSMITTABLE_FOR_ARBITRATION =
+        PayrollDto.JSON_TRANSMITTABLE_FOR_ARBITRATION;
 
     /**
      * {@link PayrollDto#JSON_ARBITRABLE}.
@@ -502,7 +615,7 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response startInitialization(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service d'initialisation.
    */
@@ -553,7 +666,7 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response resumeInitializationFromCheckpoint(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de transmission de paie pour controle.
    */
@@ -578,7 +691,7 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response transmitForControl(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de controle paie.
    */
@@ -603,7 +716,7 @@ public interface PayrollService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = ByIdentifierRequestDto.class))})
   Response control(ByIdentifierRequestDto request);
-  
+
   /**
    * Identifiant du service de transmission de paie pour arbitrage.
    */
