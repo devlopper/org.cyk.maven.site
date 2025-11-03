@@ -436,6 +436,48 @@ public interface ActivityService extends SpecificService {
      */
     void setTriennialProgramIdentifier(String triennialProgramIdentifier);
 
+    /**
+     * Cette méthode permet d'obtenir la retentue de garantie.
+     *
+     * @return guaranteeRetention retentue de garantie
+     */
+    long getGuaranteeRetention();
+
+    /**
+     * Cette méthode permet d'assigner la retentue de garantie.
+     *
+     * @param guaranteeRetention retentue de garantie
+     */
+    void setGuaranteeRetention(long guaranteeRetention);
+
+    /**
+     * Cette méthode permet d'obtenir le budget de prise en charge avant report.
+     *
+     * @return yearBudgetBeforeCarryover Budget de prise en charge avant report
+     */
+    Integer getYearBudgetBeforeCarryover();
+
+    /**
+     * Cette méthode permet d'assigner le budget de prise en charge avant report.
+     *
+     * @param yearBudgetBeforeCarryover budget de prise en charge avant report
+     */
+    void setYearBudgetBeforeCarryover(Integer yearBudgetBeforeCarryover);
+
+    /**
+     * Cette méthode permet d'obtenir l'année prévisionnelle de mandatement.
+     *
+     * @return plannedPaymentYear année prévisionnelle de mandatement
+     */
+    Integer getPlannedPaymentYear();
+
+    /**
+     * Cette méthode permet d'assigner l'année prévisionnelle de mandatement'.
+     *
+     * @param plannedPaymentYear année prévisionnelle de mandatement
+     */
+    void setPlannedPaymentYear(Integer plannedPaymentYear);
+
 
     /**
      * Identifiant json du champ de l'identitant de {@link ActivityNatureDto}.
@@ -501,6 +543,22 @@ public interface ActivityService extends SpecificService {
     String TRIENNIAL_PROGRAM_IDENTIFIER = &quot;idProgrammeTriennal&quot;;
 
 
+    /**
+     * Identifiant json de la retenue de garantie.
+     */
+    String JSON_GUARANTEE_RETENTION =  ActivityDto.JSON_GUARANTEE_RETENTION;
+
+    /**
+     *  Identifiant json budget de prise en charge avant report.
+     */
+    String JSON_YEAR_BUDGET_BEFORE_CARRYOVER = &quot;anneeBudgetPriseEnChargeAvantReport&quot;;
+
+    /**
+     * Identifiant json année prévisionnelle de mandatement.
+     */
+    String JSON_PLANNED_PAYMENT_YEAR = &quot;anneePrevisionnelPaiement&quot;;
+
+
   }
 
   /**
@@ -510,7 +568,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L513">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L571">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -554,6 +612,15 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
+
+    @JsonbProperty(JSON_GUARANTEE_RETENTION)
+    private long guaranteeRetention;
+
+    @JsonbProperty(JSON_YEAR_BUDGET_BEFORE_CARRYOVER)
+    private Integer yearBudgetBeforeCarryover;
+
+    @JsonbProperty(JSON_PLANNED_PAYMENT_YEAR)
+    private Integer plannedPaymentYear;
   }
 
   /**
@@ -563,7 +630,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L566">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L633">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -576,7 +643,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L579">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L646">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -620,6 +687,15 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
+
+    @JsonbProperty(JSON_GUARANTEE_RETENTION)
+    private long guaranteeRetention;
+
+    @JsonbProperty(JSON_YEAR_BUDGET_BEFORE_CARRYOVER)
+    private Integer yearBudgetBeforeCarryover;
+
+    @JsonbProperty(JSON_PLANNED_PAYMENT_YEAR)
+    private Integer plannedPaymentYear;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

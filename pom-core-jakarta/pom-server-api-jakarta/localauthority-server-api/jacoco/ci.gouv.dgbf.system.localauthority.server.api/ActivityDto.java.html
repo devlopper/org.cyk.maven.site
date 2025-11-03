@@ -168,6 +168,33 @@ import lombok.Setter;
   @JsonbProperty(JSON_EVENTUAL_REFERENCE)
   private String eventualReference;
 
+
+  /**
+   * Retenue de garantie.
+   */
+  @JsonbProperty(JSON_GUARANTEE_RETENTION)
+  private Long guaranteeRetention;
+
+
+  /**
+   * Représentation en chaine de caractères de la retenue de garantie.
+   */
+  @JsonbProperty(JSON_GUARANTEE_RETENTION_AS_STRING)
+  private String guaranteeRetentionAsString;
+
+
+  /**
+   * Budget de prise en charge avant report.
+   */
+  @JsonbProperty(JSON_YEAR_BUDGET_BEFORE_CARRYOVER)
+  private Integer yearBudgetBeforeCarryover;
+
+  /**
+   * Année prévisionnelle de mandatement.
+   */
+  @JsonbProperty(JSON_PLANNED_PAYMENT_YEAR)
+  private Integer plannedPaymentYear;
+
   /**
    * Nombre d’occurance.
    */
@@ -317,7 +344,6 @@ import lombok.Setter;
   public static final String JSON_REFERENCED_ACTIVITY_AS_STRING = &quot;ActiviteDeReferenceChaine&quot;;
 
 
-
   /**
    * Identifiant json de la référence au PND {@link #pndReference}.
    */
@@ -327,6 +353,31 @@ import lombok.Setter;
    * Identifiant json de la référence eventuelle {@link #eventualReference}.
    */
   public static final String JSON_EVENTUAL_REFERENCE = &quot;referenceEventuelle&quot;;
+
+
+  /**
+   * Identifiant json {@link #guaranteeRetention}.
+   */
+  public static final String JSON_GUARANTEE_RETENTION = &quot;retenueGarantie&quot;;
+
+
+  /**
+   * Identifiant json {@link #guaranteeRetentionAsString}.
+   */
+  public static final String JSON_GUARANTEE_RETENTION_AS_STRING = &quot;retenueGarantieChaine&quot;;
+
+  /**
+   * Identifiant json {@link #yearBudgetBeforeCarryover}.
+   */
+  public static final String JSON_YEAR_BUDGET_BEFORE_CARRYOVER =
+      &quot;anneeBudgetPriseEnChargeAvantReport&quot;;
+
+
+  /**
+   * Identifiant json {@link #plannedPaymentYear}.
+   */
+  public static final String JSON_PLANNED_PAYMENT_YEAR = &quot;anneePrevisionnelPaiement&quot;;
+
 
   /**
    * Identifiant json {@link #updatable}.
