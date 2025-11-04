@@ -215,6 +215,20 @@ import lombok.Setter;
   @JsonbProperty(JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING)
   private String triennialProgramCountAsString;
 
+
+  /**
+   * Programme triennal de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_TRIENNIAL_PROGRAM)
+  private String referenceTriennialProgram;
+
+
+  /**
+   * Exercice du programme triennal de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_TRIENNIAL_PROGRAM_EXERCICE_YEAR)
+  private String referenceTriennialProgramExerciceYear;
+
   /**
    * Indique si l'activité est modifiable.
    */
@@ -330,6 +344,19 @@ import lombok.Setter;
    * Identifiant json {@link #triennialProgramCountAsString}.
    */
   public static final String JSON_TRIENNIAL_PROGRAM_COUNT_AS_STRING = &quot;nombreProgrammeTriennal&quot;;
+
+
+  /**
+   * Identifiant json {@link #referenceTriennialProgram}.
+   */
+  public static final String JSON_REFERENCE_TRIENNIAL_PROGRAM = &quot;programmeTriennalDeReference&quot;;
+
+
+  /**
+   * Identifiant json {@link #referenceTriennialProgramExerciceYear}.
+   */
+  public static final String JSON_REFERENCE_TRIENNIAL_PROGRAM_EXERCICE_YEAR =
+      &quot;exerciceProgrammeTriennalDeReference&quot;;
 
   /**
    * Identifiant json {@link #amountAsString}.
