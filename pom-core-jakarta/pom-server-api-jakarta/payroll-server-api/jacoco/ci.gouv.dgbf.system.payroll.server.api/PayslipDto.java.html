@@ -70,6 +70,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_CONSTANT_GROUP_AS_STRING)
   private String constantGroupAsString;
   
+  @JsonbProperty(JSON_PAYROLL_ELEMENTS_AS_JSON)
+  private String payrollElementsAsJson;
+  
   /*-- Début définition des montants --*/
 
   /**
@@ -272,17 +275,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L275">    status = response.getStatus();</span>
-<span class="fc" id="L276">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L277">    initializable = response.getInitializable();</span>
-<span class="fc" id="L278">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L279">    controllable = response.getControllable();</span>
-<span class="fc" id="L280">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L281">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L282">    validable = response.getValidable();</span>
-<span class="fc" id="L283">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L284">    closable = response.getClosable();</span>
-<span class="fc" id="L285">  }</span>
+<span class="fc" id="L278">    status = response.getStatus();</span>
+<span class="fc" id="L279">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L280">    initializable = response.getInitializable();</span>
+<span class="fc" id="L281">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L282">    controllable = response.getControllable();</span>
+<span class="fc" id="L283">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L284">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L285">    validable = response.getValidable();</span>
+<span class="fc" id="L286">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L287">    closable = response.getClosable();</span>
+<span class="fc" id="L288">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -324,6 +327,11 @@ import lombok.Setter;
    */
   public static final String JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY = &quot;estAControlerPrioritairement&quot;;
 
+  /**
+   * Identifiant json {@link #payrollElementsAsJson}.
+   */
+  public static final String JSON_PAYROLL_ELEMENTS_AS_JSON = &quot;elementPaieJson&quot;;
+  
   /**
    * Identifiant json {@link #statusCode}.
    */
