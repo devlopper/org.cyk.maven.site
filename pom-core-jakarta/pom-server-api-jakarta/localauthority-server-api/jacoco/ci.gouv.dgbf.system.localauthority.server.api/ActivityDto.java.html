@@ -177,6 +177,20 @@ import lombok.Setter;
 
 
   /**
+   * Montant de la retenue de garantie.
+   */
+  @JsonbProperty(JSON_GUARANTEE_RETENTION_TO_AMOUNT)
+  private Long guaranteeRetentionToAmount;
+
+
+  /**
+   * Montant de la retenue de garantie en chaine.
+   */
+  @JsonbProperty(JSON_GUARANTEE_RETENTION_TO_AMOUNT_AS_STRING)
+  private String guaranteeRetentionToAmountAsString;
+
+
+  /**
    * Représentation en chaine de caractères de la retenue de garantie.
    */
   @JsonbProperty(JSON_GUARANTEE_RETENTION_AS_STRING)
@@ -359,6 +373,18 @@ import lombok.Setter;
    * Identifiant json {@link #guaranteeRetention}.
    */
   public static final String JSON_GUARANTEE_RETENTION = &quot;retenueGarantie&quot;;
+
+
+  /**
+   * Identifiant json {@link #guaranteeRetentionToAmount}.
+   */
+  public static final String JSON_GUARANTEE_RETENTION_TO_AMOUNT = &quot;retenueGarantieEnMontant&quot;;
+
+  /**
+   * Identifiant json {@link #guaranteeRetentionToAmountAsString}.
+   */
+  public static final String JSON_GUARANTEE_RETENTION_TO_AMOUNT_AS_STRING =
+      &quot;retenueGarantieEnMontantChaine&quot;;
 
 
   /**
