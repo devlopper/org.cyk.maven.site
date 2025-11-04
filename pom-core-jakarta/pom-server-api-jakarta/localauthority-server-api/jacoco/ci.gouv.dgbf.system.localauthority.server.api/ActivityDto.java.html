@@ -224,6 +224,13 @@ import lombok.Setter;
 
 
   /**
+   * Représentation en chaine du programme triennal de référence.
+   */
+  @JsonbProperty(JSON_REFERENCE_TRIENNIAL_PROGRAM_AS_STRING)
+  private String referenceTriennialProgramAsString;
+
+
+  /**
    * Exercice du programme triennal de référence.
    */
   @JsonbProperty(JSON_REFERENCE_TRIENNIAL_PROGRAM_EXERCICE_YEAR)
@@ -350,6 +357,12 @@ import lombok.Setter;
    * Identifiant json {@link #referenceTriennialProgram}.
    */
   public static final String JSON_REFERENCE_TRIENNIAL_PROGRAM = &quot;programmeTriennalDeReference&quot;;
+
+  /**
+   * Identifiant json {@link #referenceTriennialProgramAsString}.
+   */
+  public static final String JSON_REFERENCE_TRIENNIAL_PROGRAM_AS_STRING =
+      &quot;programmeTriennalDeReferenceChaine&quot;;
 
 
   /**
