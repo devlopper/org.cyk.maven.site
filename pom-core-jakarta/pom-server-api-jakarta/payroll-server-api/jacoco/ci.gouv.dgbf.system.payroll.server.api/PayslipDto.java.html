@@ -2,6 +2,8 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasConstantGroupAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConstantGroupIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasIsCalculableAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasIsCalculableDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRegistrationNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
@@ -23,10 +25,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L26">public class PayslipDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasPayrollIdentifierDto, HasPayrollAsStringDto, HasRemunerableIdentifierDto,
-    HasRemunerableAsStringDto, HasRegistrationNumberDto, PayslipContainerDto,
-    HasConstantGroupIdentifierDto, HasConstantGroupAsStringDto {
+<span class="fc" id="L28">public class PayslipDto extends AbstractIdentifiableAuditableDto implements HasPayrollIdentifierDto,</span>
+    HasPayrollAsStringDto, HasRemunerableIdentifierDto, HasRemunerableAsStringDto,
+    HasRegistrationNumberDto, PayslipContainerDto, HasConstantGroupIdentifierDto,
+    HasConstantGroupAsStringDto, HasIsCalculableDto, HasIsCalculableAsStringDto {
 
   @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
   private String payrollIdentifier;
@@ -69,10 +71,10 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_CONSTANT_GROUP_AS_STRING)
   private String constantGroupAsString;
-  
+
   @JsonbProperty(JSON_PAYROLL_ELEMENTS_AS_JSON)
   private String payrollElementsAsJson;
-  
+
   /*-- Début définition des montants --*/
 
   /**
@@ -269,23 +271,27 @@ import lombok.Setter;
   @JsonbProperty(JSON_CLOSABLE)
   private Boolean closable;
 
+  private Boolean isCalculable;
+  
+  private String isCalculableAsString;
+  
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L278">    status = response.getStatus();</span>
-<span class="fc" id="L279">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L280">    initializable = response.getInitializable();</span>
-<span class="fc" id="L281">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L282">    controllable = response.getControllable();</span>
-<span class="fc" id="L283">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L284">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L285">    validable = response.getValidable();</span>
-<span class="fc" id="L286">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L287">    closable = response.getClosable();</span>
-<span class="fc" id="L288">  }</span>
+<span class="fc" id="L284">    status = response.getStatus();</span>
+<span class="fc" id="L285">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L286">    initializable = response.getInitializable();</span>
+<span class="fc" id="L287">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L288">    controllable = response.getControllable();</span>
+<span class="fc" id="L289">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L290">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L291">    validable = response.getValidable();</span>
+<span class="fc" id="L292">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L293">    closable = response.getClosable();</span>
+<span class="fc" id="L294">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -331,7 +337,7 @@ import lombok.Setter;
    * Identifiant json {@link #payrollElementsAsJson}.
    */
   public static final String JSON_PAYROLL_ELEMENTS_AS_JSON = &quot;elementPaieJson&quot;;
-  
+
   /**
    * Identifiant json {@link #statusCode}.
    */
