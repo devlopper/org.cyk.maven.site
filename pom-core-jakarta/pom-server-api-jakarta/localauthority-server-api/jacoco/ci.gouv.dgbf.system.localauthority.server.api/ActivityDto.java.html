@@ -169,6 +169,15 @@ import lombok.Setter;
   private String eventualReference;
 
 
+  @JsonbProperty(JSON_DURATION)
+  private String duration;
+
+  @JsonbProperty(JSON_EXPECTED_IMPACT)
+  private String expectedImpact;
+
+  @JsonbProperty(JSON_OBSERVATION)
+  private String observation;
+
   /**
    * Retenue de garantie.
    */
@@ -235,6 +244,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_REFERENCE_TRIENNIAL_PROGRAM_EXERCICE_YEAR)
   private String referenceTriennialProgramExerciceYear;
+
+  /**
+   * Identifiant de {@link ExpertiseDomainDto}.
+   */
+  @JsonbProperty(JSON_EXPERTISE_DOMAIN_IDENTIFIER)
+  private String expertiseDomainIdentifier;
+
+
+  /**
+   * Représentation en chaine de caractère de {@link ExpertiseDomainDto}.
+   */
+  @JsonbProperty(JSON_EXPERTISE_DOMAIN_AS_STRING)
+  private String expertiseDomainAsString;
 
   /**
    * Indique si l'activité est modifiable.
@@ -372,6 +394,22 @@ import lombok.Setter;
       &quot;exerciceProgrammeTriennalDeReference&quot;;
 
   /**
+   * Identifiant json {@link #expertiseDomainIdentifier}.
+   */
+  public static final String JSON_EXPERTISE_DOMAIN_IDENTIFIER =
+      ExpertiseDomainDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #expertiseDomainAsString}.
+   */
+  public static final String JSON_EXPERTISE_DOMAIN_AS_STRING =
+      ExpertiseDomainDto.JSON_THIS_AS_STRING;
+
+
+
+
+
+  /**
    * Identifiant json {@link #amountAsString}.
    */
   public static final String JSON_EXECUTED_AMOUNT_AS_STRING = &quot;montantExecuteChaine&quot;;
@@ -407,6 +445,23 @@ import lombok.Setter;
    * Identifiant json de la référence eventuelle {@link #eventualReference}.
    */
   public static final String JSON_EVENTUAL_REFERENCE = &quot;referenceEventuelle&quot;;
+
+  /**
+   * Identifiant json de la durée {@link #duration}.
+   */
+  public static final String JSON_DURATION = &quot;durée&quot;;
+
+
+  /**
+   * Identifiant json de l'impact attendu {@link #expectedImpact}.
+   */
+  public static final String JSON_EXPECTED_IMPACT = &quot;impactAttendu&quot;;
+
+
+  /**
+   * Identifiant json de la durée {@link #observation}.
+   */
+  public static final String JSON_OBSERVATION = &quot;observations&quot;;
 
 
   /**
