@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-11-07T09:30:45+0000&quot;,
+    date = &quot;2025-11-07T17:56:05+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,8 +25,8 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PayslipService.PayslipCreateRequestDto payslipCreateRequestDto = new PayslipService.PayslipCreateRequestDto();</span>
 
-<span class="fc" id="L28">        payslipCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L29">        payslipCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L28">        payslipCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L29">        payslipCreateRequestDto.setName( arg0.getName() );</span>
 <span class="fc" id="L30">        payslipCreateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
 <span class="fc" id="L31">        payslipCreateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
 <span class="fc" id="L32">        payslipCreateRequestDto.setIsComputeAmounts( arg0.getIsComputeAmounts() );</span>
@@ -42,13 +42,11 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L43">        PayslipService.PayslipUpdateRequestDto payslipUpdateRequestDto = new PayslipService.PayslipUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        payslipUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L46">        payslipUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L47">        payslipUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L48">        payslipUpdateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
-<span class="fc" id="L49">        payslipUpdateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
+<span class="fc" id="L45">        payslipUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        payslipUpdateRequestDto.setPayrollIdentifier( arg0.getPayrollIdentifier() );</span>
+<span class="fc" id="L47">        payslipUpdateRequestDto.setRemunerableIdentifier( arg0.getRemunerableIdentifier() );</span>
 
-<span class="fc" id="L51">        return payslipUpdateRequestDto;</span>
+<span class="fc" id="L49">        return payslipUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
