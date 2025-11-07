@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasIsEarningDto;
 import ci.gouv.dgbf.extension.core.segregation.HasIsEvaluableInSecondaryContextAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasIsEvaluableInSecondaryContextDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasEmployeeCalculationFormulaTextDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,8 +20,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L22">public class PayrollComponentDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasIsEarningDto, HasIsEarningAsStringDto,
+<span class="fc" id="L23">public class PayrollComponentDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasIsEarningDto, HasIsEarningAsStringDto, HasEmployeeCalculationFormulaTextDto,
     HasIsEvaluableInSecondaryContextDto, HasIsEvaluableInSecondaryContextAsStringDto {
 
   @JsonbProperty(JSON_IS_EARNING)
@@ -34,7 +35,7 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_IS_EVALUABLE_IN_SECONDARY_CONTEXT_AS_STRING)
   private String isEvaluableInSecondaryContextAsString;
-  
+
   /**
    * Est taxable.
    */
@@ -77,6 +78,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_IDENTIFIER)
   private String employeeCalculationFormulaIdentifier;
 
+  @JsonbProperty(JSON_EMPLOYEE_CALCULATION_FORMULA_TEXT)
+  private String employeeCalculationFormulaText;
+  
   /**
    * Représentation en chaine de caractères de {@link Script} employé.
    */
