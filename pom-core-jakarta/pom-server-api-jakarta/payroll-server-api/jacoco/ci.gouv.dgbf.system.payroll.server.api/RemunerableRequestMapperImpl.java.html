@@ -12,7 +12,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-11-07T17:56:06+0000&quot;,
+    date = &quot;2025-11-08T11:20:22+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -26,33 +26,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L27">        RemunerableService.RemunerableCreateRequestDto remunerableCreateRequestDto = new RemunerableService.RemunerableCreateRequestDto();</span>
 
-<span class="fc" id="L29">        remunerableCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L30">        remunerableCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L31">        remunerableCreateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
-<span class="fc" id="L32">        remunerableCreateRequestDto.setPayslipTypeIdentifier( arg0.getPayslipTypeIdentifier() );</span>
-<span class="fc" id="L33">        remunerableCreateRequestDto.setPayslipTemplateIdentifier( arg0.getPayslipTemplateIdentifier() );</span>
-<span class="fc" id="L34">        remunerableCreateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
+<span class="fc" id="L29">        remunerableCreateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
+<span class="fc" id="L30">        remunerableCreateRequestDto.setPayslipTypeIdentifier( arg0.getPayslipTypeIdentifier() );</span>
+<span class="fc" id="L31">        remunerableCreateRequestDto.setPayslipTemplateIdentifier( arg0.getPayslipTemplateIdentifier() );</span>
+<span class="fc" id="L32">        remunerableCreateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
 
-<span class="fc" id="L36">        return remunerableCreateRequestDto;</span>
+<span class="fc" id="L34">        return remunerableCreateRequestDto;</span>
     }
 
     @Override
     public RemunerableService.RemunerableUpdateRequestDto mapUpdate(RemunerableDto arg0) {
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L42">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L45">        RemunerableService.RemunerableUpdateRequestDto remunerableUpdateRequestDto = new RemunerableService.RemunerableUpdateRequestDto();</span>
+<span class="fc" id="L43">        RemunerableService.RemunerableUpdateRequestDto remunerableUpdateRequestDto = new RemunerableService.RemunerableUpdateRequestDto();</span>
 
-<span class="fc" id="L47">        remunerableUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L48">        remunerableUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L49">        remunerableUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L50">        remunerableUpdateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
-<span class="fc" id="L51">        remunerableUpdateRequestDto.setPayslipTypeIdentifier( arg0.getPayslipTypeIdentifier() );</span>
-<span class="fc" id="L52">        remunerableUpdateRequestDto.setPayslipTemplateIdentifier( arg0.getPayslipTemplateIdentifier() );</span>
-<span class="fc" id="L53">        remunerableUpdateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
+<span class="fc" id="L45">        remunerableUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        remunerableUpdateRequestDto.setFunctionaryIdentifier( arg0.getFunctionaryIdentifier() );</span>
+<span class="fc" id="L47">        remunerableUpdateRequestDto.setPayslipTypeIdentifier( arg0.getPayslipTypeIdentifier() );</span>
+<span class="fc" id="L48">        remunerableUpdateRequestDto.setPayslipTemplateIdentifier( arg0.getPayslipTemplateIdentifier() );</span>
+<span class="fc" id="L49">        remunerableUpdateRequestDto.setIsEnabled( arg0.getIsEnabled() );</span>
 
-<span class="fc" id="L55">        return remunerableUpdateRequestDto;</span>
+<span class="fc" id="L51">        return remunerableUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

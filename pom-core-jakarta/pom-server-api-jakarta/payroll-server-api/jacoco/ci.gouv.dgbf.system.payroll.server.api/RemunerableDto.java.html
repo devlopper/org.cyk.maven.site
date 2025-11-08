@@ -9,7 +9,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasIsEnabledDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRegistrationNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasRemunerableIdentifierDto;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipTemplateAsStringDto;
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipTemplateIdentifierDto;
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayslipTypeAsStringDto;
@@ -28,7 +28,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L31">public class RemunerableDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L31">public class RemunerableDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasFunctionaryIdentifierDto, HasFunctionaryAsStringDto, HasRegistrationNumberDto,
     HasPayslipTypeIdentifierDto, HasPayslipTypeAsStringDto, HasPayslipTemplateIdentifierDto,
     HasPayslipTemplateAsStringDto, HasConstantGroupIdentifierDto, HasConstantGroupAsStringDto,
