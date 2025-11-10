@@ -236,7 +236,6 @@ public interface ActivityService extends SpecificService {
   interface ActivitySaveRequestDto {
 
 
-
     /**
      * Cette méthode permet d'obtenir l'identitant de {@link LocalAuthorityDto}.
      *
@@ -320,6 +319,21 @@ public interface ActivityService extends SpecificService {
      * @param identifier identifiant de {@link WealthAccountDto}
      */
     void setWealthAccountIdentifier(String identifier);
+
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link BeneficiaryDto}.
+     *
+     * @return identifiant de {@link BeneficiaryDto}
+     */
+    String getBeneficiaryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link BeneficiaryDto}.
+     *
+     * @param identifier identifiant de {@link BeneficiaryDto}
+     */
+    void setBeneficiaryIdentifier(String identifier);
 
     /**
      * Cette méthode permet d'obtenir le montant.
@@ -502,6 +516,12 @@ public interface ActivityService extends SpecificService {
      */
     public static final String JSON_WEALTH_ACCOUNT_IDENTIFIER =
         ActivityDto.JSON_WEALTH_ACCOUNT_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link BeneficiaryDto}.
+     */
+    public static final String JSON_BENEFICIARY_IDENTIFIER =
+        ActivityDto.JSON_BENEFICIARY_IDENTIFIER;
     /**
      * Identifiant json du champ de l'identitant de {@link LocalAuthorityDto}.
      */
@@ -546,10 +566,10 @@ public interface ActivityService extends SpecificService {
     /**
      * Identifiant json de la retenue de garantie.
      */
-    String JSON_GUARANTEE_RETENTION =  ActivityDto.JSON_GUARANTEE_RETENTION;
+    String JSON_GUARANTEE_RETENTION = ActivityDto.JSON_GUARANTEE_RETENTION;
 
     /**
-     *  Identifiant json budget de prise en charge avant report.
+     * Identifiant json budget de prise en charge avant report.
      */
     String JSON_YEAR_BUDGET_BEFORE_CARRYOVER = &quot;anneeBudgetPriseEnChargeAvantReport&quot;;
 
@@ -568,7 +588,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L571">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L591">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -588,6 +608,9 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
     private String wealthAccountIdentifier;
+
+    @JsonbProperty(JSON_BENEFICIARY_IDENTIFIER)
+    private String beneficiaryIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
@@ -630,7 +653,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L633">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L656">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -643,7 +666,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L646">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L669">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -663,6 +686,9 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_WEALTH_ACCOUNT_IDENTIFIER)
     private String wealthAccountIdentifier;
+
+    @JsonbProperty(JSON_BENEFICIARY_IDENTIFIER)
+    private String beneficiaryIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private long amount;

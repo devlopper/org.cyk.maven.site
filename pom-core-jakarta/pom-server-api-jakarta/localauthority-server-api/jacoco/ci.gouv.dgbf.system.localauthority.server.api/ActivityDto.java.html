@@ -105,6 +105,20 @@ import lombok.Setter;
   @JsonbProperty(JSON_WEALTH_ACCOUNT_AS_STRING)
   private String wealthAccountAsString;
 
+
+  /**
+   * Identifiant {@link BeneficiaryDto}.
+   */
+  @JsonbProperty(JSON_BENEFICIARY_IDENTIFIER)
+  private String beneficiaryIdentifier;
+
+  /**
+   * Représentation en chaine de caractères {@link BeneficiaryDto}.
+   */
+  @JsonbProperty(JSON_BENEFICIARY_AS_STRING)
+  private String beneficiaryAsString;
+
+
   /**
    * Montant.
    */
@@ -352,6 +366,16 @@ import lombok.Setter;
    * Identifiant json {@link #wealthAccountAsString}.
    */
   public static final String JSON_WEALTH_ACCOUNT_AS_STRING = &quot;comptePatrimonialChaine&quot;;
+
+  /**
+   * Identifiant json {@link #beneficiaryIdentifier}.
+   */
+  public static final String JSON_BENEFICIARY_IDENTIFIER = BeneficiaryDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json {@link #beneficiaryAsString}.
+   */
+  public static final String JSON_BENEFICIARY_AS_STRING = BeneficiaryDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json {@link #amount}.
