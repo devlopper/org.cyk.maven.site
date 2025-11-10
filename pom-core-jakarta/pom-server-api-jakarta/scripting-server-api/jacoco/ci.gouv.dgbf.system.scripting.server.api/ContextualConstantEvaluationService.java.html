@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContextualConstantEvaluationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ContextualConstantEvaluationService.java</span></div><h1>ContextualConstantEvaluationService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
-import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
+import ci.gouv.dgbf.extension.core.enumeration.ValueType;
+import ci.gouv.dgbf.extension.core.segregation.HasConstantCategoryIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasConstantGroupIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -141,7 +144,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L144">  class ContextualConstantEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L147">  class ContextualConstantEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ContextualConstantEvaluationSaveRequestDto {
 
     @JsonbProperty(JSON_VALUE)
@@ -187,18 +190,25 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L190">  class ContextualConstantEvaluationCreateContextuallyRequestDto</span>
+<span class="fc" id="L193">  class ContextualConstantEvaluationCreateContextuallyRequestDto</span>
       extends AbstractAuditedRequestJsonDto
-      implements HasStringValueDto, HasGroupIdentifierDto, HasCategoryIdentifierDto {
+      implements HasGroupIdentifierDto, HasConstantCategoryIdentifierDto,
+      HasConstantGroupIdentifierDto, HasStringValueDto, HasValueTypeDto {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
 
-    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
-    private String categoryIdentifier;
-    
+    @JsonbProperty(JSON_CONSTANT_CATEGORY_IDENTIFIER)
+    private String constantCategoryIdentifier;
+
+    @JsonbProperty(JSON_CONSTANT_GROUP_IDENTIFIER)
+    private String constantGroupIdentifier;
+
     @JsonbProperty(JSON_VALUE)
     private String value;
+
+    @JsonbProperty(JSON_VALUE_TYPE)
+    private ValueType valueType;
   }
 
   /**
@@ -234,7 +244,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L237">  public static class ContextualConstantEvaluationGetManyResponseDto</span>
+<span class="fc" id="L247">  public static class ContextualConstantEvaluationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ContextualConstantEvaluationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -325,7 +335,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L328">  class ContextualConstantEvaluationUpdateRequestDto</span>
+<span class="fc" id="L338">  class ContextualConstantEvaluationUpdateRequestDto</span>
       extends AbstractCodableNamableUpdateRequestJsonDto
       implements ContextualConstantEvaluationSaveRequestDto {
 
@@ -372,7 +382,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L375">  class ContextualConstantEvaluationUpdateValueRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L385">  class ContextualConstantEvaluationUpdateValueRequestDto extends ByIdentifierRequestDto</span>
       implements HasStringValueDto {
 
     @JsonbProperty(JSON_VALUE)
