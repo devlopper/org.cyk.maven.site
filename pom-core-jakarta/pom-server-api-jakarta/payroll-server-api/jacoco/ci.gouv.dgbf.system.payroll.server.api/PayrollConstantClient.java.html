@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollConstantClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayrollConstantClient.java</span></div><h1>PayrollConstantClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payroll.server.api.PayrollConstantService.PayrollConstantCreateRequestDto;
+import ci.gouv.dgbf.system.payroll.server.api.PayrollConstantService.PayrollConstantGetManyResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.PayrollConstantService.PayrollConstantUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link PayrollConstantService}.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L35">public class PayrollConstantClient extends AbstractClient&lt;PayrollConstantService&gt;</span>
+    implements GetByIdentifier&lt;PayrollConstantDto&gt;, GetMany&lt;PayrollConstantGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public PayrollConstantClient service(PayrollConstantService service) {
+<span class="fc" id="L41">    return (PayrollConstantClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(PayrollConstantCreateRequestDto request) {
+<span class="fc" id="L51">    return new CreateExecutor(PayrollConstantService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public PayrollConstantGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L62">    return new GetOneExecutor&lt;PayrollConstantGetManyResponseDto&gt;(</span>
+        PayrollConstantGetManyResponseDto.class, PayrollConstantService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L64">            .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public PayrollConstantGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L80">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L81">    request.setProjection(projection);</span>
+<span class="fc" id="L82">    request.setFilter(filter);</span>
+<span class="fc" id="L83">    request.setPage(page);</span>
+<span class="fc" id="L84">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L85">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L86">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public PayrollConstantDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L96">    return new GetOneExecutor&lt;PayrollConstantDto&gt;(PayrollConstantDto.class,</span>
+<span class="fc" id="L97">        PayrollConstantService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public PayrollConstantDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L111">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L112">    request.setProjection(projection);</span>
+<span class="fc" id="L113">    request.setFilter(filter);</span>
+<span class="fc" id="L114">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L115">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L116">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public PayrollConstantDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L126">    return new GetOneExecutor&lt;PayrollConstantDto&gt;(PayrollConstantDto.class,</span>
+        PayrollConstantService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L128">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public PayrollConstantDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L143">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L144">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L145">    request.setProjection(projection);</span>
+<span class="fc" id="L146">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L147">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L148">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(PayrollConstantUpdateRequestDto request) {
+<span class="fc" id="L158">    return new IdentifiableExecutor(PayrollConstantService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L159">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L169">    return new IdentifiableExecutor(PayrollConstantService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L170">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link PayrollConstantService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L184">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L185">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L186">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L187">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L188">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
