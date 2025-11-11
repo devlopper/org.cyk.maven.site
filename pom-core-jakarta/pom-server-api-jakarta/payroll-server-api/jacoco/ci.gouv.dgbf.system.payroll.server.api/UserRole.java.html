@@ -24,28 +24,38 @@ public enum UserRole implements CodableByStringWithGetterOnly {
   // Paie
   
   /**
+   * Gérer {@link PayrollDto}.
+   */
+<span class="fc" id="L29">  MANAGE_PAYROLL(&quot;GERER_PAIE&quot;),</span>
+  
+  /**
+   * Initialiser {@link PayrollDto}.
+   */
+<span class="fc" id="L34">  INITIALIZE_PAYROLL(&quot;INITIALISER_PAIE&quot;),</span>
+  
+  /**
    * Transmettre pour contrôle {@link PayrollDto}.
    */
-<span class="fc" id="L29">  TRANSMIT_PAYROLL_FOR_CONTROL(&quot;TRANSMETTRE_PAIE_POUR_CONTROLE&quot;),</span>
+<span class="fc" id="L39">  TRANSMIT_PAYROLL_FOR_CONTROL(&quot;TRANSMETTRE_PAIE_POUR_CONTROLE&quot;),</span>
 
-  /**
-   * Calculer {@link PayrollDto}.
-   */
-<span class="fc" id="L34">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
-  
   /**
    * Côntroler {@link PayrollDto}.
    */
-<span class="fc" id="L39">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
+<span class="fc" id="L44">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
+  
+  /**
+   * Calculer {@link PayrollDto}.
+   */
+<span class="fc" id="L49">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
   
   /**
    * Valider contrôle {@link PayrollDto}.
    */
-<span class="fc" id="L44">  VALIDATE_PAYROLL_CONTROL(&quot;VALIDER_CONTROLE_PAIE&quot;);</span>
+<span class="fc" id="L54">  VALIDATE_PAYROLL(&quot;VALIDER_PAIE&quot;);</span>
   
-<span class="fc" id="L46">  private UserRole(String code) {</span>
-<span class="fc" id="L47">    this.code = code;</span>
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L56">  private UserRole(String code) {</span>
+<span class="fc" id="L57">    this.code = code;</span>
+<span class="fc" id="L58">  }</span>
 
   /**
    * Code.
