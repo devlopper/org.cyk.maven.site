@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasFunctionaryIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasIsEnabled;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasRegistrationNumber;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
@@ -16,11 +17,13 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RemunerableFilter extends AbstractIdentifiableFilter
-    implements FilterHasFunctionaryIdentifier, FilterHasRegistrationNumber {
+    implements FilterHasFunctionaryIdentifier, FilterHasRegistrationNumber, FilterHasIsEnabled {
 
   private String functionaryIdentifier;
 
   private String registrationNumber;
+
+  private Boolean isEnabled;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -28,26 +31,28 @@ public class RemunerableFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public RemunerableFilter(FilterDto dto) {
-<span class="fc" id="L31">    super(dto);</span>
-<span class="fc" id="L32">  }</span>
+<span class="fc" id="L34">    super(dto);</span>
+<span class="fc" id="L35">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L37">  public RemunerableFilter() {}</span>
+<span class="fc" id="L40">  public RemunerableFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L41">    super.doInitialize(filter);</span>
-<span class="fc" id="L42">    updateFunctionaryIdentifier(filter);</span>
-<span class="fc" id="L43">    updateRegistrationNumber(filter);</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L44">    super.doInitialize(filter);</span>
+<span class="fc" id="L45">    updateFunctionaryIdentifier(filter);</span>
+<span class="fc" id="L46">    updateRegistrationNumber(filter);</span>
+<span class="fc" id="L47">    updateIsEnabled(filter);</span>
+<span class="fc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L48">    super.toDto(filter);</span>
-<span class="fc" id="L49">    updateFilterFunctionaryIdentifier(filter);</span>
-<span class="fc" id="L50">    updateFilterRegistrationNumber(filter);</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L53">    updateFilterFunctionaryIdentifier(filter);</span>
+<span class="fc" id="L54">    updateFilterRegistrationNumber(filter);</span>
+<span class="fc" id="L55">    updateFilterIsEnabled(filter);</span>
+<span class="fc" id="L56">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
