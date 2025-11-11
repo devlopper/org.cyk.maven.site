@@ -52,6 +52,20 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ACCOUNT_EXISTS)
   private Boolean accountExists;
+
+  /**
+   * Identifiant du role pour les utilisateurs non assignés à cet utilisateur.
+   * Utilisé pour obtenir les utilisateurs disponibles pour attribution.
+   */
+  @JsonbProperty(value = JSON_UNASSIGNED_ROLE_IDENTIFIER)
+  private String unassignedRoleIdentifier;
+
+  /**
+   * Identifiant du rôles pour les utilisateurs assignés à ce role.
+   * Utilisé pour obtenir les utilisateurs actuels du role.
+   */
+  @JsonbProperty(value = JSON_ASSIGNED_ROLE_IDENTIFIER)
+  private String assignedRoleIdentifier;
   
   /**
    * Identifiant json de l'identifiant.
@@ -82,6 +96,17 @@ import lombok.Setter;
    * Identifiant champ java {@link #identityAsString}.
    */
   public static final String JSON_IDENTITY_AS_STRING = IdentityDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #unassignedRoleIdentifier}.
+   */
+  public static final String JSON_UNASSIGNED_ROLE_IDENTIFIER = &quot;idRoleNonAssigne&quot;;
+
+  /**
+   * Identifiant json {@link #assignedRoleIdentifier}.
+   */
+  public static final String JSON_ASSIGNED_ROLE_IDENTIFIER = &quot;idRoleAssigne&quot;;
+
 
   /**
    * Identifiant champ java {@link #pass}.
