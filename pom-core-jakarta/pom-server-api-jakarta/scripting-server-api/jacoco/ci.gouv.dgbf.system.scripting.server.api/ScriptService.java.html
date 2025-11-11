@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptService.java</span></div><h1>ScriptService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
+import ci.gouv.dgbf.extension.core.enumeration.StringFormat;
 import ci.gouv.dgbf.extension.core.enumeration.ValueType;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -11,6 +13,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractIdentifiablesResponseDto.OrderedIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.EvaluateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
@@ -23,9 +26,18 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
@@ -164,7 +176,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L167">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L179">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -212,7 +224,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L215">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
+<span class="fc" id="L227">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ScriptDto&gt; datas;
@@ -287,7 +299,7 @@ public interface ScriptService extends SpecificService {
   @Path(UPDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = UPDATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
@@ -301,7 +313,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L304">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L316">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -335,7 +347,7 @@ public interface ScriptService extends SpecificService {
   @Path(UPDATE_TEXT_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = UPDATE_TEXT_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
@@ -349,7 +361,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L352">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L364">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(ScriptSaveRequestDto.JSON_TEXT)
     private String text;
   }
@@ -373,7 +385,7 @@ public interface ScriptService extends SpecificService {
   @Path(DELETE_PATH)
   @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = DELETE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
@@ -396,9 +408,9 @@ public interface ScriptService extends SpecificService {
    * @return réponse
    */
   @Path(EVALUATE_PATH)
-  @PUT
+  @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = EVALUATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = ScriptEvaluateResponseDto.class))})
@@ -412,8 +424,8 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L415">  class ScriptEvaluateRequestDto extends EvaluateRequestDto {</span>
-    
+<span class="fc" id="L427">  class ScriptEvaluateRequestDto extends EvaluateRequestDto {</span>
+
   }
 
   /**
@@ -424,8 +436,308 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L427">  class ScriptEvaluateResponseDto extends EvaluateResponseDto {</span>
-    
+<span class="fc" id="L439">  class ScriptEvaluateResponseDto extends EvaluateResponseDto {</span>
+
+  }
+
+  /**
+   * Identifiant du service d'évaluation de plusieurs.
+   */
+  String EVALUATE_MANY_IDENTIFIER = &quot;EVALUATION_PLUSIEURS_SCRIPT&quot;;
+
+  /**
+   * Chemin du service d'évaluation de plusieurs.
+   */
+  String EVALUATE_MANY_PATH = &quot;evaluations&quot;;
+
+  /**
+   * Cette méthode permet d'évaluer plusieurs {@link ScriptDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EVALUATE_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = EVALUATE_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ScriptEvaluateManyResponseDto.class))})
+  Response evaluateMany(ScriptEvaluateManyRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'évaluation de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L476">  class ScriptEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+    /**
+     * Collection de {@link GroupDto}.
+     */
+    @JsonbProperty(JSON_GROUPS)
+    private Collection&lt;GroupDto&gt; groups;
+
+    /**
+     * {@link StringFormat} de la représentation en chaine de caractères du résultat.
+     */
+    @JsonbProperty(JSON_RESULT_AS_STRING_FORMAT)
+    private StringFormat resultAsStringFormat;
+
+    /**
+     * Cette méthode permet d'ajouter {@link GroupDto}.
+     *
+     * @param orderNumber numéro d'ordre
+     * @param scriptIdentifiers identifiants {@link ScriptDto}
+     * @param arguments arguments
+     */
+    public void addGroup(int orderNumber, Collection&lt;String&gt; scriptIdentifiers,
+        Map&lt;String, Object&gt; arguments) {
+<span class="fc" id="L498">      GroupDto group = group();</span>
+<span class="fc" id="L499">      group.orderNumber = orderNumber;</span>
+<span class="fc" id="L500">      group.addScriptIdentifiers(scriptIdentifiers);</span>
+<span class="fc" id="L501">      group.arguments = arguments;</span>
+<span class="fc" id="L502">    }</span>
+
+    /**
+     * Cette méthode permet d'ajouter {@link GroupDto}.
+     *
+     * @param scriptIdentifiers identifiants {@link ScriptDto}
+     * @param arguments arguments
+     */
+    public void addGroup(Collection&lt;String&gt; scriptIdentifiers, Map&lt;String, Object&gt; arguments) {
+<span class="fc" id="L511">      addGroup(Optional.ofNullable(groups).orElse(Collections.emptyList()).size(),</span>
+          scriptIdentifiers, arguments);
+<span class="fc" id="L513">    }</span>
+
+    /**
+     * Cette méthode permet d'obtenir une collection de groupe non nulle.
+     *
+     * @return collection de groupe non nulle
+     */
+    public Collection&lt;GroupDto&gt; groups() {
+<span class="fc bfc" id="L521" title="All 2 branches covered.">      if (groups == null) {</span>
+<span class="fc" id="L522">        groups = new ArrayList&lt;GroupDto&gt;();</span>
+      }
+<span class="fc" id="L524">      return groups;</span>
+    }
+
+    /**
+     * Cette méthode permet d'obtenir {@link GroupDto}.
+     *
+     * @return {@link GroupDto}
+     */
+    public GroupDto group() {
+<span class="fc" id="L533">      GroupDto group = new GroupDto();</span>
+<span class="fc" id="L534">      groups().add(group);</span>
+<span class="fc" id="L535">      return group;</span>
+    }
+
+    /**
+     * Identifiant json {@link #groups}.
+     */
+    public static final String JSON_GROUPS = &quot;groupes&quot;;
+
+    /**
+     * Identifiant json {@link #resultAsStringFormat}.
+     */
+    public static final String JSON_RESULT_AS_STRING_FORMAT =
+        ScriptEvaluationDto.JSON_RESULT_AS_STRING_FORMAT;
+
+    /**
+     * Cette classe représente un groupe.
+     *
+     * @author Christian
+     */
+    @Getter
+    @Setter
+<span class="fc" id="L556">    public static class GroupDto {</span>
+      /**
+       * Numéro d'ordre.
+       */
+      @JsonbProperty(JSON_ORDER_NUMBER)
+      private Integer orderNumber;
+
+      /**
+       * Carte d'identifiants {@link ScriptDto} et index.
+       */
+      @JsonbProperty(JSON_SCRIPT_IDENTIFIERS)
+      private Map&lt;String, Integer&gt; scriptIdentifiers;
+
+      /**
+       * Arguments.
+       */
+      @JsonbProperty(JSON_ARGUMENTS)
+      private Map&lt;String, Object&gt; arguments;
+
+      /**
+       * Cette méthode permet d'ajouter des identifiants de {@link ScriptDto}.
+       *
+       * @param identifiers identifiants de {@link ScriptDto}
+       */
+      public void addScriptIdentifiers(Collection&lt;String&gt; identifiers) {
+<span class="fc" id="L581">        Optional.ofNullable(identifiers).orElse(Collections.emptyList()).forEach(identifier -&gt; {</span>
+<span class="fc" id="L582">          scriptIdentifiers().put(identifier, scriptIdentifiers.size());</span>
+<span class="fc" id="L583">        });</span>
+<span class="fc" id="L584">      }</span>
+
+      /**
+       * Cette méthode permet d'obtenir une carte non nulle.
+       *
+       * @return carte non nulle
+       */
+      public Map&lt;String, Integer&gt; scriptIdentifiers() {
+<span class="fc bfc" id="L592" title="All 2 branches covered.">        if (scriptIdentifiers == null) {</span>
+<span class="fc" id="L593">          scriptIdentifiers = new HashMap&lt;&gt;();</span>
+        }
+<span class="fc" id="L595">        return scriptIdentifiers;</span>
+      }
+
+      /**
+       * Identifiant json {@link #orderNumber}.
+       */
+      public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
+
+      /**
+       * Identifiant json {@link #scriptIdentifiers}.
+       */
+      public static final String JSON_SCRIPT_IDENTIFIERS = ScriptDto.JSON_THIS_IDENTIFIER;
+
+      /**
+       * Identifiant json {@link #arguments}.
+       */
+      public static final String JSON_ARGUMENTS = ScriptEvaluationDto.JSON_ARGUMENTS;
+    }
+  }
+
+  /**
+   * Cette classe représente la réponse de d'évaluation de plusieurs.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L622">  class ScriptEvaluateManyResponseDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Collection de {@link GroupDto}.
+     */
+    @JsonbProperty(&quot;groupes&quot;)
+    private Collection&lt;GroupDto&gt; groups;
+
+    /**
+     * Cette méthode permet d'obtenir {@link GroupDto} par numéro d'ordre.
+     *
+     * @param orderNumber numéro d'ordre
+     * @return {@link GroupDto}
+     */
+    public GroupDto getGroupByOrderNumber(Integer orderNumber) {
+<span class="fc" id="L637">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L638">          .filter(group -&gt; Objects.equals(group.orderNumber, orderNumber)).findFirst().orElse(null);</span>
+    }
+
+    /**
+     * Cette classe représente un groupe.
+     *
+     * @author Christian
+     */
+    @Getter
+    @Setter
+    @ToString
+    @EqualsAndHashCode(of = {&quot;orderNumber&quot;})
+<span class="fc" id="L650">    public static class GroupDto {</span>
+      /**
+       * Numéro d'ordre.
+       */
+      @JsonbProperty(JSON_ORDER_NUMBER)
+      private Integer orderNumber;
+
+      /**
+       * Collection de {@link ResultDto}.
+       */
+      @JsonbProperty(JSON_RESULTS)
+      private Collection&lt;ResultDto&gt; results;
+
+      /**
+       * Cette méthode permet d'obtenir {@link ResultDto} par numéro d'ordre.
+       *
+       * @param orderNumber numéro d'ordre
+       * @return {@link ResultDto}
+       */
+      public ResultDto getResultByOrderNumber(Integer orderNumber) {
+<span class="fc" id="L670">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L671">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
+<span class="fc" id="L672">            .orElse(null);</span>
+      }
+
+      /**
+       * Identifiant json {@link #orderNumber}.
+       */
+      public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
+
+      /**
+       * Identifiant json {@link #results}.
+       */
+      public static final String JSON_RESULTS = &quot;resultats&quot;;
+    }
+
+    /**
+     * Format de {@link ResultDto#valueAsString}.
+     */
+    @JsonbProperty(JSON_RESULT_VALUE_AS_STRING_FORMAT)
+    private StringFormat resultValueAsStringFormat;
+
+    /**
+     * Identifiant json {@link #resultValueAsStringFormat}.
+     */
+    public static final String JSON_RESULT_VALUE_AS_STRING_FORMAT =
+        ScriptEvaluationDto.JSON_RESULT_AS_STRING_FORMAT;
+
+    /**
+     * Cette classe représente un résultat.
+     *
+     * @author Christian
+     */
+    @Getter
+    @Setter
+    @ToString
+    @EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L707">    public static class ResultDto extends OrderedIdentifierDto {</span>
+      /**
+       * Représentation en chaine de caractères de la valeur.
+       */
+      @JsonbProperty(JSON_VALUE_AS_STRING)
+      private String valueAsString;
+
+      /**
+       * Valeur en entier.
+       */
+      @JsonbProperty(JSON_VALUE_AS_INTEGER)
+      private Integer valueAsInteger;
+
+      /**
+       * Valeur en booléen.
+       */
+      @JsonbProperty(JSON_VALUE_AS_BOOLEAN)
+      private Boolean valueAsBoolean;
+
+      /**
+       * Identifiant json {@link #valueAsString}.
+       */
+      public static final String JSON_VALUE_AS_STRING = &quot;valeurChaine&quot;;
+
+      /**
+       * Identifiant json {@link #valueAsInteger}.
+       */
+      public static final String JSON_VALUE_AS_INTEGER = &quot;valeurEntier&quot;;
+
+      /**
+       * Identifiant json {@link #valueAsBoolean}.
+       */
+      public static final String JSON_VALUE_AS_BOOLEAN = &quot;valeurBooleen&quot;;
+    }
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
