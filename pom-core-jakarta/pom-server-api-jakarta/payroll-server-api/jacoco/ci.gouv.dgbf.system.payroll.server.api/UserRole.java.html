@@ -12,6 +12,13 @@ import lombok.Getter;
 <span class="fc" id="L12">@Getter</span>
 public enum UserRole implements CodableByStringWithGetterOnly {
 
+  // --- Role ---
+  
+  /**
+   * Administrateur système.
+   */
+<span class="fc" id="L20">  SYSTEM_ADMINISTRATOR(&quot;ADMINISTRATEUR_SYSTEME&quot;),</span>
+  
   // --- Actions ---
 
   // Paie
@@ -19,26 +26,26 @@ public enum UserRole implements CodableByStringWithGetterOnly {
   /**
    * Transmettre pour contrôle {@link PayrollDto}.
    */
-<span class="fc" id="L22">  TRANSMIT_PAYROLL_FOR_CONTROL(&quot;TRANSMETTRE_PAIE_POUR_CONTROLE&quot;),</span>
+<span class="fc" id="L29">  TRANSMIT_PAYROLL_FOR_CONTROL(&quot;TRANSMETTRE_PAIE_POUR_CONTROLE&quot;),</span>
 
   /**
    * Calculer {@link PayrollDto}.
    */
-<span class="fc" id="L27">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
+<span class="fc" id="L34">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
   
   /**
    * Côntroler {@link PayrollDto}.
    */
-<span class="fc" id="L32">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
+<span class="fc" id="L39">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
   
   /**
    * Valider contrôle {@link PayrollDto}.
    */
-<span class="fc" id="L37">  VALIDATE_PAYROLL_CONTROL(&quot;VALIDER_CONTROLE_PAIE&quot;);</span>
+<span class="fc" id="L44">  VALIDATE_PAYROLL_CONTROL(&quot;VALIDER_CONTROLE_PAIE&quot;);</span>
   
-<span class="fc" id="L39">  private UserRole(String code) {</span>
-<span class="fc" id="L40">    this.code = code;</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L46">  private UserRole(String code) {</span>
+<span class="fc" id="L47">    this.code = code;</span>
+<span class="fc" id="L48">  }</span>
 
   /**
    * Code.
