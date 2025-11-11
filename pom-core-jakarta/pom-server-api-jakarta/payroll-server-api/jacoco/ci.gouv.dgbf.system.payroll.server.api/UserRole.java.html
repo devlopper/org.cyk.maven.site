@@ -13,49 +13,73 @@ import lombok.Getter;
 public enum UserRole implements CodableByStringWithGetterOnly {
 
   // --- Role ---
-  
+
   /**
    * Administrateur système.
    */
 <span class="fc" id="L20">  SYSTEM_ADMINISTRATOR(&quot;ADMINISTRATEUR_SYSTEME&quot;),</span>
-  
+
   // --- Actions ---
 
   // Paie
-  
+
   /**
    * Gérer {@link PayrollDto}.
    */
 <span class="fc" id="L29">  MANAGE_PAYROLL(&quot;GERER_PAIE&quot;),</span>
-  
+
   /**
    * Initialiser {@link PayrollDto}.
    */
 <span class="fc" id="L34">  INITIALIZE_PAYROLL(&quot;INITIALISER_PAIE&quot;),</span>
-  
+
   /**
-   * Transmettre pour contrôle {@link PayrollDto}.
+   * Transmettre {@link PayrollDto} pour contrôle.
    */
 <span class="fc" id="L39">  TRANSMIT_PAYROLL_FOR_CONTROL(&quot;TRANSMETTRE_PAIE_POUR_CONTROLE&quot;),</span>
 
   /**
-   * Côntroler {@link PayrollDto}.
-   */
-<span class="fc" id="L44">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
-  
-  /**
    * Calculer {@link PayrollDto}.
    */
-<span class="fc" id="L49">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
+<span class="fc" id="L44">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
   
   /**
-   * Valider contrôle {@link PayrollDto}.
+   * Côntroler {@link PayrollDto}.
    */
-<span class="fc" id="L54">  VALIDATE_PAYROLL(&quot;VALIDER_PAIE&quot;);</span>
-  
-<span class="fc" id="L56">  private UserRole(String code) {</span>
-<span class="fc" id="L57">    this.code = code;</span>
-<span class="fc" id="L58">  }</span>
+<span class="fc" id="L49">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
+
+  /**
+   * Transmettre {@link PayrollDto} pour ajustement.
+   */
+<span class="fc" id="L54">  TRANSMIT_PAYROLL_FOR_ADJUSTMENT(&quot;VALIDER_PAIE&quot;),</span>
+
+  // Bulletin
+
+  /**
+   * Gérer {@link PayslipDto}.
+   */
+<span class="fc" id="L61">  MANAGE_PAYSLIP(&quot;GERER_BULLETIN&quot;),</span>
+
+  /**
+   * Contrôler {@link PayslipDto}.
+   */
+<span class="fc" id="L66">  CONTROL_PAYSLIP(&quot;CONTROLER_BULLETIN&quot;),</span>
+
+  /**
+   * Calculer {@link PayslipDto}.
+   */
+<span class="fc" id="L71">  CALCULATE_PAYSLIP(&quot;CALCULER_BULLETIN&quot;),</span>
+
+  /**
+   * Valider {@link PayslipDto}.
+   */
+<span class="fc" id="L76">  VALIDATE_PAYSLIP(&quot;VALIDER_BULLETIN&quot;)</span>
+
+  ;
+
+<span class="fc" id="L80">  private UserRole(String code) {</span>
+<span class="fc" id="L81">    this.code = code;</span>
+<span class="fc" id="L82">  }</span>
 
   /**
    * Code.
