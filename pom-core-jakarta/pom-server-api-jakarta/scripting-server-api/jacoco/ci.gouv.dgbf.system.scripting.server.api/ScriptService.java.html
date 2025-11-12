@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.enumeration.StringFormat;
 import ci.gouv.dgbf.extension.core.enumeration.ValueType;
+import ci.gouv.dgbf.extension.core.segregation.HasMessageDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
@@ -14,6 +15,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractIdentifiablesResponseDto.OrderedIdentifierDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.EvaluateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
@@ -176,7 +178,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L179">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L181">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -224,7 +226,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L227">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
+<span class="fc" id="L229">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ScriptDto&gt; datas;
@@ -313,7 +315,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L316">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L318">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -361,7 +363,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L364">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L366">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(ScriptSaveRequestDto.JSON_TEXT)
     private String text;
   }
@@ -424,7 +426,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L427">  class ScriptEvaluateRequestDto extends EvaluateRequestDto {</span>
+<span class="fc" id="L429">  class ScriptEvaluateRequestDto extends EvaluateRequestDto {</span>
 
   }
 
@@ -436,7 +438,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L439">  class ScriptEvaluateResponseDto extends EvaluateResponseDto {</span>
+<span class="fc" id="L441">  class ScriptEvaluateResponseDto extends EvaluateResponseDto {</span>
 
   }
 
@@ -473,7 +475,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L476">  class ScriptEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L478">  class ScriptEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
     /**
      * Collection de {@link GroupDto}.
      */
@@ -495,11 +497,11 @@ public interface ScriptService extends SpecificService {
      */
     public void addGroup(int orderNumber, Collection&lt;String&gt; scriptIdentifiers,
         Map&lt;String, Object&gt; arguments) {
-<span class="fc" id="L498">      GroupDto group = group();</span>
-<span class="fc" id="L499">      group.orderNumber = orderNumber;</span>
-<span class="fc" id="L500">      group.addScriptIdentifiers(scriptIdentifiers);</span>
-<span class="fc" id="L501">      group.arguments = arguments;</span>
-<span class="fc" id="L502">    }</span>
+<span class="fc" id="L500">      GroupDto group = group();</span>
+<span class="fc" id="L501">      group.orderNumber = orderNumber;</span>
+<span class="fc" id="L502">      group.addScriptIdentifiers(scriptIdentifiers);</span>
+<span class="fc" id="L503">      group.arguments = arguments;</span>
+<span class="fc" id="L504">    }</span>
 
     /**
      * Cette méthode permet d'ajouter {@link GroupDto}.
@@ -508,9 +510,9 @@ public interface ScriptService extends SpecificService {
      * @param arguments arguments
      */
     public void addGroup(Collection&lt;String&gt; scriptIdentifiers, Map&lt;String, Object&gt; arguments) {
-<span class="fc" id="L511">      addGroup(Optional.ofNullable(groups).orElse(Collections.emptyList()).size(),</span>
+<span class="fc" id="L513">      addGroup(Optional.ofNullable(groups).orElse(Collections.emptyList()).size(),</span>
           scriptIdentifiers, arguments);
-<span class="fc" id="L513">    }</span>
+<span class="fc" id="L515">    }</span>
 
     /**
      * Cette méthode permet d'obtenir une collection de groupe non nulle.
@@ -518,10 +520,10 @@ public interface ScriptService extends SpecificService {
      * @return collection de groupe non nulle
      */
     public Collection&lt;GroupDto&gt; groups() {
-<span class="fc bfc" id="L521" title="All 2 branches covered.">      if (groups == null) {</span>
-<span class="fc" id="L522">        groups = new ArrayList&lt;GroupDto&gt;();</span>
+<span class="fc bfc" id="L523" title="All 2 branches covered.">      if (groups == null) {</span>
+<span class="fc" id="L524">        groups = new ArrayList&lt;&gt;();</span>
       }
-<span class="fc" id="L524">      return groups;</span>
+<span class="fc" id="L526">      return groups;</span>
     }
 
     /**
@@ -530,9 +532,9 @@ public interface ScriptService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto group() {
-<span class="fc" id="L533">      GroupDto group = new GroupDto();</span>
-<span class="fc" id="L534">      groups().add(group);</span>
-<span class="fc" id="L535">      return group;</span>
+<span class="fc" id="L535">      GroupDto group = new GroupDto();</span>
+<span class="fc" id="L536">      groups().add(group);</span>
+<span class="fc" id="L537">      return group;</span>
     }
 
     /**
@@ -553,7 +555,7 @@ public interface ScriptService extends SpecificService {
      */
     @Getter
     @Setter
-<span class="fc" id="L556">    public static class GroupDto {</span>
+<span class="fc" id="L558">    public static class GroupDto {</span>
       /**
        * Numéro d'ordre.
        */
@@ -578,10 +580,10 @@ public interface ScriptService extends SpecificService {
        * @param identifiers identifiants de {@link ScriptDto}
        */
       public void addScriptIdentifiers(Collection&lt;String&gt; identifiers) {
-<span class="fc" id="L581">        Optional.ofNullable(identifiers).orElse(Collections.emptyList()).forEach(identifier -&gt; {</span>
-<span class="fc" id="L582">          scriptIdentifiers().put(identifier, scriptIdentifiers.size());</span>
-<span class="fc" id="L583">        });</span>
-<span class="fc" id="L584">      }</span>
+<span class="fc" id="L583">        Optional.ofNullable(identifiers).orElse(Collections.emptyList()).forEach(identifier -&gt; {</span>
+<span class="fc" id="L584">          scriptIdentifiers().put(identifier, scriptIdentifiers.size());</span>
+<span class="fc" id="L585">        });</span>
+<span class="fc" id="L586">      }</span>
 
       /**
        * Cette méthode permet d'obtenir une carte non nulle.
@@ -589,10 +591,10 @@ public interface ScriptService extends SpecificService {
        * @return carte non nulle
        */
       public Map&lt;String, Integer&gt; scriptIdentifiers() {
-<span class="fc bfc" id="L592" title="All 2 branches covered.">        if (scriptIdentifiers == null) {</span>
-<span class="fc" id="L593">          scriptIdentifiers = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L594" title="All 2 branches covered.">        if (scriptIdentifiers == null) {</span>
+<span class="fc" id="L595">          scriptIdentifiers = new HashMap&lt;&gt;();</span>
         }
-<span class="fc" id="L595">        return scriptIdentifiers;</span>
+<span class="fc" id="L597">        return scriptIdentifiers;</span>
       }
 
       /**
@@ -619,7 +621,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L622">  class ScriptEvaluateManyResponseDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L624">  class ScriptEvaluateManyResponseDto extends AbstractResponseDto {</span>
 
     /**
      * Collection de {@link GroupDto}.
@@ -634,8 +636,8 @@ public interface ScriptService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto getGroupByOrderNumber(Integer orderNumber) {
-<span class="fc" id="L637">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
-<span class="pc" id="L638">          .filter(group -&gt; Objects.equals(group.orderNumber, orderNumber)).findFirst().orElse(null);</span>
+<span class="fc" id="L639">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L640">          .filter(group -&gt; Objects.equals(group.orderNumber, orderNumber)).findFirst().orElse(null);</span>
     }
 
     /**
@@ -647,7 +649,7 @@ public interface ScriptService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(of = {&quot;orderNumber&quot;})
-<span class="fc" id="L650">    public static class GroupDto {</span>
+<span class="fc" id="L652">    public static class GroupDto {</span>
       /**
        * Numéro d'ordre.
        */
@@ -667,11 +669,23 @@ public interface ScriptService extends SpecificService {
        * @return {@link ResultDto}
        */
       public ResultDto getResultByOrderNumber(Integer orderNumber) {
-<span class="fc" id="L670">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
-<span class="pc" id="L671">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
-<span class="fc" id="L672">            .orElse(null);</span>
+<span class="fc" id="L672">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L673">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
+<span class="fc" id="L674">            .orElse(null);</span>
       }
 
+      /**
+       * Cette méthode permet d'obtenir {@link ResultDto} par identifiant.
+       *
+       * @param identifier identifiant
+       * @return {@link ResultDto}
+       */
+      public ResultDto getResultByIdentifier(String identifier) {
+<span class="fc" id="L684">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L685">            .filter(result -&gt; Objects.equals(result.getIdentifier(), identifier)).findFirst()</span>
+<span class="fc" id="L686">            .orElse(null);</span>
+      }
+      
       /**
        * Identifiant json {@link #orderNumber}.
        */
@@ -704,7 +718,7 @@ public interface ScriptService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L707">    public static class ResultDto extends OrderedIdentifierDto {</span>
+<span class="fc" id="L721">    public static class ResultDto extends OrderedIdentifierDto implements HasMessageDto {</span>
       /**
        * Représentation en chaine de caractères de la valeur.
        */
@@ -723,6 +737,8 @@ public interface ScriptService extends SpecificService {
       @JsonbProperty(JSON_VALUE_AS_BOOLEAN)
       private Boolean valueAsBoolean;
 
+      private String message;
+      
       /**
        * Identifiant json {@link #valueAsString}.
        */
