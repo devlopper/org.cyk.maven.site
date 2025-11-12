@@ -641,6 +641,17 @@ public interface ScriptService extends SpecificService {
     }
 
     /**
+     * Cette méthode permet d'obtenir {@link ResultDto} par numéro d'ordre.
+     *
+     * @param orderNumber numéro d'ordre
+     * @return Collection de {@link ResultDto}
+     */
+    public Collection&lt;ResultDto&gt; getGroupResultsByOrderNumber(Integer orderNumber) {
+<span class="fc" id="L650">      GroupDto group = getGroupByOrderNumber(orderNumber);</span>
+<span class="fc" id="L651">      return Optional.ofNullable(group).map(GroupDto::getResults).orElse(Collections.emptyList());</span>
+    }
+    
+    /**
      * Cette classe représente un groupe.
      *
      * @author Christian
@@ -649,7 +660,7 @@ public interface ScriptService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(of = {&quot;orderNumber&quot;})
-<span class="fc" id="L652">    public static class GroupDto {</span>
+<span class="fc" id="L663">    public static class GroupDto {</span>
       /**
        * Numéro d'ordre.
        */
@@ -669,9 +680,9 @@ public interface ScriptService extends SpecificService {
        * @return {@link ResultDto}
        */
       public ResultDto getResultByOrderNumber(Integer orderNumber) {
-<span class="fc" id="L672">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
-<span class="pc" id="L673">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
-<span class="fc" id="L674">            .orElse(null);</span>
+<span class="fc" id="L683">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L684">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
+<span class="fc" id="L685">            .orElse(null);</span>
       }
 
       /**
@@ -681,9 +692,9 @@ public interface ScriptService extends SpecificService {
        * @return {@link ResultDto}
        */
       public ResultDto getResultByIdentifier(String identifier) {
-<span class="fc" id="L684">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
-<span class="pc" id="L685">            .filter(result -&gt; Objects.equals(result.getIdentifier(), identifier)).findFirst()</span>
-<span class="fc" id="L686">            .orElse(null);</span>
+<span class="fc" id="L695">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L696">            .filter(result -&gt; Objects.equals(result.getIdentifier(), identifier)).findFirst()</span>
+<span class="fc" id="L697">            .orElse(null);</span>
       }
       
       /**
@@ -718,7 +729,7 @@ public interface ScriptService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L721">    public static class ResultDto extends OrderedIdentifierDto implements HasMessageDto {</span>
+<span class="fc" id="L732">    public static class ResultDto extends OrderedIdentifierDto implements HasMessageDto {</span>
       /**
        * Représentation en chaine de caractères de la valeur.
        */
