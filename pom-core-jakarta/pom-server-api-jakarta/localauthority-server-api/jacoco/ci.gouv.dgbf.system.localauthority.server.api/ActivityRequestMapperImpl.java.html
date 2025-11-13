@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-11-13T11:00:04+0000&quot;,
+    date = &quot;2025-11-13T19:08:16+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -33,63 +33,65 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L33">        activityCreateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
 <span class="fc" id="L34">        activityCreateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
 <span class="fc" id="L35">        activityCreateRequestDto.setBeneficiaryIdentifier( arg0.getBeneficiaryIdentifier() );</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
-<span class="fc" id="L37">            activityCreateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L36">        activityCreateRequestDto.setExpertiseDomainIdentifier( arg0.getExpertiseDomainIdentifier() );</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
+<span class="fc" id="L38">            activityCreateRequestDto.setAmount( arg0.getAmount() );</span>
         }
-<span class="fc" id="L39">        activityCreateRequestDto.setCategoryEnum( arg0.getCategoryEnum() );</span>
-<span class="fc" id="L40">        activityCreateRequestDto.setDescription( arg0.getDescription() );</span>
-<span class="fc" id="L41">        activityCreateRequestDto.setJustification( arg0.getJustification() );</span>
-<span class="fc" id="L42">        activityCreateRequestDto.setReferencedActivityIdentifier( arg0.getReferencedActivityIdentifier() );</span>
-<span class="fc" id="L43">        activityCreateRequestDto.setPndReference( arg0.getPndReference() );</span>
-<span class="fc" id="L44">        activityCreateRequestDto.setEventualReference( arg0.getEventualReference() );</span>
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if ( arg0.getGuaranteeRetention() != null ) {</span>
-<span class="fc" id="L46">            activityCreateRequestDto.setGuaranteeRetention( arg0.getGuaranteeRetention() );</span>
+<span class="fc" id="L40">        activityCreateRequestDto.setCategoryEnum( arg0.getCategoryEnum() );</span>
+<span class="fc" id="L41">        activityCreateRequestDto.setDescription( arg0.getDescription() );</span>
+<span class="fc" id="L42">        activityCreateRequestDto.setJustification( arg0.getJustification() );</span>
+<span class="fc" id="L43">        activityCreateRequestDto.setReferencedActivityIdentifier( arg0.getReferencedActivityIdentifier() );</span>
+<span class="fc" id="L44">        activityCreateRequestDto.setPndReference( arg0.getPndReference() );</span>
+<span class="fc" id="L45">        activityCreateRequestDto.setEventualReference( arg0.getEventualReference() );</span>
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        if ( arg0.getGuaranteeRetention() != null ) {</span>
+<span class="fc" id="L47">            activityCreateRequestDto.setGuaranteeRetention( arg0.getGuaranteeRetention() );</span>
         }
-<span class="fc" id="L48">        activityCreateRequestDto.setYearBudgetBeforeCarryover( arg0.getYearBudgetBeforeCarryover() );</span>
-<span class="fc" id="L49">        activityCreateRequestDto.setPlannedPaymentYear( arg0.getPlannedPaymentYear() );</span>
-<span class="fc" id="L50">        activityCreateRequestDto.setDuration( arg0.getDuration() );</span>
-<span class="fc" id="L51">        activityCreateRequestDto.setExpectedImpact( arg0.getExpectedImpact() );</span>
-<span class="fc" id="L52">        activityCreateRequestDto.setObservation( arg0.getObservation() );</span>
+<span class="fc" id="L49">        activityCreateRequestDto.setYearBudgetBeforeCarryover( arg0.getYearBudgetBeforeCarryover() );</span>
+<span class="fc" id="L50">        activityCreateRequestDto.setPlannedPaymentYear( arg0.getPlannedPaymentYear() );</span>
+<span class="fc" id="L51">        activityCreateRequestDto.setDuration( arg0.getDuration() );</span>
+<span class="fc" id="L52">        activityCreateRequestDto.setExpectedImpact( arg0.getExpectedImpact() );</span>
+<span class="fc" id="L53">        activityCreateRequestDto.setObservation( arg0.getObservation() );</span>
 
-<span class="fc" id="L54">        return activityCreateRequestDto;</span>
+<span class="fc" id="L55">        return activityCreateRequestDto;</span>
     }
 
     @Override
     public ActivityService.ActivityUpdateRequestDto mapUpdate(ActivityDto arg0) {
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L60">            return null;</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L61">            return null;</span>
         }
 
-<span class="fc" id="L63">        ActivityService.ActivityUpdateRequestDto activityUpdateRequestDto = new ActivityService.ActivityUpdateRequestDto();</span>
+<span class="fc" id="L64">        ActivityService.ActivityUpdateRequestDto activityUpdateRequestDto = new ActivityService.ActivityUpdateRequestDto();</span>
 
-<span class="fc" id="L65">        activityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L66">        activityUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L67">        activityUpdateRequestDto.setLocalAuthorityIdentifier( arg0.getLocalAuthorityIdentifier() );</span>
-<span class="fc" id="L68">        activityUpdateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
-<span class="fc" id="L69">        activityUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
-<span class="fc" id="L70">        activityUpdateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
-<span class="fc" id="L71">        activityUpdateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
-<span class="fc" id="L72">        activityUpdateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
-<span class="fc" id="L73">        activityUpdateRequestDto.setBeneficiaryIdentifier( arg0.getBeneficiaryIdentifier() );</span>
-<span class="fc bfc" id="L74" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
-<span class="fc" id="L75">            activityUpdateRequestDto.setAmount( arg0.getAmount() );</span>
+<span class="fc" id="L66">        activityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L67">        activityUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L68">        activityUpdateRequestDto.setLocalAuthorityIdentifier( arg0.getLocalAuthorityIdentifier() );</span>
+<span class="fc" id="L69">        activityUpdateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
+<span class="fc" id="L70">        activityUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L71">        activityUpdateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
+<span class="fc" id="L72">        activityUpdateRequestDto.setExpenditureNatureIdentifier( arg0.getExpenditureNatureIdentifier() );</span>
+<span class="fc" id="L73">        activityUpdateRequestDto.setWealthAccountIdentifier( arg0.getWealthAccountIdentifier() );</span>
+<span class="fc" id="L74">        activityUpdateRequestDto.setBeneficiaryIdentifier( arg0.getBeneficiaryIdentifier() );</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if ( arg0.getAmount() != null ) {</span>
+<span class="fc" id="L76">            activityUpdateRequestDto.setAmount( arg0.getAmount() );</span>
         }
-<span class="fc" id="L77">        activityUpdateRequestDto.setCategoryEnum( arg0.getCategoryEnum() );</span>
-<span class="fc" id="L78">        activityUpdateRequestDto.setDescription( arg0.getDescription() );</span>
-<span class="fc" id="L79">        activityUpdateRequestDto.setJustification( arg0.getJustification() );</span>
-<span class="fc" id="L80">        activityUpdateRequestDto.setReferencedActivityIdentifier( arg0.getReferencedActivityIdentifier() );</span>
-<span class="fc" id="L81">        activityUpdateRequestDto.setPndReference( arg0.getPndReference() );</span>
-<span class="fc" id="L82">        activityUpdateRequestDto.setEventualReference( arg0.getEventualReference() );</span>
-<span class="fc bfc" id="L83" title="All 2 branches covered.">        if ( arg0.getGuaranteeRetention() != null ) {</span>
-<span class="fc" id="L84">            activityUpdateRequestDto.setGuaranteeRetention( arg0.getGuaranteeRetention() );</span>
+<span class="fc" id="L78">        activityUpdateRequestDto.setCategoryEnum( arg0.getCategoryEnum() );</span>
+<span class="fc" id="L79">        activityUpdateRequestDto.setDescription( arg0.getDescription() );</span>
+<span class="fc" id="L80">        activityUpdateRequestDto.setJustification( arg0.getJustification() );</span>
+<span class="fc" id="L81">        activityUpdateRequestDto.setReferencedActivityIdentifier( arg0.getReferencedActivityIdentifier() );</span>
+<span class="fc" id="L82">        activityUpdateRequestDto.setPndReference( arg0.getPndReference() );</span>
+<span class="fc" id="L83">        activityUpdateRequestDto.setEventualReference( arg0.getEventualReference() );</span>
+<span class="fc" id="L84">        activityUpdateRequestDto.setExpertiseDomainIdentifier( arg0.getExpertiseDomainIdentifier() );</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        if ( arg0.getGuaranteeRetention() != null ) {</span>
+<span class="fc" id="L86">            activityUpdateRequestDto.setGuaranteeRetention( arg0.getGuaranteeRetention() );</span>
         }
-<span class="fc" id="L86">        activityUpdateRequestDto.setYearBudgetBeforeCarryover( arg0.getYearBudgetBeforeCarryover() );</span>
-<span class="fc" id="L87">        activityUpdateRequestDto.setPlannedPaymentYear( arg0.getPlannedPaymentYear() );</span>
-<span class="fc" id="L88">        activityUpdateRequestDto.setDuration( arg0.getDuration() );</span>
-<span class="fc" id="L89">        activityUpdateRequestDto.setExpectedImpact( arg0.getExpectedImpact() );</span>
-<span class="fc" id="L90">        activityUpdateRequestDto.setObservation( arg0.getObservation() );</span>
+<span class="fc" id="L88">        activityUpdateRequestDto.setYearBudgetBeforeCarryover( arg0.getYearBudgetBeforeCarryover() );</span>
+<span class="fc" id="L89">        activityUpdateRequestDto.setPlannedPaymentYear( arg0.getPlannedPaymentYear() );</span>
+<span class="fc" id="L90">        activityUpdateRequestDto.setDuration( arg0.getDuration() );</span>
+<span class="fc" id="L91">        activityUpdateRequestDto.setExpectedImpact( arg0.getExpectedImpact() );</span>
+<span class="fc" id="L92">        activityUpdateRequestDto.setObservation( arg0.getObservation() );</span>
 
-<span class="fc" id="L92">        return activityUpdateRequestDto;</span>
+<span class="fc" id="L94">        return activityUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -335,6 +335,21 @@ public interface ActivityService extends SpecificService {
      */
     void setBeneficiaryIdentifier(String identifier);
 
+
+    /**
+     * Cette méthode permet d'obtenir l'identitant de {@link ExpertiseDomainDto}.
+     *
+     * @return identifiant de {@link ExpertiseDomainDto}
+     */
+    String getExpertiseDomainIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ExpertiseDomainDto}.
+     *
+     * @param identifier identifiant de {@link ExpertiseDomainDto}
+     */
+    void setExpertiseDomainIdentifier(String identifier);
+
     /**
      * Cette méthode permet d'obtenir le montant.
      *
@@ -567,6 +582,12 @@ public interface ActivityService extends SpecificService {
      */
     public static final String JSON_BENEFICIARY_IDENTIFIER =
         ActivityDto.JSON_BENEFICIARY_IDENTIFIER;
+
+    /**
+     * Identifiant json du champ de l'identitant de {@link ExpertiseDomainDto}.
+     */
+    public static final String JSON_EXPERTISE_DOMAIN_IDENTIFIER =
+        ActivityDto.JSON_EXPERTISE_DOMAIN_IDENTIFIER;
     /**
      * Identifiant json du champ de l'identitant de {@link LocalAuthorityDto}.
      */
@@ -650,7 +671,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L653">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L674">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -673,6 +694,9 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_BENEFICIARY_IDENTIFIER)
     private String beneficiaryIdentifier;
+
+    @JsonbProperty(JSON_EXPERTISE_DOMAIN_IDENTIFIER)
+    private String expertiseDomainIdentifier;
 
     @JsonbProperty(JSON_AMOUNT)
     private long amount;
@@ -724,7 +748,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L727">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L751">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -737,7 +761,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L740">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L764">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -784,6 +808,10 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(TRIENNIAL_PROGRAM_IDENTIFIER)
     private String triennialProgramIdentifier;
+
+
+    @JsonbProperty(JSON_EXPERTISE_DOMAIN_IDENTIFIER)
+    private String expertiseDomainIdentifier;
 
     @JsonbProperty(JSON_GUARANTEE_RETENTION)
     private long guaranteeRetention;
