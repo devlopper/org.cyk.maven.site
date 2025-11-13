@@ -39,47 +39,67 @@ public enum UserRole implements CodableByStringWithGetterOnly {
 <span class="fc" id="L39">  TRANSMIT_PAYROLL_FOR_CONTROL(&quot;TRANSMETTRE_PAIE_POUR_CONTROLE&quot;),</span>
 
   /**
+   * Contrôler {@link PayrollDto}.
+   */
+<span class="fc" id="L44">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
+
+  /**
    * Calculer {@link PayrollDto}.
    */
-<span class="fc" id="L44">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
-  
-  /**
-   * Côntroler {@link PayrollDto}.
-   */
-<span class="fc" id="L49">  CONTROL_PAYROLL(&quot;CONTROLER_PAIE&quot;),</span>
+<span class="fc" id="L49">  CALCULATE_PAYROLL(&quot;CALCULER_PAIE&quot;),</span>
 
   /**
    * Transmettre {@link PayrollDto} pour ajustement.
    */
-<span class="fc" id="L54">  TRANSMIT_PAYROLL_FOR_ADJUSTMENT(&quot;VALIDER_PAIE&quot;),</span>
+<span class="fc" id="L54">  TRANSMIT_PAYROLL_FOR_ADJUSTMENT(&quot;TRANSMETTRE_PAIE_POUR_ARBITRAGE&quot;),</span>
+
+  /**
+   * Cloturer {@link PayrollDto}.
+   */
+<span class="fc" id="L59">  CLOSE_PAYROLL(&quot;CLOTURER_PAIE&quot;),</span>
 
   // Bulletin
 
   /**
    * Gérer {@link PayslipDto}.
    */
-<span class="fc" id="L61">  MANAGE_PAYSLIP(&quot;GERER_BULLETIN&quot;),</span>
+<span class="fc" id="L66">  MANAGE_PAYSLIP(&quot;GERER_BULLETIN_PAIE&quot;),</span>
+
+  /**
+   * Transmettre {@link PayslipDto} pour contrôle.
+   */
+<span class="fc" id="L71">  TRANSMIT_PAYSLIP_FOR_CONTROL(&quot;TRANSMETTRE_BULLETIN_PAIE_POUR_CONTROLE&quot;),</span>
 
   /**
    * Contrôler {@link PayslipDto}.
    */
-<span class="fc" id="L66">  CONTROL_PAYSLIP(&quot;CONTROLER_BULLETIN&quot;),</span>
+<span class="fc" id="L76">  CONTROL_PAYSLIP(&quot;CONTROLER_BULLETIN_PAIE&quot;),</span>
+
+  /**
+   * Accpeter {@link PayslipDto}.
+   */
+<span class="fc" id="L81">  ACCEPT_PAYSLIP(&quot;ACCEPTER_BULLETIN_PAIE&quot;),</span>
 
   /**
    * Calculer {@link PayslipDto}.
    */
-<span class="fc" id="L71">  CALCULATE_PAYSLIP(&quot;CALCULER_BULLETIN&quot;),</span>
+<span class="fc" id="L86">  CALCULATE_PAYSLIP(&quot;CALCULER_BULLETIN_PAIE&quot;),</span>
 
   /**
    * Valider {@link PayslipDto}.
    */
-<span class="fc" id="L76">  VALIDATE_PAYSLIP(&quot;VALIDER_BULLETIN&quot;)</span>
+<span class="fc" id="L91">  VALIDATE_PAYSLIP(&quot;VALIDER_BULLETIN_PAIE&quot;),</span>
+
+  /**
+   * Transmettre {@link PayslipDto} pour ajustement.
+   */
+<span class="fc" id="L96">  TRANSMIT_PAYSLIP_FOR_ADJUSTMENT(&quot;TRANSMETTRE_BULLETIN_PAIE_POUR_ARBITRAGE&quot;)</span>
 
   ;
 
-<span class="fc" id="L80">  private UserRole(String code) {</span>
-<span class="fc" id="L81">    this.code = code;</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L100">  private UserRole(String code) {</span>
+<span class="fc" id="L101">    this.code = code;</span>
+<span class="fc" id="L102">  }</span>
 
   /**
    * Code.
