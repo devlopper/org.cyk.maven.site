@@ -1,22 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PersonType.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de collectivité térritoriale</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.localauthority.server.api</a> &gt; <span class="el_source">PersonType.java</span></div><h1>PersonType.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.localauthority.server.api;
 
+import java.util.Arrays;
+import lombok.Getter;
+
 /**
  * Cette énumeration représente les types de personnes (Personnalité juridique).
  *
  * @author Desysoft
  *
  */
-<span class="fc" id="L9">public enum PersonType {</span>
+<span class="fc" id="L12">@Getter</span>
+public enum PersonType {
 
   /**
    * Personne physique.
    */
-<span class="fc" id="L14">  NATURAL_PERSON,</span>
-  
+<span class="fc" id="L18">  NATURAL_PERSON(PersonTypeCode.NATURAL_PERSON, &quot;Personne physique&quot;),</span>
+
   /**
    * Personne morale.
    */
-<span class="fc" id="L19">  LEGAL_PERSON</span>
-  ;
+<span class="fc" id="L23">  LEGAL_PERSON(PersonTypeCode.LEGAL_PERSON, &quot;Personne morale&quot;);</span>
+
+  private String code;
+  private String label;
+
+<span class="fc" id="L28">  PersonType(String code, String label) {</span>
+<span class="fc" id="L29">    this.code = code;</span>
+<span class="fc" id="L30">    this.label = label;</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * Trouve l'enum par son code.
+   *
+   * @param code le code (ex: &quot;PERSONNE_PHYSIQUE&quot;)
+   * @return l'enum correspondant ou null
+   */
+  public static PersonType fromCode(String code) {
+<span class="fc bfc" id="L40" title="All 2 branches covered.">    if (code == null) {</span>
+<span class="fc" id="L41">      return null;</span>
+    }
+<span class="fc" id="L43">    return Arrays.stream(values())</span>
+<span class="fc" id="L44">        .filter(type -&gt; type.code.equals(code))</span>
+<span class="fc" id="L45">        .findFirst()</span>
+<span class="fc" id="L46">        .orElse(null);</span>
+  }
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

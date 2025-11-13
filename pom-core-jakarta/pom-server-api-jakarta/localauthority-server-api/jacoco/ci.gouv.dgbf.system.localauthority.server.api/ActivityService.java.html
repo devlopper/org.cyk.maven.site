@@ -494,6 +494,51 @@ public interface ActivityService extends SpecificService {
 
 
     /**
+     * Cette méthode permet d'obtenir la durée.
+     *
+     * @return la durée de {@link ActivityDto}
+     */
+    String getDuration();
+
+    /**
+     * Cette méthode permet d'assigner la durée.
+     *
+     * @param duration durée
+     */
+    void setDuration(String duration);
+
+
+    /**
+     * Cette méthode permet d'assigner l'impact attendu.
+     *
+     * @param expectedImpact impact attendu
+     */
+    void setExpectedImpact(String expectedImpact);
+
+    /**
+     * Cette méthode permet d'obtenir l'impact attendu.
+     *
+     * @return l'impact attendu de {@link ActivityDto}
+     */
+    String getExpectedImpact();
+
+
+    /**
+     * Cette méthode permet d'assigner l'observation.
+     *
+     * @param observation bservation
+     */
+    void setObservation(String observation);
+
+    /**
+     * Cette méthode permet d'obtenir l'impact attendu.
+     *
+     * @return l'observation de {@link ActivityDto}
+     */
+    String getObservation();
+
+
+    /**
      * Identifiant json du champ de l'identitant de {@link ActivityNatureDto}.
      */
     public static final String JSON_NATURE_IDENTIFIER = ActivityDto.JSON_NATURE_IDENTIFIER;
@@ -579,6 +624,23 @@ public interface ActivityService extends SpecificService {
     String JSON_PLANNED_PAYMENT_YEAR = &quot;anneePrevisionnelPaiement&quot;;
 
 
+    /**
+     * Identifiant json de la durée.
+     */
+    String JSON_DURATION = &quot;duree&quot;;
+
+    /**
+     * Identifiant json de l'impact attendu.
+     */
+    String JSON_EXPECTED_IMPACT = &quot;impactAttendu&quot;;
+
+
+    /**
+     * Identifiant json des observations sur l'action ou l'opération.
+     */
+    String JSON_OBSERVATION = &quot;observations&quot;;
+
+
   }
 
   /**
@@ -588,7 +650,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L591">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L653">  class ActivityCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -644,6 +706,15 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_PLANNED_PAYMENT_YEAR)
     private Integer plannedPaymentYear;
+
+    @JsonbProperty(JSON_DURATION)
+    private String duration;
+
+    @JsonbProperty(JSON_EXPECTED_IMPACT)
+    private String expectedImpact;
+
+    @JsonbProperty(JSON_OBSERVATION)
+    private String observation;
   }
 
   /**
@@ -653,7 +724,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L656">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
+<span class="fc" id="L727">  public static class ActivityGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ActivityDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ActivityDto&gt; datas;
@@ -666,7 +737,7 @@ public interface ActivityService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L669">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L740">  class ActivityUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ActivitySaveRequestDto {
 
     @JsonbProperty(JSON_LOCAL_AUTHORITY_IDENTIFIER)
@@ -722,6 +793,15 @@ public interface ActivityService extends SpecificService {
 
     @JsonbProperty(JSON_PLANNED_PAYMENT_YEAR)
     private Integer plannedPaymentYear;
+
+    @JsonbProperty(JSON_DURATION)
+    private String duration;
+
+    @JsonbProperty(JSON_EXPECTED_IMPACT)
+    private String expectedImpact;
+
+    @JsonbProperty(JSON_OBSERVATION)
+    private String observation;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

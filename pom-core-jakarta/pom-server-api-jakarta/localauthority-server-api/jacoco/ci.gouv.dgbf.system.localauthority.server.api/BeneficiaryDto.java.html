@@ -17,7 +17,15 @@ import lombok.Setter;
   /**
    * Type de personne.
    */
-  private PersonType personTypeEnum;
+  @JsonbProperty(JSON_PERSON_TYPE)
+  private PersonType personType;
+
+
+  /**
+   * Type de personne chaine.
+   */
+  @JsonbProperty(JSON_PERSON_TYPE_AS_STRING)
+  private String personTypeAsString;
 
   /**
    * Relevé d’identité bancaire (RIB).
@@ -68,9 +76,14 @@ import lombok.Setter;
   public static final String JSON_SUPPORTING_DOCUMENT = &quot;documentJustificatif&quot;;
 
   /**
-   * Identifiant json {@link #personTypeEnum}.
+   * Identifiant json {@link #personType}.
    */
-  public static final String JSON_PERSON_TYPE = &quot;personType&quot;;
+  public static final String JSON_PERSON_TYPE = &quot;typeDePersonne&quot;;
+
+  /**
+   * Identifiant json {@link #personTypeAsString}.
+   */
+  public static final String JSON_PERSON_TYPE_AS_STRING = &quot;typeDePersonneChaine&quot;;
 
 
   /**
