@@ -2,8 +2,11 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasFromDateDto;
+import ci.gouv.dgbf.extension.core.segregation.HasIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasNameDto;
 import ci.gouv.dgbf.extension.core.segregation.HasToDateDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
@@ -12,6 +15,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -24,7 +28,12 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -107,7 +116,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L110">  class ConstantGroupCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L119">  class ConstantGroupCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ConstantGroupSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -147,7 +156,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  public static class ConstantGroupGetManyResponseDto</span>
+<span class="fc" id="L159">  public static class ConstantGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConstantGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -237,7 +246,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L240">  class ConstantGroupUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L249">  class ConstantGroupUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ConstantGroupSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -302,7 +311,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L305">  class ConstantGroupEvaluateContextualConstantsRequestDto extends EvaluateRequestDto</span>
+<span class="fc" id="L314">  class ConstantGroupEvaluateContextualConstantsRequestDto extends EvaluateRequestDto</span>
       implements HasFromDateDto&lt;LocalDateTime&gt;, HasToDateDto&lt;LocalDateTime&gt; {
 
     /**
@@ -310,13 +319,13 @@ public interface ConstantGroupService extends SpecificService {
      */
     @JsonbProperty(JSON_GROUP_NAME)
     private String groupName;
-    
+
     @JsonbProperty(JSON_FROM_DATE)
     private LocalDateTime fromDate;
 
     @JsonbProperty(JSON_TO_DATE)
     private LocalDateTime toDate;
-    
+
     /**
      * Identifiant json de {@link #groupName}.
      */
@@ -331,7 +340,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L334">  class ConstantGroupEvaluateContextualConstantsResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L343">  class ConstantGroupEvaluateContextualConstantsResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Identifiant {@link ContextualConstantEvaluationGroupDto}.
@@ -344,6 +353,151 @@ public interface ConstantGroupService extends SpecificService {
      */
     public static final String JSON_CONTEXTUAL_CONSTANT_EVALUATION_GROUP_IDENTIFIER =
         ContextualConstantEvaluationGroupDto.JSON_THIS_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service d'évaluation des constantes contextuelles.
+   */
+  String EVALUATE_MANY_CONTEXTUAL_CONSTANTS_IDENTIFIER =
+      &quot;EVALUATION_PLUSIEURS_CONSTANTES_CONTEXTUELLES&quot;;
+
+  /**
+   * Chemin du service d'évaluation des constantes contextuelles.
+   */
+  String EVALUATE_MANY_CONTEXTUAL_CONSTANTS_PATH = &quot;evaluations-constantes-contextuelles&quot;;
+
+  /**
+   * Cette méthode permet d'évaluer des constantes contextuelles.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EVALUATE_MANY_CONTEXTUAL_CONSTANTS_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = EVALUATE_MANY_CONTEXTUAL_CONSTANTS_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {@Content(schema = @Schema(
+      implementation = ConstantGroupEvaluateManyContextualConstantsResponseDto.class))})
+  Response evaluateManyContextualConstants(
+      ConstantGroupEvaluateManyContextualConstantsRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'évaluation des constantes contextuelles.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L393">  class ConstantGroupEvaluateManyContextualConstantsRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements HasFromDateDto&lt;LocalDateTime&gt;, HasToDateDto&lt;LocalDateTime&gt; {
+
+    /**
+     * Collection de {@link GroupDto}.
+     */
+    @JsonbProperty(&quot;groupes&quot;)
+    private Collection&lt;GroupDto&gt; groups;
+
+    @JsonbProperty(JSON_FROM_DATE)
+    private LocalDateTime fromDate;
+
+    @JsonbProperty(JSON_TO_DATE)
+    private LocalDateTime toDate;
+
+    /**
+     * Cette méthode permet d'ajouter {@link GroupDto}.
+     *
+     * @param identifier identifiant
+     * @param name nom
+     * @return {@link GroupDto}
+     */
+    public GroupDto addGroup(String identifier, String name) {
+<span class="fc" id="L416">      GroupDto group = new GroupDto();</span>
+<span class="fc" id="L417">      group.identifier = identifier;</span>
+<span class="fc" id="L418">      group.name = name;</span>
+<span class="fc" id="L419">      groups().add(group);</span>
+<span class="fc" id="L420">      return group;</span>
+    }
+    
+    /**
+     * Cette méthode permet d'obtenir une collection de groupe non nulle.
+     *
+     * @return collection de groupe non nulle
+     */
+    public Collection&lt;GroupDto&gt; groups() {
+<span class="fc" id="L429">      groups = Optional.ofNullable(groups).orElseGet(ArrayList::new);</span>
+<span class="fc" id="L430">      return groups;</span>
+    }
+
+    /**
+     * Cette méthode permet d'obtenir {@link GroupDto} par identifiant.
+     *
+     * @param identifier identifiant
+     * @return {@link GroupDto}
+     */
+    public GroupDto getGroupByIdentifier(String identifier) {
+<span class="fc" id="L440">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
+<span class="fc" id="L441">          .filter(group -&gt; Objects.equals(group.identifier, identifier)).findFirst().orElse(null);</span>
+    }
+
+    /**
+     * Cette classe représente un groupe de constante.
+     *
+     * @author Christian
+     */
+    @Getter
+    @Setter
+<span class="fc" id="L451">    public static class GroupDto implements HasIdentifierDto, HasNameDto {</span>
+
+      @JsonbProperty(JSON_IDENTIFIER)
+      private String identifier;
+
+      @JsonbProperty(JSON_NAME)
+      private String name;
+    }
+  }
+
+  /**
+   * Cette classe représente la réponse d'évaluation des constantes contextuelles.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L469">  class ConstantGroupEvaluateManyContextualConstantsResponseDto extends AbstractResponseDto {</span>
+
+    /**
+     * Collection de {@link GroupDto}.
+     */
+    @JsonbProperty(&quot;groupes&quot;)
+    private Collection&lt;GroupDto&gt; groups;
+
+    /**
+     * Cette classe représente un groupe de constante.
+     *
+     * @author Christian
+     */
+    @Getter
+    @Setter
+<span class="fc" id="L484">    public static class GroupDto implements HasIdentifierDto {</span>
+
+      @JsonbProperty(JSON_IDENTIFIER)
+      private String identifier;
+
+      /**
+       * Identifiant {@link ContextualConstantEvaluationGroupDto}.
+       */
+      @JsonbProperty(JSON_CONTEXTUAL_CONSTANT_EVALUATION_GROUP_IDENTIFIER)
+      private String contextualConstantEvaluationGroupIdentifier;
+
+      /**
+       * Identifiant json {@link #contextualConstantEvaluationGroupIdentifier}.
+       */
+      public static final String JSON_CONTEXTUAL_CONSTANT_EVALUATION_GROUP_IDENTIFIER =
+          ContextualConstantEvaluationGroupDto.JSON_THIS_IDENTIFIER;
+    }
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
