@@ -18,9 +18,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L20">public class PayrollDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements PayslipContainerDto {
-
-
+    implements PayslipContainerDto, PayrollIndicatorsDto {
 
   /**
    * Identifiant {@link PayrollPeriodGroupDto}.
@@ -261,21 +259,41 @@ import lombok.Setter;
   @JsonbProperty(JSON_CLOSABLE)
   private Boolean closable;
 
+  /* Indicators */
+  
+  @JsonbProperty(JSON_ENABLED_REMUNERABLE_COUNT_AS_STRING)
+  private String enabledRemunerableCountAsString;
+  
+  @JsonbProperty(JSON_DISABLED_REMUNERABLE_COUNT_AS_STRING)
+  private String disabledRemunerableCountAsString;
+  
+  @JsonbProperty(JSON_CREATED_PAYSLIP_COUNT_AS_STRING)
+  private String createdPayslipCountAsString;
+  
+  @JsonbProperty(JSON_CREATABLE_PAYSLIP_COUNT_AS_STRING)
+  private String creatablePayslipCountAsString;
+  
+  @JsonbProperty(JSON_CALCULABLE_PAYSLIP_COUNT_AS_STRING)
+  private String calculablePayslipCountAsString;
+  
+  @JsonbProperty(JSON_NON_CALCULABLE_PAYSLIP_COUNT_AS_STRING)
+  private String nonCalculablePayslipCountAsString;
+  
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L270">    status = response.getStatus();</span>
-<span class="fc" id="L271">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L272">    initializable = response.getInitializable();</span>
-<span class="fc" id="L273">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L274">    controllable = response.getControllable();</span>
-<span class="fc" id="L275">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
-<span class="fc" id="L276">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L277">    closable = response.getClosable();</span>
-<span class="fc" id="L278">  }</span>
+<span class="fc" id="L288">    status = response.getStatus();</span>
+<span class="fc" id="L289">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L290">    initializable = response.getInitializable();</span>
+<span class="fc" id="L291">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L292">    controllable = response.getControllable();</span>
+<span class="fc" id="L293">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
+<span class="fc" id="L294">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L295">    closable = response.getClosable();</span>
+<span class="fc" id="L296">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
