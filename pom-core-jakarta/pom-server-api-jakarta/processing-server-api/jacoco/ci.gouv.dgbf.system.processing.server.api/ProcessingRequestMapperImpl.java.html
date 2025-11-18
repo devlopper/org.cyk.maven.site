@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-04-14T09:13:37+0000&quot;,
+    date = &quot;2025-11-18T14:15:37+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -31,61 +31,63 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L31">        processingCreateRequestDto.setReason( arg0.getReason() );</span>
 <span class="fc" id="L32">        processingCreateRequestDto.setDate( arg0.getDate() );</span>
 <span class="fc" id="L33">        processingCreateRequestDto.setTotalWorkVolume( arg0.getTotalWorkVolume() );</span>
-<span class="fc" id="L34">        processingCreateRequestDto.setBatchSize( arg0.getBatchSize() );</span>
-<span class="fc" id="L35">        processingCreateRequestDto.setThreadCount( arg0.getThreadCount() );</span>
-<span class="fc" id="L36">        processingCreateRequestDto.setPreviousIdentifier( arg0.getPreviousIdentifier() );</span>
+<span class="fc" id="L34">        processingCreateRequestDto.setCompletedWorkVolume( arg0.getCompletedWorkVolume() );</span>
+<span class="fc" id="L35">        processingCreateRequestDto.setBatchSize( arg0.getBatchSize() );</span>
+<span class="fc" id="L36">        processingCreateRequestDto.setThreadCount( arg0.getThreadCount() );</span>
+<span class="fc" id="L37">        processingCreateRequestDto.setPreviousIdentifier( arg0.getPreviousIdentifier() );</span>
 
-<span class="fc" id="L38">        return processingCreateRequestDto;</span>
+<span class="fc" id="L39">        return processingCreateRequestDto;</span>
     }
 
     @Override
     public ProcessingService.ProcessingUpdateRequestDto mapUpdate(ProcessingDto arg0) {
-<span class="fc bfc" id="L43" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L44">            return null;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L45">            return null;</span>
         }
 
-<span class="fc" id="L47">        ProcessingService.ProcessingUpdateRequestDto processingUpdateRequestDto = new ProcessingService.ProcessingUpdateRequestDto();</span>
+<span class="fc" id="L48">        ProcessingService.ProcessingUpdateRequestDto processingUpdateRequestDto = new ProcessingService.ProcessingUpdateRequestDto();</span>
 
-<span class="fc" id="L49">        processingUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L50">        processingUpdateRequestDto.setDescriptive( arg0.getDescriptive() );</span>
-<span class="fc" id="L51">        processingUpdateRequestDto.setFromDate( arg0.getFromDate() );</span>
-<span class="fc" id="L52">        processingUpdateRequestDto.setToDate( arg0.getToDate() );</span>
-<span class="fc" id="L53">        processingUpdateRequestDto.setReason( arg0.getReason() );</span>
-<span class="fc" id="L54">        processingUpdateRequestDto.setDate( arg0.getDate() );</span>
-<span class="fc" id="L55">        processingUpdateRequestDto.setTotalWorkVolume( arg0.getTotalWorkVolume() );</span>
-<span class="fc" id="L56">        processingUpdateRequestDto.setBatchSize( arg0.getBatchSize() );</span>
-<span class="fc" id="L57">        processingUpdateRequestDto.setThreadCount( arg0.getThreadCount() );</span>
-<span class="fc" id="L58">        processingUpdateRequestDto.setPreviousIdentifier( arg0.getPreviousIdentifier() );</span>
+<span class="fc" id="L50">        processingUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L51">        processingUpdateRequestDto.setDescriptive( arg0.getDescriptive() );</span>
+<span class="fc" id="L52">        processingUpdateRequestDto.setFromDate( arg0.getFromDate() );</span>
+<span class="fc" id="L53">        processingUpdateRequestDto.setToDate( arg0.getToDate() );</span>
+<span class="fc" id="L54">        processingUpdateRequestDto.setReason( arg0.getReason() );</span>
+<span class="fc" id="L55">        processingUpdateRequestDto.setDate( arg0.getDate() );</span>
+<span class="fc" id="L56">        processingUpdateRequestDto.setTotalWorkVolume( arg0.getTotalWorkVolume() );</span>
+<span class="fc" id="L57">        processingUpdateRequestDto.setCompletedWorkVolume( arg0.getCompletedWorkVolume() );</span>
+<span class="fc" id="L58">        processingUpdateRequestDto.setBatchSize( arg0.getBatchSize() );</span>
+<span class="fc" id="L59">        processingUpdateRequestDto.setThreadCount( arg0.getThreadCount() );</span>
+<span class="fc" id="L60">        processingUpdateRequestDto.setPreviousIdentifier( arg0.getPreviousIdentifier() );</span>
 
-<span class="fc" id="L60">        return processingUpdateRequestDto;</span>
+<span class="fc" id="L62">        return processingUpdateRequestDto;</span>
     }
 
     @Override
     public ProcessingService.ProcessingProcessRequestDto mapProcess(ProcessingDto processing) {
-<span class="fc bfc" id="L65" title="All 2 branches covered.">        if ( processing == null ) {</span>
-<span class="fc" id="L66">            return null;</span>
+<span class="fc bfc" id="L67" title="All 2 branches covered.">        if ( processing == null ) {</span>
+<span class="fc" id="L68">            return null;</span>
         }
 
-<span class="fc" id="L69">        ProcessingService.ProcessingProcessRequestDto processingProcessRequestDto = new ProcessingService.ProcessingProcessRequestDto();</span>
+<span class="fc" id="L71">        ProcessingService.ProcessingProcessRequestDto processingProcessRequestDto = new ProcessingService.ProcessingProcessRequestDto();</span>
 
-<span class="fc" id="L71">        processingProcessRequestDto.setIdentifier( processing.getIdentifier() );</span>
-<span class="fc" id="L72">        processingProcessRequestDto.setReason( processing.getReason() );</span>
-<span class="fc" id="L73">        processingProcessRequestDto.setDate( processing.getDate() );</span>
+<span class="fc" id="L73">        processingProcessRequestDto.setIdentifier( processing.getIdentifier() );</span>
+<span class="fc" id="L74">        processingProcessRequestDto.setReason( processing.getReason() );</span>
+<span class="fc" id="L75">        processingProcessRequestDto.setDate( processing.getDate() );</span>
 
-<span class="fc" id="L75">        return processingProcessRequestDto;</span>
+<span class="fc" id="L77">        return processingProcessRequestDto;</span>
     }
 
     @Override
     public ProcessingService.ProcessingUpdateCompletedWorkVolumeRequestDto mapUpdateCompletedWorkVolume(ProcessingDto processing) {
-<span class="fc bfc" id="L80" title="All 2 branches covered.">        if ( processing == null ) {</span>
-<span class="fc" id="L81">            return null;</span>
+<span class="fc bfc" id="L82" title="All 2 branches covered.">        if ( processing == null ) {</span>
+<span class="fc" id="L83">            return null;</span>
         }
 
-<span class="fc" id="L84">        ProcessingService.ProcessingUpdateCompletedWorkVolumeRequestDto processingUpdateCompletedWorkVolumeRequestDto = new ProcessingService.ProcessingUpdateCompletedWorkVolumeRequestDto();</span>
+<span class="fc" id="L86">        ProcessingService.ProcessingUpdateCompletedWorkVolumeRequestDto processingUpdateCompletedWorkVolumeRequestDto = new ProcessingService.ProcessingUpdateCompletedWorkVolumeRequestDto();</span>
 
-<span class="fc" id="L86">        processingUpdateCompletedWorkVolumeRequestDto.setIdentifier( processing.getIdentifier() );</span>
+<span class="fc" id="L88">        processingUpdateCompletedWorkVolumeRequestDto.setIdentifier( processing.getIdentifier() );</span>
 
-<span class="fc" id="L88">        return processingUpdateCompletedWorkVolumeRequestDto;</span>
+<span class="fc" id="L90">        return processingUpdateCompletedWorkVolumeRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
