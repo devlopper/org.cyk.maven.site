@@ -207,15 +207,26 @@ import lombok.experimental.Accessors;
   }
 
   /**
+   * {@link PayrollService#startCalculation}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto startCalculation(ByIdentifierRequestDto request) {
+<span class="fc" id="L216">    return new ProcessExecutor(PayrollService.START_CALCULATION_IDENTIFIER)</span>
+<span class="fc" id="L217">        .execute(() -&gt; service().startCalculation(request));</span>
+  }
+  
+  /**
    * {@link PayrollService#calculate}.
    *
    * @param request requête
    * @return réponse
    */
   public PayrollCalculateResponseDto calculate(PayrollCalculateRequestDto request) {
-<span class="fc" id="L216">    return new GetOneExecutor&lt;PayrollCalculateResponseDto&gt;(</span>
+<span class="fc" id="L227">    return new GetOneExecutor&lt;PayrollCalculateResponseDto&gt;(</span>
         PayrollCalculateResponseDto.class, PayrollService.CREATE_PAYSLIPS_IDENTIFIER)
-<span class="fc" id="L218">            .execute(() -&gt; service().calculate(request));</span>
+<span class="fc" id="L229">            .execute(() -&gt; service().calculate(request));</span>
   }
   
   /**
@@ -225,8 +236,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto startInitialization(ByIdentifierRequestDto request) {
-<span class="fc" id="L228">    return new ProcessExecutor(PayrollService.START_INITIALIZATION_IDENTIFIER)</span>
-<span class="fc" id="L229">        .execute(() -&gt; service().startInitialization(request));</span>
+<span class="fc" id="L239">    return new ProcessExecutor(PayrollService.START_INITIALIZATION_IDENTIFIER)</span>
+<span class="fc" id="L240">        .execute(() -&gt; service().startInitialization(request));</span>
   }
 
   /**
@@ -236,8 +247,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto initialize(ByIdentifierRequestDto request) {
-<span class="fc" id="L239">    return new ProcessExecutor(PayrollService.INITIALIZE_IDENTIFIER)</span>
-<span class="fc" id="L240">        .execute(() -&gt; service().initialize(request));</span>
+<span class="fc" id="L250">    return new ProcessExecutor(PayrollService.INITIALIZE_IDENTIFIER)</span>
+<span class="fc" id="L251">        .execute(() -&gt; service().initialize(request));</span>
   }
 
   /**
@@ -248,8 +259,8 @@ import lombok.experimental.Accessors;
    */
   public IdentifiableResponseDto resumeInitializationFromCheckpoint(
       ByIdentifierRequestDto request) {
-<span class="fc" id="L251">    return new ProcessExecutor(PayrollService.RESUME_INITIALIZATION_FROM_CHECKPOINT_IDENTIFIER)</span>
-<span class="fc" id="L252">        .execute(() -&gt; service().resumeInitializationFromCheckpoint(request));</span>
+<span class="fc" id="L262">    return new ProcessExecutor(PayrollService.RESUME_INITIALIZATION_FROM_CHECKPOINT_IDENTIFIER)</span>
+<span class="fc" id="L263">        .execute(() -&gt; service().resumeInitializationFromCheckpoint(request));</span>
   }
 
   /**
@@ -259,8 +270,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto transmitForControl(ByIdentifierRequestDto request) {
-<span class="fc" id="L262">    return new ProcessExecutor(PayrollService.TRANSMIT_FOR_CONTROL_IDENTIFIER)</span>
-<span class="fc" id="L263">        .execute(() -&gt; service().transmitForControl(request));</span>
+<span class="fc" id="L273">    return new ProcessExecutor(PayrollService.TRANSMIT_FOR_CONTROL_IDENTIFIER)</span>
+<span class="fc" id="L274">        .execute(() -&gt; service().transmitForControl(request));</span>
   }
 
   /**
@@ -270,8 +281,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto control(ByIdentifierRequestDto request) {
-<span class="fc" id="L273">    return new ProcessExecutor(PayrollService.CONTROL_IDENTIFIER)</span>
-<span class="fc" id="L274">        .execute(() -&gt; service().control(request));</span>
+<span class="fc" id="L284">    return new ProcessExecutor(PayrollService.CONTROL_IDENTIFIER)</span>
+<span class="fc" id="L285">        .execute(() -&gt; service().control(request));</span>
   }
 
   /**
@@ -281,8 +292,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ProcessResponseDto transmitForArbitration(ByIdentifierRequestDto request) {
-<span class="fc" id="L284">    return new ProcessExecutor(PayrollService.TRANSMIT_FOR_ARBITRATION_IDENTIFIER)</span>
-<span class="fc" id="L285">        .execute(() -&gt; service().transmitForArbitration(request));</span>
+<span class="fc" id="L295">    return new ProcessExecutor(PayrollService.TRANSMIT_FOR_ARBITRATION_IDENTIFIER)</span>
+<span class="fc" id="L296">        .execute(() -&gt; service().transmitForArbitration(request));</span>
   }
 
   /**
@@ -298,9 +309,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L301">    public ProcessExecutor(String identifier) {</span>
-<span class="fc" id="L302">      super(ProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L303">    }</span>
+<span class="fc" id="L312">    public ProcessExecutor(String identifier) {</span>
+<span class="fc" id="L313">      super(ProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L314">    }</span>
 
   }
 }

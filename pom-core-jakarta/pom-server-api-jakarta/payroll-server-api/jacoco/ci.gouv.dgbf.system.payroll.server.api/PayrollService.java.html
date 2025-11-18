@@ -436,6 +436,31 @@ public interface PayrollService extends SpecificService {
   }
 
   /**
+   * Identifiant du service de démarrage du calcul.
+   */
+  String START_CALCULATION_IDENTIFIER = &quot;DEMARRER_CALCUL_PAIE&quot;;
+
+  /**
+   * Chemin du service de démarrage du calcul.
+   */
+  String START_CALCULATION_PATH = &quot;demarrage-calcul&quot;;
+
+  /**
+   * Cette méthode permet de démarrer la calcul de {@link PayrollDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(START_CALCULATION_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = START_CALCULATION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response startCalculation(ByIdentifierRequestDto request);
+  
+  /**
    * Identifiant du service de calcul.
    */
   String CALCULATE_IDENTIFIER = &quot;CALCUL_PAIE&quot;;
@@ -468,7 +493,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L471">  class PayrollCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L496">  class PayrollCalculateRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -480,7 +505,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L483">  class PayrollCalculateResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L508">  class PayrollCalculateResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -492,7 +517,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L495">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L520">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link PayrollDto#getStatus()}.
@@ -542,16 +567,16 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="fc" id="L545">      this.status = status;</span>
-<span class="fc" id="L546">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L547">      transmittableForControl =</span>
-<span class="fc" id="L548">          PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L549">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L550">      transmittableForArbitration =</span>
-<span class="fc" id="L551">          PayrollStatus.TRANSMITTED_FOR_ARBITRATION.getPrevious().contains(status);</span>
-<span class="fc" id="L552">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L553">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L554">    }</span>
+<span class="fc" id="L570">      this.status = status;</span>
+<span class="fc" id="L571">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L572">      transmittableForControl =</span>
+<span class="fc" id="L573">          PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L574">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L575">      transmittableForArbitration =</span>
+<span class="fc" id="L576">          PayrollStatus.TRANSMITTED_FOR_ARBITRATION.getPrevious().contains(status);</span>
+<span class="fc" id="L577">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L578">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L579">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.
