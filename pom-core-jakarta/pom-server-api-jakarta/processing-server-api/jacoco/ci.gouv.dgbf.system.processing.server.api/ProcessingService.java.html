@@ -508,6 +508,28 @@ public interface ProcessingService {
   Response terminate(ProcessingProcessRequestDto request);
 
   /**
+   * Identifiant du service de réinitialisation.
+   */
+  String RESET_IDENTIFIER = &quot;REINITIALISATION_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service de réinitialisation.
+   */
+  String RESET_PATH = &quot;reinitialisation&quot;;
+
+  /**
+   * Cette méthode permet de réinitialiser un traitement.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(RESET_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  Response reset(ProcessingProcessRequestDto request);
+  
+  /**
    * Identifiant du service d'obtention de plusieurs.
    */
   String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_TRAITEMENT&quot;;
@@ -539,7 +561,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L542">  public static class ProcessingGetManyResponseDto</span>
+<span class="fc" id="L564">  public static class ProcessingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -628,7 +650,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L631">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L653">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -660,6 +682,12 @@ public interface ProcessingService {
     
     @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
     private String previousIdentifier;
+    
+    /**
+     * Forcer la mise à jour.
+     */
+    @JsonbProperty(&quot;force&quot;)
+    private Boolean force;
   }
 
   /**
@@ -692,7 +720,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L695">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L723">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Valeur.
@@ -721,10 +749,10 @@ public interface ProcessingService {
      */
     public Integer computeCompletedWorkVolume(Integer totalWorkVolume,
         Integer currentCompletedWorkVolume) {
-<span class="fc bfc" id="L724" title="All 2 branches covered.">      if (isIncrement == null) {</span>
-<span class="fc" id="L725">        return value;</span>
+<span class="fc bfc" id="L752" title="All 2 branches covered.">      if (isIncrement == null) {</span>
+<span class="fc" id="L753">        return value;</span>
       }
-<span class="fc bfc" id="L727" title="All 2 branches covered.">      return currentCompletedWorkVolume + (isIncrement ? 1 : -1) * value;</span>
+<span class="fc bfc" id="L755" title="All 2 branches covered.">      return currentCompletedWorkVolume + (isIncrement ? 1 : -1) * value;</span>
     }
 
     /**
