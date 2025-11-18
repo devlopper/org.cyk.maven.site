@@ -456,10 +456,34 @@ public interface PayrollService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = START_CALCULATION_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response startCalculation(ByIdentifierRequestDto request);
-  
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = PayrollStartCalculationResponseDto.class))})
+  Response startCalculation(PayrollStartCalculationRequestDto request);
+
+  /**
+   * Cette classe représente la requête de démarrage de calcul.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L471">  class PayrollStartCalculationRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
+
+  /**
+   * Cette classe représente la réponse de démarrage de calcul.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L483">  class PayrollStartCalculationResponseDto extends ProcessResponseDto {</span>
+
+  }
+
   /**
    * Identifiant du service de calcul.
    */
@@ -493,7 +517,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L496">  class PayrollCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L520">  class PayrollCalculateRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -505,7 +529,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L508">  class PayrollCalculateResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L532">  class PayrollCalculateResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -517,7 +541,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L520">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L544">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link PayrollDto#getStatus()}.
@@ -567,16 +591,16 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="fc" id="L570">      this.status = status;</span>
-<span class="fc" id="L571">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L572">      transmittableForControl =</span>
-<span class="fc" id="L573">          PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L574">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L575">      transmittableForArbitration =</span>
-<span class="fc" id="L576">          PayrollStatus.TRANSMITTED_FOR_ARBITRATION.getPrevious().contains(status);</span>
-<span class="fc" id="L577">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L578">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L579">    }</span>
+<span class="fc" id="L594">      this.status = status;</span>
+<span class="fc" id="L595">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L596">      transmittableForControl =</span>
+<span class="fc" id="L597">          PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L598">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L599">      transmittableForArbitration =</span>
+<span class="fc" id="L600">          PayrollStatus.TRANSMITTED_FOR_ARBITRATION.getPrevious().contains(status);</span>
+<span class="fc" id="L601">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L602">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L603">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.
