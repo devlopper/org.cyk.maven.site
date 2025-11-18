@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RoleFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">RoleFilter.java</span></div><h1>RoleFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,11 @@ public class RoleFilter extends AbstractIdentifiableFilter {
    */
   private String assignedUserIdentifier;
 
+  /**
+   * Nom.
+   */
+  private String name;
+
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -33,28 +39,30 @@ public class RoleFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public RoleFilter(FilterDto dto) {
-<span class="fc" id="L36">    super(dto);</span>
-<span class="fc" id="L37">  }</span>
+<span class="fc" id="L42">    super(dto);</span>
+<span class="fc" id="L43">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L42">  public RoleFilter() {</span>
-<span class="fc" id="L43">  }</span>
+<span class="fc" id="L48">  public RoleFilter() {</span>
+<span class="fc" id="L49">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L47">    super.doInitialize(filter);</span>
-<span class="fc" id="L48">    unassignedUserIdentifier = getUnassignedUserIdentifier(filter);</span>
-<span class="fc" id="L49">    assignedUserIdentifier = getAssignedUserIdentifier(filter);</span>
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L53">    super.doInitialize(filter);</span>
+<span class="fc" id="L54">    unassignedUserIdentifier = getUnassignedUserIdentifier(filter);</span>
+<span class="fc" id="L55">    assignedUserIdentifier = getAssignedUserIdentifier(filter);</span>
+<span class="fc" id="L56">    name = getName(filter);</span>
+<span class="fc" id="L57">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L54">    super.toDto(filter);</span>
-<span class="fc" id="L55">    setUnassignedUserIdentifier(filter, unassignedUserIdentifier);</span>
-<span class="fc" id="L56">    setAssignedUserIdentifier(filter, assignedUserIdentifier);</span>
-<span class="fc" id="L57">  }</span>
+<span class="fc" id="L61">    super.toDto(filter);</span>
+<span class="fc" id="L62">    setUnassignedUserIdentifier(filter, unassignedUserIdentifier);</span>
+<span class="fc" id="L63">    setAssignedUserIdentifier(filter, assignedUserIdentifier);</span>
+<span class="fc" id="L64">    setName(filter, name);</span>
+<span class="fc" id="L65">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de l'utilisateur pour les rôles NON assignés.
@@ -64,9 +72,9 @@ public class RoleFilter extends AbstractIdentifiableFilter {
    */
   public static void setUnassignedUserIdentifier(FilterDto filter,
                                                  String unassignedUserIdentifier) {
-<span class="pc" id="L67">    set(filter, JSON_UNASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L68">        f -&gt; f.setValueAsString(unassignedUserIdentifier));</span>
-<span class="fc" id="L69">  }</span>
+<span class="pc" id="L75">    set(filter, JSON_UNASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L76">        f -&gt; f.setValueAsString(unassignedUserIdentifier));</span>
+<span class="fc" id="L77">  }</span>
 
 
   /**
@@ -76,7 +84,7 @@ public class RoleFilter extends AbstractIdentifiableFilter {
    * @return identifiant de l'utilisateur
    */
   public static String getUnassignedUserIdentifier(FilterDto filter) {
-<span class="fc" id="L79">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_UNASSIGNED_USER_IDENTIFIER));</span>
+<span class="fc" id="L87">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_UNASSIGNED_USER_IDENTIFIER));</span>
   }
 
   /**
@@ -87,9 +95,9 @@ public class RoleFilter extends AbstractIdentifiableFilter {
    */
 
   public static void setAssignedUserIdentifier(FilterDto filter, String assignedUserIdentifier) {
-<span class="pc" id="L90">    set(filter, JSON_ASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L91">        f -&gt; f.setValueAsString(assignedUserIdentifier));</span>
-<span class="fc" id="L92">  }</span>
+<span class="pc" id="L98">    set(filter, JSON_ASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L99">        f -&gt; f.setValueAsString(assignedUserIdentifier));</span>
+<span class="fc" id="L100">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de l'utilisateur pour les rôles assignés.
@@ -98,8 +106,29 @@ public class RoleFilter extends AbstractIdentifiableFilter {
    * @return identifiant de l'utilisateur
    */
   public static String getAssignedUserIdentifier(FilterDto filter) {
-<span class="fc" id="L101">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ASSIGNED_USER_IDENTIFIER));</span>
+<span class="fc" id="L109">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ASSIGNED_USER_IDENTIFIER));</span>
   }
+
+  /**
+   * Cette méthode permet d'assigner le nom.
+   *
+   * @param filter filtre
+   * @param name nom
+   */
+  public static void setName(FilterDto filter, String name) {
+<span class="pc" id="L119">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(name));</span>
+<span class="fc" id="L120">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le nom.
+   *
+   * @param filter filtre
+   * @return nom
+   */
+  public static String getName(FilterDto filter) {
+<span class="fc" id="L129">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
+  }
+
 
   /**
    * Identifiant json champ {@link #unassignedUserIdentifier}.
@@ -112,5 +141,11 @@ public class RoleFilter extends AbstractIdentifiableFilter {
    */
   public static final String JSON_ASSIGNED_USER_IDENTIFIER =
       RoleDto.JSON_ASSIGNED_USER_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #name}.
+   */
+  public static final String JSON_NAME = AbstractIdentifiableNamableDto.JSON_NAME;
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

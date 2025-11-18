@@ -9,7 +9,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
-import ci.gouv.dgbf.extension.server.service.api.response.CreateManyResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -23,7 +22,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
 import java.util.Set;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
@@ -123,7 +124,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  class UserRoleCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L127">  class UserRoleCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements UserRoleSaveRequestDto {
     @JsonbProperty(JSON_USER_IDENTIFIER)
     private String userIdentifier;
@@ -166,7 +167,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L169">  public static class UserRoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserRoleDto&gt; {</span>
+<span class="fc" id="L170">  public static class UserRoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserRoleDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;UserRoleDto&gt; datas;
@@ -254,7 +255,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L257">  class UserRoleUpdateRequestDto extends ByIdentifierRequestDto implements UserRoleSaveRequestDto {</span>
+<span class="fc" id="L258">  class UserRoleUpdateRequestDto extends ByIdentifierRequestDto implements UserRoleSaveRequestDto {</span>
 
     @JsonbProperty(JSON_USER_IDENTIFIER)
     private String userIdentifier;
@@ -311,7 +312,7 @@ public interface UserRoleService extends SpecificService {
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(operationId = CREATE_MANY_IDENTIFIER)
   @APIResponse(responseCode = &quot;201&quot;,
-      content = {@Content(schema = @Schema(implementation = CreateManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = UserRoleCreateManyResponseDto.class))})
   Response createMany(UserRoleCreateManyRequestDto request);
 
   /**
@@ -321,7 +322,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L324">  class UserRoleCreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L325">  class UserRoleCreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
 
     @JsonbProperty(JSON_USER_IDENTIFIERS)
     private Set&lt;String&gt; userIdentifiers;
@@ -341,5 +342,57 @@ public interface UserRoleService extends SpecificService {
 
   }
 
+  /**
+   * Cette classe représente la réponse de création multiple.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L352">  class UserRoleCreateManyResponseDto {</span>
+
+    @JsonbProperty(JSON_USER_ROLE_IDENTIFIERS)
+    private List&lt;String&gt; identifiers;
+    @JsonbProperty(JSON_MESSAGE)
+    private String message;
+    @JsonbProperty(JSON_ORDERED_IDENTIFIERS)
+    private List&lt;OrderedIdentifier&gt; orderedIdentifiers;
+
+    /**
+     * Classe interne pour identifiantsOrdonnes.
+     */
+    @Getter
+    @Setter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class OrderedIdentifier {
+
+
+      @JsonbProperty(JSON_ORDER_NUMBER)
+      private Integer orderNumber;
+
+      @JsonbProperty(JSON_IDENTIFIER)
+      private String identifier;
+
+      public static final String JSON_ORDER_NUMBER = &quot;numeroOrdre&quot;;
+      public static final String JSON_IDENTIFIER = &quot;identifiant&quot;;
+    }
+
+    /**
+     * Identifiant json {@link #identifiers}.
+     */
+    public static final String JSON_USER_ROLE_IDENTIFIERS = &quot;utilisateursRolesIdentifiants&quot;;
+
+    /**
+     * Identifiant json {@link #message}.
+     */
+    public static final String JSON_MESSAGE = &quot;message&quot;;
+
+    /**
+     * Identifiant json {@link #orderedIdentifiers}.
+     */
+    public static final String JSON_ORDERED_IDENTIFIERS = &quot;identifiantsOrdonnes&quot;;
+
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

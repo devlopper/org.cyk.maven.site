@@ -1,5 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoUserRoleService.SsoUserRoleGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleService.UserRoleCreateManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountFilter,6,71,0,0,0,18,2,12,2,12
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserAssignRolesRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -21,7 +22,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,Devic
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoApplicationService.SsoApplicationUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleService.UserRoleGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,IdentityFilter,9,95,0,0,0,23,3,15,3,15
-API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleFilter,6,71,0,0,0,20,2,12,2,12
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleFilter,9,99,0,0,0,25,3,16,3,16
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserFilter,12,127,0,0,0,30,4,20,4,20
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountRequestMapperImpl,0,39,0,4,0,13,0,5,0,3
@@ -46,14 +47,14 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,Appli
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountClient,0,211,0,0,0,40,0,20,0,20
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoApplicationRequestMapperImpl,0,35,0,4,0,12,0,5,0,3
-API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleClient,0,264,0,0,0,55,0,22,0,22
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleClient,0,265,0,0,0,55,0,22,0,22
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRequestMapperImpl,0,73,0,6,0,23,0,7,0,4
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceService.DeviceGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleRevokeRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationFilter,3,43,0,0,0,13,1,8,1,8
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceApplicationRequestMapperImpl,0,75,0,4,0,22,0,5,0,3
-API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceFilter,9,99,0,0,0,26,3,16,3,16
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoUserRoleFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountService.AccountCreateByUserRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceApplicationDto,0,3,0,0,0,1,0,1,0,1

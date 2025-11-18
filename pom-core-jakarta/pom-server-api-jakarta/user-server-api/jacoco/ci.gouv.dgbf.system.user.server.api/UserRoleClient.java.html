@@ -241,11 +241,15 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public CreateManyResponseDto createMany(
+
+  public UserRoleService.UserRoleCreateManyResponseDto createMany(
       UserRoleCreateManyRequestDto request) {
-<span class="fc" id="L246">    return new CreateManyExecutor(UserRoleService.CREATE_MANY_IDENTIFIER)</span>
-<span class="fc" id="L247">        .setExpectedResponseStatusCode(Response.Status.OK.getStatusCode()).execute(</span>
-<span class="fc" id="L248">            () -&gt; service().createMany(request));</span>
+<span class="fc" id="L247">    return new GetOneExecutor&lt;UserRoleService.UserRoleCreateManyResponseDto&gt;(</span>
+        UserRoleService.UserRoleCreateManyResponseDto.class,
+        UserRoleService.CREATE_MANY_IDENTIFIER)
+<span class="fc" id="L250">        .setExpectedResponseStatusCode(Response.Status.CREATED.getStatusCode())</span>
+<span class="fc" id="L251">        .execute(() -&gt; service().createMany(request));</span>
+
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
