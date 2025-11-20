@@ -18,46 +18,48 @@ public enum PayslipMovementStatus {
   /**
    * {@link PayslipMovementStatusCode#ACTIVATED}.
    */
-<span class="fc" id="L21">  ACTIVATED(PayslipMovementStatusCode.ACTIVATED, &quot;Activé&quot;, &quot;Activation&quot;),</span>
+<span class="fc" id="L21">  ACTIVATED(PayslipMovementStatusCode.ACTIVATED, &quot;Activé&quot;, &quot;Activer&quot;, &quot;Activation&quot;),</span>
 
   /**
    * {@link PayslipMovementStatusCode#DEFERRED}.
    */
-<span class="fc" id="L26">  DEFERRED(PayslipMovementStatusCode.DEFERRED, &quot;Différé&quot;, &quot;Différé&quot;),</span>
+<span class="fc" id="L26">  DEFERRED(PayslipMovementStatusCode.DEFERRED, &quot;Différé&quot;, &quot;Différer&quot;, &quot;Différé&quot;),</span>
 
   /**
    * {@link PayslipMovementStatusCode#DEFERRED_PROPOSED}.
    */
 <span class="fc" id="L31">  DEFERRED_PROPOSED(PayslipMovementStatusCode.DEFERRED_PROPOSED, &quot;Différé proposé&quot;,</span>
-      &quot;Proposition de différé&quot;),
+      &quot;Proposer différé&quot;, &quot;Proposition de différé&quot;),
 
   /**
    * {@link PayslipMovementStatusCode#REJECTED}.
    */
-<span class="fc" id="L37">  REJECTED(PayslipMovementStatusCode.REJECTED, &quot;Rejeté&quot;, &quot;Rejet&quot;),</span>
+<span class="fc" id="L37">  REJECTED(PayslipMovementStatusCode.REJECTED, &quot;Rejeté&quot;, &quot;Rejeter&quot;, &quot;Rejet&quot;),</span>
 
   /**
    * {@link PayslipMovementStatusCode#REJECTION_PROPOSED}.
    */
-<span class="fc" id="L42">  REJECTION_PROPOSED(PayslipMovementStatusCode.REJECTION_PROPOSED, &quot;Rejet proposé&quot;,</span>
-      &quot;Propositon de rejet&quot;)
+<span class="fc" id="L42">  REJECTION_PROPOSED(PayslipMovementStatusCode.REJECTION_PROPOSED, &quot;Proposer rejet&quot;,</span>
+      &quot;Rejet proposé&quot;, &quot;Propositon de rejet&quot;)
 
   ;
 
-<span class="fc" id="L47">  private PayslipMovementStatus(String code, String name, String action) {</span>
+<span class="fc" id="L47">  private PayslipMovementStatus(String code, String name, String action, String actionName) {</span>
 <span class="fc" id="L48">    this.code = code;</span>
 <span class="fc" id="L49">    this.name = name;</span>
 <span class="fc" id="L50">    this.action = action;</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L51">    this.actionName = actionName;</span>
+<span class="fc" id="L52">  }</span>
 
   private String code;
   private String name;
   private String action;
+  private String actionName;
   private Set&lt;PayslipMovementStatus&gt; previous;
 
   @Override
   public String toString() {
-<span class="fc" id="L60">    return name;</span>
+<span class="fc" id="L62">    return name;</span>
   }
 
   /**
@@ -67,18 +69,18 @@ public enum PayslipMovementStatus {
    * @return statut
    */
   public static PayslipMovementStatus getByCode(String code) {
-<span class="fc" id="L70">    return Stream.of(PayslipMovementStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L71">        .findFirst()</span>
-<span class="pc" id="L72">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
+<span class="fc" id="L72">    return Stream.of(PayslipMovementStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L73">        .findFirst()</span>
+<span class="pc" id="L74">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {
-<span class="fc" id="L76">    ACTIVATED.previous =</span>
-<span class="fc" id="L77">        Core.getSet(List.of(DEFERRED_PROPOSED, DEFERRED, REJECTION_PROPOSED, REJECTED));</span>
-<span class="fc" id="L78">    DEFERRED_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
-<span class="fc" id="L79">    DEFERRED.previous = Core.getSet(List.of(ACTIVATED, DEFERRED_PROPOSED));</span>
-<span class="fc" id="L80">    REJECTION_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
-<span class="fc" id="L81">    REJECTED.previous = Core.getSet(List.of(ACTIVATED, REJECTION_PROPOSED));</span>
-<span class="fc" id="L82">  }</span>
+<span class="fc" id="L78">    ACTIVATED.previous =</span>
+<span class="fc" id="L79">        Core.getSet(List.of(DEFERRED_PROPOSED, DEFERRED, REJECTION_PROPOSED, REJECTED));</span>
+<span class="fc" id="L80">    DEFERRED_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L81">    DEFERRED.previous = Core.getSet(List.of(ACTIVATED, DEFERRED_PROPOSED));</span>
+<span class="fc" id="L82">    REJECTION_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L83">    REJECTED.previous = Core.getSet(List.of(ACTIVATED, REJECTION_PROPOSED));</span>
+<span class="fc" id="L84">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
