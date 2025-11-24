@@ -286,27 +286,49 @@ import lombok.Setter;
   @JsonbProperty(JSON_CLOSABLE)
   private Boolean closable;
 
+  @JsonbProperty(JSON_IS_CALCULABLE)
   private Boolean isCalculable;
 
+  @JsonbProperty(JSON_IS_CALCULABLE_AS_STRING)
   private String isCalculableAsString;
 
+  // Counts
+  
+  @JsonbProperty(JSON_MOVEMENT_COUNT_AS_STRING)
+  private String movementCountAsString;
+  
+  @JsonbProperty(JSON_CONSTANT_COUNT_AS_STRING)
+  private String constantCountAsString;
+  
+  @JsonbProperty(JSON_COMPONENT_COUNT_AS_STRING)
+  private String componentCountAsString;
+  
+  @JsonbProperty(JSON_EARNING_COMPONENT_HAVING_NON_ZERO_AMOUNT_COUNT_AS_STRING)
+  private String earningComponentHavingNonZeroAmountCountAsString;
+  
+  @JsonbProperty(JSON_DEDUCTION_COMPONENT_HAVING_NON_ZERO_AMOUNT_COUNT_AS_STRING)
+  private String deductionComponentHavingNonZeroAmountCountAsString;
+  
+  @JsonbProperty(JSON_COMPONENT_HAVING_NON_BLANK_MESSAGE_COUNT_AS_STRING)
+  private String componentHavingNonBlankMessageCountAsString;
+  
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L299">    status = response.getStatus();</span>
-<span class="fc" id="L300">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L301">    initializable = response.getInitializable();</span>
-<span class="fc" id="L302">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L303">    controllable = response.getControllable();</span>
-<span class="fc" id="L304">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L305">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L306">    validable = response.getValidable();</span>
-<span class="fc" id="L307">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L308">    closable = response.getClosable();</span>
-<span class="fc" id="L309">  }</span>
+<span class="fc" id="L321">    status = response.getStatus();</span>
+<span class="fc" id="L322">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L323">    initializable = response.getInitializable();</span>
+<span class="fc" id="L324">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L325">    controllable = response.getControllable();</span>
+<span class="fc" id="L326">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L327">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L328">    validable = response.getValidable();</span>
+<span class="fc" id="L329">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L330">    closable = response.getClosable();</span>
+<span class="fc" id="L331">  }</span>
 
   /**
    * Identifiant json de l'identifiant.

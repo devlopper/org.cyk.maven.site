@@ -26,7 +26,7 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
-  
+
   /*-- Début définition des montants --*/
 
   /**
@@ -78,6 +78,26 @@ import lombok.Setter;
   private String ajustedAmountAsString;
 
   /*-- Fin définition des montants --*/
+
+  // Counts
+
+  @JsonbProperty(JSON_MOVEMENT_COUNT_AS_STRING)
+  private String movementCountAsString;
+
+  @JsonbProperty(JSON_CONSTANT_COUNT_AS_STRING)
+  private String constantCountAsString;
+
+  @JsonbProperty(JSON_COMPONENT_COUNT_AS_STRING)
+  private String componentCountAsString;
+
+  @JsonbProperty(JSON_EARNING_COMPONENT_HAVING_NON_ZERO_AMOUNT_COUNT_AS_STRING)
+  private String earningComponentHavingNonZeroAmountCountAsString;
+
+  @JsonbProperty(JSON_DEDUCTION_COMPONENT_HAVING_NON_ZERO_AMOUNT_COUNT_AS_STRING)
+  private String deductionComponentHavingNonZeroAmountCountAsString;
+
+  @JsonbProperty(JSON_COMPONENT_HAVING_NON_BLANK_MESSAGE_COUNT_AS_STRING)
+  private String componentHavingNonBlankMessageCountAsString;
 
   /**
    * Identifiant json de identifiant de {@link ExerciseDto}.
