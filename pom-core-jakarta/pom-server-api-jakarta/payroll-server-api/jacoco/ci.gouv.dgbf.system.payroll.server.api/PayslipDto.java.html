@@ -297,6 +297,18 @@ import lombok.Setter;
   @JsonbProperty(JSON_MOVEMENT_COUNT_AS_STRING)
   private String movementCountAsString;
   
+  @JsonbProperty(JSON_MOVEMENT_DEFERRED_PROPOSED_COUNT_AS_STRING)
+  private String movementDeferredProposedCountAsString;
+  
+  @JsonbProperty(JSON_MOVEMENT_DEFERRED_COUNT_AS_STRING)
+  private String movementDeferredCountAsString;
+  
+  @JsonbProperty(JSON_MOVEMENT_REJECTION_PROPOSED_COUNT_AS_STRING)
+  private String movementRejectionProposedCountAsString;
+  
+  @JsonbProperty(JSON_MOVEMENT_REJECTED_COUNT_AS_STRING)
+  private String movementRejectedCountAsString;
+  
   @JsonbProperty(JSON_CONSTANT_COUNT_AS_STRING)
   private String constantCountAsString;
   
@@ -318,17 +330,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L321">    status = response.getStatus();</span>
-<span class="fc" id="L322">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L323">    initializable = response.getInitializable();</span>
-<span class="fc" id="L324">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L325">    controllable = response.getControllable();</span>
-<span class="fc" id="L326">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L327">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L328">    validable = response.getValidable();</span>
-<span class="fc" id="L329">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L330">    closable = response.getClosable();</span>
-<span class="fc" id="L331">  }</span>
+<span class="fc" id="L333">    status = response.getStatus();</span>
+<span class="fc" id="L334">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L335">    initializable = response.getInitializable();</span>
+<span class="fc" id="L336">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L337">    controllable = response.getControllable();</span>
+<span class="fc" id="L338">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L339">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L340">    validable = response.getValidable();</span>
+<span class="fc" id="L341">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L342">    closable = response.getClosable();</span>
+<span class="fc" id="L343">  }</span>
 
   /**
    * Identifiant json de l'identifiant.

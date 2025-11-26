@@ -84,6 +84,18 @@ import lombok.Setter;
   @JsonbProperty(JSON_MOVEMENT_COUNT_AS_STRING)
   private String movementCountAsString;
 
+  @JsonbProperty(JSON_MOVEMENT_DEFERRED_PROPOSED_COUNT_AS_STRING)
+  private String movementDeferredProposedCountAsString;
+  
+  @JsonbProperty(JSON_MOVEMENT_DEFERRED_COUNT_AS_STRING)
+  private String movementDeferredCountAsString;
+  
+  @JsonbProperty(JSON_MOVEMENT_REJECTION_PROPOSED_COUNT_AS_STRING)
+  private String movementRejectionProposedCountAsString;
+  
+  @JsonbProperty(JSON_MOVEMENT_REJECTED_COUNT_AS_STRING)
+  private String movementRejectedCountAsString;
+  
   @JsonbProperty(JSON_CONSTANT_COUNT_AS_STRING)
   private String constantCountAsString;
 
