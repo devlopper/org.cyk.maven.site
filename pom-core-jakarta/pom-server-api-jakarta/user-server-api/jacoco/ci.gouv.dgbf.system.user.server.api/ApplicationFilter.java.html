@@ -25,26 +25,26 @@ public class ApplicationFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public ApplicationFilter(FilterDto dto) {
-<span class="fc" id="L28">    super(dto);</span>
-<span class="fc" id="L29">  }</span>
+<span class="nc" id="L28">    super(dto);</span>
+<span class="nc" id="L29">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L34">  public ApplicationFilter() {}</span>
+<span class="nc" id="L34">  public ApplicationFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L38">    super.doInitialize(filter);</span>
-<span class="fc" id="L39">    name = getName(filter);</span>
-<span class="fc" id="L40">  }</span>
+<span class="nc" id="L38">    super.doInitialize(filter);</span>
+<span class="nc" id="L39">    name = getName(filter);</span>
+<span class="nc" id="L40">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L44">    super.toDto(filter);</span>
-<span class="fc" id="L45">    setName(filter, name);</span>
+<span class="nc" id="L44">    super.toDto(filter);</span>
+<span class="nc" id="L45">    setName(filter, name);</span>
 
-<span class="fc" id="L47">  }</span>
+<span class="nc" id="L47">  }</span>
 
   /**
    * Cette méthode permet d'assigner le libelle du application.
@@ -54,9 +54,9 @@ public class ApplicationFilter extends AbstractIdentifiableFilter {
    */
 
   public static void setName(FilterDto filter, String name) {
-<span class="pc" id="L57">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L58">        f -&gt; f.setValueAsString(name));</span>
-<span class="fc" id="L59">  }</span>
+<span class="nc" id="L57">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(),</span>
+<span class="nc" id="L58">        f -&gt; f.setValueAsString(name));</span>
+<span class="nc" id="L59">  }</span>
 
   /**
    * Cette méthode permet d'obtenir libelle de l'application  assignés.
@@ -65,7 +65,7 @@ public class ApplicationFilter extends AbstractIdentifiableFilter {
    * @return identifiant libelle
    */
   public static String getName(FilterDto filter) {
-<span class="fc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
+<span class="nc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
   }
 
   

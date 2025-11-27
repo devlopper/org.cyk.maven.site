@@ -181,7 +181,7 @@ public interface DeviceApplicationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L184">  class DeviceApplicationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="nc" id="L184">  class DeviceApplicationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DeviceApplicationSaveRequestDto {
     @JsonbProperty(JSON_APPLICATION_IDENTIFIER)
     private String applicationIdentifier;
@@ -234,7 +234,7 @@ public interface DeviceApplicationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L237">  public static class DeviceApplicationGetManyResponseDto </span>
+<span class="nc" id="L237">  public static class DeviceApplicationGetManyResponseDto </span>
          extends AbstractGetByPageResponseDto&lt;DeviceApplicationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -323,7 +323,7 @@ public interface DeviceApplicationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L326">  class DeviceApplicationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="nc" id="L326">  class DeviceApplicationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DeviceApplicationSaveRequestDto {
 
     @JsonbProperty(JSON_APPLICATION_IDENTIFIER)
