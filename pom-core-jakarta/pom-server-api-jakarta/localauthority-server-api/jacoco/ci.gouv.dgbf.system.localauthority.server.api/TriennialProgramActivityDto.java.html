@@ -5,6 +5,7 @@ import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Cette classe représente une activité de {@link TriennialProgramDto}.
@@ -14,8 +15,9 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@Accessors(chain = true)
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class TriennialProgramActivityDto extends AbstractIdentifiableAuditableDto {</span>
+<span class="fc" id="L20">public class TriennialProgramActivityDto extends AbstractIdentifiableAuditableDto {</span>
 
   /**
    * Identifiant {@link TriennialProgramDto}.
@@ -28,6 +30,36 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_TRIENNIAL_PROGRAM_AS_STRING)
   private String triennialProgramAsString;
+
+  /**
+   * Représentation en chaine de caractères de {@link ExpenditureNatureDto}.
+   */
+  @JsonbProperty(JSON_EXPENDITURE_NATURE_AS_STRING)
+  private String expenditureNatureAsString;
+
+  /**
+   * Représentation en chaine de caractères de {@link FunctionalAccountDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_AS_STRING)
+  private String functionalAccountAsString;
+
+  /**
+   * Représentation en chaine de caractères de {@link ActivityNatureDto}.
+   */
+  @JsonbProperty(JSON_NATURE_AS_STRING)
+  private String activityNatureAsString;
+
+  /**
+   * Représentation en chaine de caractères de {@link WealthAccountDto}.
+   */
+  @JsonbProperty(JSON_WEALTH_ACCOUNT_AS_STRING)
+  private String wealthAccountAsString;
+
+  /**
+   * Représentation en chaine de caractères de date de creation.
+   */
+  @JsonbProperty(JSON_CREATION_DATE_AS_STRING)
+  private String creationDateAsString;
 
   /**
    * Identifiant {@link LocalAuthorityDto}.
@@ -349,5 +381,30 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = &quot;activités de programme triennal&quot;;
+
+  /**
+   * Identifiant json {@link #expenditureNatureAsString}.
+   */
+  public static final String JSON_EXPENDITURE_NATURE_AS_STRING = &quot;natureDepenseChaine&quot;;
+
+  /**
+   * Identifiant json {@link #functionalAccountAsString}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_AS_STRING = &quot;compteFonctionnelChaine&quot;;
+
+  /**
+   * Identifiant json {@link #activityNatureAsString}.
+   */
+  public static final String JSON_NATURE_AS_STRING = &quot;natureActiviteChaine&quot;;
+
+  /**
+   * Identifiant json {@link #wealthAccountAsString}.
+   */
+  public static final String JSON_WEALTH_ACCOUNT_AS_STRING = &quot;comptePatrimonialChaine&quot;;
+
+  /**
+   * Identifiant json {@link #creationDateAsString}.
+   */
+  public static final String JSON_CREATION_DATE_AS_STRING = &quot;dateCreationChaine&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
