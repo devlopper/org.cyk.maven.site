@@ -17,6 +17,7 @@ import ci.gouv.dgbf.system.payroll.server.api.shared.HasCalculationInputsFromPay
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollAsStringDto;
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -31,7 +32,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L34">public class PayslipDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L35">public class PayslipDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasPayrollIdentifierDto, HasPayrollAsStringDto, HasRemunerableIdentifierDto,
     HasRemunerableAsStringDto, HasRegistrationNumberDto, HasFullNameDto, PayslipContainerDto,
     HasConstantGroupIdentifierDto, HasConstantGroupAsStringDto, HasIsCalculableDto,
@@ -51,11 +52,23 @@ import lombok.Setter;
   @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_MAP)
   private Map&lt;String, Object&gt; calculationInputsFromPayrollElementMap;
 
+  @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_NAME_AS_JSON)
+  private String calculationInputsFromPayrollElementNameAsJson;
+
+  @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_NAME_MAP)
+  private LinkedHashMap&lt;String, Object&gt; calculationInputsFromPayrollElementNameMap;
+
   @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_CONSTANT_AS_JSON)
   private String calculationInputsFromPayrollConstantAsJson;
 
   @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_CONSTANT_MAP)
   private Map&lt;String, Object&gt; calculationInputsFromPayrollConstantMap;
+
+  @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_CONSTANT_NAME_AS_JSON)
+  private String calculationInputsFromPayrollConstantNameAsJson;
+
+  @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_CONSTANT_NAME_MAP)
+  private LinkedHashMap&lt;String, Object&gt; calculationInputsFromPayrollConstantNameMap;
   
   @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
   private String remunerableIdentifier;
@@ -330,17 +343,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L333">    status = response.getStatus();</span>
-<span class="fc" id="L334">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L335">    initializable = response.getInitializable();</span>
-<span class="fc" id="L336">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L337">    controllable = response.getControllable();</span>
-<span class="fc" id="L338">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L339">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L340">    validable = response.getValidable();</span>
-<span class="fc" id="L341">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L342">    closable = response.getClosable();</span>
-<span class="fc" id="L343">  }</span>
+<span class="fc" id="L346">    status = response.getStatus();</span>
+<span class="fc" id="L347">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L348">    initializable = response.getInitializable();</span>
+<span class="fc" id="L349">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L350">    controllable = response.getControllable();</span>
+<span class="fc" id="L351">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L352">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L353">    validable = response.getValidable();</span>
+<span class="fc" id="L354">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L355">    closable = response.getClosable();</span>
+<span class="fc" id="L356">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -426,6 +439,30 @@ import lombok.Setter;
    * Identifiant json champ {@link #closable}.
    */
   public static final String JSON_CLOSABLE = &quot;closable&quot;;
+
+  /**
+   * Identifiant json {@link #calculationInputsFromPayrollElementNameAsJson}.
+   */
+  public static final String JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_NAME_AS_JSON = 
+                        &quot;entreesDeduitLibelleElementPaieCalculJson&quot;;
+
+  /**
+   * Identifiant json {@link #calculationInputsFromPayrollElementNameMap}.
+   */
+  public static final String JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_NAME_MAP = 
+                        &quot;entreesDeduitLibelleElementPaieCalcul&quot;;
+
+  /**
+   * Identifiant json {@link #calculationInputsFromPayrollConstantNameAsJson}.
+   */
+  public static final String JSON_CALCULATION_INPUTS_FROM_PAYROLL_CONSTANT_NAME_AS_JSON = 
+                        &quot;entreesDeduitLibelleConstantePaieCalculJson&quot;;
+
+  /**
+   * Identifiant json {@link #calculationInputsFromPayrollConstantNameMap}.
+   */
+  public static final String JSON_CALCULATION_INPUTS_FROM_PAYROLL_CONSTANT_NAME_MAP = 
+                        &quot;entreesDeduitLibelleConstantePaieCalcul&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
