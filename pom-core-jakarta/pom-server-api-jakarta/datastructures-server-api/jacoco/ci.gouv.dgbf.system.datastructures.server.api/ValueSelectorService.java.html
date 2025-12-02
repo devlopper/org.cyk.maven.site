@@ -7,6 +7,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasFilterAttributeValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasSourceIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -15,6 +16,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestD
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -27,6 +29,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -129,7 +132,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L132">  class ValueSelectorCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L135">  class ValueSelectorCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ValueSelectorSaveRequestDto {
 
     @JsonbProperty(JSON_SOURCE_IDENTIFIER)
@@ -172,7 +175,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L175">  public static class ValueSelectorGetManyResponseDto</span>
+<span class="fc" id="L178">  public static class ValueSelectorGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueSelectorDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -262,7 +265,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L265">  class ValueSelectorUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L268">  class ValueSelectorUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ValueSelectorSaveRequestDto {
 
     @JsonbProperty(JSON_SOURCE_IDENTIFIER)
@@ -291,7 +294,7 @@ public interface ValueSelectorService extends SpecificService {
   @Path(EVALUATE_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = EVALUATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;, content = {
       @Content(schema = @Schema(implementation = ValueSelectorEvaluateResponseDto.class))})
@@ -305,7 +308,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L308">  class ValueSelectorEvaluateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L311">  class ValueSelectorEvaluateRequestDto extends ByIdentifierRequestDto</span>
       implements HasFilterAttributeValueDto, HasDataEntityCodeDto, HasDataEntityIdentifierDto {
 
     @JsonbProperty(JSON_FILTER_ATTRIBUTE_VALUE)
@@ -326,13 +329,73 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L329">  class ValueSelectorEvaluateResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L332">  class ValueSelectorEvaluateResponseDto extends IdentifiableResponseDto</span>
       implements HasStringValueDto {
 
     @JsonbProperty(JSON_VALUE)
     private String value;
   }
 
+  /**
+   * Identifiant du service d'évaluation de plusieurs.
+   */
+  String EVALUATE_MANY_IDENTIFIER = &quot;EVALUATIONS_SELECTEUR_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'évaluation de plusieurs.
+   */
+  String EVALUATE_MANY_PATH = &quot;evaluations&quot;;
+
+  /**
+   * Cette méthode permet d'évaluer plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EVALUATE_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = EVALUATE_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSelectorEvaluateManyResponseDto.class))})
+  Response evaluateMany(ValueSelectorEvaluateManyRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'évaluation de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L372">  class ValueSelectorEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements HasDataEntityCodeDto, HasDataEntityIdentifierDto {
+
+    @JsonbProperty(&quot;valeurs-attribut-filtre&quot;)
+    private Map&lt;String, String&gt; filterAttributeValues;
+
+    @JsonbProperty(JSON_DATA_ENTITY_CODE)
+    private String dataEntityCode;
+
+    @JsonbProperty(JSON_DATA_ENTITY_IDENTIFIER)
+    private String dataEntityIdentifier;
+  }
+
+  /**
+   * Cette classe représente la réponse d'évaluation de plusieurs.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L393">  class ValueSelectorEvaluateManyResponseDto extends AbstractResponseDto {</span>
+
+    @JsonbProperty(&quot;valeurs&quot;)
+    private Map&lt;String, String&gt; values;
+  }
+  
   /**
    * Identifiant du service de suppression.
    */
