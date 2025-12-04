@@ -337,6 +337,31 @@ public interface ValueSelectorService extends SpecificService {
   }
 
   /**
+   * Identifiant du service d'évaluation interne.
+   */
+  String EVALUATE_INTERNAL_IDENTIFIER = &quot;EVALUATION_INTERNE_SELECTEUR_VALEUR&quot;;
+
+  /**
+   * Chemin du service d'évaluation interne.
+   */
+  String EVALUATE_INTERNAL_PATH = &quot;evaluation-interne&quot;;
+
+  /**
+   * Cette méthode permet d'évaluer.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(EVALUATE_INTERNAL_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = EVALUATE_INTERNAL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ValueSelectorEvaluateResponseDto.class))})
+  Response evaluateInternal(ValueSelectorEvaluateRequestDto request);
+  
+  /**
    * Identifiant du service d'évaluation de plusieurs.
    */
   String EVALUATE_MANY_IDENTIFIER = &quot;EVALUATIONS_SELECTEUR_VALEUR&quot;;
@@ -369,7 +394,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L372">  class ValueSelectorEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L397">  class ValueSelectorEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements HasDataEntityCodeDto, HasDataEntityIdentifierDto {
 
     @JsonbProperty(&quot;valeurs-attribut-filtre&quot;)
@@ -390,7 +415,7 @@ public interface ValueSelectorService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L393">  class ValueSelectorEvaluateManyResponseDto extends AbstractResponseDto {</span>
+<span class="fc" id="L418">  class ValueSelectorEvaluateManyResponseDto extends AbstractResponseDto {</span>
 
     @JsonbProperty(&quot;valeurs&quot;)
     private Map&lt;String, String&gt; values;
