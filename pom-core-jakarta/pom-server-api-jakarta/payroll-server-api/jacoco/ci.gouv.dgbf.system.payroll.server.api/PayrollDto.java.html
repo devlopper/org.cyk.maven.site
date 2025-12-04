@@ -192,6 +192,24 @@ import lombok.Setter;
   private String netAmountVariationAsString;
 
   /**
+   * Représentation en chaine de caractères du montant employeur.
+   */
+  @JsonbProperty(JSON_EMPLOYER_AMOUNT_AS_STRING)
+  private String employerAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères du montant employeur précédent.
+   */
+  @JsonbProperty(JSON_PREVIOUS_EMPLOYER_AMOUNT_AS_STRING)
+  private String previousEmployerAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation du montant employeur.
+   */
+  @JsonbProperty(JSON_EMPLOYER_AMOUNT_VARIATION_AS_STRING)
+  private String employerAmountVariationAsString;
+
+  /**
    * Représentation en chaine de caractères du montant initialisé.
    */
   @JsonbProperty(JSON_INITIALIZED_AMOUNT_AS_STRING)
@@ -204,10 +222,22 @@ import lombok.Setter;
   private String controledAmountAsString;
 
   /**
+   * Représentation en chaine de caractères de la variation controlée.
+   */
+  @JsonbProperty(JSON_CONTROLED_AMOUNT_VARIATION_AS_STRING)
+  private String controledAmountVariationAsString;
+
+  /**
    * Représentation en chaine de caractères du montant ajusté.
    */
   @JsonbProperty(JSON_AJUSTED_AMOUNT_AS_STRING)
   private String ajustedAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation ajustée.
+   */
+  @JsonbProperty(JSON_AJUSTED_AMOUNT_VARIATION_AS_STRING)
+  private String ajustedAmountVariationAsString;
 
   /*-- Fin définition des montants --*/
 
@@ -282,6 +312,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_NON_CALCULABLE_PAYSLIP_COUNT_AS_STRING)
   private String nonCalculablePayslipCountAsString;
 
+  @JsonbProperty(JSON_CALCULATED_PAYSLIP_COUNT_AS_STRING)
+  private String calculatedPayslipCountAsString;
+
   // Counts
 
   @JsonbProperty(JSON_MOVEMENT_COUNT_AS_STRING)
@@ -320,15 +353,15 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L323">    status = response.getStatus();</span>
-<span class="fc" id="L324">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L325">    initializable = response.getInitializable();</span>
-<span class="fc" id="L326">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L327">    controllable = response.getControllable();</span>
-<span class="fc" id="L328">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
-<span class="fc" id="L329">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L330">    closable = response.getClosable();</span>
-<span class="fc" id="L331">  }</span>
+<span class="fc" id="L356">    status = response.getStatus();</span>
+<span class="fc" id="L357">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L358">    initializable = response.getInitializable();</span>
+<span class="fc" id="L359">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L360">    controllable = response.getControllable();</span>
+<span class="fc" id="L361">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
+<span class="fc" id="L362">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L363">    closable = response.getClosable();</span>
+<span class="fc" id="L364">  }</span>
 
   /**
    * Identifiant json de l'identifiant.

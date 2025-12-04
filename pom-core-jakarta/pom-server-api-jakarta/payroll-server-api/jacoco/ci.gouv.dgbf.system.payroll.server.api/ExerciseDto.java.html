@@ -60,6 +60,12 @@ import lombok.Setter;
   private String netAmountAsString;
 
   /**
+   * Représentation en chaine de caractères du montant employeur.
+   */
+  @JsonbProperty(JSON_EMPLOYER_AMOUNT_AS_STRING)
+  private String employerAmountAsString;
+
+  /**
    * Représentation en chaine de caractères du montant initialisé.
    */
   @JsonbProperty(JSON_INITIALIZED_AMOUNT_AS_STRING)
@@ -72,10 +78,22 @@ import lombok.Setter;
   private String controledAmountAsString;
 
   /**
+   * Représentation en chaine de caractères de la variation controlée.
+   */
+  @JsonbProperty(JSON_CONTROLED_AMOUNT_VARIATION_AS_STRING)
+  private String controledAmountVariationAsString;
+
+  /**
    * Représentation en chaine de caractères du montant ajusté.
    */
   @JsonbProperty(JSON_AJUSTED_AMOUNT_AS_STRING)
   private String ajustedAmountAsString;
+
+  /**
+   * Représentation en chaine de caractères de la variation ajustée.
+   */
+  @JsonbProperty(JSON_AJUSTED_AMOUNT_VARIATION_AS_STRING)
+  private String ajustedAmountVariationAsString;
 
   /*-- Fin définition des montants --*/
 
