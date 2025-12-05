@@ -8,8 +8,6 @@ import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 /**
  * Interface représentant un filtre basé sur la notion d'identifiant d'une catégorie.
  *
- * {@inheritDoc}
- *
  * @author Christian
  */
 public interface CategoryIdentifierFilter extends FieldFilter {
@@ -21,7 +19,7 @@ public interface CategoryIdentifierFilter extends FieldFilter {
    * @return identifiant d'une catégorie
    */
   public static String get(FilterDto filter) {
-<span class="fc" id="L24">    return FilterValueGetter.get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_KEY));</span>
+<span class="fc" id="L22">    return FilterValueGetter.get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_KEY));</span>
   }
 
   /**
@@ -31,9 +29,9 @@ public interface CategoryIdentifierFilter extends FieldFilter {
    * @param identifier identifiant d'une catégorie
    */
   public static void set(FilterDto filter, String identifier) {
-<span class="pc" id="L34">    FilterValueSetter.set(filter, JSON_KEY, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L35">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L36">  }</span>
+<span class="pc" id="L32">    FilterValueSetter.set(filter, JSON_KEY, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L33">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L34">  }</span>
 
   /**
    * Identifiant json dans {@link FilterDto}.
