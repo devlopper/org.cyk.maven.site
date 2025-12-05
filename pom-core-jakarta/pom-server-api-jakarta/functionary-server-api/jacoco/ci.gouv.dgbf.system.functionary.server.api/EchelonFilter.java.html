@@ -2,7 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
-import jakarta.json.bind.annotation.JsonbProperty;
+import ci.gouv.dgbf.system.functionary.server.api.shared.FilterHasPayScaleIdentifier;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,22 +14,20 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class EchelonFilter extends AbstractIdentifiableFilter {
+public class EchelonFilter extends AbstractIdentifiableFilter
+    implements FilterHasPayScaleIdentifier {
 
+  private String payScaleIdentifier;
 
-  /**
-   * Identifiant de {@link CivilServiceStatusDto}.
-   */
-  @JsonbProperty(value = JSON_CIVIL_SERVICE_STATUS_IDENTIFIER)
-  String civilServiceStatusIdentifier;
+  private String civilServiceStatusIdentifier;
 
 
   /**
    * Cette méthode permet d'instancier un objet.
    */
   public EchelonFilter() {
-<span class="fc" id="L31">    super();</span>
-<span class="fc" id="L32">  }</span>
+<span class="fc" id="L29">    super();</span>
+<span class="fc" id="L30">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -37,32 +35,34 @@ public class EchelonFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public EchelonFilter(FilterDto dto) {
-<span class="fc" id="L40">    super(dto);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L38">    super(dto);</span>
+<span class="fc" id="L39">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L45">    super.doInitialize(filter);</span>
-<span class="fc" id="L46">    civilServiceStatusIdentifier = getCivilServiceStatusIdentifier(filter);</span>
+<span class="fc" id="L43">    super.doInitialize(filter);</span>
+<span class="fc" id="L44">    updatePayScaleIdentifier(filter);</span>
+<span class="fc" id="L45">    civilServiceStatusIdentifier = getCivilServiceStatusIdentifier(filter);</span>
 
-<span class="fc" id="L48">  }</span>
+<span class="fc" id="L47">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L51">    super.toDto(filter);</span>
+<span class="fc" id="L52">    updateFilterPayScaleIdentifier(filter);</span>
 <span class="fc" id="L53">    setCivilServiceStatusIdentifier(filter, civilServiceStatusIdentifier);</span>
 <span class="fc" id="L54">  }</span>
 
   /**
    * Cette méthode permet d'assigner {@link #civilServiceStatusIdentifier}.
    *
-   * @param filter                              filtre
+   * @param filter filtre
    * @param civilServiceStatusIdentifier {@link #civilServiceStatusIdentifier}
    */
   public static void setCivilServiceStatusIdentifier(FilterDto filter,
       String civilServiceStatusIdentifier) {
 <span class="pc" id="L64">    set(filter, JSON_CIVIL_SERVICE_STATUS_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L65">              f -&gt; f.setValueAsString(civilServiceStatusIdentifier));</span>
+<span class="fc" id="L65">        f -&gt; f.setValueAsString(civilServiceStatusIdentifier));</span>
 <span class="fc" id="L66">  }</span>
 
   /**
@@ -72,8 +72,7 @@ public class EchelonFilter extends AbstractIdentifiableFilter {
    * @return {@link #civilServiceStatusIdentifier}
    */
   public static String getCivilServiceStatusIdentifier(FilterDto filter) {
-<span class="fc" id="L75">    return get(filter, d -&gt; d</span>
-<span class="fc" id="L76">      .getFieldValueAsStringByName(JSON_CIVIL_SERVICE_STATUS_IDENTIFIER));</span>
+<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CIVIL_SERVICE_STATUS_IDENTIFIER));</span>
   }
 
   /**
