@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasIsAmountEqualToZero;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasIsCalculationMessageBlank;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasIsEarning;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayrollComponentIdentifier;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class PayslipComponentFilter extends AbstractIdentifiableFilter
     implements FilterHasIsEarning, FilterHasIsAmountEqualToZero, FilterHasPayslipIdentifier,
-    FilterHasPayrollComponentIdentifier {
+    FilterHasPayrollComponentIdentifier, FilterHasIsCalculationMessageBlank {
 
   private String payslipIdentifier;
 
@@ -29,36 +30,40 @@ public class PayslipComponentFilter extends AbstractIdentifiableFilter
 
   private Boolean isAmountEqualToZero;
 
+  private Boolean isCalculationMessageBlank;
+  
   /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public PayslipComponentFilter(FilterDto dto) {
-<span class="fc" id="L38">    super(dto);</span>
-<span class="fc" id="L39">  }</span>
+<span class="fc" id="L41">    super(dto);</span>
+<span class="fc" id="L42">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L44">  public PayslipComponentFilter() {}</span>
+<span class="fc" id="L47">  public PayslipComponentFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L48">    super.doInitialize(filter);</span>
-<span class="fc" id="L49">    updatePayslipIdentifier(filter);</span>
-<span class="fc" id="L50">    updatePayrollComponentIdentifier(filter);</span>
-<span class="fc" id="L51">    updateIsEarning(filter);</span>
-<span class="fc" id="L52">    updateIsAmountEqualToZero(filter);</span>
-<span class="fc" id="L53">  }</span>
+<span class="fc" id="L51">    super.doInitialize(filter);</span>
+<span class="fc" id="L52">    updatePayslipIdentifier(filter);</span>
+<span class="fc" id="L53">    updatePayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L54">    updateIsEarning(filter);</span>
+<span class="fc" id="L55">    updateIsAmountEqualToZero(filter);</span>
+<span class="fc" id="L56">    updateIsCalculationMessageBlank(filter);</span>
+<span class="fc" id="L57">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L57">    super.toDto(filter);</span>
-<span class="fc" id="L58">    updateFilterPayslipIdentifier(filter);</span>
-<span class="fc" id="L59">    updateFilterPayrollComponentIdentifier(filter);</span>
-<span class="fc" id="L60">    updateFilterIsEarning(filter);</span>
-<span class="fc" id="L61">    updateFilterIsAmountEqualToZero(filter);</span>
-<span class="fc" id="L62">  }</span>
+<span class="fc" id="L61">    super.toDto(filter);</span>
+<span class="fc" id="L62">    updateFilterPayslipIdentifier(filter);</span>
+<span class="fc" id="L63">    updateFilterPayrollComponentIdentifier(filter);</span>
+<span class="fc" id="L64">    updateFilterIsEarning(filter);</span>
+<span class="fc" id="L65">    updateFilterIsAmountEqualToZero(filter);</span>
+<span class="fc" id="L66">    updateFilterIsCalculationMessageBlank(filter);</span>
+<span class="fc" id="L67">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
