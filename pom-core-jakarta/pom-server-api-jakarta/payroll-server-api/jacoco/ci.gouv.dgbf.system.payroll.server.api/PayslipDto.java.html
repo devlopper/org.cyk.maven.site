@@ -252,6 +252,11 @@ import lombok.Setter;
   /*-- Fin définition des montants --*/
 
   /**
+   * Montant net inférieur au montant céssible.
+   */
+  private Boolean isNetAmountLessThanCessibleAmount;
+  
+  /**
    * Nombre de propositions.
    */
   @JsonbProperty(JSON_PROPOSITION_COUNT)
@@ -373,17 +378,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L376">    status = response.getStatus();</span>
-<span class="fc" id="L377">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L378">    initializable = response.getInitializable();</span>
-<span class="fc" id="L379">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L380">    controllable = response.getControllable();</span>
-<span class="fc" id="L381">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L382">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L383">    validable = response.getValidable();</span>
-<span class="fc" id="L384">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L385">    closable = response.getClosable();</span>
-<span class="fc" id="L386">  }</span>
+<span class="fc" id="L381">    status = response.getStatus();</span>
+<span class="fc" id="L382">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L383">    initializable = response.getInitializable();</span>
+<span class="fc" id="L384">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L385">    controllable = response.getControllable();</span>
+<span class="fc" id="L386">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L387">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L388">    validable = response.getValidable();</span>
+<span class="fc" id="L389">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L390">    closable = response.getClosable();</span>
+<span class="fc" id="L391">  }</span>
 
   /**
    * Identifiant json de l'identifiant.

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayslipService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">PayslipService.java</span></div><h1>PayslipService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDeductionsAmountAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasGrossAmountAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasNetAmountAsStringDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
@@ -141,7 +144,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L144">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L147">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -200,7 +203,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L203">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L206">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -289,8 +292,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L292">  class PayslipUpdateRequestDto extends ByIdentifierRequestDto</span>
-      implements PayslipSaveRequestDto {
+<span class="fc" id="L295">  class PayslipUpdateRequestDto extends ByIdentifierRequestDto implements PayslipSaveRequestDto {</span>
     /**
      * Identifiant de {@link PayrollDto}.
      */
@@ -353,16 +355,16 @@ public interface PayslipService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response calculate(PayslipCalculateRequestDto request);
-  
+
   /**
    * Cette classe représente la requête de calcul.
    *
    * @author Christian
    */
-<span class="fc" id="L362">  class PayslipCalculateRequestDto extends ByIdentifierRequestDto {</span>
-    
+<span class="fc" id="L364">  class PayslipCalculateRequestDto extends ByIdentifierRequestDto {</span>
+
   }
-  
+
   /**
    * Identifiant du service d'initialisation.
    */
@@ -496,7 +498,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L499">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L501">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link PayslipDto#getStatus()}.
@@ -558,17 +560,17 @@ public interface PayslipService extends SpecificService {
      * @param status {@link PayslipStatus}
      */
     public void initialize(PayslipStatus status) {
-<span class="fc" id="L561">      this.status = status;</span>
-<span class="fc" id="L562">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L563">      transmittableForControl =</span>
-<span class="fc" id="L564">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L565">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L566">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L567">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
-<span class="fc" id="L568">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
-<span class="fc" id="L569">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L570">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L571">    }</span>
+<span class="fc" id="L563">      this.status = status;</span>
+<span class="fc" id="L564">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L565">      transmittableForControl =</span>
+<span class="fc" id="L566">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L567">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L568">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L569">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="fc" id="L570">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="fc" id="L571">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L572">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L573">    }</span>
 
     /**
      * {@link PayslipDto#JSON_STATUS}.
@@ -615,6 +617,57 @@ public interface PayslipService extends SpecificService {
      * {@link PayslipDto#JSON_CLOSABLE}.
      */
     public static final String JSON_CLOSABLE = PayslipDto.JSON_CLOSABLE;
+  }
+
+  /**
+   * Identifiant du service de sommation de tout les montants.
+   */
+  String SUM_ALL_IDENTIFIER = &quot;SOMMATION_TOUT_BULLETIN_PAIE&quot;;
+
+  /**
+   * Chemin du service de sommation de tout les montants.
+   */
+  String SUM_ALL_PATH = &quot;sommation-tout&quot;;
+
+  /**
+   * Cette méthode permet de sommer tout les montants.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(SUM_ALL_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = SUM_ALL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = SumAllResponseDto.class))})
+  Response sumAll(SumAllRequestDto request);
+
+  /**
+   * Cette classe représente la requête de sommation de tout les montants.
+   *
+   * @author Christian
+   */
+<span class="fc" id="L652">  class SumAllRequestDto extends ByFilterRequestDto {</span>
+
+  }
+
+  /**
+   * Cette classe représente la réponse de sommation de tout les montants.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L663">  class SumAllResponseDto implements HasGrossAmountAsStringDto, HasDeductionsAmountAsStringDto,</span>
+      HasNetAmountAsStringDto {
+
+    private String grossAmountAsString;
+    
+    private String deductionsAmountAsString;
+    
+    private String netAmountAsString;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
