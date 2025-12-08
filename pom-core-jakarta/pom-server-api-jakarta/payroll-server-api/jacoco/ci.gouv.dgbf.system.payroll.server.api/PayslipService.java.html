@@ -641,15 +641,15 @@ public interface PayslipService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = SUM_ALL_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = SumAllResponseDto.class))})
-  Response sumAll(SumAllRequestDto request);
+      content = {@Content(schema = @Schema(implementation = PayslipSumAllResponseDto.class))})
+  Response sumAll(PayslipSumAllRequestDto request);
 
   /**
    * Cette classe représente la requête de sommation de tout les montants.
    *
    * @author Christian
    */
-<span class="fc" id="L652">  class SumAllRequestDto extends ByFilterRequestDto {</span>
+<span class="fc" id="L652">  class PayslipSumAllRequestDto extends ByFilterRequestDto {</span>
 
   }
 
@@ -660,13 +660,13 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L663">  class SumAllResponseDto implements HasGrossAmountAsStringDto, HasDeductionsAmountAsStringDto,</span>
-      HasNetAmountAsStringDto {
+<span class="fc" id="L663">  class PayslipSumAllResponseDto implements HasGrossAmountAsStringDto,</span>
+      HasDeductionsAmountAsStringDto, HasNetAmountAsStringDto {
 
     private String grossAmountAsString;
-    
+
     private String deductionsAmountAsString;
-    
+
     private String netAmountAsString;
   }
 }
