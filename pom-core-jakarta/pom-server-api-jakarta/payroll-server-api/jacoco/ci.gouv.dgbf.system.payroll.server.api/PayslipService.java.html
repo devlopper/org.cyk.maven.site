@@ -620,48 +620,48 @@ public interface PayslipService extends SpecificService {
   }
 
   /**
-   * Identifiant du service de sommation de tout les montants.
+   * Identifiant du service d'obtention des sommes.
    */
-  String SUM_ALL_IDENTIFIER = &quot;SOMMATION_TOUT_BULLETIN_PAIE&quot;;
+  String GET_SUMS_IDENTIFIER = &quot;OBTENTION_SOMMES_BULLETIN_PAIE&quot;;
 
   /**
-   * Chemin du service de sommation de tout les montants.
+   * Chemin du service d'obtention des sommes.
    */
-  String SUM_ALL_PATH = &quot;sommation-tout&quot;;
+  String GET_SUMS_PATH = &quot;obtention/sommes&quot;;
 
   /**
-   * Cette méthode permet de sommer tout les montants.
+   * Cette méthode permet d'obtenir des sommes.
    *
    * @param request requête
    * @return réponse
    */
-  @Path(SUM_ALL_PATH)
+  @Path(GET_SUMS_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
-  @Operation(operationId = SUM_ALL_IDENTIFIER)
+  @Operation(operationId = GET_SUMS_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = PayslipSumAllResponseDto.class))})
-  Response sumAll(PayslipSumAllRequestDto request);
+      content = {@Content(schema = @Schema(implementation = GetSumsResponseDto.class))})
+  Response getSums(GetSumsRequestDto request);
 
   /**
-   * Cette classe représente la requête de sommation de tout les montants.
+   * Cette classe représente la requête d'obtention des sommes.
    *
    * @author Christian
    */
-<span class="fc" id="L652">  class PayslipSumAllRequestDto extends ByFilterRequestDto {</span>
+<span class="fc" id="L652">  class GetSumsRequestDto extends ByFilterRequestDto {</span>
 
   }
 
   /**
-   * Cette classe représente la réponse de sommation de tout les montants.
+   * Cette classe représente la réponse d'obtention des sommes.
    *
    * @author Christian
    */
   @Getter
   @Setter
-<span class="fc" id="L663">  class PayslipSumAllResponseDto implements HasGrossAmountAsStringDto,</span>
-      HasDeductionsAmountAsStringDto, HasNetAmountAsStringDto {
+<span class="fc" id="L663">  class GetSumsResponseDto implements HasGrossAmountAsStringDto, HasDeductionsAmountAsStringDto,</span>
+      HasNetAmountAsStringDto {
 
     private String grossAmountAsString;
 
