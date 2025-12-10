@@ -18,11 +18,11 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.payroll.server.api.PayslipService.GetSumsRequestDto;
-import ci.gouv.dgbf.system.payroll.server.api.PayslipService.GetSumsResponseDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayslipService.PayslipCalculateRequestDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayslipService.PayslipCreateRequestDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayslipService.PayslipGetManyResponseDto;
+import ci.gouv.dgbf.system.payroll.server.api.PayslipService.PayslipGetSumsRequestDto;
+import ci.gouv.dgbf.system.payroll.server.api.PayslipService.PayslipGetSumsResponseDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayslipService.PayslipUpdateRequestDto;
 import ci.gouv.dgbf.system.payroll.server.api.PayslipService.ProcessResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -265,8 +265,8 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return groupe d'échéance
    */
-  public GetSumsResponseDto getSums(GetSumsRequestDto request) {
-<span class="fc" id="L269">    return new GetOneExecutor&lt;&gt;(GetSumsResponseDto.class, PayslipService.GET_SUMS_IDENTIFIER)</span>
+  public PayslipGetSumsResponseDto getSums(PayslipGetSumsRequestDto request) {
+<span class="fc" id="L269">    return new GetOneExecutor&lt;&gt;(PayslipGetSumsResponseDto.class, PayslipService.GET_SUMS_IDENTIFIER)</span>
 <span class="fc" id="L270">        .execute(() -&gt; service().getSums(request));</span>
   }
 
