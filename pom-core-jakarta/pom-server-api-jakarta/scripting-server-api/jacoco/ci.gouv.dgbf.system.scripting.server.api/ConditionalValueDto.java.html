@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.core.enumeration.ValueType;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionsCountAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasGroupAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasOrderNumberDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
@@ -22,9 +23,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L25">public class ConditionalValueDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L26">public class ConditionalValueDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasGroupIdentifierDto, HasGroupAsStringDto, HasStringValueDto, HasValueTypeDto,
-    HasValueTypeAsStringDto, HasConditionsCountAsStringDto {
+    HasValueTypeAsStringDto, HasConditionsCountAsStringDto, HasOrderNumberDto {
 
   @JsonbProperty(JSON_GROUP_IDENTIFIER)
   private String groupIdentifier;
@@ -43,6 +44,9 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_CONDITIONS_COUNT_AS_STRING)
   private String conditionsCountAsString;
+  
+  @JsonbProperty(JSON_ORDER_NUMBER)
+  private Integer orderNumber;
   
   /**
    * Valeur de filtre.

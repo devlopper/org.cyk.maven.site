@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-11-16T21:23:50+0000&quot;,
+    date = &quot;2025-12-16T14:35:53+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -30,44 +30,46 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L30">        valueConditionCreateRequestDto.setValueSelectorIdentifier( arg0.getValueSelectorIdentifier() );</span>
 <span class="fc" id="L31">        valueConditionCreateRequestDto.setConditionalValueIdentifier( arg0.getConditionalValueIdentifier() );</span>
 <span class="fc" id="L32">        valueConditionCreateRequestDto.setComparisonOperator( arg0.getComparisonOperator() );</span>
-<span class="fc" id="L33">        valueConditionCreateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L33">        valueConditionCreateRequestDto.setValuesSeparator( arg0.getValuesSeparator() );</span>
+<span class="fc" id="L34">        valueConditionCreateRequestDto.setValue( arg0.getValue() );</span>
 
-<span class="fc" id="L35">        return valueConditionCreateRequestDto;</span>
+<span class="fc" id="L36">        return valueConditionCreateRequestDto;</span>
     }
 
     @Override
     public ValueConditionService.ValueConditionUpdateRequestDto mapUpdate(ValueConditionDto arg0) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L41">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L44">        ValueConditionService.ValueConditionUpdateRequestDto valueConditionUpdateRequestDto = new ValueConditionService.ValueConditionUpdateRequestDto();</span>
+<span class="fc" id="L45">        ValueConditionService.ValueConditionUpdateRequestDto valueConditionUpdateRequestDto = new ValueConditionService.ValueConditionUpdateRequestDto();</span>
 
-<span class="fc" id="L46">        valueConditionUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L47">        valueConditionUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L48">        valueConditionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L49">        valueConditionUpdateRequestDto.setValueSelectorIdentifier( arg0.getValueSelectorIdentifier() );</span>
-<span class="fc" id="L50">        valueConditionUpdateRequestDto.setConditionalValueIdentifier( arg0.getConditionalValueIdentifier() );</span>
-<span class="fc" id="L51">        valueConditionUpdateRequestDto.setComparisonOperator( arg0.getComparisonOperator() );</span>
-<span class="fc" id="L52">        valueConditionUpdateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L47">        valueConditionUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        valueConditionUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        valueConditionUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        valueConditionUpdateRequestDto.setValueSelectorIdentifier( arg0.getValueSelectorIdentifier() );</span>
+<span class="fc" id="L51">        valueConditionUpdateRequestDto.setConditionalValueIdentifier( arg0.getConditionalValueIdentifier() );</span>
+<span class="fc" id="L52">        valueConditionUpdateRequestDto.setComparisonOperator( arg0.getComparisonOperator() );</span>
+<span class="fc" id="L53">        valueConditionUpdateRequestDto.setValuesSeparator( arg0.getValuesSeparator() );</span>
+<span class="fc" id="L54">        valueConditionUpdateRequestDto.setValue( arg0.getValue() );</span>
 
-<span class="fc" id="L54">        return valueConditionUpdateRequestDto;</span>
+<span class="fc" id="L56">        return valueConditionUpdateRequestDto;</span>
     }
 
     @Override
     public ValueConditionService.ValueConditionVerifyRequestDto mapVerify(ValueConditionDto valueCondition) {
-<span class="fc bfc" id="L59" title="All 2 branches covered.">        if ( valueCondition == null ) {</span>
-<span class="fc" id="L60">            return null;</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">        if ( valueCondition == null ) {</span>
+<span class="fc" id="L62">            return null;</span>
         }
 
-<span class="fc" id="L63">        ValueConditionService.ValueConditionVerifyRequestDto valueConditionVerifyRequestDto = new ValueConditionService.ValueConditionVerifyRequestDto();</span>
+<span class="fc" id="L65">        ValueConditionService.ValueConditionVerifyRequestDto valueConditionVerifyRequestDto = new ValueConditionService.ValueConditionVerifyRequestDto();</span>
 
-<span class="fc" id="L65">        valueConditionVerifyRequestDto.setAuditWho( valueCondition.getAuditWho() );</span>
-<span class="fc" id="L66">        valueConditionVerifyRequestDto.setAuditSession( valueCondition.getAuditSession() );</span>
-<span class="fc" id="L67">        valueConditionVerifyRequestDto.setIdentifier( valueCondition.getIdentifier() );</span>
-<span class="fc" id="L68">        valueConditionVerifyRequestDto.setValueSelectorFilterAttributeValue( valueCondition.getValueSelectorFilterAttributeValue() );</span>
+<span class="fc" id="L67">        valueConditionVerifyRequestDto.setAuditWho( valueCondition.getAuditWho() );</span>
+<span class="fc" id="L68">        valueConditionVerifyRequestDto.setAuditSession( valueCondition.getAuditSession() );</span>
+<span class="fc" id="L69">        valueConditionVerifyRequestDto.setIdentifier( valueCondition.getIdentifier() );</span>
+<span class="fc" id="L70">        valueConditionVerifyRequestDto.setValueSelectorFilterAttributeValue( valueCondition.getValueSelectorFilterAttributeValue() );</span>
 
-<span class="fc" id="L70">        return valueConditionVerifyRequestDto;</span>
+<span class="fc" id="L72">        return valueConditionVerifyRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

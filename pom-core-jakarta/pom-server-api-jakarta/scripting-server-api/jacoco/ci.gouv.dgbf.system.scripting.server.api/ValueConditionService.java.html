@@ -8,6 +8,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValuesSeparatorDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -101,6 +102,20 @@ public interface ValueConditionService extends SpecificService {
     void setComparisonOperator(ComparisonOperator comparisonOperator);
 
     /**
+     * Cette méthode permet d'obtenir le séparateur de valeurs.
+     *
+     * @return le séparateur de valeurs
+     */
+    String getValuesSeparator();
+
+    /**
+     * Cette méthode permet d'assigner le séparateur de valeurs.
+     *
+     * @param valuesSeparator le séparateur de valeurs
+     */
+    void setValuesSeparator(String valuesSeparator);
+    
+    /**
      * Cette méthode permet d'obtenir valeur.
      *
      * @return valeur
@@ -154,6 +169,11 @@ public interface ValueConditionService extends SpecificService {
      * {@link HasValueTypeDto#JSON_VALUE_TYPE}.
      */
     String JSON_VALUE_TYPE = HasValueTypeDto.JSON_VALUE_TYPE;
+    
+    /**
+     * {@link HasValuesSeparatorDto#JSON_VALUES_SEPARATOR}.
+     */
+    String JSON_VALUES_SEPARATOR = HasValuesSeparatorDto.JSON_VALUES_SEPARATOR;
   }
 
   /**
@@ -189,21 +209,25 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L192">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L212">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ValueConditionSaveRequestDto {
-    @JsonbProperty
+    
+    @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
     private String valueSelectorIdentifier;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
     private String conditionalValueIdentifier;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_COMPARISON_OPERATOR)
     private ComparisonOperator comparisonOperator;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_VALUES_SEPARATOR)
+    private String valuesSeparator;
+    
+    @JsonbProperty(JSON_VALUE)
     private String value;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_VALUE_TYPE)
     private ValueType valueType;
   }
 
@@ -240,7 +264,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L243">  public static class ValueConditionGetManyResponseDto</span>
+<span class="fc" id="L267">  public static class ValueConditionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueConditionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -330,21 +354,24 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L333">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L357">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ValueConditionSaveRequestDto {
-    @JsonbProperty
+    @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
     private String valueSelectorIdentifier;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
     private String conditionalValueIdentifier;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_COMPARISON_OPERATOR)
     private ComparisonOperator comparisonOperator;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_VALUES_SEPARATOR)
+    private String valuesSeparator;
+    
+    @JsonbProperty(JSON_VALUE)
     private String value;
 
-    @JsonbProperty
+    @JsonbProperty(JSON_VALUE_TYPE)
     private ValueType valueType;
   }
 
@@ -381,7 +408,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L384">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L411">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Valeur de l'attribut de filtre du sélecteur.
@@ -404,7 +431,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L407">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L434">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
       implements HasBooleanValueDto {
 
     @JsonbProperty(JSON_VALUE)
