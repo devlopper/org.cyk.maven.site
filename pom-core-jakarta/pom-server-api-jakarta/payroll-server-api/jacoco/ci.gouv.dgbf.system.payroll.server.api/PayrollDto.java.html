@@ -347,21 +347,45 @@ import lombok.Setter;
   @JsonbProperty(JSON_COMPONENT_HAVING_NON_BLANK_MESSAGE_COUNT_AS_STRING)
   private String componentHavingNonBlankMessageCountAsString;
 
+  @JsonbProperty(JSON_PAYSLIP_TO_CONTROL_COUNT_AS_STRING)
+  private String payslipToControlCountAsString;
+
+  @JsonbProperty(JSON_PAYSLIP_CONTROLLED_COUNT_AS_STRING)
+  private String payslipControlledCountAsString;
+
+  @JsonbProperty(JSON_PAYSLIP_VALIDATED_COUNT_AS_STRING)
+  private String payslipValidatedCountAsString;
+
+  @JsonbProperty(JSON_PAYSLIP_ACCEPTED_COUNT_AS_STRING)
+  private String payslipAcceptedCountAsString;
+
+  @JsonbProperty(JSON_PAYSLIP_TO_LITIGATION_COUNT_AS_STRING)
+  private String payslipToLitigationCountAsString;
+
+  @JsonbProperty(JSON_PAYSLIP_QUOTA_COUNT_AS_STRING)
+  private String payslipQuotaCountAsString;
+
+  @JsonbProperty(JSON_PAYSLIP_COUNT_AS_STRING)
+  private String payslipCountAsString;
+
+  @JsonbProperty(JSON_PAYSLIP_TO_CALCULATE_COUNT_AS_STRING)
+  private String payslipToCalculateCountAsString;
+
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L356">    status = response.getStatus();</span>
-<span class="fc" id="L357">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L358">    initializable = response.getInitializable();</span>
-<span class="fc" id="L359">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L360">    controllable = response.getControllable();</span>
-<span class="fc" id="L361">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
-<span class="fc" id="L362">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L363">    closable = response.getClosable();</span>
-<span class="fc" id="L364">  }</span>
+<span class="fc" id="L380">    status = response.getStatus();</span>
+<span class="fc" id="L381">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L382">    initializable = response.getInitializable();</span>
+<span class="fc" id="L383">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L384">    controllable = response.getControllable();</span>
+<span class="fc" id="L385">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
+<span class="fc" id="L386">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L387">    closable = response.getClosable();</span>
+<span class="fc" id="L388">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -372,6 +396,41 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;paieChaine&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères du nombre de
+   * {@link PayslipDto} à contrôler.
+   */
+  public static final String JSON_PAYSLIP_TO_CONTROL_COUNT_AS_STRING =
+      &quot;nombreBulletinPaieAControlerChaine&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères du nombre de
+   * {@link PayslipDto} contrôlé.
+   */
+  public static final String JSON_PAYSLIP_CONTROLLED_COUNT_AS_STRING =
+      &quot;nombreBulletinPaieControleChaine&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères du nombre de
+   * {@link PayslipDto} accepté.
+   */
+  public static final String JSON_PAYSLIP_ACCEPTEDED_COUNT_AS_STRING =
+      &quot;nombreBulletinPaieAccepteChaine&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères du nombre de
+   * {@link PayslipDto} accepté.
+   */
+  public static final String JSON_PAYSLIP_VALIDATED_COUNT_AS_STRING =
+      &quot;nombreBulletinPaieValideChaine&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères du nombre de
+   * {@link PayslipDto} accepté.
+   */
+  public static final String JSON_PAYSLIP_TO_LITIGATION_COUNT_AS_STRING =
+      &quot;nombreBulletinPaieAuContentieuxChaine&quot;;
 
   /**
    * Identifiant json champ {@link #periodGroupIdentifier}.

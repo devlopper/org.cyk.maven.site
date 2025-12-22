@@ -44,6 +44,8 @@ public class PayslipFilter extends AbstractIdentifiableFilter
   private Boolean isCalculable;
 
   private Boolean isCessibleAmountLessThanMax;
+
+  private Boolean isLitigatable;
   
   /**
    * Identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
@@ -75,52 +77,54 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public PayslipFilter(FilterDto dto) {
-<span class="fc" id="L78">    super(dto);</span>
-<span class="fc" id="L79">  }</span>
+<span class="fc" id="L80">    super(dto);</span>
+<span class="fc" id="L81">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L84">  public PayslipFilter() {}</span>
+<span class="fc" id="L86">  public PayslipFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L88">    super.doInitialize(filter);</span>
-<span class="fc" id="L89">    updateRegistrationNumber(filter);</span>
-<span class="fc" id="L90">    updateRemunerableIdentifier(filter);</span>
-<span class="fc" id="L91">    updatePayrollServiceTypeIdentifier(filter);</span>
-<span class="fc" id="L92">    updatePayrollServiceTypeCode(filter);</span>
-<span class="fc" id="L93">    updateIsCalculable(filter);</span>
-<span class="fc" id="L94">    updateStatusCode(filter);</span>
-<span class="fc" id="L95">    updateStatusCodes(filter);</span>
-<span class="fc" id="L96">    updateIsCessibleAmountLessThanMax(filter);</span>
+<span class="fc" id="L90">    super.doInitialize(filter);</span>
+<span class="fc" id="L91">    updateRegistrationNumber(filter);</span>
+<span class="fc" id="L92">    updateRemunerableIdentifier(filter);</span>
+<span class="fc" id="L93">    updatePayrollServiceTypeIdentifier(filter);</span>
+<span class="fc" id="L94">    updatePayrollServiceTypeCode(filter);</span>
+<span class="fc" id="L95">    updateIsCalculable(filter);</span>
+<span class="fc" id="L96">    updateStatusCode(filter);</span>
+<span class="fc" id="L97">    updateStatusCodes(filter);</span>
+<span class="fc" id="L98">    updateIsCessibleAmountLessThanMax(filter);</span>
 
-<span class="fc" id="L98">    payrollIdentifier = getPayrollIdentifier(filter);</span>
-<span class="fc" id="L99">    functionaryBudgetarySectionUnitIdentifier =</span>
-<span class="fc" id="L100">        getFunctionaryBudgetarySectionUnitIdentifier(filter);</span>
-<span class="fc" id="L101">    isToBeControlledInPriority = getIsToBeControlledInPriority(filter);</span>
-<span class="fc" id="L102">    grossAmountVariation = getGrossAmountVariation(filter);</span>
-<span class="fc" id="L103">    isRecalculable = getIsRecalculable(filter);</span>
-<span class="fc" id="L104">  }</span>
+<span class="fc" id="L100">    payrollIdentifier = getPayrollIdentifier(filter);</span>
+<span class="fc" id="L101">    functionaryBudgetarySectionUnitIdentifier =</span>
+<span class="fc" id="L102">        getFunctionaryBudgetarySectionUnitIdentifier(filter);</span>
+<span class="fc" id="L103">    isToBeControlledInPriority = getIsToBeControlledInPriority(filter);</span>
+<span class="fc" id="L104">    grossAmountVariation = getGrossAmountVariation(filter);</span>
+<span class="fc" id="L105">    isRecalculable = getIsRecalculable(filter);</span>
+<span class="fc" id="L106">    isLitigatable = getIsLitigatable(filter);</span>
+<span class="fc" id="L107">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L108">    super.toDto(filter);</span>
-<span class="fc" id="L109">    updateFilterRegistrationNumber(filter);</span>
-<span class="fc" id="L110">    updateFilterRemunerableIdentifier(filter);</span>
-<span class="fc" id="L111">    updateFilterPayrollServiceTypeIdentifier(filter);</span>
-<span class="fc" id="L112">    updateFilterPayrollServiceTypeCode(filter);</span>
-<span class="fc" id="L113">    updateFilterIsCalculable(filter);</span>
-<span class="fc" id="L114">    updateFilterStatusCode(filter);</span>
-<span class="fc" id="L115">    updateFilterStatusCodes(filter);</span>
-<span class="fc" id="L116">    updateFilterIsCessibleAmountLessThanMax(filter);</span>
+<span class="fc" id="L111">    super.toDto(filter);</span>
+<span class="fc" id="L112">    updateFilterRegistrationNumber(filter);</span>
+<span class="fc" id="L113">    updateFilterRemunerableIdentifier(filter);</span>
+<span class="fc" id="L114">    updateFilterPayrollServiceTypeIdentifier(filter);</span>
+<span class="fc" id="L115">    updateFilterPayrollServiceTypeCode(filter);</span>
+<span class="fc" id="L116">    updateFilterIsCalculable(filter);</span>
+<span class="fc" id="L117">    updateFilterStatusCode(filter);</span>
+<span class="fc" id="L118">    updateFilterStatusCodes(filter);</span>
+<span class="fc" id="L119">    updateFilterIsCessibleAmountLessThanMax(filter);</span>
 
-<span class="fc" id="L118">    setPayrollIdentifier(filter, payrollIdentifier);</span>
-<span class="fc" id="L119">    setFunctionaryBudgetarySectionUnitIdentifier(filter, functionaryBudgetarySectionUnitIdentifier);</span>
-<span class="fc" id="L120">    setIsToBeControlledInPriority(filter, isToBeControlledInPriority);</span>
-<span class="fc" id="L121">    setGrossAmountVariation(filter, grossAmountVariation);</span>
-<span class="fc" id="L122">    setIsRecalculable(filter, isRecalculable);</span>
-<span class="fc" id="L123">  }</span>
+<span class="fc" id="L121">    setPayrollIdentifier(filter, payrollIdentifier);</span>
+<span class="fc" id="L122">    setFunctionaryBudgetarySectionUnitIdentifier(filter, functionaryBudgetarySectionUnitIdentifier);</span>
+<span class="fc" id="L123">    setIsToBeControlledInPriority(filter, isToBeControlledInPriority);</span>
+<span class="fc" id="L124">    setGrossAmountVariation(filter, grossAmountVariation);</span>
+<span class="fc" id="L125">    setIsRecalculable(filter, isRecalculable);</span>
+<span class="fc" id="L126">    setIsLitigatable(filter, isLitigatable);</span>
+<span class="fc" id="L127">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link PayrollDto}.
@@ -129,9 +133,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @param identifier identifiant
    */
   public static void setPayrollIdentifier(FilterDto filter, String identifier) {
-<span class="pc" id="L132">    set(filter, JSON_PAYROLL_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L133">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L134">  }</span>
+<span class="pc" id="L136">    set(filter, JSON_PAYROLL_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L137">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L138">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link PayrollDto}.
@@ -140,7 +144,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @return identifiant de {@link PayrollDto}
    */
   public static String getPayrollIdentifier(FilterDto filter) {
-<span class="fc" id="L143">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_IDENTIFIER));</span>
+<span class="fc" id="L147">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PAYROLL_IDENTIFIER));</span>
   }
 
   /**
@@ -151,9 +155,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    */
   public static void setFunctionaryBudgetarySectionUnitIdentifier(FilterDto filter,
       String identifier) {
-<span class="pc" id="L154">    set(filter, JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L155">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L156">  }</span>
+<span class="pc" id="L158">    set(filter, JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L159">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L160">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link FunctionaryBudgetarySectionUnitDto}.
@@ -162,8 +166,8 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @return identifiant de {@link FunctionaryBudgetarySectionUnitDto}
    */
   public static String getFunctionaryBudgetarySectionUnitIdentifier(FilterDto filter) {
-<span class="fc" id="L165">    return get(filter,</span>
-<span class="fc" id="L166">        d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER));</span>
+<span class="fc" id="L169">    return get(filter,</span>
+<span class="fc" id="L170">        d -&gt; d.getFieldValueAsStringByName(JSON_FUNCTIONARY_BUDGETARY_SECTION_UNIT_IDENTIFIER));</span>
   }
 
   /**
@@ -174,9 +178,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    */
   public static void setIsToBeControlledInPriority(FilterDto filter,
       Boolean isToBeControlledInPriority) {
-<span class="pc" id="L177">    set(filter, JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY, f -&gt; f.getValueAsBoolean(),</span>
-<span class="fc" id="L178">        f -&gt; f.setValueAsBoolean(isToBeControlledInPriority));</span>
-<span class="fc" id="L179">  }</span>
+<span class="pc" id="L181">    set(filter, JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY, f -&gt; f.getValueAsBoolean(),</span>
+<span class="fc" id="L182">        f -&gt; f.setValueAsBoolean(isToBeControlledInPriority));</span>
+<span class="fc" id="L183">  }</span>
 
   /**
    * Cette méthode permet d'obtenir est à controler prioritairement.
@@ -185,7 +189,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @return est à controler prioritairement
    */
   public static Boolean getIsToBeControlledInPriority(FilterDto filter) {
-<span class="fc" id="L188">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY));</span>
+<span class="fc" id="L192">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_TO_BE_CONTROLLED_IN_PRIORITY));</span>
   }
 
   /**
@@ -195,9 +199,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @param grossAmountVariation variation montant brut
    */
   public static void setGrossAmountVariation(FilterDto filter, Integer grossAmountVariation) {
-<span class="pc" id="L198">    set(filter, JSON_GROSS_AMOUNT_VARIATION, f -&gt; f.getValueAsInteger(),</span>
-<span class="fc" id="L199">        f -&gt; f.setValueAsInteger(grossAmountVariation));</span>
-<span class="fc" id="L200">  }</span>
+<span class="pc" id="L202">    set(filter, JSON_GROSS_AMOUNT_VARIATION, f -&gt; f.getValueAsInteger(),</span>
+<span class="fc" id="L203">        f -&gt; f.setValueAsInteger(grossAmountVariation));</span>
+<span class="fc" id="L204">  }</span>
 
   /**
    * Cette méthode permet d'obtenir la variation montant brut.
@@ -206,7 +210,7 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @return variation montant brut
    */
   public static Integer getGrossAmountVariation(FilterDto filter) {
-<span class="fc" id="L209">    return get(filter, d -&gt; d.getFieldValueAsIntegerByName(JSON_GROSS_AMOUNT_VARIATION));</span>
+<span class="fc" id="L213">    return get(filter, d -&gt; d.getFieldValueAsIntegerByName(JSON_GROSS_AMOUNT_VARIATION));</span>
   }
 
   /**
@@ -216,9 +220,9 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @param isRecalculable est recalculable
    */
   public static void setIsRecalculable(FilterDto filter, Boolean isRecalculable) {
-<span class="pc" id="L219">    set(filter, JSON_IS_RECALCULABLE, f -&gt; f.getValueAsBoolean(),</span>
-<span class="fc" id="L220">        f -&gt; f.setValueAsBoolean(isRecalculable));</span>
-<span class="fc" id="L221">  }</span>
+<span class="pc" id="L223">    set(filter, JSON_IS_RECALCULABLE, f -&gt; f.getValueAsBoolean(),</span>
+<span class="fc" id="L224">        f -&gt; f.setValueAsBoolean(isRecalculable));</span>
+<span class="fc" id="L225">  }</span>
 
   /**
    * Cette méthode permet d'obtenir est recalculable.
@@ -227,7 +231,28 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * @return est recalculable
    */
   public static Boolean getIsRecalculable(FilterDto filter) {
-<span class="fc" id="L230">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_RECALCULABLE));</span>
+<span class="fc" id="L234">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_RECALCULABLE));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner est récalculable.
+   *
+   * @param filter filtre
+   * @param isLitigatable est litigatable
+   */
+  public static void setIsLitigatable(FilterDto filter, Boolean isLitigatable) {
+<span class="pc" id="L244">    set(filter, JSON_IS_LITIGATABLE, f -&gt; f.getValueAsBoolean(),</span>
+<span class="fc" id="L245">        f -&gt; f.setValueAsBoolean(isLitigatable));</span>
+<span class="fc" id="L246">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir est recalculable.
+   *
+   * @param filter filtre
+   * @return est recalculable
+   */
+  public static Boolean getIsLitigatable(FilterDto filter) {
+<span class="fc" id="L255">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_LITIGATABLE));</span>
   }
 
   /**
@@ -258,5 +283,10 @@ public class PayslipFilter extends AbstractIdentifiableFilter
    * Identifiant JSON {@link #isRecalculable}.
    */
   public static final String JSON_IS_RECALCULABLE = PayslipDto.JSON_IS_RECALCULABLE;
+
+  /**
+   * Identifiant JSON {@link #isLitigatable}.
+   */
+  public static final String JSON_IS_LITIGATABLE = PayslipDto.JSON_IS_LITIGATABLE;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

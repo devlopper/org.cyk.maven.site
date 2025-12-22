@@ -10,6 +10,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.ByFilterRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -145,7 +146,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L149">  class PayslipCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayslipSaveRequestDto {
     /**
      * Identifiant de {@link PayrollDto}.
@@ -204,7 +205,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L207">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
+<span class="fc" id="L208">  public static class PayslipGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayslipDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayslipDto&gt; datas;
@@ -234,6 +235,29 @@ public interface PayslipService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = PayslipDto.class))})
   Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention de {@link PayslipDto}.
+   */
+  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_BULLETIN_PAIE&quot;;
+
+  /**
+   * Chemin du service d'obtention de {@link PayslipDto}.
+   */
+  String GET_COUNT_PATH = &quot;obtention/bulletin-paie&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir un {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.TEXT_PLAIN})
+  @Operation(operationId = GET_COUNT_IDENTIFIER)
+  Response getCount(GetCountRequestDto request);
 
   /**
    * Identifiant du service d'obtention par identifiant de un.
@@ -293,7 +317,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L296">  class PayslipUpdateRequestDto extends ByIdentifierRequestDto implements PayslipSaveRequestDto {</span>
+<span class="fc" id="L320">  class PayslipUpdateRequestDto extends ByIdentifierRequestDto implements PayslipSaveRequestDto {</span>
     /**
      * Identifiant de {@link PayrollDto}.
      */
@@ -362,7 +386,27 @@ public interface PayslipService extends SpecificService {
    *
    * @author Christian
    */
-<span class="fc" id="L365">  class PayslipCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L389">  class PayslipCalculateRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
+
+  /**
+   * Cette classe représente la requête de transmission au contentieux.
+   *
+   * @author akm
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L400">  class PayslipTransmitLitigationRequestDto extends ByIdentifierRequestDto {</span>
+    @JsonbProperty(JSON_LITIGATION_REASON)
+    private String litigationReason;
+
+    /**
+     * Identifiant json de la représentation en chaine de caratères de la raison
+     * de l'envoie au contentieux.
+     */
+    public static final String JSON_LITIGATION_REASON =
+        &quot;raisonContentieux&quot;;
 
   }
 
@@ -492,6 +536,31 @@ public interface PayslipService extends SpecificService {
   Response validate(ByFilterRequestDto request);
 
   /**
+   * Identifiant du service de recalcul.
+   */
+  String TRANSMIT_TO_LITIGATION_IDENTIFIER = &quot;TRANSMISSION_BULLETIN_PAIE_AU_CONTENTEIUX&quot;;
+
+  /**
+   * Chemin du service de transmission au contentieux.
+   */
+  String TRANSMIT_TO_LITIGATION_PATH = &quot;transmission_au_contentieux&quot;;
+
+  /**
+   * Cette méthode permet de transmettre au contentieux {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TRANSMIT_TO_LITIGATION_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = TRANSMIT_TO_LITIGATION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiablesResponseDto.class))})
+  Response transmitToLitigation(PayslipTransmitLitigationRequestDto request);
+
+  /**
    * Cette classe représente la réponse de traitement.
    *
    * @author akm
@@ -499,7 +568,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L502">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L571">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link PayslipDto#getStatus()}.
@@ -561,17 +630,17 @@ public interface PayslipService extends SpecificService {
      * @param status {@link PayslipStatus}
      */
     public void initialize(PayslipStatus status) {
-<span class="fc" id="L564">      this.status = status;</span>
-<span class="fc" id="L565">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L566">      transmittableForControl =</span>
-<span class="fc" id="L567">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L568">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L569">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L570">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
-<span class="fc" id="L571">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
-<span class="fc" id="L572">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L573">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L574">    }</span>
+<span class="fc" id="L633">      this.status = status;</span>
+<span class="fc" id="L634">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L635">      transmittableForControl =</span>
+<span class="fc" id="L636">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L637">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L638">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L639">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="fc" id="L640">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="fc" id="L641">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L642">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L643">    }</span>
 
     /**
      * {@link PayslipDto#JSON_STATUS}.
@@ -650,7 +719,7 @@ public interface PayslipService extends SpecificService {
    *
    * @author Christian
    */
-<span class="fc" id="L653">  class PayslipGetSumsRequestDto extends ByFilterRequestDto {</span>
+<span class="fc" id="L722">  class PayslipGetSumsRequestDto extends ByFilterRequestDto {</span>
 
   }
 
@@ -661,7 +730,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L664">  class PayslipGetSumsResponseDto implements HasGrossAmountAsStringDto,</span>
+<span class="fc" id="L733">  class PayslipGetSumsResponseDto implements HasGrossAmountAsStringDto,</span>
       HasDeductionsAmountAsStringDto, HasNetAmountAsStringDto, HasEmployerAmountAsStringDto {
 
     private String grossAmountAsString;

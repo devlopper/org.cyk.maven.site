@@ -371,6 +371,12 @@ import lombok.Setter;
   
   @JsonbProperty(JSON_COMPONENT_HAVING_NON_BLANK_MESSAGE_COUNT_AS_STRING)
   private String componentHavingNonBlankMessageCountAsString;
+
+  @JsonbProperty(JSON_IS_LITIGATABLE)
+  private Boolean isLitigatable;
+
+  @JsonbProperty(JSON_LITIGATION_REASON)
+  private String litigationReason;
   
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
@@ -378,17 +384,17 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L381">    status = response.getStatus();</span>
-<span class="fc" id="L382">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L383">    initializable = response.getInitializable();</span>
-<span class="fc" id="L384">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L385">    controllable = response.getControllable();</span>
-<span class="fc" id="L386">    acceptable = response.getAcceptable();</span>
-<span class="fc" id="L387">    recalculable = response.getRecalculable();</span>
-<span class="fc" id="L388">    validable = response.getValidable();</span>
-<span class="fc" id="L389">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L390">    closable = response.getClosable();</span>
-<span class="fc" id="L391">  }</span>
+<span class="fc" id="L387">    status = response.getStatus();</span>
+<span class="fc" id="L388">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L389">    initializable = response.getInitializable();</span>
+<span class="fc" id="L390">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L391">    controllable = response.getControllable();</span>
+<span class="fc" id="L392">    acceptable = response.getAcceptable();</span>
+<span class="fc" id="L393">    recalculable = response.getRecalculable();</span>
+<span class="fc" id="L394">    validable = response.getValidable();</span>
+<span class="fc" id="L395">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L396">    closable = response.getClosable();</span>
+<span class="fc" id="L397">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
