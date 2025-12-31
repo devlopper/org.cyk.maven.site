@@ -90,7 +90,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L93">  class ContextualConstantEvaluationGroupCreateRequestDto</span>
+<span class="nc" id="L93">  class ContextualConstantEvaluationGroupCreateRequestDto</span>
       extends AbstractNamableCreateRequestJsonDto
       implements ContextualConstantEvaluationGroupSaveRequestDto {
   }
@@ -128,7 +128,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L131">  public static class ContextualConstantEvaluationGroupGetManyResponseDto</span>
+<span class="nc" id="L131">  public static class ContextualConstantEvaluationGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ContextualConstantEvaluationGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -219,7 +219,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L222">  class ContextualConstantEvaluationGroupUpdateRequestDto</span>
+<span class="nc" id="L222">  class ContextualConstantEvaluationGroupUpdateRequestDto</span>
       extends AbstractNamableUpdateRequestJsonDto
       implements ContextualConstantEvaluationGroupSaveRequestDto {
 
@@ -283,7 +283,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L286">  class ContextualConstantEvaluationGroupGetValueRequestDto extends ByIdentifierRequestDto</span>
+<span class="nc" id="L286">  class ContextualConstantEvaluationGroupGetValueRequestDto extends ByIdentifierRequestDto</span>
       implements HasCategoryCodeDto {
 
     @JsonbProperty(JSON_CATEGORY_CODE)
@@ -298,7 +298,7 @@ public interface ContextualConstantEvaluationGroupService extends SpecificServic
    */
   @Getter
   @Setter
-<span class="fc" id="L301">  class ContextualConstantEvaluationGroupGetValueResponseDto extends IdentifiableResponseDto</span>
+<span class="nc" id="L301">  class ContextualConstantEvaluationGroupGetValueResponseDto extends IdentifiableResponseDto</span>
       implements HasStringValueDto, HasValueTypeDto {
 
     @JsonbProperty(JSON_VALUE)

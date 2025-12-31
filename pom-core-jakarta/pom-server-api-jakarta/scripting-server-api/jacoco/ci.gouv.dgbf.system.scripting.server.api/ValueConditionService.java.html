@@ -6,6 +6,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasBooleanValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasComparisonOperatorDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueMapKeyDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValuesSeparatorDto;
@@ -60,6 +61,20 @@ public interface ValueConditionService extends SpecificService {
   interface ValueConditionSaveRequestDto {
 
     /**
+     * Cette méthode permet d'obtenir identifiant de {@link ConditionalValueDto}.
+     *
+     * @return identifiant de {@link ConditionalValueDto}
+     */
+    String getConditionalValueIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner identifiant de {@link ConditionalValueDto}.
+     *
+     * @param conditionalValueIdentifier identifiant de {@link ConditionalValueDto}
+     */
+    void setConditionalValueIdentifier(String conditionalValueIdentifier);
+
+    /**
      * Cette méthode permet d'obtenir identifiant de sélecteur de valeur.
      *
      * @return identifiant de sélecteur de valeur
@@ -74,18 +89,18 @@ public interface ValueConditionService extends SpecificService {
     void setValueSelectorIdentifier(String valueSelectorIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir identifiant de {@link ConditionalValueDto}.
+     * Cette méthode permet d'obtenir la clé de map pour récupération de valeur.
      *
-     * @return identifiant de {@link ConditionalValueDto}
+     * @return clé de map
      */
-    String getConditionalValueIdentifier();
+    String getValueMapKey();
 
     /**
-     * Cette méthode permet d'assigner identifiant de {@link ConditionalValueDto}.
+     * Cette méthode permet d'assigner la clé de map pour récupération de valeur.
      *
-     * @param conditionalValueIdentifier identifiant de {@link ConditionalValueDto}
+     * @param valueMapKey clé de map pour récupération de valeur
      */
-    void setConditionalValueIdentifier(String conditionalValueIdentifier);
+    void setValueMapKey(String valueMapKey);
 
     /**
      * Cette méthode permet d'obtenir {@link ComparisonOperator}.
@@ -114,7 +129,7 @@ public interface ValueConditionService extends SpecificService {
      * @param valuesSeparator le séparateur de valeurs
      */
     void setValuesSeparator(String valuesSeparator);
-    
+
     /**
      * Cette méthode permet d'obtenir valeur.
      *
@@ -150,6 +165,11 @@ public interface ValueConditionService extends SpecificService {
         HasValueSelectorIdentifierDto.JSON_VALUE_SELECTOR_IDENTIFIER;
 
     /**
+     * {@link HasValueMapKeyDto#JSON_VALUE_MAP_KEY}.
+     */
+    String JSON_VALUE_MAP_KEY = HasValueMapKeyDto.JSON_VALUE_MAP_KEY;
+
+    /**
      * {@link HasConditionalValueIdentifierDto#JSON_CONDITIONAL_VALUE_IDENTIFIER}.
      */
     String JSON_CONDITIONAL_VALUE_IDENTIFIER =
@@ -169,7 +189,7 @@ public interface ValueConditionService extends SpecificService {
      * {@link HasValueTypeDto#JSON_VALUE_TYPE}.
      */
     String JSON_VALUE_TYPE = HasValueTypeDto.JSON_VALUE_TYPE;
-    
+
     /**
      * {@link HasValuesSeparatorDto#JSON_VALUES_SEPARATOR}.
      */
@@ -209,12 +229,15 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L212">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="nc" id="L232">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ValueConditionSaveRequestDto {
-    
+
     @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
     private String valueSelectorIdentifier;
 
+    @JsonbProperty(JSON_VALUE_MAP_KEY)
+    private String valueMapKey;
+    
     @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
     private String conditionalValueIdentifier;
 
@@ -223,7 +246,7 @@ public interface ValueConditionService extends SpecificService {
 
     @JsonbProperty(JSON_VALUES_SEPARATOR)
     private String valuesSeparator;
-    
+
     @JsonbProperty(JSON_VALUE)
     private String value;
 
@@ -264,7 +287,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L267">  public static class ValueConditionGetManyResponseDto</span>
+<span class="nc" id="L290">  public static class ValueConditionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueConditionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -354,11 +377,15 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L357">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="nc" id="L380">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ValueConditionSaveRequestDto {
+    
     @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
     private String valueSelectorIdentifier;
 
+    @JsonbProperty(JSON_VALUE_MAP_KEY)
+    private String valueMapKey;
+    
     @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
     private String conditionalValueIdentifier;
 
@@ -367,7 +394,7 @@ public interface ValueConditionService extends SpecificService {
 
     @JsonbProperty(JSON_VALUES_SEPARATOR)
     private String valuesSeparator;
-    
+
     @JsonbProperty(JSON_VALUE)
     private String value;
 
@@ -408,7 +435,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L411">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L438">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Valeur de l'attribut de filtre du sélecteur.
@@ -431,7 +458,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L434">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
+<span class="nc" id="L461">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
       implements HasBooleanValueDto {
 
     @JsonbProperty(JSON_VALUE)

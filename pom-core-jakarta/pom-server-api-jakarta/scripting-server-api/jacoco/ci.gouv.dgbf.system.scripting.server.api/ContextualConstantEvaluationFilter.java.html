@@ -33,8 +33,8 @@ public class ContextualConstantEvaluationFilter extends AbstractIdentifiableFilt
    * Cette méthode permet d'instancier un objet.
    */
   public ContextualConstantEvaluationFilter() {
-<span class="fc" id="L36">    super();</span>
-<span class="fc" id="L37">  }</span>
+<span class="nc" id="L36">    super();</span>
+<span class="nc" id="L37">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -42,26 +42,26 @@ public class ContextualConstantEvaluationFilter extends AbstractIdentifiableFilt
    * @param dto filtre
    */
   public ContextualConstantEvaluationFilter(FilterDto dto) {
-<span class="fc" id="L45">    super(dto);</span>
-<span class="fc" id="L46">  }</span>
+<span class="nc" id="L45">    super(dto);</span>
+<span class="nc" id="L46">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L50">    super.doInitialize(filter);</span>
-<span class="fc" id="L51">    updateGroupIdentifier(filter);</span>
-<span class="fc" id="L52">    updateCategoryIdentifier(filter);</span>
-<span class="fc" id="L53">    updateCategoryCode(filter);</span>
-<span class="fc" id="L54">    updateValueIdentifier(filter);</span>
-<span class="fc" id="L55">  }</span>
+<span class="nc" id="L50">    super.doInitialize(filter);</span>
+<span class="nc" id="L51">    updateGroupIdentifier(filter);</span>
+<span class="nc" id="L52">    updateCategoryIdentifier(filter);</span>
+<span class="nc" id="L53">    updateCategoryCode(filter);</span>
+<span class="nc" id="L54">    updateValueIdentifier(filter);</span>
+<span class="nc" id="L55">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L59">    super.toDto(filter);</span>
-<span class="fc" id="L60">    updateFilterGroupIdentifier(filter);</span>
-<span class="fc" id="L61">    updateFilterCategoryIdentifier(filter);</span>
-<span class="fc" id="L62">    updateFilterCategoryCode(filter);</span>
-<span class="fc" id="L63">    updateFilterValueIdentifier(filter);</span>
-<span class="fc" id="L64">  }</span>
+<span class="nc" id="L59">    super.toDto(filter);</span>
+<span class="nc" id="L60">    updateFilterGroupIdentifier(filter);</span>
+<span class="nc" id="L61">    updateFilterCategoryIdentifier(filter);</span>
+<span class="nc" id="L62">    updateFilterCategoryCode(filter);</span>
+<span class="nc" id="L63">    updateFilterValueIdentifier(filter);</span>
+<span class="nc" id="L64">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

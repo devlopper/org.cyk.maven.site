@@ -116,7 +116,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L119">  class ConstantGroupCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="nc" id="L119">  class ConstantGroupCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements ConstantGroupSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -156,7 +156,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L159">  public static class ConstantGroupGetManyResponseDto</span>
+<span class="nc" id="L159">  public static class ConstantGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConstantGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -246,7 +246,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L249">  class ConstantGroupUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="nc" id="L249">  class ConstantGroupUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements ConstantGroupSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -311,7 +311,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L314">  class ConstantGroupEvaluateContextualConstantsRequestDto extends EvaluateRequestDto</span>
+<span class="nc" id="L314">  class ConstantGroupEvaluateContextualConstantsRequestDto extends EvaluateRequestDto</span>
       implements HasFromDateDto&lt;LocalDateTime&gt;, HasToDateDto&lt;LocalDateTime&gt; {
 
     /**
@@ -340,7 +340,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L343">  class ConstantGroupEvaluateContextualConstantsResponseDto extends IdentifiableResponseDto {</span>
+<span class="nc" id="L343">  class ConstantGroupEvaluateContextualConstantsResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Identifiant {@link ContextualConstantEvaluationGroupDto}.
@@ -390,7 +390,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L393">  class ConstantGroupEvaluateManyContextualConstantsRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="nc" id="L393">  class ConstantGroupEvaluateManyContextualConstantsRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements HasFromDateDto&lt;LocalDateTime&gt;, HasToDateDto&lt;LocalDateTime&gt; {
 
     /**
@@ -413,11 +413,11 @@ public interface ConstantGroupService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto addGroup(String identifier, String name) {
-<span class="fc" id="L416">      GroupDto group = new GroupDto();</span>
-<span class="fc" id="L417">      group.identifier = identifier;</span>
-<span class="fc" id="L418">      group.name = name;</span>
-<span class="fc" id="L419">      groups().add(group);</span>
-<span class="fc" id="L420">      return group;</span>
+<span class="nc" id="L416">      GroupDto group = new GroupDto();</span>
+<span class="nc" id="L417">      group.identifier = identifier;</span>
+<span class="nc" id="L418">      group.name = name;</span>
+<span class="nc" id="L419">      groups().add(group);</span>
+<span class="nc" id="L420">      return group;</span>
     }
     
     /**
@@ -426,8 +426,8 @@ public interface ConstantGroupService extends SpecificService {
      * @return collection de groupe non nulle
      */
     public Collection&lt;GroupDto&gt; groups() {
-<span class="fc" id="L429">      groups = Optional.ofNullable(groups).orElseGet(ArrayList::new);</span>
-<span class="fc" id="L430">      return groups;</span>
+<span class="nc" id="L429">      groups = Optional.ofNullable(groups).orElseGet(ArrayList::new);</span>
+<span class="nc" id="L430">      return groups;</span>
     }
 
     /**
@@ -437,8 +437,8 @@ public interface ConstantGroupService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto getGroupByIdentifier(String identifier) {
-<span class="fc" id="L440">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
-<span class="fc" id="L441">          .filter(group -&gt; Objects.equals(group.identifier, identifier)).findFirst().orElse(null);</span>
+<span class="nc" id="L440">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
+<span class="nc" id="L441">          .filter(group -&gt; Objects.equals(group.identifier, identifier)).findFirst().orElse(null);</span>
     }
 
     /**
@@ -448,7 +448,7 @@ public interface ConstantGroupService extends SpecificService {
      */
     @Getter
     @Setter
-<span class="fc" id="L451">    public static class GroupDto implements HasIdentifierDto, HasNameDto {</span>
+<span class="nc" id="L451">    public static class GroupDto implements HasIdentifierDto, HasNameDto {</span>
 
       @JsonbProperty(JSON_IDENTIFIER)
       private String identifier;
@@ -466,7 +466,7 @@ public interface ConstantGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L469">  class ConstantGroupEvaluateManyContextualConstantsResponseDto extends AbstractResponseDto {</span>
+<span class="nc" id="L469">  class ConstantGroupEvaluateManyContextualConstantsResponseDto extends AbstractResponseDto {</span>
 
     /**
      * Collection de {@link GroupDto}.
@@ -481,7 +481,7 @@ public interface ConstantGroupService extends SpecificService {
      */
     @Getter
     @Setter
-<span class="fc" id="L484">    public static class GroupDto implements HasIdentifierDto {</span>
+<span class="nc" id="L484">    public static class GroupDto implements HasIdentifierDto {</span>
 
       @JsonbProperty(JSON_IDENTIFIER)
       private String identifier;

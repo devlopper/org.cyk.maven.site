@@ -34,13 +34,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L37">public class ConditionalValueClient extends AbstractClient&lt;ConditionalValueService&gt;</span>
+<span class="nc" id="L37">public class ConditionalValueClient extends AbstractClient&lt;ConditionalValueService&gt;</span>
     implements GetByIdentifier&lt;ConditionalValueDto&gt;, GetMany&lt;ConditionalValueGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public ConditionalValueClient service(ConditionalValueService service) {
-<span class="fc" id="L43">    return (ConditionalValueClient) super.service(service);</span>
+<span class="nc" id="L43">    return (ConditionalValueClient) super.service(service);</span>
   }
 
   /**
@@ -50,8 +50,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(ConditionalValueCreateRequestDto request) {
-<span class="fc" id="L53">    return new CreateExecutor(ConditionalValueService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L54">        .execute(() -&gt; service().create(request));</span>
+<span class="nc" id="L53">    return new CreateExecutor(ConditionalValueService.CREATE_IDENTIFIER)</span>
+<span class="nc" id="L54">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -61,9 +61,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ConditionalValueGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L64">    return new GetOneExecutor&lt;ConditionalValueGetManyResponseDto&gt;(</span>
-        ConditionalValueGetManyResponseDto.class, ConditionalValueService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L66">            .execute(() -&gt; service().getMany(request));</span>
+<span class="nc" id="L64">    return new GetOneExecutor&lt;ConditionalValueGetManyResponseDto&gt;(</span>
+<span class="nc" id="L65">        ConditionalValueGetManyResponseDto.class, ConditionalValueService.GET_MANY_IDENTIFIER)</span>
+<span class="nc" id="L66">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -79,13 +79,13 @@ import lombok.experimental.Accessors;
   @Override
   public ConditionalValueGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L83">    request.setProjection(projection);</span>
-<span class="fc" id="L84">    request.setFilter(filter);</span>
-<span class="fc" id="L85">    request.setPage(page);</span>
-<span class="fc" id="L86">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L87">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L88">    return getMany(request);</span>
+<span class="nc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="nc" id="L83">    request.setProjection(projection);</span>
+<span class="nc" id="L84">    request.setFilter(filter);</span>
+<span class="nc" id="L85">    request.setPage(page);</span>
+<span class="nc" id="L86">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L87">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L88">    return getMany(request);</span>
   }
 
   /**
@@ -95,8 +95,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ConditionalValueDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L98">    return new GetOneExecutor&lt;ConditionalValueDto&gt;(ConditionalValueDto.class,</span>
-<span class="fc" id="L99">        ConditionalValueService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="nc" id="L98">    return new GetOneExecutor&lt;ConditionalValueDto&gt;(ConditionalValueDto.class,</span>
+<span class="nc" id="L99">        ConditionalValueService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -110,12 +110,12 @@ import lombok.experimental.Accessors;
    */
   public ConditionalValueDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L113">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L114">    request.setProjection(projection);</span>
-<span class="fc" id="L115">    request.setFilter(filter);</span>
-<span class="fc" id="L116">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L117">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L118">    return getOne(request);</span>
+<span class="nc" id="L113">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="nc" id="L114">    request.setProjection(projection);</span>
+<span class="nc" id="L115">    request.setFilter(filter);</span>
+<span class="nc" id="L116">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L117">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L118">    return getOne(request);</span>
   }
 
   /**
@@ -125,9 +125,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public ConditionalValueDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L128">    return new GetOneExecutor&lt;ConditionalValueDto&gt;(ConditionalValueDto.class,</span>
-        ConditionalValueService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L130">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="nc" id="L128">    return new GetOneExecutor&lt;ConditionalValueDto&gt;(ConditionalValueDto.class,</span>
+<span class="nc" id="L129">        ConditionalValueService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
+<span class="nc" id="L130">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -142,12 +142,12 @@ import lombok.experimental.Accessors;
   @Override
   public ConditionalValueDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L145">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L146">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L147">    request.setProjection(projection);</span>
-<span class="fc" id="L148">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L149">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L150">    return getByIdentifier(request);</span>
+<span class="nc" id="L145">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="nc" id="L146">    request.setIdentifier(identifier);</span>
+<span class="nc" id="L147">    request.setProjection(projection);</span>
+<span class="nc" id="L148">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L149">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L150">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -158,10 +158,10 @@ import lombok.experimental.Accessors;
    */
   public ConditionalValueCheckApplicabilityResponseDto checkApplicability(
       ConditionalValueCheckApplicabilityRequestDto request) {
-<span class="fc" id="L161">    return new GetOneExecutor&lt;ConditionalValueCheckApplicabilityResponseDto&gt;(</span>
-        ConditionalValueCheckApplicabilityResponseDto.class,
-        ConditionalValueService.CHECK_APPLICABILITY_IDENTIFIER)
-<span class="fc" id="L164">            .execute(() -&gt; service().checkApplicability(request));</span>
+<span class="nc" id="L161">    return new GetOneExecutor&lt;ConditionalValueCheckApplicabilityResponseDto&gt;(</span>
+<span class="nc" id="L162">        ConditionalValueCheckApplicabilityResponseDto.class,</span>
+<span class="nc" id="L163">        ConditionalValueService.CHECK_APPLICABILITY_IDENTIFIER)</span>
+<span class="nc" id="L164">            .execute(() -&gt; service().checkApplicability(request));</span>
   }
 
   /**
@@ -171,8 +171,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(ConditionalValueUpdateRequestDto request) {
-<span class="fc" id="L174">    return new IdentifiableExecutor(ConditionalValueService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L175">        .execute(() -&gt; service().update(request));</span>
+<span class="nc" id="L174">    return new IdentifiableExecutor(ConditionalValueService.UPDATE_IDENTIFIER)</span>
+<span class="nc" id="L175">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -182,8 +182,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L185">    return new IdentifiableExecutor(ConditionalValueService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L186">        .execute(() -&gt; service().delete(request));</span>
+<span class="nc" id="L185">    return new IdentifiableExecutor(ConditionalValueService.DELETE_IDENTIFIER)</span>
+<span class="nc" id="L186">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -197,11 +197,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L200">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L201">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L202">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L203">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L204">    return delete(request);</span>
+<span class="nc" id="L200">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="nc" id="L201">    request.setIdentifier(identifier);</span>
+<span class="nc" id="L202">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L203">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L204">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

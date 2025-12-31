@@ -123,7 +123,7 @@ public interface ScriptParameterService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  class ScriptParameterCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="nc" id="L126">  class ScriptParameterCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptParameterSaveRequestDto {
     @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
     private String scriptIdentifier;
@@ -164,7 +164,7 @@ public interface ScriptParameterService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L167">  public static class ScriptParameterGetManyResponseDto</span>
+<span class="nc" id="L167">  public static class ScriptParameterGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ScriptParameterDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -254,7 +254,7 @@ public interface ScriptParameterService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L257">  class ScriptParameterUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="nc" id="L257">  class ScriptParameterUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptParameterSaveRequestDto {
     @JsonbProperty(JSON_SCRIPT_IDENTIFIER)
     private String scriptIdentifier;
