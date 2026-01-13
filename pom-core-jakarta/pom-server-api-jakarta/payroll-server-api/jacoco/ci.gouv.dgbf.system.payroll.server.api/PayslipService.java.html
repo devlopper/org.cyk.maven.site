@@ -536,7 +536,7 @@ public interface PayslipService extends SpecificService {
   Response validate(ByFilterRequestDto request);
 
   /**
-   * Identifiant du service de recalcul.
+   * Identifiant du service de transmission au contentieux.
    */
   String TRANSMIT_TO_LITIGATION_IDENTIFIER = &quot;TRANSMISSION_BULLETIN_PAIE_AU_CONTENTEIUX&quot;;
 
@@ -561,6 +561,40 @@ public interface PayslipService extends SpecificService {
   Response transmitToLitigation(PayslipTransmitLitigationRequestDto request);
 
   /**
+   * Identifiant du service de réintegration du contentieux.
+   */
+  String REINTEGRATE_FROM_LITIGATION_IDENTIFIER = &quot;REINTEGRATION_BULLETIN_PAIE_DU_CONTENTEIUX&quot;;
+
+  /**
+   * Chemin du service de reintegration du contentieux.
+   */
+  String REINTEGRATE_FROM_LITIGATION_PATH = &quot;reintegration_du_contentieux&quot;;
+
+  /**
+   * Cette méthode permet de réintégrer du contentieux un {@link PayslipDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(REINTEGRATE_FROM_LITIGATION_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = REINTEGRATE_FROM_LITIGATION_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+          content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response reintegrateFromLitigation(PayslipReintegrateFromLitigationRequestDto request);
+
+  /**
+   * Cette classe représente la requête de réintégration du contentieux.
+   *
+   * @author akm
+   */
+<span class="fc" id="L593">  class PayslipReintegrateFromLitigationRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
+
+  /**
    * Cette classe représente la réponse de traitement.
    *
    * @author akm
@@ -568,7 +602,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L571">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
+<span class="fc" id="L605">  class ProcessResponseDto extends IdentifiablesResponseDto {</span>
 
     /**
      * {@link PayslipDto#getStatus()}.
@@ -630,17 +664,17 @@ public interface PayslipService extends SpecificService {
      * @param status {@link PayslipStatus}
      */
     public void initialize(PayslipStatus status) {
-<span class="fc" id="L633">      this.status = status;</span>
-<span class="fc" id="L634">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L635">      transmittableForControl =</span>
-<span class="fc" id="L636">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L637">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L638">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
-<span class="fc" id="L639">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
-<span class="fc" id="L640">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
-<span class="fc" id="L641">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L642">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L643">    }</span>
+<span class="fc" id="L667">      this.status = status;</span>
+<span class="fc" id="L668">      initializable = PayslipStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L669">      transmittableForControl =</span>
+<span class="fc" id="L670">          PayslipStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L671">      controllable = PayslipStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L672">      acceptable = PayslipStatus.ACCEPTED.getPrevious().contains(status);</span>
+<span class="fc" id="L673">      recalculable = PayslipStatus.RECALCULATED.getPrevious().contains(status);</span>
+<span class="fc" id="L674">      validable = PayslipStatus.VALIDATED.getPrevious().contains(status);</span>
+<span class="fc" id="L675">      arbitrable = PayslipStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L676">      closable = PayslipStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L677">    }</span>
 
     /**
      * {@link PayslipDto#JSON_STATUS}.
@@ -719,7 +753,7 @@ public interface PayslipService extends SpecificService {
    *
    * @author Christian
    */
-<span class="fc" id="L722">  class PayslipGetSumsRequestDto extends ByFilterRequestDto {</span>
+<span class="fc" id="L756">  class PayslipGetSumsRequestDto extends ByFilterRequestDto {</span>
 
   }
 
@@ -730,7 +764,7 @@ public interface PayslipService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L733">  class PayslipGetSumsResponseDto implements HasGrossAmountAsStringDto,</span>
+<span class="fc" id="L767">  class PayslipGetSumsResponseDto implements HasGrossAmountAsStringDto,</span>
       HasDeductionsAmountAsStringDto, HasNetAmountAsStringDto, HasEmployerAmountAsStringDto {
 
     private String grossAmountAsString;

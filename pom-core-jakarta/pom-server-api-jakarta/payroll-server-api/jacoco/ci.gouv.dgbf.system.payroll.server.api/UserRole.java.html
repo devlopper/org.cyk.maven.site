@@ -86,30 +86,45 @@ public enum UserRole implements CodableByStringWithGetterOnly {
 <span class="fc" id="L86">  CORRECT(&quot;CORRIGER&quot;),</span>
 
   /**
+   * Transmettre {@link PayslipDto} au contentieux.
+   */
+<span class="fc" id="L91">  TRANSMIT_PAYSLIP_TO_LITIGATION(&quot;TRANSMETTRE_BULLETIN_AU_CONTENTIEUX&quot;),</span>
+    
+  /**
+   * Changer le mouvement du {@link PayslipDto}.
+   */
+<span class="fc" id="L96">  CHANGE_PAYSLIP_MOVEMENT(&quot;CHANGER_MOUVEMENT_BULLETIN&quot;),</span>
+
+  /**
+   * Réintégrer {@link PayslipDto}.
+   */
+<span class="fc" id="L101">  REINTEGRATE_PAYSLIP_FROM_LITIGATION(&quot;REINTEGRER_DU_CONTENTIEUX&quot;),</span>
+
+  /**
    * Accpeter {@link PayslipDto}.
    */
-<span class="fc" id="L91">  ACCEPT_PAYSLIP(&quot;ACCEPTER_BULLETIN_PAIE&quot;),</span>
+<span class="fc" id="L106">  ACCEPT_PAYSLIP(&quot;ACCEPTER_BULLETIN_PAIE&quot;),</span>
 
   /**
    * Calculer {@link PayslipDto}.
    */
-<span class="fc" id="L96">  CALCULATE_PAYSLIP(&quot;CALCULER_BULLETIN_PAIE&quot;),</span>
+<span class="fc" id="L111">  CALCULATE_PAYSLIP(&quot;CALCULER_BULLETIN_PAIE&quot;),</span>
 
   /**
    * Valider {@link PayslipDto}.
    */
-<span class="fc" id="L101">  VALIDATE_PAYSLIP(&quot;VALIDER_BULLETIN_PAIE&quot;),</span>
+<span class="fc" id="L116">  VALIDATE_PAYSLIP(&quot;VALIDER_BULLETIN_PAIE&quot;),</span>
 
   /**
    * Transmettre {@link PayslipDto} pour ajustement.
    */
-<span class="fc" id="L106">  TRANSMIT_PAYSLIP_FOR_ADJUSTMENT(&quot;TRANSMETTRE_BULLETIN_PAIE_POUR_ARBITRAGE&quot;)</span>
+<span class="fc" id="L121">  TRANSMIT_PAYSLIP_FOR_ADJUSTMENT(&quot;TRANSMETTRE_BULLETIN_PAIE_POUR_ARBITRAGE&quot;)</span>
 
   ;
 
-<span class="fc" id="L110">  private UserRole(String code) {</span>
-<span class="fc" id="L111">    this.code = code;</span>
-<span class="fc" id="L112">  }</span>
+<span class="fc" id="L125">  private UserRole(String code) {</span>
+<span class="fc" id="L126">    this.code = code;</span>
+<span class="fc" id="L127">  }</span>
 
   /**
    * Code.

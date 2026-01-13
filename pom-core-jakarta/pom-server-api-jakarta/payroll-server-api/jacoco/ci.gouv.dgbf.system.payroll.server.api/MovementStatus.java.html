@@ -15,34 +15,38 @@ import lombok.Getter;
  */
 <span class="fc" id="L16">@Getter</span>
 public enum MovementStatus {
+  /**
+   * Projeté.
+   */
+<span class="fc" id="L21">  PROJECTED(MovementStatusCode.PROJECTED, &quot;Projeté&quot;, &quot;Projection&quot;),</span>
 
   /**
    * Activé.
    */
-<span class="fc" id="L22">  ACTIVATED(MovementStatusCode.ACTIVATED, &quot;Activé&quot;, &quot;Activation&quot;),</span>
+<span class="fc" id="L26">  ACTIVATED(MovementStatusCode.ACTIVATED, &quot;Activé&quot;, &quot;Activation&quot;),</span>
 
   /**
    * Proposé.
    */
-<span class="fc" id="L27">  SUGGESTED(MovementStatusCode.SUGGESTED, &quot;Proposé&quot;, &quot;Proposition&quot;),</span>
+<span class="fc" id="L31">  SUGGESTED(MovementStatusCode.SUGGESTED, &quot;Proposé&quot;, &quot;Proposition&quot;),</span>
 
   /**
    * Refusé.
    */
-<span class="fc" id="L32">  REFUSED(MovementStatusCode.REFUSED, &quot;Refusé&quot;, &quot;Refus&quot;),</span>
+<span class="fc" id="L36">  REFUSED(MovementStatusCode.REFUSED, &quot;Refusé&quot;, &quot;Refus&quot;),</span>
 
   /**
    * Clôturée.
    */
-<span class="fc" id="L37">  CLOSED(MovementStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
+<span class="fc" id="L41">  CLOSED(MovementStatusCode.CLOSED, &quot;Clôturée&quot;, &quot;Clôture&quot;)</span>
 
   ;
 
-<span class="fc" id="L41">  private MovementStatus(String code, String name, String action) {</span>
-<span class="fc" id="L42">    this.code = code;</span>
-<span class="fc" id="L43">    this.name = name;</span>
-<span class="fc" id="L44">    this.action = action;</span>
-<span class="fc" id="L45">  }</span>
+<span class="fc" id="L45">  private MovementStatus(String code, String name, String action) {</span>
+<span class="fc" id="L46">    this.code = code;</span>
+<span class="fc" id="L47">    this.name = name;</span>
+<span class="fc" id="L48">    this.action = action;</span>
+<span class="fc" id="L49">  }</span>
 
   private String code;
   private String name;
@@ -51,7 +55,7 @@ public enum MovementStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L54">    return name;</span>
+<span class="fc" id="L58">    return name;</span>
   }
 
   /**
@@ -61,15 +65,16 @@ public enum MovementStatus {
    * @return {@link MovementStatus}
    */
   public static MovementStatus getByCode(String code) {
-<span class="fc" id="L64">    return Stream.of(MovementStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L65">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L68">    return Stream.of(MovementStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L69">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L69">    ACTIVATED.previous = Core.getSet(List.of(SUGGESTED));</span>
-<span class="fc" id="L70">    SUGGESTED.previous = Collections.emptySet();</span>
-<span class="fc" id="L71">    REFUSED.previous = Core.getSet(List.of(SUGGESTED));</span>
-<span class="fc" id="L72">    CLOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
-<span class="fc" id="L73">  }</span>
+<span class="fc" id="L73">    PROJECTED.previous = Collections.emptySet();</span>
+<span class="fc" id="L74">    ACTIVATED.previous = Core.getSet(List.of(SUGGESTED));</span>
+<span class="fc" id="L75">    SUGGESTED.previous = Collections.emptySet();</span>
+<span class="fc" id="L76">    REFUSED.previous = Core.getSet(List.of(SUGGESTED));</span>
+<span class="fc" id="L77">    CLOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L78">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -40,16 +40,21 @@ public enum PayslipMovementStatus {
    * {@link PayslipMovementStatusCode#REJECTION_PROPOSED}.
    */
 <span class="fc" id="L42">  REJECTION_PROPOSED(PayslipMovementStatusCode.REJECTION_PROPOSED,</span>
-      &quot;Rejet proposé&quot;, &quot;Proposer rejet&quot;, &quot;Propositon de rejet&quot;)
+      &quot;Rejet proposé&quot;, &quot;Proposer rejet&quot;, &quot;Propositon de rejet&quot;),
+    
+  /**
+   * {@link PayslipMovementStatusCode#CLOSED}.
+   */
+<span class="fc" id="L48">  CLOSED(PayslipMovementStatusCode.CLOSED, &quot;Cloturé&quot;, &quot;Cloturer&quot;, &quot;Cloturé&quot;)</span>
 
   ;
 
-<span class="fc" id="L47">  private PayslipMovementStatus(String code, String name, String action, String actionName) {</span>
-<span class="fc" id="L48">    this.code = code;</span>
-<span class="fc" id="L49">    this.name = name;</span>
-<span class="fc" id="L50">    this.action = action;</span>
-<span class="fc" id="L51">    this.actionName = actionName;</span>
-<span class="fc" id="L52">  }</span>
+<span class="fc" id="L52">  private PayslipMovementStatus(String code, String name, String action, String actionName) {</span>
+<span class="fc" id="L53">    this.code = code;</span>
+<span class="fc" id="L54">    this.name = name;</span>
+<span class="fc" id="L55">    this.action = action;</span>
+<span class="fc" id="L56">    this.actionName = actionName;</span>
+<span class="fc" id="L57">  }</span>
 
   private String code;
   private String name;
@@ -59,7 +64,7 @@ public enum PayslipMovementStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L62">    return name;</span>
+<span class="fc" id="L67">    return name;</span>
   }
 
   /**
@@ -69,18 +74,18 @@ public enum PayslipMovementStatus {
    * @return statut
    */
   public static PayslipMovementStatus getByCode(String code) {
-<span class="fc" id="L72">    return Stream.of(PayslipMovementStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L73">        .findFirst()</span>
-<span class="pc" id="L74">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
+<span class="fc" id="L77">    return Stream.of(PayslipMovementStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L78">        .findFirst()</span>
+<span class="pc" id="L79">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {
-<span class="fc" id="L78">    ACTIVATED.previous =</span>
-<span class="fc" id="L79">        Core.getSet(List.of(DEFERRED_PROPOSED, DEFERRED, REJECTION_PROPOSED, REJECTED));</span>
-<span class="fc" id="L80">    DEFERRED_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
-<span class="fc" id="L81">    DEFERRED.previous = Core.getSet(List.of(ACTIVATED, DEFERRED_PROPOSED));</span>
-<span class="fc" id="L82">    REJECTION_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
-<span class="fc" id="L83">    REJECTED.previous = Core.getSet(List.of(ACTIVATED, REJECTION_PROPOSED));</span>
-<span class="fc" id="L84">  }</span>
+<span class="fc" id="L83">    ACTIVATED.previous =</span>
+<span class="fc" id="L84">        Core.getSet(List.of(DEFERRED_PROPOSED, DEFERRED, REJECTION_PROPOSED, REJECTED));</span>
+<span class="fc" id="L85">    DEFERRED_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L86">    DEFERRED.previous = Core.getSet(List.of(ACTIVATED, DEFERRED_PROPOSED));</span>
+<span class="fc" id="L87">    REJECTION_PROPOSED.previous = Core.getSet(List.of(ACTIVATED));</span>
+<span class="fc" id="L88">    REJECTED.previous = Core.getSet(List.of(ACTIVATED, REJECTION_PROPOSED));</span>
+<span class="fc" id="L89">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

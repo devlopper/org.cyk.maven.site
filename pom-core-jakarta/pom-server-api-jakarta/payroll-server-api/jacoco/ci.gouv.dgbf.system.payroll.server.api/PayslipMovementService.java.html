@@ -580,5 +580,30 @@ public interface PayslipMovementService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;, content = {
       @Content(schema = @Schema(implementation = PayslipMovementProcessResponseDto.class))})
   Response proposeRejection(PayslipMovementProcessRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour du mouvement actuel.
+   */
+  String UPDATE_ACTUAL_MOVEMENT_IDENTIFIER = &quot;MISE_A_JOUR_MOUVEMENT_ACTUEL&quot;;
+
+  /**
+   * Chemin du service de mise à jour du mouvement actuel.
+   */
+  String UPDATE_ACTUAL_MOVEMENT_PATH = &quot;mise-a-jour-mouvement-actuel&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour le mouvement actuel.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_ACTUAL_MOVEMENT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = UPDATE_ACTUAL_MOVEMENT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateActualMovement(PayslipMovementUpdateRequestDto request);
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

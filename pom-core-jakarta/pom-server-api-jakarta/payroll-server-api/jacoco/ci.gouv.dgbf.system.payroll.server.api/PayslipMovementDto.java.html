@@ -65,20 +65,26 @@ import lombok.Setter;
   @JsonbProperty(JSON_REJECTABLE)
   private Boolean rejectable;
 
+  @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
+  private String remunerableIdentifier;
+
+  @JsonbProperty(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER)
+  private String payrollElementInstanceIdentifier;
+
   /**
    * Cette méthode permet d'initialiser à partir d'une réponse.
    *
    * @param response résponse
    */
   public void initialize(PayslipMovementProcessResponseDto response) {
-<span class="fc" id="L74">    status = response.getStatus();</span>
-<span class="fc" id="L75">    setStatusAsString(response.getStatus().getName());</span>
-<span class="fc" id="L76">    activatable = response.getActivatable();</span>
-<span class="fc" id="L77">    deferrableProposal = response.getDeferrableProposal();</span>
-<span class="fc" id="L78">    deferrable = response.getDeferrable();</span>
-<span class="fc" id="L79">    rejectableProposal = response.getRejectableProposal();</span>
-<span class="fc" id="L80">    rejectable = response.getRejectable();</span>
-<span class="fc" id="L81">  }</span>
+<span class="fc" id="L80">    status = response.getStatus();</span>
+<span class="fc" id="L81">    setStatusAsString(response.getStatus().getName());</span>
+<span class="fc" id="L82">    activatable = response.getActivatable();</span>
+<span class="fc" id="L83">    deferrableProposal = response.getDeferrableProposal();</span>
+<span class="fc" id="L84">    deferrable = response.getDeferrable();</span>
+<span class="fc" id="L85">    rejectableProposal = response.getRejectableProposal();</span>
+<span class="fc" id="L86">    rejectable = response.getRejectable();</span>
+<span class="fc" id="L87">  }</span>
 
   /**
    * Identifiant json de identifiant de {@link PayslipMovementDto}.
@@ -121,6 +127,18 @@ import lombok.Setter;
    * Identifiant json {@link #rejectable}.
    */
   public static final String JSON_REJECTABLE = &quot;rejetable&quot;;
+
+
+  /**
+   * Identifiant json {@link #payrollElementInstanceIdentifier}.
+   */
+  public static final String JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIER = 
+      &quot;identifiantInstanceElementPaie&quot;;
+
+  /**
+   * Identifiant json {@link #remunerableIdentifier}.
+   */
+  public static final String JSON_REMUNERABLE_IDENTIFIER = &quot;identifiantRemunerable&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

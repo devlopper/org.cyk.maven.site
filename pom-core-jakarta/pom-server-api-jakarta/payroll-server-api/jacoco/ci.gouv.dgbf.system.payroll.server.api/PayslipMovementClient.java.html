@@ -249,6 +249,19 @@ import lombok.experimental.Accessors;
   }
 
   /**
+   * {@link PayslipMovementService#updateActualMovement}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto updateActualMovement(
+      PayslipMovementUpdateRequestDto request) {
+<span class="fc" id="L259">    return new IdentifiableExecutor(</span>
+        PayslipMovementService.UPDATE_ACTUAL_MOVEMENT_IDENTIFIER)
+<span class="fc" id="L261">        .execute(() -&gt; service().updateActualMovement(request));</span>
+  }
+
+  /**
    * Cette classe représente un exécuteur de traitement .
    *
    * @author Christian
@@ -261,9 +274,9 @@ import lombok.experimental.Accessors;
      *
      * @param identifier identifiant
      */
-<span class="fc" id="L264">    public PayslipMovementProcessExecutor(String identifier) {</span>
-<span class="fc" id="L265">      super(PayslipMovementProcessResponseDto.class, identifier);</span>
-<span class="fc" id="L266">    }</span>
+<span class="fc" id="L277">    public PayslipMovementProcessExecutor(String identifier) {</span>
+<span class="fc" id="L278">      super(PayslipMovementProcessResponseDto.class, identifier);</span>
+<span class="fc" id="L279">    }</span>
 
   }
 }
