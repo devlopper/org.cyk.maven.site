@@ -34,13 +34,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="nc" id="L37">public class ConstantCategoryClient extends AbstractClient&lt;ConstantCategoryService&gt;</span>
+<span class="fc" id="L37">public class ConstantCategoryClient extends AbstractClient&lt;ConstantCategoryService&gt;</span>
     implements GetByIdentifier&lt;ConstantCategoryDto&gt;, GetMany&lt;ConstantCategoryGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public ConstantCategoryClient service(ConstantCategoryService service) {
-<span class="nc" id="L43">    return (ConstantCategoryClient) super.service(service);</span>
+<span class="fc" id="L43">    return (ConstantCategoryClient) super.service(service);</span>
   }
 
   /**
@@ -50,8 +50,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(ConstantCategoryCreateRequestDto request) {
-<span class="nc" id="L53">    return new CreateExecutor(ConstantCategoryService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L54">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L53">    return new CreateExecutor(ConstantCategoryService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L54">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -61,9 +61,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ConstantCategoryGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L64">    return new GetOneExecutor&lt;ConstantCategoryGetManyResponseDto&gt;(</span>
-<span class="nc" id="L65">        ConstantCategoryGetManyResponseDto.class, ConstantCategoryService.GET_MANY_IDENTIFIER)</span>
-<span class="nc" id="L66">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L64">    return new GetOneExecutor&lt;ConstantCategoryGetManyResponseDto&gt;(</span>
+        ConstantCategoryGetManyResponseDto.class, ConstantCategoryService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L66">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -79,13 +79,13 @@ import lombok.experimental.Accessors;
   @Override
   public ConstantCategoryGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="nc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L83">    request.setProjection(projection);</span>
-<span class="nc" id="L84">    request.setFilter(filter);</span>
-<span class="nc" id="L85">    request.setPage(page);</span>
-<span class="nc" id="L86">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L87">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L88">    return getMany(request);</span>
+<span class="fc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L83">    request.setProjection(projection);</span>
+<span class="fc" id="L84">    request.setFilter(filter);</span>
+<span class="fc" id="L85">    request.setPage(page);</span>
+<span class="fc" id="L86">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L87">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L88">    return getMany(request);</span>
   }
 
   /**
@@ -95,8 +95,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ConstantCategoryDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L98">    return new GetOneExecutor&lt;ConstantCategoryDto&gt;(ConstantCategoryDto.class,</span>
-<span class="nc" id="L99">        ConstantCategoryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L98">    return new GetOneExecutor&lt;ConstantCategoryDto&gt;(ConstantCategoryDto.class,</span>
+<span class="fc" id="L99">        ConstantCategoryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -110,12 +110,12 @@ import lombok.experimental.Accessors;
    */
   public ConstantCategoryDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="nc" id="L113">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L114">    request.setProjection(projection);</span>
-<span class="nc" id="L115">    request.setFilter(filter);</span>
-<span class="nc" id="L116">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L117">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L118">    return getOne(request);</span>
+<span class="fc" id="L113">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L114">    request.setProjection(projection);</span>
+<span class="fc" id="L115">    request.setFilter(filter);</span>
+<span class="fc" id="L116">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L117">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L118">    return getOne(request);</span>
   }
 
   /**
@@ -125,9 +125,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public ConstantCategoryDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L128">    return new GetOneExecutor&lt;ConstantCategoryDto&gt;(ConstantCategoryDto.class,</span>
-<span class="nc" id="L129">        ConstantCategoryService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L130">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L128">    return new GetOneExecutor&lt;ConstantCategoryDto&gt;(ConstantCategoryDto.class,</span>
+        ConstantCategoryService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L130">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -142,12 +142,12 @@ import lombok.experimental.Accessors;
   @Override
   public ConstantCategoryDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="nc" id="L145">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L146">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L147">    request.setProjection(projection);</span>
-<span class="nc" id="L148">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L149">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L150">    return getByIdentifier(request);</span>
+<span class="fc" id="L145">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L146">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L147">    request.setProjection(projection);</span>
+<span class="fc" id="L148">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L149">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L150">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -157,8 +157,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(ConstantCategoryUpdateRequestDto request) {
-<span class="nc" id="L160">    return new IdentifiableExecutor(ConstantCategoryService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L161">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L160">    return new IdentifiableExecutor(ConstantCategoryService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L161">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -168,8 +168,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L171">    return new IdentifiableExecutor(ConstantCategoryService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L172">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L171">    return new IdentifiableExecutor(ConstantCategoryService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L172">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -183,11 +183,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="nc" id="L186">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L187">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L188">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L189">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L190">    return delete(request);</span>
+<span class="fc" id="L186">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L187">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L188">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L189">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L190">    return delete(request);</span>
   }
 
   /**
@@ -197,8 +197,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ConstantCategoryEvaluateResponseDto evaluate(ConstantCategoryEvaluateRequestDto request) {
-<span class="nc" id="L200">    return new GetOneExecutor&lt;&gt;(ConstantCategoryEvaluateResponseDto.class,</span>
-<span class="nc" id="L201">        ConstantCategoryService.EVALUATE_IDENTIFIER).execute(() -&gt; service().evaluate(request));</span>
+<span class="fc" id="L200">    return new GetOneExecutor&lt;&gt;(ConstantCategoryEvaluateResponseDto.class,</span>
+<span class="fc" id="L201">        ConstantCategoryService.EVALUATE_IDENTIFIER).execute(() -&gt; service().evaluate(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

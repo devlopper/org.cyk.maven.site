@@ -34,7 +34,7 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="nc" id="L37">public class ContextualConstantEvaluationGroupClient</span>
+<span class="fc" id="L37">public class ContextualConstantEvaluationGroupClient</span>
     extends AbstractClient&lt;ContextualConstantEvaluationGroupService&gt;
     implements GetByIdentifier&lt;ContextualConstantEvaluationGroupDto&gt;,
     GetMany&lt;ContextualConstantEvaluationGroupGetManyResponseDto&gt;,
@@ -43,7 +43,7 @@ import lombok.experimental.Accessors;
   @Override
   public ContextualConstantEvaluationGroupClient service(
       ContextualConstantEvaluationGroupService service) {
-<span class="nc" id="L46">    return (ContextualConstantEvaluationGroupClient) super.service(service);</span>
+<span class="fc" id="L46">    return (ContextualConstantEvaluationGroupClient) super.service(service);</span>
   }
 
   /**
@@ -53,8 +53,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(ContextualConstantEvaluationGroupCreateRequestDto request) {
-<span class="nc" id="L56">    return new CreateExecutor(ContextualConstantEvaluationGroupService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L57">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L56">    return new CreateExecutor(ContextualConstantEvaluationGroupService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L57">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -64,10 +64,10 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ContextualConstantEvaluationGroupGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L67">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupGetManyResponseDto&gt;(</span>
-<span class="nc" id="L68">        ContextualConstantEvaluationGroupGetManyResponseDto.class,</span>
-<span class="nc" id="L69">        ContextualConstantEvaluationGroupService.GET_MANY_IDENTIFIER)</span>
-<span class="nc" id="L70">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L67">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupGetManyResponseDto&gt;(</span>
+        ContextualConstantEvaluationGroupGetManyResponseDto.class,
+        ContextualConstantEvaluationGroupService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L70">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -83,13 +83,13 @@ import lombok.experimental.Accessors;
   @Override
   public ContextualConstantEvaluationGroupGetManyResponseDto getMany(ProjectionDto projection,
       FilterDto filter, PageDto page, String auditWho, String auditSession) {
-<span class="nc" id="L86">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L87">    request.setProjection(projection);</span>
-<span class="nc" id="L88">    request.setFilter(filter);</span>
-<span class="nc" id="L89">    request.setPage(page);</span>
-<span class="nc" id="L90">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L91">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L92">    return getMany(request);</span>
+<span class="fc" id="L86">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L87">    request.setProjection(projection);</span>
+<span class="fc" id="L88">    request.setFilter(filter);</span>
+<span class="fc" id="L89">    request.setPage(page);</span>
+<span class="fc" id="L90">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L91">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L92">    return getMany(request);</span>
   }
 
   /**
@@ -99,10 +99,10 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public ContextualConstantEvaluationGroupDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L102">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupDto&gt;(</span>
-<span class="nc" id="L103">        ContextualConstantEvaluationGroupDto.class,</span>
-<span class="nc" id="L104">        ContextualConstantEvaluationGroupService.GET_ONE_IDENTIFIER)</span>
-<span class="nc" id="L105">            .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L102">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupDto&gt;(</span>
+        ContextualConstantEvaluationGroupDto.class,
+        ContextualConstantEvaluationGroupService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L105">            .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -116,12 +116,12 @@ import lombok.experimental.Accessors;
    */
   public ContextualConstantEvaluationGroupDto getOne(ProjectionDto projection, FilterDto filter,
       String auditWho, String auditSession) {
-<span class="nc" id="L119">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L120">    request.setProjection(projection);</span>
-<span class="nc" id="L121">    request.setFilter(filter);</span>
-<span class="nc" id="L122">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L123">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L124">    return getOne(request);</span>
+<span class="fc" id="L119">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L120">    request.setProjection(projection);</span>
+<span class="fc" id="L121">    request.setFilter(filter);</span>
+<span class="fc" id="L122">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L123">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L124">    return getOne(request);</span>
   }
 
   /**
@@ -131,10 +131,10 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public ContextualConstantEvaluationGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L134">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupDto&gt;(</span>
-<span class="nc" id="L135">        ContextualConstantEvaluationGroupDto.class,</span>
-<span class="nc" id="L136">        ContextualConstantEvaluationGroupService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L137">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L134">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupDto&gt;(</span>
+        ContextualConstantEvaluationGroupDto.class,
+        ContextualConstantEvaluationGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L137">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -149,12 +149,12 @@ import lombok.experimental.Accessors;
   @Override
   public ContextualConstantEvaluationGroupDto getByIdentifier(String identifier,
       ProjectionDto projection, String auditWho, String auditSession) {
-<span class="nc" id="L152">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L153">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L154">    request.setProjection(projection);</span>
-<span class="nc" id="L155">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L156">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L157">    return getByIdentifier(request);</span>
+<span class="fc" id="L152">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L153">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L154">    request.setProjection(projection);</span>
+<span class="fc" id="L155">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L156">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L157">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -164,8 +164,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(ContextualConstantEvaluationGroupUpdateRequestDto request) {
-<span class="nc" id="L167">    return new IdentifiableExecutor(ContextualConstantEvaluationGroupService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L168">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L167">    return new IdentifiableExecutor(ContextualConstantEvaluationGroupService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L168">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -175,8 +175,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L178">    return new IdentifiableExecutor(ContextualConstantEvaluationGroupService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L179">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L178">    return new IdentifiableExecutor(ContextualConstantEvaluationGroupService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L179">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -190,11 +190,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="nc" id="L193">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L194">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L195">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L196">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L197">    return delete(request);</span>
+<span class="fc" id="L193">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L194">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L195">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L196">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L197">    return delete(request);</span>
   }
 
   /**
@@ -205,10 +205,10 @@ import lombok.experimental.Accessors;
    */
   public ContextualConstantEvaluationGroupGetValueResponseDto getValue(
       ContextualConstantEvaluationGroupGetValueRequestDto request) {
-<span class="nc" id="L208">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupGetValueResponseDto&gt;(</span>
-<span class="nc" id="L209">        ContextualConstantEvaluationGroupGetValueResponseDto.class,</span>
-<span class="nc" id="L210">        ContextualConstantEvaluationGroupService.GET_VALUE_IDENTIFIER)</span>
-<span class="nc" id="L211">            .execute(() -&gt; service().getValue(request));</span>
+<span class="fc" id="L208">    return new GetOneExecutor&lt;ContextualConstantEvaluationGroupGetValueResponseDto&gt;(</span>
+        ContextualConstantEvaluationGroupGetValueResponseDto.class,
+        ContextualConstantEvaluationGroupService.GET_VALUE_IDENTIFIER)
+<span class="fc" id="L211">            .execute(() -&gt; service().getValue(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-12-31T13:33:07+0000&quot;,
+    date = &quot;2026-01-13T13:33:57+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -30,40 +30,42 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L30">        conditionalValueGroupCreateRequestDto.setDescription( arg0.getDescription() );</span>
 <span class="fc" id="L31">        conditionalValueGroupCreateRequestDto.setValueType( arg0.getValueType() );</span>
 <span class="fc" id="L32">        conditionalValueGroupCreateRequestDto.setDefaultValue( arg0.getDefaultValue() );</span>
+<span class="fc" id="L33">        conditionalValueGroupCreateRequestDto.setValueRetrievalStrategy( arg0.getValueRetrievalStrategy() );</span>
 
-<span class="fc" id="L34">        return conditionalValueGroupCreateRequestDto;</span>
+<span class="fc" id="L35">        return conditionalValueGroupCreateRequestDto;</span>
     }
 
     @Override
     public ConditionalValueGroupService.ConditionalValueGroupUpdateRequestDto mapUpdate(ConditionalValueGroupDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L41">            return null;</span>
         }
 
-<span class="fc" id="L43">        ConditionalValueGroupService.ConditionalValueGroupUpdateRequestDto conditionalValueGroupUpdateRequestDto = new ConditionalValueGroupService.ConditionalValueGroupUpdateRequestDto();</span>
+<span class="fc" id="L44">        ConditionalValueGroupService.ConditionalValueGroupUpdateRequestDto conditionalValueGroupUpdateRequestDto = new ConditionalValueGroupService.ConditionalValueGroupUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        conditionalValueGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        conditionalValueGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L47">        conditionalValueGroupUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L48">        conditionalValueGroupUpdateRequestDto.setDescription( arg0.getDescription() );</span>
-<span class="fc" id="L49">        conditionalValueGroupUpdateRequestDto.setValueType( arg0.getValueType() );</span>
-<span class="fc" id="L50">        conditionalValueGroupUpdateRequestDto.setDefaultValue( arg0.getDefaultValue() );</span>
+<span class="fc" id="L46">        conditionalValueGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        conditionalValueGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L48">        conditionalValueGroupUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L49">        conditionalValueGroupUpdateRequestDto.setDescription( arg0.getDescription() );</span>
+<span class="fc" id="L50">        conditionalValueGroupUpdateRequestDto.setValueType( arg0.getValueType() );</span>
+<span class="fc" id="L51">        conditionalValueGroupUpdateRequestDto.setDefaultValue( arg0.getDefaultValue() );</span>
+<span class="fc" id="L52">        conditionalValueGroupUpdateRequestDto.setValueRetrievalStrategy( arg0.getValueRetrievalStrategy() );</span>
 
-<span class="fc" id="L52">        return conditionalValueGroupUpdateRequestDto;</span>
+<span class="fc" id="L54">        return conditionalValueGroupUpdateRequestDto;</span>
     }
 
     @Override
     public ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueRequestDto mapGetApplicableValue(ConditionalValueGroupDto conditionalValueGroup) {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">        if ( conditionalValueGroup == null ) {</span>
-<span class="fc" id="L58">            return null;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if ( conditionalValueGroup == null ) {</span>
+<span class="fc" id="L60">            return null;</span>
         }
 
-<span class="fc" id="L61">        ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueRequestDto conditionalValueGroupGetApplicableValueRequestDto = new ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueRequestDto();</span>
+<span class="fc" id="L63">        ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueRequestDto conditionalValueGroupGetApplicableValueRequestDto = new ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueRequestDto();</span>
 
-<span class="fc" id="L63">        conditionalValueGroupGetApplicableValueRequestDto.setIdentifier( conditionalValueGroup.getIdentifier() );</span>
-<span class="fc" id="L64">        conditionalValueGroupGetApplicableValueRequestDto.setFilterValue( conditionalValueGroup.getFilterValue() );</span>
+<span class="fc" id="L65">        conditionalValueGroupGetApplicableValueRequestDto.setIdentifier( conditionalValueGroup.getIdentifier() );</span>
+<span class="fc" id="L66">        conditionalValueGroupGetApplicableValueRequestDto.setFilterValue( conditionalValueGroup.getFilterValue() );</span>
 
-<span class="fc" id="L66">        return conditionalValueGroupGetApplicableValueRequestDto;</span>
+<span class="fc" id="L68">        return conditionalValueGroupGetApplicableValueRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

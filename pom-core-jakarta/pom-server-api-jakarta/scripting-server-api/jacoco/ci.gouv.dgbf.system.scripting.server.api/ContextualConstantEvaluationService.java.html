@@ -144,7 +144,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L147">  class ContextualConstantEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L147">  class ContextualConstantEvaluationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ContextualConstantEvaluationSaveRequestDto {
 
     @JsonbProperty(JSON_VALUE)
@@ -190,7 +190,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L193">  class ContextualConstantEvaluationCreateContextuallyRequestDto</span>
+<span class="fc" id="L193">  class ContextualConstantEvaluationCreateContextuallyRequestDto</span>
       extends AbstractAuditedRequestJsonDto
       implements HasGroupIdentifierDto, HasConstantCategoryIdentifierDto,
       HasConstantGroupIdentifierDto, HasStringValueDto, HasValueTypeDto {
@@ -227,7 +227,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L230">  class ContextualConstantEvaluationCreateContextuallyResponseDto extends CreateResponseDto</span>
+<span class="fc" id="L230">  class ContextualConstantEvaluationCreateContextuallyResponseDto extends CreateResponseDto</span>
       implements HasConstantGroupIdentifierDto {
 
     @JsonbProperty(JSON_CONSTANT_GROUP_IDENTIFIER)
@@ -267,7 +267,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L270">  public static class ContextualConstantEvaluationGetManyResponseDto</span>
+<span class="fc" id="L270">  public static class ContextualConstantEvaluationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ContextualConstantEvaluationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -358,7 +358,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L361">  class ContextualConstantEvaluationUpdateRequestDto</span>
+<span class="fc" id="L361">  class ContextualConstantEvaluationUpdateRequestDto</span>
       extends AbstractCodableNamableUpdateRequestJsonDto
       implements ContextualConstantEvaluationSaveRequestDto {
 
@@ -405,7 +405,7 @@ public interface ContextualConstantEvaluationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L408">  class ContextualConstantEvaluationUpdateValueRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L408">  class ContextualConstantEvaluationUpdateValueRequestDto extends ByIdentifierRequestDto</span>
       implements HasStringValueDto {
 
     @JsonbProperty(JSON_VALUE)

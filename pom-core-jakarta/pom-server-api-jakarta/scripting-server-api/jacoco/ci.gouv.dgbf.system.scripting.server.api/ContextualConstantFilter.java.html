@@ -36,30 +36,30 @@ public class ContextualConstantFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public ContextualConstantFilter(FilterDto dto) {
-<span class="nc" id="L39">    super(dto);</span>
-<span class="nc" id="L40">  }</span>
+<span class="fc" id="L39">    super(dto);</span>
+<span class="fc" id="L40">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="nc" id="L45">  public ContextualConstantFilter() {}</span>
+<span class="fc" id="L45">  public ContextualConstantFilter() {}</span>
   
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L49">    super.doInitialize(filter);</span>
-<span class="nc" id="L50">    updateCategoryIdentifier(filter);</span>
-<span class="nc" id="L51">    updateGroupIdentifier(filter);</span>
-<span class="nc" id="L52">    updateFromDate(filter);</span>
-<span class="nc" id="L53">    updateToDate(filter);</span>
-<span class="nc" id="L54">  }</span>
+<span class="fc" id="L49">    super.doInitialize(filter);</span>
+<span class="fc" id="L50">    updateCategoryIdentifier(filter);</span>
+<span class="fc" id="L51">    updateGroupIdentifier(filter);</span>
+<span class="fc" id="L52">    updateFromDate(filter);</span>
+<span class="fc" id="L53">    updateToDate(filter);</span>
+<span class="fc" id="L54">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L58">    super.toDto(filter);</span>
-<span class="nc" id="L59">    updateFilterCategoryIdentifier(filter);</span>
-<span class="nc" id="L60">    updateFilterGroupIdentifier(filter);</span>
-<span class="nc" id="L61">    updateFilterFromDate(filter);</span>
-<span class="nc" id="L62">    updateFilterToDate(filter);</span>
-<span class="nc" id="L63">  }</span>
+<span class="fc" id="L58">    super.toDto(filter);</span>
+<span class="fc" id="L59">    updateFilterCategoryIdentifier(filter);</span>
+<span class="fc" id="L60">    updateFilterGroupIdentifier(filter);</span>
+<span class="fc" id="L61">    updateFilterFromDate(filter);</span>
+<span class="fc" id="L62">    updateFilterToDate(filter);</span>
+<span class="fc" id="L63">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

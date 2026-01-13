@@ -132,7 +132,7 @@ public interface ConstantCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L135">  class ConstantCategoryCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L135">  class ConstantCategoryCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ConstantCategorySaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -175,7 +175,7 @@ public interface ConstantCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L178">  public static class ConstantCategoryGetManyResponseDto</span>
+<span class="fc" id="L178">  public static class ConstantCategoryGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConstantCategoryDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -265,7 +265,7 @@ public interface ConstantCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L268">  class ConstantCategoryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L268">  class ConstantCategoryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ConstantCategorySaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -333,7 +333,7 @@ public interface ConstantCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L336">  class ConstantCategoryEvaluateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L336">  class ConstantCategoryEvaluateRequestDto extends ByIdentifierRequestDto</span>
       implements HasGroupIdentifierDto, HasFromDateDto&lt;LocalDateTime&gt;, HasToDateDto&lt;LocalDateTime&gt; {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
@@ -354,7 +354,7 @@ public interface ConstantCategoryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L357">  class ConstantCategoryEvaluateResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L357">  class ConstantCategoryEvaluateResponseDto extends IdentifiableResponseDto</span>
       implements HasStringValueDto, HasValueTypeDto {
 
     @JsonbProperty(JSON_VALUE)

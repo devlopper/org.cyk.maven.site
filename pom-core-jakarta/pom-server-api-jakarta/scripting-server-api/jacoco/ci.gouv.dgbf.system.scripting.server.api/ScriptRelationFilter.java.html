@@ -29,8 +29,8 @@ public class ScriptRelationFilter extends AbstractIdentifiableFilter {
    * Cette méthode permet d'instancier un objet.
    */
   public ScriptRelationFilter() {
-<span class="nc" id="L32">    super();</span>
-<span class="nc" id="L33">  }</span>
+<span class="fc" id="L32">    super();</span>
+<span class="fc" id="L33">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -38,8 +38,8 @@ public class ScriptRelationFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public ScriptRelationFilter(FilterDto dto) {
-<span class="nc" id="L41">    super(dto);</span>
-<span class="nc" id="L42">  }</span>
+<span class="fc" id="L41">    super(dto);</span>
+<span class="fc" id="L42">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
@@ -48,17 +48,17 @@ public class ScriptRelationFilter extends AbstractIdentifiableFilter {
    */
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L51">    super.doInitialize(filter);</span>
-<span class="nc" id="L52">    parentIdentifier = getParentIdentifier(filter);</span>
-<span class="nc" id="L53">    childIdentifier = getChildIdentifier(filter);</span>
-<span class="nc" id="L54">  }</span>
+<span class="fc" id="L51">    super.doInitialize(filter);</span>
+<span class="fc" id="L52">    parentIdentifier = getParentIdentifier(filter);</span>
+<span class="fc" id="L53">    childIdentifier = getChildIdentifier(filter);</span>
+<span class="fc" id="L54">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L58">    super.toDto(filter);</span>
-<span class="nc" id="L59">    setParentIdentifier(filter, parentIdentifier);</span>
-<span class="nc" id="L60">    setChildIdentifier(filter, childIdentifier);</span>
-<span class="nc" id="L61">  }</span>
+<span class="fc" id="L58">    super.toDto(filter);</span>
+<span class="fc" id="L59">    setParentIdentifier(filter, parentIdentifier);</span>
+<span class="fc" id="L60">    setChildIdentifier(filter, childIdentifier);</span>
+<span class="fc" id="L61">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant {@link ScriptDto} parent.
@@ -67,7 +67,7 @@ public class ScriptRelationFilter extends AbstractIdentifiableFilter {
    * @return identifiant {@link ScriptDto} parent
    */
   public static String getParentIdentifier(FilterDto filter) {
-<span class="nc" id="L70">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PARENT_IDENTIFIER));</span>
+<span class="fc" id="L70">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PARENT_IDENTIFIER));</span>
   }
 
   /**
@@ -77,9 +77,9 @@ public class ScriptRelationFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant {@link ScriptDto} parent
    */
   public static void setParentIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L80">    set(filter, JSON_PARENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L81">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L82">  }</span>
+<span class="pc" id="L80">    set(filter, JSON_PARENT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L81">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L82">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant {@link ScriptDto} enfant.
@@ -88,7 +88,7 @@ public class ScriptRelationFilter extends AbstractIdentifiableFilter {
    * @return identifiant {@link ScriptDto} enfant
    */
   public static String getChildIdentifier(FilterDto filter) {
-<span class="nc" id="L91">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CHILD_IDENTIFIER));</span>
+<span class="fc" id="L91">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CHILD_IDENTIFIER));</span>
   }
 
   /**
@@ -98,9 +98,9 @@ public class ScriptRelationFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant {@link ScriptDto} enfant
    */
   public static void setChildIdentifier(FilterDto filter, String identifier) {
-<span class="nc" id="L101">    set(filter, JSON_CHILD_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L102">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="nc" id="L103">  }</span>
+<span class="pc" id="L101">    set(filter, JSON_CHILD_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L102">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L103">  }</span>
 
   /**
    * Identifiant json champ {@link #parentIdentifier}.

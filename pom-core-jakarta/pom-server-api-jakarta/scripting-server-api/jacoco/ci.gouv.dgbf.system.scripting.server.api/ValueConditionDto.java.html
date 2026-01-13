@@ -6,11 +6,13 @@ import ci.gouv.dgbf.extension.core.segregation.HasComparisonOperatorDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasConditionalValueIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueMapKeyDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValuesSeparatorDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.Map;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,8 +26,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="nc" id="L27">public class ValueConditionDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasValueSelectorIdentifierDto, HasValueSelectorAsStringDto,
+<span class="fc" id="L29">public class ValueConditionDto extends AbstractIdentifiableAuditableDto implements</span>
+    HasValueSelectorIdentifierDto, HasValueSelectorAsStringDto, HasValueMapKeyDto&lt;String&gt;,
     HasConditionalValueIdentifierDto, HasConditionalValueAsStringDto, HasComparisonOperatorDto,
     HasComparisonOperatorAsStringDto, HasStringValueDto, HasValuesSeparatorDto {
 
@@ -41,9 +43,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_VALUE_SELECTOR_AS_STRING)
   private String valueSelectorAsString;
 
+  @JsonbProperty(JSON_VALUE_MAP_KEY)
+  private String valueMapKey;
+
   @JsonbProperty(JSON_VALUES_SEPARATOR)
   private String valuesSeparator;
-  
+
   @JsonbProperty(JSON_COMPARISON_OPERATOR)
   private ComparisonOperator comparisonOperator;
 
@@ -53,11 +58,13 @@ import lombok.Setter;
   @JsonbProperty(JSON_VALUE)
   private String value;
 
+  private Map&lt;String, String&gt; valuesMap;
+  
   /**
    * Valeur de l'attribut de filtre du sélecteur de valeur.
    */
   private String valueSelectorFilterAttributeValue;
-  
+
   /**
    * Identifiant json de l'identifiant.
    */

@@ -30,6 +30,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -229,7 +230,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L232">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L233">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ValueConditionSaveRequestDto {
 
     @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
@@ -237,7 +238,7 @@ public interface ValueConditionService extends SpecificService {
 
     @JsonbProperty(JSON_VALUE_MAP_KEY)
     private String valueMapKey;
-    
+
     @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
     private String conditionalValueIdentifier;
 
@@ -287,7 +288,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L290">  public static class ValueConditionGetManyResponseDto</span>
+<span class="fc" id="L291">  public static class ValueConditionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueConditionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -377,15 +378,15 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L380">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L381">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ValueConditionSaveRequestDto {
-    
+
     @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
     private String valueSelectorIdentifier;
 
     @JsonbProperty(JSON_VALUE_MAP_KEY)
     private String valueMapKey;
-    
+
     @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
     private String conditionalValueIdentifier;
 
@@ -435,7 +436,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L438">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L439">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Valeur de l'attribut de filtre du sélecteur.
@@ -444,10 +445,23 @@ public interface ValueConditionService extends SpecificService {
     private String valueSelectorFilterAttributeValue;
 
     /**
+     * Dictionnaire de valeurs pour la récupération par clé. Ce dictionnaire contient les paires
+     * clé-valeur utilisées pour récupérer la valeur à comparer selon la clé configurée dans la
+     * condition.
+     */
+    @JsonbProperty(JSON_VALUES_MAP)
+    private Map&lt;String, String&gt; valuesMap;
+
+    /**
      * Identifiant json {@link #valueSelectorFilterAttributeValue}.
      */
     public static final String JSON_VALUE_SELECTOR_FILTER_ATTRIBUTE_VALUE =
         &quot;valeurAttributFiltreSelecteur&quot;;
+
+    /**
+     * Identifiant json {@link #valuesMap}.
+     */
+    public static final String JSON_VALUES_MAP = &quot;dictionnaireValeurs&quot;;
   }
 
   /**
@@ -458,7 +472,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L461">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L475">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
       implements HasBooleanValueDto {
 
     @JsonbProperty(JSON_VALUE)
