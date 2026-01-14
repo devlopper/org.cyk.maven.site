@@ -13,7 +13,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-01-14T11:55:59+0000&quot;,
+    date = &quot;2026-01-14T17:35:50+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -72,9 +72,9 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L72">        valueConditionVerifyRequestDto.setAuditSession( valueCondition.getAuditSession() );</span>
 <span class="fc" id="L73">        valueConditionVerifyRequestDto.setIdentifier( valueCondition.getIdentifier() );</span>
 <span class="fc" id="L74">        valueConditionVerifyRequestDto.setValueSelectorFilterAttributeValue( valueCondition.getValueSelectorFilterAttributeValue() );</span>
-<span class="fc" id="L75">        Map&lt;String, String&gt; map = valueCondition.getValuesMap();</span>
+<span class="fc" id="L75">        Map&lt;String, Object&gt; map = valueCondition.getValuesMap();</span>
 <span class="fc bfc" id="L76" title="All 2 branches covered.">        if ( map != null ) {</span>
-<span class="fc" id="L77">            valueConditionVerifyRequestDto.setValuesMap( new LinkedHashMap&lt;String, String&gt;( map ) );</span>
+<span class="fc" id="L77">            valueConditionVerifyRequestDto.setValuesMap( new LinkedHashMap&lt;String, Object&gt;( map ) );</span>
         }
 
 <span class="fc" id="L80">        return valueConditionVerifyRequestDto;</span>

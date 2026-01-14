@@ -360,7 +360,7 @@ public interface ConditionalValueGroupService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L362">  class ConditionalValueGroupGetApplicableValueRequestDto extends ByIdentifierRequestDto</span>
-      implements HasValuesMapDto&lt;String, String&gt; {
+      implements HasValuesMapDto&lt;String, Object&gt; {
 
     /**
      * Valeur de filtre.
@@ -369,7 +369,7 @@ public interface ConditionalValueGroupService extends SpecificService {
     private String filterValue;
 
     @JsonbProperty(JSON_VALUES_MAP)
-    private Map&lt;String, String&gt; valuesMap;
+    private Map&lt;String, Object&gt; valuesMap;
     
     /**
      * Identifiant json {@link #filterValue}.

@@ -9,6 +9,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueMapKeyDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValuesMapDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValuesSeparatorDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -26,10 +27,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L29">public class ValueConditionDto extends AbstractIdentifiableAuditableDto implements</span>
-    HasValueSelectorIdentifierDto, HasValueSelectorAsStringDto, HasValueMapKeyDto&lt;String&gt;,
-    HasConditionalValueIdentifierDto, HasConditionalValueAsStringDto, HasComparisonOperatorDto,
-    HasComparisonOperatorAsStringDto, HasStringValueDto, HasValuesSeparatorDto {
+<span class="fc" id="L30">public class ValueConditionDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasValueSelectorIdentifierDto, HasValueSelectorAsStringDto,
+    HasValueMapKeyDto&lt;String&gt;, HasConditionalValueIdentifierDto, HasConditionalValueAsStringDto,
+    HasComparisonOperatorDto, HasComparisonOperatorAsStringDto, HasStringValueDto,
+    HasValuesSeparatorDto, HasValuesMapDto&lt;String, Object&gt; {
 
   @JsonbProperty(JSON_CONDITIONAL_VALUE_IDENTIFIER)
   private String conditionalValueIdentifier;
@@ -58,8 +60,8 @@ import lombok.Setter;
   @JsonbProperty(JSON_VALUE)
   private String value;
 
-  private Map&lt;String, String&gt; valuesMap;
-  
+  private Map&lt;String, Object&gt; valuesMap;
+
   /**
    * Valeur de l'attribut de filtre du sélecteur de valeur.
    */

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConditionalValueRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ConditionalValueRequestMapperImpl.java</span></div><h1>ConditionalValueRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
 import jakarta.enterprise.context.ApplicationScoped;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import javax.annotation.processing.Generated;
 
 /**
@@ -11,59 +13,63 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-01-14T11:55:59+0000&quot;,
+    date = &quot;2026-01-14T17:35:50+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
-<span class="fc" id="L18">public class ConditionalValueRequestMapperImpl implements ConditionalValueRequestMapper {</span>
+<span class="fc" id="L20">public class ConditionalValueRequestMapperImpl implements ConditionalValueRequestMapper {</span>
 
     @Override
     public ConditionalValueService.ConditionalValueCreateRequestDto mapCreate(ConditionalValueDto arg0) {
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L23">            return null;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L25">            return null;</span>
         }
 
-<span class="fc" id="L26">        ConditionalValueService.ConditionalValueCreateRequestDto conditionalValueCreateRequestDto = new ConditionalValueService.ConditionalValueCreateRequestDto();</span>
+<span class="fc" id="L28">        ConditionalValueService.ConditionalValueCreateRequestDto conditionalValueCreateRequestDto = new ConditionalValueService.ConditionalValueCreateRequestDto();</span>
 
-<span class="fc" id="L28">        conditionalValueCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        conditionalValueCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        conditionalValueCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L31">        conditionalValueCreateRequestDto.setValue( arg0.getValue() );</span>
-<span class="fc" id="L32">        conditionalValueCreateRequestDto.setValueType( arg0.getValueType() );</span>
+<span class="fc" id="L30">        conditionalValueCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L31">        conditionalValueCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L32">        conditionalValueCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L33">        conditionalValueCreateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L34">        conditionalValueCreateRequestDto.setValueType( arg0.getValueType() );</span>
 
-<span class="fc" id="L34">        return conditionalValueCreateRequestDto;</span>
+<span class="fc" id="L36">        return conditionalValueCreateRequestDto;</span>
     }
 
     @Override
     public ConditionalValueService.ConditionalValueUpdateRequestDto mapUpdate(ConditionalValueDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L43">        ConditionalValueService.ConditionalValueUpdateRequestDto conditionalValueUpdateRequestDto = new ConditionalValueService.ConditionalValueUpdateRequestDto();</span>
+<span class="fc" id="L45">        ConditionalValueService.ConditionalValueUpdateRequestDto conditionalValueUpdateRequestDto = new ConditionalValueService.ConditionalValueUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        conditionalValueUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L46">        conditionalValueUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L47">        conditionalValueUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L48">        conditionalValueUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L49">        conditionalValueUpdateRequestDto.setValue( arg0.getValue() );</span>
-<span class="fc" id="L50">        conditionalValueUpdateRequestDto.setValueType( arg0.getValueType() );</span>
+<span class="fc" id="L47">        conditionalValueUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        conditionalValueUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L49">        conditionalValueUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L50">        conditionalValueUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L51">        conditionalValueUpdateRequestDto.setValue( arg0.getValue() );</span>
+<span class="fc" id="L52">        conditionalValueUpdateRequestDto.setValueType( arg0.getValueType() );</span>
 
-<span class="fc" id="L52">        return conditionalValueUpdateRequestDto;</span>
+<span class="fc" id="L54">        return conditionalValueUpdateRequestDto;</span>
     }
 
     @Override
     public ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto mapCheckApplicability(ConditionalValueDto conditionalValue) {
-<span class="fc bfc" id="L57" title="All 2 branches covered.">        if ( conditionalValue == null ) {</span>
-<span class="fc" id="L58">            return null;</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if ( conditionalValue == null ) {</span>
+<span class="fc" id="L60">            return null;</span>
         }
 
-<span class="fc" id="L61">        ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto conditionalValueCheckApplicabilityRequestDto = new ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto();</span>
+<span class="fc" id="L63">        ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto conditionalValueCheckApplicabilityRequestDto = new ConditionalValueService.ConditionalValueCheckApplicabilityRequestDto();</span>
 
-<span class="fc" id="L63">        conditionalValueCheckApplicabilityRequestDto.setIdentifier( conditionalValue.getIdentifier() );</span>
-<span class="fc" id="L64">        conditionalValueCheckApplicabilityRequestDto.setFilterValue( conditionalValue.getFilterValue() );</span>
+<span class="fc" id="L65">        conditionalValueCheckApplicabilityRequestDto.setIdentifier( conditionalValue.getIdentifier() );</span>
+<span class="fc" id="L66">        conditionalValueCheckApplicabilityRequestDto.setFilterValue( conditionalValue.getFilterValue() );</span>
+<span class="fc" id="L67">        Map&lt;String, Object&gt; map = conditionalValue.getValuesMap();</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        if ( map != null ) {</span>
+<span class="fc" id="L69">            conditionalValueCheckApplicabilityRequestDto.setValuesMap( new LinkedHashMap&lt;String, Object&gt;( map ) );</span>
+        }
 
-<span class="fc" id="L66">        return conditionalValueCheckApplicabilityRequestDto;</span>
+<span class="fc" id="L72">        return conditionalValueCheckApplicabilityRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

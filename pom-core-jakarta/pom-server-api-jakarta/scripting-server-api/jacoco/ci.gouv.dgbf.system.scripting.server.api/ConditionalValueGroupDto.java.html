@@ -9,8 +9,10 @@ import ci.gouv.dgbf.extension.core.segregation.HasValueRetrievalStrategyDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValuesCountAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValuesMapDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.Map;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +26,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L27">public class ConditionalValueGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L29">public class ConditionalValueGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDescriptionDto, HasValueTypeDto, HasValueTypeAsStringDto,
     HasValueRetrievalStrategyDto, HasValueRetrievalStrategyAsStringDto, HasDefaultValueDto&lt;String&gt;,
-    HasValuesCountAsStringDto {
+    HasValuesCountAsStringDto, HasValuesMapDto&lt;String, Object&gt; {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -50,6 +52,8 @@ import lombok.Setter;
   @JsonbProperty(JSON_VALUES_COUNT_AS_STRING)
   private String valuesCountAsString;
 
+  private Map&lt;String, Object&gt; valuesMap;
+  
   /**
    * Valeur de filtre.
    */

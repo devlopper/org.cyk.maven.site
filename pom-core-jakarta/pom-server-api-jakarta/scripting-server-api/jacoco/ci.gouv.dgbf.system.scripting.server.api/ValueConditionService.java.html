@@ -438,7 +438,7 @@ public interface ValueConditionService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L440">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto</span>
-      implements HasValuesMapDto&lt;String, String&gt; {
+      implements HasValuesMapDto&lt;String, Object&gt; {
 
     /**
      * Valeur de l'attribut de filtre du sélecteur.
@@ -452,7 +452,7 @@ public interface ValueConditionService extends SpecificService {
      * condition.
      */
     @JsonbProperty(JSON_VALUES_MAP)
-    private Map&lt;String, String&gt; valuesMap;
+    private Map&lt;String, Object&gt; valuesMap;
 
     /**
      * Identifiant json {@link #valueSelectorFilterAttributeValue}.
