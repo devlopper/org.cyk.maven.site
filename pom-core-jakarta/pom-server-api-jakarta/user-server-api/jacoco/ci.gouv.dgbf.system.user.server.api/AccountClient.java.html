@@ -33,13 +33,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="nc" id="L36">public class AccountClient extends AbstractClient&lt;AccountService&gt;</span>
+<span class="fc" id="L36">public class AccountClient extends AbstractClient&lt;AccountService&gt;</span>
     implements GetByIdentifier&lt;AccountDto&gt;, GetMany&lt;AccountGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public AccountClient service(AccountService service) {
-<span class="nc" id="L42">    return (AccountClient) super.service(service);</span>
+<span class="fc" id="L42">    return (AccountClient) super.service(service);</span>
   }
 
   /**
@@ -49,8 +49,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(AccountCreateRequestDto request) {
-<span class="nc" id="L52">    return new CreateExecutor(AccountService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L53">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L52">    return new CreateExecutor(AccountService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
   }
   
   /**
@@ -60,8 +60,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto createByUser(AccountCreateByUserRequestDto request) {
-<span class="nc" id="L63">    return new CreateExecutor(AccountService.CREATE_BY_USER_IDENTIFIER)</span>
-<span class="nc" id="L64">        .execute(() -&gt; service().createByUser(request));</span>
+<span class="fc" id="L63">    return new CreateExecutor(AccountService.CREATE_BY_USER_IDENTIFIER)</span>
+<span class="fc" id="L64">        .execute(() -&gt; service().createByUser(request));</span>
   }
 
   /**
@@ -71,8 +71,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public AccountGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L74">    return new GetOneExecutor&lt;AccountGetManyResponseDto&gt;(AccountGetManyResponseDto.class,</span>
-<span class="nc" id="L75">        AccountService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L74">    return new GetOneExecutor&lt;AccountGetManyResponseDto&gt;(AccountGetManyResponseDto.class,</span>
+<span class="fc" id="L75">        AccountService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -88,13 +88,13 @@ import lombok.experimental.Accessors;
   @Override
   public AccountGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
-<span class="nc" id="L91">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L92">    request.setProjection(projection);</span>
-<span class="nc" id="L93">    request.setFilter(filter);</span>
-<span class="nc" id="L94">    request.setPage(page);</span>
-<span class="nc" id="L95">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L96">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L97">    return getMany(request);</span>
+<span class="fc" id="L91">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L92">    request.setProjection(projection);</span>
+<span class="fc" id="L93">    request.setFilter(filter);</span>
+<span class="fc" id="L94">    request.setPage(page);</span>
+<span class="fc" id="L95">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L96">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L97">    return getMany(request);</span>
   }
 
   /**
@@ -104,8 +104,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public AccountDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L107">    return new GetOneExecutor&lt;AccountDto&gt;(AccountDto.class, AccountService.GET_ONE_IDENTIFIER)</span>
-<span class="nc" id="L108">        .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L107">    return new GetOneExecutor&lt;AccountDto&gt;(AccountDto.class, AccountService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L108">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -119,12 +119,12 @@ import lombok.experimental.Accessors;
    */
   public AccountDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="nc" id="L122">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L123">    request.setProjection(projection);</span>
-<span class="nc" id="L124">    request.setFilter(filter);</span>
-<span class="nc" id="L125">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L126">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L127">    return getOne(request);</span>
+<span class="fc" id="L122">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L123">    request.setProjection(projection);</span>
+<span class="fc" id="L124">    request.setFilter(filter);</span>
+<span class="fc" id="L125">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L126">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L127">    return getOne(request);</span>
   }
 
   /**
@@ -134,9 +134,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public AccountDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L137">    return new GetOneExecutor&lt;AccountDto&gt;(AccountDto.class,</span>
-<span class="nc" id="L138">        AccountService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L139">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L137">    return new GetOneExecutor&lt;AccountDto&gt;(AccountDto.class,</span>
+        AccountService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L139">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -151,12 +151,12 @@ import lombok.experimental.Accessors;
   @Override
   public AccountDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
-<span class="nc" id="L154">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L155">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L156">    request.setProjection(projection);</span>
-<span class="nc" id="L157">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L158">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L159">    return getByIdentifier(request);</span>
+<span class="fc" id="L154">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L155">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L156">    request.setProjection(projection);</span>
+<span class="fc" id="L157">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L158">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L159">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -166,8 +166,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(AccountUpdateRequestDto request) {
-<span class="nc" id="L169">    return new IdentifiableExecutor(AccountService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L170">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L169">    return new IdentifiableExecutor(AccountService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L170">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -177,8 +177,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L180">    return new IdentifiableExecutor(AccountService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L181">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L180">    return new IdentifiableExecutor(AccountService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L181">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -192,11 +192,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="nc" id="L195">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L196">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L197">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L198">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L199">    return delete(request);</span>
+<span class="fc" id="L195">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L196">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L197">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L198">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L199">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

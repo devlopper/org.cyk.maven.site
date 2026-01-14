@@ -14,7 +14,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-<span class="nc" id="L17">public class IdentityFilter extends AbstractIdentifiableFilter {</span>
+<span class="fc" id="L17">public class IdentityFilter extends AbstractIdentifiableFilter {</span>
 
   /**
    * Adresse email.
@@ -36,19 +36,19 @@ import lombok.Setter;
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L39">    super.doInitialize(filter);</span>
-<span class="nc" id="L40">    emailAddress = getEmailAddress(filter);</span>
-<span class="nc" id="L41">    registrationNumber = getRegistrationNumber(filter);</span>
-<span class="nc" id="L42">    administrativeUnitIdentifier = getAdministrativeUnitIdentifier(filter);</span>
-<span class="nc" id="L43">  }</span>
+<span class="fc" id="L39">    super.doInitialize(filter);</span>
+<span class="fc" id="L40">    emailAddress = getEmailAddress(filter);</span>
+<span class="fc" id="L41">    registrationNumber = getRegistrationNumber(filter);</span>
+<span class="fc" id="L42">    administrativeUnitIdentifier = getAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L43">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L47">    super.toDto(filter);</span>
-<span class="nc" id="L48">    setEmailAddress(filter, emailAddress);</span>
-<span class="nc" id="L49">    setRegistrationNumber(filter, registrationNumber);</span>
-<span class="nc" id="L50">    setAdministrativeUnitIdentifier(filter, administrativeUnitIdentifier);</span>
-<span class="nc" id="L51">  }</span>
+<span class="fc" id="L47">    super.toDto(filter);</span>
+<span class="fc" id="L48">    setEmailAddress(filter, emailAddress);</span>
+<span class="fc" id="L49">    setRegistrationNumber(filter, registrationNumber);</span>
+<span class="fc" id="L50">    setAdministrativeUnitIdentifier(filter, administrativeUnitIdentifier);</span>
+<span class="fc" id="L51">  }</span>
 
   /**
    * Cette méthode permet d'assigner {@link #emailAddress}.
@@ -57,9 +57,9 @@ import lombok.Setter;
    * @param emailAddress {@link #emailAddress}
    */
   public static void setEmailAddress(FilterDto filter, String emailAddress) {
-<span class="nc" id="L60">    set(filter, JSON_EMAIL_ADDRESS, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L61">        f -&gt; f.setValueAsString(emailAddress));</span>
-<span class="nc" id="L62">  }</span>
+<span class="pc" id="L60">    set(filter, JSON_EMAIL_ADDRESS, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L61">        f -&gt; f.setValueAsString(emailAddress));</span>
+<span class="fc" id="L62">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link #emailAddress}.
@@ -68,7 +68,7 @@ import lombok.Setter;
    * @return {@link #emailAddress}
    */
   public static String getEmailAddress(FilterDto filter) {
-<span class="nc" id="L71">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMAIL_ADDRESS));</span>
+<span class="fc" id="L71">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_EMAIL_ADDRESS));</span>
   }
 
   /**
@@ -78,9 +78,9 @@ import lombok.Setter;
    * @param registrationNumber {@link #registrationNumber}
    */
   public static void setRegistrationNumber(FilterDto filter, String registrationNumber) {
-<span class="nc" id="L81">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L82">        f -&gt; f.setValueAsString(registrationNumber));</span>
-<span class="nc" id="L83">  }</span>
+<span class="pc" id="L81">    set(filter, JSON_REGISTRATION_NUMBER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L82">        f -&gt; f.setValueAsString(registrationNumber));</span>
+<span class="fc" id="L83">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link #registrationNumber}.
@@ -89,7 +89,7 @@ import lombok.Setter;
    * @return {@link #registrationNumber}
    */
   public static String getRegistrationNumber(FilterDto filter) {
-<span class="nc" id="L92">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
+<span class="fc" id="L92">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REGISTRATION_NUMBER));</span>
   }
 
   /**
@@ -100,9 +100,9 @@ import lombok.Setter;
    */
   public static void setAdministrativeUnitIdentifier(FilterDto filter,
       String administrativeUnitIdentifier) {
-<span class="nc" id="L103">    set(filter, JSON_ADMINISTRATIVE_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L104">        f -&gt; f.setValueAsString(administrativeUnitIdentifier));</span>
-<span class="nc" id="L105">  }</span>
+<span class="pc" id="L103">    set(filter, JSON_ADMINISTRATIVE_UNIT_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L104">        f -&gt; f.setValueAsString(administrativeUnitIdentifier));</span>
+<span class="fc" id="L105">  }</span>
 
   /**
    * Cette méthode permet d'obtenir {@link #administrativeUnitIdentifier}.
@@ -111,7 +111,7 @@ import lombok.Setter;
    * @return {@link #administrativeUnitIdentifier}
    */
   public static String getAdministrativeUnitIdentifier(FilterDto filter) {
-<span class="nc" id="L114">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER));</span>
+<span class="fc" id="L114">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER));</span>
   }
 
   /**

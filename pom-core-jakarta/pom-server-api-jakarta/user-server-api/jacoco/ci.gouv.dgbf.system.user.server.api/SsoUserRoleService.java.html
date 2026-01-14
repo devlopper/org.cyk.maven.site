@@ -122,7 +122,7 @@ public interface SsoUserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L125">  class SsoUserRoleCreateRequestDto extends AbstractCodableCreateRequestJsonDto</span>
+<span class="fc" id="L125">  class SsoUserRoleCreateRequestDto extends AbstractCodableCreateRequestJsonDto</span>
       implements SsoUserRoleSaveRequestDto {
 
 
@@ -167,7 +167,7 @@ public interface SsoUserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L170">  public static class SsoUserRoleGetManyResponseDto</span>
+<span class="fc" id="L170">  public static class SsoUserRoleGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;SsoUserRoleDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -256,7 +256,7 @@ public interface SsoUserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L259">  class SsoUserRoleUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L259">  class SsoUserRoleUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements SsoUserRoleSaveRequestDto {
     @JsonbProperty(JSON_ROLE_NAME)
     private String roleName;

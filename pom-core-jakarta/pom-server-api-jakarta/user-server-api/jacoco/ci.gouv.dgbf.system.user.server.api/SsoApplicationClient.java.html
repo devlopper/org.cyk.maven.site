@@ -32,13 +32,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="nc" id="L35">public class SsoApplicationClient extends AbstractClient&lt;SsoApplicationService&gt;</span>
+<span class="fc" id="L35">public class SsoApplicationClient extends AbstractClient&lt;SsoApplicationService&gt;</span>
     implements GetByIdentifier&lt;SsoApplicationDto&gt;, GetMany&lt;SsoApplicationGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public SsoApplicationClient service(SsoApplicationService service) {
-<span class="nc" id="L41">    return (SsoApplicationClient) super.service(service);</span>
+<span class="fc" id="L41">    return (SsoApplicationClient) super.service(service);</span>
   }
 
   /**
@@ -48,8 +48,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(SsoApplicationCreateRequestDto request) {
-<span class="nc" id="L51">    return new CreateExecutor(SsoApplicationService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L52">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L51">    return new CreateExecutor(SsoApplicationService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
   }
 
 
@@ -60,9 +60,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public SsoApplicationGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L63">    return new GetOneExecutor&lt;SsoApplicationGetManyResponseDto&gt;(</span>
-<span class="nc" id="L64">        SsoApplicationGetManyResponseDto.class,</span>
-<span class="nc" id="L65">        SsoApplicationService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L63">    return new GetOneExecutor&lt;SsoApplicationGetManyResponseDto&gt;(</span>
+        SsoApplicationGetManyResponseDto.class,
+<span class="fc" id="L65">        SsoApplicationService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -79,13 +79,13 @@ import lombok.experimental.Accessors;
   public SsoApplicationGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
                                                   PageDto page,
                                                   String auditWho, String auditSession) {
-<span class="nc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L83">    request.setProjection(projection);</span>
-<span class="nc" id="L84">    request.setFilter(filter);</span>
-<span class="nc" id="L85">    request.setPage(page);</span>
-<span class="nc" id="L86">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L87">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L88">    return getMany(request);</span>
+<span class="fc" id="L82">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L83">    request.setProjection(projection);</span>
+<span class="fc" id="L84">    request.setFilter(filter);</span>
+<span class="fc" id="L85">    request.setPage(page);</span>
+<span class="fc" id="L86">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L87">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L88">    return getMany(request);</span>
   }
 
   /**
@@ -95,9 +95,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public SsoApplicationDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L98">    return new GetOneExecutor&lt;SsoApplicationDto&gt;(SsoApplicationDto.class,</span>
-<span class="nc" id="L99">        SsoApplicationService.GET_ONE_IDENTIFIER)</span>
-<span class="nc" id="L100">        .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L98">    return new GetOneExecutor&lt;SsoApplicationDto&gt;(SsoApplicationDto.class,</span>
+        SsoApplicationService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L100">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -111,12 +111,12 @@ import lombok.experimental.Accessors;
    */
   public SsoApplicationDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
                                   String auditSession) {
-<span class="nc" id="L114">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L115">    request.setProjection(projection);</span>
-<span class="nc" id="L116">    request.setFilter(filter);</span>
-<span class="nc" id="L117">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L118">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L119">    return getOne(request);</span>
+<span class="fc" id="L114">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L115">    request.setProjection(projection);</span>
+<span class="fc" id="L116">    request.setFilter(filter);</span>
+<span class="fc" id="L117">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L118">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L119">    return getOne(request);</span>
   }
 
   /**
@@ -126,9 +126,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public SsoApplicationDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L129">    return new GetOneExecutor&lt;SsoApplicationDto&gt;(SsoApplicationDto.class,</span>
-<span class="nc" id="L130">        SsoApplicationService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L131">        .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L129">    return new GetOneExecutor&lt;SsoApplicationDto&gt;(SsoApplicationDto.class,</span>
+        SsoApplicationService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L131">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -144,12 +144,12 @@ import lombok.experimental.Accessors;
   public SsoApplicationDto getByIdentifier(String identifier, ProjectionDto projection,
                                            String auditWho,
                                            String auditSession) {
-<span class="nc" id="L147">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L148">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L149">    request.setProjection(projection);</span>
-<span class="nc" id="L150">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L151">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L152">    return getByIdentifier(request);</span>
+<span class="fc" id="L147">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L148">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L149">    request.setProjection(projection);</span>
+<span class="fc" id="L150">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L151">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L152">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -159,8 +159,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(SsoApplicationUpdateRequestDto request) {
-<span class="nc" id="L162">    return new IdentifiableExecutor(SsoApplicationService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L163">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L162">    return new IdentifiableExecutor(SsoApplicationService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L163">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -170,8 +170,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L173">    return new IdentifiableExecutor(SsoApplicationService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L174">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L173">    return new IdentifiableExecutor(SsoApplicationService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L174">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -185,11 +185,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
                                                     String auditSession) {
-<span class="nc" id="L188">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L189">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L190">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L191">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L192">    return delete(request);</span>
+<span class="fc" id="L188">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L189">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L190">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L191">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L192">    return delete(request);</span>
   }
   /**
    * {@link SsoApplicationService#doImport}.
@@ -199,8 +199,8 @@ import lombok.experimental.Accessors;
    */
 
   public IdentifiableResponseDto doImport(ByIdentifierRequestDto request) {
-<span class="nc" id="L202">    return new IdentifiableExecutor(SsoApplicationService.IMPORT_IDENTIFIER)</span>
-<span class="nc" id="L203">        .execute(() -&gt; service().doImport(request));</span>
+<span class="fc" id="L202">    return new IdentifiableExecutor(SsoApplicationService.IMPORT_IDENTIFIER)</span>
+<span class="fc" id="L203">        .execute(() -&gt; service().doImport(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

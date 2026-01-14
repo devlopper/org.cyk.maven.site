@@ -33,13 +33,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="nc" id="L36">public class UserRoleClient extends AbstractClient&lt;UserRoleService&gt;</span>
+<span class="fc" id="L36">public class UserRoleClient extends AbstractClient&lt;UserRoleService&gt;</span>
     implements GetByIdentifier&lt;UserRoleDto&gt;, GetMany&lt;UserRoleGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public UserRoleClient service(UserRoleService service) {
-<span class="nc" id="L42">    return (UserRoleClient) super.service(service);</span>
+<span class="fc" id="L42">    return (UserRoleClient) super.service(service);</span>
   }
 
   /**
@@ -49,8 +49,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(UserRoleCreateRequestDto request) {
-<span class="nc" id="L52">    return new CreateExecutor(UserRoleService.CREATE_IDENTIFIER)</span>
-<span class="nc" id="L53">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L52">    return new CreateExecutor(UserRoleService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -65,13 +65,13 @@ import lombok.experimental.Accessors;
    */
   public CreateResponseDto create(String name, String userIdentifier, String roleIdentifier,
                                   String auditWho, String auditSession) {
-<span class="nc" id="L68">    UserRoleCreateRequestDto request = new UserRoleCreateRequestDto();</span>
-<span class="nc" id="L69">    request.setName(name);</span>
-<span class="nc" id="L70">    request.setUserIdentifier(userIdentifier);</span>
-<span class="nc" id="L71">    request.setRoleIdentifier(roleIdentifier);</span>
-<span class="nc" id="L72">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L73">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L74">    return create(request);</span>
+<span class="fc" id="L68">    UserRoleCreateRequestDto request = new UserRoleCreateRequestDto();</span>
+<span class="fc" id="L69">    request.setName(name);</span>
+<span class="fc" id="L70">    request.setUserIdentifier(userIdentifier);</span>
+<span class="fc" id="L71">    request.setRoleIdentifier(roleIdentifier);</span>
+<span class="fc" id="L72">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L73">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L74">    return create(request);</span>
   }
 
   /**
@@ -81,8 +81,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public UserRoleGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L84">    return new GetOneExecutor&lt;UserRoleGetManyResponseDto&gt;(UserRoleGetManyResponseDto.class,</span>
-<span class="nc" id="L85">        UserRoleService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L84">    return new GetOneExecutor&lt;UserRoleGetManyResponseDto&gt;(UserRoleGetManyResponseDto.class,</span>
+<span class="fc" id="L85">        UserRoleService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -99,13 +99,13 @@ import lombok.experimental.Accessors;
   public UserRoleGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
                                             PageDto page,
                                             String auditWho, String auditSession) {
-<span class="nc" id="L102">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L103">    request.setProjection(projection);</span>
-<span class="nc" id="L104">    request.setFilter(filter);</span>
-<span class="nc" id="L105">    request.setPage(page);</span>
-<span class="nc" id="L106">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L107">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L108">    return getMany(request);</span>
+<span class="fc" id="L102">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L103">    request.setProjection(projection);</span>
+<span class="fc" id="L104">    request.setFilter(filter);</span>
+<span class="fc" id="L105">    request.setPage(page);</span>
+<span class="fc" id="L106">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L107">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L108">    return getMany(request);</span>
   }
 
   /**
@@ -115,8 +115,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public UserRoleDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L118">    return new GetOneExecutor&lt;UserRoleDto&gt;(UserRoleDto.class, UserRoleService.GET_ONE_IDENTIFIER)</span>
-<span class="nc" id="L119">        .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L118">    return new GetOneExecutor&lt;UserRoleDto&gt;(UserRoleDto.class, UserRoleService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L119">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -130,12 +130,12 @@ import lombok.experimental.Accessors;
    */
   public UserRoleDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
                             String auditSession) {
-<span class="nc" id="L133">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L134">    request.setProjection(projection);</span>
-<span class="nc" id="L135">    request.setFilter(filter);</span>
-<span class="nc" id="L136">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L137">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L138">    return getOne(request);</span>
+<span class="fc" id="L133">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L134">    request.setProjection(projection);</span>
+<span class="fc" id="L135">    request.setFilter(filter);</span>
+<span class="fc" id="L136">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L137">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L138">    return getOne(request);</span>
   }
 
   /**
@@ -145,9 +145,9 @@ import lombok.experimental.Accessors;
    * @return rôle utilisateur
    */
   public UserRoleDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L148">    return new GetOneExecutor&lt;UserRoleDto&gt;(UserRoleDto.class,</span>
-<span class="nc" id="L149">        UserRoleService.GET_BY_IDENTIFIER_IDENTIFIER)</span>
-<span class="nc" id="L150">        .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L148">    return new GetOneExecutor&lt;UserRoleDto&gt;(UserRoleDto.class,</span>
+        UserRoleService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L150">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -162,12 +162,12 @@ import lombok.experimental.Accessors;
   @Override
   public UserRoleDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
                                      String auditSession) {
-<span class="nc" id="L165">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L166">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L167">    request.setProjection(projection);</span>
-<span class="nc" id="L168">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L169">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L170">    return getByIdentifier(request);</span>
+<span class="fc" id="L165">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L166">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L167">    request.setProjection(projection);</span>
+<span class="fc" id="L168">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L169">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L170">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -177,8 +177,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(UserRoleUpdateRequestDto request) {
-<span class="nc" id="L180">    return new IdentifiableExecutor(UserRoleService.UPDATE_IDENTIFIER)</span>
-<span class="nc" id="L181">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L180">    return new IdentifiableExecutor(UserRoleService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L181">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -195,13 +195,13 @@ import lombok.experimental.Accessors;
   public IdentifiableResponseDto update(String identifier, String name, String userIdentifier,
                                         String roleIdentifier, String auditWho,
                                         String auditSession) {
-<span class="nc" id="L198">    UserRoleUpdateRequestDto request = new UserRoleUpdateRequestDto();</span>
-<span class="nc" id="L199">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L200">    request.setUserIdentifier(userIdentifier);</span>
-<span class="nc" id="L201">    request.setRoleIdentifier(roleIdentifier);</span>
-<span class="nc" id="L202">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L203">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L204">    return update(request);</span>
+<span class="fc" id="L198">    UserRoleUpdateRequestDto request = new UserRoleUpdateRequestDto();</span>
+<span class="fc" id="L199">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L200">    request.setUserIdentifier(userIdentifier);</span>
+<span class="fc" id="L201">    request.setRoleIdentifier(roleIdentifier);</span>
+<span class="fc" id="L202">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L203">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L204">    return update(request);</span>
   }
 
   /**
@@ -211,8 +211,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="nc" id="L214">    return new IdentifiableExecutor(UserRoleService.DELETE_IDENTIFIER)</span>
-<span class="nc" id="L215">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L214">    return new IdentifiableExecutor(UserRoleService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L215">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -226,11 +226,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
                                                     String auditSession) {
-<span class="nc" id="L229">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="nc" id="L230">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L231">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L232">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L233">    return delete(request);</span>
+<span class="fc" id="L229">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L230">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L231">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L232">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L233">    return delete(request);</span>
   }
 
   /**
@@ -242,11 +242,11 @@ import lombok.experimental.Accessors;
 
   public UserRoleService.UserRoleCreateManyResponseDto createMany(
       UserRoleCreateManyRequestDto request) {
-<span class="nc" id="L245">    return new GetOneExecutor&lt;UserRoleService.UserRoleCreateManyResponseDto&gt;(</span>
-<span class="nc" id="L246">        UserRoleService.UserRoleCreateManyResponseDto.class,</span>
-<span class="nc" id="L247">        UserRoleService.CREATE_MANY_IDENTIFIER)</span>
-<span class="nc" id="L248">        .setExpectedResponseStatusCode(Response.Status.CREATED.getStatusCode())</span>
-<span class="nc" id="L249">        .execute(() -&gt; service().createMany(request));</span>
+<span class="fc" id="L245">    return new GetOneExecutor&lt;UserRoleService.UserRoleCreateManyResponseDto&gt;(</span>
+        UserRoleService.UserRoleCreateManyResponseDto.class,
+        UserRoleService.CREATE_MANY_IDENTIFIER)
+<span class="fc" id="L248">        .setExpectedResponseStatusCode(Response.Status.CREATED.getStatusCode())</span>
+<span class="fc" id="L249">        .execute(() -&gt; service().createMany(request));</span>
 
   }
 }

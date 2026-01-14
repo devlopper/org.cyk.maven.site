@@ -17,7 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="nc" id="L20">public class IdentityDto extends AbstractIdentifiableDto {</span>
+<span class="fc" id="L20">public class IdentityDto extends AbstractIdentifiableDto {</span>
 
   /**
    * Adresse email.
@@ -66,15 +66,15 @@ import lombok.Setter;
    */
   public static String formatAsString(String registrationNumber, String emailAddress,
       String firstName, String lastNames) {
-<span class="nc" id="L69">    registrationNumber = Core.getOrDefaultIfBlank(registrationNumber, null);</span>
-<span class="nc" id="L70">    emailAddress = Core.getOrDefaultIfBlank(emailAddress, null);</span>
-<span class="nc" id="L71">    firstName = Core.getOrDefaultIfBlank(firstName, null);</span>
-<span class="nc" id="L72">    lastNames = Core.getOrDefaultIfBlank(lastNames, null);</span>
-<span class="nc" id="L73">    String identifier = Core.getOrDefaultIfNull(registrationNumber, emailAddress);</span>
-<span class="nc bnc" id="L74" title="All 2 branches missed.">    if (Core.isAllNull(identifier, firstName, lastNames)) {</span>
-<span class="nc" id="L75">      return Constant.EMPTY_STRING;</span>
+<span class="fc" id="L69">    registrationNumber = Core.getOrDefaultIfBlank(registrationNumber, null);</span>
+<span class="fc" id="L70">    emailAddress = Core.getOrDefaultIfBlank(emailAddress, null);</span>
+<span class="fc" id="L71">    firstName = Core.getOrDefaultIfBlank(firstName, null);</span>
+<span class="fc" id="L72">    lastNames = Core.getOrDefaultIfBlank(lastNames, null);</span>
+<span class="fc" id="L73">    String identifier = Core.getOrDefaultIfNull(registrationNumber, emailAddress);</span>
+<span class="fc bfc" id="L74" title="All 2 branches covered.">    if (Core.isAllNull(identifier, firstName, lastNames)) {</span>
+<span class="fc" id="L75">      return Constant.EMPTY_STRING;</span>
     }
-<span class="nc" id="L77">    return String.format(&quot;%s - %s %s&quot;, identifier, firstName, lastNames);</span>
+<span class="fc" id="L77">    return String.format(&quot;%s - %s %s&quot;, identifier, firstName, lastNames);</span>
   }
 
   /**

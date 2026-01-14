@@ -124,7 +124,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L127">  class UserRoleCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L127">  class UserRoleCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements UserRoleSaveRequestDto {
     @JsonbProperty(JSON_USER_IDENTIFIER)
     private String userIdentifier;
@@ -167,7 +167,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L170">  public static class UserRoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserRoleDto&gt; {</span>
+<span class="fc" id="L170">  public static class UserRoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserRoleDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;UserRoleDto&gt; datas;
@@ -255,7 +255,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L258">  class UserRoleUpdateRequestDto extends ByIdentifierRequestDto implements UserRoleSaveRequestDto {</span>
+<span class="fc" id="L258">  class UserRoleUpdateRequestDto extends ByIdentifierRequestDto implements UserRoleSaveRequestDto {</span>
 
     @JsonbProperty(JSON_USER_IDENTIFIER)
     private String userIdentifier;
@@ -322,7 +322,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L325">  class UserRoleCreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L325">  class UserRoleCreateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
 
     @JsonbProperty(JSON_USER_IDENTIFIERS)
     private Set&lt;String&gt; userIdentifiers;
@@ -349,7 +349,7 @@ public interface UserRoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L352">  class UserRoleCreateManyResponseDto {</span>
+<span class="fc" id="L352">  class UserRoleCreateManyResponseDto {</span>
 
     @JsonbProperty(JSON_USER_ROLE_IDENTIFIERS)
     private List&lt;String&gt; identifiers;

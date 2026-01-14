@@ -149,7 +149,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L152">  class UserCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L152">  class UserCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements UserSaveRequestDto, UserSaveCreateRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -193,7 +193,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L196">  class UserCreateAccountRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L196">  class UserCreateAccountRequestDto extends ByIdentifierRequestDto</span>
       implements UserSaveCreateRequestDto {
     @JsonbProperty(JSON_PASS)
     private String pass;
@@ -232,7 +232,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L235">  class UserCreateForFunctionaryRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L235">  class UserCreateForFunctionaryRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements UserSaveCreateRequestDto {
     @JsonbProperty(JSON_PASS)
     private String pass;
@@ -316,7 +316,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L319">  class UserCreateForNonFunctionaryRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L319">  class UserCreateForNonFunctionaryRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements UserSaveCreateRequestDto {
     @JsonbProperty(JSON_PASS)
     private String pass;
@@ -380,7 +380,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L383">  public static class UserGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserDto&gt; {</span>
+<span class="fc" id="L383">  public static class UserGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;UserDto&gt; datas;
@@ -468,7 +468,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L471">  class UserUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L471">  class UserUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements UserSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -535,7 +535,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L538">  class UserAssignRolesRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L538">  class UserAssignRolesRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des rôles.
@@ -556,7 +556,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L559">  class UserAssignRolesResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L559">  class UserAssignRolesResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre total de rôles attribués.
@@ -613,7 +613,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L616">  class UserRevokeRolesRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L616">  class UserRevokeRolesRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des rôles.
@@ -634,7 +634,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L637">  class UserRevokeRolesResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L637">  class UserRevokeRolesResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre de retraits réussis.

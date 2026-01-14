@@ -141,7 +141,7 @@ public interface AccountService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L144">  class AccountCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
+<span class="fc" id="L144">  class AccountCreateRequestDto extends AbstractNamableCreateRequestJsonDto</span>
       implements AccountSaveRequestDto, AccountSaveCreateRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -184,7 +184,7 @@ public interface AccountService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L187">  class AccountCreateByUserRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L187">  class AccountCreateByUserRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements AccountSaveRequestDto, AccountSaveCreateWithPasswordRequestDto {
 
     @JsonbProperty(JSON_USER_IDENTIFIER)
@@ -232,7 +232,7 @@ public interface AccountService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L235">  public static class AccountGetManyResponseDto extends AbstractGetByPageResponseDto&lt;AccountDto&gt; {</span>
+<span class="fc" id="L235">  public static class AccountGetManyResponseDto extends AbstractGetByPageResponseDto&lt;AccountDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;AccountDto&gt; datas;
@@ -321,7 +321,7 @@ public interface AccountService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L324">  class AccountUpdateRequestDto extends ByIdentifierRequestDto implements AccountSaveRequestDto {</span>
+<span class="fc" id="L324">  class AccountUpdateRequestDto extends ByIdentifierRequestDto implements AccountSaveRequestDto {</span>
   }
 
   /**
