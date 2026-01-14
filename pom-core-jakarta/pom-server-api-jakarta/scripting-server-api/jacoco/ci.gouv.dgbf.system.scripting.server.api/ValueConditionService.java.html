@@ -9,6 +9,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueMapKeyDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueSelectorIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValuesMapDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValuesSeparatorDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
@@ -230,7 +231,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L233">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L234">  class ValueConditionCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ValueConditionSaveRequestDto {
 
     @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
@@ -288,7 +289,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L291">  public static class ValueConditionGetManyResponseDto</span>
+<span class="fc" id="L292">  public static class ValueConditionGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ValueConditionDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -378,7 +379,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L381">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L382">  class ValueConditionUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ValueConditionSaveRequestDto {
 
     @JsonbProperty(JSON_VALUE_SELECTOR_IDENTIFIER)
@@ -436,7 +437,8 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L439">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L440">  class ValueConditionVerifyRequestDto extends ByIdentifierRequestDto</span>
+      implements HasValuesMapDto&lt;String, String&gt; {
 
     /**
      * Valeur de l'attribut de filtre du sélecteur.
@@ -457,11 +459,6 @@ public interface ValueConditionService extends SpecificService {
      */
     public static final String JSON_VALUE_SELECTOR_FILTER_ATTRIBUTE_VALUE =
         &quot;valeurAttributFiltreSelecteur&quot;;
-
-    /**
-     * Identifiant json {@link #valuesMap}.
-     */
-    public static final String JSON_VALUES_MAP = &quot;dictionnaireValeurs&quot;;
   }
 
   /**
@@ -472,7 +469,7 @@ public interface ValueConditionService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L475">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L472">  class ValueConditionVerifyResponseDto extends IdentifiableResponseDto</span>
       implements HasBooleanValueDto {
 
     @JsonbProperty(JSON_VALUE)

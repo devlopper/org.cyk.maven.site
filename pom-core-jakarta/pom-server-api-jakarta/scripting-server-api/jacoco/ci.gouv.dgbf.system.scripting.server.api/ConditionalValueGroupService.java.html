@@ -7,6 +7,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStringValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueRetrievalStrategyDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValuesMapDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -28,6 +29,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -169,7 +171,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L172">  class ConditionalValueGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L174">  class ConditionalValueGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ConditionalValueGroupSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -218,7 +220,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L221">  public static class ConditionalValueGroupGetManyResponseDto</span>
+<span class="fc" id="L223">  public static class ConditionalValueGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ConditionalValueGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -308,7 +310,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L311">  class ConditionalValueGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L313">  class ConditionalValueGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ConditionalValueGroupSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -357,7 +359,8 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L360">  class ConditionalValueGroupGetApplicableValueRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L362">  class ConditionalValueGroupGetApplicableValueRequestDto extends ByIdentifierRequestDto</span>
+      implements HasValuesMapDto&lt;String, String&gt; {
 
     /**
      * Valeur de filtre.
@@ -365,6 +368,9 @@ public interface ConditionalValueGroupService extends SpecificService {
     @JsonbProperty(JSON_FILTER_VALUE)
     private String filterValue;
 
+    @JsonbProperty(JSON_VALUES_MAP)
+    private Map&lt;String, String&gt; valuesMap;
+    
     /**
      * Identifiant json {@link #filterValue}.
      */
@@ -379,7 +385,7 @@ public interface ConditionalValueGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L382">  class ConditionalValueGroupGetApplicableValueResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L388">  class ConditionalValueGroupGetApplicableValueResponseDto extends IdentifiableResponseDto</span>
       implements HasStringValueDto, HasValueTypeDto {
 
     @JsonbProperty(JSON_VALUE)
