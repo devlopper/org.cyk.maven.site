@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProcessingService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de traitement</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.processing.server.api</a> &gt; <span class="el_source">ProcessingService.java</span></div><h1>ProcessingService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.processing.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasHeartbeatEmitterIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasHeartbeatExpirationTimeoutInSecondsDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
@@ -149,7 +152,7 @@ public interface ProcessingService {
      * @param completedWorkVolume volume de travail réalisé
      */
     void setCompletedWorkVolume(Integer completedWorkVolume);
-    
+
     /**
      * Cette méthode permet d'obtenir l'identifiant de {@link ProcessingDto} précédent.
      *
@@ -177,7 +180,7 @@ public interface ProcessingService {
      * @param batchSize taille du lot
      */
     void setBatchSize(Integer batchSize);
-    
+
     /**
      * Cette méthode permet d'obtenir le nombre de thread.
      *
@@ -191,7 +194,21 @@ public interface ProcessingService {
      * @param threadCount nombre de thread
      */
     void setThreadCount(Integer threadCount);
-    
+
+    /**
+     * Cette méthode permet d'obtenir le délai d'expiration du heartbeat en secondes.
+     *
+     * @return délai d'expiration du heartbeat en secondes
+     */
+    Integer getHeartbeatExpirationTimeoutInSeconds();
+
+    /**
+     * Cette méthode permet d'assigner le délai d'expiration du heartbeat en secondes.
+     *
+     * @param heartbeatExpirationTimeoutInSeconds délai d'expiration du heartbeat en secondes
+     */
+    void setHeartbeatExpirationTimeoutInSeconds(Integer heartbeatExpirationTimeoutInSeconds);
+
     /**
      * {@link ProcessingDto#JSON_DESCRIPTIVE}.
      */
@@ -231,16 +248,22 @@ public interface ProcessingService {
      * {@link ProcessingDto#JSON_BATCH_SIZE}.
      */
     String JSON_BATCH_SIZE = ProcessingDto.JSON_BATCH_SIZE;
-    
+
     /**
      * {@link ProcessingDto#JSON_THREAD_COUNT}.
      */
     String JSON_THREAD_COUNT = ProcessingDto.JSON_THREAD_COUNT;
-    
+
     /**
      * {@link ProcessingDto#JSON_PREVIOUS_IDENTIFIER}.
      */
     String JSON_PREVIOUS_IDENTIFIER = ProcessingDto.JSON_PREVIOUS_IDENTIFIER;
+
+    /**
+     * Identifiant json du délai d'expiration du heartbeat en secondes.
+     */
+    String JSON_HEARTBEAT_EXPIRATION_TIMEOUT_IN_SECONDS =
+        HasHeartbeatExpirationTimeoutInSecondsDto.JSON_HEARTBEAT_EXPIRATION_TIMEOUT_IN_SECONDS;
   }
 
   /**
@@ -273,7 +296,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L276">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L299">  class ProcessingCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -296,15 +319,18 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_COMPLETED_WORK_VOLUME)
     private Integer completedWorkVolume;
-    
+
     @JsonbProperty(JSON_BATCH_SIZE)
     private Integer batchSize;
-    
+
     @JsonbProperty(JSON_THREAD_COUNT)
     private Integer threadCount;
-    
+
     @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
     private String previousIdentifier;
+
+    @JsonbProperty(JSON_HEARTBEAT_EXPIRATION_TIMEOUT_IN_SECONDS)
+    private Integer heartbeatExpirationTimeoutInSeconds;
   }
 
   /**
@@ -315,7 +341,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L318">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L344">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link ProcessingDto#getStatus()}.
@@ -353,12 +379,12 @@ public interface ProcessingService {
      * @param status statut
      */
     public void initialize(ProcessingStatus status) {
-<span class="fc" id="L356">      this.status = status;</span>
-<span class="fc" id="L357">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
-<span class="fc" id="L358">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
-<span class="fc" id="L359">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
-<span class="fc" id="L360">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
-<span class="fc" id="L361">    }</span>
+<span class="fc" id="L382">      this.status = status;</span>
+<span class="fc" id="L383">      startable = ProcessingStatus.STARTED.getPrevious().contains(status);</span>
+<span class="fc" id="L384">      stoppable = ProcessingStatus.STOPPED.getPrevious().contains(status);</span>
+<span class="fc" id="L385">      cancelable = ProcessingStatus.CANCELLED.getPrevious().contains(status);</span>
+<span class="fc" id="L386">      terminatable = ProcessingStatus.TERMINATED.getPrevious().contains(status);</span>
+<span class="fc" id="L387">    }</span>
 
     /**
      * {@link ProcessingDto#JSON_STATUS}.
@@ -394,7 +420,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L397">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L423">  class ProcessingProcessRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * {@link ProcessingDto#getReason()}.
@@ -528,7 +554,7 @@ public interface ProcessingService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   Response reset(ProcessingProcessRequestDto request);
-  
+
   /**
    * Identifiant du service d'obtention de plusieurs.
    */
@@ -561,7 +587,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L564">  public static class ProcessingGetManyResponseDto</span>
+<span class="fc" id="L590">  public static class ProcessingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProcessingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -650,7 +676,7 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L653">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L679">  class ProcessingUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ProcessingSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTIVE)
@@ -673,16 +699,19 @@ public interface ProcessingService {
 
     @JsonbProperty(JSON_COMPLETED_WORK_VOLUME)
     private Integer completedWorkVolume;
-    
+
     @JsonbProperty(JSON_BATCH_SIZE)
     private Integer batchSize;
-    
+
     @JsonbProperty(JSON_THREAD_COUNT)
     private Integer threadCount;
-    
+
     @JsonbProperty(JSON_PREVIOUS_IDENTIFIER)
     private String previousIdentifier;
-    
+
+    @JsonbProperty(JSON_HEARTBEAT_EXPIRATION_TIMEOUT_IN_SECONDS)
+    private Integer heartbeatExpirationTimeoutInSeconds;
+
     /**
      * Forcer la mise à jour.
      */
@@ -720,11 +749,9 @@ public interface ProcessingService {
    */
   @Getter
   @Setter
-<span class="fc" id="L723">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L752">  class ProcessingUpdateCompletedWorkVolumeRequestDto extends ByIdentifierRequestDto</span>
+      implements HasValueDto&lt;Integer&gt;, HasHeartbeatEmitterIdentifierDto {
 
-    /**
-     * Valeur.
-     */
     @JsonbProperty(JSON_VALUE)
     private Integer value;
 
@@ -740,6 +767,9 @@ public interface ProcessingService {
     @JsonbProperty(JSON_IS_INCREMENT)
     private Boolean isIncrement;
 
+    @JsonbProperty(JSON_HEARTBEAT_EMITTER_IDENTIFIER)
+    private String heartbeatEmitterIdentifier;
+
     /**
      * Cette méthode permet de calculer le volume de travail réalisé.
      *
@@ -749,16 +779,11 @@ public interface ProcessingService {
      */
     public Integer computeCompletedWorkVolume(Integer totalWorkVolume,
         Integer currentCompletedWorkVolume) {
-<span class="fc bfc" id="L752" title="All 2 branches covered.">      if (isIncrement == null) {</span>
-<span class="fc" id="L753">        return value;</span>
+<span class="fc bfc" id="L782" title="All 2 branches covered.">      if (isIncrement == null) {</span>
+<span class="fc" id="L783">        return value;</span>
       }
-<span class="fc bfc" id="L755" title="All 2 branches covered.">      return currentCompletedWorkVolume + (isIncrement ? 1 : -1) * value;</span>
+<span class="fc bfc" id="L785" title="All 2 branches covered.">      return currentCompletedWorkVolume + (isIncrement ? 1 : -1) * value;</span>
     }
-
-    /**
-     * {@link #value}.
-     */
-    public static final String JSON_VALUE = &quot;valeur&quot;;
 
     /**
      * {@link #proportion}.
@@ -769,6 +794,45 @@ public interface ProcessingService {
      * {@link #isIncrement}.
      */
     public static final String JSON_IS_INCREMENT = &quot;estIncrement&quot;;
+  }
+
+  /**
+   * Identifiant du service d'enregistrement de heartbeat.
+   */
+  String REGISTER_HEARTBEAT_IDENTIFIER = &quot;ENREGISTREMENT_HEARTBEAT_TRAITEMENT&quot;;
+
+  /**
+   * Chemin du service d'enregistrement de heartbeat.
+   */
+  String REGISTER_HEARTBEAT_PATH = &quot;heartbeat&quot;;
+
+  /**
+   * Cette méthode permet d'enregistrer un heartbeat.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(REGISTER_HEARTBEAT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = REGISTER_HEARTBEAT_IDENTIFIER,
+      description = &quot;Ce service permet d'enregistrer un heartbeat&quot;)
+  Response registerHeartbeat(ProcessingRegisterHeartbeatRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'enregistrement de heartbeat.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L831">  class ProcessingRegisterHeartbeatRequestDto extends ByIdentifierRequestDto</span>
+      implements HasHeartbeatEmitterIdentifierDto {
+
+    @JsonbProperty(JSON_HEARTBEAT_EMITTER_IDENTIFIER)
+    private String heartbeatEmitterIdentifier;
   }
 
   /**
