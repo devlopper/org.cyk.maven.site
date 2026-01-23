@@ -113,6 +113,20 @@ public interface MovementService extends SpecificService {
     void setEffectiveDate(LocalDate effectiveDate);
 
     /**
+     * Cette méthode permet d'obtenir la date d'application.
+     *
+     * @return la date d'application
+     */
+    LocalDate getApplicationDate();
+
+    /**
+     * Cette méthode permet d'assigner la date d'application.
+     *
+     * @param applicationDate la date d'application
+     */
+    void setApplicationDate(LocalDate applicationDate);
+
+    /**
      * {@link HasRemunerableIdentifierDto#JSON_REMUNERABLE_IDENTIFIER}.
      */
     String JSON_REMUNERABLE_IDENTIFIER = HasRemunerableIdentifierDto.JSON_REMUNERABLE_IDENTIFIER;
@@ -132,6 +146,11 @@ public interface MovementService extends SpecificService {
      * {@link HasEffectiveDateDto#JSON_EFFECTIVE_DATE}.
      */
     String JSON_EFFECTIVE_DATE = HasEffectiveDateDto.JSON_EFFECTIVE_DATE;
+
+    /**
+     * {@link JSON_APPLICATION_DATE}.
+     */
+    String JSON_APPLICATION_DATE = &quot;dateApplication&quot;;
   }
 
   /**
@@ -167,7 +186,7 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  class MovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L189">  class MovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements MovementSaveRequestDto {
 
     @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
@@ -181,6 +200,9 @@ public interface MovementService extends SpecificService {
 
     @JsonbProperty(JSON_EFFECTIVE_DATE)
     private LocalDate effectiveDate;
+
+    @JsonbProperty(JSON_APPLICATION_DATE)
+    private LocalDate applicationDate;
   }
 
   /**
@@ -216,7 +238,7 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
+<span class="fc" id="L241">  public static class MovementGetManyResponseDto extends AbstractGetByPageResponseDto&lt;MovementDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;MovementDto&gt; datas;
@@ -258,7 +280,7 @@ public interface MovementService extends SpecificService {
   String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
 
   /**
-   * Cette méthode permet d'obtenir par identrifiant {@link MovementDto}.
+   * Cette méthode permet d'obtenir par identifiant {@link MovementDto}.
    *
    * @param request requête
    * @return réponse
@@ -305,7 +327,7 @@ public interface MovementService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L308">  class MovementUpdateRequestDto extends ByIdentifierRequestDto implements MovementSaveRequestDto {</span>
+<span class="fc" id="L330">  class MovementUpdateRequestDto extends ByIdentifierRequestDto implements MovementSaveRequestDto {</span>
 
     @JsonbProperty(JSON_REMUNERABLE_IDENTIFIER)
     private String remunerableIdentifier;
@@ -318,6 +340,9 @@ public interface MovementService extends SpecificService {
 
     @JsonbProperty(JSON_EFFECTIVE_DATE)
     private LocalDate effectiveDate;
+
+    @JsonbProperty(JSON_APPLICATION_DATE)
+    private LocalDate applicationDate;
   }
 
   /**
@@ -344,7 +369,6 @@ public interface MovementService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
-
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
