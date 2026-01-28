@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExpenditureDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">ExpenditureDto.java</span></div><h1>ExpenditureDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasActivityIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetCategoryIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetSpecializationUnitIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasEconomicNatureIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasSectionIdentifierDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollComponentCategoryIdentifierDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une dépense.
+ *
+ * @author Arnaud
+ *
+ */
+
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L25">public class ExpenditureDto extends AbstractIdentifiableAuditableDto</span>
+      implements HasSectionIdentifierDto, HasActivityIdentifierDto,
+      HasEconomicNatureIdentifierDto, HasBudgetCategoryIdentifierDto,
+       HasPayrollComponentCategoryIdentifierDto, HasBudgetSpecializationUnitIdentifierDto {
+
+  /**
+   * Année d'exercice .
+   */
+  @JsonbProperty(JSON_EXERCISE_YEAR)
+  private String exerciseYear;
+
+
+  /**
+   * Identifiant de l'activité .
+   */
+  @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
+  private String activityIdentifier;
+
+  /**
+   * Identifiant de la nature économique .
+   */
+  @JsonbProperty(JSON_ECONOMIC_NATURE_IDENTIFIER)
+  private String economicNatureIdentifier;
+
+  /**
+   * Budget actuel .
+   */
+  @JsonbProperty(JSON_ACTUAL_BUDGET)
+  private Long actualBudget;
+
+  /**
+   * Budget initial .
+   */
+  @JsonbProperty(JSON_INITIAL_BUDGET)
+  private Long initialBudget;
+
+  /**
+   * Montant engagé .
+   */
+  @JsonbProperty(JSON_COMMITTED_AMOUNT)
+  private Long committedAmount;
+
+  /**
+   * Montant disponible .
+   */
+  @JsonbProperty(JSON_AVAILABLE_AMOUNT)
+  private Long availableAmount;
+
+  /**
+   * Montant à engager .
+   */
+  @JsonbProperty(JSON_AMOUNT_TO_COMMIT)
+  private Long amountToCommit;
+
+  /**
+   * Montant potentiellement disponible .
+   */
+  @JsonbProperty(JSON_POTENTIAL_AVAILABLE_AMOUNT)
+  private Long potentialAvailableAmount;
+
+  @JsonbProperty(JSON_SECTION_IDENTIFIER)
+  private String sectionIdentifier;
+
+  @JsonbProperty(JSON_BUDGET_SPECIALIZATION_UNIT_IDENTIFIER)
+  private String budgetSpecializationUnitIdentifier;
+
+  @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
+  private String budgetCategoryIdentifier;
+
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_CATEGORY_IDENTIFIER)
+  private String payrollComponentCategoryIdentifier;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idDepense&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;depenseChaine&quot;;
+
+  /**
+   * Identifiant champ json {@link #exerciseYear}.
+   */
+  public static final String JSON_EXERCISE_YEAR = &quot;anneeExercice&quot;;
+
+  /**
+   * Identifiant champ json {@link #activityIdentifier}.
+   */
+  public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idAntActivite&quot;;
+
+  /**
+   * Identifiant champ json {@link #economicNatureIdentifier}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_IDENTIFIER = &quot;idNatureEconomique&quot;;
+
+  /**
+   * Identifiant champ json {@link #actualBudget}.
+   */
+  public static final String JSON_ACTUAL_BUDGET = &quot;budgetActuel&quot;;
+
+  /**
+   * Identifiant champ json {@link #initialBudget}.
+   */
+  public static final String JSON_INITIAL_BUDGET = &quot;budgetInitial&quot;;
+
+  /**
+   * Identifiant champ json {@link #committedAmount}.
+   */
+  public static final String JSON_COMMITTED_AMOUNT = &quot;montantEngage&quot;;
+
+  /**
+   * Identifiant champ json {@link #availableAmount}.
+   */
+  public static final String JSON_AVAILABLE_AMOUNT = &quot;montantDisponible&quot;;
+
+  /**
+   * Identifiant champ json {@link #amountToCommit}.
+   */
+  public static final String JSON_AMOUNT_TO_COMMIT = &quot;montantAEngager&quot;;
+
+  /**
+   * Identifiant champ json {@link #potentialAvailableAmount}.
+   */
+  public static final String JSON_POTENTIAL_AVAILABLE_AMOUNT = &quot;montantPotentiellementDisponible&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;dépense&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

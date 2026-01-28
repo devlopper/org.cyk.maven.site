@@ -31,35 +31,50 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
   String natureIdentifier;
 
   /**
+   * Identifiant du modèle pour avoir les postes rattachés.
+   */
+  private String boundPayslipTemplateIdentifier;
+
+  /**
+   * Identifiant du modèle pour avoir les postes non encore rattachés.
+   */
+  private String unboundPayslipTemplateIdentifier;
+
+
+  /**
    * Cette méthode permet d'instantier.
    *
    * @param dto {@link FilterDto}
    */
   public PayrollComponentFilter(FilterDto dto) {
-<span class="fc" id="L39">    super(dto);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L50">    super(dto);</span>
+<span class="fc" id="L51">  }</span>
 
   /**
    * Cette méthode permet d'instantier.
    *
    */
-<span class="fc" id="L46">  public PayrollComponentFilter() {}</span>
+<span class="fc" id="L57">  public PayrollComponentFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L50">    super.doInitialize(filter);</span>
-<span class="fc" id="L51">    isEarning = getIsEarning(filter);</span>
-<span class="fc" id="L52">    categoryIdentifier = getCategoryIdentifier(filter);</span>
-<span class="fc" id="L53">    natureIdentifier = getNatureIdentifier(filter);</span>
-<span class="fc" id="L54">  }</span>
+<span class="fc" id="L61">    super.doInitialize(filter);</span>
+<span class="fc" id="L62">    isEarning = getIsEarning(filter);</span>
+<span class="fc" id="L63">    categoryIdentifier = getCategoryIdentifier(filter);</span>
+<span class="fc" id="L64">    natureIdentifier = getNatureIdentifier(filter);</span>
+<span class="fc" id="L65">    boundPayslipTemplateIdentifier = getBoundPayslipTemplateIdentifier(filter);</span>
+<span class="fc" id="L66">    unboundPayslipTemplateIdentifier = getUnboundPayslipTemplateIdentifier(filter);</span>
+<span class="fc" id="L67">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L58">    super.toDto(filter);</span>
-<span class="fc" id="L59">    setIsEarning(filter, isEarning);</span>
-<span class="fc" id="L60">    setCategoryIdentifier(filter, categoryIdentifier);</span>
-<span class="fc" id="L61">    setNatureIdentifier(filter, natureIdentifier);</span>
-<span class="fc" id="L62">  }</span>
+<span class="fc" id="L71">    super.toDto(filter);</span>
+<span class="fc" id="L72">    setIsEarning(filter, isEarning);</span>
+<span class="fc" id="L73">    setCategoryIdentifier(filter, categoryIdentifier);</span>
+<span class="fc" id="L74">    setNatureIdentifier(filter, natureIdentifier);</span>
+<span class="fc" id="L75">    setBoundPayslipTemplateIdentifier(filter, boundPayslipTemplateIdentifier);</span>
+<span class="fc" id="L76">    setUnboundPayslipTemplateIdentifier(filter, unboundPayslipTemplateIdentifier);</span>
+<span class="fc" id="L77">  }</span>
   
   /**
    * Cette méthode permet d'assigner est gain.
@@ -68,8 +83,8 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @param isEarning est gain
    */
   public static void setIsEarning(FilterDto filter, Boolean isEarning) {
-<span class="pc" id="L71">    set(filter, JSON_IS_EARNING, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsBoolean(isEarning));</span>
-<span class="fc" id="L72">  }</span>
+<span class="pc" id="L86">    set(filter, JSON_IS_EARNING, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsBoolean(isEarning));</span>
+<span class="fc" id="L87">  }</span>
 
   /**
    * Cette méthode permet d'obtenir est gain.
@@ -78,7 +93,7 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @return vrai si est gain sinon faux
    */
   public static Boolean getIsEarning(FilterDto filter) {
-<span class="fc" id="L81">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_EARNING));</span>
+<span class="fc" id="L96">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_EARNING));</span>
   }
 
   /**
@@ -88,9 +103,9 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setCategoryIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L91">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L92">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L93">  }</span>
+<span class="fc" id="L106">    set(filter, JSON_CATEGORY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L107">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L108">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de la catégorie de poste de paie.
@@ -99,8 +114,8 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @return identifiant de la catégorie de poste de paie
    */
   public static String getCategoryIdentifier(FilterDto filter) {
-<span class="fc" id="L102">    return get(filter, d -&gt;</span>
-<span class="fc" id="L103">            d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
+<span class="fc" id="L117">    return get(filter, d -&gt;</span>
+<span class="fc" id="L118">            d.getFieldValueAsStringByName(JSON_CATEGORY_IDENTIFIER));</span>
   }
   
   /**
@@ -110,9 +125,9 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @param identifier identifiant
    */
   public static void setNatureIdentifier(FilterDto filter, String identifier) {
-<span class="fc" id="L113">    set(filter, JSON_NATURE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L114">        f -&gt; f.setValueAsString(identifier));</span>
-<span class="fc" id="L115">  }</span>
+<span class="fc" id="L128">    set(filter, JSON_NATURE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L129">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L130">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de la nature de poste de paie.
@@ -121,8 +136,56 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    * @return identifiant de la nature de poste de paie
    */
   public static String getNatureIdentifier(FilterDto filter) {
-<span class="fc" id="L124">    return get(filter,</span>
-<span class="fc" id="L125">              d -&gt; d.getFieldValueAsStringByName(JSON_NATURE_IDENTIFIER));</span>
+<span class="fc" id="L139">    return get(filter,</span>
+<span class="fc" id="L140">              d -&gt; d.getFieldValueAsStringByName(JSON_NATURE_IDENTIFIER));</span>
+  }
+  
+  /**
+   * Cette méthode permet d'assigner l'identifiant du modèle de bulletin de paie 
+   * pour les postes de paie rattachés.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setBoundPayslipTemplateIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L151">    set(filter, JSON_BOUND_PAYSLIP_TEMPLATE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L152">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L153">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant du modèle de bulletin de paie 
+   * pour les postes de paie rattachés.
+   *
+   * @param filter filtre
+   * @return identifiant du modèle de bulletin de paie pour les postes de paie rattachés
+   */
+  public static String getBoundPayslipTemplateIdentifier(FilterDto filter) {
+<span class="fc" id="L163">    return get(filter,</span>
+<span class="fc" id="L164">              d -&gt; d.getFieldValueAsStringByName(JSON_BOUND_PAYSLIP_TEMPLATE_IDENTIFIER));</span>
+  }
+  
+  /**
+   * Cette méthode permet d'assigner l'identifiant du modèle de bulletin de paie pour les postes 
+   * de paie non encore rattachés.
+   *
+   * @param filter filtre
+   * @param identifier identifiant
+   */
+  public static void setUnboundPayslipTemplateIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L175">    set(filter, JSON_UNBOUND_PAYSLIP_TEMPLATE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L176">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L177">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant du modèle de bulletin de paie pour les postes 
+   * de paie non encore rattachés.
+   *
+   * @param filter filtre
+   * @return identifiant du modèle de bulletin de paie pour les postes de paie non encore rattachés
+   */
+  public static String getUnboundPayslipTemplateIdentifier(FilterDto filter) {
+<span class="fc" id="L187">    return get(filter,</span>
+<span class="fc" id="L188">              d -&gt; d.getFieldValueAsStringByName(JSON_UNBOUND_PAYSLIP_TEMPLATE_IDENTIFIER));</span>
   }
 
   /**
@@ -141,5 +204,17 @@ public class PayrollComponentFilter extends AbstractIdentifiableFilter {
    */
   public static final String JSON_NATURE_IDENTIFIER = 
       PayrollComponentNatureDto.JSON_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #boundPayslipTemplateIdentifier}.
+   */
+  public static final String JSON_BOUND_PAYSLIP_TEMPLATE_IDENTIFIER = 
+      &quot;identifiantModeleBulletinRattache&quot;;
+
+  /**
+   * Identifiant json champ {@link #unboundPayslipTemplateIdentifier}.
+   */
+  public static final String JSON_UNBOUND_PAYSLIP_TEMPLATE_IDENTIFIER = 
+      &quot;identifiantModeleBulletinNonRattache&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
