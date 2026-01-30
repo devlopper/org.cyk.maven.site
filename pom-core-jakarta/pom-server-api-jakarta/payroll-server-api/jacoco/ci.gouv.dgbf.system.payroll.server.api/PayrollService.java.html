@@ -81,6 +81,20 @@ public interface PayrollService extends SpecificService {
     void setExerciseIdentifier(String exerciseIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link PayrollTypeDto}.
+     *
+     * @return identifiant de {@link PayrollTypeDto}
+     */
+    String getTypeIdentifier();
+    
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link PayrollTypeDto}.
+     *
+     * @param typeIdentifier identifiant de {@link PayrollTypeDto}
+     */
+    void setTypeIdentifier(String typeIdentifier);
+
+    /**
      * Cette méthode permet d'obtenir la date de début.
      *
      * @return date de début
@@ -118,6 +132,12 @@ public interface PayrollService extends SpecificService {
      * {@link PayrollDto#JSON_EXERCISE_IDENTIFIER}.
      */
     public static final String JSON_EXERCISE_IDENTIFIER = PayrollDto.JSON_EXERCISE_IDENTIFIER;
+
+    /**
+     * {@link PayrollDto#JSON_TYPE_IDENTIFIER}.
+     */
+    public static final String JSON_TYPE_IDENTIFIER =
+        PayrollDto.JSON_TYPE_IDENTIFIER;
 
     /**
      * {@link PayrollDto#JSON_START_DATE}.
@@ -163,7 +183,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L166">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L186">  class PayrollCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements PayrollSaveRequestDto {
     /**
      * {@link PayrollDto#getPeriodGroupIdentifier()}.
@@ -176,6 +196,12 @@ public interface PayrollService extends SpecificService {
      */
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
+    /**
+     * {@link PayrollDto#getPayrollTypeIdentifier()}.
+     */
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
     /**
      * {@link PayrollDto#getStartDate()}.
      */
@@ -222,7 +248,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L225">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
+<span class="fc" id="L251">  public static class PayrollGetManyResponseDto extends AbstractGetByPageResponseDto&lt;PayrollDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;PayrollDto&gt; datas;
@@ -311,7 +337,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L314">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto implements PayrollSaveRequestDto {</span>
+<span class="fc" id="L340">  class PayrollUpdateRequestDto extends ByIdentifierRequestDto implements PayrollSaveRequestDto {</span>
     /**
      * {@link PayrollDto#getPeriodGroupIdentifier()}.
      */
@@ -323,6 +349,13 @@ public interface PayrollService extends SpecificService {
      */
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
     private String exerciseIdentifier;
+
+    /**
+     * {@link PayrollDto#getTypeIdentifier()}.
+     */
+    @JsonbProperty(JSON_TYPE_IDENTIFIER)
+    private String typeIdentifier;
+
     /**
      * {@link PayrollDto#getStartDate()}.
      */
@@ -404,7 +437,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L407">  class PayrollCreatePayslipsRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L440">  class PayrollCreatePayslipsRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -416,7 +449,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L419">  class PayrollCreatePayslipsResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L452">  class PayrollCreatePayslipsResponseDto extends ProcessResponseDto {</span>
 
     @JsonbProperty(JSON_PROCESSED_REMUNERABLES_COUNT)
     private Integer processedRemunerablesCount;
@@ -468,7 +501,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L471">  class PayrollStartCalculationRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L504">  class PayrollStartCalculationRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -480,7 +513,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L483">  class PayrollStartCalculationResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L516">  class PayrollStartCalculationResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -517,7 +550,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L520">  class PayrollCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L553">  class PayrollCalculateRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -529,7 +562,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L532">  class PayrollCalculateResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L565">  class PayrollCalculateResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -541,7 +574,7 @@ public interface PayrollService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L544">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L577">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link PayrollDto#getStatus()}.
@@ -591,16 +624,16 @@ public interface PayrollService extends SpecificService {
      * @param status {@link PayrollStatus}
      */
     public void initialize(PayrollStatus status) {
-<span class="fc" id="L594">      this.status = status;</span>
-<span class="fc" id="L595">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
-<span class="fc" id="L596">      transmittableForControl =</span>
-<span class="fc" id="L597">          PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
-<span class="fc" id="L598">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
-<span class="fc" id="L599">      transmittableForArbitration =</span>
-<span class="fc" id="L600">          PayrollStatus.TRANSMITTED_FOR_ARBITRATION.getPrevious().contains(status);</span>
-<span class="fc" id="L601">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
-<span class="fc" id="L602">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
-<span class="fc" id="L603">    }</span>
+<span class="fc" id="L627">      this.status = status;</span>
+<span class="fc" id="L628">      initializable = PayrollStatus.INITIALIZED.getPrevious().contains(status);</span>
+<span class="fc" id="L629">      transmittableForControl =</span>
+<span class="fc" id="L630">          PayrollStatus.TRANSMITTED_FOR_CONTROL.getPrevious().contains(status);</span>
+<span class="fc" id="L631">      controllable = PayrollStatus.CONTROLLED.getPrevious().contains(status);</span>
+<span class="fc" id="L632">      transmittableForArbitration =</span>
+<span class="fc" id="L633">          PayrollStatus.TRANSMITTED_FOR_ARBITRATION.getPrevious().contains(status);</span>
+<span class="fc" id="L634">      arbitrable = PayrollStatus.ARBITRATED.getPrevious().contains(status);</span>
+<span class="fc" id="L635">      closable = PayrollStatus.CLOSED.getPrevious().contains(status);</span>
+<span class="fc" id="L636">    }</span>
 
     /**
      * {@link PayrollDto#JSON_STATUS}.

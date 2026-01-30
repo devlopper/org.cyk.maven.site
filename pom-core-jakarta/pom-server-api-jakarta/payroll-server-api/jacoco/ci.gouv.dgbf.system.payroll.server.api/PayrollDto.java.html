@@ -52,6 +52,18 @@ import lombok.Setter;
   private String exerciseAsString;
 
   /**
+   * Identifiant {@link PayrollTypeDto}.
+   */
+  @JsonbProperty(JSON_TYPE_IDENTIFIER)
+  private String typeIdentifier;
+
+  /**
+   * Représentation en chaine de caractères {@link PayrollTypeDto}.
+   */
+  @JsonbProperty(JSON_TYPE_AS_STRING)
+  private String typeAsString;
+
+  /**
    * Date de début.
    */
   @JsonbProperty(JSON_START_DATE)
@@ -377,15 +389,15 @@ import lombok.Setter;
    * @param response résponse
    */
   public void initialize(ProcessResponseDto response) {
-<span class="fc" id="L380">    status = response.getStatus();</span>
-<span class="fc" id="L381">    statusAsString = response.getStatus().getName();</span>
-<span class="fc" id="L382">    initializable = response.getInitializable();</span>
-<span class="fc" id="L383">    transmittableForControl = response.getTransmittableForControl();</span>
-<span class="fc" id="L384">    controllable = response.getControllable();</span>
-<span class="fc" id="L385">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
-<span class="fc" id="L386">    arbitrable = response.getArbitrable();</span>
-<span class="fc" id="L387">    closable = response.getClosable();</span>
-<span class="fc" id="L388">  }</span>
+<span class="fc" id="L392">    status = response.getStatus();</span>
+<span class="fc" id="L393">    statusAsString = response.getStatus().getName();</span>
+<span class="fc" id="L394">    initializable = response.getInitializable();</span>
+<span class="fc" id="L395">    transmittableForControl = response.getTransmittableForControl();</span>
+<span class="fc" id="L396">    controllable = response.getControllable();</span>
+<span class="fc" id="L397">    transmittableForArbitration = response.getTransmittableForArbitration();</span>
+<span class="fc" id="L398">    arbitrable = response.getArbitrable();</span>
+<span class="fc" id="L399">    closable = response.getClosable();</span>
+<span class="fc" id="L400">  }</span>
 
   /**
    * Identifiant json de l'identifiant.
@@ -457,6 +469,18 @@ import lombok.Setter;
    * Identifiant json champ {@link #exerciseAsString}.
    */
   public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #typeIdentifier}.
+   */
+  public static final String JSON_TYPE_IDENTIFIER =
+      PayrollTypeDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #typeAsString}.
+   */
+  public static final String JSON_TYPE_AS_STRING =
+      PayrollTypeDto.JSON_THIS_AS_STRING;
 
   /**
    * Identifiant json champ {@link #startDate}.

@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-01-29T19:22:18+0000&quot;,
+    date = &quot;2026-01-30T18:13:32+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,27 +27,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        payrollCreateRequestDto.setPeriodGroupIdentifier( arg0.getPeriodGroupIdentifier() );</span>
 <span class="fc" id="L29">        payrollCreateRequestDto.setExerciseIdentifier( arg0.getExerciseIdentifier() );</span>
-<span class="fc" id="L30">        payrollCreateRequestDto.setStartDate( arg0.getStartDate() );</span>
-<span class="fc" id="L31">        payrollCreateRequestDto.setEndDate( arg0.getEndDate() );</span>
+<span class="fc" id="L30">        payrollCreateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L31">        payrollCreateRequestDto.setStartDate( arg0.getStartDate() );</span>
+<span class="fc" id="L32">        payrollCreateRequestDto.setEndDate( arg0.getEndDate() );</span>
 
-<span class="fc" id="L33">        return payrollCreateRequestDto;</span>
+<span class="fc" id="L34">        return payrollCreateRequestDto;</span>
     }
 
     @Override
     public PayrollService.PayrollUpdateRequestDto mapUpdate(PayrollDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L42">        PayrollService.PayrollUpdateRequestDto payrollUpdateRequestDto = new PayrollService.PayrollUpdateRequestDto();</span>
+<span class="fc" id="L43">        PayrollService.PayrollUpdateRequestDto payrollUpdateRequestDto = new PayrollService.PayrollUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        payrollUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L45">        payrollUpdateRequestDto.setPeriodGroupIdentifier( arg0.getPeriodGroupIdentifier() );</span>
-<span class="fc" id="L46">        payrollUpdateRequestDto.setExerciseIdentifier( arg0.getExerciseIdentifier() );</span>
-<span class="fc" id="L47">        payrollUpdateRequestDto.setStartDate( arg0.getStartDate() );</span>
-<span class="fc" id="L48">        payrollUpdateRequestDto.setEndDate( arg0.getEndDate() );</span>
+<span class="fc" id="L45">        payrollUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        payrollUpdateRequestDto.setPeriodGroupIdentifier( arg0.getPeriodGroupIdentifier() );</span>
+<span class="fc" id="L47">        payrollUpdateRequestDto.setExerciseIdentifier( arg0.getExerciseIdentifier() );</span>
+<span class="fc" id="L48">        payrollUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L49">        payrollUpdateRequestDto.setStartDate( arg0.getStartDate() );</span>
+<span class="fc" id="L50">        payrollUpdateRequestDto.setEndDate( arg0.getEndDate() );</span>
 
-<span class="fc" id="L50">        return payrollUpdateRequestDto;</span>
+<span class="fc" id="L52">        return payrollUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
