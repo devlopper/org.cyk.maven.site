@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ActivityClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payroll.server.api</a> &gt; <span class="el_source">ActivityClient.java</span></div><h1>ActivityClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payroll.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payroll.server.api.ActivityService.ActivityGetManyResponseDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de {@link ActivityService}.
+ *
+ * @author arnaud
+ *
+ */
+@ApplicationScoped
+<span class="fc" id="L23">public class ActivityClient extends AbstractClient&lt;</span>
+    ActivityService&gt; implements GetByIdentifier&lt;ActivityDto&gt;,
+    GetMany&lt;ActivityGetManyResponseDto&gt; {
+
+  @Override
+  public ActivityClient service(ActivityService service) {
+<span class="fc" id="L29">    return (ActivityClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ActivityService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ActivityGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L39">    return new GetOneExecutor&lt;ActivityGetManyResponseDto&gt;(</span>
+        ActivityGetManyResponseDto.class,
+        ActivityService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L42">        .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link ActivityService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ActivityGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L57">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L58">    request.setProjection(projection);</span>
+<span class="fc" id="L59">    request.setFilter(filter);</span>
+<span class="fc" id="L60">    request.setPage(page);</span>
+<span class="fc" id="L61">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L62">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L63">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ActivityService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ActivityDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L73">    return new GetOneExecutor&lt;ActivityDto&gt;(ActivityDto.class,</span>
+<span class="fc" id="L74">        ActivityService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link ActivityService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ActivityDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L88">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L89">    request.setProjection(projection);</span>
+<span class="fc" id="L90">    request.setFilter(filter);</span>
+<span class="fc" id="L91">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L92">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L93">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link ActivityService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public ActivityDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L103">    return new GetOneExecutor&lt;ActivityDto&gt;(ActivityDto.class,</span>
+        ActivityService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L105">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link ActivityService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public ActivityDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L120">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L121">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L122">    request.setProjection(projection);</span>
+<span class="fc" id="L123">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L124">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L125">    return getByIdentifier(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

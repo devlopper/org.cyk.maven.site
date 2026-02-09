@@ -43,7 +43,7 @@ import lombok.Setter;
   private String activityIdentifier;
 
   /**
-   * Identifiant de l'activité .
+   * Représentation en chaine de caractères de l'activité .
    */
   @JsonbProperty(JSON_ACTIVITY_AS_STRING)
   private String activityAsString;
@@ -55,7 +55,7 @@ import lombok.Setter;
   private String economicNatureIdentifier;
 
   /**
-   * Identifiant de la nature économique .
+   * Représentation en chaine de caractères de la nature économique .
    */
   @JsonbProperty(JSON_ECONOMIC_NATURE_AS_STRING)
   private String economicNatureAsString;
@@ -66,11 +66,24 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_ACTUAL_BUDGET)
   private Long actualBudget;
+
+  /**
+   * Représentation en chaine de caractères du Budget actuel .
+   */
+  @JsonbProperty(JSON_ACTUAL_BUDGET_AS_STRING)
+  private String actualBudgetAsString;
+
   /**
    * Budget initial .
    */
   @JsonbProperty(JSON_INITIAL_BUDGET)
   private Long initialBudget;
+
+  /**
+   * Représentation en chaine de caractères du Budget initial .
+   */
+  @JsonbProperty(JSON_INITIAL_BUDGET_AS_STRING)
+  private String initialBudgetAsString;
 
   /**
    * Montant engagé .
@@ -79,10 +92,22 @@ import lombok.Setter;
   private Long committedAmount;
 
   /**
+   * Représentation en chaine de caractères du Montant engagé .
+   */
+  @JsonbProperty(JSON_COMMITTED_AMOUNT_AS_STRING)
+  private String committedAmountAsString;
+
+  /**
    * Montant disponible .
    */
   @JsonbProperty(JSON_AVAILABLE_AMOUNT)
   private Long availableAmount;
+
+  /**
+   * Représentation en chaine de caractères du Montant disponible .
+   */
+  @JsonbProperty(JSON_AVAILABLE_AMOUNT_AS_STRING)
+  private String availableAmountAsString;
 
   /**
    * Montant à engager .
@@ -91,10 +116,23 @@ import lombok.Setter;
   private Long amountToCommit;
 
   /**
+   * Représentation en chaine de caractères du Montant à engager .
+   */
+  @JsonbProperty(JSON_AMOUNT_TO_COMMIT_AS_STRING)
+  private String amountToCommitAsString;
+
+
+  /**
    * Montant potentiellement disponible .
    */
   @JsonbProperty(JSON_POTENTIAL_AVAILABLE_AMOUNT)
   private Long potentialAvailableAmount;
+
+  /**
+   * Représentation en chaine de caractères du Montant potentiellement disponible .
+   */
+  @JsonbProperty(JSON_POTENTIAL_AVAILABLE_AMOUNT_AS_STRING)
+  private String potentialAvailableAmountAsString;
 
   @JsonbProperty(JSON_SECTION_IDENTIFIER)
   private String sectionIdentifier;
@@ -129,9 +167,20 @@ import lombok.Setter;
   public static final String JSON_ACTUAL_BUDGET = &quot;budgetActuel&quot;;
 
   /**
+   * Identifiant champ json {@link #actualBudgetAsString}.
+   */
+  public static final String JSON_ACTUAL_BUDGET_AS_STRING = &quot;budgetActuelChaine&quot;;
+
+  /**
    * Identifiant champ json {@link #initialBudget}.
    */
   public static final String JSON_INITIAL_BUDGET = &quot;budgetInitial&quot;;
+
+
+  /**
+   * Identifiant champ json {@link #initialBudgetAsString}.
+   */
+  public static final String JSON_INITIAL_BUDGET_AS_STRING = &quot;budgetInitialChaine&quot;;
 
   /**
    * Identifiant champ json {@link #committedAmount}.
@@ -139,9 +188,20 @@ import lombok.Setter;
   public static final String JSON_COMMITTED_AMOUNT = &quot;montantEngage&quot;;
 
   /**
+   * Identifiant champ json {@link #committedAmountAsString}.
+   */
+  public static final String JSON_COMMITTED_AMOUNT_AS_STRING = &quot;montantEngageChaine&quot;;
+
+  /**
    * Identifiant champ json {@link #availableAmount}.
    */
   public static final String JSON_AVAILABLE_AMOUNT = &quot;montantDisponible&quot;;
+
+
+  /**
+   * Identifiant champ json {@link #availableAmountAsString}.
+   */
+  public static final String JSON_AVAILABLE_AMOUNT_AS_STRING = &quot;montantDisponibleChaine&quot;;
 
   /**
    * Identifiant champ json {@link #amountToCommit}.
@@ -149,9 +209,20 @@ import lombok.Setter;
   public static final String JSON_AMOUNT_TO_COMMIT = &quot;montantAEngager&quot;;
 
   /**
+   * Identifiant champ json {@link #amountToCommitAsString}.
+   */
+  public static final String JSON_AMOUNT_TO_COMMIT_AS_STRING = &quot;montantAEngagerChaine&quot;;
+
+  /**
    * Identifiant champ json {@link #potentialAvailableAmount}.
    */
   public static final String JSON_POTENTIAL_AVAILABLE_AMOUNT = &quot;montantPotentiellementDisponible&quot;;
+
+  /**
+   * Identifiant champ json {@link #potentialAvailableAmountAsString}.
+   */
+  public static final String JSON_POTENTIAL_AVAILABLE_AMOUNT_AS_STRING =
+       &quot;montantPotentiellementDisponibleChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
