@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ci.gouv.dgbf.system.scripting.server.api"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ci.gouv.dgbf.system.scripting.server.api"},{"l":"ci.gouv.dgbf.system.scripting.server.api.grpc"}];updateSearchResults();

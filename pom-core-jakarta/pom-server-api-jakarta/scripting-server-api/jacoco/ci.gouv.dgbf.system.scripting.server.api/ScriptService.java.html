@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ScriptService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de scripting</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.scripting.server.api</a> &gt; <span class="el_source">ScriptService.java</span></div><h1>ScriptService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.scripting.server.api;
 
+import ci.gouv.dgbf.extension.core.BooleanCore;
+import ci.gouv.dgbf.extension.core.CollectionCore;
+import ci.gouv.dgbf.extension.core.NumberCore;
+import ci.gouv.dgbf.extension.core.StringCore;
 import ci.gouv.dgbf.extension.core.enumeration.StringFormat;
 import ci.gouv.dgbf.extension.core.enumeration.ValueType;
 import ci.gouv.dgbf.extension.core.segregation.HasMessageDto;
@@ -23,6 +27,10 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.EvaluateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.scripting.server.api.grpc.ScriptEvaluateManyRequest;
+import ci.gouv.dgbf.system.scripting.server.api.grpc.ScriptEvaluateManyResponse;
+import com.google.protobuf.Struct;
+import com.google.protobuf.Value;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -183,7 +191,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L186">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L194">  class ScriptCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -231,7 +239,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L234">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
+<span class="fc" id="L242">  public static class ScriptGetManyResponseDto extends AbstractGetByPageResponseDto&lt;ScriptDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;ScriptDto&gt; datas;
@@ -320,7 +328,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L323">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L331">  class ScriptUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ScriptSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -368,7 +376,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L371">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L379">  class ScriptUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
     @JsonbProperty(ScriptSaveRequestDto.JSON_TEXT)
     private String text;
   }
@@ -431,7 +439,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L434">  class ScriptEvaluateRequestDto extends EvaluateRequestDto {</span>
+<span class="fc" id="L442">  class ScriptEvaluateRequestDto extends EvaluateRequestDto {</span>
 
   }
 
@@ -443,7 +451,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L446">  class ScriptEvaluateResponseDto extends EvaluateResponseDto {</span>
+<span class="fc" id="L454">  class ScriptEvaluateResponseDto extends EvaluateResponseDto {</span>
 
   }
 
@@ -480,7 +488,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L483">  class ScriptEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
+<span class="fc" id="L491">  class ScriptEvaluateManyRequestDto extends AbstractAuditedRequestJsonDto {</span>
     /**
      * Collection de {@link GroupDto}.
      */
@@ -502,11 +510,11 @@ public interface ScriptService extends SpecificService {
      */
     public void addGroup(int orderNumber, Collection&lt;String&gt; scriptIdentifiers,
         Map&lt;String, Object&gt; arguments) {
-<span class="fc" id="L505">      GroupDto group = group();</span>
-<span class="fc" id="L506">      group.orderNumber = orderNumber;</span>
-<span class="fc" id="L507">      group.addScriptIdentifiers(scriptIdentifiers);</span>
-<span class="fc" id="L508">      group.arguments = arguments;</span>
-<span class="fc" id="L509">    }</span>
+<span class="fc" id="L513">      GroupDto group = group();</span>
+<span class="fc" id="L514">      group.orderNumber = orderNumber;</span>
+<span class="fc" id="L515">      group.addScriptIdentifiers(scriptIdentifiers);</span>
+<span class="fc" id="L516">      group.arguments = arguments;</span>
+<span class="fc" id="L517">    }</span>
 
     /**
      * Cette méthode permet d'ajouter {@link GroupDto}.
@@ -515,9 +523,9 @@ public interface ScriptService extends SpecificService {
      * @param arguments arguments
      */
     public void addGroup(Collection&lt;String&gt; scriptIdentifiers, Map&lt;String, Object&gt; arguments) {
-<span class="fc" id="L518">      addGroup(Optional.ofNullable(groups).orElse(Collections.emptyList()).size(),</span>
+<span class="fc" id="L526">      addGroup(Optional.ofNullable(groups).orElse(Collections.emptyList()).size(),</span>
           scriptIdentifiers, arguments);
-<span class="fc" id="L520">    }</span>
+<span class="fc" id="L528">    }</span>
 
     /**
      * Cette méthode permet d'obtenir une collection de groupe non nulle.
@@ -525,10 +533,10 @@ public interface ScriptService extends SpecificService {
      * @return collection de groupe non nulle
      */
     public Collection&lt;GroupDto&gt; groups() {
-<span class="fc bfc" id="L528" title="All 2 branches covered.">      if (groups == null) {</span>
-<span class="fc" id="L529">        groups = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L536" title="All 2 branches covered.">      if (groups == null) {</span>
+<span class="fc" id="L537">        groups = new ArrayList&lt;&gt;();</span>
       }
-<span class="fc" id="L531">      return groups;</span>
+<span class="fc" id="L539">      return groups;</span>
     }
 
     /**
@@ -537,9 +545,9 @@ public interface ScriptService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto group() {
-<span class="fc" id="L540">      GroupDto group = new GroupDto();</span>
-<span class="fc" id="L541">      groups().add(group);</span>
-<span class="fc" id="L542">      return group;</span>
+<span class="fc" id="L548">      GroupDto group = new GroupDto();</span>
+<span class="fc" id="L549">      groups().add(group);</span>
+<span class="fc" id="L550">      return group;</span>
     }
 
     /**
@@ -560,7 +568,7 @@ public interface ScriptService extends SpecificService {
      */
     @Getter
     @Setter
-<span class="fc" id="L563">    public static class GroupDto implements HasOrderNumberDto {</span>
+<span class="fc" id="L571">    public static class GroupDto implements HasOrderNumberDto {</span>
 
       @JsonbProperty(JSON_ORDER_NUMBER)
       private Integer orderNumber;
@@ -583,10 +591,10 @@ public interface ScriptService extends SpecificService {
        * @param identifiers identifiants de {@link ScriptDto}
        */
       public void addScriptIdentifiers(Collection&lt;String&gt; identifiers) {
-<span class="fc" id="L586">        Optional.ofNullable(identifiers).orElse(Collections.emptyList()).forEach(identifier -&gt; {</span>
-<span class="fc" id="L587">          scriptIdentifiers().put(identifier, scriptIdentifiers.size());</span>
-<span class="fc" id="L588">        });</span>
-<span class="fc" id="L589">      }</span>
+<span class="fc" id="L594">        Optional.ofNullable(identifiers).orElse(Collections.emptyList()).forEach(identifier -&gt; {</span>
+<span class="fc" id="L595">          scriptIdentifiers().put(identifier, scriptIdentifiers.size());</span>
+<span class="fc" id="L596">        });</span>
+<span class="fc" id="L597">      }</span>
 
       /**
        * Cette méthode permet d'obtenir une carte non nulle.
@@ -594,10 +602,10 @@ public interface ScriptService extends SpecificService {
        * @return carte non nulle
        */
       public Map&lt;String, Integer&gt; scriptIdentifiers() {
-<span class="fc bfc" id="L597" title="All 2 branches covered.">        if (scriptIdentifiers == null) {</span>
-<span class="fc" id="L598">          scriptIdentifiers = new HashMap&lt;&gt;();</span>
+<span class="fc bfc" id="L605" title="All 2 branches covered.">        if (scriptIdentifiers == null) {</span>
+<span class="fc" id="L606">          scriptIdentifiers = new HashMap&lt;&gt;();</span>
         }
-<span class="fc" id="L600">        return scriptIdentifiers;</span>
+<span class="fc" id="L608">        return scriptIdentifiers;</span>
       }
 
       /**
@@ -610,6 +618,131 @@ public interface ScriptService extends SpecificService {
        */
       public static final String JSON_ARGUMENTS = ScriptEvaluationDto.JSON_ARGUMENTS;
     }
+
+    /**
+     * Cette méthode permet de convertir.
+     *
+     * @param request {@link ScriptEvaluateManyRequest}.
+     * @return {@link ScriptEvaluateManyRequestDto}
+     */
+    public static ScriptEvaluateManyRequestDto toDto(ScriptEvaluateManyRequest request) {
+<span class="fc" id="L629">      ScriptEvaluateManyRequestDto dto = new ScriptEvaluateManyRequestDto();</span>
+
+      // Mapping du format avec gestion sécurisée du nom
+<span class="fc" id="L632">      String formatName = request.getFormat().name();</span>
+      // gRPC génère JSON, STRING, RAW. Votre enum StringFormat attend probablement ces noms.
+<span class="fc" id="L634">      dto.setResultAsStringFormat(StringFormat.valueOf(formatName));</span>
+
+<span class="fc" id="L636">      request.getGroupsMap().forEach((order, grpcGroup) -&gt; {</span>
+        // Conversion propre du Struct en Map
+<span class="fc" id="L638">        Map&lt;String, Object&gt; arguments = convertStructToMap(grpcGroup.getArguments());</span>
+
+        // Si votre Business attend une collection pour les identifiants,
+        // il faut la créer à partir de la liste gRPC
+<span class="fc" id="L642">        Collection&lt;String&gt; scriptIdentifiers = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L643">        grpcGroup.getScriptIdentifiersList().forEach(id -&gt; scriptIdentifiers.add(id));</span>
+
+        // Ajoutez le groupe au DTO avec la map d'identifiants
+<span class="fc" id="L646">        dto.addGroup(order, scriptIdentifiers, arguments);</span>
+<span class="fc" id="L647">      });</span>
+
+<span class="fc" id="L649">      return dto;</span>
+    }
+
+    private static Map&lt;String, Object&gt; convertStructToMap(Struct struct) {
+<span class="fc" id="L653">      Map&lt;String, Object&gt; map = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L654">      struct.getFieldsMap().forEach((key, value) -&gt; {</span>
+<span class="fc" id="L655">        map.put(key, convertValue(value));</span>
+<span class="fc" id="L656">      });</span>
+<span class="fc" id="L657">      return map;</span>
+    }
+
+    private static Object convertValue(Value value) {
+<span class="fc bfc" id="L661" title="All 5 branches covered.">      switch (value.getKindCase()) {</span>
+        case NUMBER_VALUE:
+<span class="fc" id="L663">          double d = value.getNumberValue();</span>
+          // ✅ Version la plus rapide pour la conversion
+<span class="fc bfc" id="L665" title="All 2 branches covered.">          if (d == Math.floor(d)) {</span>
+<span class="fc" id="L666">            return (long) d; // Autoboxing implicite, géré par le JIT</span>
+          }
+<span class="fc" id="L668">          return d;</span>
+
+        case STRING_VALUE:
+<span class="fc" id="L671">          return value.getStringValue();</span>
+
+        case BOOL_VALUE:
+<span class="fc" id="L674">          return value.getBoolValue();</span>
+
+        case STRUCT_VALUE:
+<span class="fc" id="L677">          return convertStructToMap(value.getStructValue());</span>
+
+        case NULL_VALUE:
+        default:
+<span class="fc" id="L681">          return null;</span>
+      }
+    }
+
+    /**
+     * Cette méthode permet de convertir un dictionnaire en {@link Struct}.
+     *
+     * @param map dictionnaire
+     * @return {@link Struct}
+     */
+    public static Struct convertMapToStruct(Map&lt;String, Object&gt; map) {
+<span class="fc" id="L692">      Struct.Builder structBuilder = com.google.protobuf.Struct.newBuilder();</span>
+
+<span class="fc bfc" id="L694" title="All 2 branches covered.">      for (Map.Entry&lt;String, Object&gt; entry : map.entrySet()) {</span>
+<span class="fc" id="L695">        structBuilder.putFields(entry.getKey(), buildValue(entry.getValue()));</span>
+<span class="fc" id="L696">      }</span>
+<span class="fc" id="L697">      return structBuilder.build();</span>
+    }
+
+    /**
+     * Cette méthode permet de construire {@link com.google.protobuf.Value}.
+     *
+     * @param value valeur
+     * @return {@link com.google.protobuf.Value}
+     */
+    public static com.google.protobuf.Value buildValue(Object value) {
+      // ✅ ORDRE OPTIMISÉ: du plus fréquent au moins fréquent
+      // (à ajuster selon vos données)
+
+<span class="fc bfc" id="L710" title="All 2 branches covered.">      if (value instanceof String) {</span>
+<span class="fc" id="L711">        return com.google.protobuf.Value.newBuilder().setStringValue((String) value).build();</span>
+      }
+
+<span class="fc bfc" id="L714" title="All 2 branches covered.">      if (value instanceof Number) {</span>
+<span class="fc" id="L715">        double d = ((Number) value).doubleValue();</span>
+<span class="fc" id="L716">        return com.google.protobuf.Value.newBuilder().setNumberValue(d).build();</span>
+      }
+
+<span class="fc bfc" id="L719" title="All 2 branches covered.">      if (value instanceof Boolean) {</span>
+<span class="fc" id="L720">        return com.google.protobuf.Value.newBuilder().setBoolValue((Boolean) value).build();</span>
+      }
+
+<span class="fc bfc" id="L723" title="All 2 branches covered.">      if (value == null) {</span>
+<span class="fc" id="L724">        return com.google.protobuf.Value.newBuilder()</span>
+<span class="fc" id="L725">            .setNullValue(com.google.protobuf.NullValue.NULL_VALUE).build();</span>
+      }
+
+<span class="fc bfc" id="L728" title="All 2 branches covered.">      if (value instanceof Map) {</span>
+        @SuppressWarnings(&quot;unchecked&quot;)
+<span class="fc" id="L730">        Map&lt;String, Object&gt; subMap = (Map&lt;String, Object&gt;) value;</span>
+<span class="fc" id="L731">        return com.google.protobuf.Value.newBuilder().setStructValue(convertMapToStruct(subMap))</span>
+<span class="fc" id="L732">            .build();</span>
+      }
+
+<span class="fc bfc" id="L735" title="All 2 branches covered.">      if (value instanceof List) {</span>
+        com.google.protobuf.ListValue.Builder listBuilder =
+<span class="fc" id="L737">            com.google.protobuf.ListValue.newBuilder();</span>
+<span class="fc bfc" id="L738" title="All 2 branches covered.">        for (Object item : (List&lt;?&gt;) value) {</span>
+<span class="fc" id="L739">          listBuilder.addValues(buildValue(item));</span>
+<span class="fc" id="L740">        }</span>
+<span class="fc" id="L741">        return com.google.protobuf.Value.newBuilder().setListValue(listBuilder.build()).build();</span>
+      }
+
+<span class="fc" id="L744">      return com.google.protobuf.Value.newBuilder().setStringValue(value.toString()).build();</span>
+    }
   }
 
   /**
@@ -619,7 +752,7 @@ public interface ScriptService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L622">  class ScriptEvaluateManyResponseDto extends AbstractResponseDto {</span>
+<span class="fc" id="L755">  class ScriptEvaluateManyResponseDto extends AbstractResponseDto {</span>
 
     /**
      * Collection de {@link GroupDto}.
@@ -634,8 +767,8 @@ public interface ScriptService extends SpecificService {
      * @return {@link GroupDto}
      */
     public GroupDto getGroupByOrderNumber(Integer orderNumber) {
-<span class="fc" id="L637">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
-<span class="pc" id="L638">          .filter(group -&gt; Objects.equals(group.orderNumber, orderNumber)).findFirst().orElse(null);</span>
+<span class="fc" id="L770">      return Optional.ofNullable(groups).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L771">          .filter(group -&gt; Objects.equals(group.orderNumber, orderNumber)).findFirst().orElse(null);</span>
     }
 
     /**
@@ -645,8 +778,8 @@ public interface ScriptService extends SpecificService {
      * @return Collection de {@link ResultDto}
      */
     public Collection&lt;ResultDto&gt; getGroupResultsByOrderNumber(Integer orderNumber) {
-<span class="fc" id="L648">      GroupDto group = getGroupByOrderNumber(orderNumber);</span>
-<span class="fc" id="L649">      return Optional.ofNullable(group).map(GroupDto::getResults).orElse(Collections.emptyList());</span>
+<span class="fc" id="L781">      GroupDto group = getGroupByOrderNumber(orderNumber);</span>
+<span class="fc" id="L782">      return Optional.ofNullable(group).map(GroupDto::getResults).orElse(Collections.emptyList());</span>
     }
 
     /**
@@ -655,12 +788,12 @@ public interface ScriptService extends SpecificService {
      * @return collection non nulle
      */
     public Collection&lt;GroupDto&gt; groups() {
-<span class="fc bfc" id="L658" title="All 2 branches covered.">      if (groups == null) {</span>
-<span class="fc" id="L659">        groups = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L791" title="All 2 branches covered.">      if (groups == null) {</span>
+<span class="fc" id="L792">        groups = new ArrayList&lt;&gt;();</span>
       }
-<span class="fc" id="L661">      return groups;</span>
+<span class="fc" id="L794">      return groups;</span>
     }
-    
+
     /**
      * Cette méthode permet d'ajouter {@link GroupDto}.
      *
@@ -668,12 +801,12 @@ public interface ScriptService extends SpecificService {
      * @return {@link ScriptEvaluateManyResponseDto}
      */
     public ScriptEvaluateManyResponseDto addGroup(GroupDto group) {
-<span class="fc bfc" id="L671" title="All 2 branches covered.">      if (group != null) {</span>
-<span class="fc" id="L672">        groups().add(group);</span>
+<span class="fc bfc" id="L804" title="All 2 branches covered.">      if (group != null) {</span>
+<span class="fc" id="L805">        groups().add(group);</span>
       }
-<span class="fc" id="L674">      return this;</span>
+<span class="fc" id="L807">      return this;</span>
     }
-    
+
     /**
      * Cette classe représente un groupe.
      *
@@ -683,7 +816,7 @@ public interface ScriptService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(of = {&quot;orderNumber&quot;})
-<span class="fc" id="L686">    public static class GroupDto implements HasOrderNumberDto {</span>
+<span class="fc" id="L819">    public static class GroupDto implements HasOrderNumberDto {</span>
 
       @JsonbProperty(JSON_ORDER_NUMBER)
       private Integer orderNumber;
@@ -701,9 +834,9 @@ public interface ScriptService extends SpecificService {
        * @return {@link ResultDto}
        */
       public ResultDto getResultByOrderNumber(Integer orderNumber) {
-<span class="fc" id="L704">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
-<span class="pc" id="L705">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
-<span class="fc" id="L706">            .orElse(null);</span>
+<span class="fc" id="L837">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L838">            .filter(result -&gt; Objects.equals(result.getOrderNumber(), orderNumber)).findFirst()</span>
+<span class="fc" id="L839">            .orElse(null);</span>
       }
 
       /**
@@ -713,9 +846,9 @@ public interface ScriptService extends SpecificService {
        * @return {@link ResultDto}
        */
       public ResultDto getResultByIdentifier(String identifier) {
-<span class="fc" id="L716">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
-<span class="pc" id="L717">            .filter(result -&gt; Objects.equals(result.getIdentifier(), identifier)).findFirst()</span>
-<span class="fc" id="L718">            .orElse(null);</span>
+<span class="fc" id="L849">        return Optional.ofNullable(results).orElse(Collections.emptyList()).stream()</span>
+<span class="pc" id="L850">            .filter(result -&gt; Objects.equals(result.getIdentifier(), identifier)).findFirst()</span>
+<span class="fc" id="L851">            .orElse(null);</span>
       }
 
       /**
@@ -724,12 +857,12 @@ public interface ScriptService extends SpecificService {
        * @return collection non nulle
        */
       public Collection&lt;ResultDto&gt; results() {
-<span class="fc bfc" id="L727" title="All 2 branches covered.">        if (results == null) {</span>
-<span class="fc" id="L728">          results = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L860" title="All 2 branches covered.">        if (results == null) {</span>
+<span class="fc" id="L861">          results = new ArrayList&lt;&gt;();</span>
         }
-<span class="fc" id="L730">        return results;</span>
+<span class="fc" id="L863">        return results;</span>
       }
-      
+
       /**
        * Cette méthode permet d'ajouter {@link ResultDto}.
        *
@@ -737,12 +870,12 @@ public interface ScriptService extends SpecificService {
        * @return {@link GroupDto}
        */
       public GroupDto addResult(ResultDto result) {
-<span class="fc bfc" id="L740" title="All 2 branches covered.">        if (result != null) {</span>
-<span class="fc" id="L741">          results().add(result);</span>
+<span class="fc bfc" id="L873" title="All 2 branches covered.">        if (result != null) {</span>
+<span class="fc" id="L874">          results().add(result);</span>
         }
-<span class="fc" id="L743">        return this;</span>
+<span class="fc" id="L876">        return this;</span>
       }
-      
+
       /**
        * Identifiant json {@link #results}.
        */
@@ -770,7 +903,7 @@ public interface ScriptService extends SpecificService {
     @Setter
     @ToString
     @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L773">    public static class ResultDto extends OrderedIdentifierDto</span>
+<span class="fc" id="L906">    public static class ResultDto extends OrderedIdentifierDto</span>
         implements HasMessageDto, HasValueAsStringDto, HasValueAsIntegerDto, HasValueAsBooleanDto {
 
       @JsonbProperty(JSON_VALUE_AS_STRING)
@@ -784,7 +917,7 @@ public interface ScriptService extends SpecificService {
 
       @JsonbProperty(JSON_MESSAGE)
       private String message;
-      
+
       /**
        * Cette classe représente un constructeur de {@link ResultDto}.
        *
@@ -793,46 +926,99 @@ public interface ScriptService extends SpecificService {
       @Getter
       @Setter
       @Accessors(chain = true, fluent = true)
-<span class="fc" id="L796">      public static class Builder {</span>
-        
+<span class="fc" id="L929">      public static class Builder {</span>
+
         /**
          * Identifiant.
          */
         private String identifier;
-        
+
         /**
          * Représentation en entier de la valeur.
          */
         private Integer valueAsInteger;
-        
+
         /**
          * Message.
          */
         private String message;
-        
+
         /**
          * Cette méthode permet de construire {@link ResultDto}.
          *
          * @return {@link ResultDto}
          */
         public ResultDto build() {
-<span class="fc" id="L819">          ResultDto dto = new ResultDto();</span>
-<span class="fc" id="L820">          dto.setIdentifier(identifier);</span>
-<span class="fc" id="L821">          dto.setValueAsInteger(valueAsInteger);</span>
-<span class="fc" id="L822">          dto.setMessage(message);</span>
-<span class="fc" id="L823">          return dto;</span>
+<span class="fc" id="L952">          ResultDto dto = new ResultDto();</span>
+<span class="fc" id="L953">          dto.setIdentifier(identifier);</span>
+<span class="fc" id="L954">          dto.setValueAsInteger(valueAsInteger);</span>
+<span class="fc" id="L955">          dto.setMessage(message);</span>
+<span class="fc" id="L956">          return dto;</span>
         }
-        
+
         /**
          * cette méthode permet d'instantier un {@link Builder}.
          *
          * @return {@link Builder}
          */
         public static Builder instantiate() {
-<span class="fc" id="L832">          return new Builder();</span>
+<span class="fc" id="L965">          return new Builder();</span>
         }
       }
     }
+
+    // gRPC
+
+    /**
+     * Cette méthode permet de construire {@link ScriptEvaluateManyResponse}.
+     *
+     * @return {@link ScriptEvaluateManyResponse}
+     */
+    public ScriptEvaluateManyResponse toGrpc() {
+<span class="fc" id="L978">      ScriptEvaluateManyResponse.Builder responseBuilder = ScriptEvaluateManyResponse.newBuilder();</span>
+
+<span class="fc bfc" id="L980" title="All 2 branches covered.">      if (CollectionCore.isEmpty(groups)) {</span>
+<span class="fc" id="L981">        return responseBuilder.build();</span>
+      }
+
+<span class="fc bfc" id="L984" title="All 2 branches covered.">      for (ScriptEvaluateManyResponseDto.GroupDto groupDto : groups) {</span>
+        ScriptEvaluateManyResponse.GroupResult.Builder groupResultBuilder =
+<span class="fc" id="L986">            ScriptEvaluateManyResponse.GroupResult.newBuilder();</span>
+
+<span class="fc" id="L988">        Collection&lt;ScriptEvaluateManyResponseDto.ResultDto&gt; results = groupDto.getResults();</span>
+<span class="fc bfc" id="L989" title="All 2 branches covered.">        if (CollectionCore.isNotEmpty(results)) {</span>
+<span class="fc bfc" id="L990" title="All 2 branches covered.">          for (ResultDto resultDto : results) {</span>
+<span class="fc bfc" id="L991" title="All 2 branches covered.">            if (resultDto == null) {</span>
+<span class="fc" id="L992">              continue;</span>
+            }
+<span class="fc" id="L994">            String identifier = resultDto.getIdentifier();</span>
+<span class="fc" id="L995">            String valueAsString = resultDto.getValueAsString();</span>
+<span class="fc" id="L996">            String message = resultDto.getMessage();</span>
+<span class="fc" id="L997">            Boolean valueAsBoolean = resultDto.getValueAsBoolean();</span>
+<span class="fc" id="L998">            Integer valueAsInteger = resultDto.getValueAsInteger();</span>
+
+            ScriptEvaluateManyResponse.ScriptResult scriptResult =
+<span class="fc" id="L1001">                ScriptEvaluateManyResponse.ScriptResult.newBuilder()</span>
+<span class="fc" id="L1002">                    .setIdentifier(StringCore.getOrDefaultToEmptyIfNull(identifier))</span>
+<span class="fc" id="L1003">                    .setValueAsString(StringCore.getOrDefaultToEmptyIfNull(valueAsString))</span>
+<span class="fc" id="L1004">                    .setValueAsBoolean(BooleanCore.getOrDefaultToFalseIfNull(valueAsBoolean))</span>
+<span class="fc" id="L1005">                    .setValueAsInteger(NumberCore.getOrDefaultToZeroIfNull(valueAsInteger))</span>
+<span class="fc" id="L1006">                    .setMessage(StringCore.getOrDefaultToEmptyIfNull(message)).build();</span>
+
+<span class="fc" id="L1008">            groupResultBuilder.addResults(scriptResult);</span>
+<span class="fc" id="L1009">          }</span>
+        }
+
+        // ✅ OPTIMISATION 5: Order number extrait une seule fois
+<span class="fc" id="L1013">        Integer orderNumber = groupDto.getOrderNumber();</span>
+<span class="fc" id="L1014">        responseBuilder.putGroups(NumberCore.getOrDefaultToZeroIfNull(orderNumber),</span>
+<span class="fc" id="L1015">            groupResultBuilder.build());</span>
+<span class="fc" id="L1016">      }</span>
+
+<span class="fc" id="L1018">      return responseBuilder.build();</span>
+    }
+
+
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
