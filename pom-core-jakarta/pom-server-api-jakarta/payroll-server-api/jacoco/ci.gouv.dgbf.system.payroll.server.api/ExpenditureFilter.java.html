@@ -3,7 +3,17 @@
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasActivityIdentifier;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasBudgetCategoryIdentifier;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasBudgetSpecializationUnitIdentifier;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasEconomicNatureIdentifier;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasSectionIdentifier;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasActivityIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetCategoryIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetSpecializationUnitIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasEconomicNatureIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasSectionIdentifierDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.FilterHasPayrollComponentCategoryIdentifier;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollComponentCategoryIdentifierDto;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,7 +27,17 @@ import lombok.Setter;
 @Setter
 public class ExpenditureFilter extends AbstractIdentifiableFilter
        implements FilterHasActivityIdentifier,
-                  FilterHasEconomicNatureIdentifier {
+                  FilterHasEconomicNatureIdentifier,
+                  HasActivityIdentifierDto,
+                  HasEconomicNatureIdentifierDto,
+                  FilterHasSectionIdentifier,
+                  HasSectionIdentifierDto,
+                  FilterHasBudgetCategoryIdentifier,
+                  HasBudgetCategoryIdentifierDto,
+                  FilterHasPayrollComponentCategoryIdentifier,
+                  HasPayrollComponentCategoryIdentifierDto,
+                  FilterHasBudgetSpecializationUnitIdentifier,
+                  HasBudgetSpecializationUnitIdentifierDto {
 
 
   /**
@@ -30,6 +50,28 @@ public class ExpenditureFilter extends AbstractIdentifiableFilter
    */
   private String economicNatureIdentifier;
 
+  /**
+   * Identifiant section.
+   */
+  private String sectionIdentifier;
+
+  /**
+   * Identifiant categorie.
+   */
+  private String budgetCategoryIdentifier;
+
+  /**
+   * Identifiant categorie.
+   */
+  private String payrollComponentCategoryIdentifier;
+
+  /**
+   * Identifiant unite.
+   */
+  private String budgetSpecializationUnitIdentifier;
+
+
+
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -37,27 +79,35 @@ public class ExpenditureFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public ExpenditureFilter(FilterDto dto) {
-<span class="fc" id="L40">    super(dto);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L82">    super(dto);</span>
+<span class="fc" id="L83">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L46">  public ExpenditureFilter() {}</span>
+<span class="fc" id="L88">  public ExpenditureFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L50">    super.doInitialize(filter);</span>
-<span class="fc" id="L51">    updateActivityIdentifier(filter);</span>
-<span class="fc" id="L52">    updateEconomicNatureIdentifier(filter);</span>
-<span class="fc" id="L53">  }</span>
+<span class="fc" id="L92">    super.doInitialize(filter);</span>
+<span class="fc" id="L93">    updateActivityIdentifier(filter);</span>
+<span class="fc" id="L94">    updateEconomicNatureIdentifier(filter);</span>
+<span class="fc" id="L95">    updateSectionIdentifier(filter);</span>
+<span class="fc" id="L96">    updateBudgetCategoryIdentifier(filter);</span>
+<span class="fc" id="L97">    updatePayrollComponentCategoryIdentifier(filter);</span>
+<span class="fc" id="L98">    updateBudgetSpecializationUnitIdentifier(filter);</span>
+<span class="fc" id="L99">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L57">    super.toDto(filter);</span>
-<span class="fc" id="L58">    updateFilterActivityIdentifier(filter);</span>
-<span class="fc" id="L59">    updateFilterEconomicNatureIdentifier(filter);</span>
-<span class="fc" id="L60">  }</span>
+<span class="fc" id="L103">    super.toDto(filter);</span>
+<span class="fc" id="L104">    updateFilterActivityIdentifier(filter);</span>
+<span class="fc" id="L105">    updateFilterEconomicNatureIdentifier(filter);</span>
+<span class="fc" id="L106">    updateFilterSectionIdentifier(filter);</span>
+<span class="fc" id="L107">    updateFilterBudgetCategoryIdentifier(filter);</span>
+<span class="fc" id="L108">    updateFilterPayrollComponentCategoryIdentifier(filter);</span>
+<span class="fc" id="L109">    updateFilterBudgetSpecializationUnitIdentifier(filter);</span>
+<span class="fc" id="L110">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
