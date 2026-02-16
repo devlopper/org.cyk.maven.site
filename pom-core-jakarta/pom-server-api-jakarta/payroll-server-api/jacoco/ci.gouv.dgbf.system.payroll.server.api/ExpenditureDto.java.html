@@ -3,11 +3,15 @@
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasActivityAsStringDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasActivityIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetCategoryAsStringDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetCategoryIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetSpecializationUnitAsStringDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasBudgetSpecializationUnitIdentifierDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasEconomicNatureAsStringDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasEconomicNatureIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasSectionAsStringDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasSectionIdentifierDto;
+import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollComponentCategoryAsStringDto;
 import ci.gouv.dgbf.system.payroll.server.api.shared.HasPayrollComponentCategoryIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -24,10 +28,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L27">public class ExpenditureDto extends AbstractIdentifiableAuditableDto</span>
-      implements HasSectionIdentifierDto, HasActivityIdentifierDto, HasActivityAsStringDto,
-      HasEconomicNatureIdentifierDto, HasEconomicNatureAsStringDto, HasBudgetCategoryIdentifierDto,
-       HasPayrollComponentCategoryIdentifierDto, HasBudgetSpecializationUnitIdentifierDto {
+<span class="fc" id="L31">public class ExpenditureDto extends AbstractIdentifiableAuditableDto</span>
+      implements HasSectionIdentifierDto, HasSectionAsStringDto, HasActivityIdentifierDto,
+      HasActivityAsStringDto, HasEconomicNatureIdentifierDto, HasEconomicNatureAsStringDto,
+      HasBudgetCategoryIdentifierDto, HasBudgetCategoryAsStringDto,
+      HasPayrollComponentCategoryIdentifierDto, HasPayrollComponentCategoryAsStringDto,
+      HasBudgetSpecializationUnitIdentifierDto, HasBudgetSpecializationUnitAsStringDto {
 
   /**
    * Année d'exercice .
@@ -137,14 +143,27 @@ import lombok.Setter;
   @JsonbProperty(JSON_SECTION_IDENTIFIER)
   private String sectionIdentifier;
 
+  @JsonbProperty(JSON_SECTION_AS_STRING)
+  private String sectionAsString;
+
+
   @JsonbProperty(JSON_BUDGET_SPECIALIZATION_UNIT_IDENTIFIER)
   private String budgetSpecializationUnitIdentifier;
+
+  @JsonbProperty(JSON_BUDGET_SPECIALIZATION_UNIT_AS_STRING)
+  private String budgetSpecializationUnitAsString;
 
   @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
   private String budgetCategoryIdentifier;
 
+  @JsonbProperty(JSON_BUDGET_CATEGORY_AS_STRING)
+  private String budgetCategoryAsString;
+
   @JsonbProperty(JSON_PAYROLL_COMPONENT_CATEGORY_IDENTIFIER)
   private String payrollComponentCategoryIdentifier;
+
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_CATEGORY_AS_STRING)
+  private String payrollComponentCategoryAsString;
 
   /**
    * Identifiant json de l'identifiant.
