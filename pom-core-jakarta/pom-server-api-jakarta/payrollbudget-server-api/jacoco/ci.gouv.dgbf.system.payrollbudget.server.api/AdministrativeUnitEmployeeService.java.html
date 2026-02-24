@@ -535,5 +535,39 @@ public interface AdministrativeUnitEmployeeService extends Service {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service de calcul.
+   */
+  String CALCULATE_IDENTIFIER = &quot;CALCUL_POSTE_UNITE_ADMINISTRATIVE_EMPLOYE&quot;;
+
+  /**
+   * Chemin du service de calcul.
+   */
+  String CALCULATE_PATH = &quot;calcul&quot;;
+
+  /**
+   * Cette méthode permet de calculer les projections de poste d'un AdministrativeUnitEmployee.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CALCULATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = CALCULATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response calculate(AdministrativeUnitEmployeeCalculateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de calcul.
+   *
+   * @author Christian
+   */
+<span class="fc" id="L569">  class AdministrativeUnitEmployeeCalculateRequestDto extends ByIdentifierRequestDto {</span>
+
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

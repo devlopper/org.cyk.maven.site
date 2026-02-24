@@ -2,15 +2,18 @@
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.extension.server.service.api.segregation.OneRetrievable;
+import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitService.BudgetAdministrativeUnitCalculateRequestDto;
 import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitService.BudgetAdministrativeUnitGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
 
@@ -21,14 +24,14 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L24">public class BudgetAdministrativeUnitClient extends AbstractClient&lt;BudgetAdministrativeUnitService&gt;</span>
+<span class="fc" id="L27">public class BudgetAdministrativeUnitClient extends AbstractClient&lt;BudgetAdministrativeUnitService&gt;</span>
     implements OneRetrievable&lt;BudgetAdministrativeUnitDto&gt;,
     GetByIdentifier&lt;BudgetAdministrativeUnitDto&gt;,
     GetMany&lt;BudgetAdministrativeUnitGetManyResponseDto&gt; {
 
   @Override
   public BudgetAdministrativeUnitClient service(BudgetAdministrativeUnitService service) {
-<span class="fc" id="L31">    return (BudgetAdministrativeUnitClient) super.service(service);</span>
+<span class="fc" id="L34">    return (BudgetAdministrativeUnitClient) super.service(service);</span>
   }
 
   /**
@@ -38,10 +41,10 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public BudgetAdministrativeUnitGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L41">    return new GetOneExecutor&lt;BudgetAdministrativeUnitGetManyResponseDto&gt;(</span>
+<span class="fc" id="L44">    return new GetOneExecutor&lt;BudgetAdministrativeUnitGetManyResponseDto&gt;(</span>
         BudgetAdministrativeUnitGetManyResponseDto.class,
         BudgetAdministrativeUnitService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L44">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L47">            .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -56,13 +59,13 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public BudgetAdministrativeUnitGetManyResponseDto getMany(ProjectionDto projection,
       FilterDto filter, PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L59">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L60">    request.setProjection(projection);</span>
-<span class="fc" id="L61">    request.setFilter(filter);</span>
-<span class="fc" id="L62">    request.setPage(page);</span>
-<span class="fc" id="L63">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L64">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L65">    return getMany(request);</span>
+<span class="fc" id="L62">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L63">    request.setProjection(projection);</span>
+<span class="fc" id="L64">    request.setFilter(filter);</span>
+<span class="fc" id="L65">    request.setPage(page);</span>
+<span class="fc" id="L66">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L67">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L68">    return getMany(request);</span>
   }
 
   /**
@@ -72,9 +75,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public BudgetAdministrativeUnitDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L75">    return new GetOneExecutor&lt;BudgetAdministrativeUnitDto&gt;(BudgetAdministrativeUnitDto.class,</span>
+<span class="fc" id="L78">    return new GetOneExecutor&lt;BudgetAdministrativeUnitDto&gt;(BudgetAdministrativeUnitDto.class,</span>
         BudgetAdministrativeUnitService.GET_ONE_IDENTIFIER)
-<span class="fc" id="L77">            .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L80">            .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -88,12 +91,12 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public BudgetAdministrativeUnitDto getOne(ProjectionDto projection, FilterDto filter,
       String auditWho, String auditSession) {
-<span class="fc" id="L91">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L92">    request.setProjection(projection);</span>
-<span class="fc" id="L93">    request.setFilter(filter);</span>
-<span class="fc" id="L94">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L95">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L96">    return getOne(request);</span>
+<span class="fc" id="L94">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L95">    request.setProjection(projection);</span>
+<span class="fc" id="L96">    request.setFilter(filter);</span>
+<span class="fc" id="L97">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L98">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L99">    return getOne(request);</span>
   }
 
   /**
@@ -103,9 +106,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return groupe d'échéance
    */
   public BudgetAdministrativeUnitDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L106">    return new GetOneExecutor&lt;BudgetAdministrativeUnitDto&gt;(BudgetAdministrativeUnitDto.class,</span>
+<span class="fc" id="L109">    return new GetOneExecutor&lt;BudgetAdministrativeUnitDto&gt;(BudgetAdministrativeUnitDto.class,</span>
         BudgetAdministrativeUnitService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L108">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L111">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -120,12 +123,25 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public BudgetAdministrativeUnitDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L123">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L124">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L125">    request.setProjection(projection);</span>
-<span class="fc" id="L126">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L127">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L128">    return getByIdentifier(request);</span>
+<span class="fc" id="L126">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L127">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L128">    request.setProjection(projection);</span>
+<span class="fc" id="L129">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L130">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L131">    return getByIdentifier(request);</span>
+  } 
+
+  /**
+   * {@link BudgetAdministrativeUnitService#calculate}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto calculate(
+      BudgetAdministrativeUnitCalculateRequestDto request) {
+<span class="fc" id="L142">    return new IdentifiableExecutor(</span>
+        BudgetAdministrativeUnitService.CALCULATE_IDENTIFIER)
+<span class="fc" id="L144">            .execute(() -&gt; service().calculate(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
