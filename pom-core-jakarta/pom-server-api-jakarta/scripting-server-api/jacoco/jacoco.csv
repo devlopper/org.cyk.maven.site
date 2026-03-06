@@ -21,6 +21,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,S
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueGroupService.ConditionalValueGroupGetApplicableValueRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupService.ConstantGroupEvaluateManyContextualConstantsRequestDto.GroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptContextService.ScriptContextCreateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.AbstractScriptEvaluateManyRequestDto,0,212,0,25,0,54,0,24,0,10
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyResponseDto.ResultDto.Builder,0,25,0,0,0,7,0,3,0,3
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantService.ContextualConstantUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueRequestMapperImpl,0,96,0,8,0,29,0,8,0,4
@@ -28,6 +29,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,V
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantEvaluationService.ContextualConstantEvaluationCreateContextuallyRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueGroupClient,0,212,0,0,0,40,0,20,0,20
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,DomainService.DomainGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.AbstractScriptEvaluateManyRequestDto.GroupDto,0,33,0,2,0,8,0,5,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationService.ScriptEvaluationGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptContextService.ScriptContextGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptContextDto,0,3,0,0,0,1,0,1,0,1
@@ -39,7 +41,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,C
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,DomainService.DomainCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueService.ConditionalValueCheckApplicabilityResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupService.ConstantGroupEvaluateManyContextualConstantsRequestDto,0,51,0,0,0,10,0,5,0,5
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyRequestDto,0,256,0,25,0,64,0,27,0,13
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyRequestDto,0,47,0,0,0,11,0,4,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupService.ConstantGroupUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationService.ScriptEvaluationCreateManyRequestDto.GroupDto,0,33,0,2,0,8,0,5,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantEvaluationGroupService.ContextualConstantEvaluationGroupGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -65,6 +67,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,S
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,DomainService.DomainUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,AbstractScriptDataFilter,3,43,0,0,0,14,1,8,1,8
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyResponseDto.GroupDto,10,53,0,4,0,13,2,7,2,5
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyAsIntegerPrimitiveResponseDto.ResultDto,0,21,0,0,0,1,0,4,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ValueConditionService.ValueConditionGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluationService.ScriptEvaluationCreateManyResponseDto,5,18,0,0,0,3,1,2,1,2
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluatorService.ScriptEvaluatorGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -83,7 +86,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,S
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ValueReferenceClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptParameterDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueGroupFilter,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptClient,0,245,0,0,0,44,0,24,0,24
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptClient,0,262,0,0,0,46,0,26,0,26
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptContextGroupService.ScriptContextGroupGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ValueReferenceService.ValueReferenceUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueGroupService.ConditionalValueGroupGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -105,7 +108,6 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,V
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptParameterFilter,0,27,0,0,0,12,0,4,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantEvaluationService.ContextualConstantEvaluationCreateContextuallyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluatorService.ScriptEvaluatorCreateRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyRequestDto.GroupDto,0,33,0,2,0,8,0,5,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ValueConditionService.ValueConditionUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantFilter,0,3,0,0,0,1,0,1,0,1
@@ -113,12 +115,14 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,C
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptContextRequestMapperImpl,0,87,0,4,0,24,0,5,0,3
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantEvaluationGroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ValueReferenceRequestMapperImpl,0,87,0,4,0,24,0,5,0,3
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyAsIntegerPrimitiveResponseDto.ResultDto.Builder,0,17,0,0,0,3,0,3,0,3
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantEvaluationClient,0,230,0,0,0,43,0,22,0,22
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantCategoryService.ConstantCategoryUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptEvaluatorClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupService.ConstantGroupEvaluateManyContextualConstantsResponseDto.GroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptRelationFilter,6,71,0,0,0,20,2,12,2,12
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyAsIntegerPrimitiveRequestDto,0,41,0,0,0,10,0,3,0,3
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupService.ConstantGroupGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ValueConditionDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantClient,0,195,0,0,0,38,0,18,0,18
@@ -145,8 +149,10 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,S
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptParameterService.ScriptParameterUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantService.ContextualConstantGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptFilter,0,7,0,0,0,4,0,2,0,2
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyAsIntegerPrimitiveResponseDto.GroupDto,5,42,0,4,0,7,1,7,1,5
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptParameterClient,0,195,0,0,0,38,0,18,0,18
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConditionalValueGroupService.ConditionalValueGroupCreateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ScriptService.ScriptEvaluateManyAsIntegerPrimitiveResponseDto,9,132,0,14,0,35,2,13,2,6
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ContextualConstantEvaluationGroupFilter,0,21,0,0,0,10,0,4,0,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupService.ConstantGroupEvaluateManyContextualConstantsResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -163,26 +169,38 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,S
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,ConstantGroupFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,DomainRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api,EvaluationContextDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.GroupResult.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveRequest,356,65,32,4,93,20,50,9,32,9
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptGroup,248,165,28,14,60,42,44,16,28,11
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptGroup.Builder,403,221,50,22,107,74,61,18,30,12
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceBlockingStub,20,0,0,0,5,0,3,0,3,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceBlockingStub,29,0,0,0,7,0,4,0,4,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.ScriptIntegerPrimitiveResult.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.GroupResult,268,51,21,3,66,17,42,7,30,7
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceImplBase,6,0,0,0,2,0,2,0,2,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveRequest.Builder.GroupsConverter,6,6,1,1,2,1,2,1,1,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.ScriptResult.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse,327,46,27,3,86,15,49,6,34,6
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceMethodDescriptorSupplier,12,0,0,0,4,0,2,0,2,0
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyRequest.ResultFormat.new Internal.EnumLiteMap() {...},3,3,0,0,1,1,1,1,1,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceBaseDescriptorSupplier,10,0,0,0,3,0,3,0,3,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.ScriptIntegerPrimitiveResult.Builder,392,103,40,7,118,33,53,7,28,7
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.Builder.GroupsConverter,6,6,1,1,2,1,2,1,1,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.GroupsDefaultEntryHolder,0,9,0,0,0,4,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.ScriptResult.Builder,540,150,55,10,161,47,69,9,34,9
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.AsyncService,4,0,0,0,2,0,1,0,1,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.AsyncService,8,0,0,0,4,0,2,0,2,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveRequest.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyRequest.Builder,389,160,37,15,97,50,57,14,34,10
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceStub,21,0,0,0,6,0,3,0,3,0
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.MethodHandlers,31,0,2,0,11,0,4,0,3,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceStub,31,0,0,0,9,0,4,0,4,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.MethodHandlers,38,0,3,0,13,0,5,0,3,0
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.GroupResult.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptingServiceProto,4,172,0,0,3,25,2,2,2,2
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.GroupResult.Builder,568,90,69,8,158,28,75,7,37,6
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveRequest.GroupsDefaultEntryHolder,0,9,0,0,0,4,0,1,0,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptingServiceProto,4,294,0,0,3,41,2,2,2,2
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.Builder.GroupsConverter,6,6,1,1,2,1,2,1,1,1
-API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceFutureStub,20,0,0,0,5,0,3,0,3,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceFutureStub,29,0,0,0,7,0,4,0,4,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.GroupsDefaultEntryHolder,0,9,0,0,0,4,0,1,0,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.GroupResult,268,51,21,3,66,17,42,7,30,7
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.Builder,365,86,35,8,95,24,51,9,31,7
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptGroup.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.new AbstractStub.StubFactory() {...},9,0,0,0,2,0,2,0,2,0
@@ -197,3 +215,7 @@ API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.g
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyRequest.ResultFormat,59,55,10,2,16,14,13,4,6,4
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyResponse.Builder,365,86,35,8,95,24,51,9,31,7
 API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptServiceGrpc.ScriptServiceFileDescriptorSupplier,3,0,0,0,1,0,1,0,1,0
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveRequest.Builder,420,90,41,7,111,25,59,7,34,7
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.ScriptIntegerPrimitiveResult,388,70,39,3,106,20,52,6,31,6
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse.new AbstractParser() {...},33,3,0,0,11,1,1,1,1,1
+API du serveur du module de scripting,ci.gouv.dgbf.system.scripting.server.api.grpc,ScriptEvaluateManyAsIntegerPrimitiveResponse,327,46,27,3,86,15,49,6,34,6
