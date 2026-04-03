@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -21,6 +22,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -101,7 +103,7 @@ public interface ApplicationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L104">  class ApplicationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L106">  class ApplicationCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements ApplicationSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -141,7 +143,7 @@ public interface ApplicationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L144">  public static class ApplicationGetManyResponseDto</span>
+<span class="fc" id="L146">  public static class ApplicationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ApplicationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -230,7 +232,7 @@ public interface ApplicationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L233">  class ApplicationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L235">  class ApplicationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements ApplicationSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -261,5 +263,84 @@ public interface ApplicationService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service d'attribution administrateur applicatif.
+   */
+  String ASSIGN_ADMINISTRATOR_IDENTIFIER = &quot;ATTRIBUTION_ADMINISTRATEUR&quot;;
+
+  /**
+   * Chemin du service d'attribution administrateur applicatif.
+   */
+  String ASSIGN_ADMINISTRATOR_PATH = &quot;attribution-administrateur&quot;;
+
+  /**
+   * Cette méthode permet d'attribuer le rôle administrateur applicatif.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ASSIGN_ADMINISTRATOR_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = ASSIGN_ADMINISTRATOR_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(
+          implementation = ApplicationAssignAdministratorResponseDto.class))})
+  Response assignAdministrator(ApplicationAssignAdministratorRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'attribution administrateur applicatif.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L300">  class ApplicationAssignAdministratorRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Liste des identifiants des utilisateurs.
+     */
+    @JsonbProperty(JSON_USER_IDENTIFIERS)
+    private Set&lt;String&gt; userIdentifiers;
+
+    /**
+     * Identifiant json {@link #userIdentifiers}.
+     */
+    public static final String JSON_USER_IDENTIFIERS = &quot;idUtilisateurs&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse d'attribution administrateur applicatif.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L321">  class ApplicationAssignAdministratorResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Nombre d'attributions administrateur applicatif réussies.
+     */
+    @JsonbProperty(JSON_ASSIGNED_ADMIN_COUNT)
+    private Integer assignedAdminCount;
+
+    /**
+     * Nombre d'attributions déjà existantes.
+     */
+    @JsonbProperty(JSON_EXISTING_COUNT)
+    private Integer existingCount;
+
+    /**
+     * Identifiant json {@link #assignedAdminCount}.
+     */
+    public static final String JSON_ASSIGNED_ADMIN_COUNT = &quot;nombreAdministrateurAttribue&quot;;
+
+    /**
+     * Identifiant json {@link #existingCount}.
+     */
+    public static final String JSON_EXISTING_COUNT = &quot;nombreExistant&quot;;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
