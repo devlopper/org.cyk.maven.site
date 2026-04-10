@@ -16,65 +16,258 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L18">public class ExpenditureActivityDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+  /*
+   * Identifiant de {@link AdministrativeUnitDto} gestionnaire.
+   */
+  @JsonbProperty(JSON_MANAGER_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String managerAdministrativeUnitIdentifier;
 
   /*
-   * Identifiant {@link AdministrativeUnitDto}.
+   * Réprésentation en chaine de caractère de {@link AdministrativeUnitDto} gestionnaire.
    */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
-  private String administrativeUnitIdentifier;
+  @JsonbProperty(JSON_MANAGER_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String managerAdministrativeUnitAsString;
 
   /*
-   * Code {@link AdministrativeUnitDto}.
+   * Identifiant de  {@link AdministrativeUnitDto} bénéficiare.
    */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_CODE)
-  private String administrativeUnitCode;
-  
+  @JsonbProperty(JSON_BENEFICIARY_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String beneficiaryAdministrativeUnitIdentifier;
+
   /*
-   * Réprésentation en chaine de caractère {@link AdministrativeUnitDto}.
+   * Réprésentation en chaine de caractère de {@link AdministrativeUnitDto} bénéficiare.
    */
-  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
-  private String administrativeUnitAsString;
+  @JsonbProperty(JSON_BENEFICIARY_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String beneficiaryAdministrativeUnitAsString;
+
+  /*
+   * Identifiant {@link ExpenditureNatureDto}.
+   */
+  @JsonbProperty(JSON_NATURE_IDENTIFIER)
+  private String natureIdentifier;
+
+  /*
+   * Réprésentation en chaine de caractère {@link ExpenditureNatureDto}.
+   */
+  @JsonbProperty(JSON_NATURE_AS_STRING)
+  private String natureAsString;
+
+  /*
+   * Identifiant {@link LocalityDto}.
+   */
+  @JsonbProperty(JSON_LOCALITY_IDENTIFIER)
+  private String localityIdentifier;
+
+  /*
+   * Réprésentation en chaine de caractère {@link LocalityDto}.
+   */
+  @JsonbProperty(JSON_LOCALITY_AS_STRING)
+  private String localityAsString;
+
+  /*
+   * Identifiant {@link CategoryDto}.
+   */
+  @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+  private String categoryIdentifier;
+
+  /*
+   * Réprésentation en chaine de caractère {@link CategoryDto}.
+   */
+  @JsonbProperty(JSON_CATEGORY_AS_STRING)
+  private String categoryAsString;
+
+
+  /*
+   * Identifiant {@link FunctionalAccountDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER)
+  private String functionalAccountIdentifier;
+
+  /*
+   * Réprésentation en chaine de caractère {@link FunctionalAccountDto}.
+   */
+  @JsonbProperty(JSON_FUNCTIONAL_ACCOUNT_AS_STRING)
+  private String functionalAccountAsString;
+
+  /*
+   * Identifiant {@link ActionDto}.
+   */
+  @JsonbProperty(JSON_ACTION_IDENTIFIER)
+  private String actionIdentifier;
+
+  /*
+   * Réprésentation en chaine de caractère {@link ActionDto}.
+   */
+  @JsonbProperty(JSON_ACTION_AS_STRING)
+  private String actionAsString;
+
+  /*
+   * libelle court.
+   */
+  @JsonbProperty(JSON_SHORT_NAME)
+  private String shortName;
+
+  /**
+   * {@link ExpenditureActivityStatus}.
+   */
+  @JsonbProperty(JSON_STATUS)
+  private ExpenditureActivityStatus status;
+
+  /**
+   * Représentation en chaine de caractères de {@link ExpenditureActivityStatus}.
+   */
+  @JsonbProperty(JSON_STATUS_AS_STRING)
+  private String statusAsString;
+  /**
+   * Indique si l'activité de dépense est un projet.
+   */
+  @JsonbProperty(JSON_IS_PROJECT)
+  private Boolean isProject;
+
+  /**
+   * Représentation en chaine de caractère de {@link #isProject}.
+   */
+  @JsonbProperty(JSON_IS_PROJECT_AS_STRING)
+  private String isProjectAsString;
 
   /*
    * Identifiant {@link SectionDto}.
    */
   @JsonbProperty(JSON_SECTION_IDENTIFIER)
   private String sectionIdentifier;
-  
+
   /*
    * Réprésentation en chaine de caractère {@link SectionDto}.
    */
   @JsonbProperty(JSON_SECTION_AS_STRING)
   private String sectionAsString;
 
-  /**
-   * Identifiant json champ {@link #administrativeUnitIdentifier}.
-   */
-  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
-      AdministrativeUnitDto.JSON_THIS_IDENTIFIER;
 
   /**
-   * Identifiant json champ {@link #administrativeUnitCode}.
+   * Identifiant json champ {@link #managerAdministrativeUnitIdentifier}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_CODE =
-      AdministrativeUnitDto.JSON_THIS_CODE;
-  
+  public static final String JSON_MANAGER_ADMINISTRATIVE_UNIT_IDENTIFIER =
+       &quot;identifiantUniteAdministrativeGestionnaire&quot;;
+
   /**
-   * Identifiant json champ {@link #administrativeUnitAsString}.
+   * Identifiant json champ {@link #managerAdministrativeUnitAsString}.
    */
-  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING =
-      AdministrativeUnitDto.JSON_THIS_AS_STRING;
+  public static final String JSON_MANAGER_ADMINISTRATIVE_UNIT_AS_STRING =
+        &quot;uniteAdministrativeGestionnaireChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #beneficiaryAdministrativeUnitIdentifier}.
+   */
+  public static final String JSON_BENEFICIARY_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      &quot;identifiantUniteAdministrativeBeneficiaire&quot;;
+
+  /**
+   * Identifiant json champ {@link #beneficiaryAdministrativeUnitAsString}.
+   */
+  public static final String JSON_BENEFICIARY_ADMINISTRATIVE_UNIT_AS_STRING =
+       &quot;uniteAdministrativeBeneficiaireChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #natureIdentifier}.
+   */
+  public static final String JSON_NATURE_IDENTIFIER =
+      ExpenditureNatureDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #natureAsString}.
+   */
+  public static final String JSON_NATURE_AS_STRING =
+      ExpenditureNatureDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #localityIdentifier}.
+   */
+  public static final String JSON_LOCALITY_IDENTIFIER =
+      LocalityDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #localityAsString}.
+   */
+  public static final String JSON_LOCALITY_AS_STRING =
+      LocalityDto.JSON_THIS_AS_STRING;
+
+
+  /**
+   * Identifiant json champ {@link #categoryIdentifier}.
+   */
+  public static final String JSON_CATEGORY_IDENTIFIER =
+      ExpenditureCategoryDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #categoryAsString}.
+   */
+  public static final String JSON_CATEGORY_AS_STRING =
+      ExpenditureCategoryDto.JSON_THIS_AS_STRING;
+
+
+  /**
+   * Identifiant json champ {@link #functionalAccountIdentifier}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_IDENTIFIER =
+      FunctionalAccountDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #functionalAccountAsString}.
+   */
+  public static final String JSON_FUNCTIONAL_ACCOUNT_AS_STRING =
+      FunctionalAccountDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #actionIdentifier}.
+   */
+  public static final String JSON_ACTION_IDENTIFIER =
+      ActionDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #actionAsString}.
+   */
+  public static final String JSON_ACTION_AS_STRING =
+      ActionDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #shortName}.
+   */
+  public static final String JSON_SHORT_NAME =
+      &quot;libelleCourt&quot;;
 
   /**
    * Identifiant json champ {@link #sectionIdentifier}.
    */
-  public static final String JSON_SECTION_IDENTIFIER = SectionDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_SECTION_IDENTIFIER =
+      SectionDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json champ {@link #sectionAsString}.
    */
-  public static final String JSON_SECTION_AS_STRING = SectionDto.JSON_THIS_AS_STRING;
-  
+  public static final String JSON_SECTION_AS_STRING =
+      SectionDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #status}.
+   */
+  public static final String JSON_STATUS = &quot;statut&quot;;
+
+  /**
+   * Identifiant json champ {@link #statusAsString}.
+   */
+  public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+  /**
+   * Identifiant json champ {@link #isProject}.
+   */
+  public static final String JSON_IS_PROJECT = &quot;estProjet&quot;;
+
+  /**
+   * Identifiant json champ {@link #isProjectAsString}.
+   */
+  public static final String JSON_IS_PROJECT_AS_STRING = &quot;estProjetChaine&quot;;
+
+
   /**
    * Nom pour lecture humaine de la classe.
    */
@@ -84,5 +277,7 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = &quot;activités de dépense&quot;;
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

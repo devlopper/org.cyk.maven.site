@@ -15,12 +15,22 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L17">public class BudgetCategoryDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
-  
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idCategorieBudget&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;categorieBudgetChaine&quot;;
+
   /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;catégorie de budget&quot;;
-  
+
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */

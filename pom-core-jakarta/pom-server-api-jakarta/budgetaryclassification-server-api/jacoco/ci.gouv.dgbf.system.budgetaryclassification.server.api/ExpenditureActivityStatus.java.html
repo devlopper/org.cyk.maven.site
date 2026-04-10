@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExpenditureActivityStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de classification budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryclassification.server.api</a> &gt; <span class="el_source">ExpenditureActivityStatus.java</span></div><h1>ExpenditureActivityStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryclassification.server.api;
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Statuts de {@link ExpenditureActivityDto}.
+ *
+ * @author Arnaud
+ *
+ */
+<span class="fc" id="L16">@Getter</span>
+public enum ExpenditureActivityStatus {
+
+  /**
+   * {@link ExpenditureActivityStatusCode#ACTIVATED}.
+   */
+<span class="fc" id="L22">  ACTIVATED(ExpenditureActivityStatusCode.ACTIVATED, &quot;Activé&quot;, &quot;Activation&quot;),</span>
+
+  /**
+   * {@link ExpenditureActivityStatusCode#SUSPENDED}.
+   */
+<span class="fc" id="L27">  SUSPENDED(ExpenditureActivityStatusCode.SUSPENDED, &quot;Suspendu&quot;, &quot;Suspension&quot;),</span>
+
+  /**
+   * {@link ExpenditureActivityStatusCode#CLOSED}.
+
+   */
+<span class="fc" id="L33">  CLOSED(ExpenditureActivityStatusCode.CLOSED, &quot;Clôturé&quot;, &quot;Clôture&quot;);</span>
+
+  private final String code;
+  private final String name;
+  private final String action;
+  private Set&lt;ExpenditureActivityStatus&gt; previous;
+
+<span class="fc" id="L40">  ExpenditureActivityStatus(String code, String name, String action) {</span>
+<span class="fc" id="L41">    this.code = code;</span>
+<span class="fc" id="L42">    this.name = name;</span>
+<span class="fc" id="L43">    this.action = action;</span>
+<span class="fc" id="L44">  }</span>
+
+  @Override
+  public String toString() {
+<span class="fc" id="L48">    return name;</span>
+  }
+
+  /**
+   * Obtenir un statut par code.
+   */
+  public static ExpenditureActivityStatus getByCode(String code) {
+<span class="fc" id="L55">    return Stream.of(values())</span>
+<span class="fc" id="L56">        .filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L57">        .findFirst()</span>
+<span class="fc" id="L58">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Unknown code: &quot; + code));</span>
+  }
+
+  static {
+    // État initial
+<span class="fc" id="L63">    ACTIVATED.previous = Collections.emptySet();</span>
+
+    // Suspendre / réactiver
+<span class="fc" id="L66">    SUSPENDED.previous = Core.getSet(List.of(ACTIVATED));</span>
+
+    // Suppression possible depuis actif ou suspendu
+<span class="fc" id="L69">    CLOSED.previous = Core.getSet(List.of(ACTIVATED, SUSPENDED));</span>
+<span class="fc" id="L70">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
