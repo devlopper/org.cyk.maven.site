@@ -3,6 +3,7 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,13 +16,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class DictionaryDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L19">public class DictionaryDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
-   * Les codes des entrées du {@link DictionaryDto}.
+   * Les noms des entrées du {@link DictionaryDto}.
    */
-  @JsonbProperty(JSON_ENTRIES_CODES)
-  private String entriesCodes;
+  @JsonbProperty(JSON_ENTRIES_NAMES)
+  private List&lt;String&gt; entriesNames;
 
   /**
    * Identifiant json de l'identifiant.
@@ -34,9 +35,9 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;dictionnaireChaine&quot;;
 
   /**
-   * identifiant json {@link DictionaryDto#entriesCodes}.
+   * identifiant json {@link DictionaryDto#entriesNames}.
    */
-  public static final String JSON_ENTRIES_CODES = &quot;codesEntreesDictionnaire&quot;;
+  public static final String JSON_ENTRIES_NAMES = &quot;nomsEntrees&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
