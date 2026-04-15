@@ -22,6 +22,9 @@ import lombok.Setter;
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
   private String domainAsString;
 
+  @JsonbProperty(JSON_USER_IDENTIFIER)
+  private String userIdentifier;
+
   /**
    * Identifiant json {@link #domainIdentifier}.
    */
@@ -31,6 +34,12 @@ import lombok.Setter;
    * Identifiant json {@link #domainAsString}.
    */
   public static final String JSON_DOMAIN_AS_STRING = DomainDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #userIdentifier}.
+   */
+
+  public static final String JSON_USER_IDENTIFIER = UserDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant json de l'identifiant.

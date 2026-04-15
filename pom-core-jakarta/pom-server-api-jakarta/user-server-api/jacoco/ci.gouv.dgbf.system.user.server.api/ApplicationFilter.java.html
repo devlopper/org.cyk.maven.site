@@ -20,43 +20,65 @@ public class ApplicationFilter extends AbstractIdentifiableFilter {
   private String name;
 
   /**
+   * Identifiant du domaine.
+   */
+  private String domainIdentifier;
+
+  /**
+   * Nom d'utilisateur.
+   */
+  private String userName;
+
+  /**
+   * Nom d'utilisateur dont le role est administrateur applicatif.
+   */
+  private String applicationAdministratorUserName;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public ApplicationFilter(FilterDto dto) {
-<span class="fc" id="L28">    super(dto);</span>
-<span class="fc" id="L29">  }</span>
+<span class="fc" id="L43">    super(dto);</span>
+<span class="fc" id="L44">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L34">  public ApplicationFilter() {}</span>
+<span class="fc" id="L49">  public ApplicationFilter() {</span>
+<span class="fc" id="L50">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L38">    super.doInitialize(filter);</span>
-<span class="fc" id="L39">    name = getName(filter);</span>
-<span class="fc" id="L40">  }</span>
+<span class="fc" id="L54">    super.doInitialize(filter);</span>
+<span class="fc" id="L55">    name = getName(filter);</span>
+<span class="fc" id="L56">    userName = getUserName(filter);</span>
+<span class="fc" id="L57">    domainIdentifier = getDomainIdentifier(filter);</span>
+<span class="fc" id="L58">    applicationAdministratorUserName = getApplicationAdministratorUserName(filter);</span>
+<span class="fc" id="L59">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L44">    super.toDto(filter);</span>
-<span class="fc" id="L45">    setName(filter, name);</span>
+<span class="fc" id="L63">    super.toDto(filter);</span>
+<span class="fc" id="L64">    setName(filter, name);</span>
+<span class="fc" id="L65">    setUserName(filter, userName);</span>
+<span class="fc" id="L66">    setDomainIdentifier(filter, domainIdentifier);</span>
+<span class="fc" id="L67">    setApplicationAdministratorUserName(filter, applicationAdministratorUserName);</span>
 
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L69">  }</span>
 
   /**
    * Cette méthode permet d'assigner le libelle du application.
    *
    * @param filter filtre
-   * @param name libelle du application
+   * @param name   libelle du application
    */
 
   public static void setName(FilterDto filter, String name) {
-<span class="pc" id="L57">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L58">        f -&gt; f.setValueAsString(name));</span>
-<span class="fc" id="L59">  }</span>
+<span class="pc" id="L79">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L80">        f -&gt; f.setValueAsString(name));</span>
+<span class="fc" id="L81">  }</span>
 
   /**
    * Cette méthode permet d'obtenir libelle de l'application  assignés.
@@ -65,16 +87,96 @@ public class ApplicationFilter extends AbstractIdentifiableFilter {
    * @return identifiant libelle
    */
   public static String getName(FilterDto filter) {
-<span class="fc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
+<span class="fc" id="L90">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
   }
 
-  
-  
+  /**
+   * Cette méthode permet d'assigner l'identifiant du domaine.
+   *
+   * @param filter           filtre
+   * @param domainIdentifier identifiant du domaine
+   */
+  public static void setDomainIdentifier(FilterDto filter, String domainIdentifier) {
+<span class="pc" id="L100">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L101">        f -&gt; f.setValueAsString(domainIdentifier));</span>
+<span class="fc" id="L102">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant du domaine assigné.
+   *
+   * @param filter filtre
+   * @return identifiant du domaine
+   */
+  public static String getDomainIdentifier(FilterDto filter) {
+<span class="fc" id="L111">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le nom d'utilisateur.
+   *
+   * @param filter filtre
+   * @return nom d'utilisateur
+   */
+  public static String getUserName(FilterDto filter) {
+<span class="fc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_NAME));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le nom d'utilisateur.
+   *
+   * @param filter   filtre
+   * @param userName nom d'utilisateur
+   */
+  public static void setUserName(FilterDto filter, String userName) {
+<span class="pc" id="L131">    set(filter, JSON_USER_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(userName));</span>
+<span class="fc" id="L132">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner le nom d'utilisateur dont.
+   * le role est administrateur applicatif.
+   *
+   * @param filter filtre
+   * @param applicationAdministratorUserName nom d'utilisateur dont le role est administrateur.
+   *                                        applicatif
+   */
+  public static void setApplicationAdministratorUserName(FilterDto filter,
+                                                         String applicationAdministratorUserName) {
+<span class="pc" id="L144">    set(filter, JSON_APPLICATION_ADMINISTRATOR_USER_NAME, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L145">        f -&gt; f.setValueAsString(applicationAdministratorUserName));</span>
+<span class="fc" id="L146">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le nom d'utilisateur dont le role est administrateur applicatif.
+   *
+   * @param filter filtre
+   * @return nom d'utilisateur dont le role est administrateur applicatif
+   */
+  public static String getApplicationAdministratorUserName(FilterDto filter) {
+<span class="fc" id="L155">    return get(filter,</span>
+<span class="fc" id="L156">        d -&gt; d.getFieldValueAsStringByName(JSON_APPLICATION_ADMINISTRATOR_USER_NAME));</span>
+  }
+
   /**
    * Identifiant json champ {@link #name}.
    */
   public static final String JSON_NAME =
       ApplicationDto.JSON_NAME;
+
+  /**
+   * Identifiant json champ {@link #domainIdentifier}.
+   */
+  public static final String JSON_DOMAIN_IDENTIFIER = ApplicationDto.JSON_DOMAIN_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #userName}.
+   */
+  public static final String JSON_USER_NAME = &quot;nomUtilisateur&quot;;
+
+  /**
+   * Identifiant json champ {@link #applicationAdministratorUserName}.
+   */
+  public static final String JSON_APPLICATION_ADMINISTRATOR_USER_NAME =
+      &quot;nomUtilisateurAdministrateurApplicatif&quot;;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
