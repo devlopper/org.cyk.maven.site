@@ -42,6 +42,55 @@ public interface BudgetSpecializationUnitService extends SpecificService {
    * Chemin de base des services.
    */
   String PATH = &quot;unites-specialisation-budget&quot;;
+  
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Arnaud
+   *
+   */
+  interface BudgetSpecializationUnitSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetarySectionDto}.
+     *
+     * @return identifiant de {@link BudgetarySectionDto}
+     */
+    String getBudgetarySectionIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link BudgetarySectionDto}.
+     *
+     * @param budgetarySectionIdentifier identifiant de {@link BudgetarySectionDto}
+     */
+    void setBudgetarySectionIdentifier(String budgetarySectionIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link BudgetCategoryDto}.
+     *
+     * @return identifiant de {@link BudgetCategoryDto}
+     */
+    String getBudgetCategoryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link BudgetCategoryDto}.
+     *
+     * @param budgetCategoryIdentifier identifiant de {@link BudgetCategoryDto}
+     */
+    void setBudgetCategoryIdentifier(String budgetCategoryIdentifier);
+
+
+    /**
+     * Identifiant json identifiant de {@link BudgetarySectionDto}.
+     */
+    String JSON_BUDGETARY_SECTION_IDENTIFIER = BudgetarySectionDto.JSON_THIS_IDENTIFIER;
+
+
+    /**
+     * Identifiant json identifiant de {@link BudgetCategoryDto}.
+     */
+    String JSON_BUDGET_CATEGORY_IDENTIFIER = BudgetCategoryDto.JSON_THIS_IDENTIFIER;
+  }
 
   /**
    * Identifiant du service de création.
@@ -76,8 +125,15 @@ public interface BudgetSpecializationUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L79">  class BudgetSpecializationUnitCreateRequestDto extends</span>
-        AbstractCodableNamableCreateRequestJsonDto {
+<span class="fc" id="L128">  class BudgetSpecializationUnitCreateRequestDto extends</span>
+        AbstractCodableNamableCreateRequestJsonDto implements
+        BudgetSpecializationUnitSaveRequestDto {
+
+    @JsonbProperty(JSON_BUDGETARY_SECTION_IDENTIFIER)
+    private String budgetarySectionIdentifier;
+
+    @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
+    private String budgetCategoryIdentifier;
 
   }
 
@@ -115,7 +171,7 @@ public interface BudgetSpecializationUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L118">  public static class BudgetSpecializationUnitGetManyResponseDto</span>
+<span class="fc" id="L174">  public static class BudgetSpecializationUnitGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;BudgetSpecializationUnitDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -204,8 +260,14 @@ public interface BudgetSpecializationUnitService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L207">  class BudgetSpecializationUnitUpdateRequestDto extends</span>
-        AbstractCodableNamableUpdateRequestJsonDto {
+<span class="fc" id="L263">  class BudgetSpecializationUnitUpdateRequestDto extends</span>
+        AbstractCodableNamableUpdateRequestJsonDto implements
+        BudgetSpecializationUnitSaveRequestDto {
+    @JsonbProperty(JSON_BUDGETARY_SECTION_IDENTIFIER)
+    private String budgetarySectionIdentifier;
+
+    @JsonbProperty(JSON_BUDGET_CATEGORY_IDENTIFIER)
+    private String budgetCategoryIdentifier;
   }
 
   /**

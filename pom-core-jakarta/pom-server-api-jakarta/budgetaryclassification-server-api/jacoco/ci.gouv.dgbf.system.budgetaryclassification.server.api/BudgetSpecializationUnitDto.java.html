@@ -24,6 +24,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_BUDGET_CATEGORY_AS_STRING)
   private String budgetCategoryAsString;
 
+  @JsonbProperty(JSON_BUDGETARY_SECTION_IDENTIFIER)
+  private String budgetarySectionIdentifier;
+
+  @JsonbProperty(JSON_BUDGETARY_SECTION_AS_STRING)
+  private String budgetarySectionAsString;
+
 
   /**
    * Identifiant json champ {@link #budgetCategoryIdentifier}.
@@ -35,6 +41,18 @@ import lombok.Setter;
    * Identifiant json champ {@link #budgetCategoryAsString}.
    */
   public static final String JSON_BUDGET_CATEGORY_AS_STRING = BudgetCategoryDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #budgetarySectionIdentifier}.
+   */
+  public static final String JSON_BUDGETARY_SECTION_IDENTIFIER =
+      BudgetarySectionDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #budgetarySectionAsString}.
+   */
+  public static final String JSON_BUDGETARY_SECTION_AS_STRING =
+      BudgetarySectionDto.JSON_THIS_AS_STRING;
 
 
   /**
