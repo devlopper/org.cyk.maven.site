@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-04-20T10:13:38+0000&quot;,
+    date = &quot;2026-04-23T12:37:17+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,43 +25,41 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        ExpenditureActivityService.ExpenditureActivityCreateRequestDto expenditureActivityCreateRequestDto = new ExpenditureActivityService.ExpenditureActivityCreateRequestDto();</span>
 
-<span class="fc" id="L28">        expenditureActivityCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        expenditureActivityCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        expenditureActivityCreateRequestDto.setShortName( arg0.getShortName() );</span>
-<span class="fc" id="L31">        expenditureActivityCreateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
-<span class="fc" id="L32">        expenditureActivityCreateRequestDto.setBeneficiaryAdministrativeUnitIdentifier( arg0.getBeneficiaryAdministrativeUnitIdentifier() );</span>
-<span class="fc" id="L33">        expenditureActivityCreateRequestDto.setLocalityIdentifier( arg0.getLocalityIdentifier() );</span>
-<span class="fc" id="L34">        expenditureActivityCreateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
-<span class="fc" id="L35">        expenditureActivityCreateRequestDto.setStatus( arg0.getStatus() );</span>
-<span class="fc" id="L36">        expenditureActivityCreateRequestDto.setIsProject( arg0.getIsProject() );</span>
-<span class="fc" id="L37">        expenditureActivityCreateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
-<span class="fc" id="L38">        expenditureActivityCreateRequestDto.setActionIdentifier( arg0.getActionIdentifier() );</span>
+<span class="fc" id="L28">        expenditureActivityCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L29">        expenditureActivityCreateRequestDto.setShortName( arg0.getShortName() );</span>
+<span class="fc" id="L30">        expenditureActivityCreateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
+<span class="fc" id="L31">        expenditureActivityCreateRequestDto.setBeneficiaryAdministrativeUnitIdentifier( arg0.getBeneficiaryAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L32">        expenditureActivityCreateRequestDto.setLocalityIdentifier( arg0.getLocalityIdentifier() );</span>
+<span class="fc" id="L33">        expenditureActivityCreateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L34">        expenditureActivityCreateRequestDto.setStatus( arg0.getStatus() );</span>
+<span class="fc" id="L35">        expenditureActivityCreateRequestDto.setIsProject( arg0.getIsProject() );</span>
+<span class="fc" id="L36">        expenditureActivityCreateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
+<span class="fc" id="L37">        expenditureActivityCreateRequestDto.setActionIdentifier( arg0.getActionIdentifier() );</span>
 
-<span class="fc" id="L40">        return expenditureActivityCreateRequestDto;</span>
+<span class="fc" id="L39">        return expenditureActivityCreateRequestDto;</span>
     }
 
     @Override
     public ExpenditureActivityService.ExpenditureActivityUpdateRequestDto mapUpdate(ExpenditureActivityDto arg0) {
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L46">            return null;</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L45">            return null;</span>
         }
 
-<span class="fc" id="L49">        ExpenditureActivityService.ExpenditureActivityUpdateRequestDto expenditureActivityUpdateRequestDto = new ExpenditureActivityService.ExpenditureActivityUpdateRequestDto();</span>
+<span class="fc" id="L48">        ExpenditureActivityService.ExpenditureActivityUpdateRequestDto expenditureActivityUpdateRequestDto = new ExpenditureActivityService.ExpenditureActivityUpdateRequestDto();</span>
 
-<span class="fc" id="L51">        expenditureActivityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L52">        expenditureActivityUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L53">        expenditureActivityUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L54">        expenditureActivityUpdateRequestDto.setShortName( arg0.getShortName() );</span>
-<span class="fc" id="L55">        expenditureActivityUpdateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
-<span class="fc" id="L56">        expenditureActivityUpdateRequestDto.setBeneficiaryAdministrativeUnitIdentifier( arg0.getBeneficiaryAdministrativeUnitIdentifier() );</span>
-<span class="fc" id="L57">        expenditureActivityUpdateRequestDto.setLocalityIdentifier( arg0.getLocalityIdentifier() );</span>
-<span class="fc" id="L58">        expenditureActivityUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
-<span class="fc" id="L59">        expenditureActivityUpdateRequestDto.setStatus( arg0.getStatus() );</span>
-<span class="fc" id="L60">        expenditureActivityUpdateRequestDto.setIsProject( arg0.getIsProject() );</span>
-<span class="fc" id="L61">        expenditureActivityUpdateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
-<span class="fc" id="L62">        expenditureActivityUpdateRequestDto.setActionIdentifier( arg0.getActionIdentifier() );</span>
+<span class="fc" id="L50">        expenditureActivityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L51">        expenditureActivityUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L52">        expenditureActivityUpdateRequestDto.setShortName( arg0.getShortName() );</span>
+<span class="fc" id="L53">        expenditureActivityUpdateRequestDto.setNatureIdentifier( arg0.getNatureIdentifier() );</span>
+<span class="fc" id="L54">        expenditureActivityUpdateRequestDto.setBeneficiaryAdministrativeUnitIdentifier( arg0.getBeneficiaryAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L55">        expenditureActivityUpdateRequestDto.setLocalityIdentifier( arg0.getLocalityIdentifier() );</span>
+<span class="fc" id="L56">        expenditureActivityUpdateRequestDto.setCategoryIdentifier( arg0.getCategoryIdentifier() );</span>
+<span class="fc" id="L57">        expenditureActivityUpdateRequestDto.setStatus( arg0.getStatus() );</span>
+<span class="fc" id="L58">        expenditureActivityUpdateRequestDto.setIsProject( arg0.getIsProject() );</span>
+<span class="fc" id="L59">        expenditureActivityUpdateRequestDto.setFunctionalAccountIdentifier( arg0.getFunctionalAccountIdentifier() );</span>
+<span class="fc" id="L60">        expenditureActivityUpdateRequestDto.setActionIdentifier( arg0.getActionIdentifier() );</span>
 
-<span class="fc" id="L64">        return expenditureActivityUpdateRequestDto;</span>
+<span class="fc" id="L62">        return expenditureActivityUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
