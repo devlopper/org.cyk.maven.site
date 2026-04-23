@@ -19,6 +19,7 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -204,7 +205,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L207">  class AdministrativeUnitEmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L208">  class AdministrativeUnitEmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements AdministrativeUnitEmployeeSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -260,7 +261,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L263">  class AdministrativeUnitEmployeeCreateByFunctionaryRequestDto extends</span>
+<span class="fc" id="L264">  class AdministrativeUnitEmployeeCreateByFunctionaryRequestDto extends</span>
       AbstractAuditedRequestJsonDto implements AdministrativeUnitEmployeeBaseSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -310,7 +311,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L313">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
+<span class="fc" id="L314">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;AdministrativeUnitEmployeeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -398,7 +399,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L401">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L402">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -418,6 +419,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
 
     @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
     String functionIdentifier;
+
   }
 
   /**
@@ -479,7 +481,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L482">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L484">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeBoardRequestDto {
 
     @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
@@ -566,8 +568,95 @@ public interface AdministrativeUnitEmployeeService extends Service {
    *
    * @author Christian
    */
-<span class="fc" id="L569">  class AdministrativeUnitEmployeeCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L571">  class AdministrativeUnitEmployeeCalculateRequestDto extends ByIdentifierRequestDto {</span>
 
+  }
+
+  /**
+   * Identifiant du service de saisie de mouvements.
+   */
+  String RECORD_PAYROLL_MOVEMENTS_IDENTIFIER = &quot;SAISIE_MOUVEMENT_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service de saisie de mouvements.
+   */
+  String RECORD_PAYROLL_MOVEMENTS_PATH = &quot;saisies-mouvements&quot;;
+
+  /**
+   * Saisie de mouvements de paie pour l'employé UA désigné par {@code identifier} dans la requête.
+   *
+   * @param request charge utile et audit ({@code auditWho}, {@code auditSession})
+   * @return {@link IdentifiableResponseDto}
+   */
+  @Path(RECORD_PAYROLL_MOVEMENTS_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = RECORD_PAYROLL_MOVEMENTS_IDENTIFIER,
+      summary = &quot;Saisie de mouvements pour un employé d'unité administrative&quot;,
+      description = &quot;Crée un ou plusieurs mouvements de paie à partir des instances d'éléments de &quot;
+          + &quot;paie fournies, pour un employé UA donné et une date d'effet.&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response recordPayrollMovements(
+      AdministrativeUnitEmployeeRecordPayrollMovementsRequestDto request);
+
+  /**
+   * Corps de requête REST pour {@link
+   * #recordPayrollMovements(AdministrativeUnitEmployeeRecordPayrollMovementsRequestDto)}.
+   * Hérite de {@link ByIdentifierRequestDto} : identifiant de
+   * l'{@link AdministrativeUnitEmployeeDto} cible et champs d'audit transverses.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+  @Schema(name = &quot;AdministrativeUnitEmployeeRecordPayrollMovementsRequest&quot;,
+      description = &quot;Requête de saisie de mouvements de paie pour un employé d'unité &quot;
+          + &quot;administrative&quot;)
+<span class="fc" id="L617">  class AdministrativeUnitEmployeeRecordPayrollMovementsRequestDto</span>
+      extends ByIdentifierRequestDto {
+
+    /**
+     * Clé JSON : date d'effet du ou des mouvements ({@link MovementDto#JSON_EFFECTIVE_DATE}).
+     */
+    public static final String JSON_EFFECTIVE_DATE = MovementDto.JSON_EFFECTIVE_DATE;
+
+    /**
+     * Clé JSON : type de mouvement
+     * ({@link AdministrativeUnitEmployeeDto#JSON_MOVEMENT_TYPE_IDENTIFIER}).
+     */
+    public static final String JSON_MOVEMENT_TYPE_IDENTIFIER =
+        AdministrativeUnitEmployeeDto.JSON_MOVEMENT_TYPE_IDENTIFIER;
+
+    /**
+     * Clé JSON : liste des identifiants d'instances d'éléments de paie concernés par la saisie.
+     */
+    public static final String JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIERS =
+        &quot;idInstancesElementPaie&quot;;
+
+    /**
+     * Date d'effet du mouvement (référence métier commune aux instances créées).
+     */
+    @Schema(description = &quot;Date d'effet du mouvement&quot;)
+    @JsonbProperty(JSON_EFFECTIVE_DATE)
+    LocalDate effectiveDate;
+
+    /**
+     * Identifiant du type de mouvement dans le référentiel du service paie (pas la table locale
+     * {@code MovementType} de la masse salariale).
+     */
+    @Schema(description = &quot;Identifiant du type de mouvement (référentiel paie)&quot;)
+    @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
+    String movementTypeIdentifier;
+
+    /**
+     * Identifiants des instances d'éléments de paie : une entrée peut donner lieu à un mouvement
+     * distinct côté domaine paie.
+     */
+    @Schema(description = &quot;Identifiants des instances d'éléments de paie à mouvementer&quot;)
+    @JsonbProperty(JSON_PAYROLL_ELEMENT_INSTANCE_IDENTIFIERS)
+    List&lt;String&gt; payrollElementInstanceIdentifiers;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PunctualMeasureFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">PunctualMeasureFilter.java</span></div><h1>PunctualMeasureFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link PunctualMeasureDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class PunctualMeasureFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Indicateur d'activité.
+   */
+  Boolean isActive;
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   */
+  public PunctualMeasureFilter() {
+<span class="fc" id="L27">    super();</span>
+<span class="fc" id="L28">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   *
+   * @param dto filtre
+   */
+  public PunctualMeasureFilter(FilterDto dto) {
+<span class="fc" id="L36">    super(dto);</span>
+<span class="fc" id="L37">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L41">    super.doInitialize(filter);</span>
+<span class="fc" id="L42">    isActive = getIsActive(filter);</span>
+<span class="fc" id="L43">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L47">    super.toDto(filter);</span>
+<span class="fc" id="L48">    setIsActive(filter, isActive);</span>
+<span class="fc" id="L49">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'indicateur d'activité.
+   *
+   * @param filter filtre
+   * @return indicateur d'activité
+   */
+  public static Boolean getIsActive(FilterDto filter) {
+<span class="fc" id="L58">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_IS_ACTIVE));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'indicateur d'activité.
+   *
+   * @param filter filtre
+   * @param isActive indicateur d'activité
+   */
+  public static void setIsActive(FilterDto filter, Boolean isActive) {
+<span class="pc" id="L68">    set(filter, JSON_IS_ACTIVE, f -&gt; f.getValueAsBoolean(), f -&gt; f.setValueAsBoolean(isActive));</span>
+<span class="fc" id="L69">  }</span>
+
+  /**
+   * Clé JSON de {@link #isActive}.
+   */
+  public static final String JSON_IS_ACTIVE = PunctualMeasureDto.JSON_IS_ACTIVE;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

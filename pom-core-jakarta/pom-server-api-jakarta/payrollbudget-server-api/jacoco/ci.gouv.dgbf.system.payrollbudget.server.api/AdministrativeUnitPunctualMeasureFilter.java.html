@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdministrativeUnitPunctualMeasureFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">AdministrativeUnitPunctualMeasureFilter.java</span></div><h1>AdministrativeUnitPunctualMeasureFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasAdministrativeUnitIdentifier;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasBudgetAdministrativeUnitIdentifier;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasBudgetIdentifier;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link AdministrativeUnitPunctualMeasureDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class AdministrativeUnitPunctualMeasureFilter extends AbstractIdentifiableFilter
+    implements FilterHasBudgetIdentifier, FilterHasAdministrativeUnitIdentifier,
+    FilterHasBudgetAdministrativeUnitIdentifier {
+
+  /**
+   * Identifiant du budget.
+   */
+  String budgetIdentifier;
+
+  /**
+   * Identifiant de l'unité administrative.
+   */
+  String administrativeUnitIdentifier;
+
+  /**
+   * Identifiant de l'unité administrative de budget (composite).
+   */
+  String budgetAdministrativeUnitIdentifier;
+
+  /**
+   * Identifiant de la mesure ponctuelle.
+   */
+  String punctualMeasureIdentifier;
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   */
+  public AdministrativeUnitPunctualMeasureFilter() {
+<span class="fc" id="L47">    super();</span>
+<span class="fc" id="L48">  }</span>
+
+  /**
+   * Cette méthode permet d'instancier un objet.
+   *
+   * @param dto filtre
+   */
+  public AdministrativeUnitPunctualMeasureFilter(FilterDto dto) {
+<span class="fc" id="L56">    super(dto);</span>
+<span class="fc" id="L57">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L61">    super.doInitialize(filter);</span>
+<span class="fc" id="L62">    updateBudgetIdentifier(filter);</span>
+<span class="fc" id="L63">    updateAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L64">    updateBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L65">    punctualMeasureIdentifier = getPunctualMeasureIdentifier(filter);</span>
+<span class="fc" id="L66">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L70">    super.toDto(filter);</span>
+<span class="fc" id="L71">    updateFilterBudgetIdentifier(filter);</span>
+<span class="fc" id="L72">    updateFilterAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L73">    updateFilterBudgetAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L74">    setPunctualMeasureIdentifier(filter, punctualMeasureIdentifier);</span>
+<span class="fc" id="L75">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de la mesure ponctuelle.
+   *
+   * @param filter filtre
+   * @return identifiant de la mesure ponctuelle
+   */
+  public static String getPunctualMeasureIdentifier(FilterDto filter) {
+<span class="fc" id="L84">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_PUNCTUAL_MEASURE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de la mesure ponctuelle.
+   *
+   * @param filter filtre
+   * @param identifier identifiant de la mesure ponctuelle
+   */
+  public static void setPunctualMeasureIdentifier(FilterDto filter, String identifier) {
+<span class="pc" id="L94">    set(filter, JSON_PUNCTUAL_MEASURE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L95">        f -&gt; f.setValueAsString(identifier));</span>
+<span class="fc" id="L96">  }</span>
+
+  /**
+   * Clé JSON de {@link #budgetIdentifier}.
+   */
+  public static final String JSON_BUDGET_IDENTIFIER =
+      AdministrativeUnitPunctualMeasureDto.JSON_BUDGET_IDENTIFIER;
+
+  /**
+   * Clé JSON de {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      AdministrativeUnitPunctualMeasureDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER;
+
+  /**
+   * Clé JSON du filtre d'unité administrative de budget (composite).
+   */
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      BudgetAdministrativeUnitDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Clé JSON de {@link #punctualMeasureIdentifier}.
+   */
+  public static final String JSON_PUNCTUAL_MEASURE_IDENTIFIER =
+      AdministrativeUnitPunctualMeasureDto.JSON_PUNCTUAL_MEASURE_IDENTIFIER;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

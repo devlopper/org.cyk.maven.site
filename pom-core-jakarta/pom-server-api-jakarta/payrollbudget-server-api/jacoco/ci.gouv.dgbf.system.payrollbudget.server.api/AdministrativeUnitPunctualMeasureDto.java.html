@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdministrativeUnitPunctualMeasureDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">AdministrativeUnitPunctualMeasureDto.java</span></div><h1>AdministrativeUnitPunctualMeasureDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.math.BigDecimal;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente la saisie d'une mesure ponctuelle pour une unité administrative.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class AdministrativeUnitPunctualMeasureDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  String exerciseIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de l'exercice.
+   */
+  @JsonbProperty(JSON_EXERCISE_AS_STRING)
+  String exerciseAsString;
+
+  /**
+   * Identifiant du budget.
+   */
+  @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+  String budgetIdentifier;
+
+  /**
+   * Représentation en chaine de caractères du budget.
+   */
+  @JsonbProperty(JSON_BUDGET_AS_STRING)
+  String budgetAsString;
+
+  /**
+   * Identifiant de l'unité administrative.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  String administrativeUnitIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de l'unité administrative.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  String administrativeUnitAsString;
+
+  /**
+   * Identifiant de l'entité budget-unité administrative.
+   */
+  @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  String budgetAdministrativeUnitIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de l'entité budget-unité administrative.
+   */
+  @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_AS_STRING)
+  String budgetAdministrativeUnitAsString;
+
+  /**
+   * Identifiant de la mesure ponctuelle.
+   */
+  @JsonbProperty(JSON_PUNCTUAL_MEASURE_IDENTIFIER)
+  String punctualMeasureIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de la mesure ponctuelle.
+   */
+  @JsonbProperty(JSON_PUNCTUAL_MEASURE_AS_STRING)
+  String punctualMeasureAsString;
+
+  /**
+   * Montant saisi.
+   */
+  @JsonbProperty(JSON_AMOUNT)
+  Integer amount;
+
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  String amountAsString;
+
+  /**
+   * Identifiant json de l'identifiant de {@link AdministrativeUnitPunctualMeasureDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idUniteAdministrativeMesurePonctuelle&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de
+   * {@link AdministrativeUnitPunctualMeasureDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;uniteAdministrativeMesurePonctuelleChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #exerciseAsString}.
+   */
+  public static final String JSON_EXERCISE_AS_STRING = ExerciseDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #budgetIdentifier}.
+   */
+  public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #budgetAsString}.
+   */
+  public static final String JSON_BUDGET_AS_STRING = BudgetDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
+
+  /**
+   * Identifiant json de {@link #administrativeUnitAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #budgetAdministrativeUnitIdentifier}.
+   */
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      BudgetAdministrativeUnitDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #budgetAdministrativeUnitAsString}.
+   */
+  public static final String JSON_BUDGET_ADMINISTRATIVE_UNIT_AS_STRING =
+      BudgetAdministrativeUnitDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #punctualMeasureIdentifier}.
+   */
+  public static final String JSON_PUNCTUAL_MEASURE_IDENTIFIER =
+      PunctualMeasureDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de {@link #punctualMeasureAsString}.
+   */
+  public static final String JSON_PUNCTUAL_MEASURE_AS_STRING =
+      PunctualMeasureDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json de {@link #amount}.
+   */
+  public static final String JSON_AMOUNT = &quot;montant&quot;;
+
+  /**
+   * Identifiant json de {@link #amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;mesure ponctuelle d'unité administrative&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;mesures ponctuelles d'unités administratives&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
