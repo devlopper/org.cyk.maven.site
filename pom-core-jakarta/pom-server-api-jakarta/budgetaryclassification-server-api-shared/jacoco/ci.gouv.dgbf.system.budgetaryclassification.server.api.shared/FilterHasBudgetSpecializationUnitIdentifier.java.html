@@ -3,12 +3,13 @@
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 
 /**
- * {@inheritDoc}.
+ * Cette interface représente une classe qui a un filtre par identifiant de l'unité de
+ * spécialisation du budget.
  *
  * @author Arnaud
  */
 public interface FilterHasBudgetSpecializationUnitIdentifier
-       extends HasBudgetSpecializationUnitIdentifier {
+    extends HasBudgetSpecializationUnitIdentifier {
 
   /**
    * Cette méthode permet de mettre à jour identifiant section.
@@ -16,12 +17,11 @@ public interface FilterHasBudgetSpecializationUnitIdentifier
    * @param filter {@link FilterDto}
    */
   default void updateBudgetSpecializationUnitIdentifier(FilterDto filter) {
-<span class="fc" id="L19">    setBudgetSpecializationUnitIdentifier(BudgetSpecializationUnitIdentifierFilter.get(filter));</span>
-<span class="fc" id="L20">  }</span>
+<span class="fc" id="L20">    setBudgetSpecializationUnitIdentifier(BudgetSpecializationUnitIdentifierFilter.get(filter));</span>
+<span class="fc" id="L21">  }</span>
 
   /**
-   * Cette méthode permet de mettre à jour identifiant section de
-   * {@link FilterDto} .
+   * Cette méthode permet de mettre à jour identifiant section de {@link FilterDto} .
    *
    * @param filter {@link FilterDto}
    */

@@ -3,7 +3,7 @@
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 
 /**
- * {@inheritDoc}.
+ * Cette interface représente une classe qui a un filtre par identifiant de budget.
  *
  * @author Christian
  */
@@ -19,14 +19,13 @@ public interface FilterHasBudgetIdentifier extends HasBudgetIdentifier {
 <span class="fc" id="L19">  }</span>
 
   /**
-   * Cette méthode permet de mettre à jour identifiant budget de
-   * {@link FilterDto} .
+   * Cette méthode permet de mettre à jour identifiant budget de {@link FilterDto} .
    *
    * @param filter {@link FilterDto}
    */
   default void updateFilterBudgetIdentifier(FilterDto filter) {
-<span class="fc" id="L28">    BudgetIdentifierFilter.set(filter, getBudgetIdentifier());</span>
-<span class="fc" id="L29">  }</span>
+<span class="fc" id="L27">    BudgetIdentifierFilter.set(filter, getBudgetIdentifier());</span>
+<span class="fc" id="L28">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

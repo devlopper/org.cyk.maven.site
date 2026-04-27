@@ -3,7 +3,8 @@
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 
 /**
- * {@inheritDoc}.
+ * Cette interface représente une classe qui a un filtre par identifiant d'unité administrative de
+ * budget.
  *
  * @author Christian
  */
@@ -16,8 +17,8 @@ public interface FilterHasBudgetAdministrativeUnitIdentifier
    * @param filter {@link FilterDto}
    */
   default void updateBudgetAdministrativeUnitIdentifier(FilterDto filter) {
-<span class="fc" id="L19">    setBudgetAdministrativeUnitIdentifier(BudgetAdministrativeUnitIdentifierFilter.get(filter));</span>
-<span class="fc" id="L20">  }</span>
+<span class="fc" id="L20">    setBudgetAdministrativeUnitIdentifier(BudgetAdministrativeUnitIdentifierFilter.get(filter));</span>
+<span class="fc" id="L21">  }</span>
 
   /**
    * Cette méthode permet de mettre à jour identifiant l'unité administrative de budget de
@@ -26,8 +27,8 @@ public interface FilterHasBudgetAdministrativeUnitIdentifier
    * @param filter {@link FilterDto}
    */
   default void updateFilterBudgetAdministrativeUnitIdentifier(FilterDto filter) {
-<span class="fc" id="L29">    BudgetAdministrativeUnitIdentifierFilter.set(filter, getBudgetAdministrativeUnitIdentifier());</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L30">    BudgetAdministrativeUnitIdentifierFilter.set(filter, getBudgetAdministrativeUnitIdentifier());</span>
+<span class="fc" id="L31">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
