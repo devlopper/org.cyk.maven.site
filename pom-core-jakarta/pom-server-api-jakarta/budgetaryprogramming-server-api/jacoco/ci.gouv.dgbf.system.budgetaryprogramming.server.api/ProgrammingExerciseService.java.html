@@ -48,7 +48,9 @@ public interface ProgrammingExerciseService extends SpecificService {
   interface ProgrammingExerciseSaveRequestDto {
 
     /**
-     * Identifiant de l'exercice budgétaire.
+     * Cette méthode permet d'obtenir l'identifiant de l'exercice budgétaire.
+     *
+     * @return identifiant de l'exercice budgétaire
      */
     String getExerciseIdentifier();
 
@@ -60,7 +62,9 @@ public interface ProgrammingExerciseService extends SpecificService {
     void setExerciseIdentifier(String exerciseIdentifier);
 
     /**
-     * Identifiant de l'intervalle de la période de temps.
+     * Cette méthode permet d'obtenir l'identifiant de l'intervalle de la période de temps.
+     *
+     * @return identifiant de l'intervalle de la période de temps
      */
     String getPeriodIntervalIdentifier();
 
@@ -114,7 +118,7 @@ public interface ProgrammingExerciseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L117">  class ProgrammingExerciseCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
+<span class="fc" id="L121">  class ProgrammingExerciseCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
       implements ProgrammingExerciseSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
@@ -156,7 +160,7 @@ public interface ProgrammingExerciseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L159">  public static class ProgrammingExerciseGetManyResponseDto</span>
+<span class="fc" id="L163">  public static class ProgrammingExerciseGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProgrammingExerciseDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -245,7 +249,7 @@ public interface ProgrammingExerciseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L248">  class ProgrammingExerciseUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
+<span class="fc" id="L252">  class ProgrammingExerciseUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
       implements ProgrammingExerciseSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)

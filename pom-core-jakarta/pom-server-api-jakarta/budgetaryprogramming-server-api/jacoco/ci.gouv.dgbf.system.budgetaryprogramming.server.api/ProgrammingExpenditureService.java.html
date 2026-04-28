@@ -48,7 +48,9 @@ public interface ProgrammingExpenditureService extends SpecificService {
   interface ProgrammingExpenditureSaveRequestDto {
 
     /**
-     * Identifiant de la programmation.
+     * Cette méthode permet d'obtenir l'identifiant de la programmation.
+     *
+     * @return identifiant de la programmation
      */
     String getProgrammingIdentifier();
 
@@ -60,7 +62,9 @@ public interface ProgrammingExpenditureService extends SpecificService {
     void setProgrammingIdentifier(String programmingIdentifier);
 
     /**
-     * Identifiant de la dépense.
+     * Cette méthode permet d'obtenir l'identifiant de la dépense.
+     *
+     * @return identifiant de la dépense
      */
     String getExpenditureIdentifier();
 
@@ -114,7 +118,7 @@ public interface ProgrammingExpenditureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L117">  class ProgrammingExpenditureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
+<span class="fc" id="L121">  class ProgrammingExpenditureCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
       implements ProgrammingExpenditureSaveRequestDto {
 
     @JsonbProperty(JSON_PROGRAMMING_IDENTIFIER)
@@ -156,7 +160,7 @@ public interface ProgrammingExpenditureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L159">  public static class ProgrammingExpenditureGetManyResponseDto</span>
+<span class="fc" id="L163">  public static class ProgrammingExpenditureGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProgrammingExpenditureDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -246,7 +250,7 @@ public interface ProgrammingExpenditureService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L249">  class ProgrammingExpenditureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
+<span class="fc" id="L253">  class ProgrammingExpenditureUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
       implements ProgrammingExpenditureSaveRequestDto {
 
     @JsonbProperty(JSON_PROGRAMMING_IDENTIFIER)

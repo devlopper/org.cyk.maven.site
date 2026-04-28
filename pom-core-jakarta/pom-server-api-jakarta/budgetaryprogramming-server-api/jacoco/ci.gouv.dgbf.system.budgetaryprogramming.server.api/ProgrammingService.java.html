@@ -48,7 +48,9 @@ public interface ProgrammingService extends SpecificService {
   interface ProgrammingSaveRequestDto {
 
     /**
-     * Identifiant de {@link ProgrammingExerciseDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link ProgrammingExerciseDto}.
+     *
+     * @return identifiant de {@link ProgrammingExerciseDto}
      */
     String getExerciseIdentifier();
 
@@ -60,7 +62,9 @@ public interface ProgrammingService extends SpecificService {
     void setExerciseIdentifier(String exerciseIdentifier);
 
     /**
-     * Identifiant de {@link ProgrammingTypeDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link ProgrammingTypeDto}.
+     *
+     * @return identifiant de {@link ProgrammingTypeDto}
      */
     String getTypeIdentifier();
 
@@ -72,7 +76,9 @@ public interface ProgrammingService extends SpecificService {
     void setTypeIdentifier(String typeIdentifier);
 
     /**
-     * Identifiant de {@link ImputationLockDto}.
+     * Cette méthode permet d'obtenir l'identifiant de {@link ImputationLockDto}.
+     *
+     * @return identifiant de {@link ImputationLockDto}
      */
     String getImputationLockIdentifier();
 
@@ -131,7 +137,7 @@ public interface ProgrammingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L134">  class ProgrammingCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
+<span class="fc" id="L140">  class ProgrammingCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
       implements ProgrammingSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
@@ -176,7 +182,7 @@ public interface ProgrammingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L179">  public static class ProgrammingGetManyResponseDto</span>
+<span class="fc" id="L185">  public static class ProgrammingGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProgrammingDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -265,7 +271,7 @@ public interface ProgrammingService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L268">  class ProgrammingUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
+<span class="fc" id="L274">  class ProgrammingUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
       implements ProgrammingSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
