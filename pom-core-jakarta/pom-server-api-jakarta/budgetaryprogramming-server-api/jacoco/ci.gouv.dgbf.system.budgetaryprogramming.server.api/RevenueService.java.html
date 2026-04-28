@@ -48,7 +48,9 @@ public interface RevenueService extends SpecificService {
   interface RevenueSaveRequestDto {
 
     /**
-     * Identifiant de l'exercice.
+     * Cette méthode permet d'obtenir l'identifiant de l'exercice.
+     *
+     * @return identifiant de l'exercice
      */
     String getExerciseIdentifier();
 
@@ -60,7 +62,9 @@ public interface RevenueService extends SpecificService {
     void setExerciseIdentifier(String exerciseIdentifier);
 
     /**
-     * Identifiant de l'activité.
+     * Cette méthode permet d'obtenir ldentifiant de l'activité.
+     *
+     * @return identifiant de l'exercice
      */
     String getActivityIdentifier();
 
@@ -72,7 +76,9 @@ public interface RevenueService extends SpecificService {
     void setActivityIdentifier(String activityIdentifier);
 
     /**
-     * Identifiant de la nature économique.
+     * Cette méthode permet d'obtenir l'identifiant de la nature économique.
+     *
+     * @return identifiant de la nature économique
      */
     String getEconomicNatureIdentifier();
 
@@ -84,7 +90,9 @@ public interface RevenueService extends SpecificService {
     void setEconomicNatureIdentifier(String economicNatureIdentifier);
 
     /**
-     * Identifiant de la source de financement.
+     * Cette méthode permet d'obtenir l'identifiant de la source de financement.
+     *
+     * @return identifiant de la source de financement
      */
     String getFundingSourceIdentifier();
 
@@ -96,7 +104,9 @@ public interface RevenueService extends SpecificService {
     void setFundingSourceIdentifier(String fundingSourceIdentifier);
 
     /**
-     * Identifiant du bailleur.
+     * Cette méthode permet d'obtenir l'identifiant du bailleur.
+     *
+     * @return identifiant du bailleur
      */
     String getLessorIdentifier();
 
@@ -165,7 +175,7 @@ public interface RevenueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L168">  class RevenueCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
+<span class="fc" id="L178">  class RevenueCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
       implements RevenueSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
@@ -216,7 +226,7 @@ public interface RevenueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  public static class RevenueGetManyResponseDto</span>
+<span class="fc" id="L229">  public static class RevenueGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;RevenueDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -305,7 +315,7 @@ public interface RevenueService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L308">  class RevenueUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
+<span class="fc" id="L318">  class RevenueUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
       implements RevenueSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
