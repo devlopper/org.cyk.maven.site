@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProgrammingStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de programmation budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryprogramming.server.api</a> &gt; <span class="el_source">ProgrammingStatus.java</span></div><h1>ProgrammingStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryprogramming.server.api;
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les statuts de {@link ProgrammingDto}.
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L16">@Getter</span>
+public enum ProgrammingStatus {
+
+  /**
+   * {@link ProgrammingStatusCode#CREATED}.
+   */
+<span class="fc" id="L22">  CREATED(ProgrammingStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+  
+  /**
+   * {@link ProgrammingStatusCode#INPUTTED}.
+   */
+<span class="fc" id="L27">  INPUTTED(ProgrammingStatusCode.INPUTTED, &quot;Saisi&quot;, &quot;Saisie&quot;),</span>
+  
+  /**
+   * {@link ProgrammingStatusCode#TRANSMITTED_FOR_ARBITRATION}.
+   */
+<span class="fc" id="L32">  TRANSMITTED_FOR_ARBITRATION(ProgrammingStatusCode.TRANSMITTED_FOR_ARBITRATION, </span>
+  &quot;Transmis pour arbitrage&quot;, &quot;Transmission pour arbitrage&quot;),
+  
+  /**
+   * {@link ProgrammingStatusCode#ARBITRATED}.
+   */
+<span class="fc" id="L38">  ARBITRATED(ProgrammingStatusCode.ARBITRATED, &quot;Arbitré&quot;, &quot;Arbitrage&quot;),</span>
+  
+  /**
+   * {@link ProgrammingStatusCode#TRANSMITTED_FOR_VALIDATION}.
+   */
+<span class="fc" id="L43">  TRANSMITTED_FOR_VALIDATION(ProgrammingStatusCode.TRANSMITTED_FOR_VALIDATION, </span>
+  &quot;Transmis pour validation&quot;, &quot;Transmission pour validation&quot;),
+  
+  /**
+   * {@link ProgrammingStatusCode#VALIDATED}.
+   */
+<span class="fc" id="L49">  VALIDATED(ProgrammingStatusCode.VALIDATED, &quot;Validé&quot;, &quot;Validation&quot;),</span>
+  
+  /**
+   * {@link ProgrammingStatusCode#TRANSMITTED_FOR_INTEGRATION}.
+   */
+<span class="fc" id="L54">  TRANSMITTED_FOR_INTEGRATION(ProgrammingStatusCode.TRANSMITTED_FOR_INTEGRATION, </span>
+  &quot;Transmis pour intégration&quot;, &quot;Transmission pour intégration&quot;),
+  
+  /**
+   * {@link ProgrammingStatusCode#INTEGRATED}.
+   */
+<span class="fc" id="L60">  INTEGRATED(ProgrammingStatusCode.INTEGRATED, &quot;Intégré&quot;, &quot;Intégration&quot;),</span>
+
+  ;
+
+<span class="fc" id="L64">  private ProgrammingStatus(String code, String name, String action) {</span>
+<span class="fc" id="L65">    this.code = code;</span>
+<span class="fc" id="L66">    this.name = name;</span>
+<span class="fc" id="L67">    this.action = action;</span>
+<span class="fc" id="L68">  }</span>
+
+  private String code;
+  private String name;
+  private String action;
+  private Set&lt;ProgrammingStatus&gt; previous;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L77">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le statut par code.
+   *
+   * @param code code
+   * @return statut
+   */
+  public static ProgrammingStatus getByCode(String code) {
+<span class="fc" id="L87">    return Stream.of(ProgrammingStatus.values())</span>
+<span class="fc" id="L88">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="pc" id="L89">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
+  }
+
+  static {
+<span class="fc" id="L93">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L94">    INPUTTED.previous = Core.getSet(List.of(CREATED, INPUTTED));</span>
+    
+<span class="fc" id="L96">    TRANSMITTED_FOR_ARBITRATION.previous = Core.getSet(List.of(INPUTTED));</span>
+<span class="fc" id="L97">    ARBITRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_ARBITRATION, ARBITRATED));</span>
+    
+<span class="fc" id="L99">    TRANSMITTED_FOR_VALIDATION.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="fc" id="L100">    VALIDATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_VALIDATION, VALIDATED));</span>
+    
+<span class="fc" id="L102">    TRANSMITTED_FOR_INTEGRATION.previous = Core.getSet(List.of(VALIDATED));</span>
+<span class="fc" id="L103">    INTEGRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_INTEGRATION));</span>
+<span class="fc" id="L104">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProgrammingImputationDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de programmation budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryprogramming.server.api</a> &gt; <span class="el_source">ProgrammingImputationDto.java</span></div><h1>ProgrammingImputationDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryprogramming.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasLockAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLockIdentifierDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.budgetaryprogramming.server.api.shared.HasImputationAsStringDto;
+import ci.gouv.dgbf.system.budgetaryprogramming.server.api.shared.HasImputationIdentifierDto;
+import ci.gouv.dgbf.system.budgetaryprogramming.server.api.shared.HasProgrammingAsStringDto;
+import ci.gouv.dgbf.system.budgetaryprogramming.server.api.shared.HasProgrammingIdentifierDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une imputation de programmation.
+ *
+ * @author Christian
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L23">public class ProgrammingImputationDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasProgrammingIdentifierDto, HasProgrammingAsStringDto, HasImputationIdentifierDto,
+    HasImputationAsStringDto, HasLockIdentifierDto, HasLockAsStringDto {
+
+  @JsonbProperty(JSON_PROGRAMMING_IDENTIFIER)
+  private String programmingIdentifier;
+
+  @JsonbProperty(JSON_PROGRAMMING_AS_STRING)
+  private String programmingAsString;
+
+  @JsonbProperty(JSON_IMPUTATION_IDENTIFIER)
+  private String imputationIdentifier;
+
+  @JsonbProperty(JSON_IMPUTATION_AS_STRING)
+  private String imputationAsString;
+
+  @JsonbProperty(JSON_LOCK_IDENTIFIER)
+  private String lockIdentifier;
+
+  @JsonbProperty(JSON_LOCK_AS_STRING)
+  private String lockAsString;
+
+  /**
+   * Indique si l'imputation est une dépense.
+   */
+  @JsonbProperty(JSON_EXPENDITURE)
+  private Boolean expenditure;
+
+  /**
+   * Montant saisi pour l'horizon N.
+   */
+  @JsonbProperty(JSON_INPUTTED_AMOUNT_N)
+  private Long inputtedAmountN;
+
+  /**
+   * Montant saisi pour l'horizon N+1.
+   */
+  @JsonbProperty(JSON_INPUTTED_AMOUNT_N1)
+  private Long inputtedAmountN1;
+
+  /**
+   * Montant saisi pour l'horizon N+2.
+   */
+  @JsonbProperty(JSON_INPUTTED_AMOUNT_N2)
+  private Long inputtedAmountN2;
+
+  /**
+   * Montant arbitré pour l'horizon N.
+   */
+  @JsonbProperty(JSON_ARBITRATED_AMOUNT_N)
+  private Long arbitratedAmountN;
+
+  /**
+   * Montant arbitré pour l'horizon N+1.
+   */
+  @JsonbProperty(JSON_ARBITRATED_AMOUNT_N1)
+  private Long arbitratedAmountN1;
+
+  /**
+   * Montant arbitré pour l'horizon N+2.
+   */
+  @JsonbProperty(JSON_ARBITRATED_AMOUNT_N2)
+  private Long arbitratedAmountN2;
+
+  /**
+   * Montant validé pour l'horizon N.
+   */
+  @JsonbProperty(JSON_VALIDATED_AMOUNT_N)
+  private Long validatedAmountN;
+
+  /**
+   * Montant validé pour l'horizon N+1.
+   */
+  @JsonbProperty(JSON_VALIDATED_AMOUNT_N1)
+  private Long validatedAmountN1;
+
+  /**
+   * Montant validé pour l'horizon N+2.
+   */
+  @JsonbProperty(JSON_VALIDATED_AMOUNT_N2)
+  private Long validatedAmountN2;
+
+  /**
+   * Montant intégré pour l'horizon N.
+   */
+  @JsonbProperty(JSON_INTEGRATED_AMOUNT_N)
+  private Long integratedAmountN;
+
+  /**
+   * Montant intégré pour l'horizon N+1.
+   */
+  @JsonbProperty(JSON_INTEGRATED_AMOUNT_N1)
+  private Long integratedAmountN1;
+
+  /**
+   * Montant intégré pour l'horizon N+2.
+   */
+  @JsonbProperty(JSON_INTEGRATED_AMOUNT_N2)
+  private Long integratedAmountN2;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idImputationProgrammation&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;imputationProgrammationChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;imputation de programmation&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;imputations de programmation&quot;;
+
+  /**
+   * Identifiant json pour {@link #expenditure}.
+   */
+  public static final String JSON_EXPENDITURE = &quot;estDepense&quot;;
+
+  /**
+   * Identifiant json pour {@link #inputtedAmountN}.
+   */
+  public static final String JSON_INPUTTED_AMOUNT_N = &quot;montantSaisiN&quot;;
+
+  /**
+   * Identifiant json pour {@link #inputtedAmountN1}.
+   */
+  public static final String JSON_INPUTTED_AMOUNT_N1 = &quot;montantSaisiN1&quot;;
+
+  /**
+   * Identifiant json pour {@link #inputtedAmountN2}.
+   */
+  public static final String JSON_INPUTTED_AMOUNT_N2 = &quot;montantSaisiN2&quot;;
+
+  /**
+   * Identifiant json pour {@link #arbitratedAmountN}.
+   */
+  public static final String JSON_ARBITRATED_AMOUNT_N = &quot;montantArbitreN&quot;;
+
+  /**
+   * Identifiant json pour {@link #arbitratedAmountN1}.
+   */
+  public static final String JSON_ARBITRATED_AMOUNT_N1 = &quot;montantArbitreN1&quot;;
+
+  /**
+   * Identifiant json pour {@link #arbitratedAmountN2}.
+   */
+  public static final String JSON_ARBITRATED_AMOUNT_N2 = &quot;montantArbitreN2&quot;;
+
+  /**
+   * Identifiant json pour {@link #validatedAmountN}.
+   */
+  public static final String JSON_VALIDATED_AMOUNT_N = &quot;montantValideN&quot;;
+
+  /**
+   * Identifiant json pour {@link #validatedAmountN1}.
+   */
+  public static final String JSON_VALIDATED_AMOUNT_N1 = &quot;montantValideN1&quot;;
+
+  /**
+   * Identifiant json pour {@link #validatedAmountN2}.
+   */
+  public static final String JSON_VALIDATED_AMOUNT_N2 = &quot;montantValideN2&quot;;
+
+  /**
+   * Identifiant json pour {@link #integratedAmountN}.
+   */
+  public static final String JSON_INTEGRATED_AMOUNT_N = &quot;montantIntegreN&quot;;
+
+  /**
+   * Identifiant json pour {@link #integratedAmountN1}.
+   */
+  public static final String JSON_INTEGRATED_AMOUNT_N1 = &quot;montantIntegreN1&quot;;
+
+  /**
+   * Identifiant json pour {@link #integratedAmountN2}.
+   */
+  public static final String JSON_INTEGRATED_AMOUNT_N2 = &quot;montantIntegreN2&quot;;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImputationLockService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de programmation budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryprogramming.server.api</a> &gt; <span class="el_source">ImputationLockService.java</span></div><h1>ImputationLockService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryprogramming.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link ImputationLockDto}.
+ *
+ * @author Christian
+ */
+@Path(value = ImputationLockService.PATH)
+@Tag(name = &quot;Gestion des Verrous d'Imputation&quot;)
+public interface ImputationLockService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;verrous-imputation&quot;;
+
+  /**
+   * Cette interface représente une requête de création ou de mise à jour unitaire.
+   */
+  interface ImputationLockSaveRequestDto {
+    
+    /**
+     * Cette méthode permet de savoir si N est saisissable.
+     *
+     * @return vrai ou faux si N est saisissable
+     */
+    Boolean getInputableN();
+    
+    /**
+     * Cette méthode permet de définir N est saisissable.
+     *
+     * @param value vrai ou faux si N est saisissable
+     */
+    void setInputableN(Boolean value);
+    
+    /**
+     * Cette méthode permet de savoir si N1 est saisissable.
+     *
+     * @return vrai ou faux si N1 est saisissable
+     */
+    Boolean getInputableN1();
+    
+    /**
+     * Cette méthode permet de définir N1 est saisissable.
+     *
+     * @param value vrai ou faux si N1 est saisissable
+     */
+    void setInputableN1(Boolean value);
+    
+    /**
+     * Cette méthode permet de savoir si N2 est saisissable.
+     *
+     * @return vrai ou faux si N2 est saisissable
+     */
+    Boolean getInputableN2();
+    
+    /**
+     * Cette méthode permet de définir N2 est saisissable.
+     *
+     * @param value vrai ou faux si N2 est saisissable
+     */
+    void setInputableN2(Boolean value);
+    
+    /**
+     * Cette méthode permet de savoir si N est arbitrable.
+     *
+     * @return vrai ou faux si N est arbitrable
+     */
+    Boolean getArbitrableN();
+    
+    /**
+     * Cette méthode permet de définir N est arbitrable.
+     *
+     * @param value vrai ou faux si N est arbitrable
+     */
+    void setArbitrableN(Boolean value);
+    
+    /**
+     * Cette méthode permet de savoir si N1 est arbitrable.
+     *
+     * @return vrai ou faux si N1 est arbitrable
+     */
+    Boolean getArbitrableN1();
+    
+    /**
+     * Cette méthode permet de définir N1 est arbitrable.
+     *
+     * @param value vrai ou faux si N1 est arbitrable
+     */
+    void setArbitrableN1(Boolean value);
+    
+    /**
+     * Cette méthode permet de savoir si N2 est arbitrable.
+     *
+     * @return vrai ou faux si N2 est arbitrable
+     */
+    Boolean getArbitrableN2();
+    
+    /**
+     * Cette méthode permet de définir N2 est arbitrable.
+     *
+     * @param value vrai ou faux si N2 est arbitrable
+     */
+    void setArbitrableN2(Boolean value);
+    
+    /**
+     * Cette méthode permet de savoir si est validable.
+     *
+     * @return vrai ou faux si est validable
+     */
+    Boolean getValidatable();
+    
+    /**
+     * Cette méthode permet de définir est saisissable.
+     *
+     * @param value vrai ou faux si est saisissable
+     */
+    void setValidatable(Boolean value);
+    
+    /**
+     * Cette méthode permet de savoir si est intégrable.
+     *
+     * @return vrai ou faux si est intégrable
+     */
+    Boolean getIntegratable();
+    
+    /**
+     * Cette méthode permet de définir est intégrable.
+     *
+     * @param value vrai ou faux si est intégrable
+     */
+    void setIntegratable(Boolean value);
+    
+    /**
+     * Identifiant json de estSaisissableN.
+     */
+    String JSON_INPUTABLE_N = ImputationLockDto.JSON_INPUTABLE_N;
+
+    /**
+     * Identifiant json de estSaisissableN1.
+     */
+    String JSON_INPUTABLE_N1 = ImputationLockDto.JSON_INPUTABLE_N1;
+
+    /**
+     * Identifiant json de estSaisissableN2.
+     */
+    String JSON_INPUTABLE_N2 = ImputationLockDto.JSON_INPUTABLE_N2;
+
+    /**
+     * Identifiant json de estArbitrableN.
+     */
+    String JSON_ARBITRABLE_N = ImputationLockDto.JSON_ARBITRABLE_N;
+
+    /**
+     * Identifiant json de estArbitrableN1.
+     */
+    String JSON_ARBITRABLE_N1 = ImputationLockDto.JSON_ARBITRABLE_N1;
+
+    /**
+     * Identifiant json de estArbitrableN2.
+     */
+    String JSON_ARBITRABLE_N2 = ImputationLockDto.JSON_ARBITRABLE_N2;
+
+    /**
+     * Identifiant json de estValidable.
+     */
+    String JSON_VALIDATABLE = ImputationLockDto.JSON_VALIDATABLE;
+
+    /**
+     * Identifiant json de estIntegrable.
+     */
+    String JSON_INTEGRATABLE = ImputationLockDto.JSON_INTEGRATABLE;
+  }
+
+  /**
+   * Identifiant du service de création unitaire de {@link ImputationLockDto}.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_VERROU_IMPUTATION&quot;;
+
+  /**
+   * Chemin du service de création unitaire de {@link ImputationLockDto}.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer unitairement {@link ImputationLockDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(ImputationLockCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création unitaire de {@link ImputationLockDto}.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L235">  class ImputationLockCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
+      implements ImputationLockSaveRequestDto {
+    
+    @JsonbProperty(JSON_INPUTABLE_N)
+    private Boolean inputableN;
+    
+    @JsonbProperty(JSON_INPUTABLE_N1)
+    private Boolean inputableN1;
+    
+    @JsonbProperty(JSON_INPUTABLE_N2)
+    private Boolean inputableN2;
+    
+    @JsonbProperty(JSON_ARBITRABLE_N)
+    private Boolean arbitrableN;
+    
+    @JsonbProperty(JSON_ARBITRABLE_N1)
+    private Boolean arbitrableN1;
+    
+    @JsonbProperty(JSON_ARBITRABLE_N2)
+    private Boolean arbitrableN2;
+    
+    @JsonbProperty(JSON_VALIDATABLE)
+    private Boolean validatable;
+    
+    @JsonbProperty(JSON_INTEGRATABLE)
+    private Boolean integratable;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs {@link ImputationLockDto}.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_VERROU_IMPUTATION&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs {@link ImputationLockDto}.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link ImputationLockDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ImputationLockGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente la réponse d'obtention de plusieurs {@link ImputationLockDto}.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L295">  public static class ImputationLockGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ImputationLockDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ImputationLockDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention unitaire de {@link ImputationLockDto}.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_VERROU_IMPUTATION&quot;;
+
+  /**
+   * Chemin du service d'obtention unitaire de {@link ImputationLockDto}.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir unitairement {@link ImputationLockDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ImputationLockDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de {@link ImputationLockDto}.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_VERROU_IMPUTATION&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de {@link ImputationLockDto}.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identifiant {@link ImputationLockDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ImputationLockDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour unitaire de {@link ImputationLockDto}.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_VERROU_IMPUTATION&quot;;
+
+  /**
+   * Chemin du service de mise à jour unitaire de {@link ImputationLockDto}.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour unitairement {@link ImputationLockDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ImputationLockUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour unitaire de {@link ImputationLockDto}.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L384">  class ImputationLockUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
+      implements ImputationLockSaveRequestDto {
+    
+    @JsonbProperty(JSON_INPUTABLE_N)
+    private Boolean inputableN;
+    
+    @JsonbProperty(JSON_INPUTABLE_N1)
+    private Boolean inputableN1;
+    
+    @JsonbProperty(JSON_INPUTABLE_N2)
+    private Boolean inputableN2;
+    
+    @JsonbProperty(JSON_ARBITRABLE_N)
+    private Boolean arbitrableN;
+    
+    @JsonbProperty(JSON_ARBITRABLE_N1)
+    private Boolean arbitrableN1;
+    
+    @JsonbProperty(JSON_ARBITRABLE_N2)
+    private Boolean arbitrableN2;
+    
+    @JsonbProperty(JSON_VALIDATABLE)
+    private Boolean validatable;
+    
+    @JsonbProperty(JSON_INTEGRATABLE)
+    private Boolean integratable;
+  }
+
+  /**
+   * Identifiant du service de suppression unitaire de {@link ImputationLockDto}.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_VERROU_IMPUTATION&quot;;
+
+  /**
+   * Chemin du service de suppression unitaire de {@link ImputationLockDto}.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer unitairement {@link ImputationLockDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

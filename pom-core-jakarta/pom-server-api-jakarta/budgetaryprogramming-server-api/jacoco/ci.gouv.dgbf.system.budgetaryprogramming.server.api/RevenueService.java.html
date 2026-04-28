@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>RevenueService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de programmation budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryprogramming.server.api</a> &gt; <span class="el_source">RevenueService.java</span></div><h1>RevenueService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryprogramming.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link RevenueDto}.
+ *
+ * @author Christian
+ */
+@Path(value = RevenueService.PATH)
+@Tag(name = &quot;Gestion des Revenus&quot;)
+public interface RevenueService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;revenus&quot;;
+
+  /**
+   * Cette interface représente une requête de création ou de mise à jour unitaire.
+   */
+  interface RevenueSaveRequestDto {
+
+    /**
+     * Identifiant de l'exercice.
+     */
+    String getExerciseIdentifier();
+
+    /**
+     * Définit l'identifiant de l'exercice.
+     *
+     * @param exerciseIdentifier l'identifiant de l'exercice
+     */
+    void setExerciseIdentifier(String exerciseIdentifier);
+
+    /**
+     * Identifiant de l'activité.
+     */
+    String getActivityIdentifier();
+
+    /**
+     * Définit l'identifiant de l'activité.
+     *
+     * @param activityIdentifier l'identifiant de l'activité
+     */
+    void setActivityIdentifier(String activityIdentifier);
+
+    /**
+     * Identifiant de la nature économique.
+     */
+    String getEconomicNatureIdentifier();
+
+    /**
+     * Définit l'identifiant de la nature économique.
+     *
+     * @param economicNatureIdentifier l'identifiant de la nature économique
+     */
+    void setEconomicNatureIdentifier(String economicNatureIdentifier);
+
+    /**
+     * Identifiant de la source de financement.
+     */
+    String getFundingSourceIdentifier();
+
+    /**
+     * Définit l'identifiant de la source de financement.
+     *
+     * @param fundingSourceIdentifier l'identifiant de la source de financement
+     */
+    void setFundingSourceIdentifier(String fundingSourceIdentifier);
+
+    /**
+     * Identifiant du bailleur.
+     */
+    String getLessorIdentifier();
+
+    /**
+     * Définit l'identifiant du bailleur.
+     *
+     * @param lessorIdentifier l'identifiant du bailleur
+     */
+    void setLessorIdentifier(String lessorIdentifier);
+
+    /**
+     * Identifiant de l'exercice.
+     */
+    String JSON_EXERCISE_IDENTIFIER = ExpenditureDto.JSON_EXERCISE_IDENTIFIER;
+
+    /**
+     * Identifiant de l'activité.
+     */
+    String JSON_ACTIVITY_IDENTIFIER = ExpenditureDto.JSON_ACTIVITY_IDENTIFIER;
+
+    /**
+     * Identifiant de la nature économique.
+     */
+    String JSON_ECONOMIC_NATURE_IDENTIFIER = ExpenditureDto.JSON_ECONOMIC_NATURE_IDENTIFIER;
+
+    /**
+     * Identifiant de la source de financement.
+     */
+    String JSON_FUNDING_SOURCE_IDENTIFIER = ExpenditureDto.JSON_FUNDING_SOURCE_IDENTIFIER;
+
+    /**
+     * Identifiant du bailleur.
+     */
+    String JSON_LESSOR_IDENTIFIER = ExpenditureDto.JSON_LESSOR_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service de création unitaire de {@link RevenueDto}.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_REVENU&quot;;
+
+  /**
+   * Chemin du service de création unitaire de {@link RevenueDto}.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer unitairement {@link RevenueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(RevenueCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création unitaire de {@link RevenueDto}.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L168">  class RevenueCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto </span>
+      implements RevenueSaveRequestDto {
+
+    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+    private String exerciseIdentifier;
+
+    @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
+    private String activityIdentifier;
+
+    @JsonbProperty(JSON_ECONOMIC_NATURE_IDENTIFIER)
+    private String economicNatureIdentifier;
+
+    @JsonbProperty(JSON_FUNDING_SOURCE_IDENTIFIER)
+    private String fundingSourceIdentifier;
+
+    @JsonbProperty(JSON_LESSOR_IDENTIFIER)
+    private String lessorIdentifier;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs {@link RevenueDto}.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_REVENU&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs {@link RevenueDto}.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link RevenueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = RevenueGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente la réponse d'obtention de plusieurs {@link RevenueDto}.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L219">  public static class RevenueGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;RevenueDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;RevenueDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention unitaire de {@link RevenueDto}.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_REVENU&quot;;
+
+  /**
+   * Chemin du service d'obtention unitaire de {@link RevenueDto}.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir unitairement {@link RevenueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = RevenueDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de {@link RevenueDto}.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_REVENU&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de {@link RevenueDto}.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identifiant {@link RevenueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = RevenueDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour unitaire de {@link RevenueDto}.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_REVENU&quot;;
+
+  /**
+   * Chemin du service de mise à jour unitaire de {@link RevenueDto}.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour unitairement {@link RevenueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(RevenueUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour unitaire de {@link RevenueDto}.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L308">  class RevenueUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto </span>
+      implements RevenueSaveRequestDto {
+
+    @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+    private String exerciseIdentifier;
+
+    @JsonbProperty(JSON_ACTIVITY_IDENTIFIER)
+    private String activityIdentifier;
+
+    @JsonbProperty(JSON_ECONOMIC_NATURE_IDENTIFIER)
+    private String economicNatureIdentifier;
+
+    @JsonbProperty(JSON_FUNDING_SOURCE_IDENTIFIER)
+    private String fundingSourceIdentifier;
+
+    @JsonbProperty(JSON_LESSOR_IDENTIFIER)
+    private String lessorIdentifier;
+  }
+
+  /**
+   * Identifiant du service de suppression unitaire de {@link RevenueDto}.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_REVENU&quot;;
+
+  /**
+   * Chemin du service de suppression unitaire de {@link RevenueDto}.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer unitairement {@link RevenueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

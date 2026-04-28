@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProgrammingTypeClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de programmation budgétaire</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.budgetaryprogramming.server.api</a> &gt; <span class="el_source">ProgrammingTypeClient.java</span></div><h1>ProgrammingTypeClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.budgetaryprogramming.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.budgetaryprogramming.server.api.ProgrammingTypeService.ProgrammingTypeCreateRequestDto;
+import ci.gouv.dgbf.system.budgetaryprogramming.server.api.ProgrammingTypeService.ProgrammingTypeGetManyResponseDto;
+import ci.gouv.dgbf.system.budgetaryprogramming.server.api.ProgrammingTypeService.ProgrammingTypeUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de {@link ProgrammingTypeDto}.
+ *
+ * @author Christian
+ */
+@ApplicationScoped
+<span class="fc" id="L30">public class ProgrammingTypeClient extends AbstractClient&lt;ProgrammingTypeService&gt;</span>
+    implements GetByIdentifier&lt;ProgrammingTypeDto&gt;, GetMany&lt;ProgrammingTypeGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  /**
+   * Cette méthode permet d'obtenir le service.
+   *
+   * @param service {@link ProgrammingTypeService}
+   * @return client {@link ProgrammingTypeClient}
+   */
+  @Override
+  public ProgrammingTypeClient service(ProgrammingTypeService service) {
+<span class="fc" id="L42">    return (ProgrammingTypeClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ProgrammingTypeService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(ProgrammingTypeCreateRequestDto request) {
+<span class="fc" id="L52">    return new CreateExecutor(ProgrammingTypeService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link ProgrammingTypeService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ProgrammingTypeGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L63">    return new GetOneExecutor&lt;ProgrammingTypeGetManyResponseDto&gt;(</span>
+        ProgrammingTypeGetManyResponseDto.class,
+<span class="fc" id="L65">        ProgrammingTypeService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link ProgrammingTypeService#getMany}.
+   *
+   * @param projection {@link ProjectionDto}
+   * @param filter {@link FilterDto}
+   * @param page {@link PageDto}
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ProgrammingTypeGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L80">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L81">    request.setProjection(projection);</span>
+<span class="fc" id="L82">    request.setFilter(filter);</span>
+<span class="fc" id="L83">    request.setPage(page);</span>
+<span class="fc" id="L84">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L85">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L86">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ProgrammingTypeService#getOne}.
+   *
+   * @param projection {@link ProjectionDto}
+   * @param filter {@link FilterDto}
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ProgrammingTypeDto getOne(ProjectionDto projection, FilterDto filter,
+      String auditWho, String auditSession) {
+<span class="fc" id="L100">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L101">    request.setProjection(projection);</span>
+<span class="fc" id="L102">    request.setFilter(filter);</span>
+<span class="fc" id="L103">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L104">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L105">    return new GetOneExecutor&lt;ProgrammingTypeDto&gt;(ProgrammingTypeDto.class,</span>
+<span class="fc" id="L106">        ProgrammingTypeService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link ProgrammingTypeService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection {@link ProjectionDto}
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ProgrammingTypeDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L120">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L121">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L122">    request.setProjection(projection);</span>
+<span class="fc" id="L123">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L124">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L125">    return new GetOneExecutor&lt;ProgrammingTypeDto&gt;(ProgrammingTypeDto.class,</span>
+        ProgrammingTypeService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L127">        .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link ProgrammingTypeService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(ProgrammingTypeUpdateRequestDto request) {
+<span class="fc" id="L137">    return new IdentifiableExecutor(ProgrammingTypeService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L138">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link ProgrammingTypeService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L148">    return new IdentifiableExecutor(ProgrammingTypeService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L149">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L155">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L156">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L157">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L158">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L159">    return delete(request);</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
