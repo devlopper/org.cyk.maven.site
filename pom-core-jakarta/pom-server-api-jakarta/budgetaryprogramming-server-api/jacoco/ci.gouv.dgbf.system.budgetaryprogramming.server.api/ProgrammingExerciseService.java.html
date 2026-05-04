@@ -118,7 +118,7 @@ public interface ProgrammingExerciseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L121">  class ProgrammingExerciseCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L121">  class ProgrammingExerciseCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements ProgrammingExerciseSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
@@ -160,7 +160,7 @@ public interface ProgrammingExerciseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L163">  public static class ProgrammingExerciseGetManyResponseDto</span>
+<span class="fc" id="L163">  public static class ProgrammingExerciseGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;ProgrammingExerciseDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -249,7 +249,7 @@ public interface ProgrammingExerciseService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L252">  class ProgrammingExerciseUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L252">  class ProgrammingExerciseUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements ProgrammingExerciseSaveRequestDto {
 
     @JsonbProperty(JSON_EXERCISE_IDENTIFIER)

@@ -13,59 +13,59 @@ import lombok.Getter;
  * @author Christian
  *
  */
-<span class="nc" id="L16">@Getter</span>
+<span class="fc" id="L16">@Getter</span>
 public enum ProgrammingStatus {
 
   /**
    * {@link ProgrammingStatusCode#CREATED}.
    */
-<span class="nc" id="L22">  CREATED(ProgrammingStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+<span class="fc" id="L22">  CREATED(ProgrammingStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
   
   /**
    * {@link ProgrammingStatusCode#INPUTTED}.
    */
-<span class="nc" id="L27">  INPUTTED(ProgrammingStatusCode.INPUTTED, &quot;Saisi&quot;, &quot;Saisie&quot;),</span>
+<span class="fc" id="L27">  INPUTTED(ProgrammingStatusCode.INPUTTED, &quot;Saisi&quot;, &quot;Saisie&quot;),</span>
   
   /**
    * {@link ProgrammingStatusCode#TRANSMITTED_FOR_ARBITRATION}.
    */
-<span class="nc" id="L32">  TRANSMITTED_FOR_ARBITRATION(ProgrammingStatusCode.TRANSMITTED_FOR_ARBITRATION, </span>
+<span class="fc" id="L32">  TRANSMITTED_FOR_ARBITRATION(ProgrammingStatusCode.TRANSMITTED_FOR_ARBITRATION, </span>
   &quot;Transmis pour arbitrage&quot;, &quot;Transmission pour arbitrage&quot;),
   
   /**
    * {@link ProgrammingStatusCode#ARBITRATED}.
    */
-<span class="nc" id="L38">  ARBITRATED(ProgrammingStatusCode.ARBITRATED, &quot;Arbitré&quot;, &quot;Arbitrage&quot;),</span>
+<span class="fc" id="L38">  ARBITRATED(ProgrammingStatusCode.ARBITRATED, &quot;Arbitré&quot;, &quot;Arbitrage&quot;),</span>
   
   /**
    * {@link ProgrammingStatusCode#TRANSMITTED_FOR_VALIDATION}.
    */
-<span class="nc" id="L43">  TRANSMITTED_FOR_VALIDATION(ProgrammingStatusCode.TRANSMITTED_FOR_VALIDATION, </span>
+<span class="fc" id="L43">  TRANSMITTED_FOR_VALIDATION(ProgrammingStatusCode.TRANSMITTED_FOR_VALIDATION, </span>
   &quot;Transmis pour validation&quot;, &quot;Transmission pour validation&quot;),
   
   /**
    * {@link ProgrammingStatusCode#VALIDATED}.
    */
-<span class="nc" id="L49">  VALIDATED(ProgrammingStatusCode.VALIDATED, &quot;Validé&quot;, &quot;Validation&quot;),</span>
+<span class="fc" id="L49">  VALIDATED(ProgrammingStatusCode.VALIDATED, &quot;Validé&quot;, &quot;Validation&quot;),</span>
   
   /**
    * {@link ProgrammingStatusCode#TRANSMITTED_FOR_INTEGRATION}.
    */
-<span class="nc" id="L54">  TRANSMITTED_FOR_INTEGRATION(ProgrammingStatusCode.TRANSMITTED_FOR_INTEGRATION, </span>
+<span class="fc" id="L54">  TRANSMITTED_FOR_INTEGRATION(ProgrammingStatusCode.TRANSMITTED_FOR_INTEGRATION, </span>
   &quot;Transmis pour intégration&quot;, &quot;Transmission pour intégration&quot;),
   
   /**
    * {@link ProgrammingStatusCode#INTEGRATED}.
    */
-<span class="nc" id="L60">  INTEGRATED(ProgrammingStatusCode.INTEGRATED, &quot;Intégré&quot;, &quot;Intégration&quot;),</span>
+<span class="fc" id="L60">  INTEGRATED(ProgrammingStatusCode.INTEGRATED, &quot;Intégré&quot;, &quot;Intégration&quot;),</span>
 
   ;
 
-<span class="nc" id="L64">  private ProgrammingStatus(String code, String name, String action) {</span>
-<span class="nc" id="L65">    this.code = code;</span>
-<span class="nc" id="L66">    this.name = name;</span>
-<span class="nc" id="L67">    this.action = action;</span>
-<span class="nc" id="L68">  }</span>
+<span class="fc" id="L64">  private ProgrammingStatus(String code, String name, String action) {</span>
+<span class="fc" id="L65">    this.code = code;</span>
+<span class="fc" id="L66">    this.name = name;</span>
+<span class="fc" id="L67">    this.action = action;</span>
+<span class="fc" id="L68">  }</span>
 
   private String code;
   private String name;
@@ -74,7 +74,7 @@ public enum ProgrammingStatus {
 
   @Override
   public String toString() {
-<span class="nc" id="L77">    return name;</span>
+<span class="fc" id="L77">    return name;</span>
   }
 
   /**
@@ -84,23 +84,23 @@ public enum ProgrammingStatus {
    * @return statut
    */
   public static ProgrammingStatus getByCode(String code) {
-<span class="nc" id="L87">    return Stream.of(ProgrammingStatus.values())</span>
-<span class="nc" id="L88">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
-<span class="nc" id="L89">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
+<span class="fc" id="L87">    return Stream.of(ProgrammingStatus.values())</span>
+<span class="fc" id="L88">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="pc" id="L89">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {
-<span class="nc" id="L93">    CREATED.previous = Collections.emptySet();</span>
-<span class="nc" id="L94">    INPUTTED.previous = Core.getSet(List.of(CREATED, INPUTTED));</span>
+<span class="fc" id="L93">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L94">    INPUTTED.previous = Core.getSet(List.of(CREATED, INPUTTED));</span>
     
-<span class="nc" id="L96">    TRANSMITTED_FOR_ARBITRATION.previous = Core.getSet(List.of(INPUTTED));</span>
-<span class="nc" id="L97">    ARBITRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_ARBITRATION, ARBITRATED));</span>
+<span class="fc" id="L96">    TRANSMITTED_FOR_ARBITRATION.previous = Core.getSet(List.of(INPUTTED));</span>
+<span class="fc" id="L97">    ARBITRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_ARBITRATION, ARBITRATED));</span>
     
-<span class="nc" id="L99">    TRANSMITTED_FOR_VALIDATION.previous = Core.getSet(List.of(ARBITRATED));</span>
-<span class="nc" id="L100">    VALIDATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_VALIDATION, VALIDATED));</span>
+<span class="fc" id="L99">    TRANSMITTED_FOR_VALIDATION.previous = Core.getSet(List.of(ARBITRATED));</span>
+<span class="fc" id="L100">    VALIDATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_VALIDATION, VALIDATED));</span>
     
-<span class="nc" id="L102">    TRANSMITTED_FOR_INTEGRATION.previous = Core.getSet(List.of(VALIDATED));</span>
-<span class="nc" id="L103">    INTEGRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_INTEGRATION));</span>
-<span class="nc" id="L104">  }</span>
+<span class="fc" id="L102">    TRANSMITTED_FOR_INTEGRATION.previous = Core.getSet(List.of(VALIDATED));</span>
+<span class="fc" id="L103">    INTEGRATED.previous = Core.getSet(List.of(TRANSMITTED_FOR_INTEGRATION));</span>
+<span class="fc" id="L104">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

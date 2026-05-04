@@ -14,31 +14,55 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="nc" id="L17">public class ImputationLockDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L17">public class ImputationLockDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   @JsonbProperty(JSON_INPUTABLE_N)
   private Boolean inputableN;
 
+  @JsonbProperty(JSON_INPUTABLE_N_AS_STRING)
+  private String inputableN0AsString;
+
   @JsonbProperty(JSON_INPUTABLE_N1)
   private Boolean inputableN1;
+
+  @JsonbProperty(JSON_INPUTABLE_N1_AS_STRING)
+  private String inputableN1AsString;
 
   @JsonbProperty(JSON_INPUTABLE_N2)
   private Boolean inputableN2;
 
+  @JsonbProperty(JSON_INPUTABLE_N2_AS_STRING)
+  private String inputableN2AsString;
+
   @JsonbProperty(JSON_ARBITRABLE_N)
   private Boolean arbitrableN;
+
+  @JsonbProperty(JSON_ARBITRABLE_N_AS_STRING)
+  private String arbitrableN0AsString;
 
   @JsonbProperty(JSON_ARBITRABLE_N1)
   private Boolean arbitrableN1;
 
+  @JsonbProperty(JSON_ARBITRABLE_N1_AS_STRING)
+  private String arbitrableN1AsString;
+
   @JsonbProperty(JSON_ARBITRABLE_N2)
   private Boolean arbitrableN2;
+
+  @JsonbProperty(JSON_ARBITRABLE_N2_AS_STRING)
+  private String arbitrableN2AsString;
 
   @JsonbProperty(JSON_VALIDATABLE)
   private Boolean validatable;
 
+  @JsonbProperty(JSON_VALIDATABLE_AS_STRING)
+  private String validatableAsString;
+
   @JsonbProperty(JSON_INTEGRATABLE)
   private Boolean integratable;
+
+  @JsonbProperty(JSON_INTEGRATABLE_AS_STRING)
+  private String integratableAsString;
 
   /**
    * Identifiant json de l'identifiant.
@@ -46,7 +70,7 @@ import lombok.Setter;
   public static final String JSON_THIS_IDENTIFIER = &quot;idVerrouImputation&quot;;
 
   /**
-   * Identifiant json de la représentation en chaine de caractères.
+   * Identifiant json de la représentation en chaîne de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;verrouImputationChaine&quot;;
 
@@ -61,44 +85,84 @@ import lombok.Setter;
   public static final String PLURAL_NAME = &quot;verrous d'imputation&quot;;
 
   /**
-   * Identifiant json de estSaisissableN.
+   * Identifiant json de {@link #inputableN}.
    */
   public static final String JSON_INPUTABLE_N = &quot;estSaisissableN&quot;;
 
   /**
-   * Identifiant json de estSaisissableN1.
+   * Identifiant json de la représentation en chaîne de caractères de {@link #inputableN}.
+   */
+  public static final String JSON_INPUTABLE_N_AS_STRING = &quot;estSaisissableNChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #inputableN1}.
    */
   public static final String JSON_INPUTABLE_N1 = &quot;estSaisissableN1&quot;;
 
   /**
-   * Identifiant json de estSaisissableN2.
+   * Identifiant json de la représentation en chaîne de caractères de {@link #inputableN1}.
+   */
+  public static final String JSON_INPUTABLE_N1_AS_STRING = &quot;estSaisissableN1Chaine&quot;;
+
+  /**
+   * Identifiant json de {@link #inputableN2}.
    */
   public static final String JSON_INPUTABLE_N2 = &quot;estSaisissableN2&quot;;
 
   /**
-   * Identifiant json de estArbitrableN.
+   * Identifiant json de la représentation en chaîne de caractères de {@link #inputableN2}.
+   */
+  public static final String JSON_INPUTABLE_N2_AS_STRING = &quot;estSaisissableN2Chaine&quot;;
+
+  /**
+   * Identifiant json de {@link #arbitrableN}.
    */
   public static final String JSON_ARBITRABLE_N = &quot;estArbitrableN&quot;;
 
   /**
-   * Identifiant json de estArbitrableN1.
+   * Identifiant json de la représentation en chaîne de caractères de {@link #arbitrableN}.
+   */
+  public static final String JSON_ARBITRABLE_N_AS_STRING = &quot;estArbitrableNChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #arbitrableN1}.
    */
   public static final String JSON_ARBITRABLE_N1 = &quot;estArbitrableN1&quot;;
 
   /**
-   * Identifiant json de estArbitrableN2.
+   * Identifiant json de la représentation en chaîne de caractères de {@link #arbitrableN1}.
+   */
+  public static final String JSON_ARBITRABLE_N1_AS_STRING = &quot;estArbitrableN1Chaine&quot;;
+
+  /**
+   * Identifiant json de {@link #arbitrableN2}.
    */
   public static final String JSON_ARBITRABLE_N2 = &quot;estArbitrableN2&quot;;
 
   /**
-   * Identifiant json de estValidable.
+   * Identifiant json de la représentation en chaîne de caractères de {@link #arbitrableN2}.
+   */
+  public static final String JSON_ARBITRABLE_N2_AS_STRING = &quot;estArbitrableN2Chaine&quot;;
+
+  /**
+   * Identifiant json de {@link #validatable}.
    */
   public static final String JSON_VALIDATABLE = &quot;estValidable&quot;;
 
   /**
-   * Identifiant json de estIntegrable.
+   * Identifiant json de la représentation en chaîne de caractères de {@link #validatable}.
+   */
+  public static final String JSON_VALIDATABLE_AS_STRING = &quot;estValidableChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #integratable}.
    */
   public static final String JSON_INTEGRATABLE = &quot;estIntegrable&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaîne de caractères de {@link #integratable}.
+   */
+  public static final String JSON_INTEGRATABLE_AS_STRING = &quot;estIntegrableChaine&quot;;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
