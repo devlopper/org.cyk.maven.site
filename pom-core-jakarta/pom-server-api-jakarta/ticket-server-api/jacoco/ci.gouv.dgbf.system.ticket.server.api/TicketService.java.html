@@ -1,0 +1,757 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">TicketService.java</span></div><h1>TicketService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasPriorityIdentifierDto;
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link TicketDto}.
+ *
+ * @author Arnaud KOFFI
+ *
+ */
+@Path(value = TicketService.PATH)
+@Tag(name = &quot;Gestion de ticket&quot;)
+public interface TicketService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;tickets&quot;;
+
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author Arnaud
+   */
+  interface TicketSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link SupportTeamMemberDto}.
+     *
+     * @return identifiant de {@link SupportTeamMemberDto}
+     */
+    String getSupportTeamMemberIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link SupportTeamMemberDto}.
+     *
+     * @param supportTeamMemberIdentifier identifiant de {@link SupportTeamMemberDto}
+     */
+    void setSupportTeamMemberIdentifier(String supportTeamMemberIdentifier);
+
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link TicketPriorityDto}.
+     *
+     * @return identifiant de {@link TicketPriorityDto}
+     */
+    String getTicketPriorityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link TicketPriorityDto}.
+     *
+     * @param ticketPriorityIdentifier identifiant de {@link TicketPriorityDto}
+     */
+    void setTicketPriorityIdentifier(String ticketPriorityIdentifier);
+
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link TicketCategoryDto}.
+     *
+     * @return identifiant de {@link TicketCategoryDto}
+     */
+    String getTicketCategoryIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link TicketCategoryDto}.
+     *
+     * @param ticketCategoryIdentifier identifiant de {@link TicketCategoryDto}
+     */
+    void setTicketCategoryIdentifier(String ticketCategoryIdentifier);
+
+    /**
+     * Cette méthode permet d'assigner le statut.
+     *
+     * @param ticketStatus ticketStatut
+     */
+    void setTicketStatus(TicketStatus ticketStatus);
+
+    /**
+     * Cette méthode permet d'obtenir le statut.
+     *
+     * @return ticketStatut
+     */
+    TicketStatus getTicketStatus();
+
+    /**
+     * Cette méthode permet d'obtenir la reference.
+     *
+     * @return reference
+     */
+    String getReference();
+
+    /**
+     * Cette méthode permet d'assigner la reference.
+     *
+     * @param reference reference
+     */
+    void setReference(String reference);
+
+    /**
+     * Cette méthode permet d'obtenir l'objet.
+     *
+     * @return l'objet
+     */
+    String getObject();
+
+    /**
+     * Cette méthode permet d'assigner l'objet.
+     *
+     * @param object object
+     */
+    void setObject(String object);
+
+    /**
+     * Cette méthode permet d'obtenir la description.
+     *
+     * @return description
+     */
+    String getDescription();
+
+    /**
+     * Cette méthode permet d'assigner la description.
+     *
+     * @param description description
+     */
+    void setDescription(String description);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du commentaire de statut.
+     *
+     * @return commentaire de statut
+     */
+    String getStatusComment();
+
+    /**
+     * Cette méthode permet d'assigner commentaire de statut.
+     *
+     * @param statusComment commentaire de statut
+     */
+    void setStatusComment(String statusComment);
+
+    /**
+     * Cette méthode permet d'obtenir le diagnostic.
+     *
+     * @return diagnostic
+     */
+    String getDiagnosis();
+
+    /**
+     * Cette méthode permet d'assigner le diagnostic.
+     *
+     * @param diagnosis diagnostic
+     */
+    void setDiagnosis(String diagnosis);
+
+    /**
+     * Cette méthode permet d'obtenir les actions réalisées.
+     *
+     * @return actions réalisées
+     */
+    String getActionsPerformed();
+
+    /**
+     * Cette méthode permet d'assigner des actions-REALISER.
+     *
+     * @param actionsPerformed actions-REALISER
+     */
+    void setActionsPerformed(String actionsPerformed);
+
+    /**
+     * Cette méthode permet d'obtenir la solution.
+     *
+     * @return la solution
+     */
+    String getSolution();
+
+    /**
+     * Cette méthode permet d'assigner la solution.
+     *
+     * @param solution solution
+     */
+    void setSolution(String solution);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de groupe de fichier.
+     *
+     * @return identifiant de groupe de fichiers
+     */
+    String getFilesGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de groupe de fichiers.
+     *
+     * @param filesGroupIdentifier identifiant de groupe de fichiers
+     */
+    void setFilesGroupIdentifier(String filesGroupIdentifier);
+
+
+
+    /**
+     * Identifiant json identifiant de {@link SupportTeamMemberDto}.
+     */
+    String JSON_SUPPORT_TEAM_MEMBER_IDENTIFIER = SupportTeamMemberDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link TicketPriorityDto}.
+     */
+    String JSON_TICKET_PRIORITY_IDENTIFIER = TicketPriorityDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * {@link TicketDto}.
+     */
+    public static final String JSON_TICKET_STATUS = TicketDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link TicketCategoryDto}.
+     */
+    String JSON_TICKET_CATEGORY_IDENTIFIER = TicketCategoryDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * {@link TicketDto#JSON_REFERENCE}.
+     */
+    String JSON_REFERENCE = TicketDto.JSON_REFERENCE;
+
+    /**
+     * {@link TicketDto#JSON_OBJECT}.
+     */
+    String JSON_OBJECT = TicketDto.JSON_OBJECT;
+
+    /**
+     * {@link TicketDto#JSON_DESCRIPTION}.
+     */
+    String JSON_DESCRIPTION = TicketDto.JSON_DESCRIPTION;
+
+    /**
+     * {@link TicketDto#JSON_STATUS_COMMENT}.
+     */
+    String JSON_STATUS_COMMENT = TicketDto.JSON_STATUS_COMMENT;
+
+    /**
+     * {@link TicketDto#JSON_DIAGNOSIS}.
+     */
+    String JSON_DIAGNOSIS = TicketDto.JSON_DIAGNOSIS;
+
+    /**
+     * {@link TicketDto#JSON_ACTIONS_PERFORMED}.
+     */
+    String JSON_ACTIONS_PERFORMED = TicketDto.JSON_ACTIONS_PERFORMED;
+
+    /**
+     * {@link TicketDto#JSON_SOLUTION}.
+     */
+    String JSON_SOLUTION = TicketDto.JSON_SOLUTION;
+
+    /**
+     * Identifiant json identifiant de {@link TicketDto}.
+     */
+    String JSON_FILES_GROUP_IDENTIFIER = TicketDto.JSON_FILES_GROUP_IDENTIFIER;
+
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_MEMBRE_SERVICE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link TicketDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(TicketCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L322">  class TicketCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+        implements TicketSaveRequestDto {
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_SUPPORT_TEAM_MEMBER_IDENTIFIER)
+    private String supportTeamMemberIdentifier;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_TICKET_PRIORITY_IDENTIFIER)
+    private String ticketPriorityIdentifier;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_TICKET_CATEGORY_IDENTIFIER)
+    private String ticketCategoryIdentifier;
+
+    @JsonbProperty(JSON_TICKET_STATUS)
+    private TicketStatus ticketStatus;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_REFERENCE)
+    private String reference;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_OBJECT)
+    private String object;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_DESCRIPTION)
+    private String description;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_STATUS_COMMENT)
+    private String statusComment;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_DIAGNOSIS)
+    private String diagnosis;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_ACTIONS_PERFORMED)
+    private String actionsPerformed;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_SOLUTION)
+    private String solution;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
+
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_MEMBRE_SERVICE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link TicketDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema =
+          @Schema(implementation = TicketGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L397">  public static class TicketGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;TicketDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_MEMBRE_SERVICE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link TicketDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = TicketDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_MEMBRE_SERVICE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link TicketDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = TicketDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_MEMBRE_SERVICE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link TicketDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(TicketUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L487">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements</span>
+        TicketSaveRequestDto {
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_SUPPORT_TEAM_MEMBER_IDENTIFIER)
+    private String supportTeamMemberIdentifier;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_TICKET_PRIORITY_IDENTIFIER)
+    private String ticketPriorityIdentifier;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_TICKET_CATEGORY_IDENTIFIER)
+    private String ticketCategoryIdentifier;
+
+    @JsonbProperty(JSON_TICKET_STATUS)
+    private TicketStatus ticketStatus;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_REFERENCE)
+    private String reference;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_OBJECT)
+    private String object;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_DESCRIPTION)
+    private String description;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_STATUS_COMMENT)
+    private String statusComment;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_DIAGNOSIS)
+    private String diagnosis;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_ACTIONS_PERFORMED)
+    private String actionsPerformed;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_SOLUTION)
+    private String solution;
+
+    @JsonbProperty(TicketSaveRequestDto.JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
+
+  }
+
+  /**
+   * Identifiant du service de prise en charge .
+   */
+  String TAKE_IN_CHARGE_IDENTIFIER = &quot;PRISE_EN_CHARGE_TICKET&quot;;
+
+  /**
+   * Chemin du service prise en charge .
+   */
+  String TAKE_IN_CHARGE_PATH = &quot;prise-en-charge&quot;;
+
+  /**
+   * Cette méthode permet de prendre en charge .
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(TAKE_IN_CHARGE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = TAKE_IN_CHARGE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response takeInCharge(TicketTakeInChargeRequestDto request);
+
+  /**
+   * Cette classe représente la requête de prise en charge.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L561">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto implements</span>
+         HasCategoryIdentifierDto, HasPriorityIdentifierDto {
+
+    private String priorityIdentifier;
+
+    private String categoryIdentifier;
+
+  }
+
+  /**
+   * Cette classe représente la réponse de prise en charge.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L578">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
+
+  }
+
+
+  /**
+   * Cette classe représente la base des réponses de traitement.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L591">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * {@link TicketDto#getStatus()}.
+     */
+    @JsonbProperty(JSON_STATUS)
+    private TicketStatus status;
+
+    /**
+     * {@link TicketDto#getInProgress()}.
+     */
+    @JsonbProperty(JSON_IN_PROGRESS)
+    private Boolean inProgress;
+
+    /**
+     * {@link TicketDto#getResolved()}.
+     */
+    @JsonbProperty(JSON_RESOLVED)
+    private Boolean resolved;
+
+    /**
+     * {@link TicketDto#getSatisfied()}.
+     */
+    @JsonbProperty(JSON_SATISFIED)
+    private Boolean satisfied;
+
+    /**
+     * {@link TicketDto#getUnsatisfied()}.
+     */
+    @JsonbProperty(JSON_UNSATISFIED)
+    private Boolean unsatisfied;
+
+    /**
+     * Cette méthode permet d'initialiser la réponse à partir du statut.
+     *
+     * @param status {@link TicketStatus}
+     */
+    public void initialize(TicketStatus status) {
+<span class="fc" id="L629">      this.status = status;</span>
+
+<span class="fc" id="L631">      inProgress = TicketStatus.IN_PROGRESS.getPrevious().contains(status);</span>
+<span class="fc" id="L632">      resolved = TicketStatus.RESOLVED.getPrevious().contains(status);</span>
+<span class="fc" id="L633">      satisfied = TicketStatus.SATISFIED.getPrevious().contains(status);</span>
+<span class="fc" id="L634">      unsatisfied = TicketStatus.UNSATISFIED.getPrevious().contains(status);</span>
+
+<span class="fc" id="L636">    }</span>
+
+    /**
+     * {@link TicketDto#JSON_STATUS}.
+     */
+    public static final String JSON_STATUS = TicketDto.JSON_STATUS;
+
+    /**
+     * {@link TicketDto#JSON_IN_PROGRESS}.
+     */
+    public static final String JSON_IN_PROGRESS = TicketDto.JSON_IN_PROGRESS;
+
+    /**
+     * {@link TicketDto#JSON_RESOLVED}.
+     */
+    public static final String JSON_RESOLVED = TicketDto.JSON_RESOLVED;
+
+    /**
+     * {@link TicketDto#JSON_SATISFIED}.
+     */
+    public static final String JSON_SATISFIED = TicketDto.JSON_SATISFIED;
+
+    /**
+     * {@link TicketDto#JSON_UNSATISFIED}.
+     */
+    public static final String JSON_UNSATISFIED =
+        TicketDto.JSON_UNSATISFIED;
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_MEMBRE_SERVICE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link TicketDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service de la resolution.
+   */
+  String RESOLVE_IDENTIFIER = &quot;RESOLUTION_TICKET&quot;;
+
+  /**
+   * Chemin du service de résolution.
+   */
+  String RESOLVE_PATH = &quot;resolution&quot;;
+
+  /**
+   * Cette méthode permet de résoudre .
+   *
+   * @param request requête
+   * @return réponse
+   */
+
+  @Path(RESOLVE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = RESOLVE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response resolve(TicketResolveRequestDto request);
+
+  /**
+   * Cette classe représente la requête de la resolution.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L724">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
+
+    @JsonbProperty(JSON_DIAGNOSIS)
+    private String diagnosis;
+
+    @JsonbProperty(JSON_ACTIONS_PERFORMED)
+    private String actionsPerformed;
+
+    /**
+     * {@link #diagnosis}.
+     */
+    public static final String JSON_DIAGNOSIS = TicketDto.JSON_DIAGNOSIS;
+
+    /**
+     * {@link #actionsPerformed}.
+     */
+    public static final String JSON_ACTIONS_PERFORMED = TicketDto.JSON_ACTIONS_PERFORMED;
+  }
+
+  /**
+   * Cette classe représente la réponse de la résolution.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L751">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
+
+  }
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

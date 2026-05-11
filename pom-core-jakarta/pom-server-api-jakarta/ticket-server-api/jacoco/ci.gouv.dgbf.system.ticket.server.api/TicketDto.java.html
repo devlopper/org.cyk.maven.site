@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">TicketDto.java</span></div><h1>TicketDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un ticket .
+ *
+ * @author Arnaud
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class TicketDto extends AbstractIdentifiableAuditableDto {</span>
+
+
+  /**
+   * Identifiant de {@link SupportTeamMemberDto}.
+   */
+  @JsonbProperty(JSON_SUPPORT_TEAM_MEMBER_IDENTIFIER)
+  private String supportTeamMemberIdentifier;
+
+  /**
+   * Réprésentation en chaine de caractères de {@link SupportTeamMemberDto}.
+   */
+  @JsonbProperty(JSON_SUPPORT_TEAM_MEMBER_AS_STRING)
+  private String supportTeamMemberAsString;
+
+  /**
+   * Identifiant de {@link TicketPriorityDto}.
+   */
+  @JsonbProperty(JSON_PRIORITY_IDENTIFIER)
+  private String priorityIdentifier;
+
+  /**
+   * Réprésentation en chaine de caractères de {@link TicketPriorityDto}.
+   */
+  @JsonbProperty(JSON_PRIORITY_AS_STRING)
+  private String priorityAsString;
+
+  /**
+   * {@link TicketStatus}.
+   */
+  @JsonbProperty(JSON_STATUS)
+  private TicketStatus status;
+
+  /**
+   * Représentation en chaine de caractères de {@link TicketStatus}.
+   */
+  @JsonbProperty(JSON_STATUS_AS_STRING)
+  private String statusAsString;
+
+  /**
+   * Identifiant de {@link TicketCategoryDto}.
+   */
+  @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+  private String categoryIdentifier;
+
+  /**
+   * Réprésentation en chaine de caractères de {@link TicketCategoryDto}.
+   */
+  @JsonbProperty(JSON_CATEGORY_AS_STRING)
+  private String categoryAsString;
+
+  /**
+   * reference.
+   */
+  @JsonbProperty(JSON_REFERENCE)
+  private String reference;
+
+  /**
+   *  objet.
+   */
+  @JsonbProperty(JSON_OBJECT)
+  private String object;
+
+  /**
+   * description.
+   */
+  @JsonbProperty(JSON_DESCRIPTION)
+  private String description;
+
+  /**
+   * commentaire statut .
+   */
+  @JsonbProperty(JSON_STATUS_COMMENT)
+  private String statusComment;
+
+  /**
+   * Identifiant diagnotic .
+   */
+  @JsonbProperty(JSON_DIAGNOSIS)
+  private String diagnosis;
+
+  /**
+   * actions réalisées .
+   */
+  @JsonbProperty(JSON_ACTIONS_PERFORMED)
+  private String actionsPerformed;
+
+  /**
+   * Identifiant solution .
+   */
+  @JsonbProperty(JSON_SOLUTION)
+  private String solution;
+
+  /**
+   * Nom du fichier.
+   */
+  @JsonbProperty(JSON_FILE_NAME)
+  private String fileName;
+
+  /**
+   * Type de contenu du fichier.
+   */
+  @JsonbProperty(JSON_FILE_CONTENT_TYPE)
+  private String fileContentType;
+
+  /**
+   * Octets.
+   */
+
+  @NotEmpty
+  @JsonbProperty(value = JSON_FILE_BYTES)
+  private byte[] fileBytes;
+
+  /**
+   * Identifiant identifiant identité de l'identifiant de groupe de fichiers .
+   */
+  @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+  private String filesGroupIdentifier;
+
+  /**
+   * pris en charge.
+   */
+  @JsonbProperty(JSON_IN_PROGRESS)
+  private Boolean inProgress;
+
+  /**
+   * résolu.
+   */
+  @JsonbProperty(JSON_RESOLVED)
+  private Boolean resolved;
+
+  /**
+   * satisfait.
+   */
+  @JsonbProperty(JSON_SATISFIED)
+  private Boolean satisfied;
+
+  /**
+   * non satisfait.
+   */
+  @JsonbProperty(JSON_UNSATISFIED)
+  private Boolean unsatisfied;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idTicket&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;ticketChaine&quot;;
+
+
+  /**
+   * Identifiant champ java {@link #supportTeamMemberIdentifier}.
+   */
+  public static final String JSON_SUPPORT_TEAM_MEMBER_IDENTIFIER =
+      SupportTeamMemberDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #supportTeamMemberAsString}.
+   */
+  public static final String JSON_SUPPORT_TEAM_MEMBER_AS_STRING =
+      SupportTeamMemberDto.JSON_THIS_AS_STRING;
+
+
+  /**
+   * Identifiant champ java {@link #priorityIdentifier}.
+   */
+  public static final String JSON_PRIORITY_IDENTIFIER =
+      TicketPriorityDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #priorityAsString}.
+   */
+  public static final String JSON_PRIORITY_AS_STRING = TicketPriorityDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant champ java {@link #categoryIdentifier}.
+   */
+  public static final String JSON_CATEGORY_IDENTIFIER =
+      TicketCategoryDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant champ java {@link #categoryAsString}.
+   */
+  public static final String JSON_CATEGORY_AS_STRING = TicketCategoryDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json champ {@link #status}.
+   */
+  public static final String JSON_STATUS = &quot;statut&quot;;
+
+  /**
+   * Identifiant json champ {@link #statusAsString}.
+   */
+  public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
+
+  /**
+   * Identifiant champ java {@link #reference}.
+   */
+  public static final String JSON_REFERENCE = &quot;reference&quot;;
+
+  /**
+   * Identifiant champ java {@link #object}.
+   */
+  public static final String JSON_OBJECT = &quot;objet&quot;;
+
+  /**
+   * Identifiant champ java {@link #description}.
+   */
+  public static final String JSON_DESCRIPTION = &quot;description&quot;;
+
+  /**
+   * Identifiant champ java {@link #statusComment}.
+   */
+  public static final String JSON_STATUS_COMMENT = &quot;commentaireStatut&quot;;
+
+  /**
+   * Identifiant champ java {@link #diagnosis}.
+   */
+  public static final String JSON_DIAGNOSIS = &quot;diagnostic&quot;;
+
+  /**
+   * Identifiant champ java {@link #actionsPerformed}.
+   */
+  public static final String JSON_ACTIONS_PERFORMED = &quot;actionsRealisees&quot;;
+
+  /**
+   * Identifiant champ java {@link #solution}.
+   */
+  public static final String JSON_SOLUTION = &quot;solution&quot;;
+
+  /**
+   * Identifiant champ java {@link #fileName}.
+   */
+  public static final String JSON_FILE_NAME = &quot;nomFichier&quot;;
+  /**
+   * Identifiant champ java {@link #fileContentType}.
+   */
+  public static final String JSON_FILE_CONTENT_TYPE = &quot;typeContenuFichier&quot;;
+
+  /**
+   * Identifiant champ java {@link #fileBytes}.
+   */
+  public static final String JSON_FILE_BYTES = &quot;octetsFichier&quot;;
+
+  /**
+   * Identifiant champ java {@link #filesGroupIdentifier}.
+   */
+  public static final String JSON_FILES_GROUP_IDENTIFIER = &quot;identifiantGroupeFichiers&quot;;
+
+  /**
+   * Identifiant json champ {@link #inProgress}.
+   */
+  public static final String JSON_IN_PROGRESS = &quot;prisEnCharge&quot;;
+
+  /**
+   * Identifiant json champ {@link #resolved}.
+   */
+  public static final String JSON_RESOLVED = &quot;resolu&quot;;
+
+  /**
+   * Identifiant json champ {@link #satisfied}.
+   */
+  public static final String JSON_SATISFIED = &quot;satisfait&quot;;
+
+  /**
+   * Identifiant json champ {@link #unsatisfied}.
+   */
+  public static final String JSON_UNSATISFIED = &quot;insatisfait&quot;;
+
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;ticket&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

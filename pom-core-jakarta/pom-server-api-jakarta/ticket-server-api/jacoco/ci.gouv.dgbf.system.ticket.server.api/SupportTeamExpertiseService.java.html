@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportTeamExpertiseService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">SupportTeamExpertiseService.java</span></div><h1>SupportTeamExpertiseService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+
+/**
+ * Cette interface représente les services de {@link SupportTeamExpertiseDto}.
+ *
+ * @author kimou
+ *
+ */
+
+
+@Path(value = SupportTeamExpertiseService.PATH)
+@Tag(name = &quot;Gestion des expertises équipes support&quot;)
+public interface SupportTeamExpertiseService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;expertises-equipe-support&quot;;
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_EXPERTISE_EQUIPE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author kimou
+   */
+  interface SupportTeamExpertiseSaveRequestDto {
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link SupportTeamDto}.
+     *
+     * @return identifiant de {@link SupportTeamDto}
+     */
+    String getSupportTeamIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link SupportTeamDto}.
+     *
+     * @param supportTeamIdentifier identifiant de {@link SupportTeamDto}
+     */
+    void setSupportTeamIdentifier(String supportTeamIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link FunctionalDomainDto}.
+     *
+     * @return identifiant de {@link FunctionalDomainDto}
+     */
+    String getFunctionalDomainIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link FunctionalDomainDto}.
+     *
+     * @param functionalDomainIdentifier identifiant de {@link FunctionalDomainDto}
+     */
+    void setFunctionalDomainIdentifier(String functionalDomainIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link SupportLevelDto}.
+     *
+     * @return identifiant de {@link SupportLevelDto}
+     */
+    String getSupportLevelIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link SupportLevelDto}.
+     *
+     * @param supportLevelIdentifier identifiant de {@link SupportLevelDto}
+     */
+    void setSupportLevelIdentifier(String supportLevelIdentifier);
+
+    /**
+     * Identifiant json identifiant de {@link SupportTeamDto}.
+     */
+    String JSON_SUPPORT_TEAM_IDENTIFIER = SupportTeamDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link SupportLevelDto}.
+     */
+    String JSON_SUPPORT_LEVEL_IDENTIFIER = SupportLevelDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link FunctionalDomainDto}.
+     */
+    String JSON_FUNCTIONAL_DOMAIN_IDENTIFIER = FunctionalDomainDto.JSON_THIS_IDENTIFIER;
+
+  }
+
+  /**
+   * Cette méthode permet de créer {@link SupportTeamExpertiseDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(SupportTeamExpertiseCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author kimou
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L147">  class SupportTeamExpertiseCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SupportTeamExpertiseSaveRequestDto {
+
+    @JsonbProperty(SupportTeamExpertiseSaveRequestDto.JSON_SUPPORT_TEAM_IDENTIFIER)
+    private String supportTeamIdentifier;
+
+    @JsonbProperty(SupportTeamExpertiseSaveRequestDto.JSON_FUNCTIONAL_DOMAIN_IDENTIFIER)
+    private String functionalDomainIdentifier;
+
+    @JsonbProperty(SupportTeamExpertiseSaveRequestDto.JSON_SUPPORT_LEVEL_IDENTIFIER)
+    private String supportLevelIdentifier;
+
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_EXPERTISE_EQUIPE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link SupportTeamExpertiseDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema =
+          @Schema(implementation = SupportTeamExpertiseGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author kimou
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L195">  public static class SupportTeamExpertiseGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;SupportTeamExpertiseDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;SupportTeamExpertiseDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_EXPERTISE_EQUIPE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir {@link SupportTeamExpertiseDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = SupportTeamExpertiseDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_EXPERTISE_EQUIPE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identrifiant {@link SupportTeamExpertiseDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = SupportTeamExpertiseDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_EXPERTISE_EQUIPE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link SupportTeamExpertiseDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(SupportTeamExpertiseUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author kimou
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L285">  class SupportTeamExpertiseUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements SupportTeamExpertiseSaveRequestDto {
+
+    @JsonbProperty(SupportTeamExpertiseSaveRequestDto.JSON_SUPPORT_TEAM_IDENTIFIER)
+    private String supportTeamIdentifier;
+
+    @JsonbProperty(SupportTeamExpertiseSaveRequestDto.JSON_FUNCTIONAL_DOMAIN_IDENTIFIER)
+    private String functionalDomainIdentifier;
+
+    @JsonbProperty(SupportTeamExpertiseSaveRequestDto.JSON_SUPPORT_LEVEL_IDENTIFIER)
+    private String supportLevelIdentifier;
+
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_EXPERTISE_EQUIPE_SUPPORT&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link SupportTeamExpertiseDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

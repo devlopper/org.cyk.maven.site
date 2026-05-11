@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportTeamMemberRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">SupportTeamMemberRequestMapperImpl.java</span></div><h1>SupportTeamMemberRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link SupportTeamMemberDto}.
+*
+* @author Arnaud
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2026-05-11T11:06:26+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class SupportTeamMemberRequestMapperImpl implements SupportTeamMemberRequestMapper {</span>
+
+    @Override
+    public SupportTeamMemberService.SupportTeamMemberCreateRequestDto mapCreate(SupportTeamMemberDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        SupportTeamMemberService.SupportTeamMemberCreateRequestDto supportTeamMemberCreateRequestDto = new SupportTeamMemberService.SupportTeamMemberCreateRequestDto();</span>
+
+<span class="fc" id="L28">        supportTeamMemberCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        supportTeamMemberCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        supportTeamMemberCreateRequestDto.setSupportTeamIdentifier( arg0.getSupportTeamIdentifier() );</span>
+<span class="fc" id="L31">        supportTeamMemberCreateRequestDto.setUserIdentifier( arg0.getUserIdentifier() );</span>
+<span class="fc" id="L32">        supportTeamMemberCreateRequestDto.setIsResponsible( arg0.getIsResponsible() );</span>
+
+<span class="fc" id="L34">        return supportTeamMemberCreateRequestDto;</span>
+    }
+
+    @Override
+    public SupportTeamMemberService.SupportTeamMemberUpdateRequestDto mapUpdate(SupportTeamMemberDto arg0) {
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
+        }
+
+<span class="fc" id="L43">        SupportTeamMemberService.SupportTeamMemberUpdateRequestDto supportTeamMemberUpdateRequestDto = new SupportTeamMemberService.SupportTeamMemberUpdateRequestDto();</span>
+
+<span class="fc" id="L45">        supportTeamMemberUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L46">        supportTeamMemberUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L47">        supportTeamMemberUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        supportTeamMemberUpdateRequestDto.setSupportTeamIdentifier( arg0.getSupportTeamIdentifier() );</span>
+<span class="fc" id="L49">        supportTeamMemberUpdateRequestDto.setUserIdentifier( arg0.getUserIdentifier() );</span>
+<span class="fc" id="L50">        supportTeamMemberUpdateRequestDto.setIsResponsible( arg0.getIsResponsible() );</span>
+
+<span class="fc" id="L52">        return supportTeamMemberUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

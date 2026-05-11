@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">TicketStatus.java</span></div><h1>TicketStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les statuts de {@link TicketDto}.
+ *
+ * @author Arnaud
+ *
+ */
+<span class="fc" id="L16">@Getter</span>
+public enum TicketStatus {
+
+  /**
+   * Créé.
+   */
+<span class="fc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+
+  /**
+   * Pris en charge.
+   */
+<span class="fc" id="L27">  IN_PROGRESS(TicketStatusCode.IN_PROGRESS, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;),</span>
+
+  /**
+   * Résolu.
+   */
+<span class="fc" id="L32">  RESOLVED(TicketStatusCode.RESOLVED, &quot;Résolu&quot;, &quot;Résolution&quot;),</span>
+
+  /**
+   * Satisfait.
+   */
+<span class="fc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;),</span>
+
+  /**
+   * Non satisfait.
+   */
+<span class="fc" id="L42">  UNSATISFIED(TicketStatusCode.UNSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;);</span>
+
+
+<span class="fc" id="L45">  private TicketStatus(String code, String name, String action) {</span>
+<span class="fc" id="L46">    this.code = code;</span>
+<span class="fc" id="L47">    this.name = name;</span>
+<span class="fc" id="L48">    this.action = action;</span>
+<span class="fc" id="L49">  }</span>
+
+  private String code;
+  private String name;
+  private String action;
+  private Set&lt;TicketStatus&gt; previous;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L58">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le {@link TicketStatus} par code.
+   *
+   * @param code code
+   * @return {@link TicketStatus}
+   */
+  public static TicketStatus getByCode(String code) {
+<span class="fc" id="L68">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L69">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+  }
+
+  static {
+<span class="fc" id="L73">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L74">    IN_PROGRESS.previous = Core.getSet(List.of(CREATED, UNSATISFIED));</span>
+<span class="fc" id="L75">    RESOLVED.previous = Core.getSet(List.of(IN_PROGRESS));</span>
+<span class="fc" id="L76">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L77">    UNSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L78">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
