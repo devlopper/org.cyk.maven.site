@@ -318,7 +318,7 @@ public interface DeclarationService extends SpecificService {
  */
   @Path(CREATE_INCIDENT_PATH)
   @POST
-  @Consumes(MediaType.APPLICATION_JSON)
+  @Consumes(MediaType.MULTIPART_FORM_DATA)
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(operationId = CREATE_INCIDENT_IDENTIFIER)
   @APIResponse(responseCode = &quot;201&quot;,
