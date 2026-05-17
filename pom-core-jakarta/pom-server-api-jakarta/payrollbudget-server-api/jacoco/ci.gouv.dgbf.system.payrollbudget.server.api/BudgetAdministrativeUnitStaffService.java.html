@@ -145,6 +145,20 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
      * @param staff effectif
      */
     void setStaff(Integer staff);
+
+    /**
+     * Cette méthode permet d'obtenir le montant.
+     *
+     * @return montant
+     */
+    Integer getAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant.
+     *
+     * @param amount montant
+     */
+    void setAmount(Integer amount);
     
     /**
      * {@link BudgetAdministrativeUnitStaffDto#JSON_ADMINISTRATIVE_UNIT_IDENTIFIER}.
@@ -181,6 +195,11 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
      * {@link BudgetAdministrativeUnitStaffDto#JSON_STAFF}.
      */
     String JSON_STAFF = BudgetAdministrativeUnitStaffDto.JSON_STAFF;
+
+    /**
+     * {@link BudgetAdministrativeUnitStaffDto#JSON_AMOUNT}.
+     */
+    String JSON_AMOUNT = BudgetAdministrativeUnitStaffDto.JSON_AMOUNT;
   }
 
   /**
@@ -216,7 +235,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L219">  class BudgetAdministrativeUnitStaffCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L238">  class BudgetAdministrativeUnitStaffCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements SaveRequestDto {
     
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -239,6 +258,9 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
     
     @JsonbProperty(JSON_STAFF)
     Integer staff;
+
+    @JsonbProperty(JSON_AMOUNT)
+    Integer amount;
   }
 
   /**
@@ -275,7 +297,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L278">  public static class BudgetAdministrativeUnitStaffGetManyResponseDto </span>
+<span class="fc" id="L300">  public static class BudgetAdministrativeUnitStaffGetManyResponseDto </span>
           extends AbstractGetByPageResponseDto&lt;BudgetAdministrativeUnitStaffDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -367,7 +389,7 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L370">  class BudgetAdministrativeUnitStaffUpdateRequestDto extends ByIdentifierRequestDto </span>
+<span class="fc" id="L392">  class BudgetAdministrativeUnitStaffUpdateRequestDto extends ByIdentifierRequestDto </span>
           implements SaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -390,11 +412,11 @@ public interface BudgetAdministrativeUnitStaffService extends SpecificService {
     
     @JsonbProperty(JSON_STAFF)
     Integer staff;
+
+    @JsonbProperty(JSON_AMOUNT)
+    Integer amount;
   }
 
-  /**
-   * Identifiant du service de suppression.
-   */
   String DELETE_IDENTIFIER = &quot;SUPPRESSION_MOUVEMENT&quot;;
 
   /**

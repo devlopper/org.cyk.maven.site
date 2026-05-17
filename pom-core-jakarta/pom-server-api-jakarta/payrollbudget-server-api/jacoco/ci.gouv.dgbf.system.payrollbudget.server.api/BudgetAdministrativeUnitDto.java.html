@@ -94,7 +94,19 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_AMOUNT_VARIANCE_AS_STRING)
   String amountVarianceAsString;
-  
+
+  /**
+   * Total cumulé des mesures ponctuelles .
+   */
+  @JsonbProperty(JSON_PUNCTUAL_MEASURES_TOTAL_AMOUNT_AS_STRING)
+  String punctualMeasuresTotalAmountAsString;
+
+  /**
+   * Total cumulé des besoins en contractuel .
+   */
+  @JsonbProperty(JSON_CONTRACTUAL_NEEDS_TOTAL_AMOUNT_AS_STRING)
+  String contractualNeedsTotalAmountAsString;
+
   /**
    * Représentation en chaine de caractères du nombre de employé
    * {@link AdministrativeUnitEmployeeStatus#INCOMING}.
@@ -136,5 +148,17 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = &quot;unités administrative de budget&quot;;
+
+  /**
+   * Identifiant json du cumul des montants des mesures ponctuelles (chaîne formatée).
+   */
+  public static final String JSON_PUNCTUAL_MEASURES_TOTAL_AMOUNT_AS_STRING =
+      &quot;totalMesuresPonctuellesMontantChaine&quot;;
+
+  /**
+   * Identifiant json du cumul des montants des besoins en contractuel (chaîne formatée).
+   */
+  public static final String JSON_CONTRACTUAL_NEEDS_TOTAL_AMOUNT_AS_STRING =
+      &quot;totalBesoinsContractuelMontantChaine&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

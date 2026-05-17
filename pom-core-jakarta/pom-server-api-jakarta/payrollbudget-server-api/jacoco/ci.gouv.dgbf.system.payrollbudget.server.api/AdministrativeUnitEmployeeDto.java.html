@@ -26,12 +26,31 @@ import lombok.Setter;
   @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
   String exerciseIdentifier;
 
+  /**
+   * Sérialisation JSON des entrées de calcul déduites des éléments de paie.
+   */
   @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_AS_JSON)
   private String calculationInputsFromPayrollElementAsJson;
 
-
+  /**
+   * Carte libellé / valeur des entrées de calcul déduites des éléments de paie.
+   */
   @JsonbProperty(JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_MAP)
   private Map&lt;String, Object&gt; calculationInputsFromPayrollElementMap;
+
+  /**
+   * JSON  des éléments de paie (vue EPN d'origine — besoins en entrée).
+   */
+  @JsonbProperty(JSON_CALCULATION_INPUTS_ORIGIN_FROM_PAYROLL_ELEMENT_AS_JSON)
+  private String calculationInputsOriginFromPayrollElementAsJson;
+
+  /**
+   * Libellés / valeurs des entrées de calcul 
+   * ({@code VA_UNITE_ADMINISTRATIVE_ORIGINE_EMPLOYE_ENTREES_CALCUL}).
+   */
+  @JsonbProperty(JSON_CALCULATION_INPUTS_ORIGIN_FROM_PAYROLL_ELEMENT_MAP)
+  private Map&lt;String, Object&gt; calculationInputsOriginFromPayrollElementMap;
+
   /**
    * Représentation en chaine de caractères de {@link ExerciseDto}.
    */
@@ -73,6 +92,13 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_BUDGET_ADMINISTRATIVE_UNIT_AS_STRING)
   String budgetAdministrativeUnitAsString;
+
+  /**
+   * UA d'origine du transfert de solde en entrée.
+   */
+  @Transient
+  @JsonbProperty(JSON_BALANCE_TRANSFER_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  String balanceTransferOriginAdministrativeUnitIdentifier;
 
   /**
    * Identifiant employé.
@@ -306,6 +332,13 @@ import lombok.Setter;
   public static final String JSON_MOVEMENT_TYPE_IDENTIFIER = MovementTypeDto.JSON_THIS_IDENTIFIER;
 
   /**
+   * Identifiant json du genre de processus de sortie.
+   *
+   * @see AdministrativeUnitEmployeeOffboardProcessKind
+   */
+  public static final String JSON_OFFBOARD_PROCESS_KIND = &quot;genreProcessusSortie&quot;;
+
+  /**
    * Identifiant json {@link #jobIdentifier}.
    */
   public static final String JSON_JOB_IDENTIFIER = &quot;idEmploi&quot;;
@@ -334,6 +367,12 @@ import lombok.Setter;
    * Identifiant json {@link #functionAsString}.
    */
   public static final String JSON_FUNCTION_AS_STRING = &quot;fonctionChaine&quot;;
+
+  /**
+   * Clé JSON pour l'unité administrative d'origine du transfert de solde en entrée.
+   */
+  public static final String JSON_BALANCE_TRANSFER_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER =
+      &quot;idUniteAdministrativeOrigineTransfertSolde&quot;;
 
   /**
    * Identifiant json {@link #status}.
@@ -404,6 +443,35 @@ import lombok.Setter;
    */
   public static final String JSON_CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_MAP =
       &quot;entreesDeduitElementPaieCalcul&quot;;
+
+  /**
+   * Identifiant json du JSON brut des entrées de calcul (EPN d'origine).
+   */
+  public static final String JSON_CALCULATION_INPUTS_ORIGIN_FROM_PAYROLL_ELEMENT_AS_JSON =
+      &quot;entreesOrigineDeduitElementPaieCalculJson&quot;;
+
+  /**
+   * Identifiant json de la map des entrées de calcul (EPN d'origine, besoins en entrée).
+   */
+  public static final String JSON_CALCULATION_INPUTS_ORIGIN_FROM_PAYROLL_ELEMENT_MAP =
+      &quot;entreesOrigineDeduitElementPaieCalcul&quot;;
+
+  /**
+   * Clé du matricule ({@code Matricule}) dans {@link #calculationInputsFromPayrollElementMap}
+   * (alignée serveur / client).
+   */
+  public static final String CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_MAP_KEY_REGISTRATION_NUMBER =
+      &quot;Matricule&quot;;
+
+  /**
+   * Clé du nom de famille ({@code Nom}) dans {@link #calculationInputsFromPayrollElementMap}.
+   */
+  public static final String CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_MAP_KEY_LAST_NAME = &quot;Nom&quot;;
+
+  /**
+   * Clé du prénom ({@code Prénom}) dans {@link #calculationInputsFromPayrollElementMap}.
+   */
+  public static final String CALCULATION_INPUTS_FROM_PAYROLL_ELEMENT_MAP_KEY_FIRST_NAME = &quot;Prénom&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

@@ -118,6 +118,18 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_STAFF_AS_STRING)
   String staffAsString;
+
+  /**
+   * Montant.
+   */
+  @JsonbProperty(JSON_AMOUNT)
+  Integer amount;
+
+  /**
+   * Représentation en chaine de caractères du montant.
+   */
+  @JsonbProperty(JSON_AMOUNT_AS_STRING)
+  String amountAsString;
   
   /**
    * Identifiant json de identifiant de {@link BudgetAdministrativeUnitStaffDto}.
@@ -220,6 +232,16 @@ import lombok.Setter;
    * Identifiant json {@link #staffAsString}.
    */
   public static final String JSON_STAFF_AS_STRING = &quot;effectifChaine&quot;;
+
+  /**
+   * Identifiant json {@link #amount}.
+   */
+  public static final String JSON_AMOUNT = &quot;montant&quot;;
+
+  /**
+   * Identifiant json {@link #amountAsString}.
+   */
+  public static final String JSON_AMOUNT_AS_STRING = &quot;montantChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

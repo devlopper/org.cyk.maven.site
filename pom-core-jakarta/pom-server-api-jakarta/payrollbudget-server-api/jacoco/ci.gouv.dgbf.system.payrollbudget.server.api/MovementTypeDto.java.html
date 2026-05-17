@@ -18,10 +18,10 @@ import lombok.Setter;
 <span class="fc" id="L18">public class MovementTypeDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
 
   /**
-   * {@link #AdministrativeUnitEmployeeStatus}.
+   * Code {@code STATUT_EMPLOYE_UNITE_ADMINISTRATIVE} : champ utilisé pour type de sortie.
    */
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS)
-  private AdministrativeUnitEmployeeStatus administrativeUnitEmployeeStatus;
+  private String administrativeUnitEmployeeStatusCode;
 
   /**
    * Représentation en chaine de caractères de {@link #EmployeeStatus}.
@@ -40,7 +40,7 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;typeMouvementChaine&quot;;
 
   /**
-   * Identifiant json de {@link #administrativeUnitEmployeeStatus}.
+   * Identifiant json de {@link #administrativeUnitEmployeeStatusCode}.
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS =
       &quot;statutEmployeUniteAdministrative&quot;;

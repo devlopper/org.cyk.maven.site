@@ -208,6 +208,13 @@ public interface AdministrativeUnitEmployeeService extends Service {
 <span class="fc" id="L208">  class AdministrativeUnitEmployeeCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements AdministrativeUnitEmployeeSaveRequestDto {
 
+    /**
+     * Alias local de la clé JSON homonyme sur {@link AdministrativeUnitEmployeeDto}.
+     * Détail : symbole {@code JSON_BALANCE_TRANSFER_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER}.
+     */
+    public static final String JSON_BALANCE_TRANSFER_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER =
+        AdministrativeUnitEmployeeDto.JSON_BALANCE_TRANSFER_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER;
+
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
     String budgetIdentifier;
 
@@ -225,6 +232,14 @@ public interface AdministrativeUnitEmployeeService extends Service {
 
     @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
     String functionIdentifier;
+
+    /**
+     * Identifiant de l'unité administrative d'origine du solde lors d'un transfert en entrée.
+     *
+     * @see AdministrativeUnitEmployeeDto#balanceTransferOriginAdministrativeUnitIdentifier
+     */
+    @JsonbProperty(JSON_BALANCE_TRANSFER_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    String balanceTransferOriginAdministrativeUnitIdentifier;
   }
 
   /**
@@ -261,7 +276,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L264">  class AdministrativeUnitEmployeeCreateByFunctionaryRequestDto extends</span>
+<span class="fc" id="L279">  class AdministrativeUnitEmployeeCreateByFunctionaryRequestDto extends</span>
       AbstractAuditedRequestJsonDto implements AdministrativeUnitEmployeeBaseSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -311,7 +326,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L314">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
+<span class="fc" id="L329">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;AdministrativeUnitEmployeeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -399,7 +414,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L402">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L417">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -481,11 +496,21 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L484">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L499">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeBoardRequestDto {
 
     @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
     String movementTypeIdentifier;
+
+    /**
+     * Genre de processus de sortie (définitive ou temporaire), à rapprocher du type de mouvement
+     * sélectionné.
+     *
+     * @see AdministrativeUnitEmployeeDto#JSON_OFFBOARD_PROCESS_KIND
+     * @see AdministrativeUnitEmployeeOffboardProcessKind
+     */
+    @JsonbProperty(AdministrativeUnitEmployeeDto.JSON_OFFBOARD_PROCESS_KIND)
+    AdministrativeUnitEmployeeOffboardProcessKind offboardProcessKind;
   }
 
   /**
@@ -568,7 +593,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    *
    * @author Christian
    */
-<span class="fc" id="L571">  class AdministrativeUnitEmployeeCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L596">  class AdministrativeUnitEmployeeCalculateRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -614,7 +639,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
   @Schema(name = &quot;AdministrativeUnitEmployeeRecordPayrollMovementsRequest&quot;,
       description = &quot;Requête de saisie de mouvements de paie pour un employé d'unité &quot;
           + &quot;administrative&quot;)
-<span class="fc" id="L617">  class AdministrativeUnitEmployeeRecordPayrollMovementsRequestDto</span>
+<span class="fc" id="L642">  class AdministrativeUnitEmployeeRecordPayrollMovementsRequestDto</span>
       extends ByIdentifierRequestDto {
 
     /**
