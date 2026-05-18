@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketHistoryClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">TicketHistoryClient.java</span></div><h1>TicketHistoryClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.ticket.server.api.TicketHistoryService.TicketHistoryGetManyResponseDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link TicketHistoryService}.
+ *
+ * @author kimou
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L27">public class TicketHistoryClient extends AbstractClient&lt;TicketHistoryService&gt;</span>
+    implements GetByIdentifier&lt;TicketHistoryDto&gt;,
+               GetMany&lt;TicketHistoryGetManyResponseDto&gt; {
+
+  @Override
+  public TicketHistoryClient service(TicketHistoryService service) {
+<span class="fc" id="L33">    return (TicketHistoryClient) super.service(service);</span>
+  }
+
+
+  /**
+   * {@link TicketHistoryService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public TicketHistoryGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L44">    return new GetOneExecutor&lt;TicketHistoryGetManyResponseDto&gt;(</span>
+            TicketHistoryGetManyResponseDto.class,
+<span class="fc" id="L46">        TicketHistoryService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link TicketHistoryService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public TicketHistoryGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L62">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L63">    request.setProjection(projection);</span>
+<span class="fc" id="L64">    request.setFilter(filter);</span>
+<span class="fc" id="L65">    request.setPage(page);</span>
+<span class="fc" id="L66">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L67">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L68">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link TicketHistoryService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public TicketHistoryDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L78">    return new GetOneExecutor&lt;TicketHistoryDto&gt;(TicketHistoryDto.class,</span>
+<span class="fc" id="L79">        TicketHistoryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link TicketHistoryService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public TicketHistoryDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L93">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L94">    request.setProjection(projection);</span>
+<span class="fc" id="L95">    request.setFilter(filter);</span>
+<span class="fc" id="L96">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L97">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L98">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link TicketHistoryService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return historique ticket
+   */
+  public TicketHistoryDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L108">    return new GetOneExecutor&lt;TicketHistoryDto&gt;(TicketHistoryDto.class,</span>
+        TicketHistoryService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L110">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link TicketHistoryService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public TicketHistoryDto getByIdentifier(String identifier,
+      ProjectionDto projection, String auditWho,
+      String auditSession) {
+<span class="fc" id="L126">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L127">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L128">    request.setProjection(projection);</span>
+<span class="fc" id="L129">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L130">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L131">    return getByIdentifier(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
