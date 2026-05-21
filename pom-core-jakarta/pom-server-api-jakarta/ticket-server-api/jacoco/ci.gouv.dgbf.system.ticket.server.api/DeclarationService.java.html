@@ -335,6 +335,15 @@ public interface DeclarationService extends SpecificService {
 <span class="fc" id="L335">  class CreateIncidentRequestDto extends AbstractAuditedRequestMultipartDto  {</span>
 
     /**
+     * Objet.
+     */
+    @JsonbProperty(JSON_OBJECT)
+    @Parameter(name = JSON_OBJECT, description = &quot;l'objet de l'incident&quot;)
+    @PartType(MediaType.TEXT_PLAIN)
+    @FormParam(value = JSON_OBJECT)
+    private String object;
+    
+    /**
      * Description.
      */
     @JsonbProperty(JSON_DESCRIPTION)
@@ -343,14 +352,7 @@ public interface DeclarationService extends SpecificService {
     @FormParam(value = JSON_DESCRIPTION)
     private String description;
 
-    /**
-     * Objet.
-     */
-    @JsonbProperty(JSON_OBJECT)
-    @Parameter(name = JSON_OBJECT, description = &quot;l'objet de l'incident&quot;)
-    @PartType(MediaType.TEXT_PLAIN)
-    @FormParam(value = JSON_OBJECT)
-    private String object;
+    
 
     /**
      * Nom du fichier joint.
@@ -391,22 +393,22 @@ public interface DeclarationService extends SpecificService {
     /**
      * Identifiant json {@link #object}.
      */
-    public static final String JSON_OBJECT = TicketDto.JSON_OBJECT;
+    public static final String JSON_OBJECT = &quot;objet&quot;;
 
     /**
      * Identifiant json {@link #filename}.
      */
-    public static final String JSON_FILE_NAME = TicketDto.JSON_FILE_NAME;
+    public static final String JSON_FILE_NAME = &quot;nomFichier&quot;;
 
     /**
      * Identifiant json {@link #fileContentType}.
      */
-    public static final String JSON_FILE_CONTENT_TYPE = TicketDto.JSON_FILE_CONTENT_TYPE;
+    public static final String JSON_FILE_CONTENT_TYPE = &quot;typeContenu&quot;;
 
     /**
      * Identifiant json {@link #fileBytes}.
      */
-    public static final String JSON_FILE_BYTES = TicketDto.JSON_FILE_BYTES;
+    public static final String JSON_FILE_BYTES = &quot;bytes&quot;;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -31,11 +31,11 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 /**
  * Cette interface représente les services de {@link FunctionalDomainDto}.
  *
- * @author Arnaud KOFFI
+ * @author Christian
  *
  */
 @Path(value = FunctionalDomainService.PATH)
-@Tag(name = &quot;Gestion des services support&quot;)
+@Tag(name = &quot;Gestion des domaines fonctionnels&quot;)
 public interface FunctionalDomainService extends SpecificService {
 
   /**
@@ -101,9 +101,8 @@ public interface FunctionalDomainService extends SpecificService {
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema =
-          @Schema(implementation = FunctionalDomainGetManyResponseDto.class))})
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = FunctionalDomainGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -114,7 +113,7 @@ public interface FunctionalDomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L117">  public static class FunctionalDomainGetManyResponseDto</span>
+<span class="fc" id="L116">  public static class FunctionalDomainGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;FunctionalDomainDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -204,7 +203,7 @@ public interface FunctionalDomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L207">  class FunctionalDomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L206">  class FunctionalDomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
   }
 

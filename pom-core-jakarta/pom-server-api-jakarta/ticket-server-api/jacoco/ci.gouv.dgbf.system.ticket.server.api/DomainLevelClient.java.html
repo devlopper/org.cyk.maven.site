@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DomainLevelClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">DomainLevelClient.java</span></div><h1>DomainLevelClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.ticket.server.api.DomainLevelService.DomainLevelCreateRequestDto;
+import ci.gouv.dgbf.system.ticket.server.api.DomainLevelService.DomainLevelGetManyResponseDto;
+import ci.gouv.dgbf.system.ticket.server.api.DomainLevelService.DomainLevelUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Cette classe représente un client de {@link DomainLevelService}.
+ *
+ * @author kimou
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L35">public class DomainLevelClient extends AbstractClient&lt;DomainLevelService&gt;</span>
+    implements GetByIdentifier&lt;DomainLevelDto&gt;, GetMany&lt;DomainLevelGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public DomainLevelClient service(DomainLevelService service) {
+<span class="fc" id="L41">    return (DomainLevelClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link DomainLevelService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(DomainLevelCreateRequestDto request) {
+<span class="fc" id="L51">    return new CreateExecutor(DomainLevelService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link DomainLevelService#create}.
+   *
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
+<span class="fc" id="L63">    DomainLevelCreateRequestDto request = new DomainLevelCreateRequestDto();</span>
+<span class="fc" id="L64">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L65">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L66">    return create(request);</span>
+  }
+
+  /**
+   * {@link DomainLevelService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public DomainLevelGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L76">    return new GetOneExecutor&lt;DomainLevelGetManyResponseDto&gt;(DomainLevelGetManyResponseDto.class,</span>
+<span class="fc" id="L77">        DomainLevelService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link DomainLevelService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public DomainLevelGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L93">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L94">    request.setProjection(projection);</span>
+<span class="fc" id="L95">    request.setFilter(filter);</span>
+<span class="fc" id="L96">    request.setPage(page);</span>
+<span class="fc" id="L97">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L98">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L99">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link DomainLevelService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public DomainLevelDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L109">    return new GetOneExecutor&lt;DomainLevelDto&gt;(DomainLevelDto.class,</span>
+<span class="fc" id="L110">        DomainLevelService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link DomainLevelService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public DomainLevelDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L124">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L125">    request.setProjection(projection);</span>
+<span class="fc" id="L126">    request.setFilter(filter);</span>
+<span class="fc" id="L127">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L128">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L129">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link DomainLevelService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return groupe d'échéance
+   */
+  public DomainLevelDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L139">    return new GetOneExecutor&lt;DomainLevelDto&gt;(DomainLevelDto.class,</span>
+        DomainLevelService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L141">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link DomainLevelService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public DomainLevelDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L156">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L157">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L158">    request.setProjection(projection);</span>
+<span class="fc" id="L159">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L160">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L161">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link DomainLevelService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(DomainLevelUpdateRequestDto request) {
+<span class="fc" id="L171">    return new IdentifiableExecutor(DomainLevelService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L172">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link DomainLevelService#update}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(String identifier, String code, String name,
+      String auditWho, String auditSession) {
+<span class="fc" id="L185">    DomainLevelUpdateRequestDto request = new DomainLevelUpdateRequestDto();</span>
+<span class="fc" id="L186">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L187">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L188">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L189">    return update(request);</span>
+  }
+
+  /**
+   * {@link DomainLevelService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L199">    return new IdentifiableExecutor(DomainLevelService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L200">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link DomainLevelService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L214">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L215">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L216">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L217">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L218">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

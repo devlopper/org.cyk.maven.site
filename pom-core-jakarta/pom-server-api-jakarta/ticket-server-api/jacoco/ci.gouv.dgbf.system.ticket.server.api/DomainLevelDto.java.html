@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DomainLevelDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">DomainLevelDto.java</span></div><h1>DomainLevelDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLevelAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLevelIdentifierDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupAsStringDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupIdentifierDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente {@link SupportLevelDto} de {@link FunctionalDomainDto}.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L24">public class DomainLevelDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasDomainIdentifierDto, HasDomainAsStringDto, HasLevelIdentifierDto,
+    HasLevelAsStringDto, HasUsersGroupIdentifierDto, HasUsersGroupAsStringDto {
+
+  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
+
+  @JsonbProperty(JSON_DOMAIN_AS_STRING)
+  private String domainAsString;
+
+  @JsonbProperty(JSON_LEVEL_IDENTIFIER)
+  private String levelIdentifier;
+
+  @JsonbProperty(JSON_LEVEL_AS_STRING)
+  private String levelAsString;
+
+  @JsonbProperty(JSON_USERS_GROUP_IDENTIFIER)
+  private String usersGroupIdentifier;
+
+  @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
+  private String usersGroupAsString;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idNiveauDomaine&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;niveauDomaineChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;niveau de domaine&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;niveaux de domaine&quot;;
+
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

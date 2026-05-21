@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-05-18T15:55:25+0000&quot;,
+    date = &quot;2026-05-21T21:15:34+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,43 +25,25 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        TicketService.TicketCreateRequestDto ticketCreateRequestDto = new TicketService.TicketCreateRequestDto();</span>
 
-<span class="fc" id="L28">        ticketCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L29">        ticketCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L30">        ticketCreateRequestDto.setSupportTeamMemberIdentifier( arg0.getSupportTeamMemberIdentifier() );</span>
-<span class="fc" id="L31">        ticketCreateRequestDto.setReference( arg0.getReference() );</span>
-<span class="fc" id="L32">        ticketCreateRequestDto.setObject( arg0.getObject() );</span>
-<span class="fc" id="L33">        ticketCreateRequestDto.setDescription( arg0.getDescription() );</span>
-<span class="fc" id="L34">        ticketCreateRequestDto.setStatusComment( arg0.getStatusComment() );</span>
-<span class="fc" id="L35">        ticketCreateRequestDto.setDiagnosis( arg0.getDiagnosis() );</span>
-<span class="fc" id="L36">        ticketCreateRequestDto.setActionsPerformed( arg0.getActionsPerformed() );</span>
-<span class="fc" id="L37">        ticketCreateRequestDto.setSolution( arg0.getSolution() );</span>
-<span class="fc" id="L38">        ticketCreateRequestDto.setFilesGroupIdentifier( arg0.getFilesGroupIdentifier() );</span>
+<span class="fc" id="L28">        ticketCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L29">        ticketCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        ticketCreateRequestDto.setDescription( arg0.getDescription() );</span>
 
-<span class="fc" id="L40">        return ticketCreateRequestDto;</span>
+<span class="fc" id="L32">        return ticketCreateRequestDto;</span>
     }
 
     @Override
     public TicketService.TicketUpdateRequestDto mapUpdate(TicketDto arg0) {
-<span class="fc bfc" id="L45" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L46">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L49">        TicketService.TicketUpdateRequestDto ticketUpdateRequestDto = new TicketService.TicketUpdateRequestDto();</span>
+<span class="fc" id="L41">        TicketService.TicketUpdateRequestDto ticketUpdateRequestDto = new TicketService.TicketUpdateRequestDto();</span>
 
-<span class="fc" id="L51">        ticketUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L52">        ticketUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L53">        ticketUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L54">        ticketUpdateRequestDto.setSupportTeamMemberIdentifier( arg0.getSupportTeamMemberIdentifier() );</span>
-<span class="fc" id="L55">        ticketUpdateRequestDto.setReference( arg0.getReference() );</span>
-<span class="fc" id="L56">        ticketUpdateRequestDto.setObject( arg0.getObject() );</span>
-<span class="fc" id="L57">        ticketUpdateRequestDto.setDescription( arg0.getDescription() );</span>
-<span class="fc" id="L58">        ticketUpdateRequestDto.setStatusComment( arg0.getStatusComment() );</span>
-<span class="fc" id="L59">        ticketUpdateRequestDto.setDiagnosis( arg0.getDiagnosis() );</span>
-<span class="fc" id="L60">        ticketUpdateRequestDto.setActionsPerformed( arg0.getActionsPerformed() );</span>
-<span class="fc" id="L61">        ticketUpdateRequestDto.setSolution( arg0.getSolution() );</span>
-<span class="fc" id="L62">        ticketUpdateRequestDto.setFilesGroupIdentifier( arg0.getFilesGroupIdentifier() );</span>
+<span class="fc" id="L43">        ticketUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L44">        ticketUpdateRequestDto.setDescription( arg0.getDescription() );</span>
 
-<span class="fc" id="L64">        return ticketUpdateRequestDto;</span>
+<span class="fc" id="L46">        return ticketUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
