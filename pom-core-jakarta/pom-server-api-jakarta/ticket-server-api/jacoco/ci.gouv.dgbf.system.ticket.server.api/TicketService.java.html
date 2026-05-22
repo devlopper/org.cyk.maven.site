@@ -287,7 +287,7 @@ public interface TicketService extends SpecificService {
    * @return réponse
    */
   @Path(TAKE_IN_CHARGE_PATH)
-  @PUT
+  @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = TAKE_IN_CHARGE_IDENTIFIER)
@@ -395,7 +395,7 @@ public interface TicketService extends SpecificService {
    */
 
   @Path(RESOLVE_PATH)
-  @PUT
+  @POST
   @Consumes(MediaType.APPLICATION_JSON)
   @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
   @Operation(operationId = RESOLVE_IDENTIFIER)
