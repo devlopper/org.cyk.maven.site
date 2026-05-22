@@ -3,6 +3,8 @@
 import ci.gouv.dgbf.extension.core.segregation.HasCategoryAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLevelAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
@@ -13,6 +15,7 @@ import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSolutionDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupAsStringDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -27,11 +30,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L30">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L33">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDescriptionDto, HasFilesGroupIdentifierDto, HasStatusAsStringDto,
     HasStatusCommentDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
     HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
-    HasUserAsStringDto {
+    HasUserAsStringDto, HasDomainAsStringDto, HasLevelAsStringDto, HasUsersGroupAsStringDto {
 
 
   @JsonbProperty(JSON_DESCRIPTION)
@@ -73,6 +76,15 @@ import lombok.Setter;
   @JsonbProperty(JSON_USER_AS_STRING)
   private String userAsString;
 
+  @JsonbProperty(JSON_DOMAIN_AS_STRING)
+  private String domainAsString;
+  
+  @JsonbProperty(JSON_LEVEL_AS_STRING)
+  private String levelAsString;
+  
+  @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
+  private String usersGroupAsString;
+  
   /**
    * Identifiant json de l'identifiant.
    */
