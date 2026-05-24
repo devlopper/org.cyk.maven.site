@@ -4,11 +4,13 @@ import ci.gouv.dgbf.extension.core.segregation.HasCategoryAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLevelAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
+import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
@@ -30,13 +32,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L33">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasDescriptionDto, HasFilesGroupIdentifierDto, HasStatusAsStringDto,
-    HasStatusCommentDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
-    HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
-    HasUserAsStringDto, HasDomainAsStringDto, HasLevelAsStringDto, HasUsersGroupAsStringDto {
+<span class="fc" id="L35">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasDomainIdentifierDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
+    HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasCategoryIdentifierDto,
+    HasCategoryAsStringDto, HasPriorityIdentifierDto, HasPriorityAsStringDto, HasDiagnosticDto,
+    HasSolutionDto, HasUserIdentifierDto, HasUserAsStringDto, HasDomainAsStringDto,
+    HasLevelAsStringDto, HasUsersGroupAsStringDto {
 
 
+  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
+  
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
 
@@ -78,13 +84,13 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
   private String domainAsString;
-  
+
   @JsonbProperty(JSON_LEVEL_AS_STRING)
   private String levelAsString;
-  
+
   @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
   private String usersGroupAsString;
-  
+
   /**
    * Identifiant json de l'identifiant.
    */
@@ -94,11 +100,6 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;ticketChaine&quot;;
-
-  /**
-   * Identifiant json {@link #status}.
-   */
-  public static final String JSON_STATUS = &quot;statut&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

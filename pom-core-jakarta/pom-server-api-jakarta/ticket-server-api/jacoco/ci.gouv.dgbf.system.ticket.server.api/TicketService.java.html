@@ -12,6 +12,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -80,6 +81,19 @@ public interface TicketService extends SpecificService {
      */
     void setDomainIdentifier(String domainIdentifier);
 
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe de fichiers.
+     *
+     * @return identifiant du groupe de fichiers
+     */
+    String getFilesGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe de fichiers.
+     *
+     * @param filesGroupIdentifier identifiant du groupe de fichiers
+     */
+    void setFilesGroupIdentifier(String filesGroupIdentifier);
 
     /**
      * Identifiant json identifiant de la description.
@@ -90,6 +104,11 @@ public interface TicketService extends SpecificService {
      * Identifiant json identifiant de {@link FunctionalDomainDto}.
      */
     String JSON_DOMAIN_IDENTIFIER = HasDomainIdentifierDto.JSON_DOMAIN_IDENTIFIER;
+    
+    /**
+     * Identifiant json identifiant du groupe de fichiers.
+     */
+    String JSON_FILES_GROUP_IDENTIFIER = HasFilesGroupIdentifierDto.JSON_FILES_GROUP_IDENTIFIER;
   }
 
   /**
@@ -125,7 +144,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L147">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
         implements TicketSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -133,6 +152,9 @@ public interface TicketService extends SpecificService {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
+    
+    @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
   }
 
   /**
@@ -169,7 +191,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L172">  public static class TicketGetManyResponseDto</span>
+<span class="fc" id="L194">  public static class TicketGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -259,7 +281,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L262">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements</span>
+<span class="fc" id="L284">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements</span>
         TicketSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -268,6 +290,8 @@ public interface TicketService extends SpecificService {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
 
+    @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
   }
 
   /**
@@ -303,7 +327,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L306">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L330">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -315,7 +339,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L318">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L342">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -328,7 +352,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L331">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L355">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link TicketDto#getStatus()}.
@@ -342,9 +366,9 @@ public interface TicketService extends SpecificService {
      * @param status {@link TicketStatus}
      */
     public void initialize(TicketStatus status) {
-<span class="fc" id="L345">      this.status = status;</span>
+<span class="fc" id="L369">      this.status = status;</span>
 
-<span class="fc" id="L347">    }</span>
+<span class="fc" id="L371">    }</span>
 
     /**
      * {@link TicketDto#JSON_STATUS}.
@@ -411,7 +435,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L414">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L438">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
 
     
   }
@@ -424,7 +448,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L427">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L451">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
 
   }
 
