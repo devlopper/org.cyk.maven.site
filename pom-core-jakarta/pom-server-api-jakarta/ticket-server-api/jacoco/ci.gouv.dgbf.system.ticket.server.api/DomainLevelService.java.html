@@ -143,7 +143,7 @@ public interface DomainLevelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  class DomainLevelCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="nc" id="L146">  class DomainLevelCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements DomainLevelSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -190,7 +190,7 @@ public interface DomainLevelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L193">  public static class DomainLevelGetManyResponseDto</span>
+<span class="nc" id="L193">  public static class DomainLevelGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DomainLevelDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -280,7 +280,7 @@ public interface DomainLevelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L283">  class DomainLevelUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="nc" id="L283">  class DomainLevelUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements DomainLevelSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)

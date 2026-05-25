@@ -32,13 +32,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L35">public class TicketCategoryClient extends AbstractClient&lt;TicketCategoryService&gt;</span>
+<span class="nc" id="L35">public class TicketCategoryClient extends AbstractClient&lt;TicketCategoryService&gt;</span>
     implements GetByIdentifier&lt;TicketCategoryDto&gt;, GetMany&lt;TicketCategoryGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public TicketCategoryClient service(TicketCategoryService service) {
-<span class="fc" id="L41">    return (TicketCategoryClient) super.service(service);</span>
+<span class="nc" id="L41">    return (TicketCategoryClient) super.service(service);</span>
   }
 
   /**
@@ -48,8 +48,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(TicketCategoryCreateRequestDto request) {
-<span class="fc" id="L51">    return new CreateExecutor(TicketCategoryService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L52">        .execute(() -&gt; service().create(request));</span>
+<span class="nc" id="L51">    return new CreateExecutor(TicketCategoryService.CREATE_IDENTIFIER)</span>
+<span class="nc" id="L52">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -62,12 +62,12 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
-<span class="fc" id="L65">    TicketCategoryCreateRequestDto request = new TicketCategoryCreateRequestDto();</span>
-<span class="fc" id="L66">    request.setCode(code);</span>
-<span class="fc" id="L67">    request.setName(name);</span>
-<span class="fc" id="L68">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L69">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L70">    return create(request);</span>
+<span class="nc" id="L65">    TicketCategoryCreateRequestDto request = new TicketCategoryCreateRequestDto();</span>
+<span class="nc" id="L66">    request.setCode(code);</span>
+<span class="nc" id="L67">    request.setName(name);</span>
+<span class="nc" id="L68">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L69">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L70">    return create(request);</span>
   }
 
   /**
@@ -77,9 +77,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketCategoryGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L80">    return new GetOneExecutor&lt;TicketCategoryGetManyResponseDto&gt;(</span>
+<span class="nc" id="L80">    return new GetOneExecutor&lt;TicketCategoryGetManyResponseDto&gt;(</span>
       TicketCategoryGetManyResponseDto.class,
-<span class="fc" id="L82">        TicketCategoryService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="nc" id="L82">        TicketCategoryService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -95,13 +95,13 @@ import lombok.experimental.Accessors;
   @Override
   public TicketCategoryGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L98">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L99">    request.setProjection(projection);</span>
-<span class="fc" id="L100">    request.setFilter(filter);</span>
-<span class="fc" id="L101">    request.setPage(page);</span>
-<span class="fc" id="L102">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L103">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L104">    return getMany(request);</span>
+<span class="nc" id="L98">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="nc" id="L99">    request.setProjection(projection);</span>
+<span class="nc" id="L100">    request.setFilter(filter);</span>
+<span class="nc" id="L101">    request.setPage(page);</span>
+<span class="nc" id="L102">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L103">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L104">    return getMany(request);</span>
   }
 
   /**
@@ -111,8 +111,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketCategoryDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L114">    return new GetOneExecutor&lt;TicketCategoryDto&gt;(TicketCategoryDto.class,</span>
-<span class="fc" id="L115">        TicketCategoryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="nc" id="L114">    return new GetOneExecutor&lt;TicketCategoryDto&gt;(TicketCategoryDto.class,</span>
+<span class="nc" id="L115">        TicketCategoryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -126,12 +126,12 @@ import lombok.experimental.Accessors;
    */
   public TicketCategoryDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L129">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L130">    request.setProjection(projection);</span>
-<span class="fc" id="L131">    request.setFilter(filter);</span>
-<span class="fc" id="L132">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L133">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L134">    return getOne(request);</span>
+<span class="nc" id="L129">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="nc" id="L130">    request.setProjection(projection);</span>
+<span class="nc" id="L131">    request.setFilter(filter);</span>
+<span class="nc" id="L132">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L133">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L134">    return getOne(request);</span>
   }
 
   /**
@@ -141,9 +141,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public TicketCategoryDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L144">    return new GetOneExecutor&lt;TicketCategoryDto&gt;(TicketCategoryDto.class,</span>
+<span class="nc" id="L144">    return new GetOneExecutor&lt;TicketCategoryDto&gt;(TicketCategoryDto.class,</span>
         TicketCategoryService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L146">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="nc" id="L146">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -159,12 +159,12 @@ import lombok.experimental.Accessors;
   public TicketCategoryDto getByIdentifier(String identifier,
       ProjectionDto projection, String auditWho,
       String auditSession) {
-<span class="fc" id="L162">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L163">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L164">    request.setProjection(projection);</span>
-<span class="fc" id="L165">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L166">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L167">    return getByIdentifier(request);</span>
+<span class="nc" id="L162">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="nc" id="L163">    request.setIdentifier(identifier);</span>
+<span class="nc" id="L164">    request.setProjection(projection);</span>
+<span class="nc" id="L165">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L166">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L167">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -174,8 +174,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(TicketCategoryUpdateRequestDto request) {
-<span class="fc" id="L177">    return new IdentifiableExecutor(TicketCategoryService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L178">        .execute(() -&gt; service().update(request));</span>
+<span class="nc" id="L177">    return new IdentifiableExecutor(TicketCategoryService.UPDATE_IDENTIFIER)</span>
+<span class="nc" id="L178">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -190,13 +190,13 @@ import lombok.experimental.Accessors;
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
       String auditWho, String auditSession) {
-<span class="fc" id="L193">    TicketCategoryUpdateRequestDto request = new TicketCategoryUpdateRequestDto();</span>
-<span class="fc" id="L194">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L195">    request.setName(name);</span>
-<span class="fc" id="L196">    request.setCode(code);</span>
-<span class="fc" id="L197">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L198">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L199">    return update(request);</span>
+<span class="nc" id="L193">    TicketCategoryUpdateRequestDto request = new TicketCategoryUpdateRequestDto();</span>
+<span class="nc" id="L194">    request.setIdentifier(identifier);</span>
+<span class="nc" id="L195">    request.setName(name);</span>
+<span class="nc" id="L196">    request.setCode(code);</span>
+<span class="nc" id="L197">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L198">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L199">    return update(request);</span>
   }
 
   /**
@@ -206,8 +206,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L209">    return new IdentifiableExecutor(TicketCategoryService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L210">        .execute(() -&gt; service().delete(request));</span>
+<span class="nc" id="L209">    return new IdentifiableExecutor(TicketCategoryService.DELETE_IDENTIFIER)</span>
+<span class="nc" id="L210">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -221,11 +221,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L224">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L225">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L226">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L227">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L228">    return delete(request);</span>
+<span class="nc" id="L224">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="nc" id="L225">    request.setIdentifier(identifier);</span>
+<span class="nc" id="L226">    request.setAuditWho(auditWho);</span>
+<span class="nc" id="L227">    request.setAuditSession(auditSession);</span>
+<span class="nc" id="L228">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

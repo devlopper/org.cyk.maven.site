@@ -13,40 +13,40 @@ import lombok.Getter;
  * @author Arnaud
  *
  */
-<span class="fc" id="L16">@Getter</span>
+<span class="nc" id="L16">@Getter</span>
 public enum TicketStatus {
 
   /**
    * Créé.
    */
-<span class="fc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+<span class="nc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
 
   /**
    * Pris en charge.
    */
-<span class="fc" id="L27">  IN_PROGRESS(TicketStatusCode.IN_PROGRESS, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;),</span>
+<span class="nc" id="L27">  IN_PROGRESS(TicketStatusCode.IN_PROGRESS, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;),</span>
 
   /**
    * Résolu.
    */
-<span class="fc" id="L32">  RESOLVED(TicketStatusCode.RESOLVED, &quot;Résolu&quot;, &quot;Résolution&quot;),</span>
+<span class="nc" id="L32">  RESOLVED(TicketStatusCode.RESOLVED, &quot;Résolu&quot;, &quot;Résolution&quot;),</span>
 
   /**
    * Satisfait.
    */
-<span class="fc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;),</span>
+<span class="nc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;),</span>
 
   /**
    * Non satisfait.
    */
-<span class="fc" id="L42">  UNSATISFIED(TicketStatusCode.UNSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;);</span>
+<span class="nc" id="L42">  UNSATISFIED(TicketStatusCode.UNSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;);</span>
 
 
-<span class="fc" id="L45">  private TicketStatus(String code, String name, String action) {</span>
-<span class="fc" id="L46">    this.code = code;</span>
-<span class="fc" id="L47">    this.name = name;</span>
-<span class="fc" id="L48">    this.action = action;</span>
-<span class="fc" id="L49">  }</span>
+<span class="nc" id="L45">  private TicketStatus(String code, String name, String action) {</span>
+<span class="nc" id="L46">    this.code = code;</span>
+<span class="nc" id="L47">    this.name = name;</span>
+<span class="nc" id="L48">    this.action = action;</span>
+<span class="nc" id="L49">  }</span>
 
   private String code;
   private String name;
@@ -55,7 +55,7 @@ public enum TicketStatus {
 
   @Override
   public String toString() {
-<span class="fc" id="L58">    return name;</span>
+<span class="nc" id="L58">    return name;</span>
   }
 
   /**
@@ -65,16 +65,16 @@ public enum TicketStatus {
    * @return {@link TicketStatus}
    */
   public static TicketStatus getByCode(String code) {
-<span class="fc" id="L68">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L69">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+<span class="nc" id="L68">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="nc" id="L69">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L73">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L74">    IN_PROGRESS.previous = Core.getSet(List.of(CREATED, UNSATISFIED));</span>
-<span class="fc" id="L75">    RESOLVED.previous = Core.getSet(List.of(IN_PROGRESS));</span>
-<span class="fc" id="L76">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="fc" id="L77">    UNSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="fc" id="L78">  }</span>
+<span class="nc" id="L73">    CREATED.previous = Collections.emptySet();</span>
+<span class="nc" id="L74">    IN_PROGRESS.previous = Core.getSet(List.of(CREATED, UNSATISFIED));</span>
+<span class="nc" id="L75">    RESOLVED.previous = Core.getSet(List.of(IN_PROGRESS));</span>
+<span class="nc" id="L76">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="nc" id="L77">    UNSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="nc" id="L78">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

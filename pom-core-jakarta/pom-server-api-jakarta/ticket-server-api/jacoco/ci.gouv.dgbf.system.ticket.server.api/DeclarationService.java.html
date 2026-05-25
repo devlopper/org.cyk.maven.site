@@ -130,7 +130,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L133">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="nc" id="L133">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
         implements DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
@@ -174,7 +174,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L177">  public static class DeclarationGetManyResponseDto</span>
+<span class="nc" id="L177">  public static class DeclarationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DeclarationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -264,7 +264,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L267">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto implements</span>
+<span class="nc" id="L267">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto implements</span>
         DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
@@ -332,7 +332,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L335">  class CreateIncidentRequestDto extends AbstractAuditedRequestMultipartDto  {</span>
+<span class="nc" id="L335">  class CreateIncidentRequestDto extends AbstractAuditedRequestMultipartDto  {</span>
 
     /**
      * Objet.

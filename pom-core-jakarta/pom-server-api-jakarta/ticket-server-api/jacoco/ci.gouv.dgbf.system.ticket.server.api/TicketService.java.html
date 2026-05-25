@@ -147,7 +147,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L150">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="nc" id="L150">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements TicketSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -193,7 +193,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L196">  public static class TicketGetManyResponseDto extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {</span>
+<span class="nc" id="L196">  public static class TicketGetManyResponseDto extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;TicketDto&gt; datas;
@@ -282,7 +282,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L285">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements TicketSaveRequestDto {</span>
+<span class="nc" id="L285">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements TicketSaveRequestDto {</span>
 
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
@@ -327,7 +327,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L330">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto</span>
+<span class="nc" id="L330">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto</span>
       implements HasUserIdentifierDto, HasCategoryIdentifierDto, HasPriorityIdentifierDto {
 
     @JsonbProperty(JSON_USER_IDENTIFIER)
@@ -348,7 +348,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L351">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
+<span class="nc" id="L351">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -361,7 +361,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L364">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
+<span class="nc" id="L364">  class ProcessResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * {@link TicketDto#getStatus()}.
@@ -375,9 +375,9 @@ public interface TicketService extends SpecificService {
      * @param status {@link TicketStatus}
      */
     public void initialize(TicketStatus status) {
-<span class="fc" id="L378">      this.status = status;</span>
+<span class="nc" id="L378">      this.status = status;</span>
 
-<span class="fc" id="L380">    }</span>
+<span class="nc" id="L380">    }</span>
 
     /**
      * {@link TicketDto#JSON_STATUS}.
@@ -444,7 +444,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L447">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
+<span class="nc" id="L447">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
 
 
   }
@@ -457,7 +457,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L460">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
+<span class="nc" id="L460">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
 
   }
 
