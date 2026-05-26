@@ -13,49 +13,52 @@ import lombok.Getter;
  * @author Arnaud
  *
  */
-<span class="nc" id="L16">@Getter</span>
+<span class="fc" id="L16">@Getter</span>
 public enum TicketStatus {
 
   /**
    * Créé.
    */
-<span class="nc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;),</span>
+<span class="fc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;, &quot;Créer&quot;),</span>
 
   /**
    * Pris en charge.
    */
-<span class="nc" id="L27">  IN_PROGRESS(TicketStatusCode.IN_PROGRESS, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;),</span>
+<span class="fc" id="L27">  IN_PROGRESS(TicketStatusCode.IN_PROGRESS, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;,</span>
+      &quot;Prendre en charge&quot;),
 
   /**
    * Résolu.
    */
-<span class="nc" id="L32">  RESOLVED(TicketStatusCode.RESOLVED, &quot;Résolu&quot;, &quot;Résolution&quot;),</span>
+<span class="fc" id="L33">  RESOLVED(TicketStatusCode.RESOLVED, &quot;Résolu&quot;, &quot;Résolution&quot;, &quot;Résoudre&quot;),</span>
 
   /**
    * Satisfait.
    */
-<span class="nc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;),</span>
+<span class="fc" id="L38">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;, &quot;Satisfaire&quot;),</span>
 
   /**
    * Non satisfait.
    */
-<span class="nc" id="L42">  UNSATISFIED(TicketStatusCode.UNSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;);</span>
+<span class="fc" id="L43">  UNSATISFIED(TicketStatusCode.UNSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;, &quot;Insatisfaire&quot;);</span>
 
 
-<span class="nc" id="L45">  private TicketStatus(String code, String name, String action) {</span>
-<span class="nc" id="L46">    this.code = code;</span>
-<span class="nc" id="L47">    this.name = name;</span>
-<span class="nc" id="L48">    this.action = action;</span>
-<span class="nc" id="L49">  }</span>
+<span class="fc" id="L46">  private TicketStatus(String code, String name, String actionName, String actionVerb) {</span>
+<span class="fc" id="L47">    this.code = code;</span>
+<span class="fc" id="L48">    this.name = name;</span>
+<span class="fc" id="L49">    this.actionName = actionName;</span>
+<span class="fc" id="L50">    this.actionVerb = actionVerb;</span>
+<span class="fc" id="L51">  }</span>
 
   private String code;
   private String name;
-  private String action;
+  private String actionName;
+  private String actionVerb;
   private Set&lt;TicketStatus&gt; previous;
 
   @Override
   public String toString() {
-<span class="nc" id="L58">    return name;</span>
+<span class="fc" id="L61">    return name;</span>
   }
 
   /**
@@ -65,16 +68,16 @@ public enum TicketStatus {
    * @return {@link TicketStatus}
    */
   public static TicketStatus getByCode(String code) {
-<span class="nc" id="L68">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="nc" id="L69">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L71">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L72">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="nc" id="L73">    CREATED.previous = Collections.emptySet();</span>
-<span class="nc" id="L74">    IN_PROGRESS.previous = Core.getSet(List.of(CREATED, UNSATISFIED));</span>
-<span class="nc" id="L75">    RESOLVED.previous = Core.getSet(List.of(IN_PROGRESS));</span>
-<span class="nc" id="L76">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="nc" id="L77">    UNSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="nc" id="L78">  }</span>
+<span class="fc" id="L76">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L77">    IN_PROGRESS.previous = Core.getSet(List.of(CREATED, UNSATISFIED));</span>
+<span class="fc" id="L78">    RESOLVED.previous = Core.getSet(List.of(IN_PROGRESS));</span>
+<span class="fc" id="L79">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L80">    UNSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L81">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
