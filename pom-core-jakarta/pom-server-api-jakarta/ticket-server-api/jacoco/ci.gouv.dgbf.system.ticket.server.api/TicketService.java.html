@@ -18,8 +18,10 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasContestableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasResolvableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSatisfiableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasSolutionDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -152,7 +154,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L155">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L157">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements TicketSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -198,7 +200,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L201">  public static class TicketGetManyResponseDto extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {</span>
+<span class="fc" id="L203">  public static class TicketGetManyResponseDto extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;TicketDto&gt; datas;
@@ -273,7 +275,7 @@ public interface TicketService extends SpecificService {
   @Path(UPDATE_PATH)
   @PUT
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = UPDATE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
@@ -287,7 +289,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L290">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements TicketSaveRequestDto {</span>
+<span class="fc" id="L292">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements TicketSaveRequestDto {</span>
 
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
@@ -300,63 +302,29 @@ public interface TicketService extends SpecificService {
   }
 
   /**
-   * Identifiant du service de prise en charge .
+   * Identifiant du service de suppression.
    */
-  String TAKE_IN_CHARGE_IDENTIFIER = &quot;PRISE_EN_CHARGE_TICKET&quot;;
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_TICKET&quot;;
 
   /**
-   * Chemin du service prise en charge .
+   * Chemin du service de suppression.
    */
-  String TAKE_IN_CHARGE_PATH = &quot;prise-en-charge&quot;;
+  String DELETE_PATH = &quot;&quot;;
 
   /**
-   * Cette méthode permet de prendre en charge .
+   * Cette méthode permet de supprimer {@link TicketDto}.
    *
    * @param request requête
    * @return réponse
    */
-  @Path(TAKE_IN_CHARGE_PATH)
-  @POST
+  @Path(DELETE_PATH)
+  @DELETE
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = TAKE_IN_CHARGE_IDENTIFIER)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = DELETE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response takeInCharge(TicketTakeInChargeRequestDto request);
-
-  /**
-   * Cette classe représente la requête de prise en charge.
-   *
-   * @author Arnaud
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L335">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto</span>
-      implements HasUserIdentifierDto, HasCategoryIdentifierDto, HasPriorityIdentifierDto {
-
-    @JsonbProperty(JSON_USER_IDENTIFIER)
-    private String userIdentifier;
-
-    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
-    private String categoryIdentifier;
-
-    @JsonbProperty(JSON_PRIORITY_IDENTIFIER)
-    private String priotityIdentifier;
-  }
-
-  /**
-   * Cette classe représente la réponse de prise en charge.
-   *
-   * @author Arnaud
-   *
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L356">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
-
-  }
-
+  Response delete(DeleteOneRequestDto request);
 
   /**
    * Cette classe représente la base des réponses de traitement.
@@ -366,7 +334,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L369">  class ProcessResponseDto extends IdentifiableResponseDto implements HasStatusDto&lt;TicketStatus&gt;,</span>
+<span class="fc" id="L337">  class ProcessResponseDto extends IdentifiableResponseDto implements HasStatusDto&lt;TicketStatus&gt;,</span>
       HasClaimableDto, HasResolvableDto, HasSatisfiableDto, HasContestableDto {
 
     @JsonbProperty(JSON_STATUS)
@@ -390,35 +358,68 @@ public interface TicketService extends SpecificService {
      * @param status {@link TicketStatus}
      */
     public void initialize(TicketStatus status) {
-<span class="fc" id="L393">      this.status = status;</span>
-<span class="fc" id="L394">    }</span>
+<span class="fc" id="L361">      this.status = status;</span>
+<span class="fc" id="L362">    }</span>
   }
-
+  
   /**
-   * Identifiant du service de suppression.
+   * Identifiant du service de prise en charge .
    */
-  String DELETE_IDENTIFIER = &quot;SUPPRESSION_TICKET&quot;;
+  String TAKE_IN_CHARGE_IDENTIFIER = &quot;PRISE_EN_CHARGE_TICKET&quot;;
 
   /**
-   * Chemin du service de suppression.
+   * Chemin du service prise en charge .
    */
-  String DELETE_PATH = &quot;&quot;;
+  String TAKE_IN_CHARGE_PATH = &quot;prise-en-charge&quot;;
 
   /**
-   * Cette méthode permet de supprimer {@link TicketDto}.
+   * Cette méthode permet de prendre en charge .
    *
    * @param request requête
    * @return réponse
    */
-  @Path(DELETE_PATH)
-  @DELETE
+  @Path(TAKE_IN_CHARGE_PATH)
+  @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
-  @Operation(operationId = DELETE_IDENTIFIER)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = TAKE_IN_CHARGE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response delete(DeleteOneRequestDto request);
+      content = {@Content(schema = @Schema(implementation = TicketTakeInChargeResponseDto.class))})
+  Response takeInCharge(TicketTakeInChargeRequestDto request);
 
+  /**
+   * Cette classe représente la requête de prise en charge.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L398">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto</span>
+      implements HasUserIdentifierDto, HasCategoryIdentifierDto, HasPriorityIdentifierDto {
+
+    @JsonbProperty(JSON_USER_IDENTIFIER)
+    private String userIdentifier;
+
+    @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+    private String categoryIdentifier;
+
+    @JsonbProperty(JSON_PRIORITY_IDENTIFIER)
+    private String priotityIdentifier;
+  }
+
+  /**
+   * Cette classe représente la réponse de prise en charge.
+   *
+   * @author Arnaud
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L419">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
+
+  }
+  
   /**
    * Identifiant du service de la resolution.
    */
@@ -439,10 +440,10 @@ public interface TicketService extends SpecificService {
   @Path(RESOLVE_PATH)
   @POST
   @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = RESOLVE_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = TicketResolveResponseDto.class))})
   Response resolve(TicketResolveRequestDto request);
 
   /**
@@ -453,9 +454,14 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L456">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L457">  class TicketResolveRequestDto extends ByIdentifierRequestDto</span>
+      implements HasDiagnosticDto, HasSolutionDto {
 
-
+    @JsonbProperty(JSON_DIAGNOSTIC)
+    private String diagnostic;
+    
+    @JsonbProperty(JSON_SOLUTION)
+    private String solution;
   }
 
   /**
@@ -466,10 +472,120 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L469">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L475">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
 
   }
 
+  /**
+   * Identifiant du service de la satisfaction.
+   */
+  String SATISFY_IDENTIFIER = &quot;SATISFACTION_TICKET&quot;;
 
+  /**
+   * Chemin du service de satisfaction.
+   */
+  String SATISFY_PATH = &quot;satisfaction&quot;;
+
+  /**
+   * Cette méthode permet de satisfaire .
+   *
+   * @param request requête
+   * @return réponse
+   */
+
+  @Path(SATISFY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = SATISFY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = TicketSatisfyResponseDto.class))})
+  Response satisfy(TicketSatisfyRequestDto request);
+
+  /**
+   * Cette classe représente la requête de la non satisfaction.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L513">  class TicketSatisfyRequestDto extends ByIdentifierRequestDto</span>
+      implements HasDiagnosticDto, HasSolutionDto {
+
+    @JsonbProperty(JSON_DIAGNOSTIC)
+    private String diagnostic;
+    
+    @JsonbProperty(JSON_SOLUTION)
+    private String solution;
+  }
+
+  /**
+   * Cette classe représente la réponse de la satisfaction.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L531">  class TicketSatisfyResponseDto extends ProcessResponseDto {</span>
+
+  }
+  
+  /**
+   * Identifiant du service de la non satisfaction.
+   */
+  String UNSATISFY_IDENTIFIER = &quot;NON_SATISFACTION_TICKET&quot;;
+
+  /**
+   * Chemin du service de non satisfaction.
+   */
+  String UNSATISFY_PATH = &quot;non-satisfaction&quot;;
+
+  /**
+   * Cette méthode permet de non satisfaire .
+   *
+   * @param request requête
+   * @return réponse
+   */
+
+  @Path(UNSATISFY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = UNSATISFY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = TicketUnsatisfyResponseDto.class))})
+  Response unsatisfy(TicketUnsatisfyRequestDto request);
+
+  /**
+   * Cette classe représente la requête de la non satisfaction.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L569">  class TicketUnsatisfyRequestDto extends ByIdentifierRequestDto</span>
+      implements HasDiagnosticDto, HasSolutionDto {
+
+    @JsonbProperty(JSON_DIAGNOSTIC)
+    private String diagnostic;
+    
+    @JsonbProperty(JSON_SOLUTION)
+    private String solution;
+  }
+
+  /**
+   * Cette classe représente la réponse de la non satisfaction.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L587">  class TicketUnsatisfyResponseDto extends ProcessResponseDto {</span>
+
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
