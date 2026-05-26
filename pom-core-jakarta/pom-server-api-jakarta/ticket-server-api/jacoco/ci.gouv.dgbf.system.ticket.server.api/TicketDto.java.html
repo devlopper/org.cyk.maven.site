@@ -13,7 +13,11 @@ import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasContestableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasResolvableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasSatisfiableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSolutionDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
@@ -32,17 +36,17 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L35">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L39">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
-    HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasCategoryIdentifierDto,
+    HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
+    HasResolvableDto, HasSatisfiableDto, HasContestableDto, HasCategoryIdentifierDto,
     HasCategoryAsStringDto, HasPriorityIdentifierDto, HasPriorityAsStringDto, HasDiagnosticDto,
     HasSolutionDto, HasUserIdentifierDto, HasUserAsStringDto, HasDomainAsStringDto,
     HasLevelAsStringDto, HasUsersGroupAsStringDto {
 
-
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
   private String domainIdentifier;
-  
+
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
 
@@ -57,6 +61,18 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_STATUS_COMMENT)
   private String statusComment;
+
+  @JsonbProperty(JSON_CLAIMABLE)
+  private Boolean claimable;
+
+  @JsonbProperty(JSON_RESOLVABLE)
+  private Boolean resolvable;
+
+  @JsonbProperty(JSON_SATISFIABLE)
+  private Boolean satisfiable;
+
+  @JsonbProperty(JSON_CONTESTABLE)
+  private Boolean contestable;
 
   @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
   private String categoryIdentifier;

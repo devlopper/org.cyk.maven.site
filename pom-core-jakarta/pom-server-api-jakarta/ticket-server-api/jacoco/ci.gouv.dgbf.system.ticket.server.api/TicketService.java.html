@@ -16,6 +16,10 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasContestableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasResolvableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasSatisfiableDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -148,7 +152,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L151">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L155">  class TicketCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements TicketSaveRequestDto {
 
     @JsonbProperty(JSON_DESCRIPTION)
@@ -194,7 +198,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L197">  public static class TicketGetManyResponseDto extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {</span>
+<span class="fc" id="L201">  public static class TicketGetManyResponseDto extends AbstractGetByPageResponseDto&lt;TicketDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;TicketDto&gt; datas;
@@ -283,7 +287,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L286">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements TicketSaveRequestDto {</span>
+<span class="fc" id="L290">  class TicketUpdateRequestDto extends ByIdentifierRequestDto implements TicketSaveRequestDto {</span>
 
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
@@ -328,7 +332,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L331">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L335">  class TicketTakeInChargeRequestDto extends ByIdentifierRequestDto</span>
       implements HasUserIdentifierDto, HasCategoryIdentifierDto, HasPriorityIdentifierDto {
 
     @JsonbProperty(JSON_USER_IDENTIFIER)
@@ -349,7 +353,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L352">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L356">  class TicketTakeInChargeResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -362,22 +366,32 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L365">  class ProcessResponseDto extends IdentifiableResponseDto implements HasStatusDto&lt;TicketStatus&gt; {</span>
+<span class="fc" id="L369">  class ProcessResponseDto extends IdentifiableResponseDto implements HasStatusDto&lt;TicketStatus&gt;,</span>
+      HasClaimableDto, HasResolvableDto, HasSatisfiableDto, HasContestableDto {
 
-    /**
-     * {@link TicketDto#getStatus()}.
-     */
     @JsonbProperty(JSON_STATUS)
     private TicketStatus status;
 
+    @JsonbProperty(JSON_CLAIMABLE)
+    private Boolean claimable;
+    
+    @JsonbProperty(JSON_RESOLVABLE)
+    private Boolean resolvable;
+    
+    @JsonbProperty(JSON_SATISFIABLE)
+    private Boolean satisfiable;
+    
+    @JsonbProperty(JSON_CONTESTABLE)
+    private Boolean contestable;
+    
     /**
      * Cette méthode permet d'initialiser la réponse à partir du statut.
      *
      * @param status {@link TicketStatus}
      */
     public void initialize(TicketStatus status) {
-<span class="fc" id="L379">      this.status = status;</span>
-<span class="fc" id="L380">    }</span>
+<span class="fc" id="L393">      this.status = status;</span>
+<span class="fc" id="L394">    }</span>
   }
 
   /**
@@ -439,7 +453,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L442">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L456">  class TicketResolveRequestDto extends ByIdentifierRequestDto {</span>
 
 
   }
@@ -452,7 +466,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L455">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L469">  class TicketResolveResponseDto extends ProcessResponseDto {</span>
 
   }
 
