@@ -22,9 +22,9 @@ public enum TicketStatus {
 <span class="fc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;, &quot;Créer&quot;),</span>
 
   /**
-   * {@link TicketStatusCode#IN_PROGRESS}.
+   * {@link TicketStatusCode#CLAIMED}.
    */
-<span class="fc" id="L27">  IN_PROGRESS(TicketStatusCode.IN_PROGRESS, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;,</span>
+<span class="fc" id="L27">  CLAIMED(TicketStatusCode.CLAIMED, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;,</span>
       &quot;Prendre en charge&quot;),
 
   /**
@@ -38,9 +38,9 @@ public enum TicketStatus {
 <span class="fc" id="L38">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;, &quot;Satisfaire&quot;),</span>
 
   /**
-   * {@link TicketStatusCode#UNSATISFIED}.
+   * {@link TicketStatusCode#DISSATISFIED}.
    */
-<span class="fc" id="L43">  UNSATISFIED(TicketStatusCode.UNSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;, &quot;Insatisfaire&quot;),</span>
+<span class="fc" id="L43">  DISSATISFIED(TicketStatusCode.DISSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;, &quot;Insatisfaire&quot;),</span>
   
   /**
    * {@link TicketStatusCode#REDIRECTED}.
@@ -84,10 +84,10 @@ public enum TicketStatus {
 
   static {
 <span class="fc" id="L86">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L87">    IN_PROGRESS.previous = Core.getSet(List.of(CREATED, UNSATISFIED));</span>
-<span class="fc" id="L88">    RESOLVED.previous = Core.getSet(List.of(IN_PROGRESS));</span>
+<span class="fc" id="L87">    CLAIMED.previous = Core.getSet(List.of(CREATED, DISSATISFIED, ESCALATED, REDIRECTED));</span>
+<span class="fc" id="L88">    RESOLVED.previous = Core.getSet(List.of(CLAIMED));</span>
 <span class="fc" id="L89">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="fc" id="L90">    UNSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L90">    DISSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
 <span class="fc" id="L91">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-05-29T10:03:10+0000&quot;,
+    date = &quot;2026-05-30T23:45:34+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -51,19 +51,19 @@ import javax.annotation.processing.Generated;
     }
 
     @Override
-    public TicketService.TicketTakeInChargeRequestDto mapTakeInChargeRequest(TicketDto ticket) {
+    public TicketService.TicketClaimRequestDto mapClaimRequest(TicketDto ticket) {
 <span class="fc bfc" id="L55" title="All 2 branches covered.">        if ( ticket == null ) {</span>
 <span class="fc" id="L56">            return null;</span>
         }
 
-<span class="fc" id="L59">        TicketService.TicketTakeInChargeRequestDto ticketTakeInChargeRequestDto = new TicketService.TicketTakeInChargeRequestDto();</span>
+<span class="fc" id="L59">        TicketService.TicketClaimRequestDto ticketClaimRequestDto = new TicketService.TicketClaimRequestDto();</span>
 
-<span class="fc" id="L61">        ticketTakeInChargeRequestDto.setIdentifier( ticket.getIdentifier() );</span>
-<span class="fc" id="L62">        ticketTakeInChargeRequestDto.setUserIdentifier( ticket.getUserIdentifier() );</span>
-<span class="fc" id="L63">        ticketTakeInChargeRequestDto.setCategoryIdentifier( ticket.getCategoryIdentifier() );</span>
-<span class="fc" id="L64">        ticketTakeInChargeRequestDto.setPriorityIdentifier( ticket.getPriorityIdentifier() );</span>
+<span class="fc" id="L61">        ticketClaimRequestDto.setIdentifier( ticket.getIdentifier() );</span>
+<span class="fc" id="L62">        ticketClaimRequestDto.setUserIdentifier( ticket.getUserIdentifier() );</span>
+<span class="fc" id="L63">        ticketClaimRequestDto.setCategoryIdentifier( ticket.getCategoryIdentifier() );</span>
+<span class="fc" id="L64">        ticketClaimRequestDto.setPriorityIdentifier( ticket.getPriorityIdentifier() );</span>
 
-<span class="fc" id="L66">        return ticketTakeInChargeRequestDto;</span>
+<span class="fc" id="L66">        return ticketClaimRequestDto;</span>
     }
 
     @Override
@@ -90,25 +90,25 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L90">        TicketService.TicketSatisfyRequestDto ticketSatisfyRequestDto = new TicketService.TicketSatisfyRequestDto();</span>
 
 <span class="fc" id="L92">        ticketSatisfyRequestDto.setIdentifier( ticket.getIdentifier() );</span>
-<span class="fc" id="L93">        ticketSatisfyRequestDto.setDiagnostic( ticket.getDiagnostic() );</span>
-<span class="fc" id="L94">        ticketSatisfyRequestDto.setSolution( ticket.getSolution() );</span>
+<span class="fc" id="L93">        ticketSatisfyRequestDto.setStatusComment( ticket.getStatusComment() );</span>
+<span class="fc" id="L94">        ticketSatisfyRequestDto.setFilesGroupIdentifier( ticket.getFilesGroupIdentifier() );</span>
 
 <span class="fc" id="L96">        return ticketSatisfyRequestDto;</span>
     }
 
     @Override
-    public TicketService.TicketUnsatisfyRequestDto mapUnsatisfyRequest(TicketDto ticket) {
+    public TicketService.TicketDissatisfyRequestDto mapUnsatisfyRequest(TicketDto ticket) {
 <span class="fc bfc" id="L101" title="All 2 branches covered.">        if ( ticket == null ) {</span>
 <span class="fc" id="L102">            return null;</span>
         }
 
-<span class="fc" id="L105">        TicketService.TicketUnsatisfyRequestDto ticketUnsatisfyRequestDto = new TicketService.TicketUnsatisfyRequestDto();</span>
+<span class="fc" id="L105">        TicketService.TicketDissatisfyRequestDto ticketDissatisfyRequestDto = new TicketService.TicketDissatisfyRequestDto();</span>
 
-<span class="fc" id="L107">        ticketUnsatisfyRequestDto.setIdentifier( ticket.getIdentifier() );</span>
-<span class="fc" id="L108">        ticketUnsatisfyRequestDto.setDiagnostic( ticket.getDiagnostic() );</span>
-<span class="fc" id="L109">        ticketUnsatisfyRequestDto.setSolution( ticket.getSolution() );</span>
+<span class="fc" id="L107">        ticketDissatisfyRequestDto.setIdentifier( ticket.getIdentifier() );</span>
+<span class="fc" id="L108">        ticketDissatisfyRequestDto.setStatusComment( ticket.getStatusComment() );</span>
+<span class="fc" id="L109">        ticketDissatisfyRequestDto.setFilesGroupIdentifier( ticket.getFilesGroupIdentifier() );</span>
 
-<span class="fc" id="L111">        return ticketUnsatisfyRequestDto;</span>
+<span class="fc" id="L111">        return ticketDissatisfyRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

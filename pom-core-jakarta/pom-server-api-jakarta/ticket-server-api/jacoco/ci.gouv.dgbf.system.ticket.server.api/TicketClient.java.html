@@ -18,16 +18,16 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketClaimRequestDto;
+import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketClaimResponseDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketCreateRequestDto;
+import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketDissatisfyRequestDto;
+import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketDissatisfyResponseDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketGetManyResponseDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketResolveRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketResolveResponseDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketSatisfyRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketSatisfyResponseDto;
-import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketTakeInChargeRequestDto;
-import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketTakeInChargeResponseDto;
-import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketUnsatisfyRequestDto;
-import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketUnsatisfyResponseDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketUpdateRequestDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import lombok.Setter;
@@ -244,14 +244,14 @@ import lombok.experimental.Accessors;
   }
 
   /**
-   * {@link TicketService#takeInCharge}.
+   * {@link TicketService#claim}.
    *
    * @param request requête
    * @return réponse
    */
-  public TicketTakeInChargeResponseDto takeInCharge(TicketTakeInChargeRequestDto request) {
-<span class="fc" id="L253">    return new GetOneExecutor&lt;&gt;(TicketTakeInChargeResponseDto.class,</span>
-<span class="fc" id="L254">        TicketService.TAKE_IN_CHARGE_IDENTIFIER).execute(() -&gt; service().takeInCharge(request));</span>
+  public TicketClaimResponseDto claim(TicketClaimRequestDto request) {
+<span class="fc" id="L253">    return new GetOneExecutor&lt;&gt;(TicketClaimResponseDto.class,</span>
+<span class="fc" id="L254">        TicketService.CLAIM_IDENTIFIER).execute(() -&gt; service().claim(request));</span>
   }
 
   /**
@@ -277,14 +277,14 @@ import lombok.experimental.Accessors;
   }
 
   /**
-   * {@link TicketService#unsatisfy}.
+   * {@link TicketService#dissatisfy}.
    *
    * @param request requête
    * @return réponse
    */
-  public TicketUnsatisfyResponseDto unsatisfy(TicketUnsatisfyRequestDto request) {
-<span class="fc" id="L286">    return new GetOneExecutor&lt;&gt;(TicketUnsatisfyResponseDto.class,</span>
-<span class="fc" id="L287">        TicketService.UNSATISFY_IDENTIFIER).execute(() -&gt; service().unsatisfy(request));</span>
+  public TicketDissatisfyResponseDto dissatisfy(TicketDissatisfyRequestDto request) {
+<span class="fc" id="L286">    return new GetOneExecutor&lt;&gt;(TicketDissatisfyResponseDto.class,</span>
+<span class="fc" id="L287">        TicketService.DISSATISFY_IDENTIFIER).execute(() -&gt; service().dissatisfy(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
