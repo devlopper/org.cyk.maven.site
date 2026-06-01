@@ -6,6 +6,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLevelAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLevelIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
@@ -36,22 +37,29 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L39">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasDomainIdentifierDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
-    HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
-    HasResolvableDto, HasSatisfiableDto, HasContestableDto, HasCategoryIdentifierDto,
-    HasCategoryAsStringDto, HasPriorityIdentifierDto, HasPriorityAsStringDto, HasDiagnosticDto,
-    HasSolutionDto, HasUserIdentifierDto, HasUserAsStringDto, HasDomainAsStringDto,
-    HasLevelAsStringDto, HasUsersGroupAsStringDto {
-
-  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
-  private String domainIdentifier;
+<span class="fc" id="L40">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasDomainIdentifierDto, HasDomainAsStringDto, HasLevelIdentifierDto,
+    HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto, HasStatusDto&lt;TicketStatus&gt;,
+    HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto, HasResolvableDto, HasSatisfiableDto,
+    HasContestableDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
+    HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
+    HasUserAsStringDto, HasUsersGroupAsStringDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
 
   @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
   private String filesGroupIdentifier;
+  
+  // Domain
+
+  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
+
+  @JsonbProperty(JSON_DOMAIN_AS_STRING)
+  private String domainAsString;
+
+  // Status
 
   @JsonbProperty(JSON_STATUS)
   private TicketStatus status;
@@ -74,11 +82,23 @@ import lombok.Setter;
   @JsonbProperty(JSON_CONTESTABLE)
   private Boolean contestable;
 
+  // Level
+
+  @JsonbProperty(JSON_LEVEL_IDENTIFIER)
+  private String levelIdentifier;
+
+  @JsonbProperty(JSON_LEVEL_AS_STRING)
+  private String levelAsString;
+
+  // Category
+
   @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
   private String categoryIdentifier;
 
   @JsonbProperty(JSON_CATEGORY_AS_STRING)
   private String categoryAsString;
+
+  // Priority
 
   @JsonbProperty(JSON_PRIORITY_IDENTIFIER)
   private String priorityIdentifier;
@@ -86,23 +106,21 @@ import lombok.Setter;
   @JsonbProperty(JSON_PRIORITY_AS_STRING)
   private String priorityAsString;
 
+  // Claim result
+
   @JsonbProperty(JSON_DIAGNOSTIC)
   private String diagnostic;
 
   @JsonbProperty(JSON_SOLUTION)
   private String solution;
 
+  // User
+
   @JsonbProperty(JSON_USER_IDENTIFIER)
   private String userIdentifier;
 
   @JsonbProperty(JSON_USER_AS_STRING)
   private String userAsString;
-
-  @JsonbProperty(JSON_DOMAIN_AS_STRING)
-  private String domainAsString;
-
-  @JsonbProperty(JSON_LEVEL_AS_STRING)
-  private String levelAsString;
 
   @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
   private String usersGroupAsString;

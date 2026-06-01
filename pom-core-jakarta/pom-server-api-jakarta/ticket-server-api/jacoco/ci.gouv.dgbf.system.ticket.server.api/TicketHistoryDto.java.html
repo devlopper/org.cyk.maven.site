@@ -1,8 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketHistoryDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">TicketHistoryDto.java</span></div><h1>TicketHistoryDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasCategoryAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLevelAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLevelIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasPriorityAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasPriorityIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
+import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTicketAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTicketIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasSolutionDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUserAsStringDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupAsStringDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,100 +27,91 @@ import lombok.Setter;
 /**
  * Cette classe représente un historique de ticket.
  *
- * @author kimou
+ * @author Christian
  *
  */
 
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L20">public class TicketHistoryDto extends AbstractIdentifiableAuditableDto {</span>
+<span class="fc" id="L37">public class TicketHistoryDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasTicketIdentifierDto, HasTicketAsStringDto, HasDomainIdentifierDto,
+    HasDomainAsStringDto, HasLevelIdentifierDto, HasLevelAsStringDto, HasStatusDto&lt;TicketStatus&gt;,
+    HasStatusAsStringDto, HasStatusCommentDto, HasCategoryIdentifierDto, HasCategoryAsStringDto,
+    HasPriorityIdentifierDto, HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto,
+    HasUserIdentifierDto, HasUserAsStringDto, HasUsersGroupAsStringDto {
 
-  /**
-   * Identifiant de {@link TicketDto}.
-   */
+  // Ticket
+
   @JsonbProperty(JSON_TICKET_IDENTIFIER)
   private String ticketIdentifier;
 
-  /**
-   * Réprésentation en chaine de caractères de {@link TicketDto}.
-   */
   @JsonbProperty(JSON_TICKET_AS_STRING)
   private String ticketAsString;
 
+  // Domain
 
-  /**
-   * Identifiant de {@link SupportLevelDto}.
-   */
-  @JsonbProperty(JSON_SUPPORT_LEVEL_IDENTIFIER)
-  private String supportLevelIdentifier;
+  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
 
-  /**
-   * Réprésentation en chaine de caractères de {@link SupportLevelDto}.
-   */
-  @JsonbProperty(JSON_SUPPORT_LEVEL_AS_STRING)
-  private String supportLevelAsString;
+  @JsonbProperty(JSON_DOMAIN_AS_STRING)
+  private String domainAsString;
 
-  /**
-   * Identifiant de {@link FunctionalDomainDto}.
-   */
-  @JsonbProperty(JSON_FUNCTIONAL_DOMAIN_IDENTIFIER)
-  private String functionalDomainIdentifier;
+  // Status
 
-  /**
-   * Réprésentation en chaine de caractères de {@link FunctionalDomainDto}.
-   */
-  @JsonbProperty(JSON_FUNCTIONAL_DOMAIN_AS_STRING)
-  private String functionalDomainAsString;
-
-  /**
-   * Identifiant de {@link SupportTeamDto}.
-   */
-  @JsonbProperty(JSON_SUPPORT_TEAM_IDENTIFIER)
-  private String supportTeamIdentifier;
-
-  /**
-   * Réprésentation en chaine de caractères de {@link SupportTeamDto}.
-   */
-  @JsonbProperty(JSON_SUPPORT_TEAM_AS_STRING)
-  private String supportTeamAsString;
-
-  /**
-   * Identifiant de {@link SupportTeamMemberDto}.
-   */
-  @JsonbProperty(JSON_SUPPORT_TEAM_MEMBER_IDENTIFIER)
-  private String supportTeamMemberIdentifier;
-
-  /**
-   * Réprésentation en chaine de caractères de {@link SupportTeamDto}.
-   */
-  @JsonbProperty(JSON_SUPPORT_TEAM_MEMBER_AS_STRING)
-  private String supportTeamMemberAsString;
-
-
-  /**
-   * commentaire.
-   */
-  @JsonbProperty(JSON_COMMENT)
-  private String comment;
-
-  /**
-   * Date et heure de la transition métier tracée par cet historique.
-   */
-  @JsonbProperty(JSON_DATE)
-  private LocalDateTime date;
-
-  /**
-   * {@link TicketStatus}.
-   */
   @JsonbProperty(JSON_STATUS)
   private TicketStatus status;
 
-  /**
-   * Représentation en chaine de caractères de {@link TicketStatus}.
-   */
   @JsonbProperty(JSON_STATUS_AS_STRING)
   private String statusAsString;
+
+  @JsonbProperty(JSON_STATUS_COMMENT)
+  private String statusComment;
+
+  // Category
+
+  @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+  private String categoryIdentifier;
+
+  @JsonbProperty(JSON_CATEGORY_AS_STRING)
+  private String categoryAsString;
+
+  // Priority
+
+  @JsonbProperty(JSON_PRIORITY_IDENTIFIER)
+  private String priorityIdentifier;
+
+  @JsonbProperty(JSON_PRIORITY_AS_STRING)
+  private String priorityAsString;
+
+  // Claim result
+
+  @JsonbProperty(JSON_DIAGNOSTIC)
+  private String diagnostic;
+
+  @JsonbProperty(JSON_SOLUTION)
+  private String solution;
+
+  // Users
+  
+  @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
+  private String usersGroupAsString;
+  
+  // User
+
+  @JsonbProperty(JSON_USER_IDENTIFIER)
+  private String userIdentifier;
+
+  @JsonbProperty(JSON_USER_AS_STRING)
+  private String userAsString;
+
+  // Level
+
+  @JsonbProperty(JSON_LEVEL_IDENTIFIER)
+  private String levelIdentifier;
+
+  @JsonbProperty(JSON_LEVEL_AS_STRING)
+  private String levelAsString;
 
   /**
    * Identifiant json de l'identifiant.
@@ -116,94 +124,14 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;historiqueTicketChaine&quot;;
 
   /**
-   * Identifiant champ java {@link #supportLevelIdentifier}.
-   */
-  public static final String JSON_SUPPORT_LEVEL_IDENTIFIER =
-      SupportLevelDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant champ java {@link #supportLevelAsString}.
-   */
-  public static final String JSON_SUPPORT_LEVEL_AS_STRING =
-      SupportLevelDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant champ java {@link #functionalDomainIdentifier}.
-   */
-  public static final String JSON_FUNCTIONAL_DOMAIN_IDENTIFIER =
-      FunctionalDomainDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant champ java {@link #functionalDomainAsString}.
-   */
-  public static final String JSON_FUNCTIONAL_DOMAIN_AS_STRING =
-      FunctionalDomainDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant champ java {@link #supportTeamIdentifier}.
-   */
-  public static final String JSON_SUPPORT_TEAM_IDENTIFIER =
-      SupportTeamDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant champ java {@link #supportTeamAsString}.
-   */
-  public static final String JSON_SUPPORT_TEAM_AS_STRING =
-      SupportTeamDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant champ java {@link #supportTeamMemberIdentifier}.
-   */
-  public static final String JSON_SUPPORT_TEAM_MEMBER_IDENTIFIER =
-      SupportTeamMemberDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant champ java {@link #supportTeamMemberAsString}.
-   */
-  public static final String JSON_SUPPORT_TEAM_MEMBER_AS_STRING =
-      SupportTeamMemberDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant champ java {@link #ticketIdentifier}.
-   */
-  public static final String JSON_TICKET_IDENTIFIER =
-      TicketDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant champ java {@link #ticketAsString}.
-   */
-  public static final String JSON_TICKET_AS_STRING =
-      TicketDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant json champ {@link #status}.
-   */
-  public static final String JSON_STATUS = &quot;statut&quot;;
-
-  /**
-   * Identifiant json champ {@link #statusAsString}.
-   */
-  public static final String JSON_STATUS_AS_STRING = &quot;statutChaine&quot;;
-
-  /**
-   * Identifiant champ java {@link #comment}.
-   */
-  public static final String JSON_COMMENT = &quot;commentaire&quot;;
-
-  /**
-   * Identifiant champ java {@link #date}.
-   */
-  public static final String JSON_DATE = &quot;date&quot;;
-
-  /**
    * Nom pour lecture humaine de la classe.
    */
-  public static final String NAME = &quot;historique ticket&quot;;
+  public static final String NAME = &quot;historique de ticket&quot;;
 
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
-  public static final String PLURAL_NAME = &quot;historiques ticket&quot;;
+  public static final String PLURAL_NAME = &quot;historiques de ticket&quot;;
 
 }
 
