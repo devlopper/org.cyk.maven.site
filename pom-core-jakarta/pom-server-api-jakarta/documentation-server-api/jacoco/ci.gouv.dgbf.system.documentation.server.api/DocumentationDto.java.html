@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentationDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de documentation</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.documentation.server.api</a> &gt; <span class="el_source">DocumentationDto.java</span></div><h1>DocumentationDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.documentation.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasOperationAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasOperationIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasProcessAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasProcessIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRecordAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasRecordIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasSourceAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasSourceIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTextDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.file.server.api.shared.HasFilesCountAsStringDto;
+import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente une documentation.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L29">public class DocumentationDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasProcessIdentifierDto, HasProcessAsStringDto, HasSourceIdentifierDto,
+    HasSourceAsStringDto, HasRecordIdentifierDto, HasRecordAsStringDto, HasOperationIdentifierDto,
+    HasOperationAsStringDto, HasTextDto, HasFilesGroupIdentifierDto, HasFilesCountAsStringDto {
+
+  /* Business Identification Part */
+  
+  // Process
+
+  @JsonbProperty(value = JSON_PROCESS_IDENTIFIER)
+  private String processIdentifier;
+
+  @JsonbProperty(value = JSON_PROCESS_AS_STRING)
+  private String processAsString;
+
+  // Source
+
+  @JsonbProperty(value = JSON_SOURCE_IDENTIFIER)
+  private String sourceIdentifier;
+
+  @JsonbProperty(value = JSON_SOURCE_AS_STRING)
+  private String sourceAsString;
+
+  // Record
+
+  @JsonbProperty(value = JSON_RECORD_IDENTIFIER)
+  private String recordIdentifier;
+
+  @JsonbProperty(value = JSON_RECORD_AS_STRING)
+  private String recordAsString;
+
+  // Operation
+
+  @JsonbProperty(value = JSON_OPERATION_IDENTIFIER)
+  private String operationIdentifier;
+
+  @JsonbProperty(value = JSON_OPERATION_AS_STRING)
+  private String operationAsString;
+
+  /* Data Part */
+  
+  // Text
+
+  @JsonbProperty(JSON_TEXT)
+  private String text;
+
+  // Files
+
+  @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+  private String filesGroupIdentifier;
+
+  @JsonbProperty(JSON_FILES_COUNT_AS_STRING)
+  private String filesCountAsString;
+
+
+  /**
+   * Identifiant json de identifiant de {@link DocumentationDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idDocumentation&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de {@link DocumentationDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;documentationChaine&quot;;
+
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;documentation&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
