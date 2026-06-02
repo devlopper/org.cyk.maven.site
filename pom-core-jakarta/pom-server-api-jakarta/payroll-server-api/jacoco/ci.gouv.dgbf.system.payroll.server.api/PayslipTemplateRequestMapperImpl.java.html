@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-03-31T14:42:43+0000&quot;,
+    date = &quot;2026-06-02T18:33:46+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,25 +25,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PayslipTemplateService.PayslipTemplateCreateRequestDto payslipTemplateCreateRequestDto = new PayslipTemplateService.PayslipTemplateCreateRequestDto();</span>
 
-<span class="fc" id="L28">        payslipTemplateCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        payslipTemplateCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L28">        payslipTemplateCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        payslipTemplateCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L30">        payslipTemplateCreateRequestDto.setName( arg0.getName() );</span>
 
-<span class="fc" id="L31">        return payslipTemplateCreateRequestDto;</span>
+<span class="fc" id="L32">        return payslipTemplateCreateRequestDto;</span>
     }
 
     @Override
     public PayslipTemplateService.PayslipTemplateUpdateRequestDto mapUpdate(PayslipTemplateDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L40">        PayslipTemplateService.PayslipTemplateUpdateRequestDto payslipTemplateUpdateRequestDto = new PayslipTemplateService.PayslipTemplateUpdateRequestDto();</span>
+<span class="fc" id="L41">        PayslipTemplateService.PayslipTemplateUpdateRequestDto payslipTemplateUpdateRequestDto = new PayslipTemplateService.PayslipTemplateUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        payslipTemplateUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        payslipTemplateUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L44">        payslipTemplateUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L43">        payslipTemplateUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L44">        payslipTemplateUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        payslipTemplateUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        payslipTemplateUpdateRequestDto.setName( arg0.getName() );</span>
 
-<span class="fc" id="L46">        return payslipTemplateUpdateRequestDto;</span>
+<span class="fc" id="L48">        return payslipTemplateUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

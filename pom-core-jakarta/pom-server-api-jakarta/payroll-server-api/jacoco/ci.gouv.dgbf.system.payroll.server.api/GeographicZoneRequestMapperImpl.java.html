@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-03-31T14:42:43+0000&quot;,
+    date = &quot;2026-06-02T18:33:46+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,25 +25,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        GeographicZoneService.GeographicZoneCreateRequestDto geographicZoneCreateRequestDto = new GeographicZoneService.GeographicZoneCreateRequestDto();</span>
 
-<span class="fc" id="L28">        geographicZoneCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        geographicZoneCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L28">        geographicZoneCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        geographicZoneCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L30">        geographicZoneCreateRequestDto.setName( arg0.getName() );</span>
 
-<span class="fc" id="L31">        return geographicZoneCreateRequestDto;</span>
+<span class="fc" id="L32">        return geographicZoneCreateRequestDto;</span>
     }
 
     @Override
     public GeographicZoneService.GeographicZoneUpdateRequestDto mapUpdate(GeographicZoneDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L40">        GeographicZoneService.GeographicZoneUpdateRequestDto geographicZoneUpdateRequestDto = new GeographicZoneService.GeographicZoneUpdateRequestDto();</span>
+<span class="fc" id="L41">        GeographicZoneService.GeographicZoneUpdateRequestDto geographicZoneUpdateRequestDto = new GeographicZoneService.GeographicZoneUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        geographicZoneUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        geographicZoneUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L44">        geographicZoneUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L43">        geographicZoneUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L44">        geographicZoneUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        geographicZoneUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        geographicZoneUpdateRequestDto.setName( arg0.getName() );</span>
 
-<span class="fc" id="L46">        return geographicZoneUpdateRequestDto;</span>
+<span class="fc" id="L48">        return geographicZoneUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

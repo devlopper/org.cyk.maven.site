@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-03-31T14:42:43+0000&quot;,
+    date = &quot;2026-06-02T18:33:46+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,25 +25,27 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PayrollComponentNatureService.PayrollComponentNatureCreateRequestDto payrollComponentNatureCreateRequestDto = new PayrollComponentNatureService.PayrollComponentNatureCreateRequestDto();</span>
 
-<span class="fc" id="L28">        payrollComponentNatureCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        payrollComponentNatureCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L28">        payrollComponentNatureCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        payrollComponentNatureCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L30">        payrollComponentNatureCreateRequestDto.setName( arg0.getName() );</span>
 
-<span class="fc" id="L31">        return payrollComponentNatureCreateRequestDto;</span>
+<span class="fc" id="L32">        return payrollComponentNatureCreateRequestDto;</span>
     }
 
     @Override
     public PayrollComponentNatureService.PayrollComponentNatureUpdateRequestDto mapUpdate(PayrollComponentNatureDto arg0) {
-<span class="fc bfc" id="L36" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L37">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L40">        PayrollComponentNatureService.PayrollComponentNatureUpdateRequestDto payrollComponentNatureUpdateRequestDto = new PayrollComponentNatureService.PayrollComponentNatureUpdateRequestDto();</span>
+<span class="fc" id="L41">        PayrollComponentNatureService.PayrollComponentNatureUpdateRequestDto payrollComponentNatureUpdateRequestDto = new PayrollComponentNatureService.PayrollComponentNatureUpdateRequestDto();</span>
 
-<span class="fc" id="L42">        payrollComponentNatureUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L43">        payrollComponentNatureUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L44">        payrollComponentNatureUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L43">        payrollComponentNatureUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L44">        payrollComponentNatureUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        payrollComponentNatureUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L46">        payrollComponentNatureUpdateRequestDto.setName( arg0.getName() );</span>
 
-<span class="fc" id="L46">        return payrollComponentNatureUpdateRequestDto;</span>
+<span class="fc" id="L48">        return payrollComponentNatureUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

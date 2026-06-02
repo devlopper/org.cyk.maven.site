@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-03-31T14:42:43+0000&quot;,
+    date = &quot;2026-06-02T18:33:46+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,27 +25,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        PayrollJobService.PayrollJobCreateRequestDto payrollJobCreateRequestDto = new PayrollJobService.PayrollJobCreateRequestDto();</span>
 
-<span class="fc" id="L28">        payrollJobCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L29">        payrollJobCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L30">        payrollJobCreateRequestDto.setGradeIdentifier( arg0.getGradeIdentifier() );</span>
+<span class="fc" id="L28">        payrollJobCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        payrollJobCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        payrollJobCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L31">        payrollJobCreateRequestDto.setGradeIdentifier( arg0.getGradeIdentifier() );</span>
 
-<span class="fc" id="L32">        return payrollJobCreateRequestDto;</span>
+<span class="fc" id="L33">        return payrollJobCreateRequestDto;</span>
     }
 
     @Override
     public PayrollJobService.PayrollJobUpdateRequestDto mapUpdate(PayrollJobDto arg0) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L38">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L41">        PayrollJobService.PayrollJobUpdateRequestDto payrollJobUpdateRequestDto = new PayrollJobService.PayrollJobUpdateRequestDto();</span>
+<span class="fc" id="L42">        PayrollJobService.PayrollJobUpdateRequestDto payrollJobUpdateRequestDto = new PayrollJobService.PayrollJobUpdateRequestDto();</span>
 
-<span class="fc" id="L43">        payrollJobUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L44">        payrollJobUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L45">        payrollJobUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L46">        payrollJobUpdateRequestDto.setGradeIdentifier( arg0.getGradeIdentifier() );</span>
+<span class="fc" id="L44">        payrollJobUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L45">        payrollJobUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        payrollJobUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L47">        payrollJobUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L48">        payrollJobUpdateRequestDto.setGradeIdentifier( arg0.getGradeIdentifier() );</span>
 
-<span class="fc" id="L48">        return payrollJobUpdateRequestDto;</span>
+<span class="fc" id="L50">        return payrollJobUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
