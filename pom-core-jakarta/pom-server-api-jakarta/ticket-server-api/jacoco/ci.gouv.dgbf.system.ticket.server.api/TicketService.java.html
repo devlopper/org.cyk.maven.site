@@ -613,5 +613,114 @@ public interface TicketService extends SpecificService {
 <span class="fc" id="L613">  class TicketDissatisfyResponseDto extends ProcessResponseDto {</span>
 
   }
+  
+  /**
+   * Identifiant du service de redirection.
+   */
+  String REDIRECT_IDENTIFIER = &quot;REDIRECTION_TICKET&quot;;
+
+  /**
+   * Chemin du service de redirection.
+   */
+  String REDIRECT_PATH = &quot;redirection&quot;;
+
+  /**
+   * Cette méthode permet de rediriger .
+   *
+   * @param request requête
+   * @return réponse
+   */
+
+  @Path(REDIRECT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = REDIRECT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = TicketRedirectResponseDto.class))})
+  Response redirect(TicketRedirectRequestDto request);
+
+  /**
+   * Cette classe représente la requête de redirection.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L651">  class TicketRedirectRequestDto extends ByIdentifierRequestDto</span>
+      implements HasStatusCommentDto, HasFilesGroupIdentifierDto {
+    @JsonbProperty(JSON_STATUS_COMMENT)
+    private String statusComment;
+
+    @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
+  }
+
+  /**
+   * Cette classe représente la réponse de redirection.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L668">  class TicketRedirectResponseDto extends ProcessResponseDto {</span>
+
+  }
+  
+  /**
+   * Identifiant du service d'escalade.
+   */
+  String ESCALATE_IDENTIFIER = &quot;ESCALADE_TICKET&quot;;
+
+  /**
+   * Chemin du service de redirection.
+   */
+  String ESCALATE_PATH = &quot;escalade&quot;;
+
+  /**
+   * Cette méthode permet de d'escalader .
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ESCALATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = ESCALATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = TicketEscalateResponseDto.class))})
+  Response escalate(TicketEscalateRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'escalade.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L705">  class TicketEscalateRequestDto extends ByIdentifierRequestDto</span>
+      implements HasStatusCommentDto, HasFilesGroupIdentifierDto {
+    @JsonbProperty(JSON_STATUS_COMMENT)
+    private String statusComment;
+
+    @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
+  }
+
+  /**
+   * Cette classe représente la réponse d'escalade.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L722">  class TicketEscalateResponseDto extends ProcessResponseDto {</span>
+
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
