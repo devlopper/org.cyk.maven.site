@@ -19,8 +19,8 @@ import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
-import ci.gouv.dgbf.system.ticket.server.api.shared.HasContestableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasDissatisfiableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasResolvableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSatisfiableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSolutionDto;
@@ -362,7 +362,7 @@ public interface TicketService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L364">  class ProcessResponseDto extends IdentifiableResponseDto implements HasStatusDto&lt;TicketStatus&gt;,</span>
-      HasClaimableDto, HasResolvableDto, HasSatisfiableDto, HasContestableDto {
+      HasClaimableDto, HasResolvableDto, HasSatisfiableDto, HasDissatisfiableDto {
 
     @JsonbProperty(JSON_STATUS)
     private TicketStatus status;
@@ -376,8 +376,8 @@ public interface TicketService extends SpecificService {
     @JsonbProperty(JSON_SATISFIABLE)
     private Boolean satisfiable;
 
-    @JsonbProperty(JSON_CONTESTABLE)
-    private Boolean contestable;
+    @JsonbProperty(JSON_DISSATISFIABLE)
+    private Boolean dissatisfiable;
 
     /**
      * Cette méthode permet d'initialiser la réponse à partir du statut.

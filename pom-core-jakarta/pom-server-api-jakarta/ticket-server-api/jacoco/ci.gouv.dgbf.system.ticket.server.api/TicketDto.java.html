@@ -15,8 +15,10 @@ import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
-import ci.gouv.dgbf.system.ticket.server.api.shared.HasContestableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasDissatisfiableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasEscalatableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasRedirectableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasResolvableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSatisfiableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSolutionDto;
@@ -37,20 +39,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L40">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L42">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasLevelIdentifierDto,
     HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto, HasStatusDto&lt;TicketStatus&gt;,
     HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto, HasResolvableDto, HasSatisfiableDto,
-    HasContestableDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
-    HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
-    HasUserAsStringDto, HasUsersGroupAsStringDto {
+    HasDissatisfiableDto, HasRedirectableDto, HasEscalatableDto, HasCategoryIdentifierDto,
+    HasCategoryAsStringDto, HasPriorityIdentifierDto, HasPriorityAsStringDto, HasDiagnosticDto,
+    HasSolutionDto, HasUserIdentifierDto, HasUserAsStringDto, HasUsersGroupAsStringDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
 
   @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
   private String filesGroupIdentifier;
-  
+
   // Domain
 
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -79,9 +81,15 @@ import lombok.Setter;
   @JsonbProperty(JSON_SATISFIABLE)
   private Boolean satisfiable;
 
-  @JsonbProperty(JSON_CONTESTABLE)
-  private Boolean contestable;
+  @JsonbProperty(JSON_DISSATISFIABLE)
+  private Boolean dissatisfiable;
 
+  @JsonbProperty(JSON_REDIRECTABLE)
+  private Boolean redirectable;
+  
+  @JsonbProperty(JSON_ESCALATABLE)
+  private Boolean escalatable;
+  
   // Level
 
   @JsonbProperty(JSON_LEVEL_IDENTIFIER)
