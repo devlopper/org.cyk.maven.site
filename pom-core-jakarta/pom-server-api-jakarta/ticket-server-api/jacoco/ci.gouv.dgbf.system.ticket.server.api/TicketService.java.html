@@ -649,7 +649,10 @@ public interface TicketService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L651">  class TicketRedirectRequestDto extends ByIdentifierRequestDto</span>
-      implements HasStatusCommentDto, HasFilesGroupIdentifierDto {
+      implements HasDomainIdentifierDto, HasStatusCommentDto, HasFilesGroupIdentifierDto {
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
+    
     @JsonbProperty(JSON_STATUS_COMMENT)
     private String statusComment;
 
@@ -665,7 +668,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L668">  class TicketRedirectResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L671">  class TicketRedirectResponseDto extends ProcessResponseDto {</span>
 
   }
   
@@ -702,7 +705,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L705">  class TicketEscalateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L708">  class TicketEscalateRequestDto extends ByIdentifierRequestDto</span>
       implements HasStatusCommentDto, HasFilesGroupIdentifierDto {
     @JsonbProperty(JSON_STATUS_COMMENT)
     private String statusComment;
@@ -719,7 +722,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L722">  class TicketEscalateResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L725">  class TicketEscalateResponseDto extends ProcessResponseDto {</span>
 
   }
 }
