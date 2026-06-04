@@ -19,7 +19,7 @@ public enum TicketStatus {
   /**
    * {@link TicketStatusCode#CREATED}.
    */
-<span class="fc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;, &quot;Créer&quot;),</span>
+<span class="fc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;, &quot;Créer&quot;, &quot;Nouveau ticket&quot;),</span>
 
   /**
    * {@link TicketStatusCode#CLAIMED}.
@@ -34,40 +34,51 @@ public enum TicketStatus {
   /**
    * {@link TicketStatusCode#SATISFIED}.
    */
-<span class="fc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;, &quot;Satisfaire&quot;),</span>
+<span class="fc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;, &quot;Satisfaire&quot;,</span>
+      &quot;Oui, je suis satisfait&quot;),
 
   /**
    * {@link TicketStatusCode#DISSATISFIED}.
    */
-<span class="fc" id="L42">  DISSATISFIED(TicketStatusCode.DISSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;, &quot;Insatisfaire&quot;),</span>
+<span class="fc" id="L43">  DISSATISFIED(TicketStatusCode.DISSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;, &quot;Insatisfaire&quot;,</span>
+      &quot;Non, je ne suis pas satisfait&quot;),
 
   /**
    * {@link TicketStatusCode#REDIRECTED}.
    */
-<span class="fc" id="L47">  REDIRECTED(TicketStatusCode.REDIRECTED, &quot;Redirigé&quot;, &quot;Redirection&quot;, &quot;Rediriger&quot;),</span>
+<span class="fc" id="L49">  REDIRECTED(TicketStatusCode.REDIRECTED, &quot;Redirigé&quot;, &quot;Redirection&quot;, &quot;Rediriger&quot;,</span>
+      &quot;Réorienter vers un nouveau domaine&quot;),
 
   /**
    * {@link TicketStatusCode#ESCALATED}.
    */
-<span class="fc" id="L52">  ESCALATED(TicketStatusCode.ESCALATED, &quot;Escaladé&quot;, &quot;Escalade&quot;, &quot;Escalader&quot;);</span>
+<span class="fc" id="L55">  ESCALATED(TicketStatusCode.ESCALATED, &quot;Escaladé&quot;, &quot;Escalade&quot;, &quot;Escalader&quot;,</span>
+      &quot;Solliciter le niveau supérieur&quot;);
 
 
-<span class="fc" id="L55">  private TicketStatus(String code, String name, String actionName, String actionVerb) {</span>
-<span class="fc" id="L56">    this.code = code;</span>
-<span class="fc" id="L57">    this.name = name;</span>
-<span class="fc" id="L58">    this.actionName = actionName;</span>
-<span class="fc" id="L59">    this.actionVerb = actionVerb;</span>
-<span class="fc" id="L60">  }</span>
+  private TicketStatus(String code, String name, String actionName, String actionVerb,
+<span class="fc" id="L60">      String actionLabel) {</span>
+<span class="fc" id="L61">    this.code = code;</span>
+<span class="fc" id="L62">    this.name = name;</span>
+<span class="fc" id="L63">    this.actionName = actionName;</span>
+<span class="fc" id="L64">    this.actionVerb = actionVerb;</span>
+<span class="fc" id="L65">    this.actionLabel = actionLabel;</span>
+<span class="fc" id="L66">  }</span>
+
+  private TicketStatus(String code, String name, String actionName, String actionVerb) {
+<span class="fc" id="L69">    this(code, name, actionName, actionVerb, actionVerb);</span>
+<span class="fc" id="L70">  }</span>
 
   private String code;
   private String name;
   private String actionName;
   private String actionVerb;
+  private String actionLabel;
   private Set&lt;TicketStatus&gt; previous;
 
   @Override
   public String toString() {
-<span class="fc" id="L70">    return name;</span>
+<span class="fc" id="L81">    return name;</span>
   }
 
   /**
@@ -77,19 +88,19 @@ public enum TicketStatus {
    * @return {@link TicketStatus}
    */
   public static TicketStatus getByCode(String code) {
-<span class="fc" id="L80">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L81">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L91">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L92">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
   }
 
   static {
-<span class="fc" id="L85">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L86">    CLAIMED.previous = Core.getSet(List.of(CREATED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
-<span class="fc" id="L87">    RESOLVED.previous = Core.getSet(List.of(CLAIMED));</span>
-<span class="fc" id="L88">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="fc" id="L89">    DISSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="fc" id="L90">    REDIRECTED.previous =</span>
-<span class="fc" id="L91">        Core.getSet(List.of(CREATED, CLAIMED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
-<span class="fc" id="L92">    ESCALATED.previous = Core.getSet(List.of(CLAIMED, ESCALATED));</span>
-<span class="fc" id="L93">  }</span>
+<span class="fc" id="L96">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L97">    CLAIMED.previous = Core.getSet(List.of(CREATED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
+<span class="fc" id="L98">    RESOLVED.previous = Core.getSet(List.of(CLAIMED));</span>
+<span class="fc" id="L99">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L100">    DISSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L101">    REDIRECTED.previous =</span>
+<span class="fc" id="L102">        Core.getSet(List.of(CREATED, CLAIMED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
+<span class="fc" id="L103">    ESCALATED.previous = Core.getSet(List.of(CLAIMED, ESCALATED));</span>
+<span class="fc" id="L104">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
