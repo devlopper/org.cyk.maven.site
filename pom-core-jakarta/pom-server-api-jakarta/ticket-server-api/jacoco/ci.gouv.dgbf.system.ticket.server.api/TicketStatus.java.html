@@ -89,18 +89,19 @@ public enum TicketStatus {
    */
   public static TicketStatus getByCode(String code) {
 <span class="fc" id="L91">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="fc" id="L92">        .findFirst().orElseThrow(IllegalArgumentException::new);</span>
+<span class="fc" id="L92">        .findFirst()</span>
+<span class="pc" id="L93">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {
-<span class="fc" id="L96">    CREATED.previous = Collections.emptySet();</span>
-<span class="fc" id="L97">    CLAIMED.previous = Core.getSet(List.of(CREATED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
-<span class="fc" id="L98">    RESOLVED.previous = Core.getSet(List.of(CLAIMED));</span>
-<span class="fc" id="L99">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="fc" id="L100">    DISSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="fc" id="L101">    REDIRECTED.previous =</span>
-<span class="fc" id="L102">        Core.getSet(List.of(CREATED, CLAIMED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
-<span class="fc" id="L103">    ESCALATED.previous = Core.getSet(List.of(CLAIMED, ESCALATED));</span>
-<span class="fc" id="L104">  }</span>
+<span class="fc" id="L97">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L98">    CLAIMED.previous = Core.getSet(List.of(CREATED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
+<span class="fc" id="L99">    RESOLVED.previous = Core.getSet(List.of(CLAIMED));</span>
+<span class="fc" id="L100">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L101">    DISSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L102">    REDIRECTED.previous =</span>
+<span class="fc" id="L103">        Core.getSet(List.of(CREATED, CLAIMED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
+<span class="fc" id="L104">    ESCALATED.previous = Core.getSet(List.of(CLAIMED, ESCALATED));</span>
+<span class="fc" id="L105">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
