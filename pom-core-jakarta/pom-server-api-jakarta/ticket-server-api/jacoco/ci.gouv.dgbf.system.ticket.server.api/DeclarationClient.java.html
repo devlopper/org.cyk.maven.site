@@ -16,7 +16,7 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
-import ci.gouv.dgbf.system.ticket.server.api.DeclarationService.CreateIncidentRequestDto;
+import ci.gouv.dgbf.system.ticket.server.api.DeclarationService.DeclarationCreateIncidentRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.DeclarationService.DeclarationCreateRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.DeclarationService.DeclarationGetManyResponseDto;
 import ci.gouv.dgbf.system.ticket.server.api.DeclarationService.DeclarationUpdateRequestDto;
@@ -228,7 +228,7 @@ import lombok.experimental.Accessors;
    * @param request requête
    * @return réponse
    */
-  public IdentifiableResponseDto createIncident(CreateIncidentRequestDto request) {
+  public IdentifiableResponseDto createIncident(DeclarationCreateIncidentRequestDto request) {
 <span class="fc" id="L232">    return new GetOneExecutor&lt;IdentifiableResponseDto&gt;(IdentifiableResponseDto.class,</span>
         DeclarationService.CREATE_INCIDENT_IDENTIFIER
 <span class="fc" id="L234">    ).execute(() -&gt; service().createIncident(request));</span>

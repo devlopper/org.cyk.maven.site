@@ -12,8 +12,6 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.FormParam;
@@ -130,7 +128,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L133">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L131">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
         implements DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
@@ -174,7 +172,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L177">  public static class DeclarationGetManyResponseDto</span>
+<span class="fc" id="L175">  public static class DeclarationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DeclarationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -264,7 +262,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L267">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto implements</span>
+<span class="fc" id="L265">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto implements</span>
         DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
@@ -323,7 +321,7 @@ public interface DeclarationService extends SpecificService {
   @Operation(operationId = CREATE_INCIDENT_IDENTIFIER)
   @APIResponse(responseCode = &quot;201&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
-  Response createIncident(CreateIncidentRequestDto request);
+  Response createIncident(DeclarationCreateIncidentRequestDto request);
 
   /**
    * Cette classe représente la requête de création d'incident.
@@ -332,32 +330,50 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L335">  class CreateIncidentRequestDto extends AbstractAuditedRequestMultipartDto  {</span>
+<span class="fc" id="L333">  class DeclarationCreateIncidentRequestDto extends AbstractAuditedRequestMultipartDto  {</span>
+
+    /**
+     * Identifiant de l'identité du déclarant.
+     */
+    @JsonbProperty(JSON_REPORTER_IDENTITY_IDENTIFIER)
+    @Parameter(name = JSON_REPORTER_IDENTITY_IDENTIFIER,
+        description = &quot;l'identifiant de l'identité du déclarant&quot;)
+    @PartType(MediaType.TEXT_PLAIN)
+    @FormParam(value = JSON_REPORTER_IDENTITY_IDENTIFIER)
+    private String reporterIdentityIdentifier;
 
     /**
      * Objet.
      */
     @JsonbProperty(JSON_OBJECT)
-    @Parameter(name = JSON_OBJECT, description = &quot;l'objet de l'incident&quot;)
+    @Parameter(name = JSON_OBJECT, description = &quot;l'objet&quot;)
     @PartType(MediaType.TEXT_PLAIN)
     @FormParam(value = JSON_OBJECT)
     private String object;
-    
+
     /**
      * Description.
      */
     @JsonbProperty(JSON_DESCRIPTION)
-    @Parameter(name = JSON_DESCRIPTION, description = &quot;la description de l'incident&quot;)
+    @Parameter(name = JSON_DESCRIPTION, description = &quot;la description&quot;)
     @PartType(MediaType.TEXT_PLAIN)
     @FormParam(value = JSON_DESCRIPTION)
     private String description;
 
-    
+    /**
+     * Domaine fonctionnel.
+     */
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    @Parameter(name = JSON_DOMAIN_IDENTIFIER, description = &quot;le domaine fonctionnel&quot;)
+    @PartType(MediaType.TEXT_PLAIN)
+    @FormParam(value = JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
+
+
 
     /**
      * Nom du fichier joint.
      */
-    @NotNull
     @JsonbProperty(JSON_FILE_NAME)
     @FormParam(value = JSON_FILE_NAME)
     @PartType(MediaType.TEXT_PLAIN)
@@ -378,7 +394,6 @@ public interface DeclarationService extends SpecificService {
     /**
      * Octets.
      */
-    @NotEmpty
     @FormParam(value = JSON_FILE_BYTES)
     @PartType(MediaType.APPLICATION_OCTET_STREAM)
     @Parameter(name = JSON_FILE_BYTES, description = &quot;les données binaires du fichier&quot;)
@@ -388,12 +403,24 @@ public interface DeclarationService extends SpecificService {
     /**
      * Identifiant json {@link #description}.
      */
-    public static final String JSON_DESCRIPTION = TicketDto.JSON_DESCRIPTION;
+    public static final String JSON_DESCRIPTION = DeclarationDto.JSON_DESCRIPTION;
 
     /**
      * Identifiant json {@link #object}.
      */
-    public static final String JSON_OBJECT = &quot;objet&quot;;
+    public static final String JSON_OBJECT = DeclarationDto.JSON_OBJECT;
+
+
+    /**
+     * Identifiant json {@link #reporterIdentityIdentifier}.
+     */
+    public static final String JSON_REPORTER_IDENTITY_IDENTIFIER =
+        DeclarationDto.JSON_REPORTER_IDENTITY_IDENTIFIER;
+
+    /**
+     * Identifiant json {@link #domainIdentifier}.
+     */
+    public static final String JSON_DOMAIN_IDENTIFIER = DeclarationDto.JSON_DOMAIN_IDENTIFIER;
 
     /**
      * Identifiant json {@link #filename}.

@@ -36,6 +36,25 @@ import lombok.Setter;
   @JsonbProperty(JSON_REPORTER_IDENTITY_IDENTIFIER)
   private String reporterIdentityIdentifier;
 
+  /**
+   * Objet .
+   */
+  @JsonbProperty(JSON_OBJECT)
+  private String object;
+
+  /**
+   * Description .
+   */
+  @JsonbProperty(JSON_DESCRIPTION)
+  private String description;
+
+
+  /**
+   * Domaine fonctionnel .
+   */
+  @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+  private String domainIdentifier;
+
 
   /**
    * Identifiant json de l'identifiant.
@@ -63,6 +82,21 @@ import lombok.Setter;
    * Identifiant champ java {@link #reporterIdentityIdentifier}.
    */
   public static final String JSON_REPORTER_IDENTITY_IDENTIFIER = &quot;identifiantIdentiteDeclarant&quot;;
+
+  /**
+   * Identifiant champ java {@link #object}.
+   */
+  public static final String JSON_OBJECT = &quot;objet&quot;;
+
+  /**
+   * Identifiant champ java {@link #description}.
+   */
+  public static final String JSON_DESCRIPTION = &quot;description&quot;;
+
+  /**
+   * Identifiant champ java {@link #domainIdentifier}.
+   */
+  public static final String JSON_DOMAIN_IDENTIFIER = &quot;identifiantDomaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
