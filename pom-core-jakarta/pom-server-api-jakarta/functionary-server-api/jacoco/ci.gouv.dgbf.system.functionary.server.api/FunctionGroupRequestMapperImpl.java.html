@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2025-12-05T20:06:32+0000&quot;,
+    date = &quot;2026-06-22T14:57:34+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,27 +25,29 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        FunctionGroupService.FunctionGroupCreateRequestDto functionGroupCreateRequestDto = new FunctionGroupService.FunctionGroupCreateRequestDto();</span>
 
-<span class="fc" id="L28">        functionGroupCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        functionGroupCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        functionGroupCreateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L28">        functionGroupCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        functionGroupCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L30">        functionGroupCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L31">        functionGroupCreateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
 
-<span class="fc" id="L32">        return functionGroupCreateRequestDto;</span>
+<span class="fc" id="L33">        return functionGroupCreateRequestDto;</span>
     }
 
     @Override
     public FunctionGroupService.FunctionGroupUpdateRequestDto mapUpdate(FunctionGroupDto arg0) {
-<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L38">            return null;</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L39">            return null;</span>
         }
 
-<span class="fc" id="L41">        FunctionGroupService.FunctionGroupUpdateRequestDto functionGroupUpdateRequestDto = new FunctionGroupService.FunctionGroupUpdateRequestDto();</span>
+<span class="fc" id="L42">        FunctionGroupService.FunctionGroupUpdateRequestDto functionGroupUpdateRequestDto = new FunctionGroupService.FunctionGroupUpdateRequestDto();</span>
 
-<span class="fc" id="L43">        functionGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L44">        functionGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L45">        functionGroupUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L46">        functionGroupUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L44">        functionGroupUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L45">        functionGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L46">        functionGroupUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L47">        functionGroupUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L48">        functionGroupUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
 
-<span class="fc" id="L48">        return functionGroupUpdateRequestDto;</span>
+<span class="fc" id="L50">        return functionGroupUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
