@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-06-22T15:13:09+0000&quot;,
+    date = &quot;2026-06-23T18:20:34+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -33,28 +33,29 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L33">        administrativeUnitEmployeeCreateRequestDto.setPayIndexIdentifier( arg0.getPayIndexIdentifier() );</span>
 <span class="fc" id="L34">        administrativeUnitEmployeeCreateRequestDto.setFunctionIdentifier( arg0.getFunctionIdentifier() );</span>
 <span class="fc" id="L35">        administrativeUnitEmployeeCreateRequestDto.setBalanceTransferOriginAdministrativeUnitIdentifier( arg0.getBalanceTransferOriginAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L36">        administrativeUnitEmployeeCreateRequestDto.setIsFunctionary( arg0.getIsFunctionary() );</span>
 
-<span class="fc" id="L37">        return administrativeUnitEmployeeCreateRequestDto;</span>
+<span class="fc" id="L38">        return administrativeUnitEmployeeCreateRequestDto;</span>
     }
 
     @Override
     public AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeUpdateRequestDto mapUpdate(AdministrativeUnitEmployeeDto arg0) {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L43">            return null;</span>
+<span class="fc bfc" id="L43" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L44">            return null;</span>
         }
 
-<span class="fc" id="L46">        AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeUpdateRequestDto administrativeUnitEmployeeUpdateRequestDto = new AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeUpdateRequestDto();</span>
+<span class="fc" id="L47">        AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeUpdateRequestDto administrativeUnitEmployeeUpdateRequestDto = new AdministrativeUnitEmployeeService.AdministrativeUnitEmployeeUpdateRequestDto();</span>
 
-<span class="fc" id="L48">        administrativeUnitEmployeeUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L49">        administrativeUnitEmployeeUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L50">        administrativeUnitEmployeeUpdateRequestDto.setBudgetIdentifier( arg0.getBudgetIdentifier() );</span>
-<span class="fc" id="L51">        administrativeUnitEmployeeUpdateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
-<span class="fc" id="L52">        administrativeUnitEmployeeUpdateRequestDto.setEmployeeIdentifier( arg0.getEmployeeIdentifier() );</span>
-<span class="fc" id="L53">        administrativeUnitEmployeeUpdateRequestDto.setJobIdentifier( arg0.getJobIdentifier() );</span>
-<span class="fc" id="L54">        administrativeUnitEmployeeUpdateRequestDto.setPayIndexIdentifier( arg0.getPayIndexIdentifier() );</span>
-<span class="fc" id="L55">        administrativeUnitEmployeeUpdateRequestDto.setFunctionIdentifier( arg0.getFunctionIdentifier() );</span>
+<span class="fc" id="L49">        administrativeUnitEmployeeUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L50">        administrativeUnitEmployeeUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L51">        administrativeUnitEmployeeUpdateRequestDto.setBudgetIdentifier( arg0.getBudgetIdentifier() );</span>
+<span class="fc" id="L52">        administrativeUnitEmployeeUpdateRequestDto.setAdministrativeUnitIdentifier( arg0.getAdministrativeUnitIdentifier() );</span>
+<span class="fc" id="L53">        administrativeUnitEmployeeUpdateRequestDto.setEmployeeIdentifier( arg0.getEmployeeIdentifier() );</span>
+<span class="fc" id="L54">        administrativeUnitEmployeeUpdateRequestDto.setJobIdentifier( arg0.getJobIdentifier() );</span>
+<span class="fc" id="L55">        administrativeUnitEmployeeUpdateRequestDto.setPayIndexIdentifier( arg0.getPayIndexIdentifier() );</span>
+<span class="fc" id="L56">        administrativeUnitEmployeeUpdateRequestDto.setFunctionIdentifier( arg0.getFunctionIdentifier() );</span>
 
-<span class="fc" id="L57">        return administrativeUnitEmployeeUpdateRequestDto;</span>
+<span class="fc" id="L58">        return administrativeUnitEmployeeUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

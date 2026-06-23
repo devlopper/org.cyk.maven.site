@@ -240,6 +240,12 @@ public interface AdministrativeUnitEmployeeService extends Service {
      */
     @JsonbProperty(JSON_BALANCE_TRANSFER_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER)
     String balanceTransferOriginAdministrativeUnitIdentifier;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_IS_FUNCTIONARY}.
+     */
+    @JsonbProperty(AdministrativeUnitEmployeeDto.JSON_IS_FUNCTIONARY)
+    Boolean isFunctionary;
   }
 
   /**
@@ -276,7 +282,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L279">  class AdministrativeUnitEmployeeCreateByFunctionaryRequestDto extends</span>
+<span class="fc" id="L285">  class AdministrativeUnitEmployeeCreateByFunctionaryRequestDto extends</span>
       AbstractAuditedRequestJsonDto implements AdministrativeUnitEmployeeBaseSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -293,6 +299,354 @@ public interface AdministrativeUnitEmployeeService extends Service {
      */
     public static final String JSON_FUNCTIONARY_IDENTIFIER =
         AdministrativeUnitEmployeeDto.JSON_FUNCTIONARY_IDENTIFIER;
+  }
+
+  /**
+   * Champs d'affectation EPN pour la création contractuelle (sans identifiant employé).
+   */
+  interface AdministrativeUnitEmployeeCreateContractualAssignmentRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'emploi.
+     *
+     * @return identifiant de l'emploi
+     */
+    String getJobIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'emploi.
+     *
+     * @param identifier identifiant de l'emploi
+     */
+    void setJobIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'indice de paie.
+     *
+     * @return identifiant de l'indice de paie
+     */
+    String getPayIndexIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'indice de paie.
+     *
+     * @param identifier identifiant de l'indice de paie
+     */
+    void setPayIndexIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la fonction.
+     *
+     * @return identifiant de la fonction
+     */
+    String getFunctionIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la fonction.
+     *
+     * @param identifier identifiant de la fonction
+     */
+    void setFunctionIdentifier(String identifier);
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_JOB_IDENTIFIER}.
+     */
+    String JSON_JOB_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_JOB_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_PAY_INDEX_IDENTIFIER}.
+     */
+    String JSON_PAY_INDEX_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_PAY_INDEX_IDENTIFIER;
+
+    /**
+     * {@link AdministrativeUnitEmployeeDto#JSON_FUNCTION_IDENTIFIER}.
+     */
+    String JSON_FUNCTION_IDENTIFIER = AdministrativeUnitEmployeeDto.JSON_FUNCTION_IDENTIFIER;
+  }
+
+  /**
+   * Données employé transmises à la création contractuelle ({@code CREATION_EMPLOYE}).
+   */
+  interface AdministrativeUnitEmployeeCreateContractualEmployeeRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe de matricule.
+     *
+     * @return identifiant du groupe de matricule
+     */
+    String getRegistrationNumberGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe de matricule.
+     *
+     * @param identifier identifiant du groupe de matricule
+     */
+    void setRegistrationNumberGroupIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir si le groupe de matricule est fonction publique.
+     *
+     * @return est groupe de matricule fonction publique
+     */
+    Boolean getIsRegistrationNumberGroupPublicFunction();
+
+    /**
+     * Cette méthode permet d'assigner si le groupe de matricule est fonction publique.
+     *
+     * @param isRegistrationNumberGroupPublicFunction est groupe de matricule fonction publique
+     */
+    void setIsRegistrationNumberGroupPublicFunction(
+        Boolean isRegistrationNumberGroupPublicFunction);
+
+    /**
+     * Cette méthode permet d'obtenir le matricule.
+     *
+     * @return matricule
+     */
+    String getRegistrationNumber();
+
+    /**
+     * Cette méthode permet d'assigner le matricule.
+     *
+     * @param registrationNumber matricule
+     */
+    void setRegistrationNumber(String registrationNumber);
+
+    /**
+     * Cette méthode permet d'obtenir le prénom.
+     *
+     * @return prénom
+     */
+    String getFirstName();
+
+    /**
+     * Cette méthode permet d'assigner le prénom.
+     *
+     * @param firstName prénom
+     */
+    void setFirstName(String firstName);
+
+    /**
+     * Cette méthode permet d'obtenir le nom.
+     *
+     * @return nom
+     */
+    String getLastNames();
+
+    /**
+     * Cette méthode permet d'assigner le nom.
+     *
+     * @param lastNames nom
+     */
+    void setLastNames(String lastNames);
+
+    /**
+     * Cette méthode permet d'obtenir l'adresse e-mail.
+     *
+     * @return adresse e-mail
+     */
+    String getEmailAddress();
+
+    /**
+     * Cette méthode permet d'assigner l'adresse e-mail.
+     *
+     * @param emailAddress adresse e-mail
+     */
+    void setEmailAddress(String emailAddress);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du genre.
+     *
+     * @return identifiant du genre
+     */
+    String getGenderIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du genre.
+     *
+     * @param identifier identifiant du genre
+     */
+    void setGenderIdentifier(String identifier);
+
+    /**
+     * Cette méthode permet d'obtenir si le genre est masculin.
+     *
+     * @return est genre masculin
+     */
+    Boolean getIsGenderMasculine();
+
+    /**
+     * Cette méthode permet d'assigner si le genre est masculin.
+     *
+     * @param isGenderMasculine est genre masculin
+     */
+    void setIsGenderMasculine(Boolean isGenderMasculine);
+
+    /**
+     * Cette méthode permet d'obtenir la date de naissance.
+     *
+     * @return date de naissance
+     */
+    LocalDate getBirthDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de naissance.
+     *
+     * @param birthDate date de naissance
+     */
+    void setBirthDate(LocalDate birthDate);
+
+    /**
+     * Cette méthode permet d'obtenir la date de première prise de service.
+     *
+     * @return date de première prise de service
+     */
+    LocalDate getFirstServiceStartDate();
+
+    /**
+     * Cette méthode permet d'assigner la date de première prise de service.
+     *
+     * @param firstServiceStartDate date de première prise de service
+     */
+    void setFirstServiceStartDate(LocalDate firstServiceStartDate);
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER = &quot;idGroupeMatricule&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION =
+        &quot;estGroupeMatriculeFonctionPublique&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_REGISTRATION_NUMBER = &quot;matricule&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_FIRST_NAME = &quot;nom&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_LAST_NAMES = &quot;prenoms&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_EMAIL_ADDRESS = &quot;adresseEmail&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_GENDER_IDENTIFIER = &quot;idGenre&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_IS_GENDER_MASCULINE = &quot;estGenreMasculin&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_BIRTH_DATE = &quot;dateNaissance&quot;;
+
+    /**
+     * Clé JSON alignée sur le module employé.
+     */
+    String JSON_FIRST_SERVICE_START_DATE = &quot;datePremierePriseService&quot;;
+  }
+
+  /**
+   * Identifiant du service de création d'un contractuel dans une unité administrative.
+   */
+  String CREATE_CONTRACTUAL_IDENTIFIER = &quot;CREATION_CONTRACTUEL_EMPLOYE_UNITE_ADMINISTRATIVE&quot;;
+
+  /**
+   * Chemin du service de création d'un contractuel dans une unité administrative.
+   */
+  String CREATE_CONTRACTUAL_PATH = &quot;creation-contractuel&quot;;
+
+  /**
+   * Cette méthode permet de créer un employé contractuel puis son rattachement à une unité
+   * administrative (EPN).
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_CONTRACTUAL_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_CONTRACTUAL_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createContractual(AdministrativeUnitEmployeeCreateContractualRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création d'un contractuel dans une unité
+   * administrative. L'employé n'existe pas encore : son identifiant est produit par la création
+   * côté serveur et n'apparaît pas dans cette requête.
+   *
+   * @author Christian
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L601">  class AdministrativeUnitEmployeeCreateContractualRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements AdministrativeUnitEmployeeBaseSaveRequestDto,
+      AdministrativeUnitEmployeeCreateContractualAssignmentRequestDto,
+      AdministrativeUnitEmployeeCreateContractualEmployeeRequestDto {
+
+    @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+    String budgetIdentifier;
+
+    @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    String administrativeUnitIdentifier;
+
+    @JsonbProperty(JSON_JOB_IDENTIFIER)
+    String jobIdentifier;
+
+    @JsonbProperty(JSON_PAY_INDEX_IDENTIFIER)
+    String payIndexIdentifier;
+
+    @JsonbProperty(JSON_FUNCTION_IDENTIFIER)
+    String functionIdentifier;
+
+    @JsonbProperty(JSON_REGISTRATION_NUMBER_GROUP_IDENTIFIER)
+    String registrationNumberGroupIdentifier;
+
+    @JsonbProperty(JSON_IS_REGISTRATION_NUMBER_GROUP_PUBLIC_FUNCTION)
+    Boolean isRegistrationNumberGroupPublicFunction;
+
+    @JsonbProperty(JSON_REGISTRATION_NUMBER)
+    String registrationNumber;
+
+    @JsonbProperty(JSON_FIRST_NAME)
+    String firstName;
+
+    @JsonbProperty(JSON_LAST_NAMES)
+    String lastNames;
+
+    @JsonbProperty(JSON_EMAIL_ADDRESS)
+    String emailAddress;
+
+    @JsonbProperty(JSON_GENDER_IDENTIFIER)
+    String genderIdentifier;
+
+    @JsonbProperty(JSON_IS_GENDER_MASCULINE)
+    Boolean isGenderMasculine;
+
+    @JsonbProperty(JSON_BIRTH_DATE)
+    LocalDate birthDate;
+
+    @JsonbProperty(JSON_FIRST_SERVICE_START_DATE)
+    LocalDate firstServiceStartDate;
   }
 
   /**
@@ -326,7 +680,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L329">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
+<span class="fc" id="L683">  public static class AdministrativeUnitEmployeeGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;AdministrativeUnitEmployeeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -414,7 +768,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L417">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L771">  class AdministrativeUnitEmployeeUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeSaveRequestDto {
 
     @JsonbProperty(JSON_BUDGET_IDENTIFIER)
@@ -496,7 +850,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L499">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L853">  class AdministrativeUnitEmployeeOffboardRequestDto extends ByIdentifierRequestDto</span>
       implements AdministrativeUnitEmployeeBoardRequestDto {
 
     @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
@@ -593,7 +947,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
    *
    * @author Christian
    */
-<span class="fc" id="L596">  class AdministrativeUnitEmployeeCalculateRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L950">  class AdministrativeUnitEmployeeCalculateRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -639,7 +993,7 @@ public interface AdministrativeUnitEmployeeService extends Service {
   @Schema(name = &quot;AdministrativeUnitEmployeeRecordPayrollMovementsRequest&quot;,
       description = &quot;Requête de saisie de mouvements de paie pour un employé d'unité &quot;
           + &quot;administrative&quot;)
-<span class="fc" id="L642">  class AdministrativeUnitEmployeeRecordPayrollMovementsRequestDto</span>
+<span class="fc" id="L996">  class AdministrativeUnitEmployeeRecordPayrollMovementsRequestDto</span>
       extends ByIdentifierRequestDto {
 
     /**
