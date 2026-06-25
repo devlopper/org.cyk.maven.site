@@ -352,6 +352,15 @@ public interface DeclarationService extends SpecificService {
     private String object;
 
     /**
+     * Front-end base URI.
+     */
+    @JsonbProperty(JSON_FRONT_END_BASE_URI)
+    @Parameter(name = JSON_FRONT_END_BASE_URI, description = &quot;uriBaseFrontEnd&quot;)
+    @PartType(MediaType.TEXT_PLAIN)
+    @FormParam(value = JSON_FRONT_END_BASE_URI)
+    private String frontEndBaseUri;
+
+    /**
      * Description.
      */
     @JsonbProperty(JSON_DESCRIPTION)
@@ -410,6 +419,10 @@ public interface DeclarationService extends SpecificService {
      */
     public static final String JSON_OBJECT = DeclarationDto.JSON_OBJECT;
 
+    /**
+     * Identifiant champ java {@link #frontEndBaseUri}.
+     */
+    public static final String JSON_FRONT_END_BASE_URI = &quot;uriBaseFrontEnd&quot;;
 
     /**
      * Identifiant json {@link #reporterIdentityIdentifier}.
