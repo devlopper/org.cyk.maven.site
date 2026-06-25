@@ -21,18 +21,25 @@ import lombok.Setter;
  * Cette classe représente une documentation.
  *
  * @author Christian
- *
  */
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L29">public class DocumentationDto extends AbstractIdentifiableAuditableDto</span>
-    implements HasProcessIdentifierDto, HasProcessAsStringDto, HasSourceIdentifierDto,
-    HasSourceAsStringDto, HasRecordIdentifierDto, HasRecordAsStringDto, HasOperationIdentifierDto,
-    HasOperationAsStringDto, HasTextDto, HasFilesGroupIdentifierDto, HasFilesCountAsStringDto {
+<span class="fc" id="L28">public class DocumentationDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasProcessIdentifierDto,
+    HasProcessAsStringDto,
+    HasSourceIdentifierDto,
+    HasSourceAsStringDto,
+    HasRecordIdentifierDto,
+    HasRecordAsStringDto,
+    HasOperationIdentifierDto,
+    HasOperationAsStringDto,
+    HasTextDto,
+    HasFilesGroupIdentifierDto,
+    HasFilesCountAsStringDto {
 
   /* Business Identification Part */
-  
+
   // Process
 
   @JsonbProperty(value = JSON_PROCESS_IDENTIFIER)
@@ -66,7 +73,7 @@ import lombok.Setter;
   private String operationAsString;
 
   /* Data Part */
-  
+
   // Text
 
   @JsonbProperty(JSON_TEXT)
@@ -80,7 +87,6 @@ import lombok.Setter;
   @JsonbProperty(JSON_FILES_COUNT_AS_STRING)
   private String filesCountAsString;
 
-
   /**
    * Identifiant json de identifiant de {@link DocumentationDto}.
    */
@@ -90,7 +96,6 @@ import lombok.Setter;
    * Identifiant json de représentation en chaine de caractères de {@link DocumentationDto}.
    */
   public static final String JSON_THIS_AS_STRING = &quot;documentationChaine&quot;;
-
 
   /**
    * Nom pour lecture humaine de la classe.
