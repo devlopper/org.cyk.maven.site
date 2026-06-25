@@ -30,28 +30,28 @@ public class TicketFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public TicketFilter(FilterDto dto) {
-<span class="fc" id="L33">    super(dto);</span>
-<span class="fc" id="L34">  }</span>
+<span class="nc" id="L33">    super(dto);</span>
+<span class="nc" id="L34">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L39">  public TicketFilter() {}</span>
+<span class="nc" id="L39">  public TicketFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L43">    super.doInitialize(filter);</span>
-<span class="fc" id="L44">    updateStatusCode(filter);</span>
-<span class="fc" id="L45">    updateStatusCodes(filter);</span>
-<span class="fc" id="L46">    updateDomainIdentifier(filter);</span>
-<span class="fc" id="L47">  }</span>
+<span class="nc" id="L43">    super.doInitialize(filter);</span>
+<span class="nc" id="L44">    updateStatusCode(filter);</span>
+<span class="nc" id="L45">    updateStatusCodes(filter);</span>
+<span class="nc" id="L46">    updateDomainIdentifier(filter);</span>
+<span class="nc" id="L47">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L51">    super.toDto(filter);</span>
-<span class="fc" id="L52">    updateFilterStatusCode(filter);</span>
-<span class="fc" id="L53">    updateFilterStatusCodes(filter);</span>
-<span class="fc" id="L54">    updateFilterDomainIdentifier(filter);</span>
-<span class="fc" id="L55">  }</span>
+<span class="nc" id="L51">    super.toDto(filter);</span>
+<span class="nc" id="L52">    updateFilterStatusCode(filter);</span>
+<span class="nc" id="L53">    updateFilterStatusCodes(filter);</span>
+<span class="nc" id="L54">    updateFilterDomainIdentifier(filter);</span>
+<span class="nc" id="L55">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
