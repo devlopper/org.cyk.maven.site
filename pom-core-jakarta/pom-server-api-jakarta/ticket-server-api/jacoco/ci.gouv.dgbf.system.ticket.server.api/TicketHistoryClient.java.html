@@ -24,13 +24,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="nc" id="L27">public class TicketHistoryClient extends AbstractClient&lt;TicketHistoryService&gt;</span>
+<span class="fc" id="L27">public class TicketHistoryClient extends AbstractClient&lt;TicketHistoryService&gt;</span>
     implements GetByIdentifier&lt;TicketHistoryDto&gt;,
                GetMany&lt;TicketHistoryGetManyResponseDto&gt; {
 
   @Override
   public TicketHistoryClient service(TicketHistoryService service) {
-<span class="nc" id="L33">    return (TicketHistoryClient) super.service(service);</span>
+<span class="fc" id="L33">    return (TicketHistoryClient) super.service(service);</span>
   }
 
 
@@ -41,9 +41,9 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketHistoryGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="nc" id="L44">    return new GetOneExecutor&lt;TicketHistoryGetManyResponseDto&gt;(</span>
+<span class="fc" id="L44">    return new GetOneExecutor&lt;TicketHistoryGetManyResponseDto&gt;(</span>
             TicketHistoryGetManyResponseDto.class,
-<span class="nc" id="L46">        TicketHistoryService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L46">        TicketHistoryService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -59,13 +59,13 @@ import lombok.experimental.Accessors;
   @Override
   public TicketHistoryGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="nc" id="L62">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="nc" id="L63">    request.setProjection(projection);</span>
-<span class="nc" id="L64">    request.setFilter(filter);</span>
-<span class="nc" id="L65">    request.setPage(page);</span>
-<span class="nc" id="L66">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L67">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L68">    return getMany(request);</span>
+<span class="fc" id="L62">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L63">    request.setProjection(projection);</span>
+<span class="fc" id="L64">    request.setFilter(filter);</span>
+<span class="fc" id="L65">    request.setPage(page);</span>
+<span class="fc" id="L66">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L67">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L68">    return getMany(request);</span>
   }
 
   /**
@@ -75,8 +75,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketHistoryDto getOne(GetOneRequestDto request) {
-<span class="nc" id="L78">    return new GetOneExecutor&lt;TicketHistoryDto&gt;(TicketHistoryDto.class,</span>
-<span class="nc" id="L79">        TicketHistoryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L78">    return new GetOneExecutor&lt;TicketHistoryDto&gt;(TicketHistoryDto.class,</span>
+<span class="fc" id="L79">        TicketHistoryService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -90,12 +90,12 @@ import lombok.experimental.Accessors;
    */
   public TicketHistoryDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="nc" id="L93">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="nc" id="L94">    request.setProjection(projection);</span>
-<span class="nc" id="L95">    request.setFilter(filter);</span>
-<span class="nc" id="L96">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L97">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L98">    return getOne(request);</span>
+<span class="fc" id="L93">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L94">    request.setProjection(projection);</span>
+<span class="fc" id="L95">    request.setFilter(filter);</span>
+<span class="fc" id="L96">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L97">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L98">    return getOne(request);</span>
   }
 
   /**
@@ -105,9 +105,9 @@ import lombok.experimental.Accessors;
    * @return historique ticket
    */
   public TicketHistoryDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="nc" id="L108">    return new GetOneExecutor&lt;TicketHistoryDto&gt;(TicketHistoryDto.class,</span>
+<span class="fc" id="L108">    return new GetOneExecutor&lt;TicketHistoryDto&gt;(TicketHistoryDto.class,</span>
         TicketHistoryService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="nc" id="L110">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L110">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -123,12 +123,12 @@ import lombok.experimental.Accessors;
   public TicketHistoryDto getByIdentifier(String identifier,
       ProjectionDto projection, String auditWho,
       String auditSession) {
-<span class="nc" id="L126">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="nc" id="L127">    request.setIdentifier(identifier);</span>
-<span class="nc" id="L128">    request.setProjection(projection);</span>
-<span class="nc" id="L129">    request.setAuditWho(auditWho);</span>
-<span class="nc" id="L130">    request.setAuditSession(auditSession);</span>
-<span class="nc" id="L131">    return getByIdentifier(request);</span>
+<span class="fc" id="L126">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L127">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L128">    request.setProjection(projection);</span>
+<span class="fc" id="L129">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L130">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L131">    return getByIdentifier(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

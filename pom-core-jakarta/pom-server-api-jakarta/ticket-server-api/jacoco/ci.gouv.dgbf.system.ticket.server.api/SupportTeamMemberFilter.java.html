@@ -31,28 +31,28 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @param dto filtre
    */
   public SupportTeamMemberFilter(FilterDto dto) {
-<span class="nc" id="L34">    super(dto);</span>
-<span class="nc" id="L35">  }</span>
+<span class="fc" id="L34">    super(dto);</span>
+<span class="fc" id="L35">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
    */
-<span class="nc" id="L40">  public SupportTeamMemberFilter() {</span>
-<span class="nc" id="L41">  }</span>
+<span class="fc" id="L40">  public SupportTeamMemberFilter() {</span>
+<span class="fc" id="L41">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="nc" id="L45">    super.doInitialize(filter);</span>
-<span class="nc" id="L46">    supportTeamIdentifier = getSupportTeamIdentifier(filter);</span>
-<span class="nc" id="L47">    userIdentifier = getUserIdentifier(filter);</span>
-<span class="nc" id="L48">  }</span>
+<span class="fc" id="L45">    super.doInitialize(filter);</span>
+<span class="fc" id="L46">    supportTeamIdentifier = getSupportTeamIdentifier(filter);</span>
+<span class="fc" id="L47">    userIdentifier = getUserIdentifier(filter);</span>
+<span class="fc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="nc" id="L52">    super.toDto(filter);</span>
-<span class="nc" id="L53">    setSupportTeamIdentifier(filter, supportTeamIdentifier);</span>
-<span class="nc" id="L54">    setUserIdentifier(filter, userIdentifier);</span>
-<span class="nc" id="L55">  }</span>
+<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L53">    setSupportTeamIdentifier(filter, supportTeamIdentifier);</span>
+<span class="fc" id="L54">    setUserIdentifier(filter, userIdentifier);</span>
+<span class="fc" id="L55">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link SupportTeamDto}.
@@ -61,9 +61,9 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @param supportTeamIdentifier identifiant de {@link SupportTeamDto}
    */
   public static void setSupportTeamIdentifier(FilterDto filter, String supportTeamIdentifier) {
-<span class="nc" id="L64">    set(filter, JSON_SUPPORT_TEAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L65">        f -&gt; f.setValueAsString(supportTeamIdentifier));</span>
-<span class="nc" id="L66">  }</span>
+<span class="pc" id="L64">    set(filter, JSON_SUPPORT_TEAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L65">        f -&gt; f.setValueAsString(supportTeamIdentifier));</span>
+<span class="fc" id="L66">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link SupportTeamDto}.
@@ -72,7 +72,7 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link SupportTeamDto}
    */
   public static String getSupportTeamIdentifier(FilterDto filter) {
-<span class="nc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SUPPORT_TEAM_IDENTIFIER));</span>
+<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SUPPORT_TEAM_IDENTIFIER));</span>
   }
 
   /**
@@ -82,9 +82,9 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @param userIdentifier identifiant utilisateur
    */
   public static void setUserIdentifier(FilterDto filter, String userIdentifier) {
-<span class="nc" id="L85">    set(filter, JSON_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="nc" id="L86">        f -&gt; f.setValueAsString(userIdentifier));</span>
-<span class="nc" id="L87">  }</span>
+<span class="pc" id="L85">    set(filter, JSON_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L86">        f -&gt; f.setValueAsString(userIdentifier));</span>
+<span class="fc" id="L87">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant utilisateur.
@@ -93,7 +93,7 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @return identifiant utilisateur
    */
   public static String getUserIdentifier(FilterDto filter) {
-<span class="nc" id="L96">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_IDENTIFIER));</span>
+<span class="fc" id="L96">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_IDENTIFIER));</span>
   }
 
   /**

@@ -137,7 +137,7 @@ public interface SupportTeamMemberService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L140">  class SupportTeamMemberCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L140">  class SupportTeamMemberCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
         implements SupportTeamMemberSaveRequestDto {
     @JsonbProperty(SupportTeamMemberSaveRequestDto.JSON_SUPPORT_TEAM_IDENTIFIER)
     private String supportTeamIdentifier;
@@ -184,7 +184,7 @@ public interface SupportTeamMemberService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L187">  public static class SupportTeamMemberGetManyResponseDto</span>
+<span class="fc" id="L187">  public static class SupportTeamMemberGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;SupportTeamMemberDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -274,7 +274,7 @@ public interface SupportTeamMemberService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="nc" id="L277">  class SupportTeamMemberUpdateRequestDto extends ByIdentifierRequestDto implements</span>
+<span class="fc" id="L277">  class SupportTeamMemberUpdateRequestDto extends ByIdentifierRequestDto implements</span>
         SupportTeamMemberSaveRequestDto {
     @JsonbProperty(SupportTeamMemberSaveRequestDto.JSON_SUPPORT_TEAM_IDENTIFIER)
     private String supportTeamIdentifier;

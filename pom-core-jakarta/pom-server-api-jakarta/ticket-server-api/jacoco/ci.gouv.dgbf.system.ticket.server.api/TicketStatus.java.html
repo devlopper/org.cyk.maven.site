@@ -13,61 +13,61 @@ import lombok.Getter;
  * @author Arnaud
  *
  */
-<span class="nc" id="L16">@Getter</span>
+<span class="fc" id="L16">@Getter</span>
 public enum TicketStatus {
 
   /**
    * {@link TicketStatusCode#CREATED}.
    */
-<span class="nc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;, &quot;Créer&quot;, &quot;Nouveau ticket&quot;),</span>
+<span class="fc" id="L22">  CREATED(TicketStatusCode.CREATED, &quot;Créé&quot;, &quot;Création&quot;, &quot;Créer&quot;, &quot;Nouveau ticket&quot;),</span>
 
   /**
    * {@link TicketStatusCode#CLAIMED}.
    */
-<span class="nc" id="L27">  CLAIMED(TicketStatusCode.CLAIMED, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;, &quot;Prendre en charge&quot;),</span>
+<span class="fc" id="L27">  CLAIMED(TicketStatusCode.CLAIMED, &quot;Pris en charge&quot;, &quot;Prise en charge&quot;, &quot;Prendre en charge&quot;),</span>
 
   /**
    * {@link TicketStatusCode#RESOLVED}.
    */
-<span class="nc" id="L32">  RESOLVED(TicketStatusCode.RESOLVED, &quot;Résolu&quot;, &quot;Résolution&quot;, &quot;Résoudre&quot;),</span>
+<span class="fc" id="L32">  RESOLVED(TicketStatusCode.RESOLVED, &quot;Résolu&quot;, &quot;Résolution&quot;, &quot;Résoudre&quot;),</span>
 
   /**
    * {@link TicketStatusCode#SATISFIED}.
    */
-<span class="nc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;, &quot;Satisfaire&quot;,</span>
+<span class="fc" id="L37">  SATISFIED(TicketStatusCode.SATISFIED, &quot;Satisfait&quot;, &quot;Satisfaction&quot;, &quot;Satisfaire&quot;,</span>
       &quot;Oui, je suis satisfait&quot;),
 
   /**
    * {@link TicketStatusCode#DISSATISFIED}.
    */
-<span class="nc" id="L43">  DISSATISFIED(TicketStatusCode.DISSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;, &quot;Insatisfaire&quot;,</span>
+<span class="fc" id="L43">  DISSATISFIED(TicketStatusCode.DISSATISFIED, &quot;Non satisfait&quot;, &quot;Insatisfaction&quot;, &quot;Insatisfaire&quot;,</span>
       &quot;Non, je ne suis pas satisfait&quot;),
 
   /**
    * {@link TicketStatusCode#REDIRECTED}.
    */
-<span class="nc" id="L49">  REDIRECTED(TicketStatusCode.REDIRECTED, &quot;Redirigé&quot;, &quot;Redirection&quot;, &quot;Rediriger&quot;,</span>
+<span class="fc" id="L49">  REDIRECTED(TicketStatusCode.REDIRECTED, &quot;Redirigé&quot;, &quot;Redirection&quot;, &quot;Rediriger&quot;,</span>
       &quot;Réorienter vers un nouveau domaine&quot;),
 
   /**
    * {@link TicketStatusCode#ESCALATED}.
    */
-<span class="nc" id="L55">  ESCALATED(TicketStatusCode.ESCALATED, &quot;Escaladé&quot;, &quot;Escalade&quot;, &quot;Escalader&quot;,</span>
+<span class="fc" id="L55">  ESCALATED(TicketStatusCode.ESCALATED, &quot;Escaladé&quot;, &quot;Escalade&quot;, &quot;Escalader&quot;,</span>
       &quot;Solliciter le niveau supérieur&quot;);
 
 
   private TicketStatus(String code, String name, String actionName, String actionVerb,
-<span class="nc" id="L60">      String actionLabel) {</span>
-<span class="nc" id="L61">    this.code = code;</span>
-<span class="nc" id="L62">    this.name = name;</span>
-<span class="nc" id="L63">    this.actionName = actionName;</span>
-<span class="nc" id="L64">    this.actionVerb = actionVerb;</span>
-<span class="nc" id="L65">    this.actionLabel = actionLabel;</span>
-<span class="nc" id="L66">  }</span>
+<span class="fc" id="L60">      String actionLabel) {</span>
+<span class="fc" id="L61">    this.code = code;</span>
+<span class="fc" id="L62">    this.name = name;</span>
+<span class="fc" id="L63">    this.actionName = actionName;</span>
+<span class="fc" id="L64">    this.actionVerb = actionVerb;</span>
+<span class="fc" id="L65">    this.actionLabel = actionLabel;</span>
+<span class="fc" id="L66">  }</span>
 
   private TicketStatus(String code, String name, String actionName, String actionVerb) {
-<span class="nc" id="L69">    this(code, name, actionName, actionVerb, actionVerb);</span>
-<span class="nc" id="L70">  }</span>
+<span class="fc" id="L69">    this(code, name, actionName, actionVerb, actionVerb);</span>
+<span class="fc" id="L70">  }</span>
 
   private String code;
   private String name;
@@ -78,7 +78,7 @@ public enum TicketStatus {
 
   @Override
   public String toString() {
-<span class="nc" id="L81">    return name;</span>
+<span class="fc" id="L81">    return name;</span>
   }
 
   /**
@@ -88,20 +88,20 @@ public enum TicketStatus {
    * @return {@link TicketStatus}
    */
   public static TicketStatus getByCode(String code) {
-<span class="nc" id="L91">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
-<span class="nc" id="L92">        .findFirst()</span>
-<span class="nc" id="L93">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
+<span class="fc" id="L91">    return Stream.of(TicketStatus.values()).filter(status -&gt; status.getCode().equals(code))</span>
+<span class="fc" id="L92">        .findFirst()</span>
+<span class="pc" id="L93">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
   }
 
   static {
-<span class="nc" id="L97">    CREATED.previous = Collections.emptySet();</span>
-<span class="nc" id="L98">    CLAIMED.previous = Core.getSet(List.of(CREATED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
-<span class="nc" id="L99">    RESOLVED.previous = Core.getSet(List.of(CLAIMED));</span>
-<span class="nc" id="L100">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="nc" id="L101">    DISSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
-<span class="nc" id="L102">    REDIRECTED.previous =</span>
-<span class="nc" id="L103">        Core.getSet(List.of(CREATED, CLAIMED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
-<span class="nc" id="L104">    ESCALATED.previous = Core.getSet(List.of(CLAIMED, ESCALATED));</span>
-<span class="nc" id="L105">  }</span>
+<span class="fc" id="L97">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L98">    CLAIMED.previous = Core.getSet(List.of(CREATED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
+<span class="fc" id="L99">    RESOLVED.previous = Core.getSet(List.of(CLAIMED));</span>
+<span class="fc" id="L100">    SATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L101">    DISSATISFIED.previous = Core.getSet(List.of(RESOLVED));</span>
+<span class="fc" id="L102">    REDIRECTED.previous =</span>
+<span class="fc" id="L103">        Core.getSet(List.of(CREATED, CLAIMED, DISSATISFIED, REDIRECTED, ESCALATED));</span>
+<span class="fc" id="L104">    ESCALATED.previous = Core.getSet(List.of(CLAIMED, ESCALATED));</span>
+<span class="fc" id="L105">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
