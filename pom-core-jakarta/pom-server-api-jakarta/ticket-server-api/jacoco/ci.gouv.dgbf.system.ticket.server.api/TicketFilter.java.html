@@ -58,14 +58,26 @@ public class TicketFilter extends AbstractIdentifiableFilter
 <span class="fc" id="L58">    setReporterIdentityIdentifier(filter, reporterIdentityIdentifier);</span>
 <span class="fc" id="L59">  }</span>
 
+  /**
+   * Cette méthode permet d'assigner.
+   *
+   * @param filter filtre
+   * @param reporterIdentityIdentifier id
+   */
   public static void setReporterIdentityIdentifier(FilterDto filter,
                                                    String reporterIdentityIdentifier) {
-<span class="pc" id="L63">    set(filter, JSON_REPORTER_IDENTITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L64">        f -&gt; f.setValueAsString(reporterIdentityIdentifier));</span>
-<span class="fc" id="L65">  }</span>
+<span class="pc" id="L69">    set(filter, JSON_REPORTER_IDENTITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L70">        f -&gt; f.setValueAsString(reporterIdentityIdentifier));</span>
+<span class="fc" id="L71">  }</span>
 
+  /**
+   * Cette méthode permet d'obtenir.
+   *
+   * @param filter filtre
+   * @return id
+   */
   public static String getReporterIdentityIdentifier(FilterDto filter) {
-<span class="fc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REPORTER_IDENTITY_IDENTIFIER));</span>
+<span class="fc" id="L80">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REPORTER_IDENTITY_IDENTIFIER));</span>
   }
 
 

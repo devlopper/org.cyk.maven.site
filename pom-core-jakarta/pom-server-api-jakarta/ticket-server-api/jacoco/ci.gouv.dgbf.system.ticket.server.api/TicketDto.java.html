@@ -133,6 +133,10 @@ import lombok.Setter;
   @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
   private String usersGroupAsString;
 
+  @JsonbProperty(JSON_REPORTER_IDENTITY_IDENTIFIER)
+  private String reporterIdentityIdentifier;
+
+
   /**
    * Identifiant json de l'identifiant.
    */
@@ -152,6 +156,8 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = NAME + &quot;s&quot;;
+
+  public static final String JSON_REPORTER_IDENTITY_IDENTIFIER = &quot;identifiantIdentiteDeclarant&quot;;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
