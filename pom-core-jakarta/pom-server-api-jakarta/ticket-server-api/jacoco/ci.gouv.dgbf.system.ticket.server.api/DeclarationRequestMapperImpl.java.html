@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-07-02T10:58:25+0000&quot;,
+    date = &quot;2026-07-02T12:41:49+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -26,28 +26,43 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L26">        DeclarationService.DeclarationCreateRequestDto declarationCreateRequestDto = new DeclarationService.DeclarationCreateRequestDto();</span>
 
 <span class="fc" id="L28">        declarationCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L29">        declarationCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L30">        declarationCreateRequestDto.setTicketIdentifier( arg0.getTicketIdentifier() );</span>
-<span class="fc" id="L31">        declarationCreateRequestDto.setReporterIdentityIdentifier( arg0.getReporterIdentityIdentifier() );</span>
+<span class="fc" id="L29">        declarationCreateRequestDto.setTicketIdentifier( arg0.getTicketIdentifier() );</span>
+<span class="fc" id="L30">        declarationCreateRequestDto.setReporterIdentityIdentifier( arg0.getReporterIdentityIdentifier() );</span>
 
-<span class="fc" id="L33">        return declarationCreateRequestDto;</span>
+<span class="fc" id="L32">        return declarationCreateRequestDto;</span>
     }
 
     @Override
     public DeclarationService.DeclarationUpdateRequestDto mapUpdate(DeclarationDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L38">            return null;</span>
         }
 
-<span class="fc" id="L42">        DeclarationService.DeclarationUpdateRequestDto declarationUpdateRequestDto = new DeclarationService.DeclarationUpdateRequestDto();</span>
+<span class="fc" id="L41">        DeclarationService.DeclarationUpdateRequestDto declarationUpdateRequestDto = new DeclarationService.DeclarationUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        declarationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L45">        declarationUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L46">        declarationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        declarationUpdateRequestDto.setTicketIdentifier( arg0.getTicketIdentifier() );</span>
-<span class="fc" id="L48">        declarationUpdateRequestDto.setReporterIdentityIdentifier( arg0.getReporterIdentityIdentifier() );</span>
+<span class="fc" id="L43">        declarationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L44">        declarationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L45">        declarationUpdateRequestDto.setTicketIdentifier( arg0.getTicketIdentifier() );</span>
+<span class="fc" id="L46">        declarationUpdateRequestDto.setReporterIdentityIdentifier( arg0.getReporterIdentityIdentifier() );</span>
 
-<span class="fc" id="L50">        return declarationUpdateRequestDto;</span>
+<span class="fc" id="L48">        return declarationUpdateRequestDto;</span>
+    }
+
+    @Override
+    public DeclarationService.DeclarationCreateIncidentRequestDto mapCreateIncident(DeclarationDto declaration) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if ( declaration == null ) {</span>
+<span class="fc" id="L54">            return null;</span>
+        }
+
+<span class="fc" id="L57">        DeclarationService.DeclarationCreateIncidentRequestDto declarationCreateIncidentRequestDto = new DeclarationService.DeclarationCreateIncidentRequestDto();</span>
+
+<span class="fc" id="L59">        declarationCreateIncidentRequestDto.setAuditWho( declaration.getAuditWho() );</span>
+<span class="fc" id="L60">        declarationCreateIncidentRequestDto.setReporterIdentityIdentifier( declaration.getReporterIdentityIdentifier() );</span>
+<span class="fc" id="L61">        declarationCreateIncidentRequestDto.setObject( declaration.getObject() );</span>
+<span class="fc" id="L62">        declarationCreateIncidentRequestDto.setDescription( declaration.getDescription() );</span>
+<span class="fc" id="L63">        declarationCreateIncidentRequestDto.setDomainIdentifier( declaration.getDomainIdentifier() );</span>
+
+<span class="fc" id="L65">        return declarationCreateIncidentRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
