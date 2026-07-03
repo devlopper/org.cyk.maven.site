@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DeclarationService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">DeclarationService.java</span></div><h1>DeclarationService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFrontEndBaseUriDto;
+import ci.gouv.dgbf.extension.core.segregation.HasNameDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestMultipartDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -11,10 +14,11 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasReporterIdentityIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
-import jakarta.ws.rs.FormParam;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
@@ -27,10 +31,8 @@ import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.media.Content;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
-import org.jboss.resteasy.annotations.providers.multipart.PartType;
 
 /**
  * Cette interface représente les services de {@link DeclarationDto}.
@@ -128,8 +130,8 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L131">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
-        implements DeclarationSaveRequestDto {
+<span class="fc" id="L133">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
 
@@ -160,8 +162,7 @@ public interface DeclarationService extends SpecificService {
   @Produces(value = {MediaType.APPLICATION_JSON})
   @Operation(operationId = GET_MANY_IDENTIFIER)
   @APIResponse(responseCode = &quot;200&quot;,
-      content = {@Content(schema =
-          @Schema(implementation = DeclarationGetManyResponseDto.class))})
+      content = {@Content(schema = @Schema(implementation = DeclarationGetManyResponseDto.class))})
   Response getMany(GetManyRequestDto request);
 
   /**
@@ -172,7 +173,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L175">  public static class DeclarationGetManyResponseDto</span>
+<span class="fc" id="L176">  public static class DeclarationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DeclarationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -262,8 +263,8 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L265">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto implements</span>
-        DeclarationSaveRequestDto {
+<span class="fc" id="L266">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
 
@@ -313,10 +314,10 @@ public interface DeclarationService extends SpecificService {
    *
    * @param request requête
    * @return réponse
- */
+   */
   @Path(CREATE_INCIDENT_PATH)
   @POST
-  @Consumes(MediaType.MULTIPART_FORM_DATA)
+  @Consumes(MediaType.APPLICATION_JSON)
   @Produces(MediaType.APPLICATION_JSON)
   @Operation(operationId = CREATE_INCIDENT_IDENTIFIER)
   @APIResponse(responseCode = &quot;201&quot;,
@@ -330,125 +331,27 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L333">  class DeclarationCreateIncidentRequestDto extends AbstractAuditedRequestMultipartDto  {</span>
+<span class="fc" id="L334">  class DeclarationCreateIncidentRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements HasDomainIdentifierDto, HasNameDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
+      HasReporterIdentityIdentifierDto, HasFrontEndBaseUriDto {
 
-    /**
-     * Identifiant de l'identité du déclarant.
-     */
-    @JsonbProperty(JSON_REPORTER_IDENTITY_IDENTIFIER)
-    @Parameter(name = JSON_REPORTER_IDENTITY_IDENTIFIER,
-        description = &quot;l'identifiant de l'identité du déclarant&quot;)
-    @PartType(MediaType.TEXT_PLAIN)
-    @FormParam(value = JSON_REPORTER_IDENTITY_IDENTIFIER)
-    private String reporterIdentityIdentifier;
-
-    /**
-     * Objet.
-     */
-    @JsonbProperty(JSON_OBJECT)
-    @Parameter(name = JSON_OBJECT, description = &quot;l'objet&quot;)
-    @PartType(MediaType.TEXT_PLAIN)
-    @FormParam(value = JSON_OBJECT)
-    private String object;
-
-    /**
-     * Front-end base URI.
-     */
-    @JsonbProperty(JSON_FRONT_END_BASE_URI)
-    @Parameter(name = JSON_FRONT_END_BASE_URI, description = &quot;uriBaseFrontEnd&quot;)
-    @PartType(MediaType.TEXT_PLAIN)
-    @FormParam(value = JSON_FRONT_END_BASE_URI)
-    private String frontEndBaseUri;
-
-    /**
-     * Description.
-     */
-    @JsonbProperty(JSON_DESCRIPTION)
-    @Parameter(name = JSON_DESCRIPTION, description = &quot;la description&quot;)
-    @PartType(MediaType.TEXT_PLAIN)
-    @FormParam(value = JSON_DESCRIPTION)
-    private String description;
-
-    /**
-     * Domaine fonctionnel.
-     */
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
-    @Parameter(name = JSON_DOMAIN_IDENTIFIER, description = &quot;le domaine fonctionnel&quot;)
-    @PartType(MediaType.TEXT_PLAIN)
-    @FormParam(value = JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
 
+    @JsonbProperty(JSON_NAME)
+    private String name;
 
+    @JsonbProperty(JSON_DESCRIPTION)
+    private String description;
 
-    /**
-     * Nom du fichier joint.
-     */
-    @JsonbProperty(JSON_FILE_NAME)
-    @FormParam(value = JSON_FILE_NAME)
-    @PartType(MediaType.TEXT_PLAIN)
-    @Parameter(name = JSON_FILE_NAME, description = &quot;le nom du fichier&quot;, example = &quot;fichier01.txt&quot;)
-    private String filename;
+    @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
 
-    /**
-     * Type de contenu du fichier joint.
-     */
-    @FormParam(value = JSON_FILE_CONTENT_TYPE)
-    @PartType(MediaType.TEXT_PLAIN)
-    @Parameter(name = JSON_FILE_CONTENT_TYPE,
-        description = &quot;le type de contenu du fichier. Il doit respecter le format MIME&quot;,
-        example = &quot;text/plain&quot;)
-    @JsonbProperty(JSON_FILE_CONTENT_TYPE)
-    private String fileContentType;
+    @JsonbProperty(JSON_REPORTER_IDENTITY_IDENTIFIER)
+    private String reporterIdentityIdentifier;
 
-    /**
-     * Octets.
-     */
-    @FormParam(value = JSON_FILE_BYTES)
-    @PartType(MediaType.APPLICATION_OCTET_STREAM)
-    @Parameter(name = JSON_FILE_BYTES, description = &quot;les données binaires du fichier&quot;)
-    @JsonbProperty(JSON_FILE_BYTES)
-    private byte[] fileBytes;
-
-    /**
-     * Identifiant json {@link #description}.
-     */
-    public static final String JSON_DESCRIPTION = DeclarationDto.JSON_DESCRIPTION;
-
-    /**
-     * Identifiant json {@link #object}.
-     */
-    public static final String JSON_OBJECT = DeclarationDto.JSON_OBJECT;
-
-    /**
-     * Identifiant champ java {@link #frontEndBaseUri}.
-     */
-    public static final String JSON_FRONT_END_BASE_URI = &quot;uriBaseFrontEnd&quot;;
-
-    /**
-     * Identifiant json {@link #reporterIdentityIdentifier}.
-     */
-    public static final String JSON_REPORTER_IDENTITY_IDENTIFIER =
-        DeclarationDto.JSON_REPORTER_IDENTITY_IDENTIFIER;
-
-    /**
-     * Identifiant json {@link #domainIdentifier}.
-     */
-    public static final String JSON_DOMAIN_IDENTIFIER = DeclarationDto.JSON_DOMAIN_IDENTIFIER;
-
-    /**
-     * Identifiant json {@link #filename}.
-     */
-    public static final String JSON_FILE_NAME = &quot;nomFichier&quot;;
-
-    /**
-     * Identifiant json {@link #fileContentType}.
-     */
-    public static final String JSON_FILE_CONTENT_TYPE = &quot;typeContenu&quot;;
-
-    /**
-     * Identifiant json {@link #fileBytes}.
-     */
-    public static final String JSON_FILE_BYTES = &quot;bytes&quot;;
+    @JsonbProperty(JSON_FRONT_END_BASE_URI)
+    private String frontEndBaseUri;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

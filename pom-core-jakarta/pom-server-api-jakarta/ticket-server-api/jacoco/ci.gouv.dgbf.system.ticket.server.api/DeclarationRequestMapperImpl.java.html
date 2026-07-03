@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-07-02T12:41:49+0000&quot;,
+    date = &quot;2026-07-03T08:41:49+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -57,12 +57,13 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L57">        DeclarationService.DeclarationCreateIncidentRequestDto declarationCreateIncidentRequestDto = new DeclarationService.DeclarationCreateIncidentRequestDto();</span>
 
 <span class="fc" id="L59">        declarationCreateIncidentRequestDto.setAuditWho( declaration.getAuditWho() );</span>
-<span class="fc" id="L60">        declarationCreateIncidentRequestDto.setReporterIdentityIdentifier( declaration.getReporterIdentityIdentifier() );</span>
-<span class="fc" id="L61">        declarationCreateIncidentRequestDto.setObject( declaration.getObject() );</span>
+<span class="fc" id="L60">        declarationCreateIncidentRequestDto.setDomainIdentifier( declaration.getDomainIdentifier() );</span>
+<span class="fc" id="L61">        declarationCreateIncidentRequestDto.setName( declaration.getName() );</span>
 <span class="fc" id="L62">        declarationCreateIncidentRequestDto.setDescription( declaration.getDescription() );</span>
-<span class="fc" id="L63">        declarationCreateIncidentRequestDto.setDomainIdentifier( declaration.getDomainIdentifier() );</span>
+<span class="fc" id="L63">        declarationCreateIncidentRequestDto.setFilesGroupIdentifier( declaration.getFilesGroupIdentifier() );</span>
+<span class="fc" id="L64">        declarationCreateIncidentRequestDto.setReporterIdentityIdentifier( declaration.getReporterIdentityIdentifier() );</span>
 
-<span class="fc" id="L65">        return declarationCreateIncidentRequestDto;</span>
+<span class="fc" id="L66">        return declarationCreateIncidentRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
