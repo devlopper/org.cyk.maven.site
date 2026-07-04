@@ -19,6 +19,7 @@ import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasDissatisfiableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasEscalatableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasRedirectableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasReporterIdentityIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasResolvableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSatisfiableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasSolutionDto;
@@ -39,13 +40,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L42">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasDomainIdentifierDto, HasDomainAsStringDto, HasLevelIdentifierDto,
-    HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto, HasStatusDto&lt;TicketStatus&gt;,
-    HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto, HasResolvableDto, HasSatisfiableDto,
-    HasDissatisfiableDto, HasRedirectableDto, HasEscalatableDto, HasCategoryIdentifierDto,
-    HasCategoryAsStringDto, HasPriorityIdentifierDto, HasPriorityAsStringDto, HasDiagnosticDto,
-    HasSolutionDto, HasUserIdentifierDto, HasUserAsStringDto, HasUsersGroupAsStringDto {
+<span class="fc" id="L43">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasDomainIdentifierDto, HasDomainAsStringDto, HasReporterIdentityIdentifierDto,
+    HasLevelIdentifierDto, HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
+    HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
+    HasResolvableDto, HasSatisfiableDto, HasDissatisfiableDto, HasRedirectableDto,
+    HasEscalatableDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
+    HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
+    HasUserAsStringDto, HasUsersGroupAsStringDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -86,10 +88,10 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_REDIRECTABLE)
   private Boolean redirectable;
-  
+
   @JsonbProperty(JSON_ESCALATABLE)
   private Boolean escalatable;
-  
+
   // Level
 
   @JsonbProperty(JSON_LEVEL_IDENTIFIER)
@@ -156,8 +158,5 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = NAME + &quot;s&quot;;
-
-  public static final String JSON_REPORTER_IDENTITY_IDENTIFIER = &quot;identifiantIdentiteDeclarant&quot;;
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

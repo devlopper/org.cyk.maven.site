@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasDomainIdentifie
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasStatusCode;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasStatusCodes;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.FilterHasReporterIdentityIdentifier;
 import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,8 +18,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class TicketFilter extends AbstractIdentifiableFilter
-    implements FilterHasStatusCode, FilterHasStatusCodes, FilterHasDomainIdentifier {
+public class TicketFilter extends AbstractIdentifiableFilter implements FilterHasStatusCode,
+    FilterHasStatusCodes, FilterHasDomainIdentifier, FilterHasReporterIdentityIdentifier {
 
   private String statusCode;
   private Set&lt;String&gt; statusCodes;
@@ -31,14 +32,13 @@ public class TicketFilter extends AbstractIdentifiableFilter
    * @param dto filtre
    */
   public TicketFilter(FilterDto dto) {
-<span class="fc" id="L34">    super(dto);</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L35">    super(dto);</span>
+<span class="fc" id="L36">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L40">  public TicketFilter() {</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L41">  public TicketFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
@@ -46,7 +46,7 @@ public class TicketFilter extends AbstractIdentifiableFilter
 <span class="fc" id="L46">    updateStatusCode(filter);</span>
 <span class="fc" id="L47">    updateStatusCodes(filter);</span>
 <span class="fc" id="L48">    updateDomainIdentifier(filter);</span>
-<span class="fc" id="L49">    reporterIdentityIdentifier = getReporterIdentityIdentifier(filter);</span>
+<span class="fc" id="L49">    updateReporterIdentityIdentifier(filter);</span>
 <span class="fc" id="L50">  }</span>
 
   @Override
@@ -55,33 +55,7 @@ public class TicketFilter extends AbstractIdentifiableFilter
 <span class="fc" id="L55">    updateFilterStatusCode(filter);</span>
 <span class="fc" id="L56">    updateFilterStatusCodes(filter);</span>
 <span class="fc" id="L57">    updateFilterDomainIdentifier(filter);</span>
-<span class="fc" id="L58">    setReporterIdentityIdentifier(filter, reporterIdentityIdentifier);</span>
+<span class="fc" id="L58">    updateFilterReporterIdentityIdentifier(filter);</span>
 <span class="fc" id="L59">  }</span>
-
-  /**
-   * Cette méthode permet d'assigner.
-   *
-   * @param filter filtre
-   * @param reporterIdentityIdentifier id
-   */
-  public static void setReporterIdentityIdentifier(FilterDto filter,
-                                                   String reporterIdentityIdentifier) {
-<span class="pc" id="L69">    set(filter, JSON_REPORTER_IDENTITY_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L70">        f -&gt; f.setValueAsString(reporterIdentityIdentifier));</span>
-<span class="fc" id="L71">  }</span>
-
-  /**
-   * Cette méthode permet d'obtenir.
-   *
-   * @param filter filtre
-   * @return id
-   */
-  public static String getReporterIdentityIdentifier(FilterDto filter) {
-<span class="fc" id="L80">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_REPORTER_IDENTITY_IDENTIFIER));</span>
-  }
-
-
-  public static final String JSON_REPORTER_IDENTITY_IDENTIFIER = &quot;identifiantIdentiteDeclarant&quot;;
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
