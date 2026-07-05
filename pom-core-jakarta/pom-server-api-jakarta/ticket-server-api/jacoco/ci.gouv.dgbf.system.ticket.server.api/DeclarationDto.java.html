@@ -2,6 +2,8 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTicketAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTicketIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasReporterIdentityIdentifierDto;
@@ -16,23 +18,16 @@ import lombok.Setter;
  * @author Arnaud
  *
  */
-
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L23">public class DeclarationDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L24">public class DeclarationDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDescriptionDto, HasDomainIdentifierDto, HasReporterIdentityIdentifierDto,
-    HasFilesGroupIdentifierDto {
+    HasFilesGroupIdentifierDto, HasTicketIdentifierDto, HasTicketAsStringDto {
 
-  /**
-   * Identifiant de {@link TicketDto}.
-   */
   @JsonbProperty(JSON_TICKET_IDENTIFIER)
   private String ticketIdentifier;
 
-  /**
-   * Réprésentation en chaine de caractères de {@link TicketDto}.
-   */
   @JsonbProperty(JSON_TICKET_AS_STRING)
   private String ticketAsString;
 
@@ -57,17 +52,6 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;declarationChaine&quot;;
-
-
-  /**
-   * Identifiant champ java {@link #ticketIdentifier}.
-   */
-  public static final String JSON_TICKET_IDENTIFIER = TicketDto.JSON_THIS_IDENTIFIER;
-
-  /**
-   * Identifiant champ java {@link #ticketAsString}.
-   */
-  public static final String JSON_TICKET_AS_STRING = TicketDto.JSON_THIS_AS_STRING;
 
 
   /**
