@@ -18,8 +18,10 @@ import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDt
 import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketAssignUserRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketClaimRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketClaimResponseDto;
+import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketCreateChildRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketCreateRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketDissatisfyRequestDto;
 import ci.gouv.dgbf.system.ticket.server.api.TicketService.TicketDissatisfyResponseDto;
@@ -46,13 +48,13 @@ import lombok.experimental.Accessors;
 @ApplicationScoped
 @Setter
 @Accessors(chain = true, fluent = true)
-<span class="fc" id="L49">public class TicketClient extends AbstractClient&lt;TicketService&gt;</span>
+<span class="fc" id="L51">public class TicketClient extends AbstractClient&lt;TicketService&gt;</span>
     implements GetByIdentifier&lt;TicketDto&gt;, GetMany&lt;TicketGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public TicketClient service(TicketService service) {
-<span class="fc" id="L55">    return (TicketClient) super.service(service);</span>
+<span class="fc" id="L57">    return (TicketClient) super.service(service);</span>
   }
 
   /**
@@ -62,8 +64,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(TicketCreateRequestDto request) {
-<span class="fc" id="L65">    return new CreateExecutor(TicketService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L66">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L67">    return new CreateExecutor(TicketService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L68">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -76,10 +78,10 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public CreateResponseDto create(String code, String name, String auditWho, String auditSession) {
-<span class="fc" id="L79">    TicketCreateRequestDto request = new TicketCreateRequestDto();</span>
-<span class="fc" id="L80">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L81">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L82">    return create(request);</span>
+<span class="fc" id="L81">    TicketCreateRequestDto request = new TicketCreateRequestDto();</span>
+<span class="fc" id="L82">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L83">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L84">    return create(request);</span>
   }
 
   /**
@@ -89,8 +91,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L92">    return new GetOneExecutor&lt;TicketGetManyResponseDto&gt;(TicketGetManyResponseDto.class,</span>
-<span class="fc" id="L93">        TicketService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L94">    return new GetOneExecutor&lt;TicketGetManyResponseDto&gt;(TicketGetManyResponseDto.class,</span>
+<span class="fc" id="L95">        TicketService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -106,13 +108,13 @@ import lombok.experimental.Accessors;
   @Override
   public TicketGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter, PageDto page,
       String auditWho, String auditSession) {
-<span class="fc" id="L109">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L110">    request.setProjection(projection);</span>
-<span class="fc" id="L111">    request.setFilter(filter);</span>
-<span class="fc" id="L112">    request.setPage(page);</span>
-<span class="fc" id="L113">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L114">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L115">    return getMany(request);</span>
+<span class="fc" id="L111">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L112">    request.setProjection(projection);</span>
+<span class="fc" id="L113">    request.setFilter(filter);</span>
+<span class="fc" id="L114">    request.setPage(page);</span>
+<span class="fc" id="L115">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L116">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L117">    return getMany(request);</span>
   }
 
   /**
@@ -122,8 +124,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L125">    return new GetOneExecutor&lt;TicketDto&gt;(TicketDto.class, TicketService.GET_ONE_IDENTIFIER)</span>
-<span class="fc" id="L126">        .execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L127">    return new GetOneExecutor&lt;TicketDto&gt;(TicketDto.class, TicketService.GET_ONE_IDENTIFIER)</span>
+<span class="fc" id="L128">        .execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -137,12 +139,12 @@ import lombok.experimental.Accessors;
    */
   public TicketDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L140">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L141">    request.setProjection(projection);</span>
-<span class="fc" id="L142">    request.setFilter(filter);</span>
-<span class="fc" id="L143">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L144">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L145">    return getOne(request);</span>
+<span class="fc" id="L142">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L143">    request.setProjection(projection);</span>
+<span class="fc" id="L144">    request.setFilter(filter);</span>
+<span class="fc" id="L145">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L146">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L147">    return getOne(request);</span>
   }
 
   /**
@@ -152,9 +154,9 @@ import lombok.experimental.Accessors;
    * @return groupe d'échéance
    */
   public TicketDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L155">    return new GetOneExecutor&lt;TicketDto&gt;(TicketDto.class,</span>
+<span class="fc" id="L157">    return new GetOneExecutor&lt;TicketDto&gt;(TicketDto.class,</span>
         TicketService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L157">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L159">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -169,12 +171,12 @@ import lombok.experimental.Accessors;
   @Override
   public TicketDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
-<span class="fc" id="L172">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L173">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L174">    request.setProjection(projection);</span>
-<span class="fc" id="L175">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L176">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L177">    return getByIdentifier(request);</span>
+<span class="fc" id="L174">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L175">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L176">    request.setProjection(projection);</span>
+<span class="fc" id="L177">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L178">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L179">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -184,10 +186,10 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public Long getCount(GetCountRequestDto request) {
-<span class="fc" id="L187">    return new GetLongExecutor(TicketService.GET_COUNT_IDENTIFIER)</span>
-<span class="fc" id="L188">        .execute(() -&gt; service().getCount(request));</span>
+<span class="fc" id="L189">    return new GetLongExecutor(TicketService.GET_COUNT_IDENTIFIER)</span>
+<span class="fc" id="L190">        .execute(() -&gt; service().getCount(request));</span>
   }
-  
+
   /**
    * {@link TicketService#update}.
    *
@@ -195,8 +197,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto update(TicketUpdateRequestDto request) {
-<span class="fc" id="L198">    return new IdentifiableExecutor(TicketService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L199">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L200">    return new IdentifiableExecutor(TicketService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L201">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -211,11 +213,11 @@ import lombok.experimental.Accessors;
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
       String auditWho, String auditSession) {
-<span class="fc" id="L214">    TicketUpdateRequestDto request = new TicketUpdateRequestDto();</span>
-<span class="fc" id="L215">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L216">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L217">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L218">    return update(request);</span>
+<span class="fc" id="L216">    TicketUpdateRequestDto request = new TicketUpdateRequestDto();</span>
+<span class="fc" id="L217">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L218">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L219">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L220">    return update(request);</span>
   }
 
   /**
@@ -225,8 +227,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L228">    return new IdentifiableExecutor(TicketService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L229">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L230">    return new IdentifiableExecutor(TicketService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L231">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -240,11 +242,11 @@ import lombok.experimental.Accessors;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L243">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L244">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L245">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L246">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L247">    return delete(request);</span>
+<span class="fc" id="L245">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L246">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L247">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L248">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L249">    return delete(request);</span>
   }
 
   /**
@@ -254,8 +256,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketClaimResponseDto claim(TicketClaimRequestDto request) {
-<span class="fc" id="L257">    return new GetOneExecutor&lt;&gt;(TicketClaimResponseDto.class,</span>
-<span class="fc" id="L258">        TicketService.CLAIM_IDENTIFIER).execute(() -&gt; service().claim(request));</span>
+<span class="fc" id="L259">    return new GetOneExecutor&lt;&gt;(TicketClaimResponseDto.class,</span>
+<span class="fc" id="L260">        TicketService.CLAIM_IDENTIFIER).execute(() -&gt; service().claim(request));</span>
   }
 
   /**
@@ -265,8 +267,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketResolveResponseDto resolve(TicketResolveRequestDto request) {
-<span class="fc" id="L268">    return new GetOneExecutor&lt;&gt;(TicketResolveResponseDto.class, TicketService.RESOLVE_IDENTIFIER)</span>
-<span class="fc" id="L269">        .execute(() -&gt; service().resolve(request));</span>
+<span class="fc" id="L270">    return new GetOneExecutor&lt;&gt;(TicketResolveResponseDto.class, TicketService.RESOLVE_IDENTIFIER)</span>
+<span class="fc" id="L271">        .execute(() -&gt; service().resolve(request));</span>
   }
 
   /**
@@ -276,8 +278,8 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketSatisfyResponseDto satisfy(TicketSatisfyRequestDto request) {
-<span class="fc" id="L279">    return new GetOneExecutor&lt;&gt;(TicketSatisfyResponseDto.class, TicketService.SATISFY_IDENTIFIER)</span>
-<span class="fc" id="L280">        .execute(() -&gt; service().satisfy(request));</span>
+<span class="fc" id="L281">    return new GetOneExecutor&lt;&gt;(TicketSatisfyResponseDto.class, TicketService.SATISFY_IDENTIFIER)</span>
+<span class="fc" id="L282">        .execute(() -&gt; service().satisfy(request));</span>
   }
 
   /**
@@ -287,10 +289,10 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketDissatisfyResponseDto dissatisfy(TicketDissatisfyRequestDto request) {
-<span class="fc" id="L290">    return new GetOneExecutor&lt;&gt;(TicketDissatisfyResponseDto.class,</span>
-<span class="fc" id="L291">        TicketService.DISSATISFY_IDENTIFIER).execute(() -&gt; service().dissatisfy(request));</span>
+<span class="fc" id="L292">    return new GetOneExecutor&lt;&gt;(TicketDissatisfyResponseDto.class,</span>
+<span class="fc" id="L293">        TicketService.DISSATISFY_IDENTIFIER).execute(() -&gt; service().dissatisfy(request));</span>
   }
-  
+
   /**
    * {@link TicketService#redirect}.
    *
@@ -298,10 +300,10 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketRedirectResponseDto redirect(TicketRedirectRequestDto request) {
-<span class="fc" id="L301">    return new GetOneExecutor&lt;&gt;(TicketRedirectResponseDto.class,</span>
-<span class="fc" id="L302">        TicketService.REDIRECT_IDENTIFIER).execute(() -&gt; service().redirect(request));</span>
+<span class="fc" id="L303">    return new GetOneExecutor&lt;&gt;(TicketRedirectResponseDto.class,</span>
+<span class="fc" id="L304">        TicketService.REDIRECT_IDENTIFIER).execute(() -&gt; service().redirect(request));</span>
   }
-  
+
   /**
    * {@link TicketService#escalate}.
    *
@@ -309,8 +311,31 @@ import lombok.experimental.Accessors;
    * @return réponse
    */
   public TicketEscalateResponseDto escalate(TicketEscalateRequestDto request) {
-<span class="fc" id="L312">    return new GetOneExecutor&lt;&gt;(TicketEscalateResponseDto.class,</span>
-<span class="fc" id="L313">        TicketService.ESCALATE_IDENTIFIER).execute(() -&gt; service().escalate(request));</span>
+<span class="fc" id="L314">    return new GetOneExecutor&lt;&gt;(TicketEscalateResponseDto.class,</span>
+<span class="fc" id="L315">        TicketService.ESCALATE_IDENTIFIER).execute(() -&gt; service().escalate(request));</span>
+  }
+
+
+  /**
+   * {@link TicketService#assignUser}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public TicketAssignUserRequestDto assignUser(TicketAssignUserRequestDto request) {
+<span class="fc" id="L326">    return new GetOneExecutor&lt;&gt;(TicketAssignUserRequestDto.class,</span>
+<span class="fc" id="L327">        TicketService.ASSIGN_USER_IDENTIFIER).execute(() -&gt; service().assignUser(request));</span>
+  }
+
+  /**
+   * {@link TicketService#createChild}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto createChild(TicketCreateChildRequestDto request) {
+<span class="fc" id="L337">    return new CreateExecutor(TicketService.CREATE_CHILD_IDENTIFIER)</span>
+<span class="fc" id="L338">        .execute(() -&gt; service().createChild(request));</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
