@@ -7,8 +7,10 @@ import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLevelAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLevelIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasParentIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasServiceRatingDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
@@ -40,14 +42,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L43">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L45">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasReporterIdentityIdentifierDto,
     HasLevelIdentifierDto, HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
     HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
     HasResolvableDto, HasSatisfiableDto, HasDissatisfiableDto, HasRedirectableDto,
     HasEscalatableDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
     HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
-    HasUserAsStringDto, HasUsersGroupAsStringDto {
+    HasUserAsStringDto, HasUsersGroupAsStringDto, HasParentIdentifierDto, HasServiceRatingDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -138,6 +140,15 @@ import lombok.Setter;
   @JsonbProperty(JSON_REPORTER_IDENTITY_IDENTIFIER)
   private String reporterIdentityIdentifier;
 
+  // note de prestation
+
+  @JsonbProperty(JSON_SERVICE_RATING)
+  private Integer serviceRating;
+
+  // parent
+
+  @JsonbProperty(JSON_PARENT_IDENTIFIER)
+  private String parentIdentifier;
 
   /**
    * Identifiant json de l'identifiant.
