@@ -548,7 +548,8 @@ public interface TicketService extends SpecificService {
   @Getter
   @Setter
 <span class="fc" id="L550">  class TicketSatisfyRequestDto extends ByIdentifierRequestDto</span>
-      implements HasStatusCommentDto, HasFilesGroupIdentifierDto, HasServiceRatingDto {
+      implements HasStatusCommentDto, HasFilesGroupIdentifierDto, HasServiceRatingDto,
+      HasFrontEndBaseUriDto {
 
     @JsonbProperty(JSON_STATUS_COMMENT)
     private String statusComment;
@@ -558,6 +559,9 @@ public interface TicketService extends SpecificService {
 
     @JsonbProperty(JSON_SERVICE_RATING)
     private Integer serviceRating;
+
+    @JsonbProperty(JSON_FRONT_END_BASE_URI)
+    private String frontEndBaseUri;
   }
 
   /**
@@ -568,7 +572,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L571">  class TicketSatisfyResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L575">  class TicketSatisfyResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -606,8 +610,9 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L609">  class TicketDissatisfyRequestDto extends ByIdentifierRequestDto</span>
-      implements HasStatusCommentDto, HasFilesGroupIdentifierDto, HasServiceRatingDto {
+<span class="fc" id="L613">  class TicketDissatisfyRequestDto extends ByIdentifierRequestDto</span>
+      implements HasStatusCommentDto, HasFilesGroupIdentifierDto, HasServiceRatingDto,
+      HasFrontEndBaseUriDto {
     @JsonbProperty(JSON_STATUS_COMMENT)
     private String statusComment;
 
@@ -616,6 +621,9 @@ public interface TicketService extends SpecificService {
 
     @JsonbProperty(JSON_SERVICE_RATING)
     private Integer serviceRating;
+
+    @JsonbProperty(JSON_FRONT_END_BASE_URI)
+    private String frontEndBaseUri;
 
   }
 
@@ -627,7 +635,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L630">  class TicketDissatisfyResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L638">  class TicketDissatisfyResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -665,7 +673,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L668">  class TicketRedirectRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L676">  class TicketRedirectRequestDto extends ByIdentifierRequestDto</span>
       implements HasDomainIdentifierDto, HasStatusCommentDto, HasFilesGroupIdentifierDto,
       HasFrontEndBaseUriDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -689,7 +697,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L692">  class TicketRedirectResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L700">  class TicketRedirectResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -726,7 +734,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L729">  class TicketEscalateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L737">  class TicketEscalateRequestDto extends ByIdentifierRequestDto</span>
       implements HasStatusCommentDto, HasFilesGroupIdentifierDto, HasFrontEndBaseUriDto {
     @JsonbProperty(JSON_STATUS_COMMENT)
     private String statusComment;
@@ -746,7 +754,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L749">  class TicketEscalateResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L757">  class TicketEscalateResponseDto extends ProcessResponseDto {</span>
 
   }
 
@@ -783,7 +791,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L786">  class TicketAssignUserRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L794">  class TicketAssignUserRequestDto extends ByIdentifierRequestDto</span>
       implements HasUserIdentifierDto {
 
     @JsonbProperty(JSON_USER_IDENTIFIER)
@@ -825,7 +833,7 @@ public interface TicketService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L828">  class TicketCreateChildRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L836">  class TicketCreateChildRequestDto extends ByIdentifierRequestDto</span>
       implements TicketSaveRequestDto, HasNameDto {
 
     @JsonbProperty(JSON_NAME)
