@@ -24,6 +24,12 @@ public class TicketFilter extends AbstractIdentifiableFilter implements FilterHa
   private String statusCode;
   private Set&lt;String&gt; statusCodes;
   private String domainIdentifier;
+
+  /**
+   * Identifiants des domaines fonctionnels.
+   */
+  private Set&lt;String&gt; domainIdentifiers;
+
   private String reporterIdentityIdentifier;
 
   /**
@@ -32,30 +38,58 @@ public class TicketFilter extends AbstractIdentifiableFilter implements FilterHa
    * @param dto filtre
    */
   public TicketFilter(FilterDto dto) {
-<span class="fc" id="L35">    super(dto);</span>
-<span class="fc" id="L36">  }</span>
+<span class="fc" id="L41">    super(dto);</span>
+<span class="fc" id="L42">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L41">  public TicketFilter() {}</span>
+<span class="fc" id="L47">  public TicketFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L45">    super.doInitialize(filter);</span>
-<span class="fc" id="L46">    updateStatusCode(filter);</span>
-<span class="fc" id="L47">    updateStatusCodes(filter);</span>
-<span class="fc" id="L48">    updateDomainIdentifier(filter);</span>
-<span class="fc" id="L49">    updateReporterIdentityIdentifier(filter);</span>
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L51">    super.doInitialize(filter);</span>
+<span class="fc" id="L52">    updateStatusCode(filter);</span>
+<span class="fc" id="L53">    updateStatusCodes(filter);</span>
+<span class="fc" id="L54">    updateDomainIdentifier(filter);</span>
+<span class="fc" id="L55">    domainIdentifiers = getDomainIdentifiers(filter);</span>
+<span class="fc" id="L56">    updateReporterIdentityIdentifier(filter);</span>
+<span class="fc" id="L57">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L54">    super.toDto(filter);</span>
-<span class="fc" id="L55">    updateFilterStatusCode(filter);</span>
-<span class="fc" id="L56">    updateFilterStatusCodes(filter);</span>
-<span class="fc" id="L57">    updateFilterDomainIdentifier(filter);</span>
-<span class="fc" id="L58">    updateFilterReporterIdentityIdentifier(filter);</span>
-<span class="fc" id="L59">  }</span>
+<span class="fc" id="L61">    super.toDto(filter);</span>
+<span class="fc" id="L62">    updateFilterStatusCode(filter);</span>
+<span class="fc" id="L63">    updateFilterStatusCodes(filter);</span>
+<span class="fc" id="L64">    updateFilterDomainIdentifier(filter);</span>
+<span class="fc" id="L65">    setDomainIdentifiers(filter, domainIdentifiers);</span>
+<span class="fc" id="L66">    updateFilterReporterIdentityIdentifier(filter);</span>
+<span class="fc" id="L67">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner les identifiants des domaines fonctionnels.
+   *
+   * @param filter filtre
+   * @param domainIdentifiers identifiants des domaines fonctionnels
+   */
+  public static void setDomainIdentifiers(FilterDto filter, Set&lt;String&gt; domainIdentifiers) {
+<span class="pc" id="L76">    set(filter, JSON_DOMAIN_IDENTIFIERS, f -&gt; f.getValueAsStringsSet(),</span>
+<span class="fc" id="L77">        f -&gt; f.setValueAsStringsSetIfNotNull(domainIdentifiers));</span>
+<span class="fc" id="L78">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir les identifiants des domaines fonctionnels.
+   *
+   * @param filter filtre
+   * @return identifiants des domaines fonctionnels
+   */
+  public static Set&lt;String&gt; getDomainIdentifiers(FilterDto filter) {
+<span class="fc" id="L87">    return get(filter, d -&gt; d.getFieldValueAsStringsSetByName(JSON_DOMAIN_IDENTIFIERS));</span>
+  }
+
+  /**
+   * Identifiant JSON {@link #domainIdentifiers}.
+   */
+  public static final String JSON_DOMAIN_IDENTIFIERS = &quot;idDomaines&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
