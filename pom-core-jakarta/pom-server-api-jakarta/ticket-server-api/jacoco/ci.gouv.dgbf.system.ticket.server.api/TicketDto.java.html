@@ -96,6 +96,12 @@ import lombok.Setter;
   @JsonbProperty(JSON_ESCALATABLE)
   private Boolean escalatable;
 
+  @JsonbProperty(JSON_CHILD_CREATABLE)
+  private Boolean childCreatable;
+
+  @JsonbProperty(JSON_USER_ASSIGNABLE)
+  private Boolean userAssignable;
+
   // Level
 
   @JsonbProperty(JSON_LEVEL_IDENTIFIER)
@@ -156,6 +162,16 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_PARENT_AS_STRING)
   private String parentAsString;
+
+  /**
+   * Identifiant json de l'aptitude à créer un ticket enfant.
+   */
+  public static final String JSON_CHILD_CREATABLE = &quot;peutCreerEnfant&quot;;
+
+  /**
+   * Identifiant json de l'aptitude à être assigné à un utilisateur.
+   */
+  public static final String JSON_USER_ASSIGNABLE = &quot;utilisateurPeutEtreAssigne&quot;;
 
   /**
    * Identifiant json de l'identifiant.
