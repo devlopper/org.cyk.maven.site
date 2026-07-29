@@ -2,6 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasCategoryAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasChildCreatableDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDescriptionDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
@@ -43,7 +44,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L46">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L47">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasReporterIdentityIdentifierDto,
     HasLevelIdentifierDto, HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
     HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
@@ -51,7 +52,7 @@ import lombok.Setter;
     HasEscalatableDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
     HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
     HasUserAsStringDto, HasUsersGroupAsStringDto, HasParentIdentifierDto, HasParentAsStringDto,
-    HasServiceRatingDto {
+    HasServiceRatingDto, HasChildCreatableDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -162,11 +163,6 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_PARENT_AS_STRING)
   private String parentAsString;
-
-  /**
-   * Identifiant json de l'aptitude à créer un ticket enfant.
-   */
-  public static final String JSON_CHILD_CREATABLE = &quot;peutCreerEnfant&quot;;
 
   /**
    * Identifiant json de l'aptitude à être assigné à un utilisateur.
