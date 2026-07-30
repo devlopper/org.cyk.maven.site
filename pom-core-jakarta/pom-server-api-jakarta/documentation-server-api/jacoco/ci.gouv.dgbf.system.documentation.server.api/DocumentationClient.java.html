@@ -59,28 +59,29 @@ import jakarta.enterprise.context.ApplicationScoped;
   public DocumentationGetManyResponseDto getMany(GetManyRequestDto request) {
 <span class="fc" id="L60">    return new GetOneExecutor&lt;DocumentationGetManyResponseDto&gt;(</span>
         DocumentationGetManyResponseDto.class, DocumentationService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L62">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L62">        .execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
    * {@link DocumentationService#getMany}.
    *
-   * @param projection projection
-   * @param filter filtre
-   * @param page page
-   * @param auditWho audit acteur
+   * @param projection   projection
+   * @param filter       filtre
+   * @param page         page
+   * @param auditWho     audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public DocumentationGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
-      PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L77">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L78">    request.setProjection(projection);</span>
-<span class="fc" id="L79">    request.setFilter(filter);</span>
-<span class="fc" id="L80">    request.setPage(page);</span>
-<span class="fc" id="L81">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L82">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L83">    return getMany(request);</span>
+                                                 PageDto page, String auditWho,
+                                                 String auditSession) {
+<span class="fc" id="L78">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L79">    request.setProjection(projection);</span>
+<span class="fc" id="L80">    request.setFilter(filter);</span>
+<span class="fc" id="L81">    request.setPage(page);</span>
+<span class="fc" id="L82">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L83">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L84">    return getMany(request);</span>
   }
 
   /**
@@ -90,27 +91,27 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public DocumentationDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L93">    return new GetOneExecutor&lt;DocumentationDto&gt;(DocumentationDto.class,</span>
-<span class="fc" id="L94">        DocumentationService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L94">    return new GetOneExecutor&lt;DocumentationDto&gt;(DocumentationDto.class,</span>
+<span class="fc" id="L95">        DocumentationService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
    * {@link DocumentationService#getOne}.
    *
-   * @param projection projection
-   * @param filter filtre
-   * @param auditWho audit acteur
+   * @param projection   projection
+   * @param filter       filtre
+   * @param auditWho     audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public DocumentationDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
-      String auditSession) {
-<span class="fc" id="L108">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L109">    request.setProjection(projection);</span>
-<span class="fc" id="L110">    request.setFilter(filter);</span>
-<span class="fc" id="L111">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L112">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L113">    return getOne(request);</span>
+                                 String auditSession) {
+<span class="fc" id="L109">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L110">    request.setProjection(projection);</span>
+<span class="fc" id="L111">    request.setFilter(filter);</span>
+<span class="fc" id="L112">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L113">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L114">    return getOne(request);</span>
   }
 
   /**
@@ -120,28 +121,28 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public DocumentationDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L123">    return new GetOneExecutor&lt;DocumentationDto&gt;(DocumentationDto.class,</span>
+<span class="fc" id="L124">    return new GetOneExecutor&lt;DocumentationDto&gt;(DocumentationDto.class,</span>
         DocumentationService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L125">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L126">        .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
    * {@link DocumentationService#getByIdentifier}.
    *
-   * @param identifier identifiant
-   * @param projection projection
-   * @param auditWho audit acteur
+   * @param identifier   identifiant
+   * @param projection   projection
+   * @param auditWho     audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public DocumentationDto getByIdentifier(String identifier, ProjectionDto projection,
-      String auditWho, String auditSession) {
-<span class="fc" id="L139">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L140">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L141">    request.setProjection(projection);</span>
-<span class="fc" id="L142">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L143">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L144">    return getByIdentifier(request);</span>
+                                          String auditWho, String auditSession) {
+<span class="fc" id="L140">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L141">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L142">    request.setProjection(projection);</span>
+<span class="fc" id="L143">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L144">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L145">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -151,8 +152,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto update(DocumentationUpdateRequestDto request) {
-<span class="fc" id="L154">    return new IdentifiableExecutor(DocumentationService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L155">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L155">    return new IdentifiableExecutor(DocumentationService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L156">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -162,8 +163,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto updateText(DocumentationUpdateTextRequestDto request) {
-<span class="fc" id="L165">    return new IdentifiableExecutor(DocumentationService.UPDATE_TEXT_IDENTIFIER)</span>
-<span class="fc" id="L166">        .execute(() -&gt; service().updateText(request));</span>
+<span class="fc" id="L166">    return new IdentifiableExecutor(DocumentationService.UPDATE_TEXT_IDENTIFIER)</span>
+<span class="fc" id="L167">        .execute(() -&gt; service().updateText(request));</span>
   }
 
   /**
@@ -174,9 +175,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public IdentifiableResponseDto updateFilesGroupIdentifierToNonNull(
       ByIdentifierRequestDto request) {
-<span class="fc" id="L177">    return new IdentifiableExecutor(</span>
+<span class="fc" id="L178">    return new IdentifiableExecutor(</span>
         DocumentationService.UPDATE_FILES_GROUP_IDENTIFIER_TO_NON_NULL_IDENTIFIER)
-<span class="fc" id="L179">            .execute(() -&gt; service().updateFilesGroupIdentifierToNonNull(request));</span>
+<span class="fc" id="L180">        .execute(() -&gt; service().updateFilesGroupIdentifierToNonNull(request));</span>
   }
 
   /**
@@ -186,9 +187,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto updateFilesGroupIdentifierToNull(ByIdentifierRequestDto request) {
-<span class="fc" id="L189">    return new IdentifiableExecutor(</span>
+<span class="fc" id="L190">    return new IdentifiableExecutor(</span>
         DocumentationService.UPDATE_FILES_GROUP_IDENTIFIER_TO_NULL_IDENTIFIER)
-<span class="fc" id="L191">            .execute(() -&gt; service().updateFilesGroupIdentifierToNull(request));</span>
+<span class="fc" id="L192">        .execute(() -&gt; service().updateFilesGroupIdentifierToNull(request));</span>
   }
 
   /**
@@ -198,25 +199,25 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L201">    return new IdentifiableExecutor(DocumentationService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L202">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L202">    return new IdentifiableExecutor(DocumentationService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L203">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
    * {@link DocumentationService#delete}.
    *
-   * @param identifier identifiant
-   * @param auditWho audit acteur
+   * @param identifier   identifiant
+   * @param auditWho     audit acteur
    * @param auditSession audit session
    * @return réponse
    */
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
-      String auditSession) {
-<span class="fc" id="L215">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L216">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L217">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L218">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L219">    return delete(request);</span>
+                                                    String auditSession) {
+<span class="fc" id="L216">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L217">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L218">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L219">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L220">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

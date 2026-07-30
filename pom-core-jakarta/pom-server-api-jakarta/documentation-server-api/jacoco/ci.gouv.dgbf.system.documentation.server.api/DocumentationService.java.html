@@ -52,6 +52,62 @@ public interface DocumentationService extends SpecificService {
    */
   interface DocumentationSaveRequestDto {
     /**
+     * Cette méthode permet d'obtenir l'identifiant du processus.
+     *
+     * @return identifiant du processus
+     */
+    String getProcessIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du processus.
+     *
+     * @param processIdentifier identifiant du processus
+     */
+    void setProcessIdentifier(String processIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de la source.
+     *
+     * @return identifiant de la source
+     */
+    String getSourceIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de la source.
+     *
+     * @param sourceIdentifier identifiant de la source
+     */
+    void setSourceIdentifier(String sourceIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'enregistrement.
+     *
+     * @return identifiant de l'enregistrement
+     */
+    String getRecordIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'enregistrement.
+     *
+     * @param recordIdentifier identifiant de l'enregistrement
+     */
+    void setRecordIdentifier(String recordIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'opération.
+     *
+     * @return identifiant de l'opération
+     */
+    String getOperationIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'opération.
+     *
+     * @param operationIdentifier identifiant de l'opération
+     */
+    void setOperationIdentifier(String operationIdentifier);
+
+    /**
      * Cette méthode permet d'obtenir le texte.
      *
      * @return le texte
@@ -123,8 +179,20 @@ public interface DocumentationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L126">  class DocumentationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L182">  class DocumentationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements DocumentationSaveRequestDto {
+
+    @JsonbProperty(&quot;processIdentifier&quot;)
+    private String processIdentifier;
+
+    @JsonbProperty(&quot;sourceIdentifier&quot;)
+    private String sourceIdentifier;
+
+    @JsonbProperty(&quot;recordIdentifier&quot;)
+    private String recordIdentifier;
+
+    @JsonbProperty(&quot;operationIdentifier&quot;)
+    private String operationIdentifier;
 
     @JsonbProperty(JSON_TEXT)
     private String text;
@@ -164,7 +232,7 @@ public interface DocumentationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L167">  public static class DocumentationGetManyResponseDto</span>
+<span class="fc" id="L235">  public static class DocumentationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DocumentationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -248,8 +316,20 @@ public interface DocumentationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L251">  class DocumentationUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L319">  class DocumentationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements DocumentationSaveRequestDto {
+    @JsonbProperty(&quot;processIdentifier&quot;)
+    private String processIdentifier;
+
+    @JsonbProperty(&quot;sourceIdentifier&quot;)
+    private String sourceIdentifier;
+
+    @JsonbProperty(&quot;recordIdentifier&quot;)
+    private String recordIdentifier;
+
+    @JsonbProperty(&quot;operationIdentifier&quot;)
+    private String operationIdentifier;
+
     @JsonbProperty(JSON_TEXT)
     private String text;
 
@@ -288,7 +368,7 @@ public interface DocumentationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L291">  class DocumentationUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L371">  class DocumentationUpdateTextRequestDto extends ByIdentifierRequestDto {</span>
     /**
      * Texte.
      */

@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-06-25T15:52:34+0000&quot;,
+    date = &quot;2026-07-30T13:15:06+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -27,27 +27,35 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L28">        documentationCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
 <span class="fc" id="L29">        documentationCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L30">        documentationCreateRequestDto.setText( arg0.getText() );</span>
-<span class="fc" id="L31">        documentationCreateRequestDto.setFilesGroupIdentifier( arg0.getFilesGroupIdentifier() );</span>
+<span class="fc" id="L30">        documentationCreateRequestDto.setProcessIdentifier( arg0.getProcessIdentifier() );</span>
+<span class="fc" id="L31">        documentationCreateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
+<span class="fc" id="L32">        documentationCreateRequestDto.setRecordIdentifier( arg0.getRecordIdentifier() );</span>
+<span class="fc" id="L33">        documentationCreateRequestDto.setOperationIdentifier( arg0.getOperationIdentifier() );</span>
+<span class="fc" id="L34">        documentationCreateRequestDto.setText( arg0.getText() );</span>
+<span class="fc" id="L35">        documentationCreateRequestDto.setFilesGroupIdentifier( arg0.getFilesGroupIdentifier() );</span>
 
-<span class="fc" id="L33">        return documentationCreateRequestDto;</span>
+<span class="fc" id="L37">        return documentationCreateRequestDto;</span>
     }
 
     @Override
     public DocumentationService.DocumentationUpdateRequestDto mapUpdate(DocumentationDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L43">            return null;</span>
         }
 
-<span class="fc" id="L42">        DocumentationService.DocumentationUpdateRequestDto documentationUpdateRequestDto = new DocumentationService.DocumentationUpdateRequestDto();</span>
+<span class="fc" id="L46">        DocumentationService.DocumentationUpdateRequestDto documentationUpdateRequestDto = new DocumentationService.DocumentationUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        documentationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L45">        documentationUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L46">        documentationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        documentationUpdateRequestDto.setText( arg0.getText() );</span>
-<span class="fc" id="L48">        documentationUpdateRequestDto.setFilesGroupIdentifier( arg0.getFilesGroupIdentifier() );</span>
+<span class="fc" id="L48">        documentationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L49">        documentationUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L50">        documentationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L51">        documentationUpdateRequestDto.setProcessIdentifier( arg0.getProcessIdentifier() );</span>
+<span class="fc" id="L52">        documentationUpdateRequestDto.setSourceIdentifier( arg0.getSourceIdentifier() );</span>
+<span class="fc" id="L53">        documentationUpdateRequestDto.setRecordIdentifier( arg0.getRecordIdentifier() );</span>
+<span class="fc" id="L54">        documentationUpdateRequestDto.setOperationIdentifier( arg0.getOperationIdentifier() );</span>
+<span class="fc" id="L55">        documentationUpdateRequestDto.setText( arg0.getText() );</span>
+<span class="fc" id="L56">        documentationUpdateRequestDto.setFilesGroupIdentifier( arg0.getFilesGroupIdentifier() );</span>
 
-<span class="fc" id="L50">        return documentationUpdateRequestDto;</span>
+<span class="fc" id="L58">        return documentationUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
