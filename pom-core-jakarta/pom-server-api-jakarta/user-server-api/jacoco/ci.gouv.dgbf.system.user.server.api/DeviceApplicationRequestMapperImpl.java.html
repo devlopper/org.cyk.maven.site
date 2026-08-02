@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-05-28T20:00:36+0000&quot;,
+    date = &quot;2026-08-02T13:09:09+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,33 +25,35 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        DeviceApplicationService.DeviceApplicationCreateRequestDto deviceApplicationCreateRequestDto = new DeviceApplicationService.DeviceApplicationCreateRequestDto();</span>
 
-<span class="fc" id="L28">        deviceApplicationCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L29">        deviceApplicationCreateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
-<span class="fc" id="L30">        deviceApplicationCreateRequestDto.setDeviceIdentifier( arg0.getDeviceIdentifier() );</span>
-<span class="fc" id="L31">        deviceApplicationCreateRequestDto.setRegistrationNumber( arg0.getRegistrationNumber() );</span>
-<span class="fc" id="L32">        deviceApplicationCreateRequestDto.setEmail( arg0.getEmail() );</span>
-<span class="fc" id="L33">        deviceApplicationCreateRequestDto.setPhoneNumber( arg0.getPhoneNumber() );</span>
+<span class="fc" id="L28">        deviceApplicationCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        deviceApplicationCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        deviceApplicationCreateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
+<span class="fc" id="L31">        deviceApplicationCreateRequestDto.setDeviceIdentifier( arg0.getDeviceIdentifier() );</span>
+<span class="fc" id="L32">        deviceApplicationCreateRequestDto.setRegistrationNumber( arg0.getRegistrationNumber() );</span>
+<span class="fc" id="L33">        deviceApplicationCreateRequestDto.setEmail( arg0.getEmail() );</span>
+<span class="fc" id="L34">        deviceApplicationCreateRequestDto.setPhoneNumber( arg0.getPhoneNumber() );</span>
 
-<span class="fc" id="L35">        return deviceApplicationCreateRequestDto;</span>
+<span class="fc" id="L36">        return deviceApplicationCreateRequestDto;</span>
     }
 
     @Override
     public DeviceApplicationService.DeviceApplicationUpdateRequestDto mapUpdate(DeviceApplicationDto arg0) {
-<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L41">            return null;</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
         }
 
-<span class="fc" id="L44">        DeviceApplicationService.DeviceApplicationUpdateRequestDto deviceApplicationUpdateRequestDto = new DeviceApplicationService.DeviceApplicationUpdateRequestDto();</span>
+<span class="fc" id="L45">        DeviceApplicationService.DeviceApplicationUpdateRequestDto deviceApplicationUpdateRequestDto = new DeviceApplicationService.DeviceApplicationUpdateRequestDto();</span>
 
-<span class="fc" id="L46">        deviceApplicationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        deviceApplicationUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L48">        deviceApplicationUpdateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
-<span class="fc" id="L49">        deviceApplicationUpdateRequestDto.setDeviceIdentifier( arg0.getDeviceIdentifier() );</span>
-<span class="fc" id="L50">        deviceApplicationUpdateRequestDto.setRegistrationNumber( arg0.getRegistrationNumber() );</span>
-<span class="fc" id="L51">        deviceApplicationUpdateRequestDto.setEmail( arg0.getEmail() );</span>
-<span class="fc" id="L52">        deviceApplicationUpdateRequestDto.setPhoneNumber( arg0.getPhoneNumber() );</span>
+<span class="fc" id="L47">        deviceApplicationUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        deviceApplicationUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L49">        deviceApplicationUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L50">        deviceApplicationUpdateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
+<span class="fc" id="L51">        deviceApplicationUpdateRequestDto.setDeviceIdentifier( arg0.getDeviceIdentifier() );</span>
+<span class="fc" id="L52">        deviceApplicationUpdateRequestDto.setRegistrationNumber( arg0.getRegistrationNumber() );</span>
+<span class="fc" id="L53">        deviceApplicationUpdateRequestDto.setEmail( arg0.getEmail() );</span>
+<span class="fc" id="L54">        deviceApplicationUpdateRequestDto.setPhoneNumber( arg0.getPhoneNumber() );</span>
 
-<span class="fc" id="L54">        return deviceApplicationUpdateRequestDto;</span>
+<span class="fc" id="L56">        return deviceApplicationUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsersGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UsersGroupService.java</span></div><h1>UsersGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasModuleIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
@@ -76,8 +77,11 @@ public interface UsersGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L79">  class UsersGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L80">  class UsersGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements HasModuleIdentifierDto {
 
+    @JsonbProperty(JSON_MODULE_IDENTIFIER)
+    private String moduleIdentifier;
   }
 
   /**
@@ -113,7 +117,7 @@ public interface UsersGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L116">  public static class UsersGroupGetManyResponseDto</span>
+<span class="fc" id="L120">  public static class UsersGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;UsersGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -203,8 +207,11 @@ public interface UsersGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L206">  class UsersGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L210">  class UsersGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements HasModuleIdentifierDto {
 
+    @JsonbProperty(JSON_MODULE_IDENTIFIER)
+    private String moduleIdentifier;
   }
 
   /**

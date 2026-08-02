@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-05-28T20:00:36+0000&quot;,
+    date = &quot;2026-08-02T13:09:09+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,42 +25,45 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        UserService.UserCreateRequestDto userCreateRequestDto = new UserService.UserCreateRequestDto();</span>
 
-<span class="fc" id="L28">        userCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L29">        userCreateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
-<span class="fc" id="L30">        userCreateRequestDto.setIdentityIdentifier( arg0.getIdentityIdentifier() );</span>
-<span class="fc" id="L31">        userCreateRequestDto.setPass( arg0.getPass() );</span>
+<span class="fc" id="L28">        userCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        userCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L30">        userCreateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L31">        userCreateRequestDto.setIdentityIdentifier( arg0.getIdentityIdentifier() );</span>
+<span class="fc" id="L32">        userCreateRequestDto.setPass( arg0.getPass() );</span>
 
-<span class="fc" id="L33">        return userCreateRequestDto;</span>
+<span class="fc" id="L34">        return userCreateRequestDto;</span>
     }
 
     @Override
     public UserService.UserUpdateRequestDto mapUpdate(UserDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L42">        UserService.UserUpdateRequestDto userUpdateRequestDto = new UserService.UserUpdateRequestDto();</span>
+<span class="fc" id="L43">        UserService.UserUpdateRequestDto userUpdateRequestDto = new UserService.UserUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        userUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L45">        userUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L46">        userUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
-<span class="fc" id="L47">        userUpdateRequestDto.setIdentityIdentifier( arg0.getIdentityIdentifier() );</span>
+<span class="fc" id="L45">        userUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L46">        userUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        userUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L48">        userUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L49">        userUpdateRequestDto.setIdentityIdentifier( arg0.getIdentityIdentifier() );</span>
 
-<span class="fc" id="L49">        return userUpdateRequestDto;</span>
+<span class="fc" id="L51">        return userUpdateRequestDto;</span>
     }
 
     @Override
     public UserService.UserCreateAccountRequestDto mapCreateAccount(UserDto user) {
-<span class="fc bfc" id="L54" title="All 2 branches covered.">        if ( user == null ) {</span>
-<span class="fc" id="L55">            return null;</span>
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if ( user == null ) {</span>
+<span class="fc" id="L57">            return null;</span>
         }
 
-<span class="fc" id="L58">        UserService.UserCreateAccountRequestDto userCreateAccountRequestDto = new UserService.UserCreateAccountRequestDto();</span>
+<span class="fc" id="L60">        UserService.UserCreateAccountRequestDto userCreateAccountRequestDto = new UserService.UserCreateAccountRequestDto();</span>
 
-<span class="fc" id="L60">        userCreateAccountRequestDto.setIdentifier( user.getIdentifier() );</span>
-<span class="fc" id="L61">        userCreateAccountRequestDto.setPass( user.getPass() );</span>
+<span class="fc" id="L62">        userCreateAccountRequestDto.setAuditWho( user.getAuditWho() );</span>
+<span class="fc" id="L63">        userCreateAccountRequestDto.setIdentifier( user.getIdentifier() );</span>
+<span class="fc" id="L64">        userCreateAccountRequestDto.setPass( user.getPass() );</span>
 
-<span class="fc" id="L63">        return userCreateAccountRequestDto;</span>
+<span class="fc" id="L66">        return userCreateAccountRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

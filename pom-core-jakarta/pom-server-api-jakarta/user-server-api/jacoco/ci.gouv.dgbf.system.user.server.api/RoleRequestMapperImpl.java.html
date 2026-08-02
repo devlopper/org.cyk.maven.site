@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-05-28T20:00:36+0000&quot;,
+    date = &quot;2026-08-02T13:09:09+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,29 +25,31 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        RoleService.RoleCreateRequestDto roleCreateRequestDto = new RoleService.RoleCreateRequestDto();</span>
 
-<span class="fc" id="L28">        roleCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        roleCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        roleCreateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
-<span class="fc" id="L31">        roleCreateRequestDto.setDescription( arg0.getDescription() );</span>
+<span class="fc" id="L28">        roleCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        roleCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L30">        roleCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L31">        roleCreateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
+<span class="fc" id="L32">        roleCreateRequestDto.setDescription( arg0.getDescription() );</span>
 
-<span class="fc" id="L33">        return roleCreateRequestDto;</span>
+<span class="fc" id="L34">        return roleCreateRequestDto;</span>
     }
 
     @Override
     public RoleService.RoleUpdateRequestDto mapUpdate(RoleDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L42">        RoleService.RoleUpdateRequestDto roleUpdateRequestDto = new RoleService.RoleUpdateRequestDto();</span>
+<span class="fc" id="L43">        RoleService.RoleUpdateRequestDto roleUpdateRequestDto = new RoleService.RoleUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        roleUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L45">        roleUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L46">        roleUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L47">        roleUpdateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
-<span class="fc" id="L48">        roleUpdateRequestDto.setDescription( arg0.getDescription() );</span>
+<span class="fc" id="L45">        roleUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L46">        roleUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L47">        roleUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L48">        roleUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L49">        roleUpdateRequestDto.setApplicationIdentifier( arg0.getApplicationIdentifier() );</span>
+<span class="fc" id="L50">        roleUpdateRequestDto.setDescription( arg0.getDescription() );</span>
 
-<span class="fc" id="L50">        return roleUpdateRequestDto;</span>
+<span class="fc" id="L52">        return roleUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
