@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TicketDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">TicketDto.java</span></div><h1>TicketDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
 
-import ci.gouv.dgbf.extension.core.segregation.HasAssignableDto;
 import ci.gouv.dgbf.extension.core.segregation.HasCategoryAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasCategoryIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasChildCreatableDto;
@@ -17,6 +16,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasServiceRatingDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
+import ci.gouv.dgbf.extension.core.segregation.HasUserAssignableDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
@@ -53,7 +53,7 @@ import lombok.Setter;
     HasEscalatableDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
     HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
     HasUserAsStringDto, HasUsersGroupAsStringDto, HasParentIdentifierDto, HasParentAsStringDto,
-    HasServiceRatingDto, HasChildCreatableDto, HasAssignableDto {
+    HasServiceRatingDto, HasChildCreatableDto, HasUserAssignableDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -101,8 +101,8 @@ import lombok.Setter;
   @JsonbProperty(JSON_CHILD_CREATABLE)
   private Boolean childCreatable;
 
-  @JsonbProperty(JSON_ASSIGNABLE)
-  private Boolean assignable;
+  @JsonbProperty(JSON_USER_ASSIGNABLE)
+  private Boolean userAssignable;
 
   // Level
 

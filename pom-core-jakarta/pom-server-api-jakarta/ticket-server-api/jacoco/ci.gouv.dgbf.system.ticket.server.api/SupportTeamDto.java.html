@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportTeamDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">SupportTeamDto.java</span></div><h1>SupportTeamDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
 
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupAsStringDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupIdentifierDto;
+import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +18,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class SupportTeamDto extends AbstractIdentifiableCodableNamableAuditableDto {</span>
+<span class="fc" id="L21">public class SupportTeamDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasUsersGroupIdentifierDto, HasUsersGroupAsStringDto {
+
+  @JsonbProperty(JSON_USERS_GROUP_IDENTIFIER)
+  private String usersGroupIdentifier;
+
+  @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
+  private String usersGroupAsString;
+
+  /**
+   * Nombre maximal de prises en charge par support.
+   */
+  @JsonbProperty(JSON_MAX_CLAIMS_PER_SUPPORT)
+  private Integer maxClaimsPerSupport;
 
   /**
    * Identifiant json de l'identifiant.
@@ -28,6 +44,11 @@ import lombok.Setter;
   public static final String JSON_THIS_AS_STRING = &quot;serviceSupportChaine&quot;;
 
   /**
+   * Identifiant json champ {@link #maxClaimsPerSupport}.
+   */
+  public static final String JSON_MAX_CLAIMS_PER_SUPPORT = &quot;nombreMaximalPrisesEnChargeParSupport&quot;;
+
+  /**
    * Nom pour lecture humaine de la classe.
    */
   public static final String NAME = &quot;service support&quot;;
@@ -38,5 +59,4 @@ import lombok.Setter;
   public static final String PLURAL_NAME = &quot;services support&quot;;
 
 }
-
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
