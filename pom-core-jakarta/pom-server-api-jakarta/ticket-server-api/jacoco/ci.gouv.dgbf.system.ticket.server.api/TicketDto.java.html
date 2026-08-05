@@ -18,6 +18,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
 import ci.gouv.dgbf.extension.core.segregation.HasUserAssignableDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasAdministrativeUnitIdentifierDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasDiagnosticDto;
@@ -45,7 +46,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L48">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L49">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasReporterIdentityIdentifierDto,
     HasLevelIdentifierDto, HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
     HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
@@ -53,7 +54,8 @@ import lombok.Setter;
     HasEscalatableDto, HasCategoryIdentifierDto, HasCategoryAsStringDto, HasPriorityIdentifierDto,
     HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
     HasUserAsStringDto, HasUsersGroupAsStringDto, HasParentIdentifierDto, HasParentAsStringDto,
-    HasServiceRatingDto, HasChildCreatableDto, HasUserAssignableDto {
+    HasServiceRatingDto, HasChildCreatableDto, HasUserAssignableDto,
+    HasAdministrativeUnitIdentifierDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -149,6 +151,9 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_REPORTER_IDENTITY_IDENTIFIER)
   private String reporterIdentityIdentifier;
+
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String administrativeUnitIdentifier;
 
   // note de prestation
 

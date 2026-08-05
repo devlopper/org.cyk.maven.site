@@ -137,7 +137,6 @@ public interface DeclarationService extends SpecificService {
 
     @JsonbProperty(DeclarationSaveRequestDto.JSON_REPORTER_IDENTITY_IDENTIFIER)
     private String reporterIdentityIdentifier;
-
   }
 
   /**
@@ -173,7 +172,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L176">  public static class DeclarationGetManyResponseDto</span>
+<span class="fc" id="L175">  public static class DeclarationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DeclarationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -263,7 +262,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L266">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L265">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
@@ -331,7 +330,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L334">  class DeclarationCreateIncidentRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L333">  class DeclarationCreateIncidentRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements HasDomainIdentifierDto, HasNameDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
       HasReporterIdentityIdentifierDto, HasFrontEndBaseUriDto {
 

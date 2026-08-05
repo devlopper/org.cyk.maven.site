@@ -6,6 +6,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTicketAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTicketIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasAdministrativeUnitIdentifierDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasReporterIdentityIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -22,9 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L25">public class DeclarationDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L26">public class DeclarationDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDescriptionDto, HasDomainIdentifierDto, HasReporterIdentityIdentifierDto,
-    HasFilesGroupIdentifierDto, HasTicketIdentifierDto, HasTicketAsStringDto, HasAccessTokenDto {
+    HasFilesGroupIdentifierDto, HasTicketIdentifierDto, HasTicketAsStringDto, HasAccessTokenDto,
+    HasAdministrativeUnitIdentifierDto {
 
   @JsonbProperty(JSON_TICKET_IDENTIFIER)
   private String ticketIdentifier;
@@ -46,7 +48,10 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_ACCESS_TOKEN)
   private String accessToken;
-  
+
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String administrativeUnitIdentifier;
+
   /**
    * Identifiant json de l'identifiant.
    */
