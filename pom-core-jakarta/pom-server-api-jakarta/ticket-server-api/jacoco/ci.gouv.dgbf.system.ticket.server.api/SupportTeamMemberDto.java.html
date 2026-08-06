@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportTeamMemberDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">SupportTeamMemberDto.java</span></div><h1>SupportTeamMemberDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasTicketCountAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTicketCountDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -16,7 +22,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L19">public class SupportTeamMemberDto extends AbstractIdentifiableAuditableDto {</span>
+<span class="fc" id="L25">public class SupportTeamMemberDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasTicketCountDto, HasTicketCountAsStringDto, HasActiveClaimedTicketCountDto,
+    HasActiveClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
+    HasProcessedTicketCountAsStringDto {
 
   /**
    * Identifiant de {@link SupportTeamDto}.
@@ -41,6 +50,42 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_IS_RESPONSIBLE)
   private Boolean isResponsible;
+
+  /**
+   * Nombre total de tickets.
+   */
+  @JsonbProperty(JSON_TICKET_COUNT)
+  private Integer ticketCount;
+
+  /**
+   * Nombre total de tickets sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_TICKET_COUNT_AS_STRING)
+  private String ticketCountAsString;
+
+  /**
+   * Nombre de tickets actuellement pris en charge.
+   */
+  @JsonbProperty(JSON_ACTIVE_CLAIMED_TICKET_COUNT)
+  private Integer activeClaimedTicketCount;
+
+  /**
+   * Nombre de tickets actuellement pris en charge sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_ACTIVE_CLAIMED_TICKET_COUNT_AS_STRING)
+  private String activeClaimedTicketCountAsString;
+
+  /**
+   * Nombre de tickets traités.
+   */
+  @JsonbProperty(JSON_PROCESSED_TICKET_COUNT)
+  private Integer processedTicketCount;
+
+  /**
+   * Nombre de tickets traités sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_PROCESSED_TICKET_COUNT_AS_STRING)
+  private String processedTicketCountAsString;
 
 
   /**
