@@ -2,7 +2,7 @@
 
 import ci.gouv.dgbf.extension.core.segregation.HasTicketCountAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTicketCountDto;
-import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountAsStringDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountAsStringDto;
@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L25">public class SupportTeamMemberDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L25">public class SupportTeamMemberDto extends AbstractIdentifiableDto</span>
     implements HasTicketCountDto, HasTicketCountAsStringDto, HasActiveClaimedTicketCountDto,
     HasActiveClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
     HasProcessedTicketCountAsStringDto {
@@ -44,12 +44,6 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_USER_IDENTIFIER)
   private String userIdentifier;
-
-  /**
-   * Indicateur de responsabilité.
-   */
-  @JsonbProperty(JSON_IS_RESPONSIBLE)
-  private Boolean isResponsible;
 
   /**
    * Nombre total de tickets.
@@ -114,12 +108,6 @@ import lombok.Setter;
    * Identifiant champ java {@link #userIdentifier}.
    */
   public static final String JSON_USER_IDENTIFIER = &quot;idUtilisateur&quot;;
-
-  /**
-   * Identifiant champ java {@link #isResponsible}.
-   */
-  public static final String JSON_IS_RESPONSIBLE = &quot;esResponsable&quot;;
-
 
   /**
    * Nom pour lecture humaine de la classe.

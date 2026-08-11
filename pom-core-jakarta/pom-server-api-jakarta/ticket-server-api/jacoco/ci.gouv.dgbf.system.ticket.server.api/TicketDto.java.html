@@ -18,6 +18,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusDto;
 import ci.gouv.dgbf.extension.core.segregation.HasUserAssignableDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasAdministrativeUnitAsStringDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.HasAdministrativeUnitIdentifierDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimableDto;
@@ -46,7 +47,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L49">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L50">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasReporterIdentityIdentifierDto,
     HasLevelIdentifierDto, HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
     HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
@@ -55,7 +56,7 @@ import lombok.Setter;
     HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
     HasUserAsStringDto, HasUsersGroupAsStringDto, HasParentIdentifierDto, HasParentAsStringDto,
     HasServiceRatingDto, HasChildCreatableDto, HasUserAssignableDto,
-    HasAdministrativeUnitIdentifierDto {
+    HasAdministrativeUnitIdentifierDto, HasAdministrativeUnitAsStringDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -154,6 +155,9 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
   private String administrativeUnitIdentifier;
+
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String administrativeUnitAsString;
 
   // note de prestation
 
