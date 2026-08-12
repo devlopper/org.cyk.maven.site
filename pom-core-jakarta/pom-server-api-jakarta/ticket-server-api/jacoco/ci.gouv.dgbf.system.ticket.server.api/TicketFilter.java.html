@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasDomainIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasStatusCode;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasStatusCodes;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasUserName;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.system.budgetaryclassification.server.api.shared.FilterHasAdministrativeUnitIdentifier;
 import ci.gouv.dgbf.system.ticket.server.api.shared.FilterHasReporterIdentityIdentifier;
@@ -22,11 +23,12 @@ import lombok.Setter;
 @Setter
 public class TicketFilter extends AbstractIdentifiableFilter implements FilterHasStatusCode,
     FilterHasStatusCodes, FilterHasDomainIdentifier, FilterHasReporterIdentityIdentifier,
-    FilterHasUserIdentifier, FilterHasAdministrativeUnitIdentifier {
+    FilterHasUserIdentifier, FilterHasAdministrativeUnitIdentifier, FilterHasUserName {
 
   private String statusCode;
   private Set&lt;String&gt; statusCodes;
   private String domainIdentifier;
+  private String userName;
 
   /**
    * Identifiants des domaines fonctionnels.
@@ -47,37 +49,39 @@ public class TicketFilter extends AbstractIdentifiableFilter implements FilterHa
    * @param dto filtre
    */
   public TicketFilter(FilterDto dto) {
-<span class="fc" id="L50">    super(dto);</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L52">    super(dto);</span>
+<span class="fc" id="L53">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L56">  public TicketFilter() {}</span>
+<span class="fc" id="L58">  public TicketFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L60">    super.doInitialize(filter);</span>
-<span class="fc" id="L61">    updateStatusCode(filter);</span>
-<span class="fc" id="L62">    updateStatusCodes(filter);</span>
-<span class="fc" id="L63">    updateDomainIdentifier(filter);</span>
-<span class="fc" id="L64">    domainIdentifiers = getDomainIdentifiers(filter);</span>
-<span class="fc" id="L65">    updateReporterIdentityIdentifier(filter);</span>
-<span class="fc" id="L66">    updateUserIdentifier(filter);</span>
-<span class="fc" id="L67">    updateAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L68">  }</span>
+<span class="fc" id="L62">    super.doInitialize(filter);</span>
+<span class="fc" id="L63">    updateStatusCode(filter);</span>
+<span class="fc" id="L64">    updateStatusCodes(filter);</span>
+<span class="fc" id="L65">    updateDomainIdentifier(filter);</span>
+<span class="fc" id="L66">    domainIdentifiers = getDomainIdentifiers(filter);</span>
+<span class="fc" id="L67">    updateReporterIdentityIdentifier(filter);</span>
+<span class="fc" id="L68">    updateUserIdentifier(filter);</span>
+<span class="fc" id="L69">    updateAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L70">    updateUserName(filter);</span>
+<span class="fc" id="L71">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L72">    super.toDto(filter);</span>
-<span class="fc" id="L73">    updateFilterStatusCode(filter);</span>
-<span class="fc" id="L74">    updateFilterStatusCodes(filter);</span>
-<span class="fc" id="L75">    updateFilterDomainIdentifier(filter);</span>
-<span class="fc" id="L76">    setDomainIdentifiers(filter, domainIdentifiers);</span>
-<span class="fc" id="L77">    updateFilterReporterIdentityIdentifier(filter);</span>
-<span class="fc" id="L78">    updateFilterUserIdentifier(filter);</span>
-<span class="fc" id="L79">    updateFilterAdministrativeUnitIdentifier(filter);</span>
-<span class="fc" id="L80">  }</span>
+<span class="fc" id="L75">    super.toDto(filter);</span>
+<span class="fc" id="L76">    updateFilterStatusCode(filter);</span>
+<span class="fc" id="L77">    updateFilterStatusCodes(filter);</span>
+<span class="fc" id="L78">    updateFilterDomainIdentifier(filter);</span>
+<span class="fc" id="L79">    setDomainIdentifiers(filter, domainIdentifiers);</span>
+<span class="fc" id="L80">    updateFilterReporterIdentityIdentifier(filter);</span>
+<span class="fc" id="L81">    updateFilterUserIdentifier(filter);</span>
+<span class="fc" id="L82">    updateFilterAdministrativeUnitIdentifier(filter);</span>
+<span class="fc" id="L83">    updateFilterUserName(filter);</span>
+<span class="fc" id="L84">  }</span>
 
   /**
    * Cette méthode permet d'assigner les identifiants des domaines fonctionnels.
@@ -86,9 +90,9 @@ public class TicketFilter extends AbstractIdentifiableFilter implements FilterHa
    * @param domainIdentifiers identifiants des domaines fonctionnels
    */
   public static void setDomainIdentifiers(FilterDto filter, Set&lt;String&gt; domainIdentifiers) {
-<span class="pc" id="L89">    set(filter, JSON_DOMAIN_IDENTIFIERS, f -&gt; f.getValueAsStringsSet(),</span>
-<span class="fc" id="L90">        f -&gt; f.setValueAsStringsSetIfNotNull(domainIdentifiers));</span>
-<span class="fc" id="L91">  }</span>
+<span class="pc" id="L93">    set(filter, JSON_DOMAIN_IDENTIFIERS, f -&gt; f.getValueAsStringsSet(),</span>
+<span class="fc" id="L94">        f -&gt; f.setValueAsStringsSetIfNotNull(domainIdentifiers));</span>
+<span class="fc" id="L95">  }</span>
 
   /**
    * Cette méthode permet d'obtenir les identifiants des domaines fonctionnels.
@@ -97,7 +101,7 @@ public class TicketFilter extends AbstractIdentifiableFilter implements FilterHa
    * @return identifiants des domaines fonctionnels
    */
   public static Set&lt;String&gt; getDomainIdentifiers(FilterDto filter) {
-<span class="fc" id="L100">    return get(filter, d -&gt; d.getFieldValueAsStringsSetByName(JSON_DOMAIN_IDENTIFIERS));</span>
+<span class="fc" id="L104">    return get(filter, d -&gt; d.getFieldValueAsStringsSetByName(JSON_DOMAIN_IDENTIFIERS));</span>
   }
 
   /**
