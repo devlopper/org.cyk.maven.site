@@ -7,6 +7,13 @@ import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountA
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountAsStringDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketClaimActionsCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketClaimActionsCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketDissatisfactionActionsCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketDissatisfactionActionsCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketResolutionActionsCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketResolutionActionsCountDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,10 +29,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L25">public class SupportTeamMemberDto extends AbstractIdentifiableDto</span>
+<span class="fc" id="L32">public class SupportTeamMemberDto extends AbstractIdentifiableDto</span>
     implements HasTicketCountDto, HasTicketCountAsStringDto, HasActiveClaimedTicketCountDto,
     HasActiveClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
-    HasProcessedTicketCountAsStringDto {
+    HasProcessedTicketCountAsStringDto, HasTicketClaimActionsCountDto,
+    HasTicketClaimActionsCountAsStringDto, HasTicketResolutionActionsCountDto,
+    HasTicketResolutionActionsCountAsStringDto, HasTicketDissatisfactionActionsCountDto,
+    HasTicketDissatisfactionActionsCountAsStringDto, HasUserIdentifierDto {
 
   /**
    * Identifiant de {@link SupportTeamDto}.
@@ -81,6 +91,42 @@ import lombok.Setter;
   @JsonbProperty(JSON_PROCESSED_TICKET_COUNT_AS_STRING)
   private String processedTicketCountAsString;
 
+  /**
+   * Nombre cumulé d'actions de prise en charge de ticket.
+   */
+  @JsonbProperty(JSON_TICKET_CLAIM_ACTIONS_COUNT)
+  private Integer ticketClaimActionsCount;
+
+  /**
+   * Nombre cumulé d'actions de prise en charge de ticket sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_TICKET_CLAIM_ACTIONS_COUNT_AS_STRING)
+  private String ticketClaimActionsCountAsString;
+
+  /**
+   * Nombre cumulé d'actions de résolution de ticket.
+   */
+  @JsonbProperty(JSON_TICKET_RESOLUTION_ACTIONS_COUNT)
+  private Integer ticketResolutionActionsCount;
+
+  /**
+   * Nombre cumulé d'actions de résolution de ticket sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_TICKET_RESOLUTION_ACTIONS_COUNT_AS_STRING)
+  private String ticketResolutionActionsCountAsString;
+
+  /**
+   * Nombre cumulé d'insatisfactions constatées sur des tickets (indicateur qualité).
+   */
+  @JsonbProperty(JSON_TICKET_DISSATISFACTION_ACTIONS_COUNT)
+  private Integer ticketDissatisfactionActionsCount;
+
+  /**
+   * Nombre cumulé d'insatisfactions constatées sur des tickets sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_TICKET_DISSATISFACTION_ACTIONS_COUNT_AS_STRING)
+  private String ticketDissatisfactionActionsCountAsString;
+
 
   /**
    * Identifiant json de l'identifiant.
@@ -103,11 +149,6 @@ import lombok.Setter;
    * Identifiant champ java {@link #supportTeamAsString}.
    */
   public static final String JSON_SUPPORT_TEAM_AS_STRING = SupportTeamDto.JSON_THIS_AS_STRING;
-
-  /**
-   * Identifiant champ java {@link #userIdentifier}.
-   */
-  public static final String JSON_USER_IDENTIFIER = &quot;idUtilisateur&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

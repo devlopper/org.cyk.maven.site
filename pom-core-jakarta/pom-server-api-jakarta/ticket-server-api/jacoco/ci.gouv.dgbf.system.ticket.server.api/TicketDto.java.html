@@ -12,6 +12,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasParentAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasParentIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasPriorityIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasProcessingOverdueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasServiceRatingDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasStatusCommentDto;
@@ -47,7 +48,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L50">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L51">public class TicketDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasReporterIdentityIdentifierDto,
     HasLevelIdentifierDto, HasLevelAsStringDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
     HasStatusDto&lt;TicketStatus&gt;, HasStatusAsStringDto, HasStatusCommentDto, HasClaimableDto,
@@ -56,7 +57,7 @@ import lombok.Setter;
     HasPriorityAsStringDto, HasDiagnosticDto, HasSolutionDto, HasUserIdentifierDto,
     HasUserAsStringDto, HasUsersGroupAsStringDto, HasParentIdentifierDto, HasParentAsStringDto,
     HasServiceRatingDto, HasChildCreatableDto, HasUserAssignableDto,
-    HasAdministrativeUnitIdentifierDto, HasAdministrativeUnitAsStringDto {
+    HasAdministrativeUnitIdentifierDto, HasAdministrativeUnitAsStringDto, HasProcessingOverdueDto {
 
   @JsonbProperty(JSON_DESCRIPTION)
   private String description;
@@ -173,6 +174,10 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_PARENT_AS_STRING)
   private String parentAsString;
+
+  // processus en retard
+  @JsonbProperty(JSON_PROCESSING_OVERDUE)
+  private Boolean processingOverdue;
 
   /**
    * Identifiant json de l'identifiant.
