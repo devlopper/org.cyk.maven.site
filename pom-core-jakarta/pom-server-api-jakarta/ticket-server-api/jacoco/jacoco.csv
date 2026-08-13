@@ -1,5 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketService.TicketUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,UserDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,SupportLevelService.SupportLevelCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,SupportTeamRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketPriorityService.TicketPriorityGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -20,11 +21,13 @@ API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,Support
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,SupportTeamService.SupportTeamGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,SupportLevelRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,DeclarationDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,UserClient,0,122,0,0,0,27,0,11,0,11
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketService.TicketDissatisfyRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,FunctionalDomainService.FunctionalDomainGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketService.TicketSatisfyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,DeclarationService.DeclarationUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,FunctionalDomainClient,0,230,0,0,0,51,0,20,0,20
+API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,UserFilter,3,43,0,0,0,12,1,8,1,8
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketClient,0,369,0,0,0,65,0,38,0,38
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketStatus,12,168,0,0,0,30,1,6,1,6
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketService.TicketClaimResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -45,6 +48,7 @@ API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,Support
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketPriorityRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,FunctionalDomainService.FunctionalDomainUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,UserService.UserGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketService.TicketRedirectRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,SupportLevelDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de ticket,ci.gouv.dgbf.system.ticket.server.api,TicketService.TicketResolveResponseDto,0,3,0,0,0,1,0,1,0,1
