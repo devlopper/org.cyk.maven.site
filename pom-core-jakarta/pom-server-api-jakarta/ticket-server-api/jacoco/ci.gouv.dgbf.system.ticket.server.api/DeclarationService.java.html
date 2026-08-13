@@ -15,6 +15,9 @@ import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageRespo
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFilesGroupIdentifierDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasBeneficiaryAdditionalInformationDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasBeneficiaryFullNameDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasBeneficiaryIdentityIdentifierDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasReporterIdentityIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -84,6 +87,48 @@ public interface DeclarationService extends SpecificService {
      */
     void setReporterIdentityIdentifier(String reporterIdentityIdentifier);
 
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'identité du bénéficiaire.
+     *
+     * @return identifiant de l'identité du bénéficiaire
+     */
+    String getBeneficiaryIdentityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'identité du bénéficiaire.
+     *
+     * @param beneficiaryIdentityIdentifier identifiant de l'identité du bénéficiaire
+     */
+    void setBeneficiaryIdentityIdentifier(String beneficiaryIdentityIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir le nom complet du bénéficiaire.
+     *
+     * @return nom complet du bénéficiaire
+     */
+    String getBeneficiaryFullName();
+
+    /**
+     * Cette méthode permet d'assigner le nom complet du bénéficiaire.
+     *
+     * @param beneficiaryFullName nom complet du bénéficiaire
+     */
+    void setBeneficiaryFullName(String beneficiaryFullName);
+
+    /**
+     * Cette méthode permet d'obtenir les informations complémentaires sur le bénéficiaire.
+     *
+     * @return informations complémentaires sur le bénéficiaire
+     */
+    String getBeneficiaryAdditionalInformation();
+
+    /**
+     * Cette méthode permet d'assigner les informations complémentaires sur le bénéficiaire.
+     *
+     * @param beneficiaryAdditionalInformation informations complémentaires sur le bénéficiaire
+     */
+    void setBeneficiaryAdditionalInformation(String beneficiaryAdditionalInformation);
+
 
     /**
      * Identifiant json identifiant de {@link TicketDto}.
@@ -94,6 +139,23 @@ public interface DeclarationService extends SpecificService {
      * Identifiant json identifiant de {@link DeclarationDto}.
      */
     String JSON_REPORTER_IDENTITY_IDENTIFIER = DeclarationDto.JSON_REPORTER_IDENTITY_IDENTIFIER;
+
+    /**
+     * Identifiant json de l'identifiant de l'identité du bénéficiaire.
+     */
+    String JSON_BENEFICIARY_IDENTITY_IDENTIFIER =
+        DeclarationDto.JSON_BENEFICIARY_IDENTITY_IDENTIFIER;
+
+    /**
+     * Identifiant json du nom complet du bénéficiaire.
+     */
+    String JSON_BENEFICIARY_FULL_NAME = DeclarationDto.JSON_BENEFICIARY_FULL_NAME;
+
+    /**
+     * Identifiant json des informations complémentaires sur le bénéficiaire.
+     */
+    String JSON_BENEFICIARY_ADDITIONAL_INFORMATION =
+        DeclarationDto.JSON_BENEFICIARY_ADDITIONAL_INFORMATION;
 
   }
 
@@ -130,13 +192,22 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L133">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L195">  class DeclarationCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
 
     @JsonbProperty(DeclarationSaveRequestDto.JSON_REPORTER_IDENTITY_IDENTIFIER)
     private String reporterIdentityIdentifier;
+
+    @JsonbProperty(DeclarationSaveRequestDto.JSON_BENEFICIARY_IDENTITY_IDENTIFIER)
+    private String beneficiaryIdentityIdentifier;
+
+    @JsonbProperty(DeclarationSaveRequestDto.JSON_BENEFICIARY_FULL_NAME)
+    private String beneficiaryFullName;
+
+    @JsonbProperty(DeclarationSaveRequestDto.JSON_BENEFICIARY_ADDITIONAL_INFORMATION)
+    private String beneficiaryAdditionalInformation;
   }
 
   /**
@@ -172,7 +243,7 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L175">  public static class DeclarationGetManyResponseDto</span>
+<span class="fc" id="L246">  public static class DeclarationGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DeclarationDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -262,13 +333,22 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L265">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L336">  class DeclarationUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements DeclarationSaveRequestDto {
     @JsonbProperty(DeclarationSaveRequestDto.JSON_TICKET_IDENTIFIER)
     private String ticketIdentifier;
 
     @JsonbProperty(DeclarationSaveRequestDto.JSON_REPORTER_IDENTITY_IDENTIFIER)
     private String reporterIdentityIdentifier;
+
+    @JsonbProperty(DeclarationSaveRequestDto.JSON_BENEFICIARY_IDENTITY_IDENTIFIER)
+    private String beneficiaryIdentityIdentifier;
+
+    @JsonbProperty(DeclarationSaveRequestDto.JSON_BENEFICIARY_FULL_NAME)
+    private String beneficiaryFullName;
+
+    @JsonbProperty(DeclarationSaveRequestDto.JSON_BENEFICIARY_ADDITIONAL_INFORMATION)
+    private String beneficiaryAdditionalInformation;
 
   }
 
@@ -330,9 +410,10 @@ public interface DeclarationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L333">  class DeclarationCreateIncidentRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L413">  class DeclarationCreateIncidentRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements HasDomainIdentifierDto, HasNameDto, HasDescriptionDto, HasFilesGroupIdentifierDto,
-      HasReporterIdentityIdentifierDto, HasFrontEndBaseUriDto {
+      HasReporterIdentityIdentifierDto, HasFrontEndBaseUriDto, HasBeneficiaryIdentityIdentifierDto,
+      HasBeneficiaryFullNameDto, HasBeneficiaryAdditionalInformationDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -351,6 +432,15 @@ public interface DeclarationService extends SpecificService {
 
     @JsonbProperty(JSON_FRONT_END_BASE_URI)
     private String frontEndBaseUri;
+
+    @JsonbProperty(JSON_BENEFICIARY_IDENTITY_IDENTIFIER)
+    private String beneficiaryIdentityIdentifier;
+
+    @JsonbProperty(JSON_BENEFICIARY_FULL_NAME)
+    private String beneficiaryFullName;
+
+    @JsonbProperty(JSON_BENEFICIARY_ADDITIONAL_INFORMATION)
+    private String beneficiaryAdditionalInformation;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
