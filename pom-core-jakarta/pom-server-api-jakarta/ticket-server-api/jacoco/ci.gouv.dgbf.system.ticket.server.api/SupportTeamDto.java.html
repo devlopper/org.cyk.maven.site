@@ -3,8 +3,8 @@
 import ci.gouv.dgbf.extension.core.segregation.HasTicketCountAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTicketCountDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
-import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountAsStringDto;
-import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimedTicketCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimedTicketCountDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountAsStringDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupAsStringDto;
@@ -26,8 +26,8 @@ import lombok.Setter;
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L27">public class SupportTeamDto extends AbstractIdentifiableAuditableDto</span>
     implements HasUsersGroupIdentifierDto, HasUsersGroupAsStringDto, HasTicketCountDto,
-    HasTicketCountAsStringDto, HasActiveClaimedTicketCountDto,
-    HasActiveClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
+    HasTicketCountAsStringDto, HasClaimedTicketCountDto,
+    HasClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
     HasProcessedTicketCountAsStringDto {
 
   @JsonbProperty(JSON_USERS_GROUP_IDENTIFIER)
@@ -57,14 +57,14 @@ import lombok.Setter;
   /**
    * Nombre de tickets actuellement pris en charge.
    */
-  @JsonbProperty(JSON_ACTIVE_CLAIMED_TICKET_COUNT)
-  private Integer activeClaimedTicketCount;
+  @JsonbProperty(JSON_CLAIMED_TICKET_COUNT)
+  private Integer claimedTicketCount;
 
   /**
    * Nombre de tickets actuellement pris en charge sous forme de chaîne.
    */
-  @JsonbProperty(JSON_ACTIVE_CLAIMED_TICKET_COUNT_AS_STRING)
-  private String activeClaimedTicketCountAsString;
+  @JsonbProperty(JSON_CLAIMED_TICKET_COUNT_AS_STRING)
+  private String claimedTicketCountAsString;
 
   /**
    * Nombre de tickets traités.
@@ -96,12 +96,12 @@ import lombok.Setter;
   /**
    * Nom pour lecture humaine de la classe.
    */
-  public static final String NAME = &quot;service support&quot;;
+  public static final String NAME = &quot;équipe support&quot;;
 
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
-  public static final String PLURAL_NAME = &quot;services support&quot;;
+  public static final String PLURAL_NAME = &quot;équipes support&quot;;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

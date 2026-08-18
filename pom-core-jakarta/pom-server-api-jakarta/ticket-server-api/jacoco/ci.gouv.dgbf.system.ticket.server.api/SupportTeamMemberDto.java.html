@@ -3,8 +3,8 @@
 import ci.gouv.dgbf.extension.core.segregation.HasTicketCountAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasTicketCountDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
-import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountAsStringDto;
-import ci.gouv.dgbf.system.ticket.server.api.shared.HasActiveClaimedTicketCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimedTicketCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimedTicketCountDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountAsStringDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketClaimActionsCountAsStringDto;
@@ -30,8 +30,8 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(callSuper = true)
 <span class="fc" id="L32">public class SupportTeamMemberDto extends AbstractIdentifiableDto</span>
-    implements HasTicketCountDto, HasTicketCountAsStringDto, HasActiveClaimedTicketCountDto,
-    HasActiveClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
+    implements HasTicketCountDto, HasTicketCountAsStringDto, HasClaimedTicketCountDto,
+    HasClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
     HasProcessedTicketCountAsStringDto, HasTicketClaimActionsCountDto,
     HasTicketClaimActionsCountAsStringDto, HasTicketResolutionActionsCountDto,
     HasTicketResolutionActionsCountAsStringDto, HasTicketDissatisfactionActionsCountDto,
@@ -70,14 +70,14 @@ import lombok.Setter;
   /**
    * Nombre de tickets actuellement pris en charge.
    */
-  @JsonbProperty(JSON_ACTIVE_CLAIMED_TICKET_COUNT)
-  private Integer activeClaimedTicketCount;
+  @JsonbProperty(JSON_CLAIMED_TICKET_COUNT)
+  private Integer claimedTicketCount;
 
   /**
    * Nombre de tickets actuellement pris en charge sous forme de chaîne.
    */
-  @JsonbProperty(JSON_ACTIVE_CLAIMED_TICKET_COUNT_AS_STRING)
-  private String activeClaimedTicketCountAsString;
+  @JsonbProperty(JSON_CLAIMED_TICKET_COUNT_AS_STRING)
+  private String claimedTicketCountAsString;
 
   /**
    * Nombre de tickets traités.
@@ -153,12 +153,12 @@ import lombok.Setter;
   /**
    * Nom pour lecture humaine de la classe.
    */
-  public static final String NAME = &quot;membre service support&quot;;
+  public static final String NAME = &quot;membre équipe support&quot;;
 
   /**
    * Nom au pluriel pour lecture humaine de la classe.
    */
-  public static final String PLURAL_NAME = &quot;membres services support&quot;;
+  public static final String PLURAL_NAME = &quot;membres équipes support&quot;;
 
 }
 
