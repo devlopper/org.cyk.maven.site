@@ -13,6 +13,7 @@ import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketDissatisfactionActi
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketDissatisfactionActionsCountDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketResolutionActionsCountAsStringDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketResolutionActionsCountDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUserAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -29,13 +30,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L32">public class SupportTeamMemberDto extends AbstractIdentifiableDto</span>
-    implements HasTicketCountDto, HasTicketCountAsStringDto, HasClaimedTicketCountDto,
+<span class="fc" id="L33">public class SupportTeamMemberDto extends AbstractIdentifiableDto</span>
+    implements HasUserIdentifierDto,
+    HasUserAsStringDto, HasTicketCountDto, HasTicketCountAsStringDto, HasClaimedTicketCountDto,
     HasClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
     HasProcessedTicketCountAsStringDto, HasTicketClaimActionsCountDto,
     HasTicketClaimActionsCountAsStringDto, HasTicketResolutionActionsCountDto,
     HasTicketResolutionActionsCountAsStringDto, HasTicketDissatisfactionActionsCountDto,
-    HasTicketDissatisfactionActionsCountAsStringDto, HasUserIdentifierDto {
+    HasTicketDissatisfactionActionsCountAsStringDto {
 
   /**
    * Identifiant de {@link SupportTeamDto}.
@@ -49,11 +51,11 @@ import lombok.Setter;
   @JsonbProperty(JSON_SUPPORT_TEAM_AS_STRING)
   private String supportTeamAsString;
 
-  /**
-   * Identifiant utilisateur .
-   */
   @JsonbProperty(JSON_USER_IDENTIFIER)
   private String userIdentifier;
+
+  @JsonbProperty(JSON_USER_AS_STRING)
+  private String userAsString;
 
   /**
    * Nombre total de tickets.
@@ -142,8 +144,7 @@ import lombok.Setter;
   /**
    * Identifiant champ java {@link #supportTeamIdentifier}.
    */
-  public static final String JSON_SUPPORT_TEAM_IDENTIFIER =
-      SupportTeamDto.JSON_THIS_IDENTIFIER;
+  public static final String JSON_SUPPORT_TEAM_IDENTIFIER = SupportTeamDto.JSON_THIS_IDENTIFIER;
 
   /**
    * Identifiant champ java {@link #supportTeamAsString}.
