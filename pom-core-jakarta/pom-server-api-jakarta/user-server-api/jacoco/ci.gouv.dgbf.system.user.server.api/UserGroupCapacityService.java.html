@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserGroupCapacityService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserGroupCapacityService.java</span></div><h1>UserGroupCapacityService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasCapacityIdentifierDto;
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUserGroupIdentifierDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de {@link UserGroupCapacityDto}.
+ *
+ * @author BoobaCool
+ */
+@Path(value = UserGroupCapacityService.PATH)
+@Tag(name = &quot;Gestion des Qualités de l'Utilisateur de Groupe&quot;)
+public interface UserGroupCapacityService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;qualites-utilisateur-groupe&quot;;
+
+  /**
+   * Cette interface représente une requête de création ou de mise à jour unitaire.
+   */
+  interface UserGroupCapacitySaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link UserGroupDto}.
+     *
+     * @return identifiant de {@link UserGroupDto}
+     */
+    String getUserGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link UserGroupDto}.
+     *
+     * @param userGroupIdentifier identifiant de {@link UserGroupDto}
+     */
+    void setUserGroupIdentifier(String userGroupIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link UserCapacityDto}.
+     *
+     * @return identifiant de {@link UserCapacityDto}
+     */
+    String getCapacityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link UserCapacityDto}.
+     *
+     * @param capacityIdentifier identifiant de {@link UserCapacityDto}
+     */
+    void setCapacityIdentifier(String capacityIdentifier);
+
+    /**
+     * Identifiant json identifiant de {@link UserGroupDto}.
+     */
+    String JSON_USER_GROUP_IDENTIFIER = HasUserGroupIdentifierDto.JSON_USER_GROUP_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link UserCapacityDto}.
+     */
+    String JSON_CAPACITY_IDENTIFIER = HasCapacityIdentifierDto.JSON_CAPACITY_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service de création unitaire de {@link UserGroupCapacityDto}.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_QUALITE_UTILISATEUR_GROUPE&quot;;
+
+  /**
+   * Chemin du service de création unitaire de {@link UserGroupCapacityDto}.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer unitairement {@link UserGroupCapacityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(UserGroupCapacityCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création unitaire de {@link UserGroupCapacityDto}.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L123">  class UserGroupCapacityCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements UserGroupCapacitySaveRequestDto {
+
+    @JsonbProperty(JSON_USER_GROUP_IDENTIFIER)
+    private String userGroupIdentifier;
+
+    @JsonbProperty(JSON_CAPACITY_IDENTIFIER)
+    private String capacityIdentifier;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs {@link UserGroupCapacityDto}.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_QUALITE_UTILISATEUR_GROUPE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs {@link UserGroupCapacityDto}.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs {@link UserGroupCapacityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = UserGroupCapacityGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente la réponse d'obtention de plusieurs {@link UserGroupCapacityDto}.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L165">  public static class UserGroupCapacityGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;UserGroupCapacityDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;UserGroupCapacityDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention unitaire de {@link UserGroupCapacityDto}.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_QUALITE_UTILISATEUR_GROUPE&quot;;
+
+  /**
+   * Chemin du service d'obtention unitaire de {@link UserGroupCapacityDto}.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir unitairement {@link UserGroupCapacityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = UserGroupCapacityDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de {@link UserGroupCapacityDto}.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_QUALITE_UTILISATEUR_GROUPE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de {@link UserGroupCapacityDto}.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identifiant {@link UserGroupCapacityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = UserGroupCapacityDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour unitaire de {@link UserGroupCapacityDto}.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_QUALITE_UTILISATEUR_GROUPE&quot;;
+
+  /**
+   * Chemin du service de mise à jour unitaire de {@link UserGroupCapacityDto}.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour unitairement {@link UserGroupCapacityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(UserGroupCapacityUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour unitaire de {@link UserGroupCapacityDto}.
+   *
+   * @author BoobaCool
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L254">  class UserGroupCapacityUpdateRequestDto extends ByIdentifierRequestDto</span>
+      implements UserGroupCapacitySaveRequestDto {
+
+    @JsonbProperty(JSON_USER_GROUP_IDENTIFIER)
+    private String userGroupIdentifier;
+
+    @JsonbProperty(JSON_CAPACITY_IDENTIFIER)
+    private String capacityIdentifier;
+  }
+
+  /**
+   * Identifiant du service de suppression unitaire de {@link UserGroupCapacityDto}.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_QUALITE_UTILISATEUR_GROUPE&quot;;
+
+  /**
+   * Chemin du service de suppression unitaire de {@link UserGroupCapacityDto}.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer unitairement {@link UserGroupCapacityDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

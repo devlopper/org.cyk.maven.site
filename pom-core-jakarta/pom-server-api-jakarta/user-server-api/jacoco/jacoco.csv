@@ -23,6 +23,8 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserG
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserRevokeRolesResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationService.ApplicationAssignAdministratorRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainService.DomainUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserCapacityFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupCapacityService.UserGroupCapacityGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceService.DeviceCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoApplicationService.SsoApplicationUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleService.UserRoleGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -36,17 +38,21 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoUs
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationService.ApplicationGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupService.UserGroupCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UsersGroupRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupCapacityFilter,0,23,0,0,0,9,0,3,0,3
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainClient,0,230,0,0,0,51,0,20,0,20
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainService.DomainCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserAssignRolesResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,IdentityService.IdentityGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupCapacityDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoRoleDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleFilter,6,71,0,0,0,20,2,12,2,12
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleAssignRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UsersGroupFilter,0,21,0,0,0,9,0,4,0,4
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupCapacityRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserCreateForNonFunctionaryRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserCapacityDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserCreateAccountRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleAssignSystemAdministratorRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -59,6 +65,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,Accou
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoApplicationRequestMapperImpl,0,43,0,4,0,14,0,5,0,3
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserCapacityService.UserCapacityGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleClient,0,253,0,0,0,55,0,22,0,22
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRequestMapperImpl,0,85,0,6,0,26,0,7,0,4
@@ -66,9 +73,13 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,Devic
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleAssignSystemAdministratorResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleRevokeRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationFilter,12,127,0,0,0,32,4,20,4,20
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserCapacityClient,0,185,0,0,0,38,0,16,0,16
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupCapacityClient,0,185,0,0,0,38,0,16,0,16
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupCapacityService.UserGroupCapacityCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceApplicationRequestMapperImpl,0,83,0,4,0,24,0,5,0,3
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceFilter,9,99,0,0,0,26,3,16,3,16
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserCapacityService.UserCapacityUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoUserRoleFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountService.AccountCreateByUserRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceApplicationDto,0,3,0,0,0,1,0,1,0,1
@@ -85,6 +96,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserR
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationService.ApplicationUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoRoleService.SsoRoleUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupService.UserGroupGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserCapacityService.UserCapacityCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupService.UserGroupUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountService.AccountUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainService.DomainGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
@@ -97,6 +109,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,Devic
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleAssignResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceRequestMapperImpl,0,83,0,4,0,24,0,5,0,3
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupCapacityService.UserGroupCapacityUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleService.UserRoleUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserRevokeRolesRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserClient,0,272,0,0,0,49,0,28,0,28
@@ -111,5 +124,6 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,Devic
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoUserRoleDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceClient,0,187,0,0,0,38,0,18,0,18
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoRoleFilter,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserCapacityRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,ApplicationDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupClient,0,218,0,0,0,47,0,20,0,20
