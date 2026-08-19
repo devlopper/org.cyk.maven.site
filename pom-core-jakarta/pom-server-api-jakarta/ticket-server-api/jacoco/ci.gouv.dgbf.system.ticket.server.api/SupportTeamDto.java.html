@@ -7,6 +7,12 @@ import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimedTicketCountAsStrin
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasClaimedTicketCountDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountAsStringDto;
 import ci.gouv.dgbf.system.ticket.server.api.shared.HasProcessedTicketCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketClaimActionsCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketClaimActionsCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketDissatisfactionActionsCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketDissatisfactionActionsCountDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketResolutionActionsCountAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasTicketResolutionActionsCountDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -24,11 +30,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L27">public class SupportTeamDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L33">public class SupportTeamDto extends AbstractIdentifiableAuditableDto</span>
     implements HasUsersGroupIdentifierDto, HasUsersGroupAsStringDto, HasTicketCountDto,
     HasTicketCountAsStringDto, HasClaimedTicketCountDto,
     HasClaimedTicketCountAsStringDto, HasProcessedTicketCountDto,
-    HasProcessedTicketCountAsStringDto {
+    HasProcessedTicketCountAsStringDto, HasTicketClaimActionsCountDto,
+    HasTicketClaimActionsCountAsStringDto, HasTicketResolutionActionsCountDto,
+    HasTicketResolutionActionsCountAsStringDto, HasTicketDissatisfactionActionsCountDto,
+    HasTicketDissatisfactionActionsCountAsStringDto {
 
   @JsonbProperty(JSON_USERS_GROUP_IDENTIFIER)
   private String usersGroupIdentifier;
@@ -77,6 +86,42 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_PROCESSED_TICKET_COUNT_AS_STRING)
   private String processedTicketCountAsString;
+
+  /**
+   * Nombre cumulé d'actions de prise en charge de ticket.
+   */
+  @JsonbProperty(JSON_TICKET_CLAIM_ACTIONS_COUNT)
+  private Integer ticketClaimActionsCount;
+
+  /**
+   * Nombre cumulé d'actions de prise en charge de ticket sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_TICKET_CLAIM_ACTIONS_COUNT_AS_STRING)
+  private String ticketClaimActionsCountAsString;
+
+  /**
+   * Nombre cumulé d'actions de résolution de ticket.
+   */
+  @JsonbProperty(JSON_TICKET_RESOLUTION_ACTIONS_COUNT)
+  private Integer ticketResolutionActionsCount;
+
+  /**
+   * Nombre cumulé d'actions de résolution de ticket sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_TICKET_RESOLUTION_ACTIONS_COUNT_AS_STRING)
+  private String ticketResolutionActionsCountAsString;
+
+  /**
+   * Nombre cumulé d'insatisfactions constatées sur des tickets (indicateur qualité).
+   */
+  @JsonbProperty(JSON_TICKET_DISSATISFACTION_ACTIONS_COUNT)
+  private Integer ticketDissatisfactionActionsCount;
+
+  /**
+   * Nombre cumulé d'insatisfactions constatées sur des tickets sous forme de chaîne.
+   */
+  @JsonbProperty(JSON_TICKET_DISSATISFACTION_ACTIONS_COUNT_AS_STRING)
+  private String ticketDissatisfactionActionsCountAsString;
 
   /**
    * Identifiant json de l'identifiant.
