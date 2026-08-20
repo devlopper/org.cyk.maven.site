@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-08-20T09:59:57+0000&quot;,
+    date = &quot;2026-08-20T15:39:49+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -29,25 +29,27 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L29">        userGroupCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
 <span class="fc" id="L30">        userGroupCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
 <span class="fc" id="L31">        userGroupCreateRequestDto.setUserIdentifier( arg0.getUserIdentifier() );</span>
+<span class="fc" id="L32">        userGroupCreateRequestDto.setCapacityIdentifier( arg0.getCapacityIdentifier() );</span>
 
-<span class="fc" id="L33">        return userGroupCreateRequestDto;</span>
+<span class="fc" id="L34">        return userGroupCreateRequestDto;</span>
     }
 
     @Override
     public UserGroupService.UserGroupUpdateRequestDto mapUpdate(UserGroupDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L42">        UserGroupService.UserGroupUpdateRequestDto userGroupUpdateRequestDto = new UserGroupService.UserGroupUpdateRequestDto();</span>
+<span class="fc" id="L43">        UserGroupService.UserGroupUpdateRequestDto userGroupUpdateRequestDto = new UserGroupService.UserGroupUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        userGroupUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L45">        userGroupUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L46">        userGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        userGroupUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
-<span class="fc" id="L48">        userGroupUpdateRequestDto.setUserIdentifier( arg0.getUserIdentifier() );</span>
+<span class="fc" id="L45">        userGroupUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L46">        userGroupUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L47">        userGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        userGroupUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L49">        userGroupUpdateRequestDto.setUserIdentifier( arg0.getUserIdentifier() );</span>
+<span class="fc" id="L50">        userGroupUpdateRequestDto.setCapacityIdentifier( arg0.getCapacityIdentifier() );</span>
 
-<span class="fc" id="L50">        return userGroupUpdateRequestDto;</span>
+<span class="fc" id="L52">        return userGroupUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

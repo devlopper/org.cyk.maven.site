@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserGroupService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserGroupService.java</span></div><h1>UserGroupService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasCapacityIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
@@ -78,6 +79,20 @@ public interface UserGroupService extends SpecificService {
      */
     void setUserIdentifier(String userIdentifier);
 
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link UserCapacityDto}.
+     *
+     * @return identifiant de {@link UserCapacityDto}
+     */
+    String getCapacityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link UserCapacityDto}.
+     *
+     * @param capacityIdentifier identifiant de {@link UserCapacityDto}
+     */
+    void setCapacityIdentifier(String capacityIdentifier);
+
 
     /**
      * Identifiant json identifiant de {@link UsersGroupDto}.
@@ -88,6 +103,11 @@ public interface UserGroupService extends SpecificService {
      * Identifiant json identifiant de {@link UserDto}.
      */
     String JSON_USER_IDENTIFIER = UserDto.JSON_THIS_IDENTIFIER;
+
+    /**
+     * Identifiant json identifiant de {@link UserCapacityDto}.
+     */
+    String JSON_CAPACITY_IDENTIFIER = HasCapacityIdentifierDto.JSON_CAPACITY_IDENTIFIER;
 
   }
 
@@ -125,7 +145,7 @@ public interface UserGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L128">    class UserGroupCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L148">    class UserGroupCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements UserGroupSaveRequestDto {
 
     @JsonbProperty(UserGroupSaveRequestDto.JSON_GROUP_IDENTIFIER)
@@ -133,6 +153,9 @@ public interface UserGroupService extends SpecificService {
 
     @JsonbProperty(UserGroupSaveRequestDto.JSON_USER_IDENTIFIER)
     private String userIdentifier;
+
+    @JsonbProperty(UserGroupSaveRequestDto.JSON_CAPACITY_IDENTIFIER)
+    private String capacityIdentifier;
 
   }
 
@@ -169,7 +192,7 @@ public interface UserGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L172">  public static class UserGroupGetManyResponseDto</span>
+<span class="fc" id="L195">  public static class UserGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;UserGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -259,7 +282,7 @@ public interface UserGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L262">  class UserGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L285">  class UserGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements UserGroupSaveRequestDto {
 
     @JsonbProperty(UserGroupSaveRequestDto.JSON_GROUP_IDENTIFIER)
@@ -267,6 +290,9 @@ public interface UserGroupService extends SpecificService {
 
     @JsonbProperty(UserGroupSaveRequestDto.JSON_USER_IDENTIFIER)
     private String userIdentifier;
+
+    @JsonbProperty(UserGroupSaveRequestDto.JSON_CAPACITY_IDENTIFIER)
+    private String capacityIdentifier;
   }
 
   /**
