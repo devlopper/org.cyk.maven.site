@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserDto.java</span></div><h1>UserDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
 
+import ci.gouv.dgbf.extension.core.segregation.HasDomainAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasEmailAddressDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFirstNameDto;
+import ci.gouv.dgbf.extension.core.segregation.HasFullNameDto;
+import ci.gouv.dgbf.extension.core.segregation.HasLastNamesDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
@@ -15,17 +21,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L18">public class UserDto extends AbstractIdentifiableNamableAuditableDto {</span>
+<span class="fc" id="L24">public class UserDto extends AbstractIdentifiableNamableAuditableDto</span>
+    implements HasDomainIdentifierDto, HasDomainAsStringDto, HasFirstNameDto, HasLastNamesDto,
+    HasFullNameDto, HasEmailAddressDto {
 
-  /**
-   * Identifiant de {@link DomainDto}.
-   */
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
   private String domainIdentifier;
 
-  /**
-   * Réprésentation en chaine de caractères de {@link DomainDto}.
-   */
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
   private String domainAsString;
 
@@ -41,6 +43,18 @@ import lombok.Setter;
   @JsonbProperty(JSON_IDENTITY_AS_STRING)
   private String identityAsString;
 
+  @JsonbProperty(JSON_FIRST_NAME)
+  private String firstName;
+
+  @JsonbProperty(JSON_LAST_NAMES)
+  private String lastNames;
+
+  @JsonbProperty(JSON_FULL_NAME)
+  private String fullName;
+
+  @JsonbProperty(JSON_EMAIL_ADDRESS)
+  private String emailAddress;
+
   /**
    * Passe.
    */
@@ -54,19 +68,19 @@ import lombok.Setter;
   private Boolean accountExists;
 
   /**
-   * Identifiant du role pour les utilisateurs non assignés à cet utilisateur.
-   * Utilisé pour obtenir les utilisateurs disponibles pour attribution.
+   * Identifiant du role pour les utilisateurs non assignés à cet utilisateur. Utilisé pour obtenir
+   * les utilisateurs disponibles pour attribution.
    */
   @JsonbProperty(value = JSON_UNASSIGNED_ROLE_IDENTIFIER)
   private String unassignedRoleIdentifier;
 
   /**
-   * Identifiant du rôles pour les utilisateurs assignés à ce role.
-   * Utilisé pour obtenir les utilisateurs actuels du role.
+   * Identifiant du rôles pour les utilisateurs assignés à ce role. Utilisé pour obtenir les
+   * utilisateurs actuels du role.
    */
   @JsonbProperty(value = JSON_ASSIGNED_ROLE_IDENTIFIER)
   private String assignedRoleIdentifier;
-  
+
   /**
    * Identifiant json de l'identifiant.
    */
@@ -77,16 +91,8 @@ import lombok.Setter;
    */
   public static final String JSON_THIS_AS_STRING = &quot;utilisateurChaine&quot;;
 
-  /**
-   * Identifiant champ java {@link #domainIdentifier}.
-   */
-  public static final String JSON_DOMAIN_IDENTIFIER = DomainDto.JSON_THIS_IDENTIFIER;
 
-  /**
-   * Identifiant champ java {@link #domainAsString}.
-   */
-  public static final String JSON_DOMAIN_AS_STRING = DomainDto.JSON_THIS_AS_STRING;
-  
+
   /**
    * Identifiant champ java {@link #identityIdentifier}.
    */
@@ -117,7 +123,7 @@ import lombok.Setter;
    * Identifiant champ java {@link #accountExists}.
    */
   public static final String JSON_ACCOUNT_EXISTS = &quot;compteExiste&quot;;
-  
+
   /**
    * Nom pour lecture humaine de la classe.
    */
