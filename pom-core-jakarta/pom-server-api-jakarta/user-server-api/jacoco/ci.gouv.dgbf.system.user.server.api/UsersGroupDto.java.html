@@ -3,6 +3,8 @@
 import ci.gouv.dgbf.extension.core.segregation.HasModuleAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasModuleIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUserCountAsStringDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasUserCountDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,8 +19,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L20">public class UsersGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasModuleIdentifierDto, HasModuleAsStringDto {
+<span class="fc" id="L22">public class UsersGroupDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasModuleIdentifierDto, HasModuleAsStringDto, HasUserCountDto,
+    HasUserCountAsStringDto {
 
   /**
    * Identifiant du module propriétaire.
@@ -31,6 +34,18 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_MODULE_AS_STRING)
   private String moduleAsString;
+
+  /**
+   * Nombre d'utilisateurs membres du groupe.
+   */
+  @JsonbProperty(JSON_USER_COUNT)
+  private Integer userCount;
+
+  /**
+   * Représentation en chaine de caractères de {@link #userCount}.
+   */
+  @JsonbProperty(JSON_USER_COUNT_AS_STRING)
+  private String userCountAsString;
 
   /**
    * Identifiant json de l'identifiant.
