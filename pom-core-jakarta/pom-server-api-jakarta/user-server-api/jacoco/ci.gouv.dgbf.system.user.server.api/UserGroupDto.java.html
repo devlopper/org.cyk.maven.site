@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasCapacityAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasCapacityIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasGroupAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasGroupIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasIsResponsibleDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserIdentifierDto;
@@ -21,9 +22,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class UserGroupDto extends AbstractIdentifiableAuditableDto implements HasUserIdentifierDto,</span>
+<span class="fc" id="L25">public class UserGroupDto extends AbstractIdentifiableAuditableDto implements HasUserIdentifierDto,</span>
     HasUserAsStringDto, HasGroupIdentifierDto, HasGroupAsStringDto, HasCapacityIdentifierDto,
-    HasCapacityAsStringDto {
+    HasCapacityAsStringDto, HasIsResponsibleDto {
 
   @JsonbProperty(JSON_USER_IDENTIFIER)
   private String userIdentifier;
@@ -42,6 +43,9 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_CAPACITY_AS_STRING)
   private String capacityAsString;
+
+  @JsonbProperty(JSON_IS_RESPONSIBLE)
+  private Boolean isResponsible;
 
 
   /**
