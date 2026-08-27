@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollElementClaimTypeDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">PayrollElementClaimTypeDto.java</span></div><h1>PayrollElementClaimTypeDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasClaimTypeGroupAsStringDto;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasClaimTypeGroupIdentifierDto;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasProcessingEntityAsStringDto;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasProcessingEntityIdentifierDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un type de réclamation.
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L22">public class PayrollElementClaimTypeDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasClaimTypeGroupIdentifierDto, HasClaimTypeGroupAsStringDto,
+    HasProcessingEntityIdentifierDto, HasProcessingEntityAsStringDto {
+
+  /**
+   * Identifiant {@link PayrollElementClaimTypeGroupDto} (RG_REP_SOU_05).
+   */
+  @JsonbProperty(JSON_CLAIM_TYPE_GROUP_IDENTIFIER)
+  private String claimTypeGroupIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link #claimTypeGroupIdentifier}.
+   */
+  @JsonbProperty(JSON_CLAIM_TYPE_GROUP_AS_STRING)
+  private String claimTypeGroupAsString;
+
+  /**
+   * Identifiant {@link ProcessingEntityDto} (RG_REP_SOU_06).
+   */
+  @JsonbProperty(JSON_PROCESSING_ENTITY_IDENTIFIER)
+  private String processingEntityIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link #processingEntityIdentifier}.
+   */
+  @JsonbProperty(JSON_PROCESSING_ENTITY_AS_STRING)
+  private String processingEntityAsString;
+
+  /**
+   * Indique si ce Type est transmissible au Trésor (RG_REP_SOU_08).
+   */
+  @JsonbProperty(JSON_TREASURY_TRANSMITTABLE)
+  private Boolean treasuryTransmittable;
+
+  /**
+   * Indique si le dépôt par le FAE est autorisé pour ce Type (RG_REP_SOU_09).
+   */
+  @JsonbProperty(JSON_FUNCTIONARY_DEPOSIT_AUTHORIZED)
+  private Boolean functionaryDepositAuthorized;
+
+  /**
+   * Identifiant du Groupe de Types de Document attendus, module {@code documentation} -- sans
+   * FK (couplage faible, RG_REP_PCE_01).
+   */
+  @JsonbProperty(JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER)
+  private String expectedDocumentTypesGroupIdentifier;
+
+  /**
+   * Identifiant json {@link #treasuryTransmittable}.
+   */
+  public static final String JSON_TREASURY_TRANSMITTABLE = &quot;transmissibleAuTresor&quot;;
+
+  /**
+   * Identifiant json {@link #functionaryDepositAuthorized}.
+   */
+  public static final String JSON_FUNCTIONARY_DEPOSIT_AUTHORIZED = &quot;depotFaeAutorise&quot;;
+
+  /**
+   * Identifiant json {@link #expectedDocumentTypesGroupIdentifier}.
+   */
+  public static final String JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER =
+      &quot;idGroupeTypesDocumentAttendus&quot;;
+
+  /**
+   * Identifiant json de identifiant de {@link PayrollElementClaimTypeDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idType&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères
+   * de {@link PayrollElementClaimTypeDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;typeChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;type de réclamation&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;types de réclamation&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

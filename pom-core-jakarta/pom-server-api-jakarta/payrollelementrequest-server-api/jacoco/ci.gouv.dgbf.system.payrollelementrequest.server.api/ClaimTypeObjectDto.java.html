@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimTypeObjectDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimTypeObjectDto.java</span></div><h1>ClaimTypeObjectDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasTypeAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTypeIdentifierDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le rattachement d'un Élément de Paie ou d'une Constante de Paie à un
+ * Type de Réclamation, avec son Mode de Saisie (RG_REP_CIB_01/04).
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L21">public class ClaimTypeObjectDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasTypeIdentifierDto, HasTypeAsStringDto {
+
+  /**
+   * Identifiant {@link PayrollElementClaimTypeDto}.
+   */
+  @JsonbProperty(JSON_TYPE_IDENTIFIER)
+  private String typeIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link #typeIdentifier}.
+   */
+  @JsonbProperty(JSON_TYPE_AS_STRING)
+  private String typeAsString;
+
+  /**
+   * Nature de l'objet ciblé : {@code ELEMENT_PAIE} ou {@code CONSTANTE_PAIE} (RG_REP_CIB_01).
+   */
+  @JsonbProperty(JSON_OBJECT_NATURE)
+  private String objectNature;
+
+  /**
+   * Identifiant de l'Élément de Paie ou de la Constante de Paie ciblé(e), module {@code payroll}
+   * -- sans FK (couplage faible).
+   */
+  @JsonbProperty(JSON_OBJECT_IDENTIFIER)
+  private String objectIdentifier;
+
+  /**
+   * Mode de Saisie : {@code FAE} ou {@code AGENT} (RG_REP_CIB_04).
+   */
+  @JsonbProperty(JSON_VALUE_INPUT_MODE)
+  private String valueInputMode;
+
+  /**
+   * Identifiant json {@link #objectNature}.
+   */
+  public static final String JSON_OBJECT_NATURE = &quot;nature&quot;;
+
+  /**
+   * Identifiant json {@link #objectIdentifier}.
+   */
+  public static final String JSON_OBJECT_IDENTIFIER = &quot;idCible&quot;;
+
+  /**
+   * Identifiant json {@link #valueInputMode}.
+   */
+  public static final String JSON_VALUE_INPUT_MODE = &quot;modeSaisie&quot;;
+
+  /**
+   * Identifiant json de identifiant de {@link ClaimTypeObjectDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idRattachement&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de {@link ClaimTypeObjectDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;rattachementChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;rattachement&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;rattachements&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

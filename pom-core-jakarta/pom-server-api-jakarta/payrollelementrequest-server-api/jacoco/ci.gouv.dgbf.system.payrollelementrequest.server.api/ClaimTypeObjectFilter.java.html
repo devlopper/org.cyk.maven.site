@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimTypeObjectFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimTypeObjectFilter.java</span></div><h1>ClaimTypeObjectFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasTypeIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link ClaimTypeObjectDto}.
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+public class ClaimTypeObjectFilter extends AbstractIdentifiableFilter
+    implements FilterHasTypeIdentifier {
+
+  /**
+   * Identifiant du type de réclamation.
+   */
+  String typeIdentifier;
+
+  /**
+   * Nature de l'objet ciblé.
+   */
+  String objectNature;
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   *
+   * @param dto filtre
+   */
+  public ClaimTypeObjectFilter(FilterDto dto) {
+<span class="fc" id="L36">    super(dto);</span>
+<span class="fc" id="L37">  }</span>
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   */
+<span class="fc" id="L42">  public ClaimTypeObjectFilter() {}</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L46">    super.doInitialize(filter);</span>
+<span class="fc" id="L47">    updateTypeIdentifier(filter);</span>
+<span class="fc" id="L48">    objectNature = getObjectNature(filter);</span>
+<span class="fc" id="L49">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L53">    super.toDto(filter);</span>
+<span class="fc" id="L54">    updateFilterTypeIdentifier(filter);</span>
+<span class="fc" id="L55">    setObjectNature(filter, objectNature);</span>
+<span class="fc" id="L56">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner la nature de l'objet ciblé.
+   *
+   * @param filter filtre
+   * @param objectNature nature de l'objet ciblé
+   */
+  public static void setObjectNature(FilterDto filter, String objectNature) {
+<span class="pc" id="L65">    set(filter, JSON_OBJECT_NATURE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L66">        f -&gt; f.setValueAsString(objectNature));</span>
+<span class="fc" id="L67">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir la nature de l'objet ciblé.
+   *
+   * @param filter filtre
+   * @return nature de l'objet ciblé
+   */
+  public static String getObjectNature(FilterDto filter) {
+<span class="fc" id="L76">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_OBJECT_NATURE));</span>
+  }
+
+  /**
+   * Identifiant json champ {@link #objectNature}.
+   */
+  public static final String JSON_OBJECT_NATURE = ClaimTypeObjectDto.JSON_OBJECT_NATURE;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollElementClaimTypeService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">PayrollElementClaimTypeService.java</span></div><h1>PayrollElementClaimTypeService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.Service;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de gestion de {@link PayrollElementClaimTypeDto}.
+ * Pas de service de suppression (spec-api.md §3.3) : un catalogue déjà exploitable ne se
+ * supprime jamais, seule une modification (verrouillée par RG_REP_SOU_10) est possible.
+ *
+ * @author akm
+ *
+ */
+@Path(PayrollElementClaimTypeService.PATH)
+@Tag(name = &quot;Gestion des types de réclamation&quot;)
+public interface PayrollElementClaimTypeService extends Service {
+
+  /**
+   * Chemin de base.
+   */
+  String PATH = &quot;types-reclamation&quot;;
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author akm
+   *
+   */
+  interface PayrollElementClaimTypeSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link PayrollElementClaimTypeGroupDto}.
+     *
+     * @return l'identifiant de {@link PayrollElementClaimTypeGroupDto}
+     */
+    String getClaimTypeGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link PayrollElementClaimTypeGroupDto}.
+     *
+     * @param claimTypeGroupIdentifier l'identifiant de {@link PayrollElementClaimTypeGroupDto}
+     */
+    void setClaimTypeGroupIdentifier(String claimTypeGroupIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ProcessingEntityDto}.
+     *
+     * @return l'identifiant de {@link ProcessingEntityDto}
+     */
+    String getProcessingEntityIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ProcessingEntityDto}.
+     *
+     * @param processingEntityIdentifier l'identifiant de {@link ProcessingEntityDto}
+     */
+    void setProcessingEntityIdentifier(String processingEntityIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir si ce Type est transmissible au Trésor.
+     *
+     * @return vrai si ce Type est transmissible au Trésor
+     */
+    Boolean getTreasuryTransmittable();
+
+    /**
+     * Cette méthode permet d'assigner si ce Type est transmissible au Trésor.
+     *
+     * @param treasuryTransmittable vrai si ce Type est transmissible au Trésor
+     */
+    void setTreasuryTransmittable(Boolean treasuryTransmittable);
+
+    /**
+     * Cette méthode permet d'obtenir si le dépôt par le FAE est autorisé.
+     *
+     * @return vrai si le dépôt par le FAE est autorisé
+     */
+    Boolean getFunctionaryDepositAuthorized();
+
+    /**
+     * Cette méthode permet d'assigner si le dépôt par le FAE est autorisé.
+     *
+     * @param functionaryDepositAuthorized vrai si le dépôt par le FAE est autorisé
+     */
+    void setFunctionaryDepositAuthorized(Boolean functionaryDepositAuthorized);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe de types de document attendus.
+     *
+     * @return l'identifiant du groupe de types de document attendus
+     */
+    String getExpectedDocumentTypesGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe de types de document attendus.
+     *
+     * @param expectedDocumentTypesGroupIdentifier l'identifiant du groupe de types de document
+     *        attendus
+     */
+    void setExpectedDocumentTypesGroupIdentifier(String expectedDocumentTypesGroupIdentifier);
+
+    /**
+     * {@link PayrollElementClaimTypeDto#JSON_CLAIM_TYPE_GROUP_IDENTIFIER}.
+     */
+    String JSON_CLAIM_TYPE_GROUP_IDENTIFIER =
+        PayrollElementClaimTypeDto.JSON_CLAIM_TYPE_GROUP_IDENTIFIER;
+
+    /**
+     * {@link PayrollElementClaimTypeDto#JSON_PROCESSING_ENTITY_IDENTIFIER}.
+     */
+    String JSON_PROCESSING_ENTITY_IDENTIFIER =
+        PayrollElementClaimTypeDto.JSON_PROCESSING_ENTITY_IDENTIFIER;
+
+    /**
+     * {@link PayrollElementClaimTypeDto#JSON_TREASURY_TRANSMITTABLE}.
+     */
+    String JSON_TREASURY_TRANSMITTABLE = PayrollElementClaimTypeDto.JSON_TREASURY_TRANSMITTABLE;
+
+    /**
+     * {@link PayrollElementClaimTypeDto#JSON_FUNCTIONARY_DEPOSIT_AUTHORIZED}.
+     */
+    String JSON_FUNCTIONARY_DEPOSIT_AUTHORIZED =
+        PayrollElementClaimTypeDto.JSON_FUNCTIONARY_DEPOSIT_AUTHORIZED;
+
+    /**
+     * {@link PayrollElementClaimTypeDto#JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER}.
+     */
+    String JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER =
+        PayrollElementClaimTypeDto.JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_TYPE_RECLAMATION&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link PayrollElementClaimTypeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(PayrollElementClaimTypeCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author akm
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L188">  class PayrollElementClaimTypeCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements PayrollElementClaimTypeSaveRequestDto {
+
+    @JsonbProperty(JSON_CLAIM_TYPE_GROUP_IDENTIFIER)
+    private String claimTypeGroupIdentifier;
+
+    @JsonbProperty(JSON_PROCESSING_ENTITY_IDENTIFIER)
+    private String processingEntityIdentifier;
+
+    @JsonbProperty(JSON_TREASURY_TRANSMITTABLE)
+    private Boolean treasuryTransmittable;
+
+    @JsonbProperty(JSON_FUNCTIONARY_DEPOSIT_AUTHORIZED)
+    private Boolean functionaryDepositAuthorized;
+
+    @JsonbProperty(JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER)
+    private String expectedDocumentTypesGroupIdentifier;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_TYPE_RECLAMATION&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author akm
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L238">  public static class PayrollElementClaimTypeGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;PayrollElementClaimTypeDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;PayrollElementClaimTypeDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_TYPE_RECLAMATION&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir une identité.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_TYPE_RECLAMATION&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identifiant {@link PayrollElementClaimTypeDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = PayrollElementClaimTypeDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_TYPE_RECLAMATION&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link PayrollElementClaimTypeDto}. Refusée par la
+   * couche métier tant qu'un Traitement issu d'une réclamation de ce Type est encore en circuit
+   * (RG_REP_SOU_10) -- pas une contrainte portée par ce contrat.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(PayrollElementClaimTypeUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author akm
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L328">  class PayrollElementClaimTypeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements PayrollElementClaimTypeSaveRequestDto {
+
+    @JsonbProperty(JSON_CLAIM_TYPE_GROUP_IDENTIFIER)
+    private String claimTypeGroupIdentifier;
+
+    @JsonbProperty(JSON_PROCESSING_ENTITY_IDENTIFIER)
+    private String processingEntityIdentifier;
+
+    @JsonbProperty(JSON_TREASURY_TRANSMITTABLE)
+    private Boolean treasuryTransmittable;
+
+    @JsonbProperty(JSON_FUNCTIONARY_DEPOSIT_AUTHORIZED)
+    private Boolean functionaryDepositAuthorized;
+
+    @JsonbProperty(JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER)
+    private String expectedDocumentTypesGroupIdentifier;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
