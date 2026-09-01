@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimedValueDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimedValueDto.java</span></div><h1>ClaimedValueDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente la valeur réclamée pour un Élément de Paie ou une Constante de Paie
+ * concerné(e) par une réclamation (RG_REP_CIB_02/03) -- fusion le 2026-08-29 (exécutée le
+ * 2026-08-31) de {@code PayrollElementValueDto} et {@code PayrollConstantValueDto}, couplage
+ * faible sur {@link #nature}.
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L22">public class ClaimedValueDto extends AbstractIdentifiableAuditableDto {</span>
+
+  /**
+   * Identifiant {@link PayrollElementClaimDto}.
+   */
+  @JsonbProperty(JSON_CLAIM_IDENTIFIER)
+  private String claimIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link #claimIdentifier}.
+   */
+  @JsonbProperty(JSON_CLAIM_AS_STRING)
+  private String claimAsString;
+
+  /**
+   * Identifiant {@link ClaimTypeClaimableDto} -- l'Élément de Paie ou la Constante de Paie
+   * effectivement concerné(e), éligible pour le Type de la réclamation (RG_REP_CIB_01).
+   */
+  @JsonbProperty(JSON_CLAIM_TYPE_CLAIMABLE_IDENTIFIER)
+  private String claimTypeClaimableIdentifier;
+
+  /**
+   * Représentation en chaine de caractères de {@link #claimTypeClaimableIdentifier}.
+   */
+  @JsonbProperty(JSON_CLAIM_TYPE_CLAIMABLE_AS_STRING)
+  private String claimTypeClaimableAsString;
+
+  /**
+   * Toujours {@code ELEMENT_PAIE} ou {@code CONSTANTE_PAIE} -- discriminant technique de la FK
+   * composite (RECLAMABLE_PARAMETRE, NATURE) vers {@code TA_TYPE_RECLAMATION_RECLAMABLE}.
+   */
+  @JsonbProperty(JSON_NATURE)
+  private String nature;
+
+  /**
+   * Valeur réclamée sous forme de chaine -- pour {@code ELEMENT_PAIE} : non utilisée directement,
+   * voir {@link #elementInstanceIdentifier} ; pour {@code CONSTANTE_PAIE} : la valeur elle-même,
+   * interprétée selon {@link #valueType} (peut représenter un nombre négatif, ajustement
+   * contentieux).
+   */
+  @JsonbProperty(JSON_VALUE)
+  private String value;
+
+  /**
+   * Type de {@link #value} ({@code ValueType}, core-extension) -- pertinent pour
+   * {@code CONSTANTE_PAIE} uniquement, {@code null} pour {@code ELEMENT_PAIE}.
+   */
+  @JsonbProperty(JSON_VALUE_TYPE)
+  private String valueType;
+
+  /**
+   * {@code ELEMENT_PAIE} uniquement : identifiant de la {@code PayrollElementInstance}
+   * revendiquée, module {@code payroll} -- sans FK (couplage faible) ; {@code null} pour un
+   * Retrait (aucune nouvelle valeur) ou pour {@code CONSTANTE_PAIE}.
+   */
+  @JsonbProperty(JSON_ELEMENT_INSTANCE_IDENTIFIER)
+  private String elementInstanceIdentifier;
+
+  /**
+   * {@code ELEMENT_PAIE} uniquement : identifiant d'un {@code Mouvement} existant du FAE, module
+   * {@code payroll} -- sans FK (couplage faible) ; renseigné uniquement quand le Type de
+   * Réclamation exige de désigner une instance déjà détenue parmi plusieurs (cas Fonction), pour
+   * une correction de date d'effet ou un retrait ; {@code null} pour {@code CONSTANTE_PAIE}.
+   */
+  @JsonbProperty(JSON_CURRENT_MOVEMENT_IDENTIFIER)
+  private String currentMovementIdentifier;
+
+  /**
+   * {@code ELEMENT_PAIE} uniquement : date d'effet de la valeur réclamée, ou date de fin d'effet
+   * pour un Retrait ; {@code null} pour {@code CONSTANTE_PAIE}.
+   */
+  @JsonbProperty(JSON_EFFECTIVE_DATE)
+  private LocalDate effectiveDate;
+
+  /**
+   * Toujours {@code ELEMENT_PAIE} (RG_REP_CIB_02).
+   */
+  public static final String NATURE_ELEMENT_PAIE = &quot;ELEMENT_PAIE&quot;;
+
+  /**
+   * Toujours {@code CONSTANTE_PAIE} (RG_REP_CIB_03).
+   */
+  public static final String NATURE_CONSTANTE_PAIE = &quot;CONSTANTE_PAIE&quot;;
+
+  /**
+   * Identifiant json {@link #claimIdentifier}.
+   */
+  public static final String JSON_CLAIM_IDENTIFIER = &quot;idReclamation&quot;;
+
+  /**
+   * Identifiant json {@link #claimAsString}.
+   */
+  public static final String JSON_CLAIM_AS_STRING = &quot;reclamationChaine&quot;;
+
+  /**
+   * Identifiant json {@link #claimTypeClaimableIdentifier}.
+   */
+  public static final String JSON_CLAIM_TYPE_CLAIMABLE_IDENTIFIER = &quot;idReclamableTypeReclamation&quot;;
+
+  /**
+   * Identifiant json {@link #claimTypeClaimableAsString}.
+   */
+  public static final String JSON_CLAIM_TYPE_CLAIMABLE_AS_STRING =
+      &quot;reclamableTypeReclamationChaine&quot;;
+
+  /**
+   * Identifiant json {@link #nature}.
+   */
+  public static final String JSON_NATURE = &quot;nature&quot;;
+
+  /**
+   * Identifiant json {@link #value}.
+   */
+  public static final String JSON_VALUE = &quot;valeur&quot;;
+
+  /**
+   * Identifiant json {@link #valueType}.
+   */
+  public static final String JSON_VALUE_TYPE = &quot;typeValeur&quot;;
+
+  /**
+   * Identifiant json {@link #elementInstanceIdentifier}.
+   */
+  public static final String JSON_ELEMENT_INSTANCE_IDENTIFIER = &quot;idInstanceElement&quot;;
+
+  /**
+   * Identifiant json {@link #currentMovementIdentifier}.
+   */
+  public static final String JSON_CURRENT_MOVEMENT_IDENTIFIER = &quot;idMouvementActuel&quot;;
+
+  /**
+   * Identifiant json {@link #effectiveDate}.
+   */
+  public static final String JSON_EFFECTIVE_DATE = &quot;dateEffet&quot;;
+
+  /**
+   * Identifiant json de identifiant de {@link ClaimedValueDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idValeurReclamee&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de {@link ClaimedValueDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;valeurReclameeChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;valeur réclamée&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;valeurs réclamées&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

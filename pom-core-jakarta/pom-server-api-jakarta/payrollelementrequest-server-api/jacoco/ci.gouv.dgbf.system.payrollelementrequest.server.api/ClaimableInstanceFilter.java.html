@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimableInstanceFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimableInstanceFilter.java</span></div><h1>ClaimableInstanceFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableCodableFilter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente le filtre de {@link ClaimableInstanceDto}.
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+public class ClaimableInstanceFilter extends AbstractIdentifiableCodableFilter {
+
+  /**
+   * Identifiant du {@link ClaimableDto} {@code ELEMENT_PAIE} parent (pour filtrer les instances
+   * d'un Élément de Paie donné).
+   */
+  String claimableIdentifier;
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   *
+   * @param dto filtre
+   */
+  public ClaimableInstanceFilter(FilterDto dto) {
+<span class="fc" id="L30">    super(dto);</span>
+<span class="fc" id="L31">  }</span>
+
+  /**
+   * Cette méthode permet d'instantier un objet.
+   */
+<span class="fc" id="L36">  public ClaimableInstanceFilter() {}</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L40">    super.doInitialize(filter);</span>
+<span class="fc" id="L41">    claimableIdentifier = getClaimableIdentifier(filter);</span>
+<span class="fc" id="L42">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L46">    super.toDto(filter);</span>
+<span class="fc" id="L47">    setClaimableIdentifier(filter, claimableIdentifier);</span>
+<span class="fc" id="L48">  }</span>
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant de l'Élément de Paie parent.
+   *
+   * @param filter filtre
+   * @param claimableIdentifier identifiant de l'Élément de Paie parent
+   */
+  public static void setClaimableIdentifier(FilterDto filter, String claimableIdentifier) {
+<span class="pc" id="L57">    set(filter, JSON_CLAIMABLE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L58">        f -&gt; f.setValueAsString(claimableIdentifier));</span>
+<span class="fc" id="L59">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant de l'Élément de Paie parent.
+   *
+   * @param filter filtre
+   * @return identifiant de l'Élément de Paie parent
+   */
+  public static String getClaimableIdentifier(FilterDto filter) {
+<span class="fc" id="L68">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_CLAIMABLE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Identifiant json champ {@link #claimableIdentifier}.
+   */
+  public static final String JSON_CLAIMABLE_IDENTIFIER =
+      ClaimableInstanceDto.JSON_CLAIMABLE_IDENTIFIER;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

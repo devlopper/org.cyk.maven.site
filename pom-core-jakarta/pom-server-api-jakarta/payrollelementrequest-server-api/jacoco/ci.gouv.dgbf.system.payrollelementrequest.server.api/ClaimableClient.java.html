@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimableClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimableClient.java</span></div><h1>ClaimableClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.ClaimableService.ClaimableGetManyResponseDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de {@link ClaimableService}.
+ *
+ * @author akm
+ *
+ */
+@ApplicationScoped
+<span class="fc" id="L22">public class ClaimableClient extends AbstractClient&lt;ClaimableService&gt;</span>
+    implements GetByIdentifier&lt;ClaimableDto&gt;, GetMany&lt;ClaimableGetManyResponseDto&gt; {
+
+  @Override
+  public ClaimableClient service(ClaimableService service) {
+<span class="fc" id="L27">    return (ClaimableClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ClaimableService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ClaimableGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L37">    return new GetOneExecutor&lt;ClaimableGetManyResponseDto&gt;(ClaimableGetManyResponseDto.class,</span>
+<span class="fc" id="L38">        ClaimableService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link ClaimableService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ClaimableGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L53">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L54">    request.setProjection(projection);</span>
+<span class="fc" id="L55">    request.setFilter(filter);</span>
+<span class="fc" id="L56">    request.setPage(page);</span>
+<span class="fc" id="L57">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L58">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L59">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ClaimableService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ClaimableDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L69">    return new GetOneExecutor&lt;ClaimableDto&gt;(ClaimableDto.class,</span>
+        ClaimableService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L71">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link ClaimableService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public ClaimableDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L86">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L87">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L88">    request.setProjection(projection);</span>
+<span class="fc" id="L89">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L90">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L91">    return getByIdentifier(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -66,18 +66,18 @@ public interface PayrollElementClaimTypeService extends Service {
     void setClaimTypeGroupIdentifier(String claimTypeGroupIdentifier);
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant de {@link ProcessingEntityDto}.
+     * Cette méthode permet d'obtenir le rôle de traitement.
      *
-     * @return l'identifiant de {@link ProcessingEntityDto}
+     * @return le rôle de traitement
      */
-    String getProcessingEntityIdentifier();
+    String getRoleTraitement();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant de {@link ProcessingEntityDto}.
+     * Cette méthode permet d'assigner le rôle de traitement.
      *
-     * @param processingEntityIdentifier l'identifiant de {@link ProcessingEntityDto}
+     * @param roleTraitement le rôle de traitement
      */
-    void setProcessingEntityIdentifier(String processingEntityIdentifier);
+    void setRoleTraitement(String roleTraitement);
 
     /**
      * Cette méthode permet d'obtenir si ce Type est transmissible au Trésor.
@@ -129,10 +129,9 @@ public interface PayrollElementClaimTypeService extends Service {
         PayrollElementClaimTypeDto.JSON_CLAIM_TYPE_GROUP_IDENTIFIER;
 
     /**
-     * {@link PayrollElementClaimTypeDto#JSON_PROCESSING_ENTITY_IDENTIFIER}.
+     * {@link PayrollElementClaimTypeDto#JSON_ROLE_TRAITEMENT}.
      */
-    String JSON_PROCESSING_ENTITY_IDENTIFIER =
-        PayrollElementClaimTypeDto.JSON_PROCESSING_ENTITY_IDENTIFIER;
+    String JSON_ROLE_TRAITEMENT = PayrollElementClaimTypeDto.JSON_ROLE_TRAITEMENT;
 
     /**
      * {@link PayrollElementClaimTypeDto#JSON_TREASURY_TRANSMITTABLE}.
@@ -185,14 +184,14 @@ public interface PayrollElementClaimTypeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L188">  class PayrollElementClaimTypeCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L187">  class PayrollElementClaimTypeCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollElementClaimTypeSaveRequestDto {
 
     @JsonbProperty(JSON_CLAIM_TYPE_GROUP_IDENTIFIER)
     private String claimTypeGroupIdentifier;
 
-    @JsonbProperty(JSON_PROCESSING_ENTITY_IDENTIFIER)
-    private String processingEntityIdentifier;
+    @JsonbProperty(JSON_ROLE_TRAITEMENT)
+    private String roleTraitement;
 
     @JsonbProperty(JSON_TREASURY_TRANSMITTABLE)
     private Boolean treasuryTransmittable;
@@ -235,7 +234,7 @@ public interface PayrollElementClaimTypeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L238">  public static class PayrollElementClaimTypeGetManyResponseDto</span>
+<span class="fc" id="L237">  public static class PayrollElementClaimTypeGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollElementClaimTypeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -325,14 +324,14 @@ public interface PayrollElementClaimTypeService extends Service {
    */
   @Getter
   @Setter
-<span class="fc" id="L328">  class PayrollElementClaimTypeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L327">  class PayrollElementClaimTypeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollElementClaimTypeSaveRequestDto {
 
     @JsonbProperty(JSON_CLAIM_TYPE_GROUP_IDENTIFIER)
     private String claimTypeGroupIdentifier;
 
-    @JsonbProperty(JSON_PROCESSING_ENTITY_IDENTIFIER)
-    private String processingEntityIdentifier;
+    @JsonbProperty(JSON_ROLE_TRAITEMENT)
+    private String roleTraitement;
 
     @JsonbProperty(JSON_TREASURY_TRANSMITTABLE)
     private Boolean treasuryTransmittable;

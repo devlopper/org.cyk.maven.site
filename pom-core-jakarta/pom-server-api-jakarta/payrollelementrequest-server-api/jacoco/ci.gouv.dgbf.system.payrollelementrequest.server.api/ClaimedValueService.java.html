@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimedValueService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimedValueService.java</span></div><h1>ClaimedValueService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.time.LocalDate;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Cette interface représente les services de gestion de {@link ClaimedValueDto}. N'étend pas
+ * {@link ci.gouv.dgbf.extension.server.service.api.Service} mais {@link SpecificService} --
+ * {@link ClaimedValueDto} n'a ni code ni nom propres.
+ *
+ * @author akm
+ *
+ */
+@Path(ClaimedValueService.PATH)
+@Tag(name = &quot;Gestion des valeurs réclamées&quot;)
+public interface ClaimedValueService extends SpecificService {
+
+  /**
+   * Chemin de base.
+   */
+  String PATH = &quot;valeurs-reclamees&quot;;
+
+  /**
+   * Cette interface représente une requête d'enregistrement.
+   *
+   * @author akm
+   *
+   */
+  interface ClaimedValueSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link PayrollElementClaimDto}.
+     *
+     * @return l'identifiant de {@link PayrollElementClaimDto}
+     */
+    String getClaimIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link PayrollElementClaimDto}.
+     *
+     * @param claimIdentifier l'identifiant de {@link PayrollElementClaimDto}
+     */
+    void setClaimIdentifier(String claimIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de {@link ClaimTypeClaimableDto}.
+     *
+     * @return l'identifiant de {@link ClaimTypeClaimableDto}
+     */
+    String getClaimTypeClaimableIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de {@link ClaimTypeClaimableDto}.
+     *
+     * @param claimTypeClaimableIdentifier l'identifiant de {@link ClaimTypeClaimableDto}
+     */
+    void setClaimTypeClaimableIdentifier(String claimTypeClaimableIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir la nature ({@code ELEMENT_PAIE}/{@code CONSTANTE_PAIE}).
+     *
+     * @return la nature
+     */
+    String getNature();
+
+    /**
+     * Cette méthode permet d'assigner la nature ({@code ELEMENT_PAIE}/{@code CONSTANTE_PAIE}).
+     *
+     * @param nature la nature
+     */
+    void setNature(String nature);
+
+    /**
+     * Cette méthode permet d'obtenir la valeur réclamée -- {@code CONSTANTE_PAIE} uniquement.
+     *
+     * @return la valeur réclamée
+     */
+    String getValue();
+
+    /**
+     * Cette méthode permet d'assigner la valeur réclamée -- {@code CONSTANTE_PAIE} uniquement.
+     *
+     * @param value la valeur réclamée
+     */
+    void setValue(String value);
+
+    /**
+     * Cette méthode permet d'obtenir le type de la valeur réclamée -- {@code CONSTANTE_PAIE}
+     * uniquement.
+     *
+     * @return le type de la valeur réclamée
+     */
+    String getValueType();
+
+    /**
+     * Cette méthode permet d'assigner le type de la valeur réclamée -- {@code CONSTANTE_PAIE}
+     * uniquement.
+     *
+     * @param valueType le type de la valeur réclamée
+     */
+    void setValueType(String valueType);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant de l'instance d'Élément de Paie revendiquée --
+     * {@code ELEMENT_PAIE} uniquement.
+     *
+     * @return l'identifiant de l'instance d'Élément de Paie revendiquée
+     */
+    String getElementInstanceIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant de l'instance d'Élément de Paie revendiquée --
+     * {@code ELEMENT_PAIE} uniquement.
+     *
+     * @param elementInstanceIdentifier l'identifiant de l'instance d'Élément de Paie revendiquée
+     */
+    void setElementInstanceIdentifier(String elementInstanceIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du Mouvement actuel désigné -- {@code
+     * ELEMENT_PAIE} uniquement.
+     *
+     * @return l'identifiant du Mouvement actuel désigné
+     */
+    String getCurrentMovementIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du Mouvement actuel désigné -- {@code
+     * ELEMENT_PAIE} uniquement.
+     *
+     * @param currentMovementIdentifier l'identifiant du Mouvement actuel désigné
+     */
+    void setCurrentMovementIdentifier(String currentMovementIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir la date d'effet -- {@code ELEMENT_PAIE} uniquement.
+     *
+     * @return la date d'effet
+     */
+    LocalDate getEffectiveDate();
+
+    /**
+     * Cette méthode permet d'assigner la date d'effet -- {@code ELEMENT_PAIE} uniquement.
+     *
+     * @param effectiveDate la date d'effet
+     */
+    void setEffectiveDate(LocalDate effectiveDate);
+
+    /**
+     * {@link ClaimedValueDto#JSON_CLAIM_IDENTIFIER}.
+     */
+    String JSON_CLAIM_IDENTIFIER = ClaimedValueDto.JSON_CLAIM_IDENTIFIER;
+
+    /**
+     * {@link ClaimedValueDto#JSON_CLAIM_TYPE_CLAIMABLE_IDENTIFIER}.
+     */
+    String JSON_CLAIM_TYPE_CLAIMABLE_IDENTIFIER =
+        ClaimedValueDto.JSON_CLAIM_TYPE_CLAIMABLE_IDENTIFIER;
+
+    /**
+     * {@link ClaimedValueDto#JSON_NATURE}.
+     */
+    String JSON_NATURE = ClaimedValueDto.JSON_NATURE;
+
+    /**
+     * {@link ClaimedValueDto#JSON_VALUE}.
+     */
+    String JSON_VALUE = ClaimedValueDto.JSON_VALUE;
+
+    /**
+     * {@link ClaimedValueDto#JSON_VALUE_TYPE}.
+     */
+    String JSON_VALUE_TYPE = ClaimedValueDto.JSON_VALUE_TYPE;
+
+    /**
+     * {@link ClaimedValueDto#JSON_ELEMENT_INSTANCE_IDENTIFIER}.
+     */
+    String JSON_ELEMENT_INSTANCE_IDENTIFIER = ClaimedValueDto.JSON_ELEMENT_INSTANCE_IDENTIFIER;
+
+    /**
+     * {@link ClaimedValueDto#JSON_CURRENT_MOVEMENT_IDENTIFIER}.
+     */
+    String JSON_CURRENT_MOVEMENT_IDENTIFIER = ClaimedValueDto.JSON_CURRENT_MOVEMENT_IDENTIFIER;
+
+    /**
+     * {@link ClaimedValueDto#JSON_EFFECTIVE_DATE}.
+     */
+    String JSON_EFFECTIVE_DATE = ClaimedValueDto.JSON_EFFECTIVE_DATE;
+  }
+
+  /**
+   * Identifiant du service de création.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_VALEUR_RECLAMEE&quot;;
+
+  /**
+   * Chemin du service de création.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link ClaimedValueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(ClaimedValueCreateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création.
+   *
+   * @author akm
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L250">  class ClaimedValueCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+      implements ClaimedValueSaveRequestDto {
+
+    @JsonbProperty(JSON_CLAIM_IDENTIFIER)
+    private String claimIdentifier;
+
+    @JsonbProperty(JSON_CLAIM_TYPE_CLAIMABLE_IDENTIFIER)
+    private String claimTypeClaimableIdentifier;
+
+    @JsonbProperty(JSON_NATURE)
+    private String nature;
+
+    @JsonbProperty(JSON_VALUE)
+    private String value;
+
+    @JsonbProperty(JSON_VALUE_TYPE)
+    private String valueType;
+
+    @JsonbProperty(JSON_ELEMENT_INSTANCE_IDENTIFIER)
+    private String elementInstanceIdentifier;
+
+    @JsonbProperty(JSON_CURRENT_MOVEMENT_IDENTIFIER)
+    private String currentMovementIdentifier;
+
+    @JsonbProperty(JSON_EFFECTIVE_DATE)
+    private LocalDate effectiveDate;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_VALEUR_RECLAMEE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir plusieurs.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER)
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
+   *
+   * @author akm
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L309">  public static class ClaimedValueGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ClaimedValueDto&gt; {
+
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ClaimedValueDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention de un.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_UN_VALEUR_RECLAMEE&quot;;
+
+  /**
+   * Chemin du service d'obtention de un.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir une identité.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_VALEUR_RECLAMEE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de un.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir par identifiant {@link ClaimedValueDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ClaimedValueDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de mise à jour.
+   */
+  String UPDATE_IDENTIFIER = &quot;MISE_A_JOUR_VALEUR_RECLAMEE&quot;;
+
+  /**
+   * Chemin du service de mise à jour.
+   */
+  String UPDATE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour {@link ClaimedValueDto} -- correction en cours de
+   * circuit (RG_REP_TRT_09), vérifiée en couche métier.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response update(ClaimedValueUpdateRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour.
+   *
+   * @author akm
+   *
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L398">  class ClaimedValueUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+      implements ClaimedValueSaveRequestDto {
+
+    @JsonbProperty(JSON_CLAIM_IDENTIFIER)
+    private String claimIdentifier;
+
+    @JsonbProperty(JSON_CLAIM_TYPE_CLAIMABLE_IDENTIFIER)
+    private String claimTypeClaimableIdentifier;
+
+    @JsonbProperty(JSON_NATURE)
+    private String nature;
+
+    @JsonbProperty(JSON_VALUE)
+    private String value;
+
+    @JsonbProperty(JSON_VALUE_TYPE)
+    private String valueType;
+
+    @JsonbProperty(JSON_ELEMENT_INSTANCE_IDENTIFIER)
+    private String elementInstanceIdentifier;
+
+    @JsonbProperty(JSON_CURRENT_MOVEMENT_IDENTIFIER)
+    private String currentMovementIdentifier;
+
+    @JsonbProperty(JSON_EFFECTIVE_DATE)
+    private LocalDate effectiveDate;
+  }
+
+  /**
+   * Identifiant du service de suppression.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_VALEUR_RECLAMEE&quot;;
+
+  /**
+   * Chemin du service de suppression.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Cette méthode permet de supprimer {@link ClaimedValueDto} -- retrait d'un Élément ou d'une
+   * Constante concerné(e) pendant le brouillon (Créée) uniquement, vérifié en couche métier.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

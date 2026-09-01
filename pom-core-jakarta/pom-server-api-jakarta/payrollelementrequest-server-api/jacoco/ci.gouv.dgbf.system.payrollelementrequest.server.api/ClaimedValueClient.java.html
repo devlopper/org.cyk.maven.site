@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimedValueClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimedValueClient.java</span></div><h1>ClaimedValueClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.ClaimedValueService.ClaimedValueCreateRequestDto;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.ClaimedValueService.ClaimedValueGetManyResponseDto;
+import ci.gouv.dgbf.system.payrollelementrequest.server.api.ClaimedValueService.ClaimedValueUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+
+/**
+ * Cette classe représente le client de {@link ClaimedValueService}.
+ *
+ * @author akm
+ *
+ */
+@ApplicationScoped
+<span class="fc" id="L31">public class ClaimedValueClient extends AbstractClient&lt;ClaimedValueService&gt;</span>
+    implements GetByIdentifier&lt;ClaimedValueDto&gt;, GetMany&lt;ClaimedValueGetManyResponseDto&gt;,
+    DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public ClaimedValueClient service(ClaimedValueService service) {
+<span class="fc" id="L37">    return (ClaimedValueClient) super.service(service);</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#getMany}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ClaimedValueGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L47">    return new GetOneExecutor&lt;ClaimedValueGetManyResponseDto&gt;(ClaimedValueGetManyResponseDto.class,</span>
+<span class="fc" id="L48">        ClaimedValueService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#getMany}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param page page
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ClaimedValueGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L63">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L64">    request.setProjection(projection);</span>
+<span class="fc" id="L65">    request.setFilter(filter);</span>
+<span class="fc" id="L66">    request.setPage(page);</span>
+<span class="fc" id="L67">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L68">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L69">    return getMany(request);</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#create}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public CreateResponseDto create(ClaimedValueCreateRequestDto request) {
+<span class="fc" id="L79">    return new CreateExecutor(ClaimedValueService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L80">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#update}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto update(ClaimedValueUpdateRequestDto request) {
+<span class="fc" id="L90">    return new IdentifiableExecutor(ClaimedValueService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L91">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#getOne}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ClaimedValueDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L101">    return new GetOneExecutor&lt;ClaimedValueDto&gt;(ClaimedValueDto.class,</span>
+<span class="fc" id="L102">        ClaimedValueService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#getOne}.
+   *
+   * @param projection projection
+   * @param filter filtre
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  public ClaimedValueDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L116">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L117">    request.setProjection(projection);</span>
+<span class="fc" id="L118">    request.setFilter(filter);</span>
+<span class="fc" id="L119">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L120">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L121">    return getOne(request);</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#getByIdentifier}.
+   *
+   * @param request requête
+   * @return valeur réclamée
+   */
+  public ClaimedValueDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L131">    return new GetOneExecutor&lt;ClaimedValueDto&gt;(ClaimedValueDto.class,</span>
+        ClaimedValueService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L133">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#getByIdentifier}.
+   *
+   * @param identifier identifiant
+   * @param projection projection
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public ClaimedValueDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L148">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L149">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L150">    request.setProjection(projection);</span>
+<span class="fc" id="L151">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L152">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L153">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#delete}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L163">    return new IdentifiableExecutor(ClaimedValueService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L164">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  /**
+   * {@link ClaimedValueService#delete}.
+   *
+   * @param identifier identifiant
+   * @param auditWho audit acteur
+   * @param auditSession audit session
+   * @return réponse
+   */
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L178">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L179">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L180">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L181">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L182">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

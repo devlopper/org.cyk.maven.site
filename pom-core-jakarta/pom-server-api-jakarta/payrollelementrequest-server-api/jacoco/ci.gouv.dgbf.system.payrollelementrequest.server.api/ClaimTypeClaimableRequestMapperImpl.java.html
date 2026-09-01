@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimTypeClaimableRequestMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimTypeClaimableRequestMapperImpl.java</span></div><h1>ClaimTypeClaimableRequestMapperImpl.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import jakarta.enterprise.context.ApplicationScoped;
+import javax.annotation.processing.Generated;
+
+/**
+* Cette interface représente le mapping de requête et {@link ClaimTypeClaimableDto}.
+*
+* @author akm
+*
+*/
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2026-09-01T11:37:34+0000&quot;,
+    comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
+)
+@ApplicationScoped
+<span class="fc" id="L18">public class ClaimTypeClaimableRequestMapperImpl implements ClaimTypeClaimableRequestMapper {</span>
+
+    @Override
+    public ClaimTypeClaimableService.ClaimTypeClaimableCreateRequestDto mapCreate(ClaimTypeClaimableDto arg0) {
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L23">            return null;</span>
+        }
+
+<span class="fc" id="L26">        ClaimTypeClaimableService.ClaimTypeClaimableCreateRequestDto claimTypeClaimableCreateRequestDto = new ClaimTypeClaimableService.ClaimTypeClaimableCreateRequestDto();</span>
+
+<span class="fc" id="L28">        claimTypeClaimableCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        claimTypeClaimableCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L30">        claimTypeClaimableCreateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L31">        claimTypeClaimableCreateRequestDto.setNature( arg0.getNature() );</span>
+<span class="fc" id="L32">        claimTypeClaimableCreateRequestDto.setClaimableIdentifier( arg0.getClaimableIdentifier() );</span>
+<span class="fc" id="L33">        claimTypeClaimableCreateRequestDto.setValueInputMode( arg0.getValueInputMode() );</span>
+<span class="fc" id="L34">        claimTypeClaimableCreateRequestDto.setRank( arg0.getRank() );</span>
+
+<span class="fc" id="L36">        return claimTypeClaimableCreateRequestDto;</span>
+    }
+
+    @Override
+    public ClaimTypeClaimableService.ClaimTypeClaimableUpdateRequestDto mapUpdate(ClaimTypeClaimableDto arg0) {
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L42">            return null;</span>
+        }
+
+<span class="fc" id="L45">        ClaimTypeClaimableService.ClaimTypeClaimableUpdateRequestDto claimTypeClaimableUpdateRequestDto = new ClaimTypeClaimableService.ClaimTypeClaimableUpdateRequestDto();</span>
+
+<span class="fc" id="L47">        claimTypeClaimableUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L48">        claimTypeClaimableUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L49">        claimTypeClaimableUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        claimTypeClaimableUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L51">        claimTypeClaimableUpdateRequestDto.setNature( arg0.getNature() );</span>
+<span class="fc" id="L52">        claimTypeClaimableUpdateRequestDto.setClaimableIdentifier( arg0.getClaimableIdentifier() );</span>
+<span class="fc" id="L53">        claimTypeClaimableUpdateRequestDto.setValueInputMode( arg0.getValueInputMode() );</span>
+<span class="fc" id="L54">        claimTypeClaimableUpdateRequestDto.setRank( arg0.getRank() );</span>
+
+<span class="fc" id="L56">        return claimTypeClaimableUpdateRequestDto;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

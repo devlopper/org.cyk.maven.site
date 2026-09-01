@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ClaimableDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">ClaimableDto.java</span></div><h1>ClaimableDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un Réclamable : un input du calcul de paie (Élément de Paie ou
+ * Constante de Paie) synchronisé depuis le module {@code payroll} (RG_REP_CIB_07).
+ *
+ * @author akm
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L19">public class ClaimableDto extends AbstractIdentifiableCodableNamableDto {</span>
+
+  /**
+   * Nature du Réclamable ({@code ELEMENT_PAIE} ou {@code CONSTANTE_PAIE}).
+   */
+  @JsonbProperty(JSON_NATURE)
+  private String nature;
+
+  /**
+   * Identifiant, module payroll, de l'Élément de Paie ou de la Constante de Paie synchronisé(e).
+   */
+  @JsonbProperty(JSON_PAYROLL_IDENTIFIER)
+  private String payrollIdentifier;
+
+  /**
+   * Date de la dernière synchronisation.
+   */
+  @JsonbProperty(JSON_SYNCHRONIZATION_DATE)
+  private String synchronizationDate;
+
+  /**
+   * Identifiant json {@link #nature}.
+   */
+  public static final String JSON_NATURE = &quot;nature&quot;;
+
+  /**
+   * Identifiant json {@link #payrollIdentifier}.
+   */
+  public static final String JSON_PAYROLL_IDENTIFIER = &quot;idPayroll&quot;;
+
+  /**
+   * Identifiant json {@link #synchronizationDate}.
+   */
+  public static final String JSON_SYNCHRONIZATION_DATE = &quot;dateSynchronisation&quot;;
+
+  /**
+   * Identifiant json de identifiant de {@link ClaimableDto}.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idReclamable&quot;;
+
+  /**
+   * Identifiant json de représentation en chaine de caractères de {@link ClaimableDto}.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;reclamableChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;réclamable&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;réclamables&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

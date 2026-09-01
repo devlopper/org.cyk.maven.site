@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PayrollElementClaimStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module Réclamation des éléments de paie</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollelementrequest.server.api</a> &gt; <span class="el_source">PayrollElementClaimStatus.java</span></div><h1>PayrollElementClaimStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollelementrequest.server.api;
+
+import ci.gouv.dgbf.extension.core.Core;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Cette classe représente les statuts de {@link PayrollElementClaimDto} (RG_REP_STA_01).
+ *
+ * @author akm
+ *
+ */
+<span class="fc" id="L16">@Getter</span>
+public enum PayrollElementClaimStatus {
+
+  /**
+   * Créée -- brouillon librement modifiable, avant toute Soumission (RG_REP_SOU_00).
+   */
+<span class="fc" id="L22">  CREATED(&quot;CREEE&quot;, &quot;Créée&quot;),</span>
+
+  /**
+   * Soumise -- première Soumission depuis Créée, ou nouvelle Soumission depuis Différée après
+   * complément du dossier (RG_REP_PEC_06).
+   */
+<span class="fc" id="L28">  SUBMITTED(&quot;SOUMISE&quot;, &quot;Soumise&quot;),</span>
+
+  /**
+   * Prise en charge par un Agent de Traitement.
+   */
+<span class="fc" id="L33">  IN_CHARGE(&quot;PRISE_EN_CHARGE&quot;, &quot;Prise en charge&quot;),</span>
+
+  /**
+   * Rejetée par l'Agent de Traitement (RG_REP_PEC_05), motif obligatoire.
+   */
+<span class="fc" id="L38">  REJECTED(&quot;REJETEE&quot;, &quot;Rejetée&quot;),</span>
+
+  /**
+   * Différée par l'Agent de Traitement (RG_REP_PEC_06), en attente de complément.
+   */
+<span class="fc" id="L43">  DEFERRED(&quot;DIFFEREE&quot;, &quot;Différée&quot;),</span>
+
+  /**
+   * Acceptée -- état terminal positif, atteint immédiatement à la Décision, indépendamment du
+   * circuit des Traitements qui en découlent (RG_REP_STA_02/03).
+   */
+<span class="fc" id="L49">  ACCEPTED(&quot;ACCEPTEE&quot;, &quot;Acceptée&quot;);</span>
+
+<span class="fc" id="L51">  private PayrollElementClaimStatus(String code, String name) {</span>
+<span class="fc" id="L52">    this.code = code;</span>
+<span class="fc" id="L53">    this.name = name;</span>
+<span class="fc" id="L54">  }</span>
+
+  private String code;
+  private String name;
+  private Set&lt;PayrollElementClaimStatus&gt; previous;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L62">    return name;</span>
+  }
+
+  /**
+   * Cette méthode permet d'obtenir le {@link PayrollElementClaimStatus} par code.
+   *
+   * @param code code
+   * @return {@link PayrollElementClaimStatus}
+   */
+  public static PayrollElementClaimStatus getByCode(String code) {
+<span class="fc" id="L72">    return Stream.of(PayrollElementClaimStatus.values())</span>
+<span class="fc" id="L73">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L74">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code &lt;&lt;%s&gt;&gt; inconnu&quot;.formatted(code)));</span>
+  }
+
+  static {
+<span class="fc" id="L78">    CREATED.previous = Collections.emptySet();</span>
+<span class="fc" id="L79">    SUBMITTED.previous = Core.getSet(List.of(CREATED, DEFERRED));</span>
+<span class="fc" id="L80">    IN_CHARGE.previous = Core.getSet(List.of(SUBMITTED));</span>
+<span class="fc" id="L81">    REJECTED.previous = Core.getSet(List.of(IN_CHARGE));</span>
+<span class="fc" id="L82">    DEFERRED.previous = Core.getSet(List.of(IN_CHARGE));</span>
+<span class="fc" id="L83">    ACCEPTED.previous = Core.getSet(List.of(IN_CHARGE));</span>
+<span class="fc" id="L84">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

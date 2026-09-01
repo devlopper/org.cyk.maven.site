@@ -3,8 +3,6 @@
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasClaimTypeGroupAsStringDto;
 import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasClaimTypeGroupIdentifierDto;
-import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasProcessingEntityAsStringDto;
-import ci.gouv.dgbf.system.payrollelementrequest.server.api.shared.HasProcessingEntityIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,9 +17,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L22">public class PayrollElementClaimTypeDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
-    implements HasClaimTypeGroupIdentifierDto, HasClaimTypeGroupAsStringDto,
-    HasProcessingEntityIdentifierDto, HasProcessingEntityAsStringDto {
+<span class="fc" id="L20">public class PayrollElementClaimTypeDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasClaimTypeGroupIdentifierDto, HasClaimTypeGroupAsStringDto {
 
   /**
    * Identifiant {@link PayrollElementClaimTypeGroupDto} (RG_REP_SOU_05).
@@ -36,16 +33,12 @@ import lombok.Setter;
   private String claimTypeGroupAsString;
 
   /**
-   * Identifiant {@link ProcessingEntityDto} (RG_REP_SOU_06).
+   * Reference (sans FK) vers un role applicatif du module {@code user} determinant qui peut
+   * traiter les reclamations de ce Type (RG_REP_SOU_06) -- remplace l'Entite Traitante, retiree
+   * le 2026-08-30.
    */
-  @JsonbProperty(JSON_PROCESSING_ENTITY_IDENTIFIER)
-  private String processingEntityIdentifier;
-
-  /**
-   * Représentation en chaine de caractères de {@link #processingEntityIdentifier}.
-   */
-  @JsonbProperty(JSON_PROCESSING_ENTITY_AS_STRING)
-  private String processingEntityAsString;
+  @JsonbProperty(JSON_ROLE_TRAITEMENT)
+  private String roleTraitement;
 
   /**
    * Indique si ce Type est transmissible au Trésor (RG_REP_SOU_08).
@@ -65,6 +58,11 @@ import lombok.Setter;
    */
   @JsonbProperty(JSON_EXPECTED_DOCUMENT_TYPES_GROUP_IDENTIFIER)
   private String expectedDocumentTypesGroupIdentifier;
+
+  /**
+   * Identifiant json {@link #roleTraitement}.
+   */
+  public static final String JSON_ROLE_TRAITEMENT = &quot;roleTraitement&quot;;
 
   /**
    * Identifiant json {@link #treasuryTransmittable}.
