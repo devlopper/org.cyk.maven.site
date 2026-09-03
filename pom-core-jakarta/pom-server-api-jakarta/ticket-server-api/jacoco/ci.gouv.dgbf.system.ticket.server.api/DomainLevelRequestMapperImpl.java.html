@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-08-19T07:12:54+0000&quot;,
+    date = &quot;2026-09-03T13:02:08+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -29,27 +29,29 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L29">        domainLevelCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
 <span class="fc" id="L30">        domainLevelCreateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
 <span class="fc" id="L31">        domainLevelCreateRequestDto.setLevelIdentifier( arg0.getLevelIdentifier() );</span>
-<span class="fc" id="L32">        domainLevelCreateRequestDto.setUsersGroupIdentifier( arg0.getUsersGroupIdentifier() );</span>
+<span class="fc" id="L32">        domainLevelCreateRequestDto.setSupportTeamIdentifier( arg0.getSupportTeamIdentifier() );</span>
+<span class="fc" id="L33">        domainLevelCreateRequestDto.setUsersGroupIdentifier( arg0.getUsersGroupIdentifier() );</span>
 
-<span class="fc" id="L34">        return domainLevelCreateRequestDto;</span>
+<span class="fc" id="L35">        return domainLevelCreateRequestDto;</span>
     }
 
     @Override
     public DomainLevelService.DomainLevelUpdateRequestDto mapUpdate(DomainLevelDto arg0) {
-<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L40">            return null;</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L41">            return null;</span>
         }
 
-<span class="fc" id="L43">        DomainLevelService.DomainLevelUpdateRequestDto domainLevelUpdateRequestDto = new DomainLevelService.DomainLevelUpdateRequestDto();</span>
+<span class="fc" id="L44">        DomainLevelService.DomainLevelUpdateRequestDto domainLevelUpdateRequestDto = new DomainLevelService.DomainLevelUpdateRequestDto();</span>
 
-<span class="fc" id="L45">        domainLevelUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L46">        domainLevelUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L47">        domainLevelUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L48">        domainLevelUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
-<span class="fc" id="L49">        domainLevelUpdateRequestDto.setLevelIdentifier( arg0.getLevelIdentifier() );</span>
-<span class="fc" id="L50">        domainLevelUpdateRequestDto.setUsersGroupIdentifier( arg0.getUsersGroupIdentifier() );</span>
+<span class="fc" id="L46">        domainLevelUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L47">        domainLevelUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L48">        domainLevelUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L49">        domainLevelUpdateRequestDto.setDomainIdentifier( arg0.getDomainIdentifier() );</span>
+<span class="fc" id="L50">        domainLevelUpdateRequestDto.setLevelIdentifier( arg0.getLevelIdentifier() );</span>
+<span class="fc" id="L51">        domainLevelUpdateRequestDto.setSupportTeamIdentifier( arg0.getSupportTeamIdentifier() );</span>
+<span class="fc" id="L52">        domainLevelUpdateRequestDto.setUsersGroupIdentifier( arg0.getUsersGroupIdentifier() );</span>
 
-<span class="fc" id="L52">        return domainLevelUpdateRequestDto;</span>
+<span class="fc" id="L54">        return domainLevelUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

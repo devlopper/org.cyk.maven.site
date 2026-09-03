@@ -5,6 +5,8 @@ import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLevelAsStringDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLevelIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasSupportTeamAsStringDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasSupportTeamIdentifierDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -21,9 +23,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class DomainLevelDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L26">public class DomainLevelDto extends AbstractIdentifiableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasLevelIdentifierDto,
-    HasLevelAsStringDto, HasUsersGroupIdentifierDto, HasUsersGroupAsStringDto {
+    HasLevelAsStringDto, HasSupportTeamIdentifierDto, HasSupportTeamAsStringDto,
+    HasUsersGroupIdentifierDto, HasUsersGroupAsStringDto {
 
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
   private String domainIdentifier;
@@ -37,9 +40,31 @@ import lombok.Setter;
   @JsonbProperty(JSON_LEVEL_AS_STRING)
   private String levelAsString;
 
+  @JsonbProperty(JSON_SUPPORT_TEAM_IDENTIFIER)
+  private String supportTeamIdentifier;
+
+  @JsonbProperty(JSON_SUPPORT_TEAM_AS_STRING)
+  private String supportTeamAsString;
+
+  /**
+   * Ancien identifiant du groupe d'utilisateurs, avant TCH_TK_556.
+   *
+   * @deprecated remplacé par {@link #supportTeamIdentifier}. Conservé pour ne pas casser la
+   *             compilation de ticket-server-impl-quarkus/ticket-client-quarkus-primefaces tant
+   *             qu'ils ne sont pas migrés.
+   */
+  @Deprecated
   @JsonbProperty(JSON_USERS_GROUP_IDENTIFIER)
   private String usersGroupIdentifier;
 
+  /**
+   * Ancienne représentation en chaine de caractères du groupe d'utilisateurs, avant TCH_TK_556.
+   *
+   * @deprecated remplacé par {@link #supportTeamAsString}. Conservé pour ne pas casser la
+   *             compilation de ticket-server-impl-quarkus/ticket-client-quarkus-primefaces tant
+   *             qu'ils ne sont pas migrés.
+   */
+  @Deprecated
   @JsonbProperty(JSON_USERS_GROUP_AS_STRING)
   private String usersGroupAsString;
 

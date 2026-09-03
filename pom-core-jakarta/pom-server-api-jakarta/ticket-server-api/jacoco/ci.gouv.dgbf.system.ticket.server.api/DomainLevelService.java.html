@@ -10,6 +10,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.system.ticket.server.api.shared.HasSupportTeamIdentifierDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUsersGroupIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import jakarta.ws.rs.Consumes;
@@ -90,18 +91,18 @@ public interface DomainLevelService extends SpecificService {
     void setLevelIdentifier(String identifier);
 
     /**
-     * Cette méthode permet d'obtenir l'identifiant du groupe d'utilisateurs.
+     * Cette méthode permet d'obtenir l'identifiant de {@link SupportTeamDto}.
      *
-     * @return identifiant du groupe d'utilisateurs
+     * @return identifiant de {@link SupportTeamDto}
      */
-    String getUsersGroupIdentifier();
+    String getSupportTeamIdentifier();
 
     /**
-     * Cette méthode permet d'assigner l'identifiant du groupe d'utilisateurs.
+     * Cette méthode permet d'assigner l'identifiant de {@link SupportTeamDto}.
      *
-     * @param identifier identifiant du groupe d'utilisateurs
+     * @param identifier identifiant de {@link SupportTeamDto}
      */
-    void setUsersGroupIdentifier(String identifier);
+    void setSupportTeamIdentifier(String identifier);
 
     /**
      * Identifiant json identifiant de {@link FunctionalDomainDto}.
@@ -114,8 +115,38 @@ public interface DomainLevelService extends SpecificService {
     String JSON_LEVEL_IDENTIFIER = SupportLevelDto.JSON_THIS_IDENTIFIER;
 
     /**
-     * Identifiant json identifiant du groupe d'utilisateurs.
+     * Identifiant json identifiant de {@link SupportTeamDto}.
      */
+    String JSON_SUPPORT_TEAM_IDENTIFIER =
+        HasSupportTeamIdentifierDto.JSON_SUPPORT_TEAM_IDENTIFIER;
+
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du groupe d'utilisateurs.
+     *
+     * @return identifiant du groupe d'utilisateurs
+     * @deprecated remplacé par {@link #getSupportTeamIdentifier()} (TCH_TK_556). Conservé pour ne
+     *             pas casser la compilation de
+     *             ticket-server-impl-quarkus/ticket-client-quarkus-primefaces tant qu'ils ne sont
+     *             pas migrés.
+     */
+    @Deprecated
+    String getUsersGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'identifiant du groupe d'utilisateurs.
+     *
+     * @param identifier identifiant du groupe d'utilisateurs
+     * @deprecated remplacé par {@link #setSupportTeamIdentifier(String)} (TCH_TK_556).
+     */
+    @Deprecated
+    void setUsersGroupIdentifier(String identifier);
+
+    /**
+     * Identifiant json identifiant du groupe d'utilisateurs.
+     *
+     * @deprecated remplacé par {@link #JSON_SUPPORT_TEAM_IDENTIFIER} (TCH_TK_556).
+     */
+    @Deprecated
     String JSON_USERS_GROUP_IDENTIFIER = HasUsersGroupIdentifierDto.JSON_USERS_GROUP_IDENTIFIER;
 
   }
@@ -143,7 +174,7 @@ public interface DomainLevelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  class DomainLevelCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L177">  class DomainLevelCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements DomainLevelSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -152,6 +183,15 @@ public interface DomainLevelService extends SpecificService {
     @JsonbProperty(JSON_LEVEL_IDENTIFIER)
     private String levelIdentifier;
 
+    @JsonbProperty(JSON_SUPPORT_TEAM_IDENTIFIER)
+    private String supportTeamIdentifier;
+
+    /**
+     * Ancien identifiant du groupe d'utilisateurs, avant TCH_TK_556.
+     *
+     * @deprecated remplacé par {@link #supportTeamIdentifier}.
+     */
+    @Deprecated
     @JsonbProperty(JSON_USERS_GROUP_IDENTIFIER)
     private String usersGroupIdentifier;
 
@@ -190,7 +230,7 @@ public interface DomainLevelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L193">  public static class DomainLevelGetManyResponseDto</span>
+<span class="fc" id="L233">  public static class DomainLevelGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DomainLevelDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -280,7 +320,7 @@ public interface DomainLevelService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L283">  class DomainLevelUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L323">  class DomainLevelUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements DomainLevelSaveRequestDto {
 
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
@@ -289,6 +329,15 @@ public interface DomainLevelService extends SpecificService {
     @JsonbProperty(JSON_LEVEL_IDENTIFIER)
     private String levelIdentifier;
 
+    @JsonbProperty(JSON_SUPPORT_TEAM_IDENTIFIER)
+    private String supportTeamIdentifier;
+
+    /**
+     * Ancien identifiant du groupe d'utilisateurs, avant TCH_TK_556.
+     *
+     * @deprecated remplacé par {@link #supportTeamIdentifier}.
+     */
+    @Deprecated
     @JsonbProperty(JSON_USERS_GROUP_IDENTIFIER)
     private String usersGroupIdentifier;
 
