@@ -85,6 +85,20 @@ public interface PayrollElementClaimService extends SpecificService {
     void setNature(String nature);
 
     /**
+     * Cette méthode permet d'obtenir le commentaire libre de l'Émetteur.
+     *
+     * @return le commentaire libre de l'Émetteur
+     */
+    String getComment();
+
+    /**
+     * Cette méthode permet d'assigner le commentaire libre de l'Émetteur.
+     *
+     * @param comment le commentaire libre de l'Émetteur
+     */
+    void setComment(String comment);
+
+    /**
      * {@link PayrollElementClaimDto#JSON_TYPE_IDENTIFIER}.
      */
     String JSON_TYPE_IDENTIFIER = PayrollElementClaimDto.JSON_TYPE_IDENTIFIER;
@@ -93,6 +107,11 @@ public interface PayrollElementClaimService extends SpecificService {
      * {@link PayrollElementClaimDto#JSON_NATURE}.
      */
     String JSON_NATURE = PayrollElementClaimDto.JSON_NATURE;
+
+    /**
+     * {@link PayrollElementClaimDto#JSON_COMMENT}.
+     */
+    String JSON_COMMENT = PayrollElementClaimDto.JSON_COMMENT;
   }
 
   /**
@@ -128,7 +147,7 @@ public interface PayrollElementClaimService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L131">  class PayrollElementClaimCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L150">  class PayrollElementClaimCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements PayrollElementClaimSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
@@ -136,6 +155,9 @@ public interface PayrollElementClaimService extends SpecificService {
 
     @JsonbProperty(JSON_NATURE)
     private String nature;
+
+    @JsonbProperty(JSON_COMMENT)
+    private String comment;
 
     /**
      * Identifiant du Groupe de Documents constituant le dossier de pièces de la réclamation,
@@ -183,7 +205,7 @@ public interface PayrollElementClaimService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L186">  public static class PayrollElementClaimGetManyResponseDto</span>
+<span class="fc" id="L208">  public static class PayrollElementClaimGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;PayrollElementClaimDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -271,7 +293,7 @@ public interface PayrollElementClaimService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L274">  class PayrollElementClaimUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L296">  class PayrollElementClaimUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements PayrollElementClaimSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
@@ -279,6 +301,9 @@ public interface PayrollElementClaimService extends SpecificService {
 
     @JsonbProperty(JSON_NATURE)
     private String nature;
+
+    @JsonbProperty(JSON_COMMENT)
+    private String comment;
   }
 
   /**
@@ -289,7 +314,7 @@ public interface PayrollElementClaimService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L292">  class ProcessResponseDto extends IdentifiableResponseDto</span>
+<span class="fc" id="L317">  class ProcessResponseDto extends IdentifiableResponseDto</span>
       implements HasStatusDto&lt;PayrollElementClaimStatus&gt;, HasStatusAsStringDto,
       HasSubmittableDto {
 
@@ -308,10 +333,10 @@ public interface PayrollElementClaimService extends SpecificService {
      * @param status statut
      */
     public void initialize(PayrollElementClaimStatus status) {
-<span class="fc" id="L311">      this.status = status;</span>
-<span class="fc bfc" id="L312" title="All 2 branches covered.">      this.statusAsString = status == null ? null : status.getName();</span>
-<span class="fc" id="L313">      this.submittable = PayrollElementClaimStatus.SUBMITTED.getPrevious().contains(status);</span>
-<span class="fc" id="L314">    }</span>
+<span class="fc" id="L336">      this.status = status;</span>
+<span class="fc bfc" id="L337" title="All 2 branches covered.">      this.statusAsString = status == null ? null : status.getName();</span>
+<span class="fc" id="L338">      this.submittable = PayrollElementClaimStatus.SUBMITTED.getPrevious().contains(status);</span>
+<span class="fc" id="L339">    }</span>
   }
 
   /**
@@ -348,7 +373,7 @@ public interface PayrollElementClaimService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L351">  class PayrollElementClaimSubmitRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L376">  class PayrollElementClaimSubmitRequestDto extends ByIdentifierRequestDto {</span>
 
   }
 
@@ -360,7 +385,7 @@ public interface PayrollElementClaimService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L363">  class PayrollElementClaimSubmitResponseDto extends ProcessResponseDto {</span>
+<span class="fc" id="L388">  class PayrollElementClaimSubmitResponseDto extends ProcessResponseDto {</span>
 
   }
 }

@@ -91,6 +91,12 @@ import lombok.Setter;
   private LocalDateTime creationDate;
 
   /**
+   * Commentaire libre de l'Émetteur, facultatif.
+   */
+  @JsonbProperty(JSON_COMMENT)
+  private String comment;
+
+  /**
    * Identifiant json {@link #nature}.
    */
   public static final String JSON_NATURE = &quot;nature&quot;;
@@ -119,6 +125,11 @@ import lombok.Setter;
    * Identifiant json {@link #creationDate}.
    */
   public static final String JSON_CREATION_DATE = &quot;dateCreation&quot;;
+
+  /**
+   * Identifiant json {@link #comment}.
+   */
+  public static final String JSON_COMMENT = &quot;commentaire&quot;;
 
   /**
    * Identifiant json de identifiant de {@link PayrollElementClaimDto}.
