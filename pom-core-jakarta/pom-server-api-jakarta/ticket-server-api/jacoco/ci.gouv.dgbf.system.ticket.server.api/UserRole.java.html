@@ -31,11 +31,16 @@ public enum UserRole implements CodableByStringWithGetterOnly {
   /**
    * La redirection du ticket.
    */
-<span class="fc" id="L34">  REDIRECT_TICKET(&quot;REDIRIGER_TICKET&quot;);</span>
+<span class="fc" id="L34">  REDIRECT_TICKET(&quot;REDIRIGER_TICKET&quot;),</span>
 
-<span class="fc" id="L36">  private UserRole(String code) {</span>
-<span class="fc" id="L37">    this.code = code;</span>
-<span class="fc" id="L38">  }</span>
+  /**
+   * Administrateur.
+   */
+<span class="fc" id="L39">  ADMINSTRATOR(&quot;ADMINISTRATEUR&quot;);</span>
+
+<span class="fc" id="L41">  private UserRole(String code) {</span>
+<span class="fc" id="L42">    this.code = code;</span>
+<span class="fc" id="L43">  }</span>
 
   /**
    * Code.
