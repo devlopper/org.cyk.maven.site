@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportTeamMemberFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de ticket</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.ticket.server.api</a> &gt; <span class="el_source">SupportTeamMemberFilter.java</span></div><h1>SupportTeamMemberFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.ticket.server.api;
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasUserName;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,8 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
+public class SupportTeamMemberFilter extends AbstractIdentifiableFilter
+    implements FilterHasUserName {
 
   /**
    * Identifiant de {@link SupportTeamDto}.
@@ -26,33 +28,40 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
   private String userIdentifier;
 
   /**
+   * Nom d'utilisateur (login) de l'utilisateur.
+   */
+  private String userName;
+
+  /**
    * Cette méthode permet d'instancier un objet.
    *
    * @param dto filtre
    */
   public SupportTeamMemberFilter(FilterDto dto) {
-<span class="fc" id="L34">    super(dto);</span>
-<span class="fc" id="L35">  }</span>
+<span class="fc" id="L41">    super(dto);</span>
+<span class="fc" id="L42">  }</span>
 
   /**
    * Cette méthode permet d'instancier un objet.
    */
-<span class="fc" id="L40">  public SupportTeamMemberFilter() {</span>
-<span class="fc" id="L41">  }</span>
-
-  @Override
-  protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L45">    super.doInitialize(filter);</span>
-<span class="fc" id="L46">    supportTeamIdentifier = getSupportTeamIdentifier(filter);</span>
-<span class="fc" id="L47">    userIdentifier = getUserIdentifier(filter);</span>
+<span class="fc" id="L47">  public SupportTeamMemberFilter() {</span>
 <span class="fc" id="L48">  }</span>
 
   @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L52">    super.doInitialize(filter);</span>
+<span class="fc" id="L53">    supportTeamIdentifier = getSupportTeamIdentifier(filter);</span>
+<span class="fc" id="L54">    userIdentifier = getUserIdentifier(filter);</span>
+<span class="fc" id="L55">    updateUserName(filter);</span>
+<span class="fc" id="L56">  }</span>
+
+  @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L52">    super.toDto(filter);</span>
-<span class="fc" id="L53">    setSupportTeamIdentifier(filter, supportTeamIdentifier);</span>
-<span class="fc" id="L54">    setUserIdentifier(filter, userIdentifier);</span>
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L60">    super.toDto(filter);</span>
+<span class="fc" id="L61">    setSupportTeamIdentifier(filter, supportTeamIdentifier);</span>
+<span class="fc" id="L62">    setUserIdentifier(filter, userIdentifier);</span>
+<span class="fc" id="L63">    updateFilterUserName(filter);</span>
+<span class="fc" id="L64">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de {@link SupportTeamDto}.
@@ -61,9 +70,9 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @param supportTeamIdentifier identifiant de {@link SupportTeamDto}
    */
   public static void setSupportTeamIdentifier(FilterDto filter, String supportTeamIdentifier) {
-<span class="pc" id="L64">    set(filter, JSON_SUPPORT_TEAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L65">        f -&gt; f.setValueAsString(supportTeamIdentifier));</span>
-<span class="fc" id="L66">  }</span>
+<span class="pc" id="L73">    set(filter, JSON_SUPPORT_TEAM_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L74">        f -&gt; f.setValueAsString(supportTeamIdentifier));</span>
+<span class="fc" id="L75">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de {@link SupportTeamDto}.
@@ -72,7 +81,7 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @return identifiant de {@link SupportTeamDto}
    */
   public static String getSupportTeamIdentifier(FilterDto filter) {
-<span class="fc" id="L75">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SUPPORT_TEAM_IDENTIFIER));</span>
+<span class="fc" id="L84">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_SUPPORT_TEAM_IDENTIFIER));</span>
   }
 
   /**
@@ -82,9 +91,9 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @param userIdentifier identifiant utilisateur
    */
   public static void setUserIdentifier(FilterDto filter, String userIdentifier) {
-<span class="pc" id="L85">    set(filter, JSON_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L86">        f -&gt; f.setValueAsString(userIdentifier));</span>
-<span class="fc" id="L87">  }</span>
+<span class="pc" id="L94">    set(filter, JSON_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L95">        f -&gt; f.setValueAsString(userIdentifier));</span>
+<span class="fc" id="L96">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant utilisateur.
@@ -93,7 +102,7 @@ public class SupportTeamMemberFilter extends AbstractIdentifiableFilter {
    * @return identifiant utilisateur
    */
   public static String getUserIdentifier(FilterDto filter) {
-<span class="fc" id="L96">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_IDENTIFIER));</span>
+<span class="fc" id="L105">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_IDENTIFIER));</span>
   }
 
   /**

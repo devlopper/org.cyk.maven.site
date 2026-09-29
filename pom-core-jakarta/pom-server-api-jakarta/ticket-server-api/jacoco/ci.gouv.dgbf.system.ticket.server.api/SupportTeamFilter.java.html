@@ -2,6 +2,7 @@
 
 
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasUserName;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.system.user.server.api.shared.FilterHasUsersGroupIdentifier;
 import lombok.Getter;
@@ -16,9 +17,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SupportTeamFilter extends AbstractIdentifiableFilter
-      implements FilterHasUsersGroupIdentifier {
+      implements FilterHasUsersGroupIdentifier, FilterHasUserName {
 
   private String usersGroupIdentifier;
+
+  /**
+   * Nom d'utilisateur (login) de l'utilisateur.
+   */
+  private String userName;
 
   /**
    * Cette méthode permet de construire.
@@ -26,25 +32,27 @@ public class SupportTeamFilter extends AbstractIdentifiableFilter
    * @param dto {@link FilterDto}
    */
   public SupportTeamFilter(FilterDto dto) {
-<span class="fc" id="L29">    super(dto);</span>
-<span class="fc" id="L30">  }</span>
+<span class="fc" id="L35">    super(dto);</span>
+<span class="fc" id="L36">  }</span>
 
   /**
    * Cette méthode permet de construire.
    */
-<span class="fc" id="L35">  public SupportTeamFilter() {}</span>
+<span class="fc" id="L41">  public SupportTeamFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L39">    super.doInitialize(filter);</span>
-<span class="fc" id="L40">    updateUsersGroupIdentifier(filter);</span>
-<span class="fc" id="L41">  }</span>
+<span class="fc" id="L45">    super.doInitialize(filter);</span>
+<span class="fc" id="L46">    updateUsersGroupIdentifier(filter);</span>
+<span class="fc" id="L47">    updateUserName(filter);</span>
+<span class="fc" id="L48">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L45">    super.toDto(filter);</span>
-<span class="fc" id="L46">    updateFilterUsersGroupIdentifier(filter);</span>
-<span class="fc" id="L47">  }</span>
+<span class="fc" id="L52">    super.toDto(filter);</span>
+<span class="fc" id="L53">    updateFilterUsersGroupIdentifier(filter);</span>
+<span class="fc" id="L54">    updateFilterUserName(filter);</span>
+<span class="fc" id="L55">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
