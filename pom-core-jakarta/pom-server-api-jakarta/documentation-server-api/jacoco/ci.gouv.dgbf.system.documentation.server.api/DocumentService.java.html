@@ -89,6 +89,20 @@ public interface DocumentService extends SpecificService {
     void setFileIdentifier(String fileIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir les valeurs des champs configurables saisies.
+     *
+     * @return valeurs des champs configurables saisies
+     */
+    List&lt;DocumentFieldValueDto&gt; getFieldValues();
+
+    /**
+     * Cette méthode permet d'assigner les valeurs des champs configurables saisies.
+     *
+     * @param fieldValues valeurs des champs configurables saisies
+     */
+    void setFieldValues(List&lt;DocumentFieldValueDto&gt; fieldValues);
+
+    /**
      * {@link DocumentDto#JSON_TYPE_IDENTIFIER}.
      */
     String JSON_TYPE_IDENTIFIER = DocumentDto.JSON_TYPE_IDENTIFIER;
@@ -102,6 +116,11 @@ public interface DocumentService extends SpecificService {
      * {@link DocumentDto#JSON_FILE_IDENTIFIER}.
      */
     String JSON_FILE_IDENTIFIER = DocumentDto.JSON_FILE_IDENTIFIER;
+
+    /**
+     * {@link DocumentDto#JSON_FIELD_VALUES}.
+     */
+    String JSON_FIELD_VALUES = DocumentDto.JSON_FIELD_VALUES;
   }
 
   /**
@@ -136,7 +155,7 @@ public interface DocumentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L139">  class DocumentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L158">  class DocumentCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DocumentSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
@@ -147,6 +166,9 @@ public interface DocumentService extends SpecificService {
 
     @JsonbProperty(JSON_FILE_IDENTIFIER)
     private String fileIdentifier;
+
+    @JsonbProperty(JSON_FIELD_VALUES)
+    private List&lt;DocumentFieldValueDto&gt; fieldValues;
   }
 
   /**
@@ -179,7 +201,7 @@ public interface DocumentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L182">  public static class DocumentGetManyResponseDto</span>
+<span class="fc" id="L204">  public static class DocumentGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DocumentDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -262,7 +284,7 @@ public interface DocumentService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L265">  class DocumentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L287">  class DocumentUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DocumentSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
@@ -273,6 +295,9 @@ public interface DocumentService extends SpecificService {
 
     @JsonbProperty(JSON_FILE_IDENTIFIER)
     private String fileIdentifier;
+
+    @JsonbProperty(JSON_FIELD_VALUES)
+    private List&lt;DocumentFieldValueDto&gt; fieldValues;
   }
 
   /**

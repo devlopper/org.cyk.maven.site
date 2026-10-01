@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentTypeGroupFieldDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de documentation</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.documentation.server.api</a> &gt; <span class="el_source">DocumentTypeGroupFieldDto.java</span></div><h1>DocumentTypeGroupFieldDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.documentation.server.api;
+
+import ci.gouv.dgbf.extension.core.enumeration.ValueType;
+import ci.gouv.dgbf.extension.core.segregation.HasTypeGroupAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasTypeGroupIdentifierDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueTypeAsStringDto;
+import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente un champ de groupe de type de document : champ additionnel à saisir sur
+ * les pièces d'une combinaison précise type de document + groupe de types de document.
+ *
+ * @author si.kimou
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L23">public class DocumentTypeGroupFieldDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+    implements HasTypeGroupIdentifierDto, HasTypeGroupAsStringDto, HasValueTypeDto,
+    HasValueTypeAsStringDto {
+
+  @JsonbProperty(JSON_TYPE_GROUP_IDENTIFIER)
+  private String typeGroupIdentifier;
+
+  @JsonbProperty(JSON_TYPE_GROUP_AS_STRING)
+  private String typeGroupAsString;
+
+  @JsonbProperty(JSON_VALUE_TYPE)
+  private ValueType valueType;
+
+  @JsonbProperty(JSON_VALUE_TYPE_AS_STRING)
+  private String valueTypeAsString;
+
+  @JsonbProperty(JSON_REQUIRED)
+  private Boolean required;
+
+  /**
+   * Identifiant json champ {@link #required}.
+   */
+  public static final String JSON_REQUIRED = &quot;obligatoire&quot;;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idChampGroupeTypeDocument&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;champGroupeTypeDocumentChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;champ de groupe de type de document&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;champs de groupe de type de document&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

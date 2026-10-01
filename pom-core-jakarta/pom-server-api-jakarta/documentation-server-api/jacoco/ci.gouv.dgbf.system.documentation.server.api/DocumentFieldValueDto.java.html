@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DocumentFieldValueDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de documentation</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.documentation.server.api</a> &gt; <span class="el_source">DocumentFieldValueDto.java</span></div><h1>DocumentFieldValueDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.documentation.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.HasValueDto;
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Cette classe représente la valeur saisie pour un {@link DocumentTypeGroupFieldDto} sur un
+ * {@link DocumentDto}.
+ *
+ * &lt;p&gt;Ce concept n'a pas de service CRUD autonome : les valeurs sont créées/mises à jour en
+ * cascade avec le {@link DocumentDto} auquel elles appartiennent (voir
+ * {@link DocumentService.DocumentSaveRequestDto}).
+ *
+ * @author si.kimou
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L23">public class DocumentFieldValueDto extends AbstractIdentifiableAuditableDto</span>
+    implements HasValueDto&lt;String&gt; {
+
+  /**
+   * Identifiant du {@link DocumentDto} auquel la valeur est rattachée.
+   */
+  @JsonbProperty(JSON_DOCUMENT_IDENTIFIER)
+  private String documentIdentifier;
+
+  /**
+   * Identifiant du {@link DocumentTypeGroupFieldDto} configurant cette valeur.
+   */
+  @JsonbProperty(JSON_FIELD_IDENTIFIER)
+  private String fieldIdentifier;
+
+  /**
+   * Valeur saisie, sous forme de chaine -- interprétée selon le
+   * {@link DocumentTypeGroupFieldDto#getValueType()} du champ.
+   */
+  @JsonbProperty(JSON_VALUE)
+  private String value;
+
+  /**
+   * Identifiant json champ {@link #documentIdentifier}.
+   */
+  public static final String JSON_DOCUMENT_IDENTIFIER = &quot;idDocument&quot;;
+
+  /**
+   * Identifiant json champ {@link #fieldIdentifier}.
+   */
+  public static final String JSON_FIELD_IDENTIFIER =
+      DocumentTypeGroupFieldDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idValeurChampDocument&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;valeurChampDocumentChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;valeur de champ de document&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;valeurs de champ de document&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

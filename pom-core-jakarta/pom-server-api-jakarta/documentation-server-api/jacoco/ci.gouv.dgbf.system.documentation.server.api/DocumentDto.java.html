@@ -9,6 +9,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasTypeIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableAuditableDto;
 import ci.gouv.dgbf.system.file.server.api.shared.HasFileIdentifierDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class DocumentDto extends AbstractIdentifiableAuditableDto</span>
+<span class="fc" id="L25">public class DocumentDto extends AbstractIdentifiableAuditableDto</span>
     implements HasTypeIdentifierDto, HasTypeAsStringDto, HasGroupIdentifierDto,
     HasGroupAsStringDto, HasFileIdentifierDto, HasTypeGroupIdentifierDto,
     HasTypeGroupAsStringDto {
@@ -46,6 +47,18 @@ import lombok.Setter;
 
   @JsonbProperty(JSON_TYPE_GROUP_AS_STRING)
   private String typeGroupAsString;
+
+  /**
+   * Valeurs saisies pour les champs configurables ({@link DocumentTypeGroupFieldDto})
+   * applicables au {@link #typeGroupIdentifier} de ce document.
+   */
+  @JsonbProperty(JSON_FIELD_VALUES)
+  private List&lt;DocumentFieldValueDto&gt; fieldValues;
+
+  /**
+   * Identifiant json champ {@link #fieldValues}.
+   */
+  public static final String JSON_FIELD_VALUES = &quot;valeursChamps&quot;;
 
   /**
    * Identifiant json de l'identifiant.
