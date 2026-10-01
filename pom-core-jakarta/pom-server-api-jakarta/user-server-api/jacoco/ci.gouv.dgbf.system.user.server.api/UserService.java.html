@@ -349,6 +349,50 @@ public interface UserService extends SpecificService {
   }
 
   /**
+   * Identifiant du service de création en libre-service.
+   */
+  String CREATE_FOR_SELF_SERVICE_IDENTIFIER = &quot;CREATION_UTILISATEUR_POUR_LIBRE_SERVICE&quot;;
+
+  /**
+   * Chemin du service de création en libre-service.
+   */
+  String CREATE_FOR_SELF_SERVICE_PATH = &quot;creation/libre-service&quot;;
+
+  /**
+   * Cette méthode permet de créer {@link UserDto} en libre-service.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(CREATE_FOR_SELF_SERVICE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_FOR_SELF_SERVICE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response createForSelfService(UserCreateForSelfServiceRequestDto request);
+
+  /**
+   * Cette classe représente la requête de création en libre-service.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L383">  class UserCreateForSelfServiceRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements UserSaveRequestDto, UserSaveCreateRequestDto {
+    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
+
+    @JsonbProperty(JSON_IDENTITY_IDENTIFIER)
+    private String identityIdentifier;
+
+    @JsonbProperty(JSON_PASS)
+    private String pass;
+  }
+
+  /**
    * Identifiant du service d'obtention de plusieurs.
    */
   String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_UTILISATEUR&quot;;
@@ -380,7 +424,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L383">  public static class UserGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserDto&gt; {</span>
+<span class="fc" id="L427">  public static class UserGetManyResponseDto extends AbstractGetByPageResponseDto&lt;UserDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;UserDto&gt; datas;
@@ -468,7 +512,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L471">  class UserUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L515">  class UserUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto</span>
       implements UserSaveRequestDto {
     @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
     private String domainIdentifier;
@@ -535,7 +579,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L538">  class UserAssignRolesRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L582">  class UserAssignRolesRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des rôles.
@@ -556,7 +600,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L559">  class UserAssignRolesResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L603">  class UserAssignRolesResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre total de rôles attribués.
@@ -613,7 +657,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L616">  class UserRevokeRolesRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L660">  class UserRevokeRolesRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des rôles.
@@ -634,7 +678,7 @@ public interface UserService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L637">  class UserRevokeRolesResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L681">  class UserRevokeRolesResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre de retraits réussis.
