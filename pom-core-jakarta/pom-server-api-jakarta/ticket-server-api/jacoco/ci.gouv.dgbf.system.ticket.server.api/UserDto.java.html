@@ -33,6 +33,36 @@ import lombok.Setter;
   @JsonbProperty(JSON_TICKET_DISSATISFACTION_ACTIONS_COUNT_AS_STRING)
   private String ticketDissatisfactionActionsCountAsString;
 
+  @JsonbProperty(JSON_SUPPORT_TEAM_CLAIMED_TICKET_COUNT_AS_STRING)
+  private String supportTeamsClaimedTicketCountAsString;
+
+  @JsonbProperty(JSON_SUPPORT_TEAM_RESOLVED_TICKET_COUNT_AS_STRING)
+  private String supportTeamsResolvedTicketCountAsString;
+
+  @JsonbProperty(JSON_SUPPORT_TEAM_DISSATISFIED_TICKET_COUNT_AS_STRING)
+  private String supportTeamsDissatisfiedTicketCountAsString;
+
+  /**
+   * Identifiant json du nombre de tickets actuellement pris en charge des équipes support de
+   * l'utilisateur, sous forme de chaîne.
+   */
+  public static final String JSON_SUPPORT_TEAM_CLAIMED_TICKET_COUNT_AS_STRING =
+      &quot;nombreTicketPrisEnChargeEquipeChaine&quot;;
+
+  /**
+   * Identifiant json du nombre de tickets résolus des équipes support de l'utilisateur, sous forme
+   * de chaîne.
+   */
+  public static final String JSON_SUPPORT_TEAM_RESOLVED_TICKET_COUNT_AS_STRING =
+      &quot;nombreTicketResoluEquipeChaine&quot;;
+
+  /**
+   * Identifiant json du nombre de tickets non satisfaits des équipes support de l'utilisateur, sous
+   * forme de chaîne.
+   */
+  public static final String JSON_SUPPORT_TEAM_DISSATISFIED_TICKET_COUNT_AS_STRING =
+      &quot;nombreTicketInsatisfaitEquipeChaine&quot;;
+
   /**
    * Identifiant json de l'identifiant.
    */
