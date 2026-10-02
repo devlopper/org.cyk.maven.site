@@ -34,32 +34,40 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
   String typeIdentifier;
 
   /**
+   * Caractère obligatoire du dépôt d'un document de ce type -- permet au client de ne lire que les
+   * pièces obligatoires (ou facultatives) d'un groupe de types de document.
+   */
+  Boolean required;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public DocumentTypeGroupFilter(FilterDto dto) {
-<span class="fc" id="L42">    super(dto);</span>
-<span class="fc" id="L43">  }</span>
+<span class="fc" id="L48">    super(dto);</span>
+<span class="fc" id="L49">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L48">  public DocumentTypeGroupFilter() {}</span>
+<span class="fc" id="L54">  public DocumentTypeGroupFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L52">    super.doInitialize(filter);</span>
-<span class="fc" id="L53">    groupIdentifier = getGroupIdentifier(filter);</span>
-<span class="fc" id="L54">    typeIdentifier = getTypeIdentifier(filter);</span>
-<span class="fc" id="L55">  }</span>
+<span class="fc" id="L58">    super.doInitialize(filter);</span>
+<span class="fc" id="L59">    groupIdentifier = getGroupIdentifier(filter);</span>
+<span class="fc" id="L60">    typeIdentifier = getTypeIdentifier(filter);</span>
+<span class="fc" id="L61">    required = getRequired(filter);</span>
+<span class="fc" id="L62">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L59">    super.toDto(filter);</span>
-<span class="fc" id="L60">    setGroupIdentifier(filter, groupIdentifier);</span>
-<span class="fc" id="L61">    setTypeIdentifier(filter, typeIdentifier);</span>
-<span class="fc" id="L62">  }</span>
+<span class="fc" id="L66">    super.toDto(filter);</span>
+<span class="fc" id="L67">    setGroupIdentifier(filter, groupIdentifier);</span>
+<span class="fc" id="L68">    setTypeIdentifier(filter, typeIdentifier);</span>
+<span class="fc" id="L69">    setRequired(filter, required);</span>
+<span class="fc" id="L70">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant du groupe de types de document.
@@ -68,9 +76,9 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @param groupIdentifier identifiant du groupe de types de document
    */
   public static void setGroupIdentifier(FilterDto filter, String groupIdentifier) {
-<span class="pc" id="L71">    set(filter, JSON_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L72">        f -&gt; f.setValueAsString(groupIdentifier));</span>
-<span class="fc" id="L73">  }</span>
+<span class="pc" id="L79">    set(filter, JSON_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L80">        f -&gt; f.setValueAsString(groupIdentifier));</span>
+<span class="fc" id="L81">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du groupe de types de document -- sans elle, le
@@ -83,7 +91,7 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @return identifiant du groupe de types de document
    */
   public static String getGroupIdentifier(FilterDto filter) {
-<span class="fc" id="L86">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GROUP_IDENTIFIER));</span>
+<span class="fc" id="L94">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GROUP_IDENTIFIER));</span>
   }
 
   /**
@@ -93,9 +101,9 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @param typeIdentifier identifiant du type de document
    */
   public static void setTypeIdentifier(FilterDto filter, String typeIdentifier) {
-<span class="pc" id="L96">    set(filter, JSON_TYPE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L97">        f -&gt; f.setValueAsString(typeIdentifier));</span>
-<span class="fc" id="L98">  }</span>
+<span class="pc" id="L104">    set(filter, JSON_TYPE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L105">        f -&gt; f.setValueAsString(typeIdentifier));</span>
+<span class="fc" id="L106">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du type de document -- utilisé par le client pour
@@ -106,7 +114,27 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @return identifiant du type de document
    */
   public static String getTypeIdentifier(FilterDto filter) {
-<span class="fc" id="L109">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TYPE_IDENTIFIER));</span>
+<span class="fc" id="L117">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TYPE_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le caractère obligatoire du dépôt.
+   *
+   * @param filter filtre
+   * @param required obligatoire ou non
+   */
+  public static void setRequired(FilterDto filter, Boolean required) {
+<span class="pc" id="L127">    set(filter, JSON_REQUIRED, f -&gt; f.getValueAsBoolean(), f -&gt; f.setValueAsBoolean(required));</span>
+<span class="fc" id="L128">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le caractère obligatoire du dépôt.
+   *
+   * @param filter filtre
+   * @return obligatoire ou non
+   */
+  public static Boolean getRequired(FilterDto filter) {
+<span class="fc" id="L137">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_REQUIRED));</span>
   }
 
   /**
@@ -118,5 +146,10 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * Identifiant json champ {@link #typeIdentifier}.
    */
   public static final String JSON_TYPE_IDENTIFIER = HasTypeIdentifierDto.JSON_TYPE_IDENTIFIER;
+
+  /**
+   * Identifiant json champ {@link #required}.
+   */
+  public static final String JSON_REQUIRED = DocumentTypeGroupDto.JSON_REQUIRED;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -75,6 +75,20 @@ public interface DocumentTypeGroupService extends SpecificService {
     void setGroupIdentifier(String groupIdentifier);
 
     /**
+     * Cette méthode permet d'obtenir si le dépôt d'un document de ce type est obligatoire.
+     *
+     * @return obligatoire ou non
+     */
+    Boolean getRequired();
+
+    /**
+     * Cette méthode permet d'assigner si le dépôt d'un document de ce type est obligatoire.
+     *
+     * @param required obligatoire ou non
+     */
+    void setRequired(Boolean required);
+
+    /**
      * {@link DocumentTypeGroupDto#JSON_TYPE_IDENTIFIER}.
      */
     String JSON_TYPE_IDENTIFIER = DocumentTypeGroupDto.JSON_TYPE_IDENTIFIER;
@@ -83,6 +97,11 @@ public interface DocumentTypeGroupService extends SpecificService {
      * {@link DocumentTypeGroupDto#JSON_GROUP_IDENTIFIER}.
      */
     String JSON_GROUP_IDENTIFIER = DocumentTypeGroupDto.JSON_GROUP_IDENTIFIER;
+
+    /**
+     * {@link DocumentTypeGroupDto#JSON_REQUIRED}.
+     */
+    String JSON_REQUIRED = DocumentTypeGroupDto.JSON_REQUIRED;
   }
 
   /**
@@ -117,7 +136,7 @@ public interface DocumentTypeGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L120">  class DocumentTypeGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L139">  class DocumentTypeGroupCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DocumentTypeGroupSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
@@ -125,6 +144,9 @@ public interface DocumentTypeGroupService extends SpecificService {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
+
+    @JsonbProperty(JSON_REQUIRED)
+    private Boolean required;
   }
 
   /**
@@ -157,7 +179,7 @@ public interface DocumentTypeGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L160">  public static class DocumentTypeGroupGetManyResponseDto</span>
+<span class="fc" id="L182">  public static class DocumentTypeGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DocumentTypeGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -240,7 +262,7 @@ public interface DocumentTypeGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L243">  class DocumentTypeGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L265">  class DocumentTypeGroupUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DocumentTypeGroupSaveRequestDto {
 
     @JsonbProperty(JSON_TYPE_IDENTIFIER)
@@ -248,6 +270,9 @@ public interface DocumentTypeGroupService extends SpecificService {
 
     @JsonbProperty(JSON_GROUP_IDENTIFIER)
     private String groupIdentifier;
+
+    @JsonbProperty(JSON_REQUIRED)
+    private Boolean required;
   }
 
   /**

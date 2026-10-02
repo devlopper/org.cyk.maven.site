@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-10-02T10:24:50+0000&quot;,
+    date = &quot;2026-10-02T16:52:01+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -29,25 +29,27 @@ import javax.annotation.processing.Generated;
 <span class="fc" id="L29">        documentTypeGroupCreateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
 <span class="fc" id="L30">        documentTypeGroupCreateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
 <span class="fc" id="L31">        documentTypeGroupCreateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L32">        documentTypeGroupCreateRequestDto.setRequired( arg0.getRequired() );</span>
 
-<span class="fc" id="L33">        return documentTypeGroupCreateRequestDto;</span>
+<span class="fc" id="L34">        return documentTypeGroupCreateRequestDto;</span>
     }
 
     @Override
     public DocumentTypeGroupService.DocumentTypeGroupUpdateRequestDto mapUpdate(DocumentTypeGroupDto arg0) {
-<span class="fc bfc" id="L38" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L39">            return null;</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L40">            return null;</span>
         }
 
-<span class="fc" id="L42">        DocumentTypeGroupService.DocumentTypeGroupUpdateRequestDto documentTypeGroupUpdateRequestDto = new DocumentTypeGroupService.DocumentTypeGroupUpdateRequestDto();</span>
+<span class="fc" id="L43">        DocumentTypeGroupService.DocumentTypeGroupUpdateRequestDto documentTypeGroupUpdateRequestDto = new DocumentTypeGroupService.DocumentTypeGroupUpdateRequestDto();</span>
 
-<span class="fc" id="L44">        documentTypeGroupUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
-<span class="fc" id="L45">        documentTypeGroupUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
-<span class="fc" id="L46">        documentTypeGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L47">        documentTypeGroupUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
-<span class="fc" id="L48">        documentTypeGroupUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L45">        documentTypeGroupUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L46">        documentTypeGroupUpdateRequestDto.setAuditSession( arg0.getAuditSession() );</span>
+<span class="fc" id="L47">        documentTypeGroupUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L48">        documentTypeGroupUpdateRequestDto.setTypeIdentifier( arg0.getTypeIdentifier() );</span>
+<span class="fc" id="L49">        documentTypeGroupUpdateRequestDto.setGroupIdentifier( arg0.getGroupIdentifier() );</span>
+<span class="fc" id="L50">        documentTypeGroupUpdateRequestDto.setRequired( arg0.getRequired() );</span>
 
-<span class="fc" id="L50">        return documentTypeGroupUpdateRequestDto;</span>
+<span class="fc" id="L52">        return documentTypeGroupUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
