@@ -40,34 +40,54 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
   Boolean required;
 
   /**
+   * Identifiant du groupe de documents ({@link DocumentGroupDto}), le dossier, auquel se rapporte
+   * le critère {@link #deposited}. Seul, il ne filtre rien.
+   */
+  String documentGroupIdentifier;
+
+  /**
+   * Présence d'un document pour le rattachement dans le groupe de documents
+   * {@link #documentGroupIdentifier} : {@code true} pour les rattachements ayant au moins un
+   * document déposé, {@code false} pour ceux qui n'en ont aucun, {@code null} pour ne pas
+   * contraindre. Sans {@link #documentGroupIdentifier}, il est sans effet. Combiné à
+   * {@link #required}, permet au client de lire directement les pièces obligatoires manquantes
+   * (ou déjà fournies) d'un dossier.
+   */
+  Boolean deposited;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public DocumentTypeGroupFilter(FilterDto dto) {
-<span class="fc" id="L48">    super(dto);</span>
-<span class="fc" id="L49">  }</span>
+<span class="fc" id="L64">    super(dto);</span>
+<span class="fc" id="L65">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L54">  public DocumentTypeGroupFilter() {}</span>
+<span class="fc" id="L70">  public DocumentTypeGroupFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L58">    super.doInitialize(filter);</span>
-<span class="fc" id="L59">    groupIdentifier = getGroupIdentifier(filter);</span>
-<span class="fc" id="L60">    typeIdentifier = getTypeIdentifier(filter);</span>
-<span class="fc" id="L61">    required = getRequired(filter);</span>
-<span class="fc" id="L62">  }</span>
+<span class="fc" id="L74">    super.doInitialize(filter);</span>
+<span class="fc" id="L75">    groupIdentifier = getGroupIdentifier(filter);</span>
+<span class="fc" id="L76">    typeIdentifier = getTypeIdentifier(filter);</span>
+<span class="fc" id="L77">    required = getRequired(filter);</span>
+<span class="fc" id="L78">    documentGroupIdentifier = getDocumentGroupIdentifier(filter);</span>
+<span class="fc" id="L79">    deposited = getDeposited(filter);</span>
+<span class="fc" id="L80">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L66">    super.toDto(filter);</span>
-<span class="fc" id="L67">    setGroupIdentifier(filter, groupIdentifier);</span>
-<span class="fc" id="L68">    setTypeIdentifier(filter, typeIdentifier);</span>
-<span class="fc" id="L69">    setRequired(filter, required);</span>
-<span class="fc" id="L70">  }</span>
+<span class="fc" id="L84">    super.toDto(filter);</span>
+<span class="fc" id="L85">    setGroupIdentifier(filter, groupIdentifier);</span>
+<span class="fc" id="L86">    setTypeIdentifier(filter, typeIdentifier);</span>
+<span class="fc" id="L87">    setRequired(filter, required);</span>
+<span class="fc" id="L88">    setDocumentGroupIdentifier(filter, documentGroupIdentifier);</span>
+<span class="fc" id="L89">    setDeposited(filter, deposited);</span>
+<span class="fc" id="L90">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant du groupe de types de document.
@@ -76,9 +96,9 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @param groupIdentifier identifiant du groupe de types de document
    */
   public static void setGroupIdentifier(FilterDto filter, String groupIdentifier) {
-<span class="pc" id="L79">    set(filter, JSON_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L80">        f -&gt; f.setValueAsString(groupIdentifier));</span>
-<span class="fc" id="L81">  }</span>
+<span class="pc" id="L99">    set(filter, JSON_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L100">        f -&gt; f.setValueAsString(groupIdentifier));</span>
+<span class="fc" id="L101">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du groupe de types de document -- sans elle, le
@@ -91,7 +111,7 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @return identifiant du groupe de types de document
    */
   public static String getGroupIdentifier(FilterDto filter) {
-<span class="fc" id="L94">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GROUP_IDENTIFIER));</span>
+<span class="fc" id="L114">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_GROUP_IDENTIFIER));</span>
   }
 
   /**
@@ -101,9 +121,9 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @param typeIdentifier identifiant du type de document
    */
   public static void setTypeIdentifier(FilterDto filter, String typeIdentifier) {
-<span class="pc" id="L104">    set(filter, JSON_TYPE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L105">        f -&gt; f.setValueAsString(typeIdentifier));</span>
-<span class="fc" id="L106">  }</span>
+<span class="pc" id="L124">    set(filter, JSON_TYPE_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L125">        f -&gt; f.setValueAsString(typeIdentifier));</span>
+<span class="fc" id="L126">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du type de document -- utilisé par le client pour
@@ -114,7 +134,7 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @return identifiant du type de document
    */
   public static String getTypeIdentifier(FilterDto filter) {
-<span class="fc" id="L117">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TYPE_IDENTIFIER));</span>
+<span class="fc" id="L137">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_TYPE_IDENTIFIER));</span>
   }
 
   /**
@@ -124,8 +144,8 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @param required obligatoire ou non
    */
   public static void setRequired(FilterDto filter, Boolean required) {
-<span class="pc" id="L127">    set(filter, JSON_REQUIRED, f -&gt; f.getValueAsBoolean(), f -&gt; f.setValueAsBoolean(required));</span>
-<span class="fc" id="L128">  }</span>
+<span class="pc" id="L147">    set(filter, JSON_REQUIRED, f -&gt; f.getValueAsBoolean(), f -&gt; f.setValueAsBoolean(required));</span>
+<span class="fc" id="L148">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le caractère obligatoire du dépôt.
@@ -134,7 +154,52 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * @return obligatoire ou non
    */
   public static Boolean getRequired(FilterDto filter) {
-<span class="fc" id="L137">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_REQUIRED));</span>
+<span class="fc" id="L157">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_REQUIRED));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'identifiant du groupe de documents (le dossier) auquel se
+   * rapporte le critère de présence de document.
+   *
+   * @param filter filtre
+   * @param documentGroupIdentifier identifiant du groupe de documents
+   */
+  public static void setDocumentGroupIdentifier(FilterDto filter, String documentGroupIdentifier) {
+<span class="pc" id="L168">    set(filter, JSON_DOCUMENT_GROUP_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L169">        f -&gt; f.setValueAsString(documentGroupIdentifier));</span>
+<span class="fc" id="L170">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'identifiant du groupe de documents (le dossier) auquel se
+   * rapporte le critère de présence de document.
+   *
+   * @param filter filtre
+   * @return identifiant du groupe de documents
+   */
+  public static String getDocumentGroupIdentifier(FilterDto filter) {
+<span class="fc" id="L180">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOCUMENT_GROUP_IDENTIFIER));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner la présence de document pour le rattachement dans le groupe de
+   * documents.
+   *
+   * @param filter filtre
+   * @param deposited true pour les rattachements avec document, false pour ceux sans document
+   */
+  public static void setDeposited(FilterDto filter, Boolean deposited) {
+<span class="pc" id="L191">    set(filter, JSON_DEPOSITED, f -&gt; f.getValueAsBoolean(), f -&gt; f.setValueAsBoolean(deposited));</span>
+<span class="fc" id="L192">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir la présence de document pour le rattachement dans le groupe de
+   * documents.
+   *
+   * @param filter filtre
+   * @return true pour les rattachements avec document, false pour ceux sans document
+   */
+  public static Boolean getDeposited(FilterDto filter) {
+<span class="fc" id="L202">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_DEPOSITED));</span>
   }
 
   /**
@@ -151,5 +216,15 @@ public class DocumentTypeGroupFilter extends AbstractIdentifiableFilter
    * Identifiant json champ {@link #required}.
    */
   public static final String JSON_REQUIRED = DocumentTypeGroupDto.JSON_REQUIRED;
+
+  /**
+   * Identifiant json champ {@link #documentGroupIdentifier}.
+   */
+  public static final String JSON_DOCUMENT_GROUP_IDENTIFIER = &quot;idGroupeDocuments&quot;;
+
+  /**
+   * Identifiant json champ {@link #deposited}.
+   */
+  public static final String JSON_DEPOSITED = &quot;depose&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
