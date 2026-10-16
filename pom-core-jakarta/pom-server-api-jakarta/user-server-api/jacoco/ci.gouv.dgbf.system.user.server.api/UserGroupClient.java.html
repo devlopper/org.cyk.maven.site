@@ -2,11 +2,13 @@
 
 import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetLongExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
@@ -28,13 +30,13 @@ import jakarta.enterprise.context.ApplicationScoped;
  *
  */
 @ApplicationScoped
-<span class="fc" id="L31">public class UserGroupClient extends AbstractClient&lt;UserGroupService&gt;</span>
+<span class="fc" id="L33">public class UserGroupClient extends AbstractClient&lt;UserGroupService&gt;</span>
     implements GetByIdentifier&lt;UserGroupDto&gt;, GetMany&lt;UserGroupGetManyResponseDto&gt;,
     DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
 
   @Override
   public UserGroupClient service(UserGroupService service) {
-<span class="fc" id="L37">    return (UserGroupClient) super.service(service);</span>
+<span class="fc" id="L39">    return (UserGroupClient) super.service(service);</span>
   }
 
   /**
@@ -44,8 +46,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public CreateResponseDto create(UserGroupCreateRequestDto request) {
-<span class="fc" id="L47">    return new CreateExecutor(UserGroupService.CREATE_IDENTIFIER)</span>
-<span class="fc" id="L48">        .execute(() -&gt; service().create(request));</span>
+<span class="fc" id="L49">    return new CreateExecutor(UserGroupService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L50">        .execute(() -&gt; service().create(request));</span>
   }
 
   /**
@@ -56,10 +58,21 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public CreateResponseDto create(String auditWho, String auditSession) {
-<span class="fc" id="L59">    UserGroupCreateRequestDto request = new UserGroupCreateRequestDto();</span>
-<span class="fc" id="L60">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L61">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L62">    return create(request);</span>
+<span class="fc" id="L61">    UserGroupCreateRequestDto request = new UserGroupCreateRequestDto();</span>
+<span class="fc" id="L62">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L63">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L64">    return create(request);</span>
+  }
+
+  /**
+   * {@link UserGroupService#getCount}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public Long getCount(GetCountRequestDto request) {
+<span class="fc" id="L74">    return new GetLongExecutor(UserGroupService.GET_COUNT_IDENTIFIER)</span>
+<span class="fc" id="L75">        .execute(() -&gt; service().getCount(request));</span>
   }
 
   /**
@@ -69,8 +82,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public UserGroupGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L72">    return new GetOneExecutor&lt;UserGroupGetManyResponseDto&gt;(UserGroupGetManyResponseDto.class,</span>
-<span class="fc" id="L73">        UserGroupService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L85">    return new GetOneExecutor&lt;UserGroupGetManyResponseDto&gt;(UserGroupGetManyResponseDto.class,</span>
+<span class="fc" id="L86">        UserGroupService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
   }
 
   /**
@@ -86,13 +99,13 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public UserGroupGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L89">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L90">    request.setProjection(projection);</span>
-<span class="fc" id="L91">    request.setFilter(filter);</span>
-<span class="fc" id="L92">    request.setPage(page);</span>
-<span class="fc" id="L93">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L94">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L95">    return getMany(request);</span>
+<span class="fc" id="L102">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L103">    request.setProjection(projection);</span>
+<span class="fc" id="L104">    request.setFilter(filter);</span>
+<span class="fc" id="L105">    request.setPage(page);</span>
+<span class="fc" id="L106">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L107">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L108">    return getMany(request);</span>
   }
 
   /**
@@ -102,8 +115,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public UserGroupDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L105">    return new GetOneExecutor&lt;UserGroupDto&gt;(UserGroupDto.class,</span>
-<span class="fc" id="L106">        UserGroupService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+<span class="fc" id="L118">    return new GetOneExecutor&lt;UserGroupDto&gt;(UserGroupDto.class,</span>
+<span class="fc" id="L119">        UserGroupService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
   }
 
   /**
@@ -117,12 +130,12 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public UserGroupDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
       String auditSession) {
-<span class="fc" id="L120">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L121">    request.setProjection(projection);</span>
-<span class="fc" id="L122">    request.setFilter(filter);</span>
-<span class="fc" id="L123">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L124">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L125">    return getOne(request);</span>
+<span class="fc" id="L133">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L134">    request.setProjection(projection);</span>
+<span class="fc" id="L135">    request.setFilter(filter);</span>
+<span class="fc" id="L136">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L137">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L138">    return getOne(request);</span>
   }
 
   /**
@@ -132,9 +145,9 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return groupe d'échéance
    */
   public UserGroupDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L135">    return new GetOneExecutor&lt;UserGroupDto&gt;(UserGroupDto.class,</span>
+<span class="fc" id="L148">    return new GetOneExecutor&lt;UserGroupDto&gt;(UserGroupDto.class,</span>
         UserGroupService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L137">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L150">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
   /**
@@ -149,12 +162,12 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public UserGroupDto getByIdentifier(String identifier, ProjectionDto projection, String auditWho,
       String auditSession) {
-<span class="fc" id="L152">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L153">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L154">    request.setProjection(projection);</span>
-<span class="fc" id="L155">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L156">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L157">    return getByIdentifier(request);</span>
+<span class="fc" id="L165">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L166">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L167">    request.setProjection(projection);</span>
+<span class="fc" id="L168">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L169">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L170">    return getByIdentifier(request);</span>
   }
 
   /**
@@ -164,8 +177,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto update(UserGroupUpdateRequestDto request) {
-<span class="fc" id="L167">    return new IdentifiableExecutor(UserGroupService.UPDATE_IDENTIFIER)</span>
-<span class="fc" id="L168">        .execute(() -&gt; service().update(request));</span>
+<span class="fc" id="L180">    return new IdentifiableExecutor(UserGroupService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L181">        .execute(() -&gt; service().update(request));</span>
   }
 
   /**
@@ -178,11 +191,11 @@ import jakarta.enterprise.context.ApplicationScoped;
    */
   public IdentifiableResponseDto update(String identifier, String code, String name,
       String auditWho, String auditSession) {
-<span class="fc" id="L181">    UserGroupUpdateRequestDto request = new UserGroupUpdateRequestDto();</span>
-<span class="fc" id="L182">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L183">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L184">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L185">    return update(request);</span>
+<span class="fc" id="L194">    UserGroupUpdateRequestDto request = new UserGroupUpdateRequestDto();</span>
+<span class="fc" id="L195">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L196">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L197">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L198">    return update(request);</span>
   }
 
   /**
@@ -192,8 +205,8 @@ import jakarta.enterprise.context.ApplicationScoped;
    * @return réponse
    */
   public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
-<span class="fc" id="L195">    return new IdentifiableExecutor(UserGroupService.DELETE_IDENTIFIER)</span>
-<span class="fc" id="L196">        .execute(() -&gt; service().delete(request));</span>
+<span class="fc" id="L208">    return new IdentifiableExecutor(UserGroupService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L209">        .execute(() -&gt; service().delete(request));</span>
   }
 
   /**
@@ -207,11 +220,11 @@ import jakarta.enterprise.context.ApplicationScoped;
   @Override
   public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
       String auditSession) {
-<span class="fc" id="L210">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
-<span class="fc" id="L211">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L212">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L213">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L214">    return delete(request);</span>
+<span class="fc" id="L223">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L224">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L225">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L226">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L227">    return delete(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

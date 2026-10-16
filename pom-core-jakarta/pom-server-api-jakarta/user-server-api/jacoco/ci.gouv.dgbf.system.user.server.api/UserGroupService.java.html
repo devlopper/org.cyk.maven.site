@@ -6,6 +6,7 @@ import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJ
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetCountRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
@@ -145,7 +146,7 @@ public interface UserGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L148">    class UserGroupCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+<span class="fc" id="L149">    class UserGroupCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
       implements UserGroupSaveRequestDto {
 
     @JsonbProperty(UserGroupSaveRequestDto.JSON_GROUP_IDENTIFIER)
@@ -185,6 +186,31 @@ public interface UserGroupService extends SpecificService {
   Response getMany(GetManyRequestDto request);
 
   /**
+   * Identifiant du service d'obtention du compte.
+   */
+  String GET_COUNT_IDENTIFIER = &quot;OBTENTION_COMPTE_UTILISATEUR_GROUPE&quot;;
+
+  /**
+   * Chemin du service d'obtention du compte.
+   */
+  String GET_COUNT_PATH = &quot;obtention/compte&quot;;
+
+  /**
+   * Cette méthode permet d'obtenir le compte de {@link UserGroupDto}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(GET_COUNT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.TEXT_PLAIN)
+  @Operation(operationId = GET_COUNT_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = Long.class))})
+  Response getCount(GetCountRequestDto request);
+
+  /**
    * Cette classe représente l'objet de transfert de donnée de la réponse d'obtention de plusieurs.
    *
    * @author Arnaud
@@ -192,7 +218,7 @@ public interface UserGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L195">  public static class UserGroupGetManyResponseDto</span>
+<span class="fc" id="L221">  public static class UserGroupGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;UserGroupDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -282,7 +308,7 @@ public interface UserGroupService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L285">  class UserGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
+<span class="fc" id="L311">  class UserGroupUpdateRequestDto extends ByIdentifierRequestDto</span>
       implements UserGroupSaveRequestDto {
 
     @JsonbProperty(UserGroupSaveRequestDto.JSON_GROUP_IDENTIFIER)
