@@ -22,6 +22,13 @@ import lombok.Setter;
   @JsonbProperty(JSON_DOMAIN_AS_STRING)
   private String domainAsString;
 
+  /**
+   * Code du Domaine : avec le Code de l'Application, il permet au frontal d'évaluer les Droits
+   * de la ligne (RG_UTI_ROL_16).
+   */
+  @JsonbProperty(JSON_DOMAIN_CODE)
+  private String domainCode;
+
   @JsonbProperty(JSON_USER_IDENTIFIER)
   private String userIdentifier;
 
@@ -34,6 +41,11 @@ import lombok.Setter;
    * Identifiant json {@link #domainAsString}.
    */
   public static final String JSON_DOMAIN_AS_STRING = DomainDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #domainCode}.
+   */
+  public static final String JSON_DOMAIN_CODE = &quot;codeDomaine&quot;;
 
   /**
    * Identifiant json {@link #userIdentifier}.

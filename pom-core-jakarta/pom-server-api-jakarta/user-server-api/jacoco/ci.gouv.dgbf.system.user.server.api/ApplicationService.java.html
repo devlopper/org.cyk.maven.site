@@ -3,7 +3,7 @@
 import ci.gouv.dgbf.extension.core.segregation.HasDomainIdentifierDto;
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
@@ -226,17 +226,17 @@ public interface ApplicationService extends SpecificService {
   Response update(ApplicationUpdateRequestDto request);
 
   /**
-   * Cette classe représente la requête de mise à jour.
+   * Cette classe représente la requête de mise à jour. Elle ne porte ni le Code ni le Domaine :
+   * le Code d'une Application est l'identifiant de son client Keycloak dans le realm de son
+   * Domaine, l'un et l'autre ne changent plus après la création (exception « code immuable »
+   * de la règle R2).
    *
    * @author BoobaCool
    */
   @Getter
   @Setter
-<span class="fc" id="L235">  class ApplicationUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
-      implements ApplicationSaveRequestDto {
+<span class="fc" id="L238">  class ApplicationUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
 
-    @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
-    private String domainIdentifier;
   }
 
   /**
@@ -291,13 +291,67 @@ public interface ApplicationService extends SpecificService {
   Response assignAdministrator(ApplicationAssignAdministratorRequestDto request);
 
   /**
+   * Identifiant du service d'attribution administrateur technique (TCH_UTI_707).
+   */
+  String ASSIGN_TECHNICAL_ADMINISTRATOR_IDENTIFIER = &quot;ATTRIBUTION_ADMINISTRATEUR_TECHNIQUE&quot;;
+
+  /**
+   * Chemin du service d'attribution administrateur technique.
+   */
+  String ASSIGN_TECHNICAL_ADMINISTRATOR_PATH = &quot;attribution-administrateur-technique&quot;;
+
+  /**
+   * Cette méthode permet d'attribuer le rôle administrateur technique, indépendamment de
+   * l'administrateur fonctionnel (pas de cascade).
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ASSIGN_TECHNICAL_ADMINISTRATOR_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = ASSIGN_TECHNICAL_ADMINISTRATOR_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(
+          implementation = ApplicationAssignAdministratorResponseDto.class))})
+  Response assignTechnicalAdministrator(ApplicationAssignAdministratorRequestDto request);
+
+  /**
+   * Identifiant du service d'attribution administrateur fonctionnel (TCH_UTI_707).
+   */
+  String ASSIGN_FUNCTIONAL_ADMINISTRATOR_IDENTIFIER = &quot;ATTRIBUTION_ADMINISTRATEUR_FONCTIONNEL&quot;;
+
+  /**
+   * Chemin du service d'attribution administrateur fonctionnel.
+   */
+  String ASSIGN_FUNCTIONAL_ADMINISTRATOR_PATH = &quot;attribution-administrateur-fonctionnel&quot;;
+
+  /**
+   * Cette méthode permet d'attribuer le rôle administrateur fonctionnel, indépendamment de
+   * l'administrateur technique (pas de cascade).
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ASSIGN_FUNCTIONAL_ADMINISTRATOR_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = ASSIGN_FUNCTIONAL_ADMINISTRATOR_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(
+          implementation = ApplicationAssignAdministratorResponseDto.class))})
+  Response assignFunctionalAdministrator(ApplicationAssignAdministratorRequestDto request);
+
+  /**
    * Cette classe représente la requête d'attribution administrateur applicatif.
    *
    * @author BoobaCool
    */
   @Getter
   @Setter
-<span class="fc" id="L300">  class ApplicationAssignAdministratorRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L354">  class ApplicationAssignAdministratorRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des utilisateurs.
@@ -318,7 +372,7 @@ public interface ApplicationService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L321">  class ApplicationAssignAdministratorResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L375">  class ApplicationAssignAdministratorResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre d'attributions administrateur applicatif réussies.

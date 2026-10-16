@@ -2,7 +2,8 @@
 
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractNamableUpdateRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
@@ -20,6 +21,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 import org.eclipse.microprofile.openapi.annotations.Operation;
@@ -76,7 +78,7 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L79">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
+<span class="fc" id="L81">  class DomainCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto {</span>
 
   }
 
@@ -113,7 +115,7 @@ public interface DomainService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L116">  public static class DomainGetManyResponseDto</span>
+<span class="fc" id="L118">  public static class DomainGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DomainDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -196,14 +198,16 @@ public interface DomainService extends SpecificService {
   Response update(DomainUpdateRequestDto request);
 
   /**
-   * Cette classe représente la requête de mise à jour.
+   * Cette classe représente la requête de mise à jour. Elle ne porte pas le Code : le Code
+   * d'un Domaine est le nom de son realm Keycloak et ne change plus après la création
+   * (exception « code immuable » de la règle R2).
    *
    * @author Christian
    *
    */
   @Getter
   @Setter
-<span class="fc" id="L206">  class DomainUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L210">  class DomainUpdateRequestDto extends AbstractNamableUpdateRequestJsonDto {</span>
 
   }
 
@@ -231,5 +235,83 @@ public interface DomainService extends SpecificService {
   @APIResponse(responseCode = &quot;200&quot;,
       content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
   Response delete(DeleteOneRequestDto request);
+
+  /**
+   * Identifiant du service d'attribution administrateur de domaine.
+   */
+  String ASSIGN_ADMINISTRATOR_IDENTIFIER = &quot;ATTRIBUTION_ADMINISTRATEUR_DOMAINE&quot;;
+
+  /**
+   * Chemin du service d'attribution administrateur de domaine.
+   */
+  String ASSIGN_ADMINISTRATOR_PATH = &quot;attribution-administrateur&quot;;
+
+  /**
+   * Cette méthode permet d'attribuer le rôle administrateur de domaine.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(ASSIGN_ADMINISTRATOR_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = ASSIGN_ADMINISTRATOR_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = DomainAssignAdministratorResponseDto.class))})
+  Response assignAdministrator(DomainAssignAdministratorRequestDto request);
+
+  /**
+   * Cette classe représente la requête d'attribution administrateur de domaine.
+   *
+   * @author Christian Yao Komenan
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L271">  class DomainAssignAdministratorRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Liste des identifiants des utilisateurs.
+     */
+    @JsonbProperty(JSON_USER_IDENTIFIERS)
+    private Set&lt;String&gt; userIdentifiers;
+
+    /**
+     * Identifiant json {@link #userIdentifiers}.
+     */
+    public static final String JSON_USER_IDENTIFIERS = &quot;idUtilisateurs&quot;;
+  }
+
+  /**
+   * Cette classe représente la réponse d'attribution administrateur de domaine.
+   *
+   * @author Christian Yao Komenan
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L292">  class DomainAssignAdministratorResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Nombre d'attributions administrateur de domaine réussies.
+     */
+    @JsonbProperty(JSON_ASSIGNED_ADMIN_COUNT)
+    private Integer assignedAdminCount;
+
+    /**
+     * Nombre d'attributions déjà existantes.
+     */
+    @JsonbProperty(JSON_EXISTING_COUNT)
+    private Integer existingCount;
+
+    /**
+     * Identifiant json {@link #assignedAdminCount}.
+     */
+    public static final String JSON_ASSIGNED_ADMIN_COUNT = &quot;nombreAdministrateurAttribue&quot;;
+
+    /**
+     * Identifiant json {@link #existingCount}.
+     */
+    public static final String JSON_EXISTING_COUNT = &quot;nombreExistant&quot;;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

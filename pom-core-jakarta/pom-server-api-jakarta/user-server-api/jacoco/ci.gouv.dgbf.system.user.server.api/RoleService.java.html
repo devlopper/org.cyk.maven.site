@@ -3,14 +3,12 @@
 import ci.gouv.dgbf.extension.server.service.api.SpecificService;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableCreateRequestJsonDto;
 import ci.gouv.dgbf.extension.server.service.api.request.AbstractCodableNamableUpdateRequestJsonDto;
-import ci.gouv.dgbf.extension.server.service.api.request.AbstractRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
-import ci.gouv.dgbf.extension.server.service.api.response.AbstractResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
 import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
 import jakarta.json.bind.annotation.JsonbProperty;
@@ -126,7 +124,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L129">  class RoleCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L127">  class RoleCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements RoleSaveRequestDto {
 
     @JsonbProperty(JSON_APPLICATION_IDENTIFIER)
@@ -169,7 +167,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L172">  public static class RoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;RoleDto&gt; {</span>
+<span class="fc" id="L170">  public static class RoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;RoleDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;RoleDto&gt; datas;
@@ -251,19 +249,17 @@ public interface RoleService extends SpecificService {
   Response update(RoleUpdateRequestDto request);
 
   /**
-   * Cette classe représente la requête de mise à jour.
+   * Cette classe représente la requête de mise à jour. Elle ne porte pas l'Application : le
+   * rôle Keycloak d'un Rôle vit dans le client de son Application, et la changer laisserait
+   * Keycloak désynchronisé (et les détenteurs éventuellement hors du Domaine du Rôle).
    *
    * @author Arnaud
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class RoleUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
-      implements RoleSaveRequestDto {
+<span class="fc" id="L260">  class RoleUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
-    @JsonbProperty(JSON_APPLICATION_IDENTIFIER)
-    private String applicationIdentifier;
-
-    @JsonbProperty(JSON_DESCRIPTION)
+    @JsonbProperty(RoleSaveRequestDto.JSON_DESCRIPTION)
     private String description;
   }
 
@@ -324,7 +320,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L327">  class RoleAssignRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L323">  class RoleAssignRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des utilisateurs.
@@ -346,7 +342,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L349">  class RoleAssignResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L345">  class RoleAssignResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre total d'utilisateurs traités.
@@ -403,7 +399,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L406">  class RoleRevokeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L402">  class RoleRevokeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des utilisateurs.
@@ -425,7 +421,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L428">  class RoleRevokeResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L424">  class RoleRevokeResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre de retraits réussis.
@@ -448,74 +444,6 @@ public interface RoleService extends SpecificService {
      * Identifiant json {@link #notFoundCount}.
      */
     public static final String JSON_NOT_FOUND_COUNT = &quot;nombreNonTrouve&quot;;
-  }
-
-  /**
-   * Identifiant du service d'attribution administrateur.
-   */
-  String ASSIGN_SYSTEM_ADMINISTRATOR_IDENTIFIER = &quot;ATTRIBUTION_ADMINISTRATEUR_SYSTEME_ROLE&quot;;
-
-  /**
-   * Chemin du service d'attribution administrateur.
-   */
-  String ASSIGN_SYSTEM_ADMINISTRATOR_PATH = &quot;attribution/administrateur-systeme&quot;;
-
-  /**
-   * Cette méthode permet d'attribuer d'un rôle.
-   *
-   * @param request requête
-   * @return réponse
-   */
-  @Path(ASSIGN_SYSTEM_ADMINISTRATOR_PATH)
-  @POST
-  @Consumes(MediaType.APPLICATION_JSON)
-  @Produces(MediaType.APPLICATION_JSON)
-  @Operation(operationId = ASSIGN_SYSTEM_ADMINISTRATOR_IDENTIFIER)
-  @APIResponse(responseCode = &quot;200&quot;, content = {
-      @Content(schema = @Schema(implementation = RoleAssignSystemAdministratorResponseDto.class))})
-  Response assignSystemAdministrator(RoleAssignSystemAdministratorRequestDto request);
-
-  /**
-   * Cette classe représente la requête d'attribution administrateur.
-   *
-   * @author BoobaCool
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L485">  class RoleAssignSystemAdministratorRequestDto extends AbstractRequestDto {</span>
-
-    /**
-     * Liste des identifiants des utilisateurs.
-     */
-    @JsonbProperty(JSON_USER_IDENTIFIERS)
-    private Set&lt;String&gt; userIdentifiers;
-
-    /**
-     * Identifiant json {@link #userIdentifiers}.
-     */
-    public static final String JSON_USER_IDENTIFIERS = &quot;idUtilisateurs&quot;;
-
-  }
-
-  /**
-   * Cette classe représente la réponse d'attribution administrateur.
-   *
-   * @author BoobaCool
-   */
-  @Getter
-  @Setter
-<span class="fc" id="L507">  class RoleAssignSystemAdministratorResponseDto extends AbstractResponseDto {</span>
-
-    /**
-     * Nombre d'attributions administrateur réussies.
-     */
-    @JsonbProperty(JSON_ASSIGNED_ADMIN_COUNT)
-    private Integer assignedAdminCount;
-
-    /**
-     * Identifiant json {@link #assignedAdminCount}.
-     */
-    public static final String JSON_ASSIGNED_ADMIN_COUNT = &quot;nombreAdministrateurAttribue&quot;;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

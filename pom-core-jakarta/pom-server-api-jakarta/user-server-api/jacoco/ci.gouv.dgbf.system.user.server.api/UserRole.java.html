@@ -1,54 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserRole.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">UserRole.java</span></div><h1>UserRole.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
 
 import ci.gouv.dgbf.extension.core.segregation.CodableByStringWithGetterOnly;
+import java.util.Objects;
 import lombok.Getter;
 
 /**
- * Cette énumération représente les rôles des utilisateurs.
+ * Cette énumération représente les Droits (rôles applicatifs) du module : chacun est accordé par
+ * un Rôle réservé, pour une portée donnée (RG_UTI_ROL_16). C'est le seul endroit qui traduit les
+ * Rôles réservés en Droits ; le frontal (jeton) et le serveur (base) appliquent la même règle,
+ * {@link #isGrantedTo(ReservedRolesHolder, String, String)}.
  *
  * @author Christian
  *
  */
-<span class="fc" id="L12">@Getter</span>
+<span class="fc" id="L16">@Getter</span>
 public enum UserRole implements CodableByStringWithGetterOnly {
 
   // Role utilisateur
   /**
    * Assigner.
    */
-<span class="fc" id="L19">  ASSIGN_USER_ROLE(&quot;ASSIGNER_ROLE_UTILISATEUR&quot;),</span>
+<span class="fc" id="L23">  ASSIGN_USER_ROLE(&quot;ASSIGNER_ROLE_UTILISATEUR&quot;, ReservedRole.FUNCTIONAL_ADMINISTRATOR,</span>
+      Scope.APPLICATION),
 
   /**
    * Revoquer.
    */
-<span class="fc" id="L24">  REVOKE_USER_ROLE(&quot;REVOQUER_ROLE_UTILISATEUR&quot;),</span>
+<span class="fc" id="L29">  REVOKE_USER_ROLE(&quot;REVOQUER_ROLE_UTILISATEUR&quot;, ReservedRole.FUNCTIONAL_ADMINISTRATOR,</span>
+      Scope.APPLICATION),
+
+  /**
+   * Traiter (accepter, refuser) une demande de rôle (RG_UTI_ROL_12).
+   */
+<span class="fc" id="L35">  PROCESS_ROLE_SOLICITATION(&quot;TRAITER_DEMANDE_ROLE&quot;, ReservedRole.FUNCTIONAL_ADMINISTRATOR,</span>
+      Scope.APPLICATION),
 
   // UserRole
   /**
    * Assigner rôle administrateur applicatif.
    */
-<span class="fc" id="L30">  ASSIGN_APPLICATION_ADMINISTRATOR_USER_ROLE(&quot;ASSIGNER_ADMINISTRATEUR_APPLICATIF&quot;),</span>
+<span class="fc" id="L42">  ASSIGN_APPLICATION_ADMINISTRATOR_USER_ROLE(&quot;ASSIGNER_ADMINISTRATEUR_APPLICATIF&quot;,</span>
+      ReservedRole.DOMAIN_ADMINISTRATOR, Scope.DOMAIN),
 
   /**
-   * Assigner rôle administrateur système.
+   * Assigner rôle administrateur technique.
    */
-<span class="fc" id="L35">  ASSIGN_SYSTEM_ADMINISTRATOR_USER_ROLE(&quot;ASSIGNER_ADMINISTRATEUR_SYSTEME&quot;),</span>
+<span class="fc" id="L48">  ASSIGN_TECHNICAL_ADMINISTRATOR_USER_ROLE(&quot;ASSIGNER_ADMINISTRATEUR_TECHNIQUE&quot;,</span>
+      ReservedRole.APPLICATION_ADMINISTRATOR, Scope.APPLICATION),
+
+  /**
+   * Assigner rôle administrateur fonctionnel.
+   */
+<span class="fc" id="L54">  ASSIGN_FUNCTIONAL_ADMINISTRATOR_USER_ROLE(&quot;ASSIGNER_ADMINISTRATEUR_FONCTIONNEL&quot;,</span>
+      ReservedRole.APPLICATION_ADMINISTRATOR, Scope.APPLICATION),
+
+  // Domain
+
+  /**
+   * Gérer (créer, modifier, supprimer) les domaines : l'Administrateur de {@code master}.
+   */
+<span class="fc" id="L62">  MANAGE_DOMAIN(&quot;GERER_DOMAINE&quot;, ReservedRole.DOMAIN_ADMINISTRATOR, Scope.MASTER),</span>
+
+  /**
+   * Désigner un administrateur de domaine : celui de {@code master} pour tout Domaine, celui d'un
+   * Domaine pour ce Domaine (RG_UTI_ROL_08).
+   */
+<span class="fc" id="L68">  ASSIGN_DOMAIN_ADMINISTRATOR_USER_ROLE(&quot;DESIGNER_ADMINISTRATEUR_DOMAINE&quot;,</span>
+      ReservedRole.DOMAIN_ADMINISTRATOR, Scope.MASTER_OR_DOMAIN),
+
+  // User
+
+  /**
+   * Créer un utilisateur.
+   */
+<span class="fc" id="L76">  CREATE_USER(&quot;CREER_UTILISATEUR&quot;, ReservedRole.DOMAIN_ADMINISTRATOR, Scope.DOMAIN),</span>
+
+  /**
+   * Créer un compte.
+   */
+<span class="fc" id="L81">  CREATE_ACCOUNT(&quot;CREER_COMPTE&quot;, ReservedRole.DOMAIN_ADMINISTRATOR, Scope.DOMAIN),</span>
+
+  // Role
+
+  /**
+   * Configurer un rôle.
+   */
+<span class="fc" id="L88">  CONFIGURE_ROLE(&quot;CONFIGURER_ROLE&quot;, ReservedRole.TECHNICAL_ADMINISTRATOR, Scope.APPLICATION),</span>
 
   // Application
 
   /**
    * Gérer.
    */
-<span class="fc" id="L42">  MANAGE_APPLICATION(&quot;GERER_APPLICATION&quot;);</span>
+<span class="fc" id="L95">  MANAGE_APPLICATION(&quot;GERER_APPLICATION&quot;, ReservedRole.DOMAIN_ADMINISTRATOR, Scope.DOMAIN);</span>
 
-<span class="fc" id="L44">  private UserRole(String code) {</span>
-<span class="fc" id="L45">    this.code = code;</span>
-<span class="fc" id="L46">  }</span>
+<span class="fc" id="L97">  private UserRole(String code, String reservedRole, Scope scope) {</span>
+<span class="fc" id="L98">    this.code = code;</span>
+<span class="fc" id="L99">    this.reservedRole = reservedRole;</span>
+<span class="fc" id="L100">    this.scope = scope;</span>
+<span class="fc" id="L101">  }</span>
 
   /**
    * Code.
    */
   String code;
 
+  /**
+   * Code du Rôle réservé qui accorde ce Droit ({@link ReservedRole}).
+   */
+  String reservedRole;
+
+  /**
+   * Portée du Droit.
+   */
+  Scope scope;
+
+  /**
+   * Cette méthode indique si le Droit est accordé, pour un objet, par les Rôles réservés détenus.
+   *
+   * @param holder            Rôles réservés de l'Utilisateur
+   * @param domainCode        Code du Domaine de l'objet (le Domaine lui-même, ou celui de
+   *                          l'Application)
+   * @param applicationCode   Code de l'Application de l'objet, null pour un Domaine
+   * @return vrai si le Droit est accordé
+   */
+  public boolean isGrantedTo(ReservedRolesHolder holder, String domainCode,
+      String applicationCode) {
+<span class="fc bfc" id="L129" title="All 2 branches covered.">    if (holder == null) {</span>
+<span class="fc" id="L130">      return false;</span>
+    }
+<span class="fc" id="L132">    boolean sameDomain = Objects.equals(holder.getDomainCode(), domainCode);</span>
+<span class="fc" id="L133">    boolean master = DomainDto.CODE_MASTER.equals(holder.getDomainCode());</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">    if (scope == Scope.APPLICATION) {</span>
+<span class="fc bfc" id="L135" title="All 6 branches covered.">      return sameDomain &amp;&amp; applicationCode != null &amp;&amp; holder.holds(reservedRole, applicationCode);</span>
+    }
+<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (!holder.isDomainAdministrator()) {</span>
+<span class="fc" id="L138">      return false;</span>
+    }
+<span class="fc bfc" id="L140" title="All 2 branches covered.">    if (scope == Scope.MASTER) {</span>
+<span class="fc" id="L141">      return master;</span>
+    }
+<span class="fc bfc" id="L143" title="All 6 branches covered.">    return scope == Scope.DOMAIN ? sameDomain : master || sameDomain;</span>
+  }
+
+  /**
+   * Cette énumération représente la portée d'un Droit.
+   */
+<span class="fc" id="L149">  public enum Scope {</span>
+    /**
+     * Le Domaine {@code master} : l'Administrateur de {@code master}.
+     */
+<span class="fc" id="L153">    MASTER,</span>
+    /**
+     * Tout Domaine pour l'Administrateur de {@code master}, sinon le Domaine de l'Utilisateur.
+     */
+<span class="fc" id="L157">    MASTER_OR_DOMAIN,</span>
+    /**
+     * Le Domaine de l'Utilisateur : son Administrateur.
+     */
+<span class="fc" id="L161">    DOMAIN,</span>
+    /**
+     * Une Application du Domaine de l'Utilisateur : le détenteur du Rôle réservé sur elle.
+     */
+<span class="fc" id="L165">    APPLICATION</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

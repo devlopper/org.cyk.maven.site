@@ -198,5 +198,35 @@ import jakarta.enterprise.context.ApplicationScoped;
         ApplicationService.ASSIGN_ADMINISTRATOR_IDENTIFIER)
 <span class="fc" id="L199">        .execute(() -&gt; service().assignAdministrator(request));</span>
   }
+
+  /**
+   * {@link ApplicationService#assignTechnicalAdministrator}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ApplicationService.ApplicationAssignAdministratorResponseDto
+      assignTechnicalAdministrator(
+          ApplicationService.ApplicationAssignAdministratorRequestDto request) {
+<span class="fc" id="L211">    return new GetOneExecutor&lt;ApplicationService.ApplicationAssignAdministratorResponseDto&gt;(</span>
+        ApplicationService.ApplicationAssignAdministratorResponseDto.class,
+        ApplicationService.ASSIGN_TECHNICAL_ADMINISTRATOR_IDENTIFIER)
+<span class="fc" id="L214">        .execute(() -&gt; service().assignTechnicalAdministrator(request));</span>
+  }
+
+  /**
+   * {@link ApplicationService#assignFunctionalAdministrator}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public ApplicationService.ApplicationAssignAdministratorResponseDto
+      assignFunctionalAdministrator(
+          ApplicationService.ApplicationAssignAdministratorRequestDto request) {
+<span class="fc" id="L226">    return new GetOneExecutor&lt;ApplicationService.ApplicationAssignAdministratorResponseDto&gt;(</span>
+        ApplicationService.ApplicationAssignAdministratorResponseDto.class,
+        ApplicationService.ASSIGN_FUNCTIONAL_ADMINISTRATOR_IDENTIFIER)
+<span class="fc" id="L229">        .execute(() -&gt; service().assignFunctionalAdministrator(request));</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
