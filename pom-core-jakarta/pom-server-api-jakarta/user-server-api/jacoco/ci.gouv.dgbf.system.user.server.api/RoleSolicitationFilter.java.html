@@ -3,6 +3,7 @@
 import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasStatusCode;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.system.user.server.api.shared.FilterHasApplicationIdentifier;
 import ci.gouv.dgbf.system.user.server.api.shared.FilterHasRoleIdentifier;
 import ci.gouv.dgbf.system.user.server.api.shared.FilterHasUserIdentifier;
 import lombok.Getter;
@@ -16,7 +17,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class RoleSolicitationFilter extends AbstractIdentifiableFilter
-    implements FilterHasUserIdentifier, FilterHasRoleIdentifier, FilterHasStatusCode {
+    implements FilterHasUserIdentifier, FilterHasRoleIdentifier, FilterHasStatusCode,
+    FilterHasApplicationIdentifier {
 
   /**
    * Identifiant de l'utilisateur demandeur (&quot;mes demandes&quot;).
@@ -34,34 +36,42 @@ public class RoleSolicitationFilter extends AbstractIdentifiableFilter
   private String roleIdentifier;
 
   /**
+   * Identifiant de l'Application du rôle demandé : demandes d'une Application (fiche
+   * Application, onglet Demandes en attente, RU_UTI_027).
+   */
+  private String applicationIdentifier;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public RoleSolicitationFilter(FilterDto dto) {
-<span class="fc" id="L42">    super(dto);</span>
-<span class="fc" id="L43">  }</span>
+<span class="fc" id="L50">    super(dto);</span>
+<span class="fc" id="L51">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L48">  public RoleSolicitationFilter() {</span>
-<span class="fc" id="L49">  }</span>
-
-  @Override
-  protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L53">    super.doInitialize(filter);</span>
-<span class="fc" id="L54">    updateUserIdentifier(filter);</span>
-<span class="fc" id="L55">    updateStatusCode(filter);</span>
-<span class="fc" id="L56">    updateRoleIdentifier(filter);</span>
+<span class="fc" id="L56">  public RoleSolicitationFilter() {</span>
 <span class="fc" id="L57">  }</span>
 
   @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L61">    super.doInitialize(filter);</span>
+<span class="fc" id="L62">    updateUserIdentifier(filter);</span>
+<span class="fc" id="L63">    updateStatusCode(filter);</span>
+<span class="fc" id="L64">    updateRoleIdentifier(filter);</span>
+<span class="fc" id="L65">    updateApplicationIdentifier(filter);</span>
+<span class="fc" id="L66">  }</span>
+
+  @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L61">    super.toDto(filter);</span>
-<span class="fc" id="L62">    updateFilterUserIdentifier(filter);</span>
-<span class="fc" id="L63">    updateFilterStatusCode(filter);</span>
-<span class="fc" id="L64">    updateFilterRoleIdentifier(filter);</span>
-<span class="fc" id="L65">  }</span>
+<span class="fc" id="L70">    super.toDto(filter);</span>
+<span class="fc" id="L71">    updateFilterUserIdentifier(filter);</span>
+<span class="fc" id="L72">    updateFilterStatusCode(filter);</span>
+<span class="fc" id="L73">    updateFilterRoleIdentifier(filter);</span>
+<span class="fc" id="L74">    updateFilterApplicationIdentifier(filter);</span>
+<span class="fc" id="L75">  }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
