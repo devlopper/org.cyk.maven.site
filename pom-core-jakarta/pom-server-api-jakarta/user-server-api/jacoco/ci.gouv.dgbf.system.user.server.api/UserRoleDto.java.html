@@ -40,6 +40,28 @@ import lombok.Setter;
   @JsonbProperty(JSON_ROLE_AS_STRING)
   private String roleAsString;
 
+  /**
+   * Code du Rôle : signale un Rôle réservé sur la fiche Utilisateur (RU_UTI_027).
+   */
+  @JsonbProperty(JSON_ROLE_CODE)
+  private String roleCode;
+
+  /**
+   * Libellé de l'Application du Rôle : regroupe les Rôles par Application (RU_UTI_027).
+   */
+  @JsonbProperty(JSON_APPLICATION_AS_STRING)
+  private String applicationAsString;
+
+  /**
+   * Identifiant json {@link #roleCode}.
+   */
+  public static final String JSON_ROLE_CODE = &quot;codeRole&quot;;
+
+  /**
+   * Identifiant json {@link #applicationAsString}.
+   */
+  public static final String JSON_APPLICATION_AS_STRING = ApplicationDto.JSON_THIS_AS_STRING;
+
 
   /**
    * Identifiant json de l'identifiant.

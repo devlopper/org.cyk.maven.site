@@ -7,6 +7,10 @@ import ci.gouv.dgbf.extension.core.segregation.HasFirstNameDto;
 import ci.gouv.dgbf.extension.core.segregation.HasFullNameDto;
 import ci.gouv.dgbf.extension.core.segregation.HasLastNamesDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableNamableAuditableDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasPendingRoleSolicitationCountAsStringDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasPendingRoleSolicitationCountDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasRoleCountAsStringDto;
+import ci.gouv.dgbf.system.user.server.api.shared.HasRoleCountDto;
 import jakarta.json.bind.annotation.JsonbProperty;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,9 +25,35 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L24">public class UserDto extends AbstractIdentifiableNamableAuditableDto</span>
+<span class="fc" id="L28">public class UserDto extends AbstractIdentifiableNamableAuditableDto</span>
     implements HasDomainIdentifierDto, HasDomainAsStringDto, HasFirstNameDto, HasLastNamesDto,
-    HasFullNameDto, HasEmailAddressDto {
+    HasFullNameDto, HasEmailAddressDto,
+    HasRoleCountDto, HasRoleCountAsStringDto, HasPendingRoleSolicitationCountDto,
+    HasPendingRoleSolicitationCountAsStringDto {
+
+  /**
+   * Nombre de Rôles détenus, Rôles réservés compris (RU_UTI_027).
+   */
+  @JsonbProperty(JSON_ROLE_COUNT)
+  private Integer roleCount;
+
+  /**
+   * Représentation en chaîne de caractères de {@link #roleCount}.
+   */
+  @JsonbProperty(JSON_ROLE_COUNT_AS_STRING)
+  private String roleCountAsString;
+
+  /**
+   * Nombre de demandes de rôle en attente (statut Créée) de l'Utilisateur (RU_UTI_027).
+   */
+  @JsonbProperty(JSON_PENDING_ROLE_SOLICITATION_COUNT)
+  private Integer pendingRoleSolicitationCount;
+
+  /**
+   * Représentation en chaîne de caractères de {@link #pendingRoleSolicitationCount}.
+   */
+  @JsonbProperty(JSON_PENDING_ROLE_SOLICITATION_COUNT_AS_STRING)
+  private String pendingRoleSolicitationCountAsString;
 
   @JsonbProperty(JSON_DOMAIN_IDENTIFIER)
   private String domainIdentifier;
