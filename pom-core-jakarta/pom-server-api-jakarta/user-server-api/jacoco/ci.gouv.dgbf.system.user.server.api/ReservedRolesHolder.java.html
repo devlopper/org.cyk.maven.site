@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ReservedRolesHolder.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module d'utilisateur</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.user.server.api</a> &gt; <span class="el_source">ReservedRolesHolder.java</span></div><h1>ReservedRolesHolder.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.user.server.api;
+
+/**
+ * Cette interface représente les Rôles réservés détenus par un Utilisateur, quelle qu'en soit la
+ * source : le jeton pour le frontal, la base pour le serveur (RG_UTI_ROL_16). Les Rôles d'un
+ * Utilisateur appartiennent tous à des Applications de son Domaine (RG_UTI_ROL_15).
+ *
+ * @author Christian Yao Komenan
+ */
+public interface ReservedRolesHolder {
+
+  /**
+   * Cette méthode retourne le Code du Domaine de l'Utilisateur.
+   *
+   * @return Code du Domaine
+   */
+  String getDomainCode();
+
+  /**
+   * Cette méthode indique si l'Utilisateur est Administrateur de son Domaine
+   * ({@link ReservedRole#DOMAIN_ADMINISTRATOR} de l'Application spéciale de son Domaine).
+   *
+   * @return vrai s'il l'est
+   */
+  boolean isDomainAdministrator();
+
+  /**
+   * Cette méthode indique si l'Utilisateur détient un Rôle d'une Application de son Domaine.
+   *
+   * @param roleCode        Code du Rôle
+   * @param applicationCode Code de l'Application
+   * @return vrai s'il le détient
+   */
+  boolean holds(String roleCode, String applicationCode);
+
+  /**
+   * Cette méthode indique si l'Utilisateur détient un Rôle pour au moins une Application de son
+   * Domaine (sans connaître le Code de l'Application à l'avance).
+   *
+   * @param roleCode Code du Rôle
+   * @return vrai s'il le détient pour au moins une Application
+   */
+  default boolean holdsAny(String roleCode) {
+<span class="fc" id="L44">    return false;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
