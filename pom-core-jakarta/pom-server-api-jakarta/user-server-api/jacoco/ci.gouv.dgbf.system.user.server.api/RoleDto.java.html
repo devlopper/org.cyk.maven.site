@@ -54,6 +54,18 @@ import lombok.Setter;
   private String applicationAsString;
 
   /**
+   * Code de l'Application du Rôle : décide des boutons de la ligne (Droits par Application).
+   */
+  @JsonbProperty(JSON_APPLICATION_CODE)
+  private String applicationCode;
+
+  /**
+   * Code du Domaine de l'Application du Rôle : décide des boutons de la ligne.
+   */
+  @JsonbProperty(JSON_DOMAIN_CODE)
+  private String domainCode;
+
+  /**
    * Description.
    */
   @JsonbProperty(value = JSON_DESCRIPTION)
@@ -87,6 +99,16 @@ import lombok.Setter;
    * Identifiant json {@link #applicationAsString}.
    */
   public static final String JSON_APPLICATION_AS_STRING = ApplicationDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json {@link #applicationCode}.
+   */
+  public static final String JSON_APPLICATION_CODE = &quot;codeApplication&quot;;
+
+  /**
+   * Identifiant json {@link #domainCode}.
+   */
+  public static final String JSON_DOMAIN_CODE = ApplicationDto.JSON_DOMAIN_CODE;
 
   /**
    * Identifiant json {@link #unassignedUserIdentifier}.
