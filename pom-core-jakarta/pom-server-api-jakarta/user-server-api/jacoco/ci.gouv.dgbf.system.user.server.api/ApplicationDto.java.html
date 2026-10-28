@@ -8,6 +8,7 @@ import ci.gouv.dgbf.system.user.server.api.shared.HasRoleCountDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserCountAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserCountDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L23">public class ApplicationDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L24">public class ApplicationDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasRoleCountDto, HasRoleCountAsStringDto, HasUserCountDto,
     HasUserCountAsStringDto, HasPendingRoleSolicitationCountDto,
     HasPendingRoleSolicitationCountAsStringDto {
@@ -79,6 +80,22 @@ import lombok.Setter;
   private String pendingRoleSolicitationCountAsString;
 
   /**
+   * Libellés des Rôles de l'utilisateur du filtre ({@link ApplicationFilter#getUserName()}) sur
+   * cette Application, renseigné seulement si ce filtre est utilisé.
+   */
+  @JsonbProperty(JSON_ROLE_NAMES_OF_USER)
+  private List&lt;String&gt; roleNamesOfUser;
+
+  /**
+   * Cette méthode permet d'obtenir {@link #roleNamesOfUser} concaténés pour l'affichage en liste.
+   *
+   * @return libellés de Rôle concaténés, chaîne vide si aucun
+   */
+  public String getRoleNamesOfUserAsString() {
+<span class="fc bfc" id="L95" title="All 2 branches covered.">    return roleNamesOfUser == null ? &quot;&quot; : String.join(&quot;, &quot;, roleNamesOfUser);</span>
+  }
+
+  /**
    * Identifiant json {@link #domainIdentifier}.
    */
   public static final String JSON_DOMAIN_IDENTIFIER = DomainDto.JSON_THIS_IDENTIFIER;
@@ -108,6 +125,11 @@ import lombok.Setter;
    * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;applicationChaine&quot;;
+
+  /**
+   * Identifiant json {@link #roleNamesOfUser}.
+   */
+  public static final String JSON_ROLE_NAMES_OF_USER = &quot;nomsRolesUtilisateur&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.
