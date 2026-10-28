@@ -30,9 +30,10 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
   private String userName;
 
   /**
-   * Nom d'utilisateur dont le role est administrateur applicatif.
+   * Nom d'utilisateur dont le role est l'un des rôles réservés d'administration d'Application
+   * (Applicatif, Technique ou Fonctionnel).
    */
-  private String applicationAdministratorUserName;
+  private String administratorUserName;
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -40,33 +41,33 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
    * @param dto filtre
    */
   public ApplicationFilter(FilterDto dto) {
-<span class="fc" id="L43">    super(dto);</span>
-<span class="fc" id="L44">  }</span>
+<span class="fc" id="L44">    super(dto);</span>
+<span class="fc" id="L45">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L49">  public ApplicationFilter() {</span>
-<span class="fc" id="L50">  }</span>
+<span class="fc" id="L50">  public ApplicationFilter() {</span>
+<span class="fc" id="L51">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L54">    super.doInitialize(filter);</span>
-<span class="fc" id="L55">    name = getName(filter);</span>
-<span class="fc" id="L56">    userName = getUserName(filter);</span>
-<span class="fc" id="L57">    domainIdentifier = getDomainIdentifier(filter);</span>
-<span class="fc" id="L58">    applicationAdministratorUserName = getApplicationAdministratorUserName(filter);</span>
-<span class="fc" id="L59">  }</span>
+<span class="fc" id="L55">    super.doInitialize(filter);</span>
+<span class="fc" id="L56">    name = getName(filter);</span>
+<span class="fc" id="L57">    userName = getUserName(filter);</span>
+<span class="fc" id="L58">    domainIdentifier = getDomainIdentifier(filter);</span>
+<span class="fc" id="L59">    administratorUserName = getAdministratorUserName(filter);</span>
+<span class="fc" id="L60">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L63">    super.toDto(filter);</span>
-<span class="fc" id="L64">    setName(filter, name);</span>
-<span class="fc" id="L65">    setUserName(filter, userName);</span>
-<span class="fc" id="L66">    setDomainIdentifier(filter, domainIdentifier);</span>
-<span class="fc" id="L67">    setApplicationAdministratorUserName(filter, applicationAdministratorUserName);</span>
+<span class="fc" id="L64">    super.toDto(filter);</span>
+<span class="fc" id="L65">    setName(filter, name);</span>
+<span class="fc" id="L66">    setUserName(filter, userName);</span>
+<span class="fc" id="L67">    setDomainIdentifier(filter, domainIdentifier);</span>
+<span class="fc" id="L68">    setAdministratorUserName(filter, administratorUserName);</span>
 
-<span class="fc" id="L69">  }</span>
+<span class="fc" id="L70">  }</span>
 
   /**
    * Cette méthode permet d'assigner le libelle du application.
@@ -76,9 +77,9 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
    */
 
   public static void setName(FilterDto filter, String name) {
-<span class="pc" id="L79">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L80">        f -&gt; f.setValueAsString(name));</span>
-<span class="fc" id="L81">  }</span>
+<span class="pc" id="L80">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L81">        f -&gt; f.setValueAsString(name));</span>
+<span class="fc" id="L82">  }</span>
 
   /**
    * Cette méthode permet d'obtenir libelle de l'application  assignés.
@@ -87,7 +88,7 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
    * @return identifiant libelle
    */
   public static String getName(FilterDto filter) {
-<span class="fc" id="L90">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
+<span class="fc" id="L91">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
   }
 
   /**
@@ -97,9 +98,9 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
    * @param domainIdentifier identifiant du domaine
    */
   public static void setDomainIdentifier(FilterDto filter, String domainIdentifier) {
-<span class="pc" id="L100">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L101">        f -&gt; f.setValueAsString(domainIdentifier));</span>
-<span class="fc" id="L102">  }</span>
+<span class="pc" id="L101">    set(filter, JSON_DOMAIN_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L102">        f -&gt; f.setValueAsString(domainIdentifier));</span>
+<span class="fc" id="L103">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant du domaine assigné.
@@ -108,7 +109,7 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
    * @return identifiant du domaine
    */
   public static String getDomainIdentifier(FilterDto filter) {
-<span class="fc" id="L111">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
+<span class="fc" id="L112">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_DOMAIN_IDENTIFIER));</span>
   }
 
   /**
@@ -118,7 +119,7 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
    * @return nom d'utilisateur
    */
   public static String getUserName(FilterDto filter) {
-<span class="fc" id="L121">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_NAME));</span>
+<span class="fc" id="L122">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_USER_NAME));</span>
   }
 
   /**
@@ -128,32 +129,30 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
    * @param userName nom d'utilisateur
    */
   public static void setUserName(FilterDto filter, String userName) {
-<span class="pc" id="L131">    set(filter, JSON_USER_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(userName));</span>
-<span class="fc" id="L132">  }</span>
+<span class="pc" id="L132">    set(filter, JSON_USER_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(userName));</span>
+<span class="fc" id="L133">  }</span>
 
   /**
-   * Cette méthode permet d'assigner le nom d'utilisateur dont.
-   * le role est administrateur applicatif.
+   * Cette méthode permet d'assigner le nom d'utilisateur dont le role est l'un des rôles réservés
+   * d'administration d'Application.
    *
-   * @param filter filtre
-   * @param applicationAdministratorUserName nom d'utilisateur dont le role est administrateur.
-   *                                        applicatif
+   * @param filter               filtre
+   * @param administratorUserName nom d'utilisateur dont le role est administrateur
    */
-  public static void setApplicationAdministratorUserName(FilterDto filter,
-                                                         String applicationAdministratorUserName) {
-<span class="pc" id="L144">    set(filter, JSON_APPLICATION_ADMINISTRATOR_USER_NAME, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L145">        f -&gt; f.setValueAsString(applicationAdministratorUserName));</span>
-<span class="fc" id="L146">  }</span>
+  public static void setAdministratorUserName(FilterDto filter, String administratorUserName) {
+<span class="pc" id="L143">    set(filter, JSON_ADMINISTRATOR_USER_NAME, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L144">        f -&gt; f.setValueAsString(administratorUserName));</span>
+<span class="fc" id="L145">  }</span>
 
   /**
-   * Cette méthode permet d'obtenir le nom d'utilisateur dont le role est administrateur applicatif.
+   * Cette méthode permet d'obtenir le nom d'utilisateur dont le role est l'un des rôles réservés
+   * d'administration d'Application.
    *
    * @param filter filtre
-   * @return nom d'utilisateur dont le role est administrateur applicatif
+   * @return nom d'utilisateur dont le role est administrateur
    */
-  public static String getApplicationAdministratorUserName(FilterDto filter) {
-<span class="fc" id="L155">    return get(filter,</span>
-<span class="fc" id="L156">        d -&gt; d.getFieldValueAsStringByName(JSON_APPLICATION_ADMINISTRATOR_USER_NAME));</span>
+  public static String getAdministratorUserName(FilterDto filter) {
+<span class="fc" id="L155">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ADMINISTRATOR_USER_NAME));</span>
   }
 
   /**
@@ -173,10 +172,9 @@ public class ApplicationFilter extends AbstractIdentifiableCodableFilter {
   public static final String JSON_USER_NAME = &quot;nomUtilisateur&quot;;
 
   /**
-   * Identifiant json champ {@link #applicationAdministratorUserName}.
+   * Identifiant json champ {@link #administratorUserName}.
    */
-  public static final String JSON_APPLICATION_ADMINISTRATOR_USER_NAME =
-      &quot;nomUtilisateurAdministrateurApplicatif&quot;;
+  public static final String JSON_ADMINISTRATOR_USER_NAME = &quot;nomUtilisateurAdministrateur&quot;;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
