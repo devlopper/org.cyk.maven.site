@@ -133,6 +133,19 @@ public interface RoleService extends SpecificService {
     @JsonbProperty(JSON_DESCRIPTION)
     private String description;
 
+    /**
+     * Nature du Rôle créé (RG_UTI_ROL_18) : applicatif ou métier.
+     */
+    @JsonbProperty(RoleDto.JSON_NATURE)
+    private RoleNature nature;
+
+    /**
+     * Identifiants des Rôles composants, obligatoire et non vide si {@link #nature} est
+     * métier, refusé si applicatif (RG_UTI_ROL_18, RG_UTI_ROL_19).
+     */
+    @JsonbProperty(RoleDto.JSON_COMPONENT_IDENTIFIERS)
+    private List&lt;String&gt; componentIdentifiers;
+
   }
 
   /**
@@ -167,7 +180,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L170">  public static class RoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;RoleDto&gt; {</span>
+<span class="fc" id="L183">  public static class RoleGetManyResponseDto extends AbstractGetByPageResponseDto&lt;RoleDto&gt; {</span>
 
     @JsonbProperty(JSON_DATAS)
     private List&lt;RoleDto&gt; datas;
@@ -257,10 +270,20 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L260">  class RoleUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
+<span class="fc" id="L273">  class RoleUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto {</span>
 
     @JsonbProperty(RoleSaveRequestDto.JSON_DESCRIPTION)
     private String description;
+
+    /**
+     * Identifiants des Rôles composants (remplace la composition existante) : gestion du
+     * contenu d'un Rôle déjà métier par l'Administrateur Technique (RU_UTI_028). Ne porte
+     * jamais la Nature elle-même (RG_UTI_ROL_21, {@link RoleService#updateNature}) : réduire
+     * jusqu'à un seul composant est permis, le vider entièrement ne l'est pas tant que le
+     * Rôle reste métier.
+     */
+    @JsonbProperty(RoleDto.JSON_COMPONENT_IDENTIFIERS)
+    private List&lt;String&gt; componentIdentifiers;
   }
 
   /**
@@ -320,7 +343,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L323">  class RoleAssignRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L346">  class RoleAssignRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des utilisateurs.
@@ -342,7 +365,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L345">  class RoleAssignResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L368">  class RoleAssignResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre total d'utilisateurs traités.
@@ -399,7 +422,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L402">  class RoleRevokeRequestDto extends ByIdentifierRequestDto {</span>
+<span class="fc" id="L425">  class RoleRevokeRequestDto extends ByIdentifierRequestDto {</span>
 
     /**
      * Liste des identifiants des utilisateurs.
@@ -421,7 +444,7 @@ public interface RoleService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L424">  class RoleRevokeResponseDto extends IdentifiableResponseDto {</span>
+<span class="fc" id="L447">  class RoleRevokeResponseDto extends IdentifiableResponseDto {</span>
 
     /**
      * Nombre de retraits réussis.
@@ -444,6 +467,91 @@ public interface RoleService extends SpecificService {
      * Identifiant json {@link #notFoundCount}.
      */
     public static final String JSON_NOT_FOUND_COUNT = &quot;nombreNonTrouve&quot;;
+  }
+
+  /**
+   * Identifiant du service de mise à jour de la Nature.
+   */
+  String UPDATE_NATURE_IDENTIFIER = &quot;MISE_A_JOUR_NATURE_ROLE&quot;;
+
+  /**
+   * Chemin du service de mise à jour de la Nature.
+   */
+  String UPDATE_NATURE_PATH = &quot;nature&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour la Nature d'un Rôle (RG_UTI_ROL_21, RU_UTI_030) —
+   * réservée à l'Administrateur Applicatif, jamais à l'Administrateur Technique.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_NATURE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_NATURE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateNature(RoleUpdateNatureRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour de la Nature. Porte toujours la
+   * composition souhaitée après le changement : non vide en passant à métier, obligatoirement
+   * vide en repassant à applicatif (RG_UTI_ROL_21) — jamais un état intermédiaire.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L507">  class RoleUpdateNatureRequestDto extends ByIdentifierRequestDto {</span>
+
+    @JsonbProperty(RoleDto.JSON_NATURE)
+    private RoleNature nature;
+
+    @JsonbProperty(RoleDto.JSON_COMPONENT_IDENTIFIERS)
+    private List&lt;String&gt; componentIdentifiers;
+  }
+
+  /**
+   * Identifiant du service de mise à jour du caractère Demandable.
+   */
+  String UPDATE_REQUESTABLE_IDENTIFIER = &quot;MISE_A_JOUR_DEMANDABLE_ROLE&quot;;
+
+  /**
+   * Chemin du service de mise à jour du caractère Demandable.
+   */
+  String UPDATE_REQUESTABLE_PATH = &quot;demandable&quot;;
+
+  /**
+   * Cette méthode permet de mettre à jour le caractère Demandable d'un Rôle (RG_UTI_ROL_20,
+   * RU_UTI_029) — action dédiée, distincte de la modification générique du Rôle, réservée à
+   * l'Administrateur Applicatif y compris pour un Rôle métier qu'il n'administre pas au
+   * quotidien.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(UPDATE_REQUESTABLE_PATH)
+  @PUT
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = UPDATE_REQUESTABLE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response updateRequestable(RoleUpdateRequestableRequestDto request);
+
+  /**
+   * Cette classe représente la requête de mise à jour du caractère Demandable.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L551">  class RoleUpdateRequestableRequestDto extends ByIdentifierRequestDto {</span>
+
+    @JsonbProperty(RoleDto.JSON_REQUESTABLE)
+    private Boolean requestable;
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

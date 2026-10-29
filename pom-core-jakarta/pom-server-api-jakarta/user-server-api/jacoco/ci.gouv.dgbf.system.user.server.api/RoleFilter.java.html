@@ -52,6 +52,18 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    */
   private String nameContains;
 
+  /**
+   * Code de la Nature pour filtrer les rôles ({@link RoleNatureCode}). Si renseigné, retourne
+   * uniquement les rôles de cette Nature.
+   */
+  private String natureCode;
+
+  /**
+   * Indicateur Demandable pour filtrer les rôles. Si renseigné, retourne uniquement les
+   * rôles dont l'indicateur Demandable correspond.
+   */
+  private Boolean requestable;
+
 
   /**
    * Cette méthode permet d'instantier un objet.
@@ -59,36 +71,40 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @param dto filtre
    */
   public RoleFilter(FilterDto dto) {
-<span class="fc" id="L62">    super(dto);</span>
-<span class="fc" id="L63">  }</span>
+<span class="fc" id="L74">    super(dto);</span>
+<span class="fc" id="L75">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L68">  public RoleFilter() {</span>
-<span class="fc" id="L69">  }</span>
+<span class="fc" id="L80">  public RoleFilter() {</span>
+<span class="fc" id="L81">  }</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L73">    super.doInitialize(filter);</span>
-<span class="fc" id="L74">    applicationIdentifier = getApplicationIdentifier(filter);</span>
-<span class="fc" id="L75">    applicationCode = getApplicationCode(filter);</span>
-<span class="fc" id="L76">    unassignedUserIdentifier = getUnassignedUserIdentifier(filter);</span>
-<span class="fc" id="L77">    assignedUserIdentifier = getAssignedUserIdentifier(filter);</span>
-<span class="fc" id="L78">    name = getName(filter);</span>
-<span class="fc" id="L79">    nameContains = getNameContains(filter);</span>
-<span class="fc" id="L80">  }</span>
+<span class="fc" id="L85">    super.doInitialize(filter);</span>
+<span class="fc" id="L86">    applicationIdentifier = getApplicationIdentifier(filter);</span>
+<span class="fc" id="L87">    applicationCode = getApplicationCode(filter);</span>
+<span class="fc" id="L88">    unassignedUserIdentifier = getUnassignedUserIdentifier(filter);</span>
+<span class="fc" id="L89">    assignedUserIdentifier = getAssignedUserIdentifier(filter);</span>
+<span class="fc" id="L90">    name = getName(filter);</span>
+<span class="fc" id="L91">    nameContains = getNameContains(filter);</span>
+<span class="fc" id="L92">    natureCode = getNatureCode(filter);</span>
+<span class="fc" id="L93">    requestable = getRequestable(filter);</span>
+<span class="fc" id="L94">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L84">    super.toDto(filter);</span>
-<span class="fc" id="L85">    setApplicationIdentifier(filter, applicationIdentifier);</span>
-<span class="fc" id="L86">    setApplicationCode(filter, applicationCode);</span>
-<span class="fc" id="L87">    setUnassignedUserIdentifier(filter, unassignedUserIdentifier);</span>
-<span class="fc" id="L88">    setAssignedUserIdentifier(filter, assignedUserIdentifier);</span>
-<span class="fc" id="L89">    setName(filter, name);</span>
-<span class="fc" id="L90">    setNameContains(filter, nameContains);</span>
-<span class="fc" id="L91">  }</span>
+<span class="fc" id="L98">    super.toDto(filter);</span>
+<span class="fc" id="L99">    setApplicationIdentifier(filter, applicationIdentifier);</span>
+<span class="fc" id="L100">    setApplicationCode(filter, applicationCode);</span>
+<span class="fc" id="L101">    setUnassignedUserIdentifier(filter, unassignedUserIdentifier);</span>
+<span class="fc" id="L102">    setAssignedUserIdentifier(filter, assignedUserIdentifier);</span>
+<span class="fc" id="L103">    setName(filter, name);</span>
+<span class="fc" id="L104">    setNameContains(filter, nameContains);</span>
+<span class="fc" id="L105">    setNatureCode(filter, natureCode);</span>
+<span class="fc" id="L106">    setRequestable(filter, requestable);</span>
+<span class="fc" id="L107">  }</span>
 
   /**
    * Cette méthode permet d'assigner l'identifiant de l'utilisateur pour les rôles NON assignés.
@@ -98,9 +114,9 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    */
   public static void setUnassignedUserIdentifier(FilterDto filter,
                                                  String unassignedUserIdentifier) {
-<span class="pc" id="L101">    set(filter, JSON_UNASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L102">        f -&gt; f.setValueAsString(unassignedUserIdentifier));</span>
-<span class="fc" id="L103">  }</span>
+<span class="pc" id="L117">    set(filter, JSON_UNASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L118">        f -&gt; f.setValueAsString(unassignedUserIdentifier));</span>
+<span class="fc" id="L119">  }</span>
 
 
   /**
@@ -110,7 +126,7 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @return identifiant de l'utilisateur
    */
   public static String getUnassignedUserIdentifier(FilterDto filter) {
-<span class="fc" id="L113">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_UNASSIGNED_USER_IDENTIFIER));</span>
+<span class="fc" id="L129">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_UNASSIGNED_USER_IDENTIFIER));</span>
   }
 
   /**
@@ -121,9 +137,9 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    */
 
   public static void setAssignedUserIdentifier(FilterDto filter, String assignedUserIdentifier) {
-<span class="pc" id="L124">    set(filter, JSON_ASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L125">        f -&gt; f.setValueAsString(assignedUserIdentifier));</span>
-<span class="fc" id="L126">  }</span>
+<span class="pc" id="L140">    set(filter, JSON_ASSIGNED_USER_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L141">        f -&gt; f.setValueAsString(assignedUserIdentifier));</span>
+<span class="fc" id="L142">  }</span>
 
   /**
    * Cette méthode permet d'obtenir l'identifiant de l'utilisateur pour les rôles assignés.
@@ -132,7 +148,7 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @return identifiant de l'utilisateur
    */
   public static String getAssignedUserIdentifier(FilterDto filter) {
-<span class="fc" id="L135">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ASSIGNED_USER_IDENTIFIER));</span>
+<span class="fc" id="L151">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_ASSIGNED_USER_IDENTIFIER));</span>
   }
 
   /**
@@ -142,8 +158,8 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @param name   nom
    */
   public static void setName(FilterDto filter, String name) {
-<span class="pc" id="L145">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(name));</span>
-<span class="fc" id="L146">  }</span>
+<span class="pc" id="L161">    set(filter, JSON_NAME, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(name));</span>
+<span class="fc" id="L162">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le nom.
@@ -152,7 +168,7 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @return nom
    */
   public static String getName(FilterDto filter) {
-<span class="fc" id="L155">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
+<span class="fc" id="L171">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME));</span>
   }
 
   /**
@@ -162,9 +178,9 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @param applicationIdentifier id app.
    */
   public static void setApplicationIdentifier(FilterDto filter, String applicationIdentifier) {
-<span class="pc" id="L165">    set(filter, JSON_APPLICATION_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L166">        f -&gt; f.setValueAsString(applicationIdentifier));</span>
-<span class="fc" id="L167">  }</span>
+<span class="pc" id="L181">    set(filter, JSON_APPLICATION_IDENTIFIER, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L182">        f -&gt; f.setValueAsString(applicationIdentifier));</span>
+<span class="fc" id="L183">  }</span>
 
   /**
    * obtenir id app.
@@ -173,7 +189,7 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @return id app.
    */
   public static String getApplicationIdentifier(FilterDto filter) {
-<span class="fc" id="L176">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_APPLICATION_IDENTIFIER));</span>
+<span class="fc" id="L192">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_APPLICATION_IDENTIFIER));</span>
   }
 
   /**
@@ -183,9 +199,9 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @param applicationCode code de l'application
    */
   public static void setApplicationCode(FilterDto filter, String applicationCode) {
-<span class="pc" id="L186">    set(filter, JSON_APPLICATION_CODE, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L187">        f -&gt; f.setValueAsString(applicationCode));</span>
-<span class="fc" id="L188">  }</span>
+<span class="pc" id="L202">    set(filter, JSON_APPLICATION_CODE, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L203">        f -&gt; f.setValueAsString(applicationCode));</span>
+<span class="fc" id="L204">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le code de l'application.
@@ -194,7 +210,7 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @return code de l'application
    */
   public static String getApplicationCode(FilterDto filter) {
-<span class="fc" id="L197">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_APPLICATION_CODE));</span>
+<span class="fc" id="L213">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_APPLICATION_CODE));</span>
   }
 
   /**
@@ -204,9 +220,9 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @param nameContains nom
    */
   public static void setNameContains(FilterDto filter, String nameContains) {
-<span class="pc" id="L207">    set(filter, JSON_NAME_CONTAINS, f -&gt; f.getValueAsString(),</span>
-<span class="fc" id="L208">        f -&gt; f.setValueAsString(nameContains));</span>
-<span class="fc" id="L209">  }</span>
+<span class="pc" id="L223">    set(filter, JSON_NAME_CONTAINS, f -&gt; f.getValueAsString(),</span>
+<span class="fc" id="L224">        f -&gt; f.setValueAsString(nameContains));</span>
+<span class="fc" id="L225">  }</span>
 
   /**
    * Cette méthode permet d'obtenir le nom.
@@ -215,7 +231,48 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * @return nom
    */
   public static String getNameContains(FilterDto filter) {
-<span class="fc" id="L218">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME_CONTAINS));</span>
+<span class="fc" id="L234">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NAME_CONTAINS));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner le code de la Nature.
+   *
+   * @param filter     filtre
+   * @param natureCode code de la Nature
+   */
+  public static void setNatureCode(FilterDto filter, String natureCode) {
+<span class="pc" id="L244">    set(filter, JSON_NATURE, f -&gt; f.getValueAsString(), f -&gt; f.setValueAsString(natureCode));</span>
+<span class="fc" id="L245">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir le code de la Nature.
+   *
+   * @param filter filtre
+   * @return code de la Nature
+   */
+  public static String getNatureCode(FilterDto filter) {
+<span class="fc" id="L254">    return get(filter, d -&gt; d.getFieldValueAsStringByName(JSON_NATURE));</span>
+  }
+
+  /**
+   * Cette méthode permet d'assigner l'indicateur Demandable.
+   *
+   * @param filter       filtre
+   * @param requestable  indicateur Demandable
+   */
+  public static void setRequestable(FilterDto filter, Boolean requestable) {
+<span class="pc" id="L264">    set(filter, JSON_REQUESTABLE, f -&gt; f.getValueAsBoolean(),</span>
+<span class="fc" id="L265">        f -&gt; f.setValueAsBoolean(requestable));</span>
+<span class="fc" id="L266">  }</span>
+
+  /**
+   * Cette méthode permet d'obtenir l'indicateur Demandable.
+   *
+   * @param filter filtre
+   * @return indicateur Demandable
+   */
+  public static Boolean getRequestable(FilterDto filter) {
+<span class="fc" id="L275">    return get(filter, d -&gt; d.getFieldValueAsBooleanByName(JSON_REQUESTABLE));</span>
   }
 
   /**
@@ -248,6 +305,16 @@ public class RoleFilter extends AbstractIdentifiableCodableFilter {
    * Identifiant json champ {@link #nameContains}.
    */
   public static final String JSON_NAME_CONTAINS = &quot;nameContains&quot;;
+
+  /**
+   * Identifiant json champ {@link #natureCode}.
+   */
+  public static final String JSON_NATURE = RoleDto.JSON_NATURE;
+
+  /**
+   * Identifiant json champ {@link #requestable}.
+   */
+  public static final String JSON_REQUESTABLE = RoleDto.JSON_REQUESTABLE;
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

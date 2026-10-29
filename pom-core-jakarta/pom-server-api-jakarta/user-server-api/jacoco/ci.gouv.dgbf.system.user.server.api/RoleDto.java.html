@@ -6,6 +6,7 @@ import ci.gouv.dgbf.system.user.server.api.shared.HasPendingRoleSolicitationCoun
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserCountAsStringDto;
 import ci.gouv.dgbf.system.user.server.api.shared.HasUserCountDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L21">public class RoleDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L22">public class RoleDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasUserCountDto, HasUserCountAsStringDto, HasPendingRoleSolicitationCountDto,
     HasPendingRoleSolicitationCountAsStringDto {
 
@@ -72,6 +73,42 @@ import lombok.Setter;
   private String description;
 
   /**
+   * Nature du Rôle (RG_UTI_ROL_18) : applicatif ou métier.
+   */
+  @JsonbProperty(JSON_NATURE)
+  private RoleNature nature;
+
+  /**
+   * Indicateur Oui/Non (Demandable) : le Rôle peut être sélectionné dans une Demande de rôle
+   * (RG_UTI_ROL_20). Toujours Faux pour un Rôle réservé.
+   */
+  @JsonbProperty(JSON_REQUESTABLE)
+  private Boolean requestable;
+
+  /**
+   * Identifiants des Rôles composants, si ce Rôle est de Nature métier (RG_UTI_ROL_19).
+   * Renseigné seulement par une projection qui le demande (absent des lignes de liste).
+   */
+  @JsonbProperty(JSON_COMPONENT_IDENTIFIERS)
+  private List&lt;String&gt; componentIdentifiers;
+
+  /**
+   * Libellés des Rôles composants, dans le même ordre que {@link #componentIdentifiers}.
+   */
+  @JsonbProperty(JSON_COMPONENT_NAMES)
+  private List&lt;String&gt; componentNames;
+
+  /**
+   * Cette méthode permet d'obtenir {@link #componentNames} concaténés pour l'affichage en
+   * liste.
+   *
+   * @return libellés des composants concaténés, chaîne vide si aucun
+   */
+  public String getComponentNamesAsString() {
+<span class="fc bfc" id="L108" title="All 2 branches covered.">    return componentNames == null ? &quot;&quot; : String.join(&quot;, &quot;, componentNames);</span>
+  }
+
+  /**
    * Identifiant de l'utilisateur pour les rôles NON assignés à cet utilisateur.
    * Utilisé pour obtenir les rôles disponibles pour attribution.
    */
@@ -89,6 +126,26 @@ import lombok.Setter;
    * Identifiant json champ {@link #description}.
    */
   public static final String JSON_DESCRIPTION = &quot;description&quot;;
+
+  /**
+   * Identifiant json {@link #nature}.
+   */
+  public static final String JSON_NATURE = &quot;nature&quot;;
+
+  /**
+   * Identifiant json {@link #requestable} (Demandable, terme métier français).
+   */
+  public static final String JSON_REQUESTABLE = &quot;demandable&quot;;
+
+  /**
+   * Identifiant json {@link #componentIdentifiers}.
+   */
+  public static final String JSON_COMPONENT_IDENTIFIERS = &quot;idComposants&quot;;
+
+  /**
+   * Identifiant json {@link #componentNames}.
+   */
+  public static final String JSON_COMPONENT_NAMES = &quot;nomsComposants&quot;;
 
   /**
    * Identifiant json {@link #applicationIdentifier}.

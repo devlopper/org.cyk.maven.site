@@ -83,22 +83,36 @@ public enum UserRole implements CodableByStringWithGetterOnly {
   // Role
 
   /**
-   * Configurer un rôle.
+   * Gérer (créer, modifier, supprimer) les Rôles applicatifs, et changer la Nature d'un Rôle
+   * (RG_UTI_ROL_18, RG_UTI_ROL_21).
    */
-<span class="fc" id="L88">  CONFIGURE_ROLE(&quot;CONFIGURER_ROLE&quot;, ReservedRole.TECHNICAL_ADMINISTRATOR, Scope.APPLICATION),</span>
+<span class="fc" id="L89">  MANAGE_APPLICATION_ROLE(&quot;GERER_ROLE_APPLICATIF&quot;, ReservedRole.APPLICATION_ADMINISTRATOR,</span>
+      Scope.APPLICATION),
+
+  /**
+   * Gérer les Rôles métier et leur composition (RG_UTI_ROL_18, RG_UTI_ROL_19).
+   */
+<span class="fc" id="L95">  MANAGE_BUSINESS_ROLE(&quot;GERER_ROLE_METIER&quot;, ReservedRole.TECHNICAL_ADMINISTRATOR,</span>
+      Scope.APPLICATION),
+
+  /**
+   * Définir le caractère Demandable d'un Rôle ordinaire (RG_UTI_ROL_20).
+   */
+<span class="fc" id="L101">  DEFINE_ROLE_REQUEST_POLICY(&quot;DEFINIR_POLITIQUE_DEMANDE_ROLE&quot;,</span>
+      ReservedRole.APPLICATION_ADMINISTRATOR, Scope.APPLICATION),
 
   // Application
 
   /**
    * Gérer.
    */
-<span class="fc" id="L95">  MANAGE_APPLICATION(&quot;GERER_APPLICATION&quot;, ReservedRole.DOMAIN_ADMINISTRATOR, Scope.DOMAIN);</span>
+<span class="fc" id="L109">  MANAGE_APPLICATION(&quot;GERER_APPLICATION&quot;, ReservedRole.DOMAIN_ADMINISTRATOR, Scope.DOMAIN);</span>
 
-<span class="fc" id="L97">  private UserRole(String code, String reservedRole, Scope scope) {</span>
-<span class="fc" id="L98">    this.code = code;</span>
-<span class="fc" id="L99">    this.reservedRole = reservedRole;</span>
-<span class="fc" id="L100">    this.scope = scope;</span>
-<span class="fc" id="L101">  }</span>
+<span class="fc" id="L111">  private UserRole(String code, String reservedRole, Scope scope) {</span>
+<span class="fc" id="L112">    this.code = code;</span>
+<span class="fc" id="L113">    this.reservedRole = reservedRole;</span>
+<span class="fc" id="L114">    this.scope = scope;</span>
+<span class="fc" id="L115">  }</span>
 
   /**
    * Code.
@@ -126,43 +140,43 @@ public enum UserRole implements CodableByStringWithGetterOnly {
    */
   public boolean isGrantedTo(ReservedRolesHolder holder, String domainCode,
       String applicationCode) {
-<span class="fc bfc" id="L129" title="All 2 branches covered.">    if (holder == null) {</span>
-<span class="fc" id="L130">      return false;</span>
+<span class="fc bfc" id="L143" title="All 2 branches covered.">    if (holder == null) {</span>
+<span class="fc" id="L144">      return false;</span>
     }
-<span class="fc" id="L132">    boolean sameDomain = Objects.equals(holder.getDomainCode(), domainCode);</span>
-<span class="fc" id="L133">    boolean master = DomainDto.CODE_MASTER.equals(holder.getDomainCode());</span>
-<span class="fc bfc" id="L134" title="All 2 branches covered.">    if (scope == Scope.APPLICATION) {</span>
-<span class="fc bfc" id="L135" title="All 6 branches covered.">      return sameDomain &amp;&amp; applicationCode != null &amp;&amp; holder.holds(reservedRole, applicationCode);</span>
+<span class="fc" id="L146">    boolean sameDomain = Objects.equals(holder.getDomainCode(), domainCode);</span>
+<span class="fc" id="L147">    boolean master = DomainDto.CODE_MASTER.equals(holder.getDomainCode());</span>
+<span class="fc bfc" id="L148" title="All 2 branches covered.">    if (scope == Scope.APPLICATION) {</span>
+<span class="fc bfc" id="L149" title="All 6 branches covered.">      return sameDomain &amp;&amp; applicationCode != null &amp;&amp; holder.holds(reservedRole, applicationCode);</span>
     }
-<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (!holder.isDomainAdministrator()) {</span>
-<span class="fc" id="L138">      return false;</span>
+<span class="fc bfc" id="L151" title="All 2 branches covered.">    if (!holder.isDomainAdministrator()) {</span>
+<span class="fc" id="L152">      return false;</span>
     }
-<span class="fc bfc" id="L140" title="All 2 branches covered.">    if (scope == Scope.MASTER) {</span>
-<span class="fc" id="L141">      return master;</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">    if (scope == Scope.MASTER) {</span>
+<span class="fc" id="L155">      return master;</span>
     }
-<span class="fc bfc" id="L143" title="All 6 branches covered.">    return scope == Scope.DOMAIN ? sameDomain : master || sameDomain;</span>
+<span class="fc bfc" id="L157" title="All 6 branches covered.">    return scope == Scope.DOMAIN ? sameDomain : master || sameDomain;</span>
   }
 
   /**
    * Cette énumération représente la portée d'un Droit.
    */
-<span class="fc" id="L149">  public enum Scope {</span>
+<span class="fc" id="L163">  public enum Scope {</span>
     /**
      * Le Domaine {@code master} : l'Administrateur de {@code master}.
      */
-<span class="fc" id="L153">    MASTER,</span>
+<span class="fc" id="L167">    MASTER,</span>
     /**
      * Tout Domaine pour l'Administrateur de {@code master}, sinon le Domaine de l'Utilisateur.
      */
-<span class="fc" id="L157">    MASTER_OR_DOMAIN,</span>
+<span class="fc" id="L171">    MASTER_OR_DOMAIN,</span>
     /**
      * Le Domaine de l'Utilisateur : son Administrateur.
      */
-<span class="fc" id="L161">    DOMAIN,</span>
+<span class="fc" id="L175">    DOMAIN,</span>
     /**
      * Une Application du Domaine de l'Utilisateur : le détenteur du Rôle réservé sur elle.
      */
-<span class="fc" id="L165">    APPLICATION</span>
+<span class="fc" id="L179">    APPLICATION</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
