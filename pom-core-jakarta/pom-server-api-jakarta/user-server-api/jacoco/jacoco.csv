@@ -3,7 +3,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleS
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleSolicitationService.RoleSolicitationCancelRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserAssignRolesRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRole,0,200,0,20,0,31,0,13,0,3
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRole,0,209,0,20,0,32,0,13,0,3
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoUserRoleClient,0,203,0,0,0,40,0,20,0,20
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainFilter,0,7,0,0,0,4,0,2,0,2
@@ -100,6 +100,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,Appli
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UsersGroupRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainClient,0,224,0,0,0,46,0,21,0,21
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainService.DomainCreateRequestDto,0,3,0,0,0,1,0,1,0,1
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserSynchronizeNamesRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleFilter,6,71,0,0,0,20,2,12,2,12
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UsersGroupFilter,0,21,0,0,0,9,0,4,0,4
@@ -112,6 +113,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleS
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRoleClient,0,253,0,0,0,55,0,22,0,22
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,RoleService.RoleCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRequestMapperImpl,0,85,0,6,0,26,0,7,0,4
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserSynchronizeNamesResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserGroupFilter,0,39,0,0,0,15,0,4,0,4
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserRole.Scope,0,27,0,0,0,5,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserCreateForSelfServiceRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -131,7 +133,7 @@ API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,SsoUs
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DeviceApplicationService.DeviceApplicationCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserRevokeRolesRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserClient,0,288,0,0,0,51,0,30,0,30
+API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserClient,0,305,0,0,0,53,0,32,0,32
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,DomainRequestMapperImpl,0,47,0,4,0,15,0,5,0,3
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,UserService.UserCreateForFunctionaryRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module d'utilisateur,ci.gouv.dgbf.system.user.server.api,AccountService.AccountGetManyResponseDto,0,3,0,0,0,1,0,1,0,1

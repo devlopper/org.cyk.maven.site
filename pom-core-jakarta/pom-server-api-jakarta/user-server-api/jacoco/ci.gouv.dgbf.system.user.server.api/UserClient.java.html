@@ -257,5 +257,18 @@ import jakarta.ws.rs.core.Response;
 <span class="fc" id="L257">        UserService.REVOKE_ROLES_IDENTIFIER).execute(() -&gt; service().revokeRoles(request));</span>
   }
 
+  /**
+   * {@link UserService#synchronizeNames}.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  public UserService.UserSynchronizeNamesResponseDto synchronizeNames(
+      UserService.UserSynchronizeNamesRequestDto request) {
+<span class="fc" id="L268">    return new GetOneExecutor&lt;UserService.UserSynchronizeNamesResponseDto&gt;(</span>
+        UserService.UserSynchronizeNamesResponseDto.class,
+        UserService.SYNCHRONIZE_NAMES_IDENTIFIER)
+<span class="fc" id="L271">        .execute(() -&gt; service().synchronizeNames(request));</span>
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

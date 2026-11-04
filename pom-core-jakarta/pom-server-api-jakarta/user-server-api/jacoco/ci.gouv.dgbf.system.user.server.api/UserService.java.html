@@ -703,5 +703,89 @@ public interface UserService extends SpecificService {
     public static final String JSON_NOT_FOUND_COUNT = &quot;nombreNonTrouve&quot;;
   }
 
+  /**
+   * Identifiant du service de synchronisation des noms.
+   */
+  String SYNCHRONIZE_NAMES_IDENTIFIER = &quot;SYNCHRONISATION_NOMS_UTILISATEURS&quot;;
+
+  /**
+   * Chemin du service de synchronisation des noms.
+   */
+  String SYNCHRONIZE_NAMES_PATH = &quot;synchronisation-noms&quot;;
+
+  /**
+   * Cette méthode permet de recopier vers Keycloak les noms et prénoms des identités des
+   * utilisateurs d'un domaine. Elle est rejouable : seuls les écarts sont envoyés.
+   *
+   * @param request requête
+   * @return réponse
+   */
+  @Path(SYNCHRONIZE_NAMES_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = SYNCHRONIZE_NAMES_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = UserSynchronizeNamesResponseDto.class))})
+  Response synchronizeNames(UserSynchronizeNamesRequestDto request);
+
+  /**
+   * Cette classe représente la requête de synchronisation des noms.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L739">  class UserSynchronizeNamesRequestDto extends AbstractAuditedRequestJsonDto {</span>
+
+    /**
+     * Identifiant du domaine dont les utilisateurs sont synchronisés.
+     */
+    @JsonbProperty(UserSaveRequestDto.JSON_DOMAIN_IDENTIFIER)
+    private String domainIdentifier;
+  }
+
+  /**
+   * Cette classe représente la réponse de synchronisation des noms.
+   *
+   * @author Christian
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L755">  class UserSynchronizeNamesResponseDto extends IdentifiableResponseDto {</span>
+
+    /**
+     * Nombre de comptes dont les noms ont été mis à jour.
+     */
+    @JsonbProperty(JSON_UPDATED_COUNT)
+    private Integer updatedCount;
+
+    /**
+     * Nombre de comptes déjà à jour, sans noms dans l'identité ou sans compte Keycloak.
+     */
+    @JsonbProperty(JSON_UNCHANGED_COUNT)
+    private Integer unchangedCount;
+
+    /**
+     * Nombre de comptes en erreur.
+     */
+    @JsonbProperty(JSON_ERROR_COUNT)
+    private Integer errorCount;
+
+    /**
+     * Identifiant json {@link #updatedCount}.
+     */
+    public static final String JSON_UPDATED_COUNT = &quot;nombreMisAJour&quot;;
+
+    /**
+     * Identifiant json {@link #unchangedCount}.
+     */
+    public static final String JSON_UNCHANGED_COUNT = &quot;nombreInchange&quot;;
+
+    /**
+     * Identifiant json {@link #errorCount}.
+     */
+    public static final String JSON_ERROR_COUNT = &quot;nombreErreur&quot;;
+  }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
