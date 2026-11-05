@@ -5,6 +5,7 @@ import ci.gouv.dgbf.extension.core.segregation.HasDefaultValueDto;
 import ci.gouv.dgbf.extension.core.segregation.HasValueTypeDto;
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableAuditableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
+import java.util.List;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-<span class="fc" id="L21">public class DictionaryEntryDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
+<span class="fc" id="L22">public class DictionaryEntryDto extends AbstractIdentifiableCodableNamableAuditableDto</span>
     implements HasValueTypeDto, HasDefaultValueDto&lt;String&gt; {
 
   /**
@@ -45,6 +46,72 @@ import lombok.Setter;
   @JsonbProperty(JSON_VALUE_TYPE)
   private ValueType valueType;
 
+  /**
+   * Nombre minimal d'occurrences {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_MIN_OCCURRENCES)
+  private Integer minOccurrences;
+
+  /**
+   * Nombre maximal d'occurrences {@link DictionaryEntryDto}, null si illimité.
+   */
+  @JsonbProperty(JSON_MAX_OCCURRENCES)
+  private Integer maxOccurrences;
+
+  /**
+   * Rang de l'entrée dans son dictionnaire {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_ORDER)
+  private Integer order;
+
+  /**
+   * Longueur minimale (STRING) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_MIN_LENGTH)
+  private Integer minLength;
+
+  /**
+   * Longueur maximale (STRING) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_MAX_LENGTH)
+  private Integer maxLength;
+
+  /**
+   * Borne minimale (INTEGER, FLOAT, INSTANT) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_MIN_VALUE)
+  private String minValue;
+
+  /**
+   * Borne maximale (INTEGER, FLOAT, INSTANT) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_MAX_VALUE)
+  private String maxValue;
+
+  /**
+   * Expression régulière (STRING) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_PATTERN)
+  private String pattern;
+
+  /**
+   * Valeurs autorisées (STRING, INTEGER) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_ALLOWED_VALUES)
+  private List&lt;String&gt; allowedValues;
+
+  /**
+   * Précision (FLOAT) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_PRECISION)
+  private Integer precision;
+
+  /**
+   * Échelle (FLOAT) {@link DictionaryEntryDto}.
+   */
+  @JsonbProperty(JSON_SCALE)
+  private Integer scale;
+
 
   /**
    * Identitiant json {@link DictionaryEntryDto#dictionaryIdentifier}.
@@ -55,6 +122,61 @@ import lombok.Setter;
    * Identitiant json {@link DictionaryEntryDto#dictionaryAsString}.
    */
   public static final String JSON_DICTIONARY_AS_STRING = &quot;dictionnaireChaine&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#minOccurrences}.
+   */
+  public static final String JSON_MIN_OCCURRENCES = &quot;occurrencesMin&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#maxOccurrences}.
+   */
+  public static final String JSON_MAX_OCCURRENCES = &quot;occurrencesMax&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#order}.
+   */
+  public static final String JSON_ORDER = &quot;ordre&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#minLength}.
+   */
+  public static final String JSON_MIN_LENGTH = &quot;longueurMin&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#maxLength}.
+   */
+  public static final String JSON_MAX_LENGTH = &quot;longueurMax&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#minValue}.
+   */
+  public static final String JSON_MIN_VALUE = &quot;valeurMin&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#maxValue}.
+   */
+  public static final String JSON_MAX_VALUE = &quot;valeurMax&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#pattern}.
+   */
+  public static final String JSON_PATTERN = &quot;expressionReguliere&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#allowedValues}.
+   */
+  public static final String JSON_ALLOWED_VALUES = &quot;valeursAutorisees&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#precision}.
+   */
+  public static final String JSON_PRECISION = &quot;precision&quot;;
+
+  /**
+   * Identitiant json {@link DictionaryEntryDto#scale}.
+   */
+  public static final String JSON_SCALE = &quot;echelle&quot;;
 
 
   /**

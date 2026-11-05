@@ -1,6 +1,6 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorService.ValueSelectorEvaluateResponseDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DomainRequestMapperImpl,0,43,0,4,0,14,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DomainRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceFilter,0,21,0,0,0,9,0,4,0,4
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DataEntityFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitService.PartitionUnitCreateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -23,7 +23,7 @@ API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.se
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitFilter,0,33,0,0,0,13,0,4,0,4
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceService.ValueSourceCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceService.ValueSourceGetValuesCountResponseDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchyRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchyRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorService.ValueSelectorEvaluateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitService.PartitionUnitUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionDto,0,3,0,0,0,1,0,1,0,1
@@ -32,10 +32,10 @@ API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.se
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchyService.HierarchyUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceClient,0,221,0,0,0,42,0,22,0,22
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceGroupRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceGroupRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueService.ValueGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitRequestMapperImpl,0,43,0,4,0,14,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorFilter,0,21,0,0,0,9,0,4,0,4
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorFilterAttributeService.ValueSelectorFilterAttributeCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DataEntityType,0,64,0,0,0,12,0,5,0,5
@@ -50,14 +50,14 @@ API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.se
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DictionaryService.DictionaryUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionClient,0,187,0,0,0,38,0,18,0,18
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DomainDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceRequestMapperImpl,0,67,0,4,0,20,0,5,0,3
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DictionaryEntryRequestMapperImpl,0,67,0,4,0,20,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceRequestMapperImpl,0,75,0,4,0,22,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DictionaryEntryRequestMapperImpl,0,177,0,8,0,48,0,7,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DictionaryEntryClient,0,187,0,0,0,38,0,18,0,18
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DomainService.DomainGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueClient,0,122,0,0,0,27,0,11,0,11
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchicalRelationService.HierarchicalRelationUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,IntervalService.IntervalUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorFilterAttributeRequestMapperImpl,0,51,0,4,0,16,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorFilterAttributeRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchyFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,IntervalFilter,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceGroupService.ValueSourceGroupUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -77,7 +77,7 @@ API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.se
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSourceGroupService.ValueSourceGroupGetValuesCountResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionService.PartitionUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchicalRelationService.HierarchicalRelationCreateRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,IntervalRequestMapperImpl,0,67,0,4,0,20,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,IntervalRequestMapperImpl,0,75,0,4,0,22,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorFilterAttributeClient,0,187,0,0,0,38,0,18,0,18
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitService.PartitionUnitUpdateByNameRequestDto,0,3,0,0,0,1,0,1,0,1
@@ -95,7 +95,7 @@ API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.se
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchyService.HierarchyCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DataEntityClient,0,221,0,0,0,42,0,22,0,22
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchyService.HierarchyGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionTypeRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionTypeRequestMapperImpl,0,67,0,4,0,20,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DomainService.DomainCreateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitClient,0,219,0,0,0,42,0,22,0,22
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueFilter,0,27,0,0,0,11,0,4,0,4
@@ -103,9 +103,9 @@ API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.se
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionUnitDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorFilterAttributeService.ValueSelectorFilterAttributeGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,PartitionTypeService.PartitionTypeGetManyResponseDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DataEntityRequestMapperImpl,0,83,0,4,0,24,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DataEntityRequestMapperImpl,0,91,0,4,0,26,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DictionaryEntryService.DictionaryEntryCreateRequestDto,0,3,0,0,0,1,0,1,0,1
-API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DictionaryRequestMapperImpl,0,43,0,4,0,14,0,5,0,3
+API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,DictionaryRequestMapperImpl,0,59,0,4,0,18,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorFilterAttributeService.ValueSelectorFilterAttributeUpdateRequestDto,0,3,0,0,0,1,0,1,0,1
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,HierarchicalRelationRequestMapperImpl,0,67,0,4,0,20,0,5,0,3
 API du serveur du module de datastructures,ci.gouv.dgbf.system.datastructures.server.api,ValueSelectorService.ValueSelectorUpdateRequestDto,0,3,0,0,0,1,0,1,0,1

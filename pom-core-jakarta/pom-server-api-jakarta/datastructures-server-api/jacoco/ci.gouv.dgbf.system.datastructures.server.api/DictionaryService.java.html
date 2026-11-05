@@ -49,7 +49,24 @@ public interface DictionaryService extends SpecificService {
    */
   interface DictionarySaveRequestDto {
 
+    /**
+     * Cette méthode permet d'obtenir l'identifiant du module.
+     *
+     * @return l'identifiant du module
+     */
+    String getModuleIdentifier();
 
+    /**
+     * Cette méthode permet d'assigner l'identifiant du module.
+     *
+     * @param moduleIdentifier l'identifiant du module
+     */
+    void setModuleIdentifier(String moduleIdentifier);
+
+    /**
+     * {@link DictionaryDto#JSON_MODULE_IDENTIFIER}.
+     */
+    String JSON_MODULE_IDENTIFIER = DictionaryDto.JSON_MODULE_IDENTIFIER;
   }
 
   /**
@@ -84,9 +101,11 @@ public interface DictionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L87">  class DictionaryCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L104">  class DictionaryCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements DictionarySaveRequestDto {
 
+    @JsonbProperty(JSON_MODULE_IDENTIFIER)
+    private String moduleIdentifier;
 
   }
 
@@ -122,7 +141,7 @@ public interface DictionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L125">  public static class DictionaryGetManyResponseDto</span>
+<span class="fc" id="L144">  public static class DictionaryGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DictionaryDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -211,9 +230,11 @@ public interface DictionaryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L214">  class DictionaryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L233">  class DictionaryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements DictionarySaveRequestDto {
 
+    @JsonbProperty(JSON_MODULE_IDENTIFIER)
+    private String moduleIdentifier;
 
   }
 

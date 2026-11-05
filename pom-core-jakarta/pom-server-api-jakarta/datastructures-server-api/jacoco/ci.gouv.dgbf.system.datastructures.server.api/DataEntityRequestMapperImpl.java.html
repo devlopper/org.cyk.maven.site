@@ -11,7 +11,7 @@ import javax.annotation.processing.Generated;
 */
 @Generated(
     value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
-    date = &quot;2026-05-29T12:47:54+0000&quot;,
+    date = &quot;2026-11-05T08:22:18+0000&quot;,
     comments = &quot;version: 1.6.0, compiler: javac, environment: Java 17.0.2 (Oracle Corporation)&quot;
 )
 @ApplicationScoped
@@ -25,35 +25,37 @@ import javax.annotation.processing.Generated;
 
 <span class="fc" id="L26">        DataEntityService.DataEntityCreateRequestDto dataEntityCreateRequestDto = new DataEntityService.DataEntityCreateRequestDto();</span>
 
-<span class="fc" id="L28">        dataEntityCreateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L29">        dataEntityCreateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L30">        dataEntityCreateRequestDto.setType( arg0.getType() );</span>
-<span class="fc" id="L31">        dataEntityCreateRequestDto.setAddress( arg0.getAddress() );</span>
-<span class="fc" id="L32">        dataEntityCreateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
-<span class="fc" id="L33">        dataEntityCreateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
-<span class="fc" id="L34">        dataEntityCreateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
+<span class="fc" id="L28">        dataEntityCreateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L29">        dataEntityCreateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L30">        dataEntityCreateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L31">        dataEntityCreateRequestDto.setType( arg0.getType() );</span>
+<span class="fc" id="L32">        dataEntityCreateRequestDto.setAddress( arg0.getAddress() );</span>
+<span class="fc" id="L33">        dataEntityCreateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
+<span class="fc" id="L34">        dataEntityCreateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
+<span class="fc" id="L35">        dataEntityCreateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
 
-<span class="fc" id="L36">        return dataEntityCreateRequestDto;</span>
+<span class="fc" id="L37">        return dataEntityCreateRequestDto;</span>
     }
 
     @Override
     public DataEntityService.DataEntityUpdateRequestDto mapUpdate(DataEntityDto arg0) {
-<span class="fc bfc" id="L41" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
-<span class="fc" id="L42">            return null;</span>
+<span class="fc bfc" id="L42" title="All 2 branches covered.">        if ( arg0 == null ) {</span>
+<span class="fc" id="L43">            return null;</span>
         }
 
-<span class="fc" id="L45">        DataEntityService.DataEntityUpdateRequestDto dataEntityUpdateRequestDto = new DataEntityService.DataEntityUpdateRequestDto();</span>
+<span class="fc" id="L46">        DataEntityService.DataEntityUpdateRequestDto dataEntityUpdateRequestDto = new DataEntityService.DataEntityUpdateRequestDto();</span>
 
-<span class="fc" id="L47">        dataEntityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
-<span class="fc" id="L48">        dataEntityUpdateRequestDto.setCode( arg0.getCode() );</span>
-<span class="fc" id="L49">        dataEntityUpdateRequestDto.setName( arg0.getName() );</span>
-<span class="fc" id="L50">        dataEntityUpdateRequestDto.setType( arg0.getType() );</span>
-<span class="fc" id="L51">        dataEntityUpdateRequestDto.setAddress( arg0.getAddress() );</span>
-<span class="fc" id="L52">        dataEntityUpdateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
-<span class="fc" id="L53">        dataEntityUpdateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
-<span class="fc" id="L54">        dataEntityUpdateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
+<span class="fc" id="L48">        dataEntityUpdateRequestDto.setAuditWho( arg0.getAuditWho() );</span>
+<span class="fc" id="L49">        dataEntityUpdateRequestDto.setIdentifier( arg0.getIdentifier() );</span>
+<span class="fc" id="L50">        dataEntityUpdateRequestDto.setCode( arg0.getCode() );</span>
+<span class="fc" id="L51">        dataEntityUpdateRequestDto.setName( arg0.getName() );</span>
+<span class="fc" id="L52">        dataEntityUpdateRequestDto.setType( arg0.getType() );</span>
+<span class="fc" id="L53">        dataEntityUpdateRequestDto.setAddress( arg0.getAddress() );</span>
+<span class="fc" id="L54">        dataEntityUpdateRequestDto.setCreationScript( arg0.getCreationScript() );</span>
+<span class="fc" id="L55">        dataEntityUpdateRequestDto.setDeletionScript( arg0.getDeletionScript() );</span>
+<span class="fc" id="L56">        dataEntityUpdateRequestDto.setExistenceVerificationScript( arg0.getExistenceVerificationScript() );</span>
 
-<span class="fc" id="L56">        return dataEntityUpdateRequestDto;</span>
+<span class="fc" id="L58">        return dataEntityUpdateRequestDto;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

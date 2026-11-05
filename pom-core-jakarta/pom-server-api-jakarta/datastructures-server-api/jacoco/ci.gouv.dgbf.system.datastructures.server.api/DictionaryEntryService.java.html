@@ -147,6 +147,39 @@ public interface DictionaryEntryService extends SpecificService {
 
     @JsonbProperty(JSON_DEFAULT_VALUE)
     private String defaultValue;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MIN_OCCURRENCES)
+    private Integer minOccurrences;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MAX_OCCURRENCES)
+    private Integer maxOccurrences;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_ORDER)
+    private Integer order;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MIN_LENGTH)
+    private Integer minLength;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MAX_LENGTH)
+    private Integer maxLength;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MIN_VALUE)
+    private String minValue;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MAX_VALUE)
+    private String maxValue;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_PATTERN)
+    private String pattern;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_ALLOWED_VALUES)
+    private List&lt;String&gt; allowedValues;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_PRECISION)
+    private Integer precision;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_SCALE)
+    private Integer scale;
   }
 
   /**
@@ -183,7 +216,7 @@ public interface DictionaryEntryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L186">  public static class DictionaryEntryGetManyResponseDto</span>
+<span class="fc" id="L219">  public static class DictionaryEntryGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;DictionaryEntryDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -273,7 +306,7 @@ public interface DictionaryEntryService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L276">  class DictionaryEntryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L309">  class DictionaryEntryUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements SaveRequestDto {
 
     @JsonbProperty(JSON_DICTIONARY_IDENTIFIER)
@@ -284,6 +317,39 @@ public interface DictionaryEntryService extends SpecificService {
 
     @JsonbProperty(JSON_DEFAULT_VALUE)
     private String defaultValue;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MIN_OCCURRENCES)
+    private Integer minOccurrences;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MAX_OCCURRENCES)
+    private Integer maxOccurrences;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_ORDER)
+    private Integer order;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MIN_LENGTH)
+    private Integer minLength;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MAX_LENGTH)
+    private Integer maxLength;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MIN_VALUE)
+    private String minValue;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_MAX_VALUE)
+    private String maxValue;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_PATTERN)
+    private String pattern;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_ALLOWED_VALUES)
+    private List&lt;String&gt; allowedValues;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_PRECISION)
+    private Integer precision;
+
+    @JsonbProperty(DictionaryEntryDto.JSON_SCALE)
+    private Integer scale;
   }
 
   /**
