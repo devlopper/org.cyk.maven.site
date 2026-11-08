@@ -63,10 +63,29 @@ public interface MovementTypeService extends SpecificService {
     void setAdministrativeUnitEmployeeStatusCode(String administrativeUnitEmployeeStatusCode);
 
     /**
+     * Cette méthode permet d'obtenir le droit qui instruit ce type de mouvement.
+     *
+     * @return code du droit de traitement
+     */
+    String getProcessingRole();
+
+    /**
+     * Cette méthode permet d'assigner le droit qui instruit ce type de mouvement.
+     *
+     * @param processingRole code du droit de traitement
+     */
+    void setProcessingRole(String processingRole);
+
+    /**
      * {@link MovementTypeDto#JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS}.
      */
     String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS =
         MovementTypeDto.JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS;
+
+    /**
+     * {@link MovementTypeDto#JSON_PROCESSING_ROLE}.
+     */
+    String JSON_PROCESSING_ROLE = MovementTypeDto.JSON_PROCESSING_ROLE;
   }
 
   /**
@@ -103,11 +122,14 @@ public interface MovementTypeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L106">  class MovementTypeCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
+<span class="fc" id="L125">  class MovementTypeCreateRequestDto extends AbstractCodableNamableCreateRequestJsonDto</span>
       implements MovementTypeSaveRequestDto {
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS)
-    String administrativeUnitEmployeeStatusCode;
+    private String administrativeUnitEmployeeStatusCode;
+
+    @JsonbProperty(JSON_PROCESSING_ROLE)
+    private String processingRole;
   }
 
   /**
@@ -143,7 +165,7 @@ public interface MovementTypeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L146">  public static class MovementTypeGetManyResponseDto</span>
+<span class="fc" id="L168">  public static class MovementTypeGetManyResponseDto</span>
       extends AbstractGetByPageResponseDto&lt;MovementTypeDto&gt; {
 
     @JsonbProperty(JSON_DATAS)
@@ -233,11 +255,14 @@ public interface MovementTypeService extends SpecificService {
    */
   @Getter
   @Setter
-<span class="fc" id="L236">  class MovementTypeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
+<span class="fc" id="L258">  class MovementTypeUpdateRequestDto extends AbstractCodableNamableUpdateRequestJsonDto</span>
       implements MovementTypeSaveRequestDto {
 
     @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS)
-    String administrativeUnitEmployeeStatusCode;
+    private String administrativeUnitEmployeeStatusCode;
+
+    @JsonbProperty(JSON_PROCESSING_ROLE)
+    private String processingRole;
   }
 
   /**

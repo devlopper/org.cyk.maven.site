@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UserProfile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">UserProfile.java</span></div><h1>UserProfile.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.core.segregation.CodableByStringWithGetterOnly;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import lombok.Getter;
+
+/**
+ * Les profils de l'arbitrage, et les droits que chacun porte.
+ *
+ * &lt;p&gt;C'est la matrice rôles × fonctionnalités, tirée des deux diagrammes de cas d'utilisation.
+ * Elle vit ici plutôt que dans Keycloak pour une raison simple : écrite en composites Keycloak,
+ * elle serait invisible à la relecture et personne ne saurait dire, devant un écran, pourquoi
+ * tel agent y accède. Écrite ici, elle se lit, elle se teste, et elle se corrige en un endroit.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;Keycloak n'accorde que huit profils, pas vingt et un droits.&lt;/strong&gt; C'est ce qui
+ * rend l'administration tenable : on donne à un agent « chargé des mouvements », pas la liste de ce
+ * qu'un chargé des mouvements a le droit de faire. Le droit accordé directement reste accepté —
+ * {@link UserProfile} n'interdit rien, il dispense de tout énumérer.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;La spécialisation du diagramme est reproduite telle quelle.&lt;/strong&gt; Les trois
+ * chargés et le chef d'équipe sont des membres de l'équipe DCB, et consultent à ce titre le
+ * tableau de bord budgétaire. Le chargé de contrôle, lui, n'en est pas : le diagramme ne lui
+ * donne aucun cas de consultation, et rien n'a été ajouté de notre initiative.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;Un écart assumé au diagramme, décidé le 06/10/2026 :&lt;/strong&gt; le chef d'équipe
+ * cumule désormais la réception, le contrôle, le traitement et la validation. Les diagrammes
+ * les répartissaient sur trois acteurs. Le métier l'a demandé, et la raison est pratique : le
+ * chef menait un dossier jusqu'à la réception puis se trouvait sans geste, à attendre qu'un
+ * chargé prenne la main. Le contrôle à quatre yeux n'est donc plus garanti par l'application
+ * pour ce profil ; il repose sur l'organisation du service.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L39">@Getter</span>
+public enum UserProfile implements CodableByStringWithGetterOnly {
+
+  /**
+   * Chargé de contrôle. Réceptionne les projets et vérifie les pièces jointes.
+   *
+   * &lt;p&gt;Il garde {@link UserRole#DECLARE_DOSSIER_ADMISSIBLE} alors que l'admission n'est
+   * plus une étape du circuit : ce qui a disparu, c'est la transition que ce droit
+   * déclenchait, non le droit lui-même. Il désigne toujours le chargé de contrôle, et
+   * commande l'ouverture du menu de réception, l'écran de contrôle et la vérification des
+   * pièces jointes.&lt;/p&gt;
+   */
+<span class="fc" id="L51">  CONTROL_OFFICER(&quot;CHARGE_DE_CONTROLE&quot;,</span>
+      UserRole.RECEIVE_DOSSIER, UserRole.DECLARE_DOSSIER_ADMISSIBLE),
+
+  /**
+   * Chargé des mouvements à venir : primes, retraites, glissements, indemnités, avancements.
+   */
+<span class="fc" id="L57">  MOVEMENT_OFFICER(&quot;CHARGE_MOUVEMENTS&quot;,</span>
+      UserRole.PROCESS_FORTHCOMING_MOVEMENT, UserRole.CONSULT_BUDGET_DASHBOARD),
+
+  /**
+   * Chargé des régularisations : rappels et régularisations.
+   *
+   * &lt;p&gt;&lt;strong&gt;Son code Keycloak dit encore les mesures ponctuelles&lt;/strong&gt;, et c'est voulu : le
+   * 12/10/2026 a redessiné les &lt;em&gt;droits&lt;/em&gt;, pas les groupes. Renommer le groupe obligerait à
+   * réaffecter tous les comptes qui le portent, ce qui est une décision d'administration et non
+   * de code. Le droit qu'il ouvre, lui, est bien celui des régularisations.&lt;/p&gt;
+   */
+<span class="fc" id="L68">  PUNCTUAL_MEASURE_OFFICER(&quot;CHARGE_MESURES_PONCTUELLES&quot;,</span>
+      UserRole.PROCESS_REGULARIZATION, UserRole.CONSULT_BUDGET_DASHBOARD),
+
+  /**
+   * Chargé des transferts de solde.
+   */
+<span class="fc" id="L74">  BALANCE_TRANSFER_OFFICER(&quot;CHARGE_TRANSFERTS_SOLDE&quot;,</span>
+      UserRole.PROCESS_BALANCE_TRANSFER, UserRole.CONSULT_BUDGET_DASHBOARD),
+
+  /**
+   * Chef d'équipe. Mène un dossier d'un bout à l'autre, et valide le travail des trois chargés.
+   *
+   * &lt;p&gt;Le 06/10/2026, le métier lui a donné la réception, le contrôle d'admissibilité et le
+   * traitement des trois familles, qu'il n'avait pas. Il pouvait faire changer un dossier
+   * d'étape mais ne pouvait rien faire &lt;em&gt;dans&lt;/em&gt; le dossier : il le réceptionnait, puis
+   * restait devant un écran sans aucun geste, à attendre qu'un chargé prenne la main.&lt;/p&gt;
+   *
+   * &lt;p&gt;&lt;strong&gt;Cela lève le contrôle à quatre yeux, et il faut le dire.&lt;/strong&gt; Jusqu'ici
+   * instruire et homologuer étaient deux gestes confiés à deux personnes : un chargé
+   * instruisait sa famille, le chef validait. Le chef peut désormais instruire puis valider
+   * son propre travail. La séparation n'est pas supprimée — les trois chargés restent
+   * cantonnés à leur famille, et eux ne valident rien — mais elle n'est plus garantie par
+   * l'application : elle repose sur l'organisation du service.&lt;/p&gt;
+   */
+<span class="fc" id="L92">  TEAM_LEADER(&quot;CHEF_EQUIPE&quot;,</span>
+      UserRole.RECEIVE_DOSSIER, UserRole.DECLARE_DOSSIER_ADMISSIBLE,
+      UserRole.PROCESS_FORTHCOMING_MOVEMENT, UserRole.PROCESS_REGULARIZATION,
+      UserRole.PROCESS_BALANCE_TRANSFER, UserRole.MANAGE_ARBITRATION_TEAM,
+      UserRole.VALIDATE_MAINTAINED_DATA, UserRole.VALIDATE_PROJECTED_MOVEMENTS,
+      UserRole.VALIDATE_PUNCTUAL_MEASURES, UserRole.VALIDATE_BALANCE_TRANSFERS,
+      UserRole.TRANSMIT_TO_ARBITRATION_MANAGER, UserRole.TAKE_OBSERVATION_INTO_ACCOUNT,
+      UserRole.CONSULT_PROCESSING_RESULTS, UserRole.CONSULT_BUDGET_DASHBOARD),
+
+  /**
+   * Responsable d'arbitrage de sous-direction. Consulte les travaux, et édite les trois états.
+   *
+   * &lt;p&gt;Il pré-validait le projet au diagramme de cas d'utilisation ; les écrans ne portent plus
+   * ce geste, et le droit a été retiré plutôt que laissé à ouvrir une entrée de menu qu'aucun
+   * bouton n'honore.&lt;/p&gt;
+   */
+<span class="fc" id="L108">  SD_ARBITRATION_MANAGER(&quot;RESPONSABLE_ARBITRAGE_SD&quot;,</span>
+      UserRole.CONSULT_PROCESSING_RESULTS, UserRole.CONSULT_BUDGET_DASHBOARD,
+      UserRole.EDIT_CONSOLIDATED_DOSSIER, UserRole.EDIT_PROCESSING_RESULTS,
+      UserRole.EDIT_PAYROLL_PROJECT),
+
+  /**
+   * Responsable d'arbitrage de la DCB. Valide définitivement le projet.
+   */
+<span class="fc" id="L116">  DCB_ARBITRATION_MANAGER(&quot;RESPONSABLE_ARBITRAGE_DCB&quot;,</span>
+      UserRole.VALIDATE_PAYROLL_PROJECT, UserRole.EDIT_PAYROLL_PROJECT,
+      UserRole.MANAGE_ARBITRATION_TEAM),
+
+  /**
+   * Agent de l'établissement. Consulte son dossier et le retransmet après correction.
+   *
+   * &lt;p&gt;Ce profil ne figure pas aux diagrammes, qui décrivent le travail de la DCB. Il est déduit
+   * des écrans que le module sert déjà à l'EPN, et reste à confirmer avec le métier.&lt;/p&gt;
+   */
+<span class="fc" id="L126">  NATIONAL_PUBLIC_INSTITUTION_AGENT(&quot;AGENT_EPN&quot;,</span>
+      UserRole.CONSULT_OWN_DOSSIER, UserRole.CORRECT_AND_RETRANSMIT);
+
+<span class="fc" id="L129">  private UserProfile(String code, UserRole... roles) {</span>
+<span class="fc" id="L130">    this.code = code;</span>
+<span class="fc" id="L131">    this.roles = Set.copyOf(Arrays.asList(roles));</span>
+<span class="fc" id="L132">  }</span>
+
+  /**
+   * Code.
+   */
+  private String code;
+
+  /**
+   * Droits que ce profil porte.
+   */
+  private Set&lt;UserRole&gt; roles;
+
+  /**
+   * Les profils qui portent un droit donné.
+   *
+   * @param role droit recherché
+   * @return les profils qui le portent, éventuellement aucun
+   */
+  public static Set&lt;UserProfile&gt; ofRole(UserRole role) {
+<span class="fc" id="L151">    Set&lt;UserProfile&gt; profiles = new LinkedHashSet&lt;&gt;();</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">    for (UserProfile profile : values()) {</span>
+<span class="fc bfc" id="L153" title="All 2 branches covered.">      if (profile.getRoles().contains(role)) {</span>
+<span class="fc" id="L154">        profiles.add(profile);</span>
+      }
+    }
+<span class="fc" id="L157">    return profiles;</span>
+  }
+
+  /**
+   * Tout ce qu'il suffit de détenir pour exercer un droit.
+   *
+   * &lt;p&gt;Le droit lui-même, s'il a été accordé directement ; l'un des profils qui le portent ; ou
+   * le super administrateur, qui passe partout. La liste est faite pour être donnée telle quelle
+   * à la vérification de rôles du socle, qui reconnaît tout objet portant un code.&lt;/p&gt;
+   *
+   * &lt;p&gt;Le type est {@code Enum&lt;?&gt;} et non {@code Object} : le mélange de {@link UserRole} et de
+   * {@link UserProfile} est voulu, mais il n'y a aucune raison d'y admettre autre chose. Le
+   * socle attend un {@code Object[]}, auquel un {@code Enum&lt;?&gt;[]} se donne tel quel.&lt;/p&gt;
+   *
+   * @param role droit à exercer
+   * @return les rôles et profils qui l'ouvrent
+   */
+  public static Collection&lt;Enum&lt;?&gt;&gt; grantorsOf(UserRole role) {
+<span class="fc" id="L175">    Collection&lt;Enum&lt;?&gt;&gt; grantors = new LinkedHashSet&lt;&gt;();</span>
+<span class="fc" id="L176">    grantors.add(UserRole.SUPER_ADMINISTRATOR);</span>
+<span class="fc" id="L177">    grantors.add(role);</span>
+<span class="fc" id="L178">    grantors.addAll(ofRole(role));</span>
+<span class="fc" id="L179">    return grantors;</span>
+  }
+
+  /**
+   * Tout ce qu'il suffit de détenir pour exercer au moins un droit parmi plusieurs.
+   *
+   * @param roles droits examinés
+   * @return les rôles et profils qui en ouvrent au moins un
+   */
+  public static Enum&lt;?&gt;[] grantorsOfAny(UserRole... roles) {
+<span class="fc" id="L189">    Collection&lt;Enum&lt;?&gt;&gt; grantors = new LinkedHashSet&lt;&gt;();</span>
+<span class="fc bfc" id="L190" title="All 2 branches covered.">    for (UserRole role : List.of(roles)) {</span>
+<span class="fc" id="L191">      grantors.addAll(grantorsOf(role));</span>
+<span class="fc" id="L192">    }</span>
+<span class="fc" id="L193">    return grantors.toArray(new Enum&lt;?&gt;[0]);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

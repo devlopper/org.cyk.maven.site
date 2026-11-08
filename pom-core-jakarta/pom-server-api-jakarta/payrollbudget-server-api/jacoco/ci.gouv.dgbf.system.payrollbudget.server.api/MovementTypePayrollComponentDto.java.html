@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementTypePayrollComponentDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">MovementTypePayrollComponentDto.java</span></div><h1>MovementTypePayrollComponentDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Le poste de paie qu'un type de mouvement impacte.
+ *
+ * &lt;p&gt;C'est le maillon qui manquait. Le référentiel de la paie sait déjà quelle nature économique
+ * porte chaque poste ; il ne sait pas quels postes un &lt;em&gt;glissement catégoriel&lt;/em&gt; fait bouger,
+ * ni lesquels une &lt;em&gt;prime de recherche&lt;/em&gt; touche. Cette information n'existait nulle part —
+ * elle vivait dans le tableau des entrées et sorties, refaite à la main chaque exercice.&lt;/p&gt;
+ *
+ * &lt;p&gt;Le paramétrage se fait au poste, et non à la nature économique, bien que le tableau des
+ * entrées et sorties se lise par nature : le poste est le grain fin, la nature s'en déduit. Faire
+ * l'inverse — paramétrer la nature et deviner les postes — reviendrait à décider pour mille
+ * quatre cent quarante-deux postes à la fois.&lt;/p&gt;
+ *
+ * &lt;p&gt;Rien de plus que les deux extrémités du lien : une association qui porterait des attributs
+ * propres cesserait d'être une association et deviendrait un objet, qu'il faudrait alors savoir
+ * modifier, dater, justifier.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L32">public class MovementTypePayrollComponentDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Type de mouvement paramétré.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
+  private String movementTypeIdentifier;
+
+  /**
+   * Libellé du type de mouvement.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TYPE_AS_STRING)
+  private String movementTypeAsString;
+
+  /**
+   * Poste de paie impacté.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+  private String payrollComponentIdentifier;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idPostePaieTypeMouvement&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;postePaieTypeMouvementChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;poste de paie d'un type de mouvement&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;postes de paie des types de mouvement&quot;;
+
+  /**
+   * Identifiant json pour {@link #movementTypeIdentifier}.
+   */
+  public static final String JSON_MOVEMENT_TYPE_IDENTIFIER = MovementTypeDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #movementTypeAsString}.
+   */
+  public static final String JSON_MOVEMENT_TYPE_AS_STRING = MovementTypeDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json pour {@link #payrollComponentIdentifier}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+      PayrollComponentDto.JSON_THIS_IDENTIFIER;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

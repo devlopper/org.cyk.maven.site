@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationTeamMemberRole.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationTeamMemberRole.java</span></div><h1>ArbitrationTeamMemberRole.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import java.util.Arrays;
+import java.util.List;
+import lombok.Getter;
+
+/**
+ * Les titres sous lesquels un agent peut figurer dans une équipe d'arbitrage.
+ *
+ * &lt;p&gt;&lt;strong&gt;Ce n'est pas une liste de droits.&lt;/strong&gt; Le titre rend la composition lisible —
+ * qui tient les mouvements, qui tient les transferts — mais ce que l'agent peut réellement
+ * instruire se lit dans son jeton, et nulle part ailleurs.&lt;/p&gt;
+ *
+ * &lt;p&gt;Les cinq valeurs sont celles que la contrainte {@code CK_EQUIPE_MBR_ROLE} autorise en
+ * base, reprises telles quelles. &lt;strong&gt;Quatre d'entre elles ne coïncident pas avec le code
+ * du profil Keycloak de même nom&lt;/strong&gt;, seul {@code CHEF_EQUIPE} s'écrit pareil :&lt;/p&gt;
+ *
+ * &lt;ul&gt;
+ *   &lt;li&gt;{@code CHARGE_CONTROLE} en base, {@code CHARGE_DE_CONTROLE} au profil ;&lt;/li&gt;
+ *   &lt;li&gt;{@code CHARGE_MOUVEMENT} en base, {@code CHARGE_MOUVEMENTS} au profil ;&lt;/li&gt;
+ *   &lt;li&gt;{@code CHARGE_MESURE_PONCTUELLE} en base, {@code CHARGE_MESURES_PONCTUELLES} au
+ *       profil ;&lt;/li&gt;
+ *   &lt;li&gt;{@code CHARGE_TRANSFERT_SOLDE} en base, {@code CHARGE_TRANSFERTS_SOLDE} au profil.&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ * &lt;p&gt;Le singulier d'un côté, le pluriel de l'autre : l'écart est antérieur à ce
+ * développement, et l'aligner demanderait une migration de contrainte, qui relève du
+ * métier. En attendant, ne jamais prendre l'un pour l'autre — un code de profil posé comme
+ * rôle d'équipe part jusqu'à la base et en revient en {@code ORA-02290}.&lt;/p&gt;
+ *
+ * &lt;p&gt;Sans cette énumération, un titre hors liste partait jusqu'à la base et en revenait en
+ * {@code ORA-02290} — un numéro d'erreur Oracle, là où l'agent attend une phrase.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L37">@Getter</span>
+public enum ArbitrationTeamMemberRole {
+
+  /**
+   * Chargé de contrôle : réceptionne et joint les pièces.
+   */
+<span class="fc" id="L43">  CONTROL_OFFICER(&quot;CHARGE_CONTROLE&quot;, &quot;Chargé de contrôle&quot;),</span>
+
+  /**
+   * Chargé des mouvements projetés.
+   */
+<span class="fc" id="L48">  MOVEMENT_OFFICER(&quot;CHARGE_MOUVEMENT&quot;, &quot;Chargé des mouvements&quot;),</span>
+
+  /**
+   * Chargé des mesures ponctuelles.
+   */
+<span class="fc" id="L53">  PUNCTUAL_MEASURE_OFFICER(&quot;CHARGE_MESURE_PONCTUELLE&quot;, &quot;Chargé des mesures ponctuelles&quot;),</span>
+
+  /**
+   * Chargé des transferts de solde.
+   */
+<span class="fc" id="L58">  BALANCE_TRANSFER_OFFICER(&quot;CHARGE_TRANSFERT_SOLDE&quot;, &quot;Chargé des transferts de solde&quot;),</span>
+
+  /**
+   * Chef d'équipe.
+   */
+<span class="fc" id="L63">  TEAM_LEADER(&quot;CHEF_EQUIPE&quot;, &quot;Chef d'équipe&quot;);</span>
+
+  private final String code;
+
+  private final String name;
+
+<span class="fc" id="L69">  ArbitrationTeamMemberRole(String code, String name) {</span>
+<span class="fc" id="L70">    this.code = code;</span>
+<span class="fc" id="L71">    this.name = name;</span>
+<span class="fc" id="L72">  }</span>
+
+  /**
+   * Retrouve un titre par son code.
+   *
+   * @param code code recherché
+   * @return le titre correspondant
+   * @throws IllegalArgumentException si le code n'est d'aucun titre
+   */
+  public static ArbitrationTeamMemberRole getByCode(String code) {
+<span class="fc" id="L82">    return Arrays.stream(values()).filter(role -&gt; role.code.equals(code)).findFirst()</span>
+<span class="fc" id="L83">        .orElseThrow(() -&gt; new IllegalArgumentException(</span>
+<span class="fc" id="L84">            &quot;Le role « %s » n'est pas un titre d'equipe connu.&quot;.formatted(code)));</span>
+  }
+
+  /**
+   * Indique si un code désigne un titre connu.
+   *
+   * @param code code examiné
+   * @return vrai si la base l'accepterait
+   */
+  public static boolean isKnown(String code) {
+<span class="fc" id="L94">    return Arrays.stream(values()).anyMatch(role -&gt; role.code.equals(code));</span>
+  }
+
+  /**
+   * Les cinq titres, dans l'ordre du circuit.
+   *
+   * @return les titres
+   */
+  public static List&lt;ArbitrationTeamMemberRole&gt; getAll() {
+<span class="fc" id="L103">    return Arrays.asList(values());</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="fc" id="L108">    return name;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

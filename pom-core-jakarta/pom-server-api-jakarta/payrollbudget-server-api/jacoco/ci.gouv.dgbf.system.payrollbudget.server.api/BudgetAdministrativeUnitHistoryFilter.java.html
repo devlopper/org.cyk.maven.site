@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetAdministrativeUnitHistoryFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetAdministrativeUnitHistoryFilter.java</span></div><h1>BudgetAdministrativeUnitHistoryFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueGetter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueSetter;
+import ci.gouv.dgbf.extension.server.service.api.request.FieldDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Critères de recherche de l'historique des états d'un dossier.
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class BudgetAdministrativeUnitHistoryFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Dossier dont on veut l'historique.
+   */
+  String dossierIdentifier;
+
+  /**
+   * Code {@link BudgetAdministrativeUnitStatus} atteint.
+   */
+  String statusCode;
+
+  public BudgetAdministrativeUnitHistoryFilter() {
+<span class="fc" id="L32">    super();</span>
+<span class="fc" id="L33">  }</span>
+
+  public BudgetAdministrativeUnitHistoryFilter(FilterDto dto) {
+<span class="fc" id="L36">    super(dto);</span>
+<span class="fc" id="L37">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L41">    super.doInitialize(filter);</span>
+<span class="fc" id="L42">    setDossierIdentifier(read(filter,</span>
+        BudgetAdministrativeUnitHistoryDto.JSON_DOSSIER_IDENTIFIER));
+<span class="fc" id="L44">    setStatusCode(read(filter, BudgetAdministrativeUnitHistoryDto.JSON_STATUS_CODE));</span>
+<span class="fc" id="L45">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L49">    super.toDto(filter);</span>
+<span class="fc" id="L50">    write(filter,</span>
+        BudgetAdministrativeUnitHistoryDto.JSON_DOSSIER_IDENTIFIER,
+<span class="fc" id="L52">        getDossierIdentifier());</span>
+<span class="fc" id="L53">    write(filter, BudgetAdministrativeUnitHistoryDto.JSON_STATUS_CODE, getStatusCode());</span>
+<span class="fc" id="L54">  }</span>
+
+  /**
+   * Lit un critère textuel du filtre.
+   *
+   * &lt;p&gt;Publique car la couche de persistance en a besoin pour ses prédicats, sous la forme
+   * {@code dto -&gt; BudgetAdministrativeUnitHistoryFilter.read(dto, clé)}.&lt;/p&gt;
+   *
+   * @param filter filtre à lire
+   * @param key clé du critère
+   * @return la valeur, ou {@code null}
+   */
+  public static String read(FilterDto filter, String key) {
+<span class="fc" id="L67">    return FilterValueGetter.get(filter, dto -&gt; dto.getFieldValueAsStringByName(key));</span>
+  }
+
+  /**
+   * Écrit un critère textuel dans le filtre.
+   *
+   * @param filter filtre à compléter
+   * @param key clé du critère
+   * @param value valeur à poser
+   */
+  private static void write(FilterDto filter, String key, String value) {
+<span class="fc" id="L78">    FilterValueSetter.set(filter, key, FieldDto::getValueAsString,</span>
+<span class="fc" id="L79">        field -&gt; field.setValueAsString(value));</span>
+<span class="fc" id="L80">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

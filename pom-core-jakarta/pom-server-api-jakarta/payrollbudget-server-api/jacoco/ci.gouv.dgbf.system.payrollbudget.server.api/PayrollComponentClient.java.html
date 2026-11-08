@@ -5,123 +5,78 @@ import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
-import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
 import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
 import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
 import ci.gouv.dgbf.system.payrollbudget.server.api.PayrollComponentService.PayrollComponentGetManyResponseDto;
 import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
- * Cette classe représente le client de {@link PayrollComponentService}.
+ * Consommateur du référentiel des postes de paie.
  *
  * @author Christian
  *
  */
 @ApplicationScoped
-@Deprecated(forRemoval = true)
-<span class="fc" id="L24">public class PayrollComponentClient extends AbstractClient&lt;PayrollComponentService&gt; implements</span>
-    GetByIdentifier&lt;PayrollComponentDto&gt;, GetMany&lt;PayrollComponentGetManyResponseDto&gt; {
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L26">public class PayrollComponentClient extends AbstractClient&lt;PayrollComponentService&gt;</span>
+    implements GetMany&lt;PayrollComponentGetManyResponseDto&gt;,
+    GetByIdentifier&lt;PayrollComponentDto&gt; {
 
   @Override
   public PayrollComponentClient service(PayrollComponentService service) {
-<span class="fc" id="L29">    return (PayrollComponentClient) super.service(service);</span>
+<span class="fc" id="L32">    return (PayrollComponentClient) super.service(service);</span>
   }
 
   /**
-   * {@link PayrollComponentService#getMany}.
+   * Recherche multicritère des postes de paie.
    *
-   * @param request requête
-   * @return réponse
+   * @param request critères, projection et pagination
+   * @return les postes correspondants
    */
   public PayrollComponentGetManyResponseDto getMany(GetManyRequestDto request) {
-<span class="fc" id="L39">    return new GetOneExecutor&lt;PayrollComponentGetManyResponseDto&gt;(</span>
+<span class="fc" id="L42">    return new GetOneExecutor&lt;PayrollComponentGetManyResponseDto&gt;(</span>
         PayrollComponentGetManyResponseDto.class, PayrollComponentService.GET_MANY_IDENTIFIER)
-<span class="fc" id="L41">            .execute(() -&gt; service().getMany(request));</span>
+<span class="fc" id="L44">            .execute(() -&gt; service().getMany(request));</span>
   }
 
-  /**
-   * {@link PayrollComponentService#getMany}.
-   *
-   * @param projection projection
-   * @param filter filtre
-   * @param page page
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
+  @Override
   public PayrollComponentGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
       PageDto page, String auditWho, String auditSession) {
-<span class="fc" id="L56">    GetManyRequestDto request = new GetManyRequestDto();</span>
-<span class="fc" id="L57">    request.setProjection(projection);</span>
-<span class="fc" id="L58">    request.setFilter(filter);</span>
-<span class="fc" id="L59">    request.setPage(page);</span>
-<span class="fc" id="L60">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L61">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L62">    return getMany(request);</span>
+<span class="fc" id="L50">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L51">    request.setProjection(projection);</span>
+<span class="fc" id="L52">    request.setFilter(filter);</span>
+<span class="fc" id="L53">    request.setPage(page);</span>
+<span class="fc" id="L54">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L55">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L56">    return getMany(request);</span>
   }
 
   /**
-   * {@link PayrollComponentService#getOne}.
+   * Lecture d'un poste par son identifiant.
    *
-   * @param request requête
-   * @return réponse
-   */
-  public PayrollComponentDto getOne(GetOneRequestDto request) {
-<span class="fc" id="L72">    return new GetOneExecutor&lt;PayrollComponentDto&gt;(PayrollComponentDto.class,</span>
-<span class="fc" id="L73">        PayrollComponentService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
-  }
-
-  /**
-   * {@link PayrollComponentService#getOne}.
-   *
-   * @param projection projection
-   * @param filter filtre
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
-  public PayrollComponentDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
-      String auditSession) {
-<span class="fc" id="L87">    GetOneRequestDto request = new GetOneRequestDto();</span>
-<span class="fc" id="L88">    request.setProjection(projection);</span>
-<span class="fc" id="L89">    request.setFilter(filter);</span>
-<span class="fc" id="L90">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L91">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L92">    return getOne(request);</span>
-  }
-
-  /**
-   * {@link PayrollComponentService#getByIdentifier}.
-   *
-   * @param request requête
-   * @return groupe d'échéance
+   * @param request identifiant et projection
+   * @return le poste correspondant
    */
   public PayrollComponentDto getByIdentifier(GetByIdentifierRequestDto request) {
-<span class="fc" id="L102">    return new GetOneExecutor&lt;PayrollComponentDto&gt;(PayrollComponentDto.class,</span>
+<span class="fc" id="L66">    return new GetOneExecutor&lt;PayrollComponentDto&gt;(PayrollComponentDto.class,</span>
         PayrollComponentService.GET_BY_IDENTIFIER_IDENTIFIER)
-<span class="fc" id="L104">            .execute(() -&gt; service().getByIdentifier(request));</span>
+<span class="fc" id="L68">            .execute(() -&gt; service().getByIdentifier(request));</span>
   }
 
-  /**
-   * {@link PayrollComponentService#getByIdentifier}.
-   *
-   * @param identifier identifiant
-   * @param projection projection
-   * @param auditWho audit acteur
-   * @param auditSession audit session
-   * @return réponse
-   */
   @Override
   public PayrollComponentDto getByIdentifier(String identifier, ProjectionDto projection,
       String auditWho, String auditSession) {
-<span class="fc" id="L119">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
-<span class="fc" id="L120">    request.setIdentifier(identifier);</span>
-<span class="fc" id="L121">    request.setProjection(projection);</span>
-<span class="fc" id="L122">    request.setAuditWho(auditWho);</span>
-<span class="fc" id="L123">    request.setAuditSession(auditSession);</span>
-<span class="fc" id="L124">    return getByIdentifier(request);</span>
+<span class="fc" id="L74">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L75">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L76">    request.setProjection(projection);</span>
+<span class="fc" id="L77">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L78">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L79">    return getByIdentifier(request);</span>
   }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementImpactDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">MovementImpactDto.java</span></div><h1>MovementImpactDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Ce qu'un mouvement de carrière coûte, poste de paie par poste de paie.
+ *
+ * &lt;p&gt;C'est le grain que les classeurs de l'EPN tiennent pour chaque agent : un montant avant, un
+ * montant après, et l'écart qui les sépare. Puis cet écart se partage en deux, et ce partage est
+ * tout le sujet : le &lt;strong&gt;rappel&lt;/strong&gt;, dû au titre des exercices déjà clos, et
+ * l'&lt;strong&gt;encours&lt;/strong&gt;, que l'exercice à venir portera.&lt;/p&gt;
+ *
+ * &lt;p&gt;Les confondre fausse l'arbitrage dans les deux sens. Sur l'INP-HB, le rappel du glissement
+ * catégoriel pèse deux fois son encours : qui ne retient que le total budgète le double de ce que
+ * l'année coûtera vraiment, et qui ne retient que l'encours oublie une dette.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;L'écart est la somme des deux, et la base l'impose.&lt;/strong&gt; La table porte une
+ * contrainte, {@code CK_IMPACT_IDENTITE}, qui refuse toute ligne où {@code ECART} ne vaudrait pas
+ * {@code MONTANT_RAPPEL + MONTANT_ENCOURS}. L'écart n'est donc pas une différence de niveau entre
+ * deux exercices : c'est l'effet total de la mesure, arriérés compris.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L32">public class MovementImpactDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Mouvement de carrière dont cet impact découle.
+   */
+  @JsonbProperty(JSON_MOVEMENT_IDENTIFIER)
+  private String movementIdentifier;
+
+  /**
+   * Poste de paie touché.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+  private String payrollComponentIdentifier;
+
+  /**
+   * Libellé du poste de paie touché.
+   */
+  @JsonbProperty(JSON_PAYROLL_COMPONENT_AS_STRING)
+  private String payrollComponentAsString;
+
+  /**
+   * Nature économique sur laquelle la dépense s'impute.
+   */
+  @JsonbProperty(JSON_ECONOMIC_NATURE_IDENTIFIER)
+  private String economicNatureIdentifier;
+
+  /**
+   * Mode de calcul retenu : indiciaire, forfaitaire, prorata de sortie, transfert.
+   */
+  @JsonbProperty(JSON_CALCULATION_MODE)
+  private String calculationMode;
+
+  /**
+   * Ce que le poste coûtait avant la mesure.
+   */
+  @JsonbProperty(JSON_AMOUNT_BEFORE)
+  private Long amountBefore;
+
+  /**
+   * Ce qu'il coûtera après.
+   */
+  @JsonbProperty(JSON_AMOUNT_AFTER)
+  private Long amountAfter;
+
+  /**
+   * L'effet total de la mesure, arriérés compris.
+   */
+  @JsonbProperty(JSON_VARIANCE)
+  private Long variance;
+
+  /**
+   * Ce qui reste dû au titre des exercices antérieurs.
+   */
+  @JsonbProperty(JSON_ARREARS_AMOUNT)
+  private Long arrearsAmount;
+
+  /**
+   * Ce que l'exercice à venir porte.
+   */
+  @JsonbProperty(JSON_CURRENT_AMOUNT)
+  private Long currentAmount;
+
+  /**
+   * Nombre de mois de l'exercice que l'encours couvre.
+   */
+  @JsonbProperty(JSON_PRORATED_MONTH_COUNT)
+  private Integer proratedMonthCount;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idImpactMouvement&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;impactMouvementChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;impact d'un mouvement&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;impacts des mouvements&quot;;
+
+  /**
+   * Identifiant json pour {@link #movementIdentifier}.
+   */
+  public static final String JSON_MOVEMENT_IDENTIFIER = MovementDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #payrollComponentIdentifier}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+      PayrollComponentDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #payrollComponentAsString}.
+   */
+  public static final String JSON_PAYROLL_COMPONENT_AS_STRING =
+      PayrollComponentDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json pour {@link #economicNatureIdentifier}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_IDENTIFIER =
+      PayrollComponentDto.JSON_ECONOMIC_NATURE_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #calculationMode}.
+   */
+  public static final String JSON_CALCULATION_MODE = &quot;modeCalcul&quot;;
+
+  /**
+   * Identifiant json pour {@link #amountBefore}.
+   */
+  public static final String JSON_AMOUNT_BEFORE = &quot;montantAvant&quot;;
+
+  /**
+   * Identifiant json pour {@link #amountAfter}.
+   */
+  public static final String JSON_AMOUNT_AFTER = &quot;montantApres&quot;;
+
+  /**
+   * Identifiant json pour {@link #variance}.
+   */
+  public static final String JSON_VARIANCE = &quot;ecart&quot;;
+
+  /**
+   * Identifiant json pour {@link #arrearsAmount}.
+   */
+  public static final String JSON_ARREARS_AMOUNT = &quot;montantRappel&quot;;
+
+  /**
+   * Identifiant json pour {@link #currentAmount}.
+   */
+  public static final String JSON_CURRENT_AMOUNT = &quot;montantEncours&quot;;
+
+  /**
+   * Identifiant json pour {@link #proratedMonthCount}.
+   */
+  public static final String JSON_PRORATED_MONTH_COUNT = &quot;nombreMoisProrata&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

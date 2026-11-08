@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationMovementClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationMovementClient.java</span></div><h1>ArbitrationMovementClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.system.payrollbudget.server.api.ArbitrationMovementService.ArbitrationMovementCreateRequestDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.ArbitrationMovementService.ArbitrationMovementGetManyResponseDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.ArbitrationMovementService.ArbitrationMovementProcessingRequestDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.ArbitrationMovementService.ArbitrationMovementTransitionRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Consommateur du service des lignes d'arbitrage.
+ *
+ * &lt;p&gt;Le client est seul responsable de la désérialisation : il masque au consommateur la
+ * manipulation des objets {@code Response}.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L37">public class ArbitrationMovementClient extends AbstractClient&lt;ArbitrationMovementService&gt;</span>
+    implements GetByIdentifier&lt;ArbitrationMovementDto&gt;,
+    GetMany&lt;ArbitrationMovementGetManyResponseDto&gt; {
+
+  @Override
+  public ArbitrationMovementClient service(ArbitrationMovementService service) {
+<span class="fc" id="L43">    return (ArbitrationMovementClient) super.service(service);</span>
+  }
+
+  /**
+   * Ajoute au dossier un élément parvenu après la transmission.
+   *
+   * @param request l'élément à ajouter
+   * @return l'identifiant attribué
+   */
+  public CreateResponseDto create(ArbitrationMovementCreateRequestDto request) {
+<span class="fc" id="L53">    return new CreateExecutor(ArbitrationMovementService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L54">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * Recherche multicritère des lignes d'arbitrage.
+   *
+   * @param request critères, projection et pagination
+   * @return les lignes correspondantes
+   */
+  public ArbitrationMovementGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L64">    return new GetOneExecutor&lt;ArbitrationMovementGetManyResponseDto&gt;(</span>
+        ArbitrationMovementGetManyResponseDto.class,
+<span class="fc" id="L66">        ArbitrationMovementService.GET_MANY_IDENTIFIER).execute(() -&gt; service().getMany(request));</span>
+  }
+
+  @Override
+  public ArbitrationMovementGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L72">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L73">    request.setProjection(projection);</span>
+<span class="fc" id="L74">    request.setFilter(filter);</span>
+<span class="fc" id="L75">    request.setPage(page);</span>
+<span class="fc" id="L76">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L77">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L78">    return getMany(request);</span>
+  }
+
+  /**
+   * Recherche d'une ligne d'arbitrage unique.
+   *
+   * @param request critères et projection
+   * @return la ligne correspondante
+   */
+  public ArbitrationMovementDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L88">    return new GetOneExecutor&lt;ArbitrationMovementDto&gt;(ArbitrationMovementDto.class,</span>
+<span class="fc" id="L89">        ArbitrationMovementService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  /**
+   * Recherche d'une ligne d'arbitrage unique.
+   *
+   * @param projection champs à retourner
+   * @param filter critères de recherche
+   * @param auditWho acteur de l'appel
+   * @param auditSession session de l'appel
+   * @return la ligne correspondante
+   */
+  public ArbitrationMovementDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L103">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L104">    request.setProjection(projection);</span>
+<span class="fc" id="L105">    request.setFilter(filter);</span>
+<span class="fc" id="L106">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L107">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L108">    return getOne(request);</span>
+  }
+
+  /**
+   * Lecture d'une ligne d'arbitrage par son identifiant.
+   *
+   * @param request identifiant et projection
+   * @return la ligne correspondante
+   */
+  public ArbitrationMovementDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L118">    return new GetOneExecutor&lt;ArbitrationMovementDto&gt;(ArbitrationMovementDto.class,</span>
+        ArbitrationMovementService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L120">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  @Override
+  public ArbitrationMovementDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L126">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L127">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L128">    request.setProjection(projection);</span>
+<span class="fc" id="L129">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L130">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L131">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * Vise une ligne d'arbitrage.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto endorse(ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L141">    return new IdentifiableExecutor(ArbitrationMovementService.ENDORSE_IDENTIFIER)</span>
+<span class="fc" id="L142">        .execute(() -&gt; service().endorse(request));</span>
+  }
+
+  /**
+   * Marque une ligne d'arbitrage comme non visée.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto notEndorse(ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L152">    return new IdentifiableExecutor(ArbitrationMovementService.NOT_ENDORSE_IDENTIFIER)</span>
+<span class="fc" id="L153">        .execute(() -&gt; service().notEndorse(request));</span>
+  }
+
+  /**
+   * Transmettre une ligne d'arbitrage.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto transmit(ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L163">    return new IdentifiableExecutor(ArbitrationMovementService.TRANSMIT_IDENTIFIER)</span>
+<span class="fc" id="L164">        .execute(() -&gt; service().transmit(request));</span>
+  }
+
+  /**
+   * Réceptionner une ligne d'arbitrage.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto receive(ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L174">    return new IdentifiableExecutor(ArbitrationMovementService.RECEIVE_IDENTIFIER)</span>
+<span class="fc" id="L175">        .execute(() -&gt; service().receive(request));</span>
+  }
+
+  /**
+   * Différer une ligne d'arbitrage.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto defer(ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L185">    return new IdentifiableExecutor(ArbitrationMovementService.DEFER_IDENTIFIER)</span>
+<span class="fc" id="L186">        .execute(() -&gt; service().defer(request));</span>
+  }
+
+  /**
+   * Constater la levée du blocage d'une ligne différée.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto satisfyDeferral(
+      ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L197">    return new IdentifiableExecutor(ArbitrationMovementService.SATISFY_DEFER_IDENTIFIER)</span>
+<span class="fc" id="L198">        .execute(() -&gt; service().satisfyDeferral(request));</span>
+  }
+
+  /**
+   * Renvoie une ligne au traitement : le chef d'équipe n'a pas retenu le travail rendu.
+   *
+   * @param request identifiant de la ligne et motif du renvoi
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto returnToProcessing(
+      ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L209">    return new IdentifiableExecutor(ArbitrationMovementService.RETURN_TO_PROCESSING_IDENTIFIER)</span>
+<span class="fc" id="L210">        .execute(() -&gt; service().returnToProcessing(request));</span>
+  }
+
+  /**
+   * Valide une ligne d'arbitrage : ce que le traitement a retenu est tenu pour bon.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto validate(ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L220">    return new IdentifiableExecutor(ArbitrationMovementService.VALIDATE_IDENTIFIER)</span>
+<span class="fc" id="L221">        .execute(() -&gt; service().validate(request));</span>
+  }
+
+  /**
+   * Consolide une ligne d'arbitrage.
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto consolidate(ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L231">    return new IdentifiableExecutor(ArbitrationMovementService.CONSOLIDATE_IDENTIFIER)</span>
+<span class="fc" id="L232">        .execute(() -&gt; service().consolidate(request));</span>
+  }
+
+  /**
+   * Met une ligne d'arbitrage à l'écart de la masse salariale finale.
+   *
+   * @param request identifiant de la ligne et motif
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto notConsolidate(
+      ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L243">    return new IdentifiableExecutor(ArbitrationMovementService.NOT_CONSOLIDATE_IDENTIFIER)</span>
+<span class="fc" id="L244">        .execute(() -&gt; service().notConsolidate(request));</span>
+  }
+
+  /**
+   * Accepte le traitement d'une ligne, avec ou sans ajustement.
+   *
+   * @param request identifiant, ajustement éventuel et motif
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto acceptProcessing(
+      ArbitrationMovementProcessingRequestDto request) {
+<span class="fc" id="L255">    return new IdentifiableExecutor(ArbitrationMovementService.ACCEPT_PROCESSING_IDENTIFIER)</span>
+<span class="fc" id="L256">        .execute(() -&gt; service().acceptProcessing(request));</span>
+  }
+
+  /**
+   * Rejette le traitement d'une ligne.
+   *
+   * @param request identifiant de la ligne et motif
+   * @return l'identifiant de la ligne touchée
+   */
+  public IdentifiableResponseDto rejectProcessing(
+      ArbitrationMovementTransitionRequestDto request) {
+<span class="fc" id="L267">    return new IdentifiableExecutor(ArbitrationMovementService.REJECT_PROCESSING_IDENTIFIER)</span>
+<span class="fc" id="L268">        .execute(() -&gt; service().rejectProcessing(request));</span>
+  }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

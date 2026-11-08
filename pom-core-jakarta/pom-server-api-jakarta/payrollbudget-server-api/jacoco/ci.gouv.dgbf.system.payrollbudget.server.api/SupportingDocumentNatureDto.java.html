@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportingDocumentNatureDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">SupportingDocumentNatureDto.java</span></div><h1>SupportingDocumentNatureDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Nature de pièce justificative : ce que la réglementation exige pour un type de mouvement donné.
+ *
+ * &lt;p&gt;C'est le référentiel du contrôle d'admissibilité (CU02, RG6) : pour chaque ligne, l'écran
+ * confronte les natures exigées — servies par ce contrat — aux pièces réellement jointes par
+ * l'EPN. Une nature ne dit pas qu'un document existe ; elle dit qu'il &lt;em&gt;devrait&lt;/em&gt;
+ * exister.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L23">public class SupportingDocumentNatureDto extends AbstractIdentifiableCodableNamableDto {</span>
+
+  /**
+   * Famille de lignes concernée : mouvement ou mesure ponctuelle.
+   */
+  @JsonbProperty(JSON_ELEMENT_TYPE)
+  private String elementType;
+
+  /**
+   * Type de mouvement pour lequel la pièce est exigée. Nul pour une exigence commune.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TYPE_CODE)
+  private String movementTypeCode;
+
+  /**
+   * Vrai si la pièce conditionne l'admissibilité, faux pour une pièce d'appoint.
+   */
+  @JsonbProperty(JSON_MANDATORY)
+  private Boolean mandatory;
+
+  /**
+   * Vrai tant que la nature peut être exigée d'un nouveau dépôt.
+   */
+  @JsonbProperty(JSON_ACTIVE)
+  private Boolean active;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idNaturePieceJustificative&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;naturePieceJustificativeChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;nature de pièce justificative&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;natures de pièces justificatives&quot;;
+
+  /**
+   * Identifiant json pour {@link #elementType}.
+   */
+  public static final String JSON_ELEMENT_TYPE = ArbitrationMovementDto.JSON_ELEMENT_TYPE;
+
+  /**
+   * Identifiant json pour {@link #movementTypeCode}.
+   */
+  public static final String JSON_MOVEMENT_TYPE_CODE =
+      ArbitrationMovementDto.JSON_MOVEMENT_TYPE_CODE;
+
+  /**
+   * Identifiant json pour {@link #mandatory}.
+   */
+  public static final String JSON_MANDATORY = &quot;estObligatoire&quot;;
+
+  /**
+   * Identifiant json pour {@link #active}.
+   */
+  public static final String JSON_ACTIVE = &quot;estActif&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

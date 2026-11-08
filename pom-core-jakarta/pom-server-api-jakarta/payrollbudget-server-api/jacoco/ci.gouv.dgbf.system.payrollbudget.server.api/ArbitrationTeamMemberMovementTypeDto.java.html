@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationTeamMemberMovementTypeDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationTeamMemberMovementTypeDto.java</span></div><h1>ArbitrationTeamMemberMovementTypeDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Un type de mouvement confié à un membre d'équipe.
+ *
+ * &lt;p&gt;&lt;strong&gt;Ce lien restreint, il n'accorde pas.&lt;/strong&gt; Le droit d'instruire vient du jeton, et
+ * de lui seul : un membre à qui l'on confie les rappels sans qu'il porte
+ * {@code TRAITER_REGULARISATION} n'instruira rien. Ce qui est décrit ici, c'est le partage du
+ * travail &lt;em&gt;à l'intérieur&lt;/em&gt; de ce que le jeton ouvre déjà — qui, dans l'équipe, prend les
+ * primes et qui prend les retraites.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;Aucun lien vaut tout le périmètre du jeton&lt;/strong&gt;, et ce n'est pas un oubli. Le
+ * partage est une organisation, pas une condition : un membre à qui l'on n'a rien confié
+ * particulièrement instruit toute sa famille, comme avant que cette table n'existe. L'inverse —
+ * aucun lien, aucun droit — bloquerait tout le monde le jour où la table est créée vide.&lt;/p&gt;
+ *
+ * &lt;p&gt;Rien de plus que les deux extrémités du lien : une association qui porterait des attributs
+ * propres cesserait d'être une association et deviendrait un objet, qu'il faudrait alors savoir
+ * modifier, dater, justifier.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L33">public class ArbitrationTeamMemberMovementTypeDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Membre d'équipe à qui le type est confié.
+   */
+  @JsonbProperty(JSON_MEMBER_IDENTIFIER)
+  private String memberIdentifier;
+
+  /**
+   * Identifiant de connexion du membre, pour relire le partage sans un appel de plus.
+   */
+  @JsonbProperty(JSON_MEMBER_USER)
+  private String memberUser;
+
+  /**
+   * Type de mouvement confié.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
+  private String movementTypeIdentifier;
+
+  /**
+   * Libellé du type de mouvement.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TYPE_AS_STRING)
+  private String movementTypeAsString;
+
+  /**
+   * Code du type de mouvement, qui est ce que la ligne d'arbitrage transporte.
+   */
+  @JsonbProperty(JSON_MOVEMENT_TYPE_CODE)
+  private String movementTypeCode;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idTypeMouvementMembre&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;typeMouvementMembreChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;type de mouvement d'un membre&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;types de mouvement des membres&quot;;
+
+  /**
+   * Identifiant json pour {@link #memberIdentifier}.
+   */
+  public static final String JSON_MEMBER_IDENTIFIER =
+      ArbitrationTeamMemberDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #memberUser}.
+   */
+  public static final String JSON_MEMBER_USER = &quot;membreUtilisateur&quot;;
+
+  /**
+   * Identifiant json pour {@link #movementTypeIdentifier}.
+   */
+  public static final String JSON_MOVEMENT_TYPE_IDENTIFIER = MovementTypeDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #movementTypeAsString}.
+   */
+  public static final String JSON_MOVEMENT_TYPE_AS_STRING = MovementTypeDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json pour {@link #movementTypeCode}.
+   */
+  public static final String JSON_MOVEMENT_TYPE_CODE =
+      ArbitrationMovementDto.JSON_MOVEMENT_TYPE_CODE;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportingDocumentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">SupportingDocumentService.java</span></div><h1>SupportingDocumentService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Contrat des pièces justificatives : celles que l'EPN joint, et celles que la DCB ajoute.
+ *
+ * &lt;p&gt;Le dépôt est &lt;strong&gt;d'abord celui de l'EPN&lt;/strong&gt; : il joint ses pièces à la
+ * transmission, et c'est cet envoi que la DCB instruit. Mais la DCB peut joindre à son tour
+ * (TCH_PRB_ARB_22) : une pièce arrive souvent après coup, par courrier ou en réponse à une
+ * demande, et l'établissement n'a plus accès à son dossier une fois transmis (RG07). Sans cette
+ * porte, la pièce reçue resterait introuvable dans l'application.&lt;/p&gt;
+ *
+ * &lt;p&gt;Ce contrat ne transporte jamais d'octets. La pièce porte l'identifiant du groupe de fichiers
+ * attribué par le module de gestion de fichiers ; c'est lui qui détient, dédoublonne et sert les
+ * documents.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Path(value = SupportingDocumentService.PATH)
+@Tag(name = &quot;Gestion des pièces justificatives&quot;)
+public interface SupportingDocumentService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;pieces-justificatives&quot;;
+
+  /**
+   * Ce que porte la requête, au-delà de ce que la classe parente apporte.
+   *
+   * &lt;p&gt;Le concept n'expose pas de mise à jour : l'interface ne factorise donc
+   * rien, mais elle tient le contrat des champs et dispense la requête de
+   * nommer le {@link SupportingDocumentDto} à chaque clé.&lt;/p&gt;
+   *
+   * &lt;p&gt;Il n'y a pas de {@code SupportingDocumentRequestMapper} pour autant : R50 ne le prévoit
+   * que là où la création &lt;em&gt;et&lt;/em&gt; la mise à jour existent toutes deux, un mapper
+   * à un seul type de requête supposant une nouvelle classe générique dans
+   * l'extension.&lt;/p&gt;
+   */
+  interface SupportingDocumentSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir le dossier.
+     *
+     * @return le dossier
+     */
+    String getDossierIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner le dossier.
+     *
+     * @param dossierIdentifier le dossier
+     */
+    void setDossierIdentifier(String dossierIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir la nature de la pièce.
+     *
+     * @return la nature de la pièce
+     */
+    String getNatureIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner la nature de la pièce.
+     *
+     * @param natureIdentifier la nature de la pièce
+     */
+    void setNatureIdentifier(String natureIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir la ligne d'arbitrage.
+     *
+     * @return la ligne d'arbitrage
+     */
+    String getMovementIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner la ligne d'arbitrage.
+     *
+     * @param movementIdentifier la ligne d'arbitrage
+     */
+    void setMovementIdentifier(String movementIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir le libellé de la pièce.
+     *
+     * @return le libellé de la pièce
+     */
+    String getLabel();
+
+    /**
+     * Cette méthode permet d'assigner le libellé de la pièce.
+     *
+     * @param label le libellé de la pièce
+     */
+    void setLabel(String label);
+
+    /**
+     * Cette méthode permet d'obtenir le fichier déposé.
+     *
+     * @return le fichier déposé
+     */
+    String getFile();
+
+    /**
+     * Cette méthode permet d'assigner le fichier déposé.
+     *
+     * @param file le fichier déposé
+     */
+    void setFile(String file);
+
+    /**
+     * Cette méthode permet d'obtenir le groupe de fichiers.
+     *
+     * @return le groupe de fichiers
+     */
+    String getFilesGroupIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner le groupe de fichiers.
+     *
+     * @param filesGroupIdentifier le groupe de fichiers
+     */
+    void setFilesGroupIdentifier(String filesGroupIdentifier);
+
+    /**
+     * {@link SupportingDocumentDto#JSON_DOSSIER_IDENTIFIER}.
+     */
+    String JSON_DOSSIER_IDENTIFIER = SupportingDocumentDto.JSON_DOSSIER_IDENTIFIER;
+
+    /**
+     * {@link SupportingDocumentDto#JSON_NATURE_IDENTIFIER}.
+     */
+    String JSON_NATURE_IDENTIFIER = SupportingDocumentDto.JSON_NATURE_IDENTIFIER;
+
+    /**
+     * {@link SupportingDocumentDto#JSON_MOVEMENT_IDENTIFIER}.
+     */
+    String JSON_MOVEMENT_IDENTIFIER = SupportingDocumentDto.JSON_MOVEMENT_IDENTIFIER;
+
+    /**
+     * {@link SupportingDocumentDto#JSON_LABEL}.
+     */
+    String JSON_LABEL = SupportingDocumentDto.JSON_LABEL;
+
+    /**
+     * {@link SupportingDocumentDto#JSON_FILE}.
+     */
+    String JSON_FILE = SupportingDocumentDto.JSON_FILE;
+
+    /**
+     * {@link SupportingDocumentDto#JSON_FILES_GROUP_IDENTIFIER}.
+     */
+    String JSON_FILES_GROUP_IDENTIFIER = SupportingDocumentDto.JSON_FILES_GROUP_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service de création unitaire de {@link SupportingDocumentDto}.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_PIECE_JUSTIFICATIVE&quot;;
+
+  /**
+   * Chemin du service de création unitaire de {@link SupportingDocumentDto}.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Dépôt d'une pièce justificative.
+   *
+   * @param request la pièce à rattacher
+   * @return l'identifiant attribué
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER, summary = &quot;Dépôt d'une pièce justificative&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(SupportingDocumentCreateRequestDto request);
+
+  /**
+   * Requête de dépôt d'une pièce justificative.
+   *
+   * &lt;p&gt;Le groupe de fichiers est déjà constitué quand cette requête part : l'appelant a téléversé
+   * chez le module de fichiers, qui lui a rendu un identifiant. Ce service n'enregistre que le
+   * rattachement.&lt;/p&gt;
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L217">  class SupportingDocumentCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements SupportingDocumentSaveRequestDto {
+
+    @JsonbProperty(JSON_DOSSIER_IDENTIFIER)
+    private String dossierIdentifier;
+
+    @JsonbProperty(JSON_NATURE_IDENTIFIER)
+    private String natureIdentifier;
+
+    @JsonbProperty(JSON_MOVEMENT_IDENTIFIER)
+    private String movementIdentifier;
+
+    @JsonbProperty(JSON_LABEL)
+    private String label;
+
+    @JsonbProperty(JSON_FILE)
+    private String file;
+
+    @JsonbProperty(JSON_FILES_GROUP_IDENTIFIER)
+    private String filesGroupIdentifier;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs {@link SupportingDocumentDto}.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_PIECE_JUSTIFICATIVE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs {@link SupportingDocumentDto}.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Recherche multicritère des pièces.
+   *
+   * @param request critères, projection et pagination
+   * @return les pièces correspondantes
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      summary = &quot;Consultation des pièces justificatives&quot;)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(
+          implementation = SupportingDocumentGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Réponse paginée d'une recherche de pièces justificatives.
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L271">  public static class SupportingDocumentGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;SupportingDocumentDto&gt; {
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;SupportingDocumentDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention unitaire de {@link SupportingDocumentDto}.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_PIECE_JUSTIFICATIVE&quot;;
+
+  /**
+   * Chemin du service d'obtention unitaire de {@link SupportingDocumentDto}.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Recherche d'une pièce unique.
+   *
+   * @param request critères et projection
+   * @return la pièce correspondante
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(
+          implementation = SupportingDocumentDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de
+   * {@link SupportingDocumentDto}.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER =
+      &quot;OBTENTION_PAR_IDENTIFIANT_PIECE_JUSTIFICATIVE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de {@link SupportingDocumentDto}.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Lecture d'une pièce par son identifiant.
+   *
+   * @param request identifiant et projection
+   * @return la pièce correspondante
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(
+          implementation = SupportingDocumentDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de suppression unitaire de {@link SupportingDocumentDto}.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_PIECE_JUSTIFICATIVE&quot;;
+
+  /**
+   * Chemin du service de suppression unitaire de {@link SupportingDocumentDto}.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Retrait d'une pièce justificative.
+   *
+   * &lt;p&gt;Retire le rattachement, pas les fichiers : ils appartiennent au module de gestion de
+   * fichiers, qui les partage peut-être avec d'autres rattachements.&lt;/p&gt;
+   *
+   * @param request l'identifiant à retirer
+   * @return l'identifiant retiré
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER, summary = &quot;Retrait d'une pièce justificative&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

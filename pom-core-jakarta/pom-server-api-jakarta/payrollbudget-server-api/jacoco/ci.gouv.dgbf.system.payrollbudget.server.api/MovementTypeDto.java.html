@@ -30,6 +30,20 @@ import lombok.Setter;
   private String administrativeUnitEmployeeStatusAsString;
 
   /**
+   * Le droit qu'il faut détenir pour instruire une ligne de ce type.
+   *
+   * &lt;p&gt;&lt;strong&gt;Le droit est déclaré, non déduit.&lt;/strong&gt; Il se déduisait de la forme de la
+   * ligne — mouvement projeté, mesure ponctuelle, transfert — et cette forme n'est pas ce que
+   * le métier répartit. Chaque type dit désormais lui-même qui l'instruit, et la répartition
+   * se change à l'écran de paramétrage au lieu de se recompiler.&lt;/p&gt;
+   *
+   * &lt;p&gt;Vide, le type retombe sur {@code TRAITER_MOUVEMENT_A_VENIR} : c'est le cas général, et
+   * un type qu'on vient d'ajouter doit être instruisible avant d'être paramétré, non muet.&lt;/p&gt;
+   */
+  @JsonbProperty(JSON_PROCESSING_ROLE)
+  private String processingRole;
+
+  /**
    * Identifiant json de identifiant de {@link MovementTypeDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idTypeMouvement&quot;;
@@ -50,6 +64,11 @@ import lombok.Setter;
    */
   public static final String JSON_ADMINISTRATIVE_UNIT_EMPLOYEE_STATUS_AS_STRING =
       &quot;statutEmployeUniteAdministrativeChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #processingRole}.
+   */
+  public static final String JSON_PROCESSING_ROLE = &quot;roleTraitement&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

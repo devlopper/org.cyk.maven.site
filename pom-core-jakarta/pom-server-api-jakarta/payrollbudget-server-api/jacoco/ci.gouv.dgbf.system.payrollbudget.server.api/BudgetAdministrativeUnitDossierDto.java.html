@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetAdministrativeUnitDossierDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetAdministrativeUnitDossierDto.java</span></div><h1>BudgetAdministrativeUnitDossierDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Dossier de masse salariale d'un EPN : ce que l'établissement transmet, ce que la DCB instruit.
+ *
+ * &lt;p&gt;Le dossier achemine les lignes d'arbitrage, et &lt;strong&gt;ouvre les étapes&lt;/strong&gt; qu'elles
+ * peuvent franchir. Son cycle est linéaire et sans retour — Créé, Transmis, Réceptionné,
+ * Traité, Validé, Consolidé. Il n'était qu'un conteneur jusqu'à la révision du 05/10/2026 ;
+ * depuis, une ligne ne se valide pas avant que le traitement du dossier ne le soit, et ne
+ * se consolide pas avant lui. {@link ArbitrationStatusCoupling} porte cette subordination,
+ * et le Statut de Ligne d'Arbitrage garde la décision (annexe 6.1 du 27/08/2026).&lt;/p&gt;
+ *
+ * &lt;p&gt;Deux montants y sont &lt;strong&gt;figés&lt;/strong&gt;, et deux seulement : le montant demandé, arrêté à
+ * la transmission, et le montant arbitré, arrêté au terme de l'instruction. Tous les autres
+ * chiffres affichés à l'écran — effectifs, cumuls, écarts — restent des agrégats vivants, calculés
+ * par les vues satellites. Confondre les deux familles conduirait à afficher un chiffre périmé
+ * sans que rien ne le signale.&lt;/p&gt;
+ *
+ * &lt;p&gt;Ce contrat coexiste délibérément avec {@link BudgetAdministrativeUnitDto}, qui expose la même
+ * unité administrative de budget vue depuis la vue {@code VA_}. L'un porte le workflow, l'autre les
+ * agrégats ; la fusion des deux est la tâche {@code TCH_PRB_ARB_01}.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L37">public class BudgetAdministrativeUnitDossierDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Budget de rattachement du dossier.
+   */
+  @JsonbProperty(JSON_BUDGET_IDENTIFIER)
+  private String budgetIdentifier;
+
+  /**
+   * Exercice budgétaire.
+   */
+  @JsonbProperty(JSON_EXERCISE_IDENTIFIER)
+  private String exerciseIdentifier;
+
+  /**
+   * Année de l'exercice, dénormalisée pour l'affichage et le tri.
+   */
+  @JsonbProperty(JSON_EXERCISE_YEAR)
+  private String exerciseYear;
+
+  /**
+   * EPN auquel le dossier appartient.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_IDENTIFIER)
+  private String administrativeUnitIdentifier;
+
+  /**
+   * Code de l'EPN, dénormalisé pour la recherche.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_CODE)
+  private String administrativeUnitCode;
+
+  /**
+   * Libellé de l'EPN, servi par jointure. Transitoire : il vit dans le référentiel.
+   */
+  @JsonbProperty(JSON_ADMINISTRATIVE_UNIT_AS_STRING)
+  private String administrativeUnitAsString;
+
+  /**
+   * Section budgétaire de l'EPN, servie par jointure. Transitoire, pour la même raison.
+   */
+  @JsonbProperty(JSON_SECTION_AS_STRING)
+  private String sectionAsString;
+
+  /**
+   * Montant demandé par l'EPN, figé à la transmission. Jamais recalculé.
+   */
+  @JsonbProperty(JSON_PROPOSED_AMOUNT)
+  private Long proposedAmount;
+
+  /**
+   * Montant retenu au terme de l'arbitrage. Nul tant que l'instruction n'est pas close.
+   */
+  @JsonbProperty(JSON_ARBITRATED_AMOUNT)
+  private Long arbitratedAmount;
+
+  /**
+   * Code de l'état courant. Le libellé n'est pas transporté : il se lit dans
+   * {@link BudgetAdministrativeUnitStatus}, seule source de vérité des libellés d'état. Le
+   * transporter en plus du code ouvrirait la porte à deux libellés pour un même état.
+   *
+   * &lt;p&gt;&lt;strong&gt;Écart assumé à R44b&lt;/strong&gt;, pour la même raison que la ligne
+   * d'arbitrage : le statut typé demande une reprise de la persistance, qui ne se fait
+   * pas dans une correction de revue.
+   */
+  @JsonbProperty(JSON_STATUS_CODE)
+  private String statusCode;
+
+  /**
+   * Numéro du bordereau de transmission, porté par le dossier lui-même.
+   *
+   * &lt;p&gt;Le bordereau &lt;strong&gt;est&lt;/strong&gt; l'acte de transmission : son numéro naît avec elle,
+   * côté EPN. Il ne mérite pas une table — trois attributs en relation un à un avec le
+   * dossier ne sont qu'une jointure inutile. Un dossier dépourvu de numéro ne peut pas être
+   * réceptionné (RG01), et la liste rend ce manque visible avant même que l'opération ne
+   * soit tentée.&lt;/p&gt;
+   */
+  @JsonbProperty(JSON_SLIP_NUMBER)
+  private String slipNumber;
+
+  /**
+   * Date d'émission du bordereau de transmission.
+   */
+  @JsonbProperty(JSON_SLIP_DATE)
+  private LocalDate slipDate;
+
+  /**
+   * Horodatage de la transmission par l'EPN.
+   */
+  @JsonbProperty(JSON_TRANSMISSION_DATE)
+  private OffsetDateTime transmissionDate;
+
+  /**
+   * Horodatage de la prise en charge par la DCB.
+   */
+  @JsonbProperty(JSON_RECEPTION_DATE)
+  private OffsetDateTime receptionDate;
+
+  /**
+   * Horodatage de la validation définitive.
+   */
+  @JsonbProperty(JSON_VALIDATION_DATE)
+  private OffsetDateTime validationDate;
+
+  /**
+   * Agent qui a pris le dossier en charge, ou {@code null} si personne ne l'instruit.
+   *
+   * &lt;p&gt;La prise en charge est &lt;strong&gt;exclusive&lt;/strong&gt; (RG3) : tant qu'un agent tient le
+   * dossier, aucun autre ne le traite. Ce n'est pas un verrou technique mais une règle
+   * d'organisation — deux chargés instruisant les mêmes lignes rendraient les décisions
+   * incohérentes entre elles. L'agent la relâche quand il a fini, ou l'abandonne.&lt;/p&gt;
+   */
+  @JsonbProperty(JSON_HANDLER)
+  private String handler;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idDossierMasseSalariale&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;dossierMasseSalarialeChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;dossier de masse salariale&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;dossiers de masse salariale&quot;;
+
+  /**
+   * Identifiant json pour {@link #budgetIdentifier}.
+   */
+  public static final String JSON_BUDGET_IDENTIFIER = BudgetDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #exerciseIdentifier}.
+   */
+  public static final String JSON_EXERCISE_IDENTIFIER = ExerciseDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #exerciseYear}.
+   */
+  public static final String JSON_EXERCISE_YEAR = &quot;exerciceAnnee&quot;;
+
+  /**
+   * Identifiant json pour {@link #administrativeUnitIdentifier}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_IDENTIFIER = &quot;idUniteAdministrative&quot;;
+
+  /**
+   * Identifiant json pour {@link #administrativeUnitCode}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_CODE = &quot;uniteAdministrativeCode&quot;;
+
+  /**
+   * Identifiant json pour {@link #administrativeUnitAsString}.
+   */
+  public static final String JSON_ADMINISTRATIVE_UNIT_AS_STRING = &quot;uniteAdministrativeChaine&quot;;
+
+  /**
+   * Identifiant json pour {@link #sectionAsString}.
+   */
+  public static final String JSON_SECTION_AS_STRING = &quot;sectionChaine&quot;;
+
+  /**
+   * Identifiant json pour {@link #proposedAmount}.
+   */
+  public static final String JSON_PROPOSED_AMOUNT = &quot;montantDemande&quot;;
+
+  /**
+   * Identifiant json pour {@link #arbitratedAmount}.
+   */
+  public static final String JSON_ARBITRATED_AMOUNT = &quot;montantArbitre&quot;;
+
+  /**
+   * Identifiant json pour {@link #statusCode}.
+   */
+  public static final String JSON_STATUS_CODE = &quot;statut&quot;;
+
+  /**
+   * Identifiant json pour {@link #slipNumber}.
+   */
+  public static final String JSON_SLIP_NUMBER = &quot;numeroBordereau&quot;;
+
+  /**
+   * Identifiant json pour {@link #slipDate}.
+   */
+  public static final String JSON_SLIP_DATE = &quot;dateBordereau&quot;;
+
+  /**
+   * Identifiant json pour {@link #transmissionDate}.
+   */
+  public static final String JSON_TRANSMISSION_DATE = &quot;dateTransmission&quot;;
+
+  /**
+   * Identifiant json pour {@link #receptionDate}.
+   */
+  public static final String JSON_RECEPTION_DATE = &quot;dateReception&quot;;
+
+  /**
+   * Identifiant json pour {@link #validationDate}.
+   */
+  public static final String JSON_VALIDATION_DATE = &quot;dateValidation&quot;;
+
+  /**
+   * Identifiant json pour {@link #handler}.
+   */
+  public static final String JSON_HANDLER = &quot;prisEnChargePar&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

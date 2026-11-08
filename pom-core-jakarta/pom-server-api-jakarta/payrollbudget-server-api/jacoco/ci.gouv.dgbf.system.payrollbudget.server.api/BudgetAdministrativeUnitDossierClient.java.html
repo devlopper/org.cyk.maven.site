@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetAdministrativeUnitDossierClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetAdministrativeUnitDossierClient.java</span></div><h1>BudgetAdministrativeUnitDossierClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.extension.server.service.api.segregation.OneRetrievable;
+import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitDossierService.BudgetAdministrativeUnitDossierGetManyResponseDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.BudgetAdministrativeUnitDossierService.BudgetAdministrativeUnitDossierTransitionRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Consommateur du service des dossiers de masse salariale.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L31">public class BudgetAdministrativeUnitDossierClient</span>
+    extends AbstractClient&lt;BudgetAdministrativeUnitDossierService&gt;
+    implements OneRetrievable&lt;BudgetAdministrativeUnitDossierDto&gt;,
+    GetByIdentifier&lt;BudgetAdministrativeUnitDossierDto&gt;,
+    GetMany&lt;BudgetAdministrativeUnitDossierGetManyResponseDto&gt; {
+
+  @Override
+  public BudgetAdministrativeUnitDossierClient service(
+      BudgetAdministrativeUnitDossierService service) {
+<span class="fc" id="L40">    return (BudgetAdministrativeUnitDossierClient) super.service(service);</span>
+  }
+
+  /**
+   * Recherche multicritère des dossiers.
+   *
+   * @param request critères, projection et pagination
+   * @return les dossiers correspondants
+   */
+  public BudgetAdministrativeUnitDossierGetManyResponseDto getMany(
+      GetManyRequestDto request) {
+<span class="fc" id="L51">    return new GetOneExecutor&lt;BudgetAdministrativeUnitDossierGetManyResponseDto&gt;(</span>
+        BudgetAdministrativeUnitDossierGetManyResponseDto.class,
+        BudgetAdministrativeUnitDossierService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L54">            .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  @Override
+  public BudgetAdministrativeUnitDossierGetManyResponseDto getMany(ProjectionDto projection,
+      FilterDto filter, PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L60">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L61">    request.setProjection(projection);</span>
+<span class="fc" id="L62">    request.setFilter(filter);</span>
+<span class="fc" id="L63">    request.setPage(page);</span>
+<span class="fc" id="L64">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L65">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L66">    return getMany(request);</span>
+  }
+
+  /**
+   * Recherche d'un dossier unique.
+   *
+   * @param request critères et projection
+   * @return le dossier correspondant
+   */
+  public BudgetAdministrativeUnitDossierDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L76">    return new GetOneExecutor&lt;BudgetAdministrativeUnitDossierDto&gt;(</span>
+        BudgetAdministrativeUnitDossierDto.class,
+        BudgetAdministrativeUnitDossierService.GET_ONE_IDENTIFIER)
+<span class="fc" id="L79">            .execute(() -&gt; service().getOne(request));</span>
+  }
+
+  @Override
+  public BudgetAdministrativeUnitDossierDto getOne(ProjectionDto projection,
+      FilterDto filter, String auditWho, String auditSession) {
+<span class="fc" id="L85">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L86">    request.setProjection(projection);</span>
+<span class="fc" id="L87">    request.setFilter(filter);</span>
+<span class="fc" id="L88">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L89">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L90">    return getOne(request);</span>
+  }
+
+  /**
+   * Lecture d'un dossier par son identifiant.
+   *
+   * @param request identifiant et projection
+   * @return le dossier correspondant
+   */
+  public BudgetAdministrativeUnitDossierDto getByIdentifier(
+      GetByIdentifierRequestDto request) {
+<span class="fc" id="L101">    return new GetOneExecutor&lt;BudgetAdministrativeUnitDossierDto&gt;(</span>
+        BudgetAdministrativeUnitDossierDto.class,
+        BudgetAdministrativeUnitDossierService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L104">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  @Override
+  public BudgetAdministrativeUnitDossierDto getByIdentifier(String identifier,
+      ProjectionDto projection, String auditWho, String auditSession) {
+<span class="fc" id="L110">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L111">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L112">    request.setProjection(projection);</span>
+<span class="fc" id="L113">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L114">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L115">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * Réceptionne un dossier transmis (CU01).
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  public IdentifiableResponseDto receive(
+      BudgetAdministrativeUnitDossierTransitionRequestDto request) {
+<span class="fc" id="L126">    return new IdentifiableExecutor(BudgetAdministrativeUnitDossierService.RECEIVE_IDENTIFIER)</span>
+<span class="fc" id="L127">        .execute(() -&gt; service().receive(request));</span>
+  }
+
+  /**
+   * Valider le traitement d'un dossier : l'étape de validation de ses lignes s'ouvre.
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  public IdentifiableResponseDto validateProcessing(
+      BudgetAdministrativeUnitDossierTransitionRequestDto request) {
+<span class="fc" id="L138">    return new IdentifiableExecutor(</span>
+        BudgetAdministrativeUnitDossierService.VALIDATE_PROCESSING_IDENTIFIER)
+<span class="fc" id="L140">            .execute(() -&gt; service().validateProcessing(request));</span>
+  }
+
+  /**
+   * Valider un dossier : il part en consolidation avec ses lignes.
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  public IdentifiableResponseDto validate(
+      BudgetAdministrativeUnitDossierTransitionRequestDto request) {
+<span class="fc" id="L151">    return new IdentifiableExecutor(BudgetAdministrativeUnitDossierService.VALIDATE_IDENTIFIER)</span>
+<span class="fc" id="L152">        .execute(() -&gt; service().validate(request));</span>
+  }
+
+  /**
+   * Consolider un dossier de masse salariale.
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  public IdentifiableResponseDto consolidate(
+      BudgetAdministrativeUnitDossierTransitionRequestDto request) {
+<span class="fc" id="L163">    return new IdentifiableExecutor(BudgetAdministrativeUnitDossierService.CONSOLIDATE_IDENTIFIER)</span>
+<span class="fc" id="L164">        .execute(() -&gt; service().consolidate(request));</span>
+  }
+
+  /**
+   * Prend un dossier en charge.
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  public IdentifiableResponseDto takeCharge(
+      BudgetAdministrativeUnitDossierTransitionRequestDto request) {
+<span class="fc" id="L175">    return new IdentifiableExecutor(</span>
+        BudgetAdministrativeUnitDossierService.TAKE_CHARGE_IDENTIFIER)
+<span class="fc" id="L177">            .execute(() -&gt; service().takeCharge(request));</span>
+  }
+
+  /**
+   * Libère un dossier pris en charge.
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  public IdentifiableResponseDto release(
+      BudgetAdministrativeUnitDossierTransitionRequestDto request) {
+<span class="fc" id="L188">    return new IdentifiableExecutor(BudgetAdministrativeUnitDossierService.RELEASE_IDENTIFIER)</span>
+<span class="fc" id="L189">        .execute(() -&gt; service().release(request));</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

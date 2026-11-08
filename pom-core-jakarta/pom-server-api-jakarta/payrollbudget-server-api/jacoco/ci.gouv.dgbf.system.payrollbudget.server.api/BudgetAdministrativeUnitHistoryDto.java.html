@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetAdministrativeUnitHistoryDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetAdministrativeUnitHistoryDto.java</span></div><h1>BudgetAdministrativeUnitHistoryDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import java.time.OffsetDateTime;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Transition d'état d'un dossier de masse salariale : qui, quand, vers quel état et pourquoi.
+ *
+ * &lt;p&gt;Une ligne d'historique est écrite à chaque changement d'état et n'est jamais modifiée. C'est
+ * ce journal qui permet, en fin de parcours, de reconstituer le chemin d'un dossier dont la masse
+ * salariale aura été façonnée par une succession de décisions.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L23">public class BudgetAdministrativeUnitHistoryDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Dossier de masse salariale dont l'état change.
+   */
+  @JsonbProperty(JSON_DOSSIER_IDENTIFIER)
+  private String dossierIdentifier;
+
+  /**
+   * État atteint par la transition.
+   */
+  @JsonbProperty(JSON_STATUS_CODE)
+  private String statusCode;
+
+  /**
+   * Motif de la transition. Obligatoire pour tout rejet (RG_PRB_ARB_06), libre ailleurs.
+   */
+  @JsonbProperty(JSON_REASON)
+  private String reason;
+
+  /**
+   * Utilisateur à l'origine de la transition.
+   */
+  @JsonbProperty(JSON_ACTOR)
+  private String actor;
+
+  /**
+   * Horodatage de la transition.
+   */
+  @JsonbProperty(JSON_STATUS_DATE)
+  private OffsetDateTime statusDate;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idTransitionEtatDossier&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;transitionEtatDossierChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;transition d'état de dossier&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;transitions d'état de dossier&quot;;
+
+  /**
+   * Identifiant json pour {@link #dossierIdentifier}.
+   */
+  public static final String JSON_DOSSIER_IDENTIFIER =
+      BudgetAdministrativeUnitDossierDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #statusCode}.
+   */
+  public static final String JSON_STATUS_CODE = &quot;statut&quot;;
+
+  /**
+   * Identifiant json pour {@link #reason}.
+   */
+  public static final String JSON_REASON = &quot;motif&quot;;
+
+  /**
+   * Identifiant json pour {@link #actor}.
+   */
+  public static final String JSON_ACTOR = &quot;acteur&quot;;
+
+  /**
+   * Identifiant json pour {@link #statusDate}.
+   */
+  public static final String JSON_STATUS_DATE = &quot;dateEtat&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationTeamDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationTeamDto.java</span></div><h1>ArbitrationTeamDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Équipe d'arbitrage : un chef, des membres, et les dossiers qu'ils instruisent.
+ *
+ * &lt;p&gt;Jusqu'ici l'arbitrage se répartissait par &lt;em&gt;droit&lt;/em&gt; : qui détenait le droit de traiter
+ * les mouvements projetés les traitait, dans n'importe quel dossier. À deux EPN de test cela se
+ * tient ; à quatre-vingt-seize, chacun voit le travail de tous et personne ne sait ce qui lui
+ * revient.&lt;/p&gt;
+ *
+ * &lt;p&gt;L'équipe répond à cela, et à cela seulement : elle &lt;strong&gt;borne le périmètre&lt;/strong&gt;. Un
+ * agent ne voit que les dossiers confiés à son équipe. Elle ne change rien aux droits — ce que
+ * l'agent peut faire sur une ligne reste commandé par son profil, et un chargé des mouvements
+ * n'instruira jamais un transfert de solde parce qu'on l'a mis dans une équipe.&lt;/p&gt;
+ *
+ * &lt;p&gt;Le code est unique &lt;em&gt;par exercice&lt;/em&gt; : une même équipe se reconduit d'une année sur
+ * l'autre avec sa composition propre, sans que l'historique de l'exercice clos ne bouge.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L31">public class ArbitrationTeamDto extends AbstractIdentifiableCodableNamableDto {</span>
+
+  /**
+   * Exercice budgétaire de l'équipe.
+   */
+  @JsonbProperty(JSON_EXERCISE)
+  private String exercise;
+
+  /**
+   * Identifiant de connexion du chef d'équipe.
+   *
+   * &lt;p&gt;Une chaîne, et non une clé étrangère : les comptes vivent dans le service des identités,
+   * pas dans cette base. C'est le même choix que pour le preneur en charge d'un dossier.&lt;/p&gt;
+   */
+  @JsonbProperty(JSON_LEADER)
+  private String leader;
+
+  /**
+   * Nom lisible du chef, servi par le service des identités.
+   */
+  @JsonbProperty(JSON_LEADER_AS_STRING)
+  private String leaderAsString;
+
+  /**
+   * Nombre de membres, calculé à la lecture.
+   */
+  @JsonbProperty(JSON_MEMBER_COUNT)
+  private Long memberCount;
+
+  /**
+   * Nombre de dossiers confiés, calculé à la lecture.
+   */
+  @JsonbProperty(JSON_DOSSIER_COUNT)
+  private Long dossierCount;
+
+  /**
+   * Vrai tant que l'équipe travaille.
+   *
+   * &lt;p&gt;Une équipe ne se supprime pas une fois qu'elle a instruit : ses décisions portent son
+   * nom. On la désactive, comme on abroge une nature de pièce sans effacer celles qu'on a fait
+   * valoir.&lt;/p&gt;
+   */
+  @JsonbProperty(JSON_ACTIVE)
+  private Boolean active;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idEquipeArbitrage&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;equipeArbitrageChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;équipe d'arbitrage&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;équipes d'arbitrage&quot;;
+
+  /**
+   * Identifiant json pour {@link #exercise}.
+   */
+  public static final String JSON_EXERCISE = ExerciseDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #leader}.
+   */
+  public static final String JSON_LEADER = &quot;chefEquipe&quot;;
+
+  /**
+   * Identifiant json pour {@link #leaderAsString}.
+   */
+  public static final String JSON_LEADER_AS_STRING = &quot;chefEquipeChaine&quot;;
+
+  /**
+   * Identifiant json pour {@link #memberCount}.
+   */
+  public static final String JSON_MEMBER_COUNT = &quot;nombreMembres&quot;;
+
+  /**
+   * Identifiant json pour {@link #dossierCount}.
+   */
+  public static final String JSON_DOSSIER_COUNT = &quot;nombreDossiers&quot;;
+
+  /**
+   * Identifiant json pour {@link #active}.
+   */
+  public static final String JSON_ACTIVE = &quot;estActif&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationMovementStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationMovementStatus.java</span></div><h1>ArbitrationMovementStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Statut de Ligne d'Arbitrage : quinze états et les seules transitions permises entre eux.
+ *
+ * &lt;p&gt;La matrice de l'annexe 6.3 du document du 27/08/2026 est portée ici, et non dans le service
+ * qui l'applique. Un modèle d'états dont les chemins autorisés sont décrits ailleurs finit
+ * toujours par diverger de son implémentation ; les mettre au même endroit rend la divergence
+ * impossible. La garde métier n'a plus qu'à interroger {@link #canTransitionTo}.&lt;/p&gt;
+ *
+ * &lt;p&gt;Cinq traits distinguent ce cycle de celui du Dossier :&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;&lt;strong&gt;deux origines exclusives&lt;/strong&gt; — création courante ou initialisation
+ *       (RG_PRB_ARB_15) ;&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;un visa non bloquant&lt;/strong&gt; — visé ou non visé mènent également à la
+ *       transmission, le visa qualifie sans arrêter (RG_PRB_ARB_16) ;&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;une boucle de report&lt;/strong&gt; — {@link #DEFERRED} renvoie la ligne en
+ *       arrière, vers l'EPN (RG_PRB_ARB_19) ;&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;deux issues terminales seulement&lt;/strong&gt; — le rejet de traitement et la
+ *       consolidation. « Non consolidé » n'en est pas une : une ligne écartée de la masse
+ *       salariale, faute d'enveloppe le plus souvent, peut y être ramenée plus tard. Le modèle
+ *       d'états du 27/08/2026 laissait la question ouverte (point O7) ; elle est tranchée.&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;une étape qui n'appartient pas à la ligne&lt;/strong&gt; — le passage à la
+ *       validation, puis à la consolidation, est ouvert par le chef d'équipe sur le
+ *       &lt;em&gt;dossier&lt;/em&gt;. La ligne ne se le donne pas à elle-même.&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ * &lt;p&gt;Deux boucles de retour, donc, et elles ne disent pas la même chose. {@link #DEFERRED}
+ * renvoie la ligne à l'EPN pour qu'il la corrige ; {@link #NOT_CONSOLIDATED} la garde telle
+ * quelle, hors du cumul, en attendant que l'exercice puisse la porter. La première met en cause
+ * la demande, la seconde les moyens.&lt;/p&gt;
+ *
+ * &lt;p&gt;L'aiguillage qui suit la réception dépend de la &lt;strong&gt;nature&lt;/strong&gt; de la ligne, et pas
+ * seulement de son état : une ligne d'initialisation se consolide directement (RG_PRB_ARB_17),
+ * toute autre se traite ou se diffère (RG_PRB_ARB_18). C'est un ou-exclusif, et
+ * {@link #canTransitionTo(ArbitrationMovementStatus, String)} le porte.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;Ce que la révision du 05/10/2026 a changé.&lt;/strong&gt; Trois choses, et la matrice
+ * ci-dessous les porte :&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;&lt;strong&gt;l'admission n'est plus une étape&lt;/strong&gt; — la vérification des pièces jointes
+ *       est devenue le préalable que s'impose l'agent qui traite, non le geste séparé d'un
+ *       chargé de contrôle. {@link #RECEIVED} mène donc droit au traitement. Plus personne ne
+ *       &lt;em&gt;admet&lt;/em&gt; une ligne reçue. {@link #ADMITTED} n'a pas disparu pour autant : c'est
+ *       désormais le statut de naissance de l'ajout DCB, que {@link #getInitialStatuses()}
+ *       déclare. {@link #SENT}, lui, n'est plus produit nulle part, mais reste déclaré : la
+ *       base en porte, et un état qu'on retire d'une énumération est un état que la lecture
+ *       fait échouer ;&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;la validation s'ajoute&lt;/strong&gt; — {@link #VALIDATED} s'intercale entre le
+ *       traitement et la consolidation ;&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;les étapes sont subordonnées au dossier&lt;/strong&gt; — une ligne ne franchit une
+ *       étape que si son dossier l'a ouverte. La matrice dit ce qui est concevable,
+ *       {@link ArbitrationStatusCoupling} dit ce qui est permis &lt;em&gt;ici et maintenant&lt;/em&gt;.&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ * &lt;p&gt;Cette condition vit ici, avec la matrice, et non dans le service qui l'applique : l'écran en
+ * a besoin autant que la garde, pour n'offrir que les actions praticables. La loger d'un seul
+ * côté aurait conduit à l'écrire deux fois.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L69">@Getter</span>
+public enum ArbitrationMovementStatus {
+
+  /**
+   * Créé — ligne de gestion courante en cours de saisie. Origine n°1.
+   */
+<span class="fc" id="L75">  CREATED(ArbitrationMovementStatusCode.CREATED, &quot;Créé&quot;),</span>
+
+  /**
+   * Initialisé — ligne de reprise des soldes. Origine n°2.
+   */
+<span class="fc" id="L80">  INITIALIZED(ArbitrationMovementStatusCode.INITIALIZED, &quot;Initialisé&quot;),</span>
+
+  /**
+   * Visé — le contrôleur a visé la ligne.
+   */
+<span class="fc" id="L85">  ENDORSED(ArbitrationMovementStatusCode.ENDORSED, &quot;Visé&quot;),</span>
+
+  /**
+   * Non visé — sans visa, requis ou non délivré.
+   */
+<span class="fc" id="L90">  NOT_ENDORSED(ArbitrationMovementStatusCode.NOT_ENDORSED, &quot;Non visé&quot;),</span>
+
+  /**
+   * Transmis — pivot du cycle, atteint depuis le visa comme depuis un report.
+   */
+<span class="fc" id="L95">  TRANSMITTED(ArbitrationMovementStatusCode.TRANSMITTED, &quot;Transmis&quot;),</span>
+
+  /**
+   * Réceptionné — pris en charge ; déclenche l'aiguillage.
+   */
+<span class="fc" id="L100">  RECEIVED(ArbitrationMovementStatusCode.RECEIVED, &quot;Réceptionné&quot;),</span>
+
+  /**
+   * Admis — retenu pour traitement.
+   */
+<span class="fc" id="L105">  ADMITTED(ArbitrationMovementStatusCode.ADMITTED, &quot;Admis&quot;),</span>
+
+  /**
+   * Différé — traitement reporté, en attente de la levée d'un blocage.
+   *
+   * &lt;p&gt;Deux sorties, et elles ne se confondent pas : l'EPN qui retransmet ramène la ligne
+   * à {@link #TRANSMITTED}, tandis que la DCB qui constate elle-même l'arrivée de ce qui
+   * manquait la porte à {@link #DEFERRED_SATISFIED}.&lt;/p&gt;
+   *
+   * &lt;p&gt;Ce n'est pas le seul retour en arrière du cycle : le chef d'équipe renvoie au
+   * traitement depuis {@link #PROCESSING_ACCEPTED}, et {@link #NOT_CONSOLIDATED} se
+   * rattrape en {@link #CONSOLIDATED} tant que le dossier n'est pas clos.&lt;/p&gt;
+   */
+<span class="fc" id="L118">  DEFERRED(ArbitrationMovementStatusCode.DEFERRED, &quot;Différé&quot;),</span>
+
+  /**
+   * Différé satisfait — blocage levé, en attente de traitement.
+   */
+<span class="fc" id="L123">  DEFERRED_SATISFIED(ArbitrationMovementStatusCode.DEFERRED_SATISFIED, &quot;Différé satisfait&quot;),</span>
+
+  /**
+   * Envoyé — en cours de traitement par le service exécutant.
+   */
+<span class="fc" id="L128">  SENT(ArbitrationMovementStatusCode.SENT, &quot;Envoyé&quot;),</span>
+
+  /**
+   * Traitement accepté — en attente de validation.
+   */
+<span class="fc" id="L133">  PROCESSING_ACCEPTED(ArbitrationMovementStatusCode.PROCESSING_ACCEPTED, &quot;Traitement accepté&quot;),</span>
+
+  /**
+   * Traitement rejeté — terminal et définitif.
+   */
+<span class="fc" id="L138">  PROCESSING_REJECTED(ArbitrationMovementStatusCode.PROCESSING_REJECTED, &quot;Traitement rejeté&quot;),</span>
+
+  /**
+   * Validé — la ligne a franchi l'étape de validation.
+   *
+   * &lt;p&gt;Étape ajoutée le 05/10/2026, et elle n'est pas un doublon du traitement. Le traitement
+   * dit ce que la DCB retient d'une demande ; la validation dit que ce qui a été retenu est
+   * tenu pour bon. Deux gestes, deux acteurs, deux dates — et c'est bien ce que le métier
+   * décrit : les lignes sont traitées, le chef clôt le traitement, puis les lignes sont
+   * validées une à une avant que le chef n'envoie le dossier en consolidation.&lt;/p&gt;
+   *
+   * &lt;p&gt;Elle n'est atteignable que dans un dossier au statut {@code Traité} :
+   * {@link ArbitrationStatusCoupling} le garantit.&lt;/p&gt;
+   */
+<span class="fc" id="L152">  VALIDATED(ArbitrationMovementStatusCode.VALIDATED, &quot;Validé&quot;),</span>
+
+  /**
+   * Consolidé — intégré aux données consolidées. Terminal.
+   */
+<span class="fc" id="L157">  CONSOLIDATED(ArbitrationMovementStatusCode.CONSOLIDATED, &quot;Consolidé&quot;),</span>
+
+  /**
+   * Non consolidé — arbitré favorablement, mais écarté de la masse salariale de l'exercice.
+   *
+   * &lt;p&gt;Non terminal : la matrice le ramène à {@link #CONSOLIDATED}, car ce qui est écarté
+   * n'est pas rejeté.&lt;/p&gt;
+   *
+   * &lt;p&gt;&lt;strong&gt;Mais la clôture du dossier le fige.&lt;/strong&gt; Une ligne écartée ne retient pas la
+   * consolidation du dossier, et un dossier consolidé ne laisse plus rien bouger : passée cette
+   * borne, la reprise n'est plus possible. La fenêtre est donc réelle mais bornée, et l'écran ne
+   * doit pas se fier au seul statut — c'est
+   * {@link #canTransitionTo(ArbitrationMovementStatus, String, BudgetAdministrativeUnitStatus)}
+   * qui sait, lui, dans quel dossier la ligne se trouve.&lt;/p&gt;
+   */
+<span class="fc" id="L172">  NOT_CONSOLIDATED(ArbitrationMovementStatusCode.NOT_CONSOLIDATED, &quot;Non consolidé&quot;)</span>
+
+  ;
+
+<span class="fc" id="L176">  private ArbitrationMovementStatus(String code, String name) {</span>
+<span class="fc" id="L177">    this.code = code;</span>
+<span class="fc" id="L178">    this.name = name;</span>
+<span class="fc" id="L179">  }</span>
+
+  private String code;
+
+  private String name;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L187">    return name;</span>
+  }
+
+  /**
+   * Retourne le statut portant le code donné.
+   *
+   * @param code code recherché
+   * @return le statut correspondant
+   * @throws IllegalArgumentException si aucun statut ne porte ce code
+   */
+  public static ArbitrationMovementStatus getByCode(String code) {
+<span class="fc" id="L198">    return Stream.of(ArbitrationMovementStatus.values())</span>
+<span class="fc" id="L199">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L200">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code « %s » inconnu&quot;.formatted(code)));</span>
+  }
+
+  /**
+   * La matrice de l'annexe 6.3, transcrite telle quelle.
+   *
+   * &lt;p&gt;&lt;strong&gt;Écart assumé à R44a&lt;/strong&gt;, qui prévoit un ensemble {@code previous} par
+   * constante, rempli dans un bloc {@code static}. Une table des &lt;em&gt;suivants&lt;/em&gt; se lit
+   * dans le sens du document source, où chaque état liste ses suites ; l'inverser
+   * obligerait à relire la matrice à l'envers pour la vérifier. Les garde-fous attendus
+   * sont tenus autrement : {@code allowedTargets_matchTheSpecificationMatrix} fige la
+   * table ligne par ligne.&lt;/p&gt;
+   *
+   * &lt;p&gt;Une table plutôt qu'un {@code switch} : le compilateur ajoute à tout {@code switch}
+   * d'énumération une branche par défaut inatteignable, que nul test ne peut couvrir. Une table
+   * n'a pas de branche, et se lit comme la matrice du document.&lt;/p&gt;
+   *
+   * &lt;p&gt;Les états absents de cette table sont terminaux : ne rien déclarer &lt;em&gt;est&lt;/em&gt; la
+   * déclaration qu'aucune transition n'en part.&lt;/p&gt;
+   */
+<span class="fc" id="L220">  private static final Map&lt;ArbitrationMovementStatus, Set&lt;ArbitrationMovementStatus&gt;&gt; TRANSITIONS =</span>
+<span class="fc" id="L221">      Map.ofEntries(</span>
+<span class="fc" id="L222">          Map.entry(CREATED, Set.of(ENDORSED, NOT_ENDORSED)),</span>
+<span class="fc" id="L223">          Map.entry(INITIALIZED, Set.of(ENDORSED, NOT_ENDORSED)),</span>
+<span class="fc" id="L224">          Map.entry(ENDORSED, Set.of(TRANSMITTED)),</span>
+<span class="fc" id="L225">          Map.entry(NOT_ENDORSED, Set.of(TRANSMITTED)),</span>
+<span class="fc" id="L226">          Map.entry(TRANSMITTED, Set.of(RECEIVED)),</span>
+          // Consolidation directe reservee aux lignes d'Initialisation (RG_PRB_ARB_17). Les
+          // autres vont droit au traitement : l'admission n'est plus une etape du circuit.
+<span class="fc" id="L229">          Map.entry(RECEIVED,</span>
+<span class="fc" id="L230">              Set.of(CONSOLIDATED, PROCESSING_ACCEPTED, PROCESSING_REJECTED, DEFERRED)),</span>
+<span class="fc" id="L231">          Map.entry(DEFERRED, Set.of(TRANSMITTED, DEFERRED_SATISFIED)),</span>
+<span class="fc" id="L232">          Map.entry(DEFERRED_SATISFIED, Set.of(PROCESSING_ACCEPTED, PROCESSING_REJECTED)),</span>
+          // ADMIS reste produit, mais par l'ajout DCB et non plus par une etape d'admission.
+          // ENVOYE, lui, n'est plus produit : la base en porte, et ces lignes-la doivent
+          // pouvoir finir leur course. Les deux menent donc au traitement.
+<span class="fc" id="L236">          Map.entry(ADMITTED, Set.of(PROCESSING_ACCEPTED, PROCESSING_REJECTED)),</span>
+<span class="fc" id="L237">          Map.entry(SENT, Set.of(PROCESSING_ACCEPTED, PROCESSING_REJECTED)),</span>
+          // LE RETOUR AU TRAITEMENT, ouvert au chef d'equipe le 12/10/2026. Il vient
+          // confirmer ou rejeter le travail de son equipe : confirmer menait a VALIDE, rejeter
+          // ne menait nulle part, et son desaccord n'avait aucune forme. La ligne revient donc
+          // a RECEPTIONNE, ou l'agent la reprend.
+          //
+          // SEULE L'ACCEPTATION REVIENT. Le rejet prononce au traitement est definitif, et cette
+          // regle n'est pas revue ici : TRAITEMENT_REJETE reste terminal, ne retient aucune
+          // fermeture, et la consolidation ne l'attend pas. La rendre reversible toucherait aux
+          // trois a la fois.
+<span class="fc" id="L247">          Map.entry(PROCESSING_ACCEPTED, Set.of(VALIDATED, RECEIVED)),</span>
+<span class="fc" id="L248">          Map.entry(VALIDATED, Set.of(CONSOLIDATED, NOT_CONSOLIDATED)),</span>
+          // La mise a l'ecart n'est pas un rejet : ce qui est ecarte peut revenir.
+<span class="fc" id="L250">          Map.entry(NOT_CONSOLIDATED, Set.of(CONSOLIDATED)));</span>
+
+  /**
+   * Retourne les états atteignables depuis celui-ci — la matrice de l'annexe 6.3.
+   *
+   * &lt;p&gt;Toute transition absente de cet ensemble doit être refusée par le système.&lt;/p&gt;
+   *
+   * @return les états cibles autorisés, vide si l'état est terminal
+   */
+  public Set&lt;ArbitrationMovementStatus&gt; getAllowedTargets() {
+<span class="fc" id="L260">    return TRANSITIONS.getOrDefault(this, Set.of());</span>
+  }
+
+  /**
+   * Indique si la transition vers le statut donné figure dans la matrice.
+   *
+   * @param target statut visé
+   * @return vrai si la transition est permise
+   */
+  public boolean canTransitionTo(ArbitrationMovementStatus target) {
+<span class="fc" id="L270">    return getAllowedTargets().contains(target);</span>
+  }
+
+  /**
+   * Indique si la transition est permise pour une ligne de la nature donnée.
+   *
+   * &lt;p&gt;Au-delà de la matrice, l'aiguillage qui suit la réception est un ou-exclusif :
+   * l'initialisation va droit à la consolidation, tout le reste va au traitement ou au
+   * report. Une ligne d'initialisation ne peut donc pas être traitée, ni une prime
+   * consolidée sans traitement.&lt;/p&gt;
+   *
+   * @param target statut visé
+   * @param natureCode nature du mouvement
+   * @return vrai si la transition est permise
+   */
+  public boolean canTransitionTo(ArbitrationMovementStatus target, String natureCode) {
+<span class="fc bfc" id="L286" title="All 2 branches covered.">    if (!canTransitionTo(target)) {</span>
+<span class="fc" id="L287">      return false;</span>
+    }
+<span class="fc bfc" id="L289" title="All 2 branches covered.">    if (this != RECEIVED) {</span>
+<span class="fc" id="L290">      return true;</span>
+    }
+<span class="fc" id="L292">    boolean initialising = ArbitrationMovementDto.NATURE_INITIALIZATION.equals(natureCode);</span>
+<span class="fc bfc" id="L293" title="All 4 branches covered.">    return target == CONSOLIDATED ? initialising : !initialising;</span>
+  }
+
+  /**
+   * Indique si la transition est permise ici et maintenant : matrice, nature, et dossier.
+   *
+   * &lt;p&gt;C'est l'unique point d'entrée que la garde métier a besoin de connaître. Les trois
+   * conditions s'y empilent dans l'ordre où elles se démentent le plus vite : la matrice dit ce
+   * qui est concevable, la nature dit ce qui convient à cette ligne-là, le statut du dossier dit
+   * ce qui est ouvert à cet instant.&lt;/p&gt;
+   *
+   * &lt;p&gt;La troisième est la plus récente et la moins intuitive : une transition peut être
+   * parfaitement légitime et pourtant refusée, parce que le chef d'équipe n'a pas encore ouvert
+   * l'étape. Le message d'erreur doit le dire, sans quoi l'agent croit à une anomalie.&lt;/p&gt;
+   *
+   * @param target statut visé
+   * @param natureCode nature du mouvement
+   * @param dossierStatus statut du dossier qui contient la ligne
+   * @return vrai si la transition est permise
+   */
+  public boolean canTransitionTo(ArbitrationMovementStatus target, String natureCode,
+      BudgetAdministrativeUnitStatus dossierStatus) {
+<span class="fc bfc" id="L315" title="All 2 branches covered.">    return canTransitionTo(target, natureCode)</span>
+<span class="fc bfc" id="L316" title="All 2 branches covered.">        &amp;&amp; ArbitrationStatusCoupling.isStageOpen(target, dossierStatus, natureCode);</span>
+  }
+
+  /**
+   * Indique si le cycle de vie s'achève sur ce statut.
+   *
+   * @return vrai si aucune transition n'en part
+   */
+  public boolean isTerminal() {
+<span class="fc" id="L325">    return getAllowedTargets().isEmpty();</span>
+  }
+
+  /**
+   * Retourne les origines d'une ligne.
+   *
+   * &lt;p&gt;Deux viennent de l'EPN et sont celles de RG_PRB_ARB_15 : la saisie courante
+   * ({@link #CREATED}) et la reprise des soldes ({@link #INITIALIZED}).&lt;/p&gt;
+   *
+   * &lt;p&gt;La troisième, {@link #ADMITTED}, est l'élément que la DCB ajoute &lt;em&gt;au cours du
+   * traitement&lt;/em&gt; (CU03-RG02, CU04-RG02, CU05-RG02). Le modèle d'états du 27/08/2026 ne la
+   * nommait pas — il décrivait le parcours de ce qui vient de l'EPN, et rien d'autre. Elle est
+   * ajoutée ici plutôt que contournée à l'endroit de la création : une origine qu'on
+   * n'écrit nulle part est une origine que la garde ne sait pas contrôler.&lt;/p&gt;
+   *
+   * &lt;p&gt;Elle naît admise, et non décidée : la DCB ne l'ajoute qu'en ayant sous les yeux ce qui
+   * la justifie, mais elle reste à instruire comme les autres. Lui faire reparcourir le visa, la
+   * transmission et la réception rejouerait une histoire qui n'a pas eu lieu ; lui accorder
+   * d'emblée une acceptation la ferait entrer dans la masse salariale sans qu'aucune décision
+   * ne porte de nom ni de date.&lt;/p&gt;
+   *
+   * @return les statuts par lesquels une ligne entre dans le cycle
+   */
+  public static Set&lt;ArbitrationMovementStatus&gt; getInitialStatuses() {
+<span class="fc" id="L349">    return Set.of(CREATED, INITIALIZED, ADMITTED);</span>
+  }
+
+  /**
+   * Retourne les états dont aucune transition ne part.
+   *
+   * &lt;p&gt;La terminalité se lit &lt;strong&gt;sur le statut seul&lt;/strong&gt;, hors de tout dossier. Un
+   * {@link #NOT_CONSOLIDATED} n'y figure donc pas, même si la clôture de son dossier le fige
+   * en pratique. Un écran qui propose des actions ne doit pas s'arrêter là : seul
+   * {@link #canTransitionTo(ArbitrationMovementStatus, String, BudgetAdministrativeUnitStatus)}
+   * tient compte de l'état du dossier.&lt;/p&gt;
+   *
+   * @return les statuts terminaux
+   */
+  public static Set&lt;ArbitrationMovementStatus&gt; getTerminalStatuses() {
+<span class="fc" id="L364">    return Stream.of(values()).filter(ArbitrationMovementStatus::isTerminal)</span>
+<span class="fc" id="L365">        .collect(Collectors.toUnmodifiableSet());</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

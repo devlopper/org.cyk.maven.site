@@ -103,6 +103,78 @@ import lombok.Setter;
   private String positionFieldsAsString;
 
   /**
+   * Nouvel emploi occupé après la mesure.
+   */
+  @JsonbProperty(JSON_NEW_JOB)
+  private String newJob;
+
+  /**
+   * Nouvelle catégorie.
+   */
+  @JsonbProperty(JSON_NEW_CATEGORY)
+  private String newCategory;
+
+  /**
+   * Nouveau grade.
+   */
+  @JsonbProperty(JSON_NEW_GRADE)
+  private String newGrade;
+
+  /**
+   * Nouvelle classe.
+   */
+  @JsonbProperty(JSON_NEW_CLASSIFICATION)
+  private String newClassification;
+
+  /**
+   * Nouvel échelon.
+   */
+  @JsonbProperty(JSON_NEW_STEP)
+  private String newStep;
+
+  /**
+   * Nouvel indice. C'est lui qui, multiplié par la valeur du point, fait le montant.
+   */
+  @JsonbProperty(JSON_NEW_INDEX)
+  private Integer newIndex;
+
+  /**
+   * Indice dont l'agent partait.
+   */
+  @JsonbProperty(JSON_ENTRY_INDEX)
+  private Integer entryIndex;
+
+  /**
+   * Référence de l'acte qui fonde la mesure.
+   */
+  @JsonbProperty(JSON_ACT_REFERENCE)
+  private String actReference;
+
+  /**
+   * Motif de la mesure.
+   */
+  @JsonbProperty(JSON_REASON)
+  private String reason;
+
+  /**
+   * Statut du mouvement.
+   */
+  @JsonbProperty(JSON_STATUS)
+  private String status;
+
+  /**
+   * Date à laquelle la mesure est appliquée en paie.
+   */
+  @JsonbProperty(JSON_APPLICATION_DATE)
+  private LocalDate applicationDate;
+
+  /**
+   * Représentation en chaine de caractères de la date d'application.
+   */
+  @JsonbProperty(JSON_APPLICATION_DATE_AS_STRING)
+  private String applicationDateAsString;
+
+  /**
    * Identifiant json de identifiant de {@link MovementDto}.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idMouvement&quot;;
@@ -186,6 +258,66 @@ import lombok.Setter;
    * Identifiant json de {@link #positionFieldsAsString}.
    */
   public static final String JSON_POSITION_FIELDS_AS_STRING = &quot;champsPositionChaine&quot;;
+
+  /**
+   * Identifiant json de {@link #newJob}.
+   */
+  public static final String JSON_NEW_JOB = &quot;nouvelEmploi&quot;;
+
+  /**
+   * Identifiant json de {@link #newCategory}.
+   */
+  public static final String JSON_NEW_CATEGORY = &quot;nouvelleCategorie&quot;;
+
+  /**
+   * Identifiant json de {@link #newGrade}.
+   */
+  public static final String JSON_NEW_GRADE = &quot;nouveauGrade&quot;;
+
+  /**
+   * Identifiant json de {@link #newClassification}.
+   */
+  public static final String JSON_NEW_CLASSIFICATION = &quot;nouvelleClasse&quot;;
+
+  /**
+   * Identifiant json de {@link #newStep}.
+   */
+  public static final String JSON_NEW_STEP = &quot;nouvelEchelon&quot;;
+
+  /**
+   * Identifiant json de {@link #newIndex}.
+   */
+  public static final String JSON_NEW_INDEX = &quot;nouvelIndice&quot;;
+
+  /**
+   * Identifiant json de {@link #entryIndex}.
+   */
+  public static final String JSON_ENTRY_INDEX = &quot;indiceEntree&quot;;
+
+  /**
+   * Identifiant json de {@link #actReference}.
+   */
+  public static final String JSON_ACT_REFERENCE = &quot;referenceActe&quot;;
+
+  /**
+   * Identifiant json de {@link #reason}.
+   */
+  public static final String JSON_REASON = &quot;motif&quot;;
+
+  /**
+   * Identifiant json de {@link #status}.
+   */
+  public static final String JSON_STATUS = &quot;statut&quot;;
+
+  /**
+   * Identifiant json de {@link #applicationDate}.
+   */
+  public static final String JSON_APPLICATION_DATE = &quot;dateApplication&quot;;
+
+  /**
+   * Identifiant json de {@link #applicationDateAsString}.
+   */
+  public static final String JSON_APPLICATION_DATE_AS_STRING = &quot;dateApplicationChaine&quot;;
 
   /**
    * Nom pour lecture humaine de la classe.

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationTeamMemberDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationTeamMemberDto.java</span></div><h1>ArbitrationTeamMemberDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Membre d'une équipe d'arbitrage : un agent, et le rôle sous lequel il y figure.
+ *
+ * &lt;p&gt;&lt;strong&gt;Le rôle ne donne aucun droit.&lt;/strong&gt; Il dit sous quel titre l'agent a été inscrit
+ * dans l'équipe — chargé des mouvements, des mesures ponctuelles, des transferts — et sert à
+ * lire la composition d'un coup d'œil. Ce que l'agent peut réellement instruire reste commandé
+ * par son profil Keycloak, et par lui seul.&lt;/p&gt;
+ *
+ * &lt;p&gt;Le faire décider des droits aurait été tentant : on aurait composé les équipes sans
+ * toucher à Keycloak. Mais deux sources de vérité pour une même question finissent toujours par
+ * se contredire, et la question « cet agent peut-il instruire cette ligne ? » se pose déjà
+ * partout ailleurs à partir du jeton. Le rôle reste donc une mention.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L28">public class ArbitrationTeamMemberDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Équipe dont l'agent est membre.
+   */
+  @JsonbProperty(JSON_TEAM_IDENTIFIER)
+  private String teamIdentifier;
+
+  /**
+   * Libellé de l'équipe, alimenté par jointure.
+   */
+  @JsonbProperty(JSON_TEAM_AS_STRING)
+  private String teamAsString;
+
+  /**
+   * Identifiant de connexion de l'agent.
+   */
+  @JsonbProperty(JSON_USER)
+  private String user;
+
+  /**
+   * Nom lisible de l'agent, servi par le service des identités.
+   */
+  @JsonbProperty(JSON_USER_AS_STRING)
+  private String userAsString;
+
+  /**
+   * Titre sous lequel l'agent figure dans l'équipe. Mention, non pas droit.
+   */
+  @JsonbProperty(JSON_ROLE)
+  private String role;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idMembreEquipe&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;membreEquipeChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;membre d'équipe&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;membres d'équipe&quot;;
+
+  /**
+   * Identifiant json pour {@link #teamIdentifier}.
+   */
+  public static final String JSON_TEAM_IDENTIFIER = ArbitrationTeamDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #teamAsString}.
+   */
+  public static final String JSON_TEAM_AS_STRING = ArbitrationTeamDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json pour {@link #user}.
+   */
+  public static final String JSON_USER = &quot;utilisateur&quot;;
+
+  /**
+   * Identifiant json pour {@link #userAsString}.
+   */
+  public static final String JSON_USER_AS_STRING = &quot;utilisateurChaine&quot;;
+
+  /**
+   * Identifiant json pour {@link #role}.
+   */
+  public static final String JSON_ROLE = &quot;role&quot;;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

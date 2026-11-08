@@ -2,13 +2,42 @@
 
 import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableCodableNamableDto;
 import jakarta.json.bind.annotation.JsonbProperty;
-import jakarta.persistence.Transient;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Cette classe représente un poste de paie.
+ * Poste de paie, avec ce qui permet de le situer : sa nature économique et sa catégorie.
+ *
+ * &lt;p&gt;Le poste est l'unité de rémunération élémentaire — « Indemnité de logement », « Prime de
+ * recherche », « Pensions CGRAE part employeur ». Il vit au référentiel de la paie et ne
+ * s'administre pas ici : ce contrat le donne à lire, jamais à modifier.&lt;/p&gt;
+ *
+ * &lt;p&gt;La &lt;strong&gt;nature économique&lt;/strong&gt; est son imputation budgétaire : c'est elle qu'on
+ * retrouve en ligne du tableau des entrées et sorties, sous son code à six chiffres — 663910 pour
+ * la prime de recherche, 661100 pour les fonctionnaires de catégorie A. Mille quatre cent
+ * dix-huit postes sur mille quatre cent quarante-deux en affichent une, réparties sur
+ * trente-neuf natures. Ce lien existait déjà en base ; il n'était modélisé nulle part.&lt;/p&gt;
+ *
+ * &lt;p&gt;Les vingt-quatre autres ne sont pas tous logés à la même enseigne : dix-sept ne portent
+ * aucune nature, et sept en désignent une qui a disparu du référentiel. Ce contrat les rend
+ * quand même, nature vide : les taire les rendrait introuvables à l'écran, et le défaut de
+ * données passerait pour une absence de poste.&lt;/p&gt;
+ *
+ * &lt;p&gt;La &lt;strong&gt;catégorie&lt;/strong&gt; regroupe les postes par famille de paie. C'est à elle, et non
+ * à la nature économique, que les activités budgétaires se rattachent
+ * ({@code TA_CATEGORIE_POSTE_PAIE_ACTIVITE}) — une correction utile à la lecture du modèle :
+ * nature et catégorie sont deux axes parallèles du poste, non deux niveaux emboîtés.&lt;/p&gt;
+ *
+ * &lt;p&gt;L'&lt;strong&gt;activité&lt;/strong&gt; ne figure pas parmi les attributs du poste, et c'est délibéré :
+ * elle se rattache à la catégorie, si bien qu'un poste de « Traitement et salaire » en compte
+ * près de mille. La porter ici multiplierait chaque poste par autant. Elle existe en revanche
+ * comme &lt;em&gt;critère&lt;/em&gt; de recherche, servi par une seconde vue.&lt;/p&gt;
+ *
+ * &lt;p&gt;Ce critère est volontairement ouvert alors que le rattachement des activités aux
+ * catégories relève d'un autre module et reste à faire pour cinq catégories sur sept. Il lit
+ * la table de liaison en direct : le jour où elle se remplira, ce contrat couvrira les postes
+ * nouvellement liés sans qu'une ligne change ici.&lt;/p&gt;
  *
  * @author Christian
  *
@@ -16,30 +45,69 @@ import lombok.Setter;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-@Deprecated(forRemoval = true)
-<span class="fc" id="L20">public class PayrollComponentDto extends AbstractIdentifiableCodableNamableDto</span>
-    implements PayrollComponentProjectionContainerDto {
+<span class="fc" id="L48">public class PayrollComponentDto extends AbstractIdentifiableCodableNamableDto {</span>
 
   /**
-   * Représentation en chaine de caractères du montant de référence.
+   * Identifiant de la nature économique du poste.
    */
-  @Transient
-  @JsonbProperty(JSON_REFERENCE_AMOUNT_AS_STRING)
-  String referenceAmountAsString;
-  
-  /**
-   * Représentation en chaine de caractères du montant.
-   */
-  @JsonbProperty(JSON_AMOUNT_AS_STRING)
-  String amountAsString;
+  @JsonbProperty(JSON_ECONOMIC_NATURE_IDENTIFIER)
+  private String economicNatureIdentifier;
 
   /**
-   * Identifiant json de identifiant de {@link PayrollComponentDto}.
+   * Code de la nature économique : ce qui apparaît en ligne du tableau des entrées et sorties.
+   */
+  @JsonbProperty(JSON_ECONOMIC_NATURE_CODE)
+  private String economicNatureCode;
+
+  /**
+   * Libellé de la nature économique.
+   */
+  @JsonbProperty(JSON_ECONOMIC_NATURE_AS_STRING)
+  private String economicNatureAsString;
+
+  /**
+   * Identifiant de la catégorie de poste de paie.
+   */
+  @JsonbProperty(JSON_CATEGORY_IDENTIFIER)
+  private String categoryIdentifier;
+
+  /**
+   * Libellé de la catégorie de poste de paie.
+   */
+  @JsonbProperty(JSON_CATEGORY_AS_STRING)
+  private String categoryAsString;
+
+  /**
+   * Identifiant de la nature du poste de paie.
+   */
+  @JsonbProperty(JSON_PAYROLL_NATURE_IDENTIFIER)
+  private String payrollNatureIdentifier;
+
+  /**
+   * Nature du poste de paie : &lt;em&gt;Normal&lt;/em&gt;, &lt;em&gt;Rappel&lt;/em&gt; ou &lt;em&gt;Régularisation&lt;/em&gt;.
+   *
+   * &lt;p&gt;La distinction que le tableau des entrées et sorties porte en toutes lettres : il oppose
+   * le &lt;em&gt;glissement catégoriel&lt;/em&gt; de l'exercice au &lt;em&gt;rappel de glissement&lt;/em&gt; de
+   * l'exercice précédent, l'un en entrée et l'autre en sortie. Le référentiel de la paie la
+   * porte déjà, poste par poste : quatre cent soixante-dix-huit régularisations, quatre cent
+   * soixante-seize rappels, quatre cent cinquante-quatre normaux.&lt;/p&gt;
+   */
+  @JsonbProperty(JSON_PAYROLL_NATURE_AS_STRING)
+  private String payrollNatureAsString;
+
+  /**
+   * Vrai pour un gain, faux pour une retenue.
+   */
+  @JsonbProperty(JSON_GAIN)
+  private Boolean gain;
+
+  /**
+   * Identifiant json de l'identifiant.
    */
   public static final String JSON_THIS_IDENTIFIER = &quot;idPostePaie&quot;;
 
   /**
-   * Identifiant json de représentation en chaine de caractères de {@link PayrollComponentDto}.
+   * Identifiant json de la représentation en chaine de caractères.
    */
   public static final String JSON_THIS_AS_STRING = &quot;postePaieChaine&quot;;
 
@@ -52,5 +120,50 @@ import lombok.Setter;
    * Nom au pluriel pour lecture humaine de la classe.
    */
   public static final String PLURAL_NAME = &quot;postes de paie&quot;;
+
+  /**
+   * Identifiant json pour {@link #economicNatureIdentifier}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_IDENTIFIER = &quot;idNatureEconomique&quot;;
+
+  /**
+   * Identifiant json pour {@link #economicNatureCode}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_CODE = &quot;codeNatureEconomique&quot;;
+
+  /**
+   * Identifiant json pour {@link #economicNatureAsString}.
+   */
+  public static final String JSON_ECONOMIC_NATURE_AS_STRING = &quot;natureEconomiqueChaine&quot;;
+
+  /**
+   * Identifiant json pour {@link #categoryIdentifier}.
+   */
+  public static final String JSON_CATEGORY_IDENTIFIER = &quot;idCategoriePostePaie&quot;;
+
+  /**
+   * Identifiant json pour {@link #categoryAsString}.
+   */
+  public static final String JSON_CATEGORY_AS_STRING = &quot;categoriePostePaieChaine&quot;;
+
+  /**
+   * Identifiant json de activity_identifier.
+   */
+  public static final String JSON_ACTIVITY_IDENTIFIER = &quot;idActivite&quot;;
+
+  /**
+   * Identifiant json pour {@link #payrollNatureIdentifier}.
+   */
+  public static final String JSON_PAYROLL_NATURE_IDENTIFIER = &quot;idNaturePostePaie&quot;;
+
+  /**
+   * Identifiant json pour {@link #payrollNatureAsString}.
+   */
+  public static final String JSON_PAYROLL_NATURE_AS_STRING = &quot;naturePostePaieChaine&quot;;
+
+  /**
+   * Identifiant json pour {@link #gain}.
+   */
+  public static final String JSON_GAIN = &quot;estGain&quot;;
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

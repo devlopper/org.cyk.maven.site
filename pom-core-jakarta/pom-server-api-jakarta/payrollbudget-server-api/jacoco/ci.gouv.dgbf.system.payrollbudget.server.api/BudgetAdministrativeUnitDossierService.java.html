@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetAdministrativeUnitDossierService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetAdministrativeUnitDossierService.java</span></div><h1>BudgetAdministrativeUnitDossierService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Contrat de consultation des dossiers de masse salariale.
+ *
+ * &lt;p&gt;Un dossier ne se crée pas depuis l'extérieur : il naît de l'expression des besoins de
+ * l'EPN, et son état n'avance que par les opérations du circuit. &lt;strong&gt;Aucune mise à jour
+ * générique n'est exposée&lt;/strong&gt; : elle laisserait contourner le cycle de vie. Les six
+ * écritures sont des transitions nommées — réception, validation du traitement, validation,
+ * consolidation — auxquelles s'ajoutent la prise en charge et son abandon, qui désignent qui
+ * instruit sans faire avancer l'état.&lt;/p&gt;
+ *
+ * &lt;p&gt;Le chemin, les clés JSON et les identifiants d'opération portent tous le même nom que
+ * le concept : &lt;em&gt;dossier de masse salariale&lt;/em&gt;. Le chemin suivait auparavant celui de
+ * l'unité administrative de budget, dont le dossier est la face transactionnelle — les deux
+ * désignent bien le même objet du monde réel, mais l'URL disait alors un nom que ni les clés
+ * ni la documentation n'employaient.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Path(value = BudgetAdministrativeUnitDossierService.PATH)
+@Tag(name = &quot;Gestion des dossiers de masse salariale&quot;)
+public interface BudgetAdministrativeUnitDossierService extends SpecificService {
+
+  /*
+   * ECART ASSUME A R45c, comme pour la ligne d'arbitrage : les six transitions rendent un
+   * IdentifiableResponseDto. Voir la note de ArbitrationMovementService.
+   */
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;dossiers-masse-salariale&quot;;
+
+  /**
+   * Identifiant du service d'obtention de plusieurs {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Recherche multicritère des dossiers.
+   *
+   * @param request critères, projection et pagination
+   * @return les dossiers correspondants
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      summary = &quot;Consultation des dossiers de masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(
+          implementation = BudgetAdministrativeUnitDossierGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Réponse paginée d'une recherche de dossiers.
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L91">  public static class BudgetAdministrativeUnitDossierGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;BudgetAdministrativeUnitDossierDto&gt; {
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;BudgetAdministrativeUnitDossierDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention unitaire de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service d'obtention unitaire de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Recherche d'un dossier unique.
+   *
+   * @param request critères et projection
+   * @return le dossier correspondant
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(
+          implementation = BudgetAdministrativeUnitDossierDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de
+   * {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER =
+      &quot;OBTENTION_PAR_IDENTIFIANT_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Lecture d'un dossier par son identifiant.
+   *
+   * @param request identifiant et projection
+   * @return le dossier correspondant
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(
+          implementation = BudgetAdministrativeUnitDossierDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de réception de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String RECEIVE_IDENTIFIER = &quot;RECEPTION_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service de réception de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String RECEIVE_PATH = &quot;reception&quot;;
+
+  /**
+   * Réceptionne un dossier transmis (CU01).
+   *
+   * &lt;p&gt;La date et l'heure de prise en charge sont arrêtées par le serveur, jamais fournies par
+   * l'appelant : c'est ce qui rend l'accusé de réception opposable. Un dossier sans bordereau ne
+   * peut pas être réceptionné (RG01).&lt;/p&gt;
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  @Path(RECEIVE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = RECEIVE_IDENTIFIER,
+      summary = &quot;Réception d'un dossier de masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response receive(BudgetAdministrativeUnitDossierTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de validation du traitement de {@link
+   * BudgetAdministrativeUnitDossierDto}.
+   */
+  String VALIDATE_PROCESSING_IDENTIFIER = &quot;VALIDATION_TRAITEMENT_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service de validation du traitement de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String VALIDATE_PROCESSING_PATH = &quot;validation-traitement&quot;;
+
+  /**
+   * Valide le traitement d'un dossier : l'étape de traitement est close.
+   *
+   * &lt;p&gt;Geste du &lt;strong&gt;chef d'équipe&lt;/strong&gt;. Il ne décide de rien sur les lignes : il constate
+   * que chacune a été traitée, et c'est ce constat qui ouvre leur validation. Tant qu'il n'est pas
+   * posé, aucune ligne du dossier ne peut être validée.&lt;/p&gt;
+   *
+   * &lt;p&gt;Il suppose &lt;strong&gt;chaque ligne traitée&lt;/strong&gt;. Une ligne encore réceptionnée retient le
+   * dossier — sans quoi le chef fermerait une étape que des lignes n'ont pas franchie, et
+   * celles-ci resteraient en arrière sans que rien ne le signale. Les lignes rejetées au
+   * traitement et les lignes différées ne retiennent rien : la première est sortie du circuit, la
+   * seconde attend l'EPN et peut ne jamais revenir.&lt;/p&gt;
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  @Path(VALIDATE_PROCESSING_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = VALIDATE_PROCESSING_IDENTIFIER,
+      summary = &quot;Valider le traitement d'un dossier de masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response validateProcessing(BudgetAdministrativeUnitDossierTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de validation de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String VALIDATE_IDENTIFIER = &quot;VALIDATION_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service de validation de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String VALIDATE_PATH = &quot;validation&quot;;
+
+  /**
+   * Valide un dossier : il part en consolidation.
+   *
+   * &lt;p&gt;Geste du &lt;strong&gt;chef d'équipe&lt;/strong&gt;, et le second des trois qui lui appartiennent. Il
+   * envoie le dossier et ses lignes à la consolidation ; tant qu'il n'est pas posé, aucune ligne
+   * ne peut être consolidée.&lt;/p&gt;
+   *
+   * &lt;p&gt;Il suppose &lt;strong&gt;chaque ligne validée&lt;/strong&gt;, selon la même règle que la validation du
+   * traitement.&lt;/p&gt;
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  @Path(VALIDATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = VALIDATE_IDENTIFIER,
+      summary = &quot;Valider un dossier de masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response validate(BudgetAdministrativeUnitDossierTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de consolidation de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String CONSOLIDATE_IDENTIFIER = &quot;CONSOLIDATION_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service de consolidation de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String CONSOLIDATE_PATH = &quot;consolidation&quot;;
+
+  /**
+   * Consolide un dossier : l'arbitrage est clos.
+   *
+   * &lt;p&gt;Geste du &lt;strong&gt;chef d'équipe&lt;/strong&gt;, et le dernier : c'est la consolidation finale,
+   * celle qui constitue la masse salariale de l'EPN. Elle ne se prend que sur un dossier
+   * &lt;em&gt;Validé&lt;/em&gt;, et lorsque &lt;strong&gt;plus aucune de ses lignes n'attend de choix&lt;/strong&gt;.
+   * Consolider alors qu'une ligne validée reste à trancher reviendrait à arrêter une masse
+   * salariale dont on sait qu'elle est incomplète.&lt;/p&gt;
+   *
+   * &lt;p&gt;L'opération &lt;strong&gt;ferme le dossier et tout son contenu&lt;/strong&gt; : plus aucune transition
+   * n'est acceptée sur ses lignes, pas même la retransmission d'une ligne différée pour
+   * correction. Elle est sans retour.&lt;/p&gt;
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  @Path(CONSOLIDATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CONSOLIDATE_IDENTIFIER,
+      summary = &quot;Consolider un dossier de masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response consolidate(BudgetAdministrativeUnitDossierTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de prise en charge de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String TAKE_CHARGE_IDENTIFIER = &quot;PRISE_EN_CHARGE_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service de prise en charge de {@link BudgetAdministrativeUnitDossierDto}.
+   */
+  String TAKE_CHARGE_PATH = &quot;prise-en-charge&quot;;
+
+  /**
+   * Attribue un dossier réceptionné à l'agent qui l'appelle (RG3).
+   *
+   * &lt;p&gt;L'agent retenu est celui de l'audit — jamais un nom fourni dans la requête : on prend
+   * un dossier en charge pour soi, on n'en charge pas quelqu'un d'autre à son insu. Un dossier
+   * déjà tenu par un tiers est refusé ; le reprendre pour soi ne l'est pas, la reprise étant
+   * sans effet.&lt;/p&gt;
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  @Path(TAKE_CHARGE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = TAKE_CHARGE_IDENTIFIER,
+      summary = &quot;Prise en charge d'un dossier de masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response takeCharge(BudgetAdministrativeUnitDossierTransitionRequestDto request);
+
+  /**
+   * Identifiant du service d'abandon de la prise en charge de {@link
+   * BudgetAdministrativeUnitDossierDto}.
+   */
+  String RELEASE_IDENTIFIER = &quot;ABANDON_DOSSIER_MASSE_SALARIALE&quot;;
+
+  /**
+   * Chemin du service d'abandon de la prise en charge de {@link
+   * BudgetAdministrativeUnitDossierDto}.
+   */
+  String RELEASE_PATH = &quot;abandon&quot;;
+
+  /**
+   * Libère un dossier pris en charge.
+   *
+   * &lt;p&gt;Les décisions déjà rendues restent : abandonner, c'est rendre le dossier disponible,
+   * pas défaire ce qu'on y a fait. Seul celui qui le tient peut le relâcher.&lt;/p&gt;
+   *
+   * @param request identifiant du dossier
+   * @return l'identifiant du dossier touché
+   */
+  @Path(RELEASE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = RELEASE_IDENTIFIER,
+      summary = &quot;Abandon d'un dossier de masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response release(BudgetAdministrativeUnitDossierTransitionRequestDto request);
+
+  /**
+   * Requête d'une transition d'état du dossier : l'identifiant suffit, l'état visé est porté par
+   * l'opération elle-même.
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L355">  class BudgetAdministrativeUnitDossierTransitionRequestDto extends ByIdentifierRequestDto {</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

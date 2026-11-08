@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationTeamMemberMovementTypeFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationTeamMemberMovementTypeFilter.java</span></div><h1>ArbitrationTeamMemberMovementTypeFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueGetter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueSetter;
+import ci.gouv.dgbf.extension.server.service.api.request.FieldDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Critères de recherche des types confiés aux membres.
+ *
+ * &lt;p&gt;Deux questions, et elles ne se posent pas au même endroit. L'écran d'équipe demande « que
+ * confie-t-on à ce membre ? » et filtre sur le membre. L'écran de traitement demande « qu'a-t-on
+ * confié à l'agent qui regarde ? » et filtre sur l'identifiant de connexion, car il ne connaît
+ * de lui que celui-là — il ne sait pas de quelle équipe il relève, ni s'il en relève d'une.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class ArbitrationTeamMemberMovementTypeFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Membre dont on veut les types de mouvement.
+   */
+  String memberIdentifier;
+
+  /**
+   * Identifiant de connexion du membre, quand on ne tient pas le sien.
+   */
+  String memberUser;
+
+  /**
+   * Type de mouvement dont on veut les membres.
+   */
+  String movementTypeIdentifier;
+
+  public ArbitrationTeamMemberMovementTypeFilter() {
+<span class="fc" id="L42">    super();</span>
+<span class="fc" id="L43">  }</span>
+
+  public ArbitrationTeamMemberMovementTypeFilter(FilterDto dto) {
+<span class="fc" id="L46">    super(dto);</span>
+<span class="fc" id="L47">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L51">    super.doInitialize(filter);</span>
+<span class="fc" id="L52">    setMemberIdentifier(</span>
+<span class="fc" id="L53">        read(filter, ArbitrationTeamMemberMovementTypeDto.JSON_MEMBER_IDENTIFIER));</span>
+<span class="fc" id="L54">    setMemberUser(read(filter, ArbitrationTeamMemberMovementTypeDto.JSON_MEMBER_USER));</span>
+<span class="fc" id="L55">    setMovementTypeIdentifier(</span>
+<span class="fc" id="L56">        read(filter, ArbitrationTeamMemberMovementTypeDto.JSON_MOVEMENT_TYPE_IDENTIFIER));</span>
+<span class="fc" id="L57">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L61">    super.toDto(filter);</span>
+<span class="fc" id="L62">    write(filter, ArbitrationTeamMemberMovementTypeDto.JSON_MEMBER_IDENTIFIER,</span>
+<span class="fc" id="L63">        getMemberIdentifier());</span>
+<span class="fc" id="L64">    write(filter, ArbitrationTeamMemberMovementTypeDto.JSON_MEMBER_USER, getMemberUser());</span>
+<span class="fc" id="L65">    write(filter, ArbitrationTeamMemberMovementTypeDto.JSON_MOVEMENT_TYPE_IDENTIFIER,</span>
+<span class="fc" id="L66">        getMovementTypeIdentifier());</span>
+<span class="fc" id="L67">  }</span>
+
+  /**
+   * Lit un critère textuel du filtre.
+   *
+   * &lt;p&gt;Publique car la couche de persistance en a besoin pour ses prédicats.&lt;/p&gt;
+   *
+   * @param filter filtre à lire
+   * @param key clé du critère
+   * @return la valeur, ou {@code null}
+   */
+  public static String read(FilterDto filter, String key) {
+<span class="fc" id="L79">    return FilterValueGetter.get(filter, dto -&gt; dto.getFieldValueAsStringByName(key));</span>
+  }
+
+  /**
+   * Écrit un critère textuel dans le filtre.
+   *
+   * @param filter filtre à compléter
+   * @param key clé du critère
+   * @param value valeur à poser
+   */
+  private static void write(FilterDto filter, String key, String value) {
+<span class="fc" id="L90">    FilterValueSetter.set(filter, key, FieldDto::getValueAsString,</span>
+<span class="fc" id="L91">        field -&gt; field.setValueAsString(value));</span>
+<span class="fc" id="L92">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

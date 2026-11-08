@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MovementTypePayrollComponentService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">MovementTypePayrollComponentService.java</span></div><h1>MovementTypePayrollComponentService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Contrat du paramétrage : quels postes de paie un type de mouvement impacte.
+ *
+ * &lt;p&gt;&lt;strong&gt;Créer et supprimer, jamais modifier.&lt;/strong&gt; Une association ne porte que ses deux
+ * extrémités : la modifier reviendrait à la remplacer par une autre, sous le même identifiant —
+ * l'audit ne saurait plus lire ce qui a été décidé. Rattacher un poste, le détacher : ces deux
+ * gestes disent tout, et l'historique les conserve tels quels.&lt;/p&gt;
+ *
+ * &lt;p&gt;Le paramétrage est &lt;em&gt;global&lt;/em&gt; : il vaut pour tous les EPN et tous les exercices. Ce
+ * n'est pas un oubli. Qu'un glissement catégoriel touche l'indemnité de résidence est une
+ * propriété de la nomenclature de paie, pas une décision budgétaire annuelle. Ce qui varie d'un
+ * EPN à l'autre, ce sont les montants — et ceux-là vivent déjà dans les projections de postes.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Path(value = MovementTypePayrollComponentService.PATH)
+@Tag(name = &quot;Gestion des postes de paie des types de mouvement&quot;)
+public interface MovementTypePayrollComponentService extends SpecificService {
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;postes-paie-types-mouvement&quot;;
+
+  /**
+   * Ce que porte la requête, au-delà de ce que la classe parente apporte.
+   *
+   * &lt;p&gt;Le concept n'expose pas de mise à jour : l'interface ne factorise donc
+   * rien, mais elle tient le contrat des champs et dispense la requête de
+   * nommer le {@link MovementTypePayrollComponentDto} à chaque clé.&lt;/p&gt;
+   *
+   * &lt;p&gt;Il n'y a pas de {@code MovementTypePayrollComponentRequestMapper} pour autant :
+   * R50 ne le prévoit
+   * que là où la création &lt;em&gt;et&lt;/em&gt; la mise à jour existent toutes deux, un mapper
+   * à un seul type de requête supposant une nouvelle classe générique dans
+   * l'extension.&lt;/p&gt;
+   */
+  interface MovementTypePayrollComponentSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir le type de mouvement.
+     *
+     * @return le type de mouvement
+     */
+    String getMovementTypeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner le type de mouvement.
+     *
+     * @param movementTypeIdentifier le type de mouvement
+     */
+    void setMovementTypeIdentifier(String movementTypeIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir le poste de paie.
+     *
+     * @return le poste de paie
+     */
+    String getPayrollComponentIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner le poste de paie.
+     *
+     * @param payrollComponentIdentifier le poste de paie
+     */
+    void setPayrollComponentIdentifier(String payrollComponentIdentifier);
+
+    /**
+     * {@link MovementTypePayrollComponentDto#JSON_MOVEMENT_TYPE_IDENTIFIER}.
+     */
+    String JSON_MOVEMENT_TYPE_IDENTIFIER =
+        MovementTypePayrollComponentDto.JSON_MOVEMENT_TYPE_IDENTIFIER;
+
+    /**
+     * {@link MovementTypePayrollComponentDto#JSON_PAYROLL_COMPONENT_IDENTIFIER}.
+     */
+    String JSON_PAYROLL_COMPONENT_IDENTIFIER =
+        MovementTypePayrollComponentDto.JSON_PAYROLL_COMPONENT_IDENTIFIER;
+  }
+
+  /**
+   * Identifiant du service de création unitaire de {@link MovementTypePayrollComponentDto}.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_POSTE_PAIE_TYPE_MOUVEMENT&quot;;
+
+  /**
+   * Chemin du service de création unitaire de {@link MovementTypePayrollComponentDto}.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Rattache un poste de paie à un type de mouvement.
+   *
+   * @param request le rattachement à créer
+   * @return l'identifiant attribué
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  @Operation(operationId = CREATE_IDENTIFIER,
+      summary = &quot;Rattachement d'un poste de paie à un type de mouvement&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(MovementTypePayrollComponentCreateRequestDto request);
+
+  /**
+   * Requête de rattachement d'un poste à un type de mouvement.
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L140">  class MovementTypePayrollComponentCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements MovementTypePayrollComponentSaveRequestDto {
+
+    @JsonbProperty(JSON_MOVEMENT_TYPE_IDENTIFIER)
+    private String movementTypeIdentifier;
+
+    @JsonbProperty(JSON_PAYROLL_COMPONENT_IDENTIFIER)
+    private String payrollComponentIdentifier;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs {@link MovementTypePayrollComponentDto}.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_POSTE_PAIE_TYPE_MOUVEMENT&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs {@link MovementTypePayrollComponentDto}.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Recherche multicritère du paramétrage.
+   *
+   * @param request critères, projection et pagination
+   * @return les rattachements correspondants
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      summary = &quot;Consultation des postes paramétrés&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(
+          implementation = MovementTypePayrollComponentGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Réponse paginée d'une recherche de rattachements.
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L182">  public static class MovementTypePayrollComponentGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;MovementTypePayrollComponentDto&gt; {
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;MovementTypePayrollComponentDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention par identifiant de {@link MovementTypePayrollComponentDto}.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_POSTE_PAIE_TYPE_MOUVEMENT&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de {@link MovementTypePayrollComponentDto}.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Lecture d'un rattachement par son identifiant.
+   *
+   * @param request identifiant et projection
+   * @return le rattachement correspondant
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = MovementTypePayrollComponentDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de suppression unitaire de {@link MovementTypePayrollComponentDto}.
+   */
+  String DELETE_IDENTIFIER = &quot;SUPPRESSION_POSTE_PAIE_TYPE_MOUVEMENT&quot;;
+
+  /**
+   * Chemin du service de suppression unitaire de {@link MovementTypePayrollComponentDto}.
+   */
+  String DELETE_PATH = &quot;&quot;;
+
+  /**
+   * Détache un poste de paie d'un type de mouvement.
+   *
+   * @param request l'identifiant du rattachement à retirer
+   * @return l'identifiant retiré
+   */
+  @Path(DELETE_PATH)
+  @DELETE
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DELETE_IDENTIFIER,
+      summary = &quot;Détachement d'un poste de paie d'un type de mouvement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response delete(DeleteOneRequestDto request);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

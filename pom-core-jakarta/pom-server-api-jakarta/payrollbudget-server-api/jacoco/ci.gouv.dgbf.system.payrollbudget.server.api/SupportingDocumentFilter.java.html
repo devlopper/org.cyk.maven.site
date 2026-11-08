@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SupportingDocumentFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">SupportingDocumentFilter.java</span></div><h1>SupportingDocumentFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueGetter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueSetter;
+import ci.gouv.dgbf.extension.server.service.api.request.FieldDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Critères de recherche des pièces justificatives.
+ *
+ * &lt;p&gt;Deux axes, ceux du contrôle : toutes les pièces d'un dossier, ou celles d'une ligne.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class SupportingDocumentFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Dossier dont on veut les pièces.
+   */
+  String dossierIdentifier;
+
+  /**
+   * Ligne d'arbitrage dont on veut les pièces.
+   */
+  String movementIdentifier;
+
+  public SupportingDocumentFilter() {
+<span class="fc" id="L34">    super();</span>
+<span class="fc" id="L35">  }</span>
+
+  public SupportingDocumentFilter(FilterDto dto) {
+<span class="fc" id="L38">    super(dto);</span>
+<span class="fc" id="L39">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L43">    super.doInitialize(filter);</span>
+<span class="fc" id="L44">    setDossierIdentifier(read(filter, SupportingDocumentDto.JSON_DOSSIER_IDENTIFIER));</span>
+<span class="fc" id="L45">    setMovementIdentifier(read(filter, SupportingDocumentDto.JSON_MOVEMENT_IDENTIFIER));</span>
+<span class="fc" id="L46">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L50">    super.toDto(filter);</span>
+<span class="fc" id="L51">    write(filter, SupportingDocumentDto.JSON_DOSSIER_IDENTIFIER, getDossierIdentifier());</span>
+<span class="fc" id="L52">    write(filter, SupportingDocumentDto.JSON_MOVEMENT_IDENTIFIER, getMovementIdentifier());</span>
+<span class="fc" id="L53">  }</span>
+
+  /**
+   * Lit un critère textuel du filtre.
+   *
+   * &lt;p&gt;Publique car la couche de persistance en a besoin pour ses prédicats.&lt;/p&gt;
+   *
+   * @param filter filtre à lire
+   * @param key clé du critère
+   * @return la valeur, ou {@code null}
+   */
+  public static String read(FilterDto filter, String key) {
+<span class="fc" id="L65">    return FilterValueGetter.get(filter, dto -&gt; dto.getFieldValueAsStringByName(key));</span>
+  }
+
+  /**
+   * Écrit un critère textuel dans le filtre.
+   *
+   * @param filter filtre à compléter
+   * @param key clé du critère
+   * @param value valeur à poser
+   */
+  private static void write(FilterDto filter, String key, String value) {
+<span class="fc" id="L76">    FilterValueSetter.set(filter, key, FieldDto::getValueAsString,</span>
+<span class="fc" id="L77">        field -&gt; field.setValueAsString(value));</span>
+<span class="fc" id="L78">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

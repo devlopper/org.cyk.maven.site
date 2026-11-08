@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationTeamClient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationTeamClient.java</span></div><h1>ArbitrationTeamClient.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.client.AbstractClient;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.CreateExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.GetOneExecutor;
+import ci.gouv.dgbf.extension.server.service.api.client.executor.IdentifiableExecutor;
+import ci.gouv.dgbf.extension.server.service.api.request.DeleteOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.PageDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ProjectionDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.segregation.DeleteByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetByIdentifier;
+import ci.gouv.dgbf.extension.server.service.api.segregation.GetMany;
+import ci.gouv.dgbf.extension.server.service.api.segregation.OneRetrievable;
+import ci.gouv.dgbf.system.payrollbudget.server.api.ArbitrationTeamService.ArbitrationTeamCreateRequestDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.ArbitrationTeamService.ArbitrationTeamGetManyResponseDto;
+import ci.gouv.dgbf.system.payrollbudget.server.api.ArbitrationTeamService.ArbitrationTeamUpdateRequestDto;
+import jakarta.enterprise.context.ApplicationScoped;
+import lombok.Setter;
+import lombok.experimental.Accessors;
+
+/**
+ * Consommateur du service des équipes d'arbitrage.
+ *
+ * @author Christian
+ *
+ */
+@ApplicationScoped
+@Setter
+@Accessors(chain = true, fluent = true)
+<span class="fc" id="L36">public class ArbitrationTeamClient extends AbstractClient&lt;ArbitrationTeamService&gt;</span>
+    implements OneRetrievable&lt;ArbitrationTeamDto&gt;, GetByIdentifier&lt;ArbitrationTeamDto&gt;,
+    GetMany&lt;ArbitrationTeamGetManyResponseDto&gt;, DeleteByIdentifier&lt;IdentifiableResponseDto&gt; {
+
+  @Override
+  public ArbitrationTeamClient service(ArbitrationTeamService service) {
+<span class="fc" id="L42">    return (ArbitrationTeamClient) super.service(service);</span>
+  }
+
+  /**
+   * Création d'une équipe.
+   *
+   * @param request l'équipe à créer
+   * @return l'identifiant attribué
+   */
+  public CreateResponseDto create(ArbitrationTeamCreateRequestDto request) {
+<span class="fc" id="L52">    return new CreateExecutor(ArbitrationTeamService.CREATE_IDENTIFIER)</span>
+<span class="fc" id="L53">        .execute(() -&gt; service().create(request));</span>
+  }
+
+  /**
+   * Recherche multicritère des équipes.
+   *
+   * @param request critères, projection et pagination
+   * @return les équipes correspondantes
+   */
+  public ArbitrationTeamGetManyResponseDto getMany(GetManyRequestDto request) {
+<span class="fc" id="L63">    return new GetOneExecutor&lt;ArbitrationTeamGetManyResponseDto&gt;(</span>
+        ArbitrationTeamGetManyResponseDto.class, ArbitrationTeamService.GET_MANY_IDENTIFIER)
+<span class="fc" id="L65">            .execute(() -&gt; service().getMany(request));</span>
+  }
+
+  @Override
+  public ArbitrationTeamGetManyResponseDto getMany(ProjectionDto projection, FilterDto filter,
+      PageDto page, String auditWho, String auditSession) {
+<span class="fc" id="L71">    GetManyRequestDto request = new GetManyRequestDto();</span>
+<span class="fc" id="L72">    request.setProjection(projection);</span>
+<span class="fc" id="L73">    request.setFilter(filter);</span>
+<span class="fc" id="L74">    request.setPage(page);</span>
+<span class="fc" id="L75">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L76">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L77">    return getMany(request);</span>
+  }
+
+  /**
+   * Recherche d'une équipe unique.
+   *
+   * @param request critères et projection
+   * @return l'équipe correspondante
+   */
+  public ArbitrationTeamDto getOne(GetOneRequestDto request) {
+<span class="fc" id="L87">    return new GetOneExecutor&lt;ArbitrationTeamDto&gt;(ArbitrationTeamDto.class,</span>
+<span class="fc" id="L88">        ArbitrationTeamService.GET_ONE_IDENTIFIER).execute(() -&gt; service().getOne(request));</span>
+  }
+
+  @Override
+  public ArbitrationTeamDto getOne(ProjectionDto projection, FilterDto filter, String auditWho,
+      String auditSession) {
+<span class="fc" id="L94">    GetOneRequestDto request = new GetOneRequestDto();</span>
+<span class="fc" id="L95">    request.setProjection(projection);</span>
+<span class="fc" id="L96">    request.setFilter(filter);</span>
+<span class="fc" id="L97">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L98">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L99">    return getOne(request);</span>
+  }
+
+  /**
+   * Lecture d'une équipe par son identifiant.
+   *
+   * @param request identifiant et projection
+   * @return l'équipe correspondante
+   */
+  public ArbitrationTeamDto getByIdentifier(GetByIdentifierRequestDto request) {
+<span class="fc" id="L109">    return new GetOneExecutor&lt;ArbitrationTeamDto&gt;(ArbitrationTeamDto.class,</span>
+        ArbitrationTeamService.GET_BY_IDENTIFIER_IDENTIFIER)
+<span class="fc" id="L111">            .execute(() -&gt; service().getByIdentifier(request));</span>
+  }
+
+  @Override
+  public ArbitrationTeamDto getByIdentifier(String identifier, ProjectionDto projection,
+      String auditWho, String auditSession) {
+<span class="fc" id="L117">    GetByIdentifierRequestDto request = new GetByIdentifierRequestDto();</span>
+<span class="fc" id="L118">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L119">    request.setProjection(projection);</span>
+<span class="fc" id="L120">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L121">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L122">    return getByIdentifier(request);</span>
+  }
+
+  /**
+   * Modification d'une équipe.
+   *
+   * @param request l'équipe modifiée
+   * @return l'identifiant touché
+   */
+  public IdentifiableResponseDto update(ArbitrationTeamUpdateRequestDto request) {
+<span class="fc" id="L132">    return new IdentifiableExecutor(ArbitrationTeamService.UPDATE_IDENTIFIER)</span>
+<span class="fc" id="L133">        .execute(() -&gt; service().update(request));</span>
+  }
+
+  /**
+   * Suppression d'une équipe.
+   *
+   * @param request l'identifiant à supprimer
+   * @return l'identifiant supprimé
+   */
+  public IdentifiableResponseDto delete(DeleteOneRequestDto request) {
+<span class="fc" id="L143">    return new IdentifiableExecutor(ArbitrationTeamService.DELETE_IDENTIFIER)</span>
+<span class="fc" id="L144">        .execute(() -&gt; service().delete(request));</span>
+  }
+
+  @Override
+  public IdentifiableResponseDto deleteByIdentifier(String identifier, String auditWho,
+      String auditSession) {
+<span class="fc" id="L150">    DeleteOneRequestDto request = new DeleteOneRequestDto();</span>
+<span class="fc" id="L151">    request.setIdentifier(identifier);</span>
+<span class="fc" id="L152">    request.setAuditWho(auditWho);</span>
+<span class="fc" id="L153">    request.setAuditSession(auditSession);</span>
+<span class="fc" id="L154">    return delete(request);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

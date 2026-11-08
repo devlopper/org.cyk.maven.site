@@ -4,24 +4,202 @@ import ci.gouv.dgbf.extension.core.segregation.CodableByStringWithGetterOnly;
 import lombok.Getter;
 
 /**
- * Cette énumération représente les rôles des utilisateurs.
+ * Les droits de l'arbitrage : un par cas d'utilisation.
+ *
+ * &lt;p&gt;&lt;strong&gt;Un droit est une action, pas une personne.&lt;/strong&gt; Les profils — chargé de
+ * contrôle, chef d'équipe, responsable d'arbitrage — sont décrits par {@link UserProfile}, qui
+ * dit quels droits chacun porte. Le code ne teste jamais un profil : il demande « cet
+ * utilisateur peut-il valider les transferts de solde ? », et la réponse vaut quel que soit le
+ * profil par lequel il l'obtient.&lt;/p&gt;
+ *
+ * &lt;p&gt;Cette séparation a une raison pratique. Un écran gardé par un profil devient faux le jour
+ * où l'organisation change de nom ; un écran gardé par un droit reste juste, et c'est le
+ * référentiel des profils qu'on met à jour, en un seul endroit.&lt;/p&gt;
+ *
+ * &lt;p&gt;Les codes sont ceux que Keycloak porte, dans le realm SIIB. Ils sont en français, comme
+ * tout ce qui sort du code.&lt;/p&gt;
  *
  * @author Christian
  *
  */
-<span class="fc" id="L12">@Getter</span>
+<span class="fc" id="L25">@Getter</span>
 public enum UserRole implements CodableByStringWithGetterOnly {
 
+  // --- Rôle technique ---
+
   /**
-   * Super administrateur.
+   * Super administrateur. Passe partout, y compris sur le paramétrage.
+   *
+   * &lt;p&gt;Il ouvre l'énumération par commodité de lecture, et non par convention : &lt;strong&gt;aucun
+   * code ne dépend de l'ordre de ces constantes&lt;/strong&gt;. Les droits se lisent par leur
+   * {@code code}, {@link #getByCode} ne regarde que lui, et rien n'est persisté en
+   * {@code EnumType.ORDINAL} — cette énumération n'est pas persistée du tout.&lt;/p&gt;
    */
-<span class="fc" id="L18">  SUPER_ADMINISTRATOR(&quot;SUPER_ADMINISTRATEUR&quot;)</span>
-  
-  ;
-  
-<span class="fc" id="L22">  private UserRole(String code) {</span>
-<span class="fc" id="L23">    this.code = code;</span>
-<span class="fc" id="L24">  }</span>
+<span class="fc" id="L38">  SUPER_ADMINISTRATOR(&quot;SUPER_ADMINISTRATEUR&quot;),</span>
+
+  // --- Réception et contrôle d'admissibilité ---
+
+  /**
+   * Réceptionner le projet de masse salariale d'un EPN.
+   */
+<span class="fc" id="L45">  RECEIVE_DOSSIER(&quot;RECEPTIONNER_PROJET_MS&quot;),</span>
+
+  /**
+   * Déclarer un dossier admissible au traitement.
+   *
+   * &lt;p&gt;Ce droit &lt;strong&gt;n'est pas mort&lt;/strong&gt; avec l'étape d'admission. Ce qui a disparu,
+   * c'est la transition qu'il déclenchait ; le droit, lui, désigne toujours le chargé de
+   * contrôle, et commande l'ouverture du menu de réception, l'écran de contrôle et la
+   * vérification des pièces jointes.&lt;/p&gt;
+   */
+<span class="fc" id="L55">  DECLARE_DOSSIER_ADMISSIBLE(&quot;DECLARER_DOSSIER_ADMISSIBLE&quot;),</span>
+
+  // --- Traitement des demandes ---
+
+  /**
+   * Traiter un mouvement à venir : prime, retraite, glissement catégoriel, indemnité,
+   * avancement.
+   *
+   * &lt;p&gt;&lt;strong&gt;Les familles de traitement ont été redessinées le 12/10/2026.&lt;/strong&gt; Elles
+   * suivaient la &lt;em&gt;forme&lt;/em&gt; de la ligne — mouvement projeté d'un côté, mesure ponctuelle de
+   * l'autre — là où le métier les distingue par leur &lt;em&gt;objet&lt;/em&gt; : ce qui va arriver, ce qui
+   * rattrape le passé, ce qui se déplace d'un EPN à l'autre. Une prime et un avancement sont deux
+   * formes différentes d'une même chose à instruire ; un rappel n'en est pas une.&lt;/p&gt;
+   */
+<span class="fc" id="L69">  PROCESS_FORTHCOMING_MOVEMENT(&quot;TRAITER_MOUVEMENT_A_VENIR&quot;),</span>
+
+  /**
+   * Traiter une régularisation : rappel, régularisation.
+   *
+   * &lt;p&gt;Une famille nouvelle. Ces lignes rattrapent un exercice déjà clos et se jugent sur des
+   * pièces différentes ; les instruire était jusqu'ici confondu avec les mesures ponctuelles.&lt;/p&gt;
+   */
+<span class="fc" id="L77">  PROCESS_REGULARIZATION(&quot;TRAITER_REGULARISATION&quot;),</span>
+
+  /**
+   * Traiter un transfert de solde.
+   */
+<span class="fc" id="L82">  PROCESS_BALANCE_TRANSFER(&quot;TRAITER_TRANSFERT_SOLDE&quot;),</span>
+
+  /**
+   * Former les équipes d'arbitrage : les créer, les composer, leur confier des dossiers.
+   *
+   * &lt;p&gt;Le modèle d'équipe existait en base et dans les services depuis l'origine, mais aucun
+   * écran ne le servait : les équipes se peuplaient à la main, par INSERT. Le droit manquait
+   * avec l'écran.&lt;/p&gt;
+   */
+<span class="fc" id="L91">  MANAGE_ARBITRATION_TEAM(&quot;GERER_EQUIPE_ARBITRAGE&quot;),</span>
+
+  // --- Validation du traitement ---
+
+  /**
+   * Valider les données maintenues en l'état.
+   */
+<span class="fc" id="L98">  VALIDATE_MAINTAINED_DATA(&quot;VALIDER_DONNEES_MAINTENUES&quot;),</span>
+
+  /**
+   * Valider le traitement des mouvements projetés.
+   */
+<span class="fc" id="L103">  VALIDATE_PROJECTED_MOVEMENTS(&quot;VALIDER_MOUVEMENTS_PROJETES&quot;),</span>
+
+  /**
+   * Valider le traitement des mesures ponctuelles.
+   */
+<span class="fc" id="L108">  VALIDATE_PUNCTUAL_MEASURES(&quot;VALIDER_MESURES_PONCTUELLES&quot;),</span>
+
+  /**
+   * Valider le traitement des transferts de solde.
+   */
+<span class="fc" id="L113">  VALIDATE_BALANCE_TRANSFERS(&quot;VALIDER_TRANSFERTS_SOLDE&quot;),</span>
+
+  /**
+   * Transmettre le dossier au responsable d'arbitrage.
+   */
+<span class="fc" id="L118">  TRANSMIT_TO_ARBITRATION_MANAGER(&quot;TRANSMETTRE_AU_RESPONSABLE_ARBITRAGE&quot;),</span>
+
+  /**
+   * Prendre en compte les observations du responsable d'arbitrage.
+   */
+<span class="fc" id="L123">  TAKE_OBSERVATION_INTO_ACCOUNT(&quot;PRENDRE_EN_COMPTE_OBSERVATION&quot;),</span>
+
+  // --- Validation du projet ---
+
+  /**
+   * Valider définitivement le projet de masse salariale.
+   *
+   * &lt;p&gt;La pré-validation qui figurait ici a été retirée : les écrans ne la portent plus. Le
+   * cycle d'un dossier s'arrête à l'état consolidé, et le dernier geste rendu est la clôture,
+   * qui remet le dossier au responsable d'arbitrage.&lt;/p&gt;
+   */
+<span class="fc" id="L134">  VALIDATE_PAYROLL_PROJECT(&quot;VALIDER_PROJET_MASSE_SALARIALE&quot;),</span>
+
+  // --- Consultation, reporting et tableaux de bord ---
+
+  /**
+   * Consulter les résultats des travaux.
+   */
+<span class="fc" id="L141">  CONSULT_PROCESSING_RESULTS(&quot;CONSULTER_RESULTATS_TRAVAUX&quot;),</span>
+
+  /**
+   * Consulter le tableau de bord budgétaire.
+   */
+<span class="fc" id="L146">  CONSULT_BUDGET_DASHBOARD(&quot;CONSULTER_TABLEAU_BORD_BUDGETAIRE&quot;),</span>
+
+  /**
+   * Éditer le dossier unique de synthèse.
+   */
+<span class="fc" id="L151">  EDIT_CONSOLIDATED_DOSSIER(&quot;EDITER_DOSSIER_UNIQUE_SYNTHESE&quot;),</span>
+
+  /**
+   * Éditer les résultats des travaux de traitement.
+   */
+<span class="fc" id="L156">  EDIT_PROCESSING_RESULTS(&quot;EDITER_RESULTATS_TRAVAUX_TRAITEMENT&quot;),</span>
+
+  /**
+   * Éditer le projet de masse salariale.
+   */
+<span class="fc" id="L161">  EDIT_PAYROLL_PROJECT(&quot;EDITER_PROJET_MASSE_SALARIALE&quot;),</span>
+
+  // --- Côté établissement ---
+
+  /**
+   * Consulter le dossier de son propre établissement.
+   *
+   * &lt;p&gt;Ce droit et le suivant ne figurent pas aux diagrammes de cas d'utilisation, qui décrivent
+   * le travail de la DCB. Ils sont déduits des écrans que le module sert déjà à l'EPN.&lt;/p&gt;
+   */
+<span class="fc" id="L171">  CONSULT_OWN_DOSSIER(&quot;CONSULTER_MON_EPN&quot;),</span>
+
+  /**
+   * Corriger un dossier retourné et le retransmettre.
+   */
+<span class="fc" id="L176">  CORRECT_AND_RETRANSMIT(&quot;CORRIGER_ET_RETRANSMETTRE&quot;);</span>
+
+<span class="fc" id="L178">  private UserRole(String code) {</span>
+<span class="fc" id="L179">    this.code = code;</span>
+<span class="fc" id="L180">  }</span>
+
+  /**
+   * Le droit que porte un code, ou {@code null} s'il n'en désigne aucun.
+   *
+   * &lt;p&gt;Un code inconnu rend {@code null} plutôt que de lever : il vient du référentiel, où un
+   * paramétrage périmé peut survivre à un droit renommé. Faire tomber l'écran sur cette
+   * donnée-là en ferait un incident là où c'est une correction de paramétrage.&lt;/p&gt;
+   *
+   * @param code code recherché
+   * @return le droit, ou {@code null}
+   */
+  public static UserRole getByCode(String code) {
+<span class="fc bfc" id="L193" title="All 2 branches covered.">    if (code == null) {</span>
+<span class="fc" id="L194">      return null;</span>
+    }
+<span class="fc bfc" id="L196" title="All 2 branches covered.">    for (UserRole role : values()) {</span>
+<span class="fc bfc" id="L197" title="All 2 branches covered.">      if (role.getCode().equals(code)) {</span>
+<span class="fc" id="L198">        return role;</span>
+      }
+    }
+<span class="fc" id="L201">    return null;</span>
+  }
 
   /**
    * Code.

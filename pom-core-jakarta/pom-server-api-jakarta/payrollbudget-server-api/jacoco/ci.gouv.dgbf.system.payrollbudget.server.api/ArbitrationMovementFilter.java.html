@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationMovementFilter.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationMovementFilter.java</span></div><h1>ArbitrationMovementFilter.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueGetter;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterValueSetter;
+import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Critères de recherche des lignes d'arbitrage.
+ *
+ * &lt;p&gt;Les critères sont définis ici plutôt que dans des interfaces {@code FilterHasXxx} partagées :
+ * ils ne servent qu'à ce filtre. Le triptyque partagé n'a d'intérêt que pour un critère utilisé par
+ * plusieurs filtres.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+public class ArbitrationMovementFilter extends AbstractIdentifiableFilter {
+
+  /**
+   * Dossier dont on veut les lignes.
+   */
+  String dossierIdentifier;
+
+  /**
+   * Budget de rattachement.
+   */
+  String budgetIdentifier;
+
+  /**
+   * Unité administrative où la ligne produit son effet.
+   */
+  String administrativeUnitIdentifier;
+
+  /**
+   * Agent concerné.
+   */
+  String employeeIdentifier;
+
+  /**
+   * Code de la nature du mouvement.
+   */
+  String movementTypeCode;
+
+  /**
+   * Nature de l'élément déversé.
+   */
+  String elementType;
+
+  /**
+   * Code {@link ArbitrationMovementStatus}.
+   */
+  String statusCode;
+
+  public ArbitrationMovementFilter() {
+<span class="fc" id="L60">    super();</span>
+<span class="fc" id="L61">  }</span>
+
+  public ArbitrationMovementFilter(FilterDto dto) {
+<span class="fc" id="L64">    super(dto);</span>
+<span class="fc" id="L65">  }</span>
+
+  @Override
+  protected void doInitialize(FilterDto filter) {
+<span class="fc" id="L69">    super.doInitialize(filter);</span>
+<span class="fc" id="L70">    setDossierIdentifier(read(filter, ArbitrationMovementDto.JSON_DOSSIER_IDENTIFIER));</span>
+<span class="fc" id="L71">    setBudgetIdentifier(read(filter, ArbitrationMovementDto.JSON_BUDGET_IDENTIFIER));</span>
+<span class="fc" id="L72">    setAdministrativeUnitIdentifier(</span>
+<span class="fc" id="L73">        read(filter, ArbitrationMovementDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER));</span>
+<span class="fc" id="L74">    setEmployeeIdentifier(read(filter, ArbitrationMovementDto.JSON_EMPLOYEE_IDENTIFIER));</span>
+<span class="fc" id="L75">    setMovementTypeCode(read(filter, ArbitrationMovementDto.JSON_MOVEMENT_TYPE_CODE));</span>
+<span class="fc" id="L76">    setElementType(read(filter, ArbitrationMovementDto.JSON_ELEMENT_TYPE));</span>
+<span class="fc" id="L77">    setStatusCode(read(filter, ArbitrationMovementDto.JSON_STATUS_CODE));</span>
+<span class="fc" id="L78">  }</span>
+
+  @Override
+  protected void toDto(FilterDto filter) {
+<span class="fc" id="L82">    super.toDto(filter);</span>
+<span class="fc" id="L83">    write(filter, ArbitrationMovementDto.JSON_DOSSIER_IDENTIFIER, getDossierIdentifier());</span>
+<span class="fc" id="L84">    write(filter, ArbitrationMovementDto.JSON_BUDGET_IDENTIFIER, getBudgetIdentifier());</span>
+<span class="fc" id="L85">    write(filter, ArbitrationMovementDto.JSON_ADMINISTRATIVE_UNIT_IDENTIFIER,</span>
+<span class="fc" id="L86">        getAdministrativeUnitIdentifier());</span>
+<span class="fc" id="L87">    write(filter, ArbitrationMovementDto.JSON_EMPLOYEE_IDENTIFIER, getEmployeeIdentifier());</span>
+<span class="fc" id="L88">    write(filter, ArbitrationMovementDto.JSON_MOVEMENT_TYPE_CODE, getMovementTypeCode());</span>
+<span class="fc" id="L89">    write(filter, ArbitrationMovementDto.JSON_ELEMENT_TYPE, getElementType());</span>
+<span class="fc" id="L90">    write(filter, ArbitrationMovementDto.JSON_STATUS_CODE, getStatusCode());</span>
+<span class="fc" id="L91">  }</span>
+
+  /**
+   * Lit un critère textuel du filtre.
+   *
+   * &lt;p&gt;Publique car la couche de persistance en a besoin pour ses prédicats, sous la forme
+   * {@code dto -&gt; ArbitrationMovementFilter.read(dto, clé)}.&lt;/p&gt;
+   *
+   * @param filter filtre à lire
+   * @param key clé du critère
+   * @return la valeur, ou {@code null}
+   */
+  public static String read(FilterDto filter, String key) {
+<span class="fc" id="L104">    return FilterValueGetter.get(filter, dto -&gt; dto.getFieldValueAsStringByName(key));</span>
+  }
+
+  /**
+   * Écrit un critère textuel dans le filtre.
+   *
+   * &lt;p&gt;Publique pour la même raison que {@link #read(FilterDto, String)} : les filtres voisins du
+   * module d'arbitrage s'en servent plutôt que de dupliquer la mécanique.&lt;/p&gt;
+   *
+   * @param filter filtre à compléter
+   * @param key clé du critère
+   * @param value valeur à poser
+   */
+  public static void write(FilterDto filter, String key, String value) {
+<span class="pc" id="L118">    FilterValueSetter.set(filter, key, field -&gt; field.getValueAsString(),</span>
+<span class="fc" id="L119">        field -&gt; field.setValueAsString(value));</span>
+<span class="fc" id="L120">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

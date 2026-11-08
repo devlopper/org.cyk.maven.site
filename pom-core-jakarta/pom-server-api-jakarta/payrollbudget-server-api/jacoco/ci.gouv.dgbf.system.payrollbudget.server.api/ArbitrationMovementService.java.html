@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationMovementService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationMovementService.java</span></div><h1>ArbitrationMovementService.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.SpecificService;
+import ci.gouv.dgbf.extension.server.service.api.request.AbstractAuditedRequestJsonDto;
+import ci.gouv.dgbf.extension.server.service.api.request.ByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetByIdentifierRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetManyRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.request.GetOneRequestDto;
+import ci.gouv.dgbf.extension.server.service.api.response.AbstractGetByPageResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.CreateResponseDto;
+import ci.gouv.dgbf.extension.server.service.api.response.IdentifiableResponseDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.POST;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.media.Content;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
+
+/**
+ * Contrat de service des lignes d'arbitrage.
+ *
+ * &lt;p&gt;Ce service n'expose &lt;strong&gt;aucune suppression&lt;/strong&gt;. Une ligne d'arbitrage ne
+ * disparaît jamais : c'est ce qui rend l'arbitrage auditable.&lt;/p&gt;
+ *
+ * &lt;p&gt;Il expose en revanche une &lt;strong&gt;création&lt;/strong&gt;, et c'est la spécification qui
+ * l'impose : {@code CU03-RG02}, {@code CU04-RG02} et {@code CU05-RG02} disent, pour chacune des
+ * trois familles, que tout élément &lt;em&gt;transmis au cours des traitements&lt;/em&gt; est pris en
+ * compte dans le besoin exprimé par l'EPN. Le besoin n'est donc pas clos à la transmission :
+ * ce qui arrive ensuite à la DCB — par courrier, en séance, en réponse à une demande — y
+ * entre aussi. Sans cette porte, ces éléments resteraient hors du système et l'arbitrage
+ * porterait sur un besoin incomplet.&lt;/p&gt;
+ *
+ * &lt;p&gt;Créer n'est pas modifier. {@code CU03-RG01}, {@code CU04-RG01} et {@code CU05-RG01}
+ * interdisent au chargé de toucher aux besoins exprimés, qu'il ne fait que consulter : une
+ * ligne venue de l'EPN reste intacte, quoi qu'il arrive. C'est aussi la raison pour laquelle
+ * l'ajustement se saisit comme un &lt;em&gt;montant à ajuster&lt;/em&gt;, posé à côté du montant de
+ * l'EPN, et jamais en réécrivant celui-ci.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Path(value = ArbitrationMovementService.PATH)
+@Tag(name = &quot;Gestion des lignes d'arbitrage&quot;)
+public interface ArbitrationMovementService extends SpecificService {
+
+  /*
+   * ECART ASSUME A R45c : les transitions rendent un IdentifiableResponseDto, et non un
+   * ProcessResponseDto portant le nouveau statut et un indicateur par action. L'ecran
+   * recharge donc la ligne apres chaque transition pour savoir quels boutons ouvrir.
+   *
+   * Le motif R45c suppose une classe generique du socle que l'extension ne fournit pas
+   * encore, et douze reponses propres a ecrire. Il va de pair avec le statut typo de
+   * R44b, et releve du meme chantier.
+   */
+
+  /**
+   * Chemin de base des services.
+   */
+  String PATH = &quot;lignes-arbitrage&quot;;
+
+  /**
+   * Ce que porte la requête, au-delà de ce que la classe parente apporte.
+   *
+   * &lt;p&gt;Le concept n'expose pas de mise à jour : l'interface ne factorise donc
+   * rien, mais elle tient le contrat des champs et dispense la requête de
+   * nommer le {@link ArbitrationMovementDto} à chaque clé.&lt;/p&gt;
+   *
+   * &lt;p&gt;Il n'y a pas de {@code ArbitrationMovementRequestMapper} pour autant : R50 ne le prévoit
+   * que là où la création &lt;em&gt;et&lt;/em&gt; la mise à jour existent toutes deux, un mapper
+   * à un seul type de requête supposant une nouvelle classe générique dans
+   * l'extension.&lt;/p&gt;
+   */
+  interface ArbitrationMovementSaveRequestDto {
+
+    /**
+     * Cette méthode permet d'obtenir le dossier.
+     *
+     * @return le dossier
+     */
+    String getDossierIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner le dossier.
+     *
+     * @param dossierIdentifier le dossier
+     */
+    void setDossierIdentifier(String dossierIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir la nature de l'élément.
+     *
+     * @return la nature de l'élément
+     */
+    String getElementType();
+
+    /**
+     * Cette méthode permet d'assigner la nature de l'élément.
+     *
+     * @param elementType la nature de l'élément
+     */
+    void setElementType(String elementType);
+
+    /**
+     * Cette méthode permet d'obtenir le code du type de mouvement.
+     *
+     * @return le code du type de mouvement
+     */
+    String getMovementTypeCode();
+
+    /**
+     * Cette méthode permet d'assigner le code du type de mouvement.
+     *
+     * @param movementTypeCode le code du type de mouvement
+     */
+    void setMovementTypeCode(String movementTypeCode);
+
+    /**
+     * Cette méthode permet d'obtenir l'agent concerné.
+     *
+     * @return l'agent concerné
+     */
+    String getEmployeeIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'agent concerné.
+     *
+     * @param employeeIdentifier l'agent concerné
+     */
+    void setEmployeeIdentifier(String employeeIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir l'unité administrative d'origine.
+     *
+     * @return l'unité administrative d'origine
+     */
+    String getOriginAdministrativeUnitIdentifier();
+
+    /**
+     * Cette méthode permet d'assigner l'unité administrative d'origine.
+     *
+     * @param originAdministrativeUnitIdentifier l'unité administrative d'origine
+     */
+    void setOriginAdministrativeUnitIdentifier(String originAdministrativeUnitIdentifier);
+
+    /**
+     * Cette méthode permet d'obtenir le montant d'impact.
+     *
+     * @return le montant d'impact
+     */
+    Long getImpactAmount();
+
+    /**
+     * Cette méthode permet d'assigner le montant d'impact.
+     *
+     * @param impactAmount le montant d'impact
+     */
+    void setImpactAmount(Long impactAmount);
+
+    /**
+     * Cette méthode permet d'obtenir le motif.
+     *
+     * @return le motif
+     */
+    String getReason();
+
+    /**
+     * Cette méthode permet d'assigner le motif.
+     *
+     * @param reason le motif
+     */
+    void setReason(String reason);
+
+    /**
+     * {@link ArbitrationMovementDto#JSON_DOSSIER_IDENTIFIER}.
+     */
+    String JSON_DOSSIER_IDENTIFIER = ArbitrationMovementDto.JSON_DOSSIER_IDENTIFIER;
+
+    /**
+     * {@link ArbitrationMovementDto#JSON_ELEMENT_TYPE}.
+     */
+    String JSON_ELEMENT_TYPE = ArbitrationMovementDto.JSON_ELEMENT_TYPE;
+
+    /**
+     * {@link ArbitrationMovementDto#JSON_MOVEMENT_TYPE_CODE}.
+     */
+    String JSON_MOVEMENT_TYPE_CODE = ArbitrationMovementDto.JSON_MOVEMENT_TYPE_CODE;
+
+    /**
+     * {@link ArbitrationMovementDto#JSON_EMPLOYEE_IDENTIFIER}.
+     */
+    String JSON_EMPLOYEE_IDENTIFIER = ArbitrationMovementDto.JSON_EMPLOYEE_IDENTIFIER;
+
+    /**
+     * {@link ArbitrationMovementDto#JSON_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER}.
+     */
+    String JSON_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER =
+        ArbitrationMovementDto.JSON_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER;
+
+    /**
+     * {@link ArbitrationMovementDto#JSON_IMPACT_AMOUNT}.
+     */
+    String JSON_IMPACT_AMOUNT = ArbitrationMovementDto.JSON_IMPACT_AMOUNT;
+
+    /**
+     * {@link ArbitrationMovementDto#JSON_REASON}.
+     */
+    String JSON_REASON = ArbitrationMovementDto.JSON_REASON;
+  }
+
+  /**
+   * Identifiant du service de création unitaire de {@link ArbitrationMovementDto}.
+   */
+  String CREATE_IDENTIFIER = &quot;CREATION_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de création unitaire de {@link ArbitrationMovementDto}.
+   */
+  String CREATE_PATH = &quot;&quot;;
+
+  /**
+   * Ajoute au dossier un élément parvenu à la DCB après la transmission
+   * (CU03-RG02, CU04-RG02, CU05-RG02).
+   *
+   * &lt;p&gt;La ligne naît &lt;strong&gt;admise&lt;/strong&gt; : la DCB ne l'ajoute qu'en ayant sous les yeux ce
+   * qui la justifie, et lui faire reparcourir le visa, la transmission et la réception serait
+   * rejouer une histoire qui n'a pas eu lieu. Elle n'est pas pour autant accordée — le
+   * chargé la traite comme les autres, et sa décision est tracée comme les autres.&lt;/p&gt;
+   *
+   * &lt;p&gt;Elle ne porte aucune ligne &lt;em&gt;réelle&lt;/em&gt; d'expression des besoins : sa référence est
+   * forgée, et son préfixe {@link ArbitrationMovementDto#EXPRESSION_LINE_DCB_PREFIX} l'annonce.
+   * C'est à cela qu'on la reconnaît, pour toujours, comme un ajout de la DCB et non une
+   * demande de l'EPN.&lt;/p&gt;
+   *
+   * @param request l'élément à ajouter
+   * @return l'identifiant attribué
+   */
+  @Path(CREATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CREATE_IDENTIFIER,
+      summary = &quot;Ajout d'un élément au cours du traitement&quot;)
+  @APIResponse(responseCode = &quot;201&quot;,
+      content = {@Content(schema = @Schema(implementation = CreateResponseDto.class))})
+  Response create(ArbitrationMovementCreateRequestDto request);
+
+  /**
+   * Requête d'ajout d'un élément au cours du traitement.
+   *
+   * &lt;p&gt;Le montant d'impact est &lt;strong&gt;saisi&lt;/strong&gt;, seul cas du module où il l'est : un
+   * élément qui n'est jamais passé par l'expression des besoins n'a pas de Δ calculé dont on
+   * pourrait le déduire. Il se motive donc, comme tout ce qui ne se déduit pas.&lt;/p&gt;
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L265">  class ArbitrationMovementCreateRequestDto extends AbstractAuditedRequestJsonDto</span>
+      implements ArbitrationMovementSaveRequestDto {
+
+    /**
+     * Dossier auquel la ligne est ajoutée.
+     */
+    @JsonbProperty(JSON_DOSSIER_IDENTIFIER)
+    private String dossierIdentifier;
+
+    /**
+     * Nature de l'élément ajouté : mouvement, mesure ponctuelle ou transfert de solde.
+     */
+    @JsonbProperty(JSON_ELEMENT_TYPE)
+    private String elementType;
+
+    /**
+     * Code du type de mouvement, qui dit aussi quel droit l'instruit.
+     */
+    @JsonbProperty(JSON_MOVEMENT_TYPE_CODE)
+    private String movementTypeCode;
+
+    /**
+     * Agent concerné, vide pour une ligne qui n'en désigne aucun.
+     */
+    @JsonbProperty(JSON_EMPLOYEE_IDENTIFIER)
+    private String employeeIdentifier;
+
+    /**
+     * Unité administrative d'origine, renseignée pour un transfert de solde.
+     */
+    @JsonbProperty(JSON_ORIGIN_ADMINISTRATIVE_UNIT_IDENTIFIER)
+    private String originAdministrativeUnitIdentifier;
+
+    /**
+     * Montant que la ligne pèse sur la masse salariale.
+     */
+    @JsonbProperty(JSON_IMPACT_AMOUNT)
+    private Long impactAmount;
+
+    /**
+     * Pourquoi la DCB ajoute cet élément. Obligatoire.
+     */
+    @JsonbProperty(JSON_REASON)
+    private String reason;
+  }
+
+  /**
+   * Identifiant du service d'obtention de plusieurs {@link ArbitrationMovementDto}.
+   */
+  String GET_MANY_IDENTIFIER = &quot;OBTENTION_PLUSIEURS_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service d'obtention de plusieurs {@link ArbitrationMovementDto}.
+   */
+  String GET_MANY_PATH = &quot;obtention/plusieurs&quot;;
+
+  /**
+   * Recherche multicritère des lignes d'arbitrage.
+   *
+   * @param request critères, projection et pagination
+   * @return les lignes correspondantes
+   */
+  @Path(GET_MANY_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_MANY_IDENTIFIER,
+      summary = &quot;Recherche de lignes d'arbitrage&quot;,
+      description = &quot;Ce service permet de rechercher les lignes d'arbitrage d'un dossier&quot;)
+  @APIResponse(responseCode = &quot;200&quot;, content = {
+      @Content(schema = @Schema(implementation = ArbitrationMovementGetManyResponseDto.class))})
+  Response getMany(GetManyRequestDto request);
+
+  /**
+   * Réponse paginée d'une recherche de lignes d'arbitrage.
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L343">  public static class ArbitrationMovementGetManyResponseDto</span>
+      extends AbstractGetByPageResponseDto&lt;ArbitrationMovementDto&gt; {
+    @JsonbProperty(JSON_DATAS)
+    private List&lt;ArbitrationMovementDto&gt; datas;
+  }
+
+  /**
+   * Identifiant du service d'obtention unitaire de {@link ArbitrationMovementDto}.
+   */
+  String GET_ONE_IDENTIFIER = &quot;OBTENTION_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service d'obtention unitaire de {@link ArbitrationMovementDto}.
+   */
+  String GET_ONE_PATH = &quot;obtention/un&quot;;
+
+  /**
+   * Recherche d'une ligne d'arbitrage unique.
+   *
+   * @param request critères et projection
+   * @return la ligne correspondante
+   */
+  @Path(GET_ONE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_ONE_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ArbitrationMovementDto.class))})
+  Response getOne(GetOneRequestDto request);
+
+  /**
+   * Identifiant du service d'obtention par identifiant de {@link ArbitrationMovementDto}.
+   */
+  String GET_BY_IDENTIFIER_IDENTIFIER = &quot;OBTENTION_PAR_IDENTIFIANT_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service d'obtention par identifiant de {@link ArbitrationMovementDto}.
+   */
+  String GET_BY_IDENTIFIER_PATH = &quot;obtention/par-identifiant&quot;;
+
+  /**
+   * Lecture d'une ligne d'arbitrage par son identifiant.
+   *
+   * @param request identifiant et projection
+   * @return la ligne correspondante
+   */
+  @Path(GET_BY_IDENTIFIER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON})
+  @Operation(operationId = GET_BY_IDENTIFIER_IDENTIFIER)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = ArbitrationMovementDto.class))})
+  Response getByIdentifier(GetByIdentifierRequestDto request);
+
+  /**
+   * Identifiant du service de visa de {@link ArbitrationMovementDto}.
+   */
+  String ENDORSE_IDENTIFIER = &quot;VISA_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de visa de {@link ArbitrationMovementDto}.
+   */
+  String ENDORSE_PATH = &quot;visa&quot;;
+
+  /**
+   * Vise une ligne d'arbitrage (RG_PRB_ARB_16).
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(ENDORSE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = ENDORSE_IDENTIFIER, summary = &quot;Visa d'une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response endorse(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de refus de visa de {@link ArbitrationMovementDto}.
+   */
+  String NOT_ENDORSE_IDENTIFIER = &quot;NON_VISA_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de refus de visa de {@link ArbitrationMovementDto}.
+   */
+  String NOT_ENDORSE_PATH = &quot;non-visa&quot;;
+
+  /**
+   * Marque une ligne d'arbitrage comme non visée.
+   *
+   * &lt;p&gt;Ce n'est pas un refus : le visa qualifie sans bloquer, et les deux issues mènent
+   * également à la transmission (RG_PRB_ARB_16). Une ligne non visée poursuit son parcours,
+   * en portant cette qualification.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(NOT_ENDORSE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = NOT_ENDORSE_IDENTIFIER, summary = &quot;Non-visa d'une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response notEndorse(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de transmission de {@link ArbitrationMovementDto}.
+   */
+  String TRANSMIT_IDENTIFIER = &quot;TRANSMISSION_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de transmission de {@link ArbitrationMovementDto}.
+   */
+  String TRANSMIT_PATH = &quot;transmission&quot;;
+
+  /**
+   * Transmet une ligne à l'entité de traitement.
+   *
+   * &lt;p&gt;Point de convergence du cycle : on y arrive du visa comme d'un report (RG_PRB_ARB_19).&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(TRANSMIT_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = TRANSMIT_IDENTIFIER, summary = &quot;Transmettre une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response transmit(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de réception de {@link ArbitrationMovementDto}.
+   */
+  String RECEIVE_IDENTIFIER = &quot;RECEPTION_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de réception de {@link ArbitrationMovementDto}.
+   */
+  String RECEIVE_PATH = &quot;reception&quot;;
+
+  /**
+   * Accuse prise en charge d'une ligne transmise.
+   *
+   * &lt;p&gt;Cet état déclenche l'aiguillage : traitement, report, ou consolidation directe pour
+   * les lignes d'initialisation.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(RECEIVE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = RECEIVE_IDENTIFIER, summary = &quot;Réceptionner une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response receive(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de report de {@link ArbitrationMovementDto}.
+   */
+  String DEFER_IDENTIFIER = &quot;REPORT_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de report de {@link ArbitrationMovementDto}.
+   */
+  String DEFER_PATH = &quot;report&quot;;
+
+  /**
+   * Reporte le traitement d'une ligne (RG_PRB_ARB_18).
+   *
+   * &lt;p&gt;Ce n'est pas un rejet : la ligne attend que la condition bloquante soit levée, et peut
+   * être remise en circuit autant de fois que nécessaire (RG_PRB_ARB_19).&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(DEFER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = DEFER_IDENTIFIER, summary = &quot;Différer une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response defer(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de levée du report de {@link ArbitrationMovementDto}.
+   */
+  String SATISFY_DEFER_IDENTIFIER = &quot;SATISFACTION_REPORT_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de levée du report de {@link ArbitrationMovementDto}.
+   */
+  String SATISFY_DEFER_PATH = &quot;report-satisfait&quot;;
+
+  /**
+   * Constate que la condition bloquante d'une ligne différée est levée (RG_PRB_ARB_19).
+   *
+   * &lt;p&gt;La ligne quitte l'attente et redevient instruisable, sans repasser par la transmission.
+   * C'est l'autre sortie du report : l'EPN qui retransmet ramène la ligne à
+   * {@code Transmis}, tandis qu'ici la DCB constate elle-même que ce qui manquait est
+   * arrivé.&lt;/p&gt;
+   *
+   * &lt;p&gt;&lt;strong&gt;La transition existait sans porte.&lt;/strong&gt; Elle figurait à la matrice depuis
+   * l'origine, mais aucun service ne la déclenchait : une ligne différée n'avait en pratique
+   * qu'une seule issue, la retransmission.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(SATISFY_DEFER_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = SATISFY_DEFER_IDENTIFIER,
+      summary = &quot;Constater la levée du blocage d'une ligne différée&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response satisfyDeferral(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de validation de {@link ArbitrationMovementDto}.
+   */
+  String VALIDATE_IDENTIFIER = &quot;VALIDATION_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de validation de {@link ArbitrationMovementDto}.
+   */
+  String VALIDATE_PATH = &quot;validation&quot;;
+
+  /**
+   * Valide une ligne d'arbitrage : ce que le traitement a retenu est tenu pour bon.
+   *
+   * &lt;p&gt;Étape ajoutée le 05/10/2026, et elle ne double pas le traitement. Le traitement dit ce que
+   * la DCB retient d'une demande ; la validation dit que ce qui a été retenu est juste. Deux
+   * gestes, deux acteurs, deux dates.&lt;/p&gt;
+   *
+   * &lt;p&gt;Elle n'est ouverte que dans un dossier dont le chef d'équipe a &lt;strong&gt;validé le
+   * traitement&lt;/strong&gt;. Sur un dossier encore réceptionné, elle est refusée, et le message dit
+   * quelle étape manque — c'est la seule information qui permette d'agir.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(VALIDATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = VALIDATE_IDENTIFIER,
+      summary = &quot;Validation d'une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response validate(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de renvoi au traitement de {@link ArbitrationMovementDto}.
+   */
+  String RETURN_TO_PROCESSING_IDENTIFIER = &quot;RETOUR_TRAITEMENT_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de renvoi au traitement de {@link ArbitrationMovementDto}.
+   */
+  String RETURN_TO_PROCESSING_PATH = &quot;retour-traitement&quot;;
+
+  /**
+   * Renvoie une ligne au traitement : le chef d'équipe n'a pas retenu le travail rendu.
+   *
+   * &lt;p&gt;Le chef vient confirmer ou rejeter ce que son équipe a traité. Confirmer menait déjà
+   * quelque part — la validation de la ligne ; &lt;strong&gt;rejeter ne menait nulle part&lt;/strong&gt;, et
+   * son désaccord n'avait aucune forme : il lui restait à ne pas valider, ce qui bloque le
+   * dossier sans rien dire à personne.&lt;/p&gt;
+   *
+   * &lt;p&gt;La ligne revient donc à &lt;em&gt;Réceptionné&lt;/em&gt;, c'est à dire dans la liste de l'agent, avec
+   * le motif du chef. Elle n'est pas annulée : elle est à refaire.&lt;/p&gt;
+   *
+   * &lt;p&gt;&lt;strong&gt;Seule une acceptation revient.&lt;/strong&gt; Le rejet prononcé au traitement est
+   * définitif, et cette règle n'est pas revue ici : la ligne rejetée est sortie du circuit, aucune
+   * fermeture ne l'attend, et la consolidation ne la compte pas. La rendre réversible toucherait
+   * aux trois à la fois, et c'est une autre décision que celle-ci.&lt;/p&gt;
+   *
+   * &lt;p&gt;&lt;strong&gt;Le motif est obligatoire.&lt;/strong&gt; Un travail renvoyé sans motif est un travail
+   * que l'agent refera à l'identique.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne et motif du renvoi
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(RETURN_TO_PROCESSING_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = RETURN_TO_PROCESSING_IDENTIFIER,
+      summary = &quot;Renvoi d'une ligne d'arbitrage au traitement&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response returnToProcessing(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de consolidation de {@link ArbitrationMovementDto}.
+   */
+  String CONSOLIDATE_IDENTIFIER = &quot;CONSOLIDATION_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de consolidation de {@link ArbitrationMovementDto}.
+   */
+  String CONSOLIDATE_PATH = &quot;consolidation&quot;;
+
+  /**
+   * Consolide une ligne d'arbitrage : elle entre dans la masse salariale finale.
+   *
+   * &lt;p&gt;Trois chemins y mènent, et ils n'ont pas le même sens :&lt;/p&gt;
+   * &lt;ul&gt;
+   *   &lt;li&gt;depuis la &lt;em&gt;réception&lt;/em&gt;, réservée aux lignes d'initialisation, réputées déjà
+   *       arbitrées (RG_PRB_ARB_17) ;&lt;/li&gt;
+   *   &lt;li&gt;depuis &lt;em&gt;Validé&lt;/em&gt;, c'est la consolidation proprement dite : parmi ce que
+   *       l'arbitrage a retenu et validé, on choisit ce qui entre dans la masse finale ;&lt;/li&gt;
+   *   &lt;li&gt;depuis &lt;em&gt;Non consolidé&lt;/em&gt;, c'est la reprise d'une ligne mise à l'écart.&lt;/li&gt;
+   * &lt;/ul&gt;
+   *
+   * @param request identifiant de la ligne
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(CONSOLIDATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = CONSOLIDATE_IDENTIFIER,
+      summary = &quot;Consolidation d'une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response consolidate(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service de mise à l'écart de la consolidation de {@link
+   * ArbitrationMovementDto}.
+   */
+  String NOT_CONSOLIDATE_IDENTIFIER = &quot;NON_CONSOLIDATION_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de mise à l'écart de la consolidation de {@link ArbitrationMovementDto}.
+   */
+  String NOT_CONSOLIDATE_PATH = &quot;non-consolidation&quot;;
+
+  /**
+   * Met une ligne à l'écart de la masse salariale finale.
+   *
+   * &lt;p&gt;Ce n'est &lt;strong&gt;pas un rejet&lt;/strong&gt;, et c'est toute la différence. Le rejet dit que la
+   * demande n'était pas fondée ; la non-consolidation dit qu'elle l'était, mais que l'exercice
+   * ne la portera pas — le plus souvent faute d'enveloppe. La ligne sort du cumul sans que
+   * l'arbitrage rendu sur elle soit défait.&lt;/p&gt;
+   *
+   * &lt;p&gt;&lt;strong&gt;Elle peut revenir.&lt;/strong&gt; {@code consolidate} la ramène dans la masse, et son
+   * montant avec elle. C'est ce qui distingue la mise à l'écart du rejet de traitement, lui
+   * définitif (RG_PRB_ARB_22), et c'est ce qui tranche le point ouvert O7 du modèle d'états du
+   * 27/08/2026 — lequel demandait à confirmer si « Non consolidé » était vraiment terminal.
+   * Il ne l'est pas.&lt;/p&gt;
+   *
+   * &lt;p&gt;Le motif est obligatoire : une ligne arbitrée favorablement puis écartée sans explication
+   * serait indistinguable d'un oubli, et rien ne dirait à quelle condition la reprendre.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne et motif
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(NOT_CONSOLIDATE_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = NOT_CONSOLIDATE_IDENTIFIER,
+      summary = &quot;Mettre une ligne d'arbitrage à l'écart de la masse salariale&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response notConsolidate(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Identifiant du service d'acceptation du traitement de {@link ArbitrationMovementDto}.
+   */
+  String ACCEPT_PROCESSING_IDENTIFIER = &quot;ACCEPTATION_TRAITEMENT_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service d'acceptation du traitement de {@link ArbitrationMovementDto}.
+   */
+  String ACCEPT_PROCESSING_PATH = &quot;acceptation-traitement&quot;;
+
+  /**
+   * Accepte le traitement d'une ligne (CU03, CU04, CU05).
+   *
+   * &lt;p&gt;Accepter ne modifie pas le montant : la ligne entre telle quelle dans la masse salariale
+   * arbitrée. Un &lt;strong&gt;montant d'ajustement&lt;/strong&gt; peut toutefois l'accompagner — c'est
+   * l'&lt;em&gt;ajustement&lt;/em&gt; de la maquette, une acceptation partielle. Sa valeur absolue doit rester
+   * strictement inférieure au montant proposé (CU04-RG05), et il se motive (CU04-RG09) :
+   * retenir moins que ce qui est demandé sans dire pourquoi serait un rejet déguisé.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne, ajustement éventuel et motif
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(ACCEPT_PROCESSING_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = ACCEPT_PROCESSING_IDENTIFIER,
+      summary = &quot;Accepter le traitement d'une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response acceptProcessing(ArbitrationMovementProcessingRequestDto request);
+
+  /**
+   * Identifiant du service de rejet du traitement de {@link ArbitrationMovementDto}.
+   */
+  String REJECT_PROCESSING_IDENTIFIER = &quot;REJET_TRAITEMENT_LIGNE_ARBITRAGE&quot;;
+
+  /**
+   * Chemin du service de rejet du traitement de {@link ArbitrationMovementDto}.
+   */
+  String REJECT_PROCESSING_PATH = &quot;rejet-traitement&quot;;
+
+  /**
+   * Rejette le traitement d'une ligne (CU03-RG07, CU04-RG10, CU05-RG10).
+   *
+   * &lt;p&gt;Terminal et définitif : rien ne ramène une ligne rejetée dans le circuit
+   * (RG_PRB_ARB_22). La ligne sort du cumul, et la masse salariale arbitrée du dossier baisse
+   * d'autant — ou monte, si son impact était négatif. Le motif est obligatoire.&lt;/p&gt;
+   *
+   * @param request identifiant de la ligne et motif
+   * @return l'identifiant de la ligne touchée
+   */
+  @Path(REJECT_PROCESSING_PATH)
+  @POST
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(value = {MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN})
+  @Operation(operationId = REJECT_PROCESSING_IDENTIFIER,
+      summary = &quot;Rejeter le traitement d'une ligne d'arbitrage&quot;)
+  @APIResponse(responseCode = &quot;200&quot;,
+      content = {@Content(schema = @Schema(implementation = IdentifiableResponseDto.class))})
+  Response rejectProcessing(ArbitrationMovementTransitionRequestDto request);
+
+  /**
+   * Requête de transition d'état d'une ligne.
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L790">  class ArbitrationMovementTransitionRequestDto extends ByIdentifierRequestDto {</span>
+
+    /**
+     * Motif de la transition. Obligatoire pour un report (CU02-RG03) : différer une ligne sans
+     * dire pourquoi laisserait l'EPN devant un refus muet. Libre ailleurs.
+     */
+    @JsonbProperty(ArbitrationMovementDto.JSON_REASON)
+    private String reason;
+  }
+
+  /**
+   * Requête d'acceptation du traitement d'une ligne.
+   *
+   * &lt;p&gt;Une transition, plus l'ajustement éventuel. Il est {@code null} pour une acceptation
+   * pleine et entière — le cas ordinaire — et l'absence de valeur veut bien dire « rien à
+   * ajuster », non « ajuster de zéro ».&lt;/p&gt;
+   */
+  @Getter
+  @Setter
+<span class="fc" id="L809">  class ArbitrationMovementProcessingRequestDto</span>
+      extends ArbitrationMovementTransitionRequestDto {
+
+    /**
+     * Montant de l'ajustement, positif ou négatif, ou {@code null} si la ligne est acceptée
+     * telle quelle.
+     */
+    @JsonbProperty(ArbitrationMovementDto.JSON_ADJUSTMENT_AMOUNT)
+    private Long adjustmentAmount;
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

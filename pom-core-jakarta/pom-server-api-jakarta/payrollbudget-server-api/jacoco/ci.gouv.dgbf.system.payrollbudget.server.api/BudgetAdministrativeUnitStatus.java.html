@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BudgetAdministrativeUnitStatus.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">BudgetAdministrativeUnitStatus.java</span></div><h1>BudgetAdministrativeUnitStatus.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+import lombok.Getter;
+
+/**
+ * Statut de Dossier : le cycle de vie d'une unité administrative de budget.
+ *
+ * &lt;p&gt;Le cycle est &lt;strong&gt;linéaire et sans retour&lt;/strong&gt; — {@code Créé} → {@code Transmis} →
+ * {@code Réceptionné} → {@code Traité} → {@code Validé} → {@code Consolidé} — et l'énumération le
+ * dit elle-même : chaque valeur connaît son unique successeur, et le dernier n'en a pas. Décrire
+ * l'enchaînement ici plutôt que dans le service évite qu'une transition illégitime devienne
+ * possible par simple oubli d'un contrôle.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;Le Dossier n'est plus un simple conteneur.&lt;/strong&gt; Il l'était : il acheminait les
+ * lignes sans les instruire, et toute la décision vivait dans le Statut de Ligne d'Arbitrage.
+ * Désormais son statut &lt;em&gt;ouvre les étapes&lt;/em&gt; que ses lignes peuvent franchir — une ligne ne
+ * se valide pas avant que le traitement du dossier ne soit validé, elle ne se consolide pas avant
+ * que le dossier ne le soit. {@link ArbitrationStatusCoupling} porte cette subordination.&lt;/p&gt;
+ *
+ * &lt;p&gt;Qui avance le dossier : &lt;strong&gt;le chef d'équipe&lt;/strong&gt;, et lui seul. Les agents
+ * instruisent les lignes ; le chef constate qu'une étape est achevée et ouvre la suivante. C'est
+ * ce qui donne au dossier ses trois nouvelles bornes — {@link #PROCESSED}, {@link #VALIDATED}, et
+ * {@link #CONSOLIDATED} qui clôt tout.&lt;/p&gt;
+ *
+ * &lt;p&gt;⚠️ Le modèle ne prévoit &lt;strong&gt;aucun chemin d'exception&lt;/strong&gt; : un dossier transmis par
+ * erreur ne peut être ni rappelé par l'EPN, ni refusé par la DCB. C'est l'observation O1 du
+ * document source, non tranchée à ce jour. Le jour où elle le sera, c'est ici que l'ajout se
+ * fera.&lt;/p&gt;
+ *
+ * &lt;p&gt;Source : diagrammes d'états du 27/08/2026, chapitre 3 et annexe 6.1.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+<span class="fc" id="L38">@Getter</span>
+public enum BudgetAdministrativeUnitStatus {
+
+  /**
+   * Créé — le dossier est ouvert, son contenu peut encore être complété.
+   */
+<span class="fc" id="L44">  CREATED(BudgetAdministrativeUnitStatusCode.CREATED, &quot;Créé&quot;),</span>
+
+  /**
+   * Transmis — le dossier a quitté l'EPN, son contenu est figé (RG_PRB_ARB_05).
+   *
+   * &lt;p&gt;&lt;strong&gt;Transition passive.&lt;/strong&gt; Aucun service de ce module ne porte le passage de
+   * {@link #CREATED} à {@link #TRANSMITTED} : il se fait du côté de l'EPN, à l'expression des
+   * besoins, et le dossier arrive ici déjà transmis. C'est la seule transition du cycle qui
+   * n'ait pas d'action correspondante, et ce n'est pas un oubli.&lt;/p&gt;
+   */
+<span class="fc" id="L54">  TRANSMITTED(BudgetAdministrativeUnitStatusCode.TRANSMITTED, &quot;Transmis&quot;),</span>
+
+  /**
+   * Réceptionné — la DCB instruit. L'étape de &lt;strong&gt;traitement&lt;/strong&gt; est ouverte.
+   *
+   * &lt;p&gt;La réception fait suivre le contenu au contenant : les lignes transmises deviennent
+   * réceptionnées du même geste. C'est dans cette étape que l'agent vérifie les pièces jointes
+   * puis traite la ligne — la vérification d'admissibilité n'est plus une étape séparée du
+   * circuit, elle est devenue le préalable que l'agent s'impose avant de décider.&lt;/p&gt;
+   */
+<span class="fc" id="L64">  RECEIVED(BudgetAdministrativeUnitStatusCode.RECEIVED, &quot;Réceptionné&quot;),</span>
+
+  /**
+   * Traité — le chef d'équipe a validé le traitement. L'étape de &lt;strong&gt;validation&lt;/strong&gt;
+   * est ouverte.
+   *
+   * &lt;p&gt;Ce statut ne décide de rien sur les lignes : il &lt;em&gt;constate&lt;/em&gt; que leur traitement est
+   * achevé, et c'est ce constat qui autorise leur validation une à une. Le chef ne peut le poser
+   * qu'une fois chaque ligne traitée — sans quoi il fermerait une étape que des lignes n'ont pas
+   * franchie, et celles-ci resteraient en arrière sans que rien ne le signale.&lt;/p&gt;
+   */
+<span class="fc" id="L75">  PROCESSED(BudgetAdministrativeUnitStatusCode.PROCESSED, &quot;Traité&quot;),</span>
+
+  /**
+   * Validé — le chef d'équipe a validé le dossier. L'étape de &lt;strong&gt;consolidation&lt;/strong&gt;
+   * est ouverte.
+   *
+   * &lt;p&gt;C'est le geste qui envoie le dossier et ses lignes à la consolidation. Même règle que
+   * ci-dessus : il suppose chaque ligne validée.&lt;/p&gt;
+   */
+<span class="fc" id="L84">  VALIDATED(BudgetAdministrativeUnitStatusCode.VALIDATED, &quot;Validé&quot;),</span>
+
+  /**
+   * Consolidé — l'arbitrage est clos. Terminal, et fermant.
+   *
+   * &lt;p&gt;Ce statut ne se contente pas d'achèver le cycle du dossier : il &lt;strong&gt;ferme celui de
+   * ses lignes&lt;/strong&gt;. Plus aucune transition n'est acceptée sur elles, pas même la
+   * retransmission d'une ligne différée pour correction — la boucle de reprise
+   * (RG_PRB_ARB_19) s'arrête ici. Un dossier consolidé dont le contenu continuerait de bouger
+   * ne serait plus la masse salariale qu'on a arrêtée.&lt;/p&gt;
+   *
+   * &lt;p&gt;C'est la &lt;strong&gt;consolidation finale&lt;/strong&gt;, posée par le chef d'équipe une fois
+   * chaque ligne consolidée : elle constitue la masse salariale de l'EPN.&lt;/p&gt;
+   */
+<span class="fc" id="L98">  CONSOLIDATED(BudgetAdministrativeUnitStatusCode.CONSOLIDATED, &quot;Consolidé&quot;)</span>
+
+  ;
+
+<span class="fc" id="L102">  private BudgetAdministrativeUnitStatus(String code, String name) {</span>
+<span class="fc" id="L103">    this.code = code;</span>
+<span class="fc" id="L104">    this.name = name;</span>
+<span class="fc" id="L105">  }</span>
+
+  private String code;
+
+  private String name;
+
+  @Override
+  public String toString() {
+<span class="fc" id="L113">    return name;</span>
+  }
+
+  /**
+   * Retourne le statut portant le code donné.
+   *
+   * @param code code recherché
+   * @return le statut correspondant
+   * @throws IllegalArgumentException si aucun statut ne porte ce code
+   */
+  public static BudgetAdministrativeUnitStatus getByCode(String code) {
+<span class="fc" id="L124">    return Stream.of(BudgetAdministrativeUnitStatus.values())</span>
+<span class="fc" id="L125">        .filter(status -&gt; status.getCode().equals(code)).findFirst()</span>
+<span class="fc" id="L126">        .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Code « %s » inconnu&quot;.formatted(code)));</span>
+  }
+
+  /**
+   * Le cycle, écrit plutôt que déduit de l'ordre de déclaration.
+   *
+   * &lt;p&gt;L'ordre des constantes suffisait, et c'est précisément ce qui posait problème :
+   * insérer un statut — l'état « retourné » que l'observation O1 laisse ouvert — aurait
+   * déplacé en silence tout ce qui suit, et avec lui le successeur de chaque étape et les
+   * comparaisons d'avancement. Écrite, la liste rend l'insertion visible : on la relit, ou
+   * rien ne bouge.&lt;/p&gt;
+   *
+   * &lt;p&gt;La contrepartie est qu'un statut ajouté à l'énumération et oublié de cette liste
+   * aurait un rang de moins un. Aucune garde ne le rattrape ici — une garde que rien ne peut
+   * atteindre ne se teste pas, et du code qu'aucun test ne traverse ne protège personne. C'est
+   * {@code rank_isDefinedForEveryStatus} qui tient cette promesse, et qui tombe si on l'oublie.&lt;/p&gt;
+   */
+<span class="fc" id="L143">  private static final List&lt;BudgetAdministrativeUnitStatus&gt; CYCLE =</span>
+<span class="fc" id="L144">      List.of(CREATED, TRANSMITTED, RECEIVED, PROCESSED, VALIDATED, CONSOLIDATED);</span>
+
+  /**
+   * Retourne le rang de ce statut dans le cycle.
+   *
+   * &lt;p&gt;Le rang remplace {@code ordinal()} partout où l'on compare un avancement : il dit la
+   * place dans le cycle, non la place dans la déclaration.&lt;/p&gt;
+   *
+   * @return le rang, zéro pour le premier état
+   */
+  public int rank() {
+<span class="fc" id="L155">    return CYCLE.indexOf(this);</span>
+  }
+
+  /**
+   * Retourne l'unique successeur de ce statut.
+   *
+   * @return le statut suivant, ou vide si celui-ci est terminal
+   */
+  public Optional&lt;BudgetAdministrativeUnitStatus&gt; getNext() {
+<span class="fc" id="L164">    int next = rank() + 1;</span>
+<span class="fc bfc" id="L165" title="All 2 branches covered.">    return next &lt; CYCLE.size() ? Optional.of(CYCLE.get(next)) : Optional.empty();</span>
+  }
+
+  /**
+   * Indique si le cycle de vie s'achève sur ce statut.
+   *
+   * @return vrai si aucune transition n'en part
+   */
+  public boolean isTerminal() {
+<span class="fc" id="L174">    return getNext().isEmpty();</span>
+  }
+
+  /**
+   * Indique si la transition vers le statut donné est autorisée.
+   *
+   * &lt;p&gt;Seul le passage au successeur immédiat l'est. Ni saut d'étape, ni retour en arrière, ni
+   * transition vers soi-même.&lt;/p&gt;
+   *
+   * @param target statut visé
+   * @return vrai si la transition est permise
+   */
+  public boolean canTransitionTo(BudgetAdministrativeUnitStatus target) {
+<span class="fc bfc" id="L187" title="All 2 branches covered.">    return getNext().filter(next -&gt; next == target).isPresent();</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

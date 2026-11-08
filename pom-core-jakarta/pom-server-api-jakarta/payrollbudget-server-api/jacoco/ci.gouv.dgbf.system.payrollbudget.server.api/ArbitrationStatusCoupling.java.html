@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationStatusCoupling.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationStatusCoupling.java</span></div><h1>ArbitrationStatusCoupling.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+
+/**
+ * La subordination des statuts : une ligne ne va pas plus loin que son dossier ne l'y autorise.
+ *
+ * &lt;p&gt;Jusqu'au 05/10/2026 le dossier acheminait et la ligne décidait, chacun son cycle, sans que
+ * l'un ne contraigne l'autre. Deux conséquences, et elles se voyaient à l'écran : une ligne
+ * pouvait être consolidée dans un dossier que personne n'avait clos, et rien ne marquait la fin
+ * d'une étape — on ne savait pas dire si le traitement d'un dossier était achevé ou simplement
+ * en cours. Le métier a tranché : &lt;strong&gt;le statut du dossier ouvre les étapes&lt;/strong&gt;, et c'est
+ * le chef d'équipe qui l'avance.&lt;/p&gt;
+ *
+ * &lt;h2&gt;Les deux sens de la règle&lt;/h2&gt;
+ *
+ * &lt;p&gt;La subordination se lit dans les deux sens, et cette classe porte les deux :&lt;/p&gt;
+ * &lt;ul&gt;
+ *   &lt;li&gt;&lt;strong&gt;vers le bas&lt;/strong&gt; — {@link #isStageOpen} : une ligne ne prend un statut que si
+ *       son dossier a ouvert l'étape correspondante. C'est la garde qu'interroge toute
+ *       transition de ligne ;&lt;/li&gt;
+ *   &lt;li&gt;&lt;strong&gt;vers le haut&lt;/strong&gt; — {@link #getClosingStatuses} : le chef n'avance le dossier
+ *       que si chaque ligne a fini l'étape qu'il referme. C'est la garde qu'interroge toute
+ *       transition de dossier.&lt;/li&gt;
+ * &lt;/ul&gt;
+ *
+ * &lt;p&gt;Les deux ensemble font une alternance : le dossier ouvre, les lignes franchissent, le
+ * dossier referme et ouvre la suivante. Aucune ligne ne devance le groupe, aucune ne reste en
+ * arrière sans que la fermeture ne s'en plaigne.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;L'alternance n'est pas stricte pour autant, et c'est voulu.&lt;/strong&gt; L'étape
+ * exigée est un plancher, pas un palier : dans un dossier déjà validé, le chef peut encore
+ * renvoyer une ligne au traitement, et elle rattrapera le groupe. C'est la reprise, et la
+ * refuser obligerait à faire reculer tout un dossier pour une seule ligne. Rien ne se perd :
+ * la fermeture suivante attend cette ligne comme les autres. Seule la clôture fait exception,
+ * puisqu'elle arrête un montant — un dossier consolidé ne laisse plus rien bouger.&lt;/p&gt;
+ *
+ * &lt;h2&gt;Pourquoi « ouvrir une étape » et non « avoir le même statut »&lt;/h2&gt;
+ *
+ * &lt;p&gt;La règle énoncée par le métier est que la ligne ne peut prendre un statut supérieur que si
+ * son dossier porte &lt;em&gt;au préalable&lt;/em&gt; ce statut. Prise au pied de la lettre — même statut de
+ * part et d'autre — elle se contredit sur sa propre fin : la consolidation du dossier est le
+ * &lt;em&gt;dernier&lt;/em&gt; geste, posé une fois chaque ligne consolidée, donc le dossier ne peut pas être
+ * consolidé avant ses lignes. Le décalage d'un cran lève la contradiction et dit la même chose :
+ * le dossier &lt;em&gt;Traité&lt;/em&gt; ouvre la validation des lignes, le dossier &lt;em&gt;Validé&lt;/em&gt; ouvre leur
+ * consolidation. C'est bien ce que décrit le circuit, étape par étape.&lt;/p&gt;
+ *
+ * &lt;p&gt;Un dossier consolidé ferme tout : {@link BudgetAdministrativeUnitStatus#CONSOLIDATED} est
+ * terminal et plus aucune ligne n'y bouge. Cette fermeture-là n'est pas ici — elle est déjà dans
+ * le cycle du dossier, et elle y est à sa place.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+public final class ArbitrationStatusCoupling {
+
+  private ArbitrationStatusCoupling() {
+  }
+
+  /**
+   * L'étape que le dossier doit avoir ouverte pour que la ligne prenne ce statut.
+   *
+   * &lt;p&gt;Les états d'avant la réception n'y figurent pas, et c'est voulu : le visa, la
+   * transmission et la réception de la ligne appartiennent au circuit de l'EPN et à la réception
+   * elle-même, qui est le geste par lequel le dossier &lt;em&gt;devient&lt;/em&gt; réceptionné. Les
+   * subordonner à un statut de dossier qui n'existe pas encore interdirait l'entrée du
+   * circuit.&lt;/p&gt;
+   *
+   * &lt;p&gt;{@link ArbitrationMovementStatus#DEFERRED} y figure, lui : différer est une décision de
+   * la DCB, elle se prend dans un dossier réceptionné.&lt;/p&gt;
+   */
+<span class="fc" id="L74">  private static final Map&lt;ArbitrationMovementStatus, BudgetAdministrativeUnitStatus&gt; REQUIRED =</span>
+<span class="fc" id="L75">      Map.ofEntries(</span>
+<span class="fc" id="L76">          Map.entry(ArbitrationMovementStatus.DEFERRED, BudgetAdministrativeUnitStatus.RECEIVED),</span>
+<span class="fc" id="L77">          Map.entry(ArbitrationMovementStatus.DEFERRED_SATISFIED,</span>
+              BudgetAdministrativeUnitStatus.RECEIVED),
+<span class="fc" id="L79">          Map.entry(ArbitrationMovementStatus.PROCESSING_ACCEPTED,</span>
+              BudgetAdministrativeUnitStatus.RECEIVED),
+<span class="fc" id="L81">          Map.entry(ArbitrationMovementStatus.PROCESSING_REJECTED,</span>
+              BudgetAdministrativeUnitStatus.RECEIVED),
+          // La validation d'une ligne suppose le traitement du dossier clos par le chef.
+<span class="fc" id="L84">          Map.entry(ArbitrationMovementStatus.VALIDATED,</span>
+              BudgetAdministrativeUnitStatus.PROCESSED),
+<span class="fc" id="L86">          Map.entry(ArbitrationMovementStatus.CONSOLIDATED,</span>
+              BudgetAdministrativeUnitStatus.VALIDATED),
+<span class="fc" id="L88">          Map.entry(ArbitrationMovementStatus.NOT_CONSOLIDATED,</span>
+              BudgetAdministrativeUnitStatus.VALIDATED));
+
+  /**
+   * Les statuts de ligne qui comptent comme « étape finie » pour chaque fermeture de dossier.
+   *
+   * &lt;p&gt;Trois fermetures, trois exigences, et un même principe : une ligne ne retient le chef que
+   * si elle a encore quelque chose à faire dans l'étape qu'il referme.&lt;/p&gt;
+   *
+   * &lt;p&gt;{@link ArbitrationMovementStatus#PROCESSING_REJECTED} ne retient jamais : la ligne est
+   * sortie du circuit par une décision définitive, l'attendre serait l'attendre indéfiniment.&lt;/p&gt;
+   *
+   * &lt;p&gt;{@link ArbitrationMovementStatus#DEFERRED} ne retient pas les deux premières fermetures,
+   * &lt;strong&gt;mais retient la dernière&lt;/strong&gt;, et cette asymétrie est voulue. Une ligne différée
+   * est repartie à l'EPN : laisser l'équipe avancer son traitement et sa validation sans elle est
+   * normal, car elle n'y participe pas. La consolidation, elle, &lt;em&gt;arrête un montant et ferme le
+   * dossier pour toujours&lt;/em&gt; — et jusqu'au 05/10/2026 elle le faisait en comptant la ligne
+   * différée dans la masse. Un dossier clos portait ainsi de l'argent pour une ligne repartie, qui
+   * ne pouvait plus revenir puisque la clôture fige tout. Le métier a tranché : la consolidation
+   * attend que la ligne différée soit revenue et menée à son terme.&lt;/p&gt;
+   *
+   * &lt;p&gt;Ce que ce choix coûte, et il faut le savoir : un EPN qui ne retransmet jamais bloque la
+   * consolidation de son dossier. C'est assumé — mieux vaut un dossier qu'on voit bloqué qu'une
+   * masse salariale fausse qu'on ne voit pas.&lt;/p&gt;
+   *
+   * &lt;p&gt;{@link ArbitrationMovementStatus#CONSOLIDATED} figure dans les trois : une ligne
+   * d'initialisation se consolide dès la réception (RG_PRB_ARB_17) et n'a ni traitement ni
+   * validation à franchir. Sans cela, un dossier d'initialisation ne pourrait jamais être
+   * refermé.&lt;/p&gt;
+   */
+  private static final Map&lt;BudgetAdministrativeUnitStatus, Set&lt;ArbitrationMovementStatus&gt;&gt;
+<span class="fc" id="L119">      CLOSING = Map.of(</span>
+          BudgetAdministrativeUnitStatus.PROCESSED,
+<span class="fc" id="L121">          Set.of(ArbitrationMovementStatus.PROCESSING_ACCEPTED,</span>
+              ArbitrationMovementStatus.PROCESSING_REJECTED,
+              ArbitrationMovementStatus.DEFERRED,
+              ArbitrationMovementStatus.CONSOLIDATED),
+          BudgetAdministrativeUnitStatus.VALIDATED,
+<span class="fc" id="L126">          Set.of(ArbitrationMovementStatus.VALIDATED,</span>
+              ArbitrationMovementStatus.PROCESSING_REJECTED,
+              ArbitrationMovementStatus.DEFERRED,
+              ArbitrationMovementStatus.CONSOLIDATED),
+          // LE REPORT NE FIGURE PAS ICI, a la difference des deux fermetures precedentes :
+          // consolider arrete un montant et ferme le dossier pour toujours.
+          BudgetAdministrativeUnitStatus.CONSOLIDATED,
+<span class="fc" id="L133">          Set.of(ArbitrationMovementStatus.CONSOLIDATED,</span>
+              ArbitrationMovementStatus.NOT_CONSOLIDATED,
+              ArbitrationMovementStatus.PROCESSING_REJECTED));
+
+  /**
+   * Retourne l'étape que le dossier doit avoir ouverte pour que la ligne prenne ce statut.
+   *
+   * @param lineStatus statut visé par la ligne
+   * @return le statut de dossier exigé, ou vide si ce statut de ligne n'en exige aucun
+   */
+  public static Optional&lt;BudgetAdministrativeUnitStatus&gt; getRequiredDossierStatus(
+      ArbitrationMovementStatus lineStatus) {
+<span class="fc" id="L145">    return getRequiredDossierStatus(lineStatus, null);</span>
+  }
+
+  /**
+   * Retourne l'étape exigée, en tenant compte de la nature de la ligne.
+   *
+   * &lt;p&gt;&lt;strong&gt;L'initialisation se consolide dès la réception&lt;/strong&gt; (RG_PRB_ARB_17), là où
+   * toute autre ligne attend la validation du dossier. Sans cette distinction, la règle se
+   * refermait sur elle-même : la ligne d'initialisation reçue n'avait d'autre suite que la
+   * consolidation, la consolidation exigeait un dossier validé, et le dossier ne pouvait pas
+   * même être traité tant que cette ligne le retenait. Un dossier d'initialisation ne se
+   * refermait donc jamais.&lt;/p&gt;
+   *
+   * &lt;p&gt;La nature n'allège &lt;em&gt;que&lt;/em&gt; la consolidation. Les autres étapes ne la regardent pas,
+   * et une ligne d'initialisation ne les franchit de toute façon pas.&lt;/p&gt;
+   *
+   * @param lineStatus statut visé par la ligne
+   * @param natureCode nature du mouvement, éventuellement nulle
+   * @return le statut de dossier exigé, ou vide si ce statut de ligne n'en exige aucun
+   */
+  public static Optional&lt;BudgetAdministrativeUnitStatus&gt; getRequiredDossierStatus(
+      ArbitrationMovementStatus lineStatus, String natureCode) {
+<span class="fc bfc" id="L167" title="All 2 branches covered.">    if (lineStatus == ArbitrationMovementStatus.CONSOLIDATED</span>
+<span class="fc bfc" id="L168" title="All 2 branches covered.">        &amp;&amp; ArbitrationMovementDto.NATURE_INITIALIZATION.equals(natureCode)) {</span>
+<span class="fc" id="L169">      return Optional.of(BudgetAdministrativeUnitStatus.RECEIVED);</span>
+    }
+<span class="fc" id="L171">    return Optional.ofNullable(REQUIRED.get(lineStatus));</span>
+  }
+
+  /**
+   * Indique si le dossier a ouvert l'étape que la ligne veut franchir.
+   *
+   * &lt;p&gt;« Au moins » et non « exactement » : un dossier que le chef a déjà fait avancer n'a pas à
+   * rouvrir une étape qu'il a refermée. Le cas se produit pour la ligne qu'une reprise ramène
+   * en arrière — elle rattrape le groupe sans que le dossier recule.&lt;/p&gt;
+   *
+   * @param lineStatus statut visé par la ligne
+   * @param dossierStatus statut actuel du dossier qui la contient
+   * @return vrai si la ligne peut prendre ce statut dans ce dossier
+   */
+  public static boolean isStageOpen(ArbitrationMovementStatus lineStatus,
+      BudgetAdministrativeUnitStatus dossierStatus) {
+<span class="fc" id="L187">    return isStageOpen(lineStatus, dossierStatus, null);</span>
+  }
+
+  /**
+   * Indique si le dossier a ouvert l'étape, pour une ligne de la nature donnée.
+   *
+   * &lt;p&gt;&lt;strong&gt;Un dossier consolidé ne laisse plus rien bouger.&lt;/strong&gt; La clôture arrête un
+   * montant, et trois chemins restaient pourtant ouverts derrière elle : la ligne mise à
+   * l'écart pouvait revenir dans la masse, la ligne différée repartir à l'EPN, la ligne
+   * acceptée être renvoyée au traitement. Deux Javadoc affirmaient déjà que plus aucune
+   * transition n'était acceptée ; aucune garde ne le vérifiait. C'est ici que cela se dit.&lt;/p&gt;
+   *
+   * @param lineStatus statut visé par la ligne
+   * @param dossierStatus statut actuel du dossier qui la contient
+   * @param natureCode nature du mouvement, éventuellement nulle
+   * @return vrai si la ligne peut prendre ce statut dans ce dossier
+   */
+  public static boolean isStageOpen(ArbitrationMovementStatus lineStatus,
+      BudgetAdministrativeUnitStatus dossierStatus, String natureCode) {
+<span class="fc bfc" id="L206" title="All 4 branches covered.">    if (dossierStatus != null &amp;&amp; dossierStatus.isTerminal()) {</span>
+<span class="fc" id="L207">      return false;</span>
+    }
+<span class="fc" id="L209">    Optional&lt;BudgetAdministrativeUnitStatus&gt; required =</span>
+<span class="fc" id="L210">        getRequiredDossierStatus(lineStatus, natureCode);</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">    if (required.isEmpty()) {</span>
+<span class="fc" id="L212">      return true;</span>
+    }
+<span class="fc bfc" id="L214" title="All 4 branches covered.">    return dossierStatus != null &amp;&amp; dossierStatus.rank() &gt;= required.get().rank();</span>
+  }
+
+  /**
+   * Retourne les statuts de ligne qui n'empêchent pas le chef de refermer l'étape.
+   *
+   * &lt;p&gt;Une ligne dont le statut n'est pas dans cet ensemble retient le dossier : elle a encore
+   * quelque chose à faire dans l'étape qu'on referme.&lt;/p&gt;
+   *
+   * @param dossierTarget statut que le dossier va prendre
+   * @return les statuts de ligne admis, vide si cette fermeture n'exige rien des lignes
+   */
+  public static Set&lt;ArbitrationMovementStatus&gt; getClosingStatuses(
+      BudgetAdministrativeUnitStatus dossierTarget) {
+<span class="fc" id="L228">    return CLOSING.getOrDefault(dossierTarget, Set.of());</span>
+  }
+
+  /**
+   * Indique si une ligne retient le dossier au moment de refermer une étape.
+   *
+   * @param lineStatus statut actuel de la ligne
+   * @param dossierTarget statut que le dossier va prendre
+   * @return vrai si cette ligne empêche la fermeture
+   */
+  public static boolean isHoldingBack(ArbitrationMovementStatus lineStatus,
+      BudgetAdministrativeUnitStatus dossierTarget) {
+<span class="fc" id="L240">    Set&lt;ArbitrationMovementStatus&gt; allowed = getClosingStatuses(dossierTarget);</span>
+<span class="fc bfc" id="L241" title="All 4 branches covered.">    return !allowed.isEmpty() &amp;&amp; !allowed.contains(lineStatus);</span>
+  }
+
+  /**
+   * Indique si le code de statut de ligne donné retient le dossier.
+   *
+   * &lt;p&gt;Variante par code, pour la couche de persistance qui ne manipule que des chaînes. Un code
+   * inconnu retient : on ne referme pas une étape sur ce qu'on ne sait pas lire.&lt;/p&gt;
+   *
+   * &lt;p&gt;&lt;strong&gt;Mais il ne retient que ce qui exige quelque chose.&lt;/strong&gt; La prudence ne vaut
+   * que pour les fermetures : un statut de dossier qui n'impose rien aux lignes ne doit pas
+   * être bloqué par une ligne illisible. Sans cette borne, un seul code abimé en base arrêtait
+   * des transitions qui ne vérifient rien.&lt;/p&gt;
+   *
+   * @param lineStatusCode code du statut actuel de la ligne
+   * @param dossierTarget statut que le dossier va prendre
+   * @return vrai si cette ligne empêche la fermeture
+   */
+  public static boolean isHoldingBack(String lineStatusCode,
+      BudgetAdministrativeUnitStatus dossierTarget) {
+<span class="fc bfc" id="L261" title="All 2 branches covered.">    if (getClosingStatuses(dossierTarget).isEmpty()) {</span>
+<span class="fc" id="L262">      return false;</span>
+    }
+    try {
+<span class="fc" id="L265">      return isHoldingBack(ArbitrationMovementStatus.getByCode(lineStatusCode), dossierTarget);</span>
+<span class="fc" id="L266">    } catch (IllegalArgumentException exception) {</span>
+<span class="fc" id="L267">      return true;</span>
+    }
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

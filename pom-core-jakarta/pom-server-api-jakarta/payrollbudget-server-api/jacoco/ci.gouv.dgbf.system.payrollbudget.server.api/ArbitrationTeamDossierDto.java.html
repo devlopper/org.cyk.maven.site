@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ArbitrationTeamDossierDto.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">API du serveur du module de budgétisation de la rémunération</a> &gt; <a href="index.source.html" class="el_package">ci.gouv.dgbf.system.payrollbudget.server.api</a> &gt; <span class="el_source">ArbitrationTeamDossierDto.java</span></div><h1>ArbitrationTeamDossierDto.java</h1><pre class="source lang-java linenums">package ci.gouv.dgbf.system.payrollbudget.server.api;
+
+import ci.gouv.dgbf.extension.server.service.api.entity.AbstractIdentifiableDto;
+import jakarta.json.bind.annotation.JsonbProperty;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Dossier confié à une équipe d'arbitrage.
+ *
+ * &lt;p&gt;C'est cette table qui donne son effet à l'équipe : un agent ne voit, sur ses écrans, que
+ * les dossiers qui y figurent pour son équipe. Sans elle, l'équipe ne serait qu'un annuaire.&lt;/p&gt;
+ *
+ * &lt;p&gt;&lt;strong&gt;Un dossier ne va qu'à une équipe à la fois.&lt;/strong&gt; La base autorise le contraire
+ * — sa clé unique porte sur le couple — mais le métier, non : deux équipes sur un même dossier,
+ * ce sont deux chefs qui peuvent en valider le traitement, et le premier arrivé décide pour
+ * l'autre. Le service le refuse donc, et dit laquelle le détient déjà.&lt;/p&gt;
+ *
+ * @author Christian
+ *
+ */
+@Getter
+@Setter
+@EqualsAndHashCode(callSuper = true)
+<span class="fc" id="L26">public class ArbitrationTeamDossierDto extends AbstractIdentifiableDto {</span>
+
+  /**
+   * Équipe à laquelle le dossier est confié.
+   */
+  @JsonbProperty(JSON_TEAM_IDENTIFIER)
+  private String teamIdentifier;
+
+  /**
+   * Libellé de l'équipe, alimenté par jointure.
+   */
+  @JsonbProperty(JSON_TEAM_AS_STRING)
+  private String teamAsString;
+
+  /**
+   * Dossier de masse salariale confié.
+   */
+  @JsonbProperty(JSON_DOSSIER_IDENTIFIER)
+  private String dossierIdentifier;
+
+  /**
+   * Libellé du dossier, alimenté par jointure.
+   */
+  @JsonbProperty(JSON_DOSSIER_AS_STRING)
+  private String dossierAsString;
+
+  /**
+   * Identifiant json de l'identifiant.
+   */
+  public static final String JSON_THIS_IDENTIFIER = &quot;idDossierEquipe&quot;;
+
+  /**
+   * Identifiant json de la représentation en chaine de caractères.
+   */
+  public static final String JSON_THIS_AS_STRING = &quot;dossierEquipeChaine&quot;;
+
+  /**
+   * Nom pour lecture humaine de la classe.
+   */
+  public static final String NAME = &quot;dossier d'équipe&quot;;
+
+  /**
+   * Nom au pluriel pour lecture humaine de la classe.
+   */
+  public static final String PLURAL_NAME = &quot;dossiers d'équipe&quot;;
+
+  /**
+   * Identifiant json pour {@link #teamIdentifier}.
+   */
+  public static final String JSON_TEAM_IDENTIFIER = ArbitrationTeamMemberDto.JSON_TEAM_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #teamAsString}.
+   */
+  public static final String JSON_TEAM_AS_STRING = ArbitrationTeamDto.JSON_THIS_AS_STRING;
+
+  /**
+   * Identifiant json pour {@link #dossierIdentifier}.
+   */
+  public static final String JSON_DOSSIER_IDENTIFIER =
+      BudgetAdministrativeUnitDossierDto.JSON_THIS_IDENTIFIER;
+
+  /**
+   * Identifiant json pour {@link #dossierAsString}.
+   */
+  public static final String JSON_DOSSIER_AS_STRING =
+      BudgetAdministrativeUnitDossierDto.JSON_THIS_AS_STRING;
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
