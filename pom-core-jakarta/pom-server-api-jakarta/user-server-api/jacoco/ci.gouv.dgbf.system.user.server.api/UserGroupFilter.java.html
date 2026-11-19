@@ -4,6 +4,7 @@ import ci.gouv.dgbf.extension.server.service.api.AbstractIdentifiableFilter;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasCapacityIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasGroupIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasIsResponsible;
+import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasModuleIdentifier;
 import ci.gouv.dgbf.extension.server.service.api.filter.FilterHasUserName;
 import ci.gouv.dgbf.extension.server.service.api.request.FilterDto;
 import lombok.Getter;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @Setter
 public class UserGroupFilter extends AbstractIdentifiableFilter
     implements FilterHasGroupIdentifier, FilterHasCapacityIdentifier, FilterHasIsResponsible,
-    FilterHasUserName {
+    FilterHasUserName, FilterHasModuleIdentifier {
 
   /**
    * Identifiant du groupe propriétaire.
@@ -42,36 +43,43 @@ public class UserGroupFilter extends AbstractIdentifiableFilter
   private Boolean isResponsible;
 
   /**
+   * Identifiant du module propriétaire du groupe.
+   */
+  private String moduleIdentifier;
+
+  /**
    * Cette méthode permet d'instantier un objet.
    *
    * @param dto filtre
    */
   public UserGroupFilter(FilterDto dto) {
-<span class="fc" id="L50">    super(dto);</span>
-<span class="fc" id="L51">  }</span>
+<span class="fc" id="L56">    super(dto);</span>
+<span class="fc" id="L57">  }</span>
 
   /**
    * Cette méthode permet d'instantier un objet.
    */
-<span class="fc" id="L56">  public UserGroupFilter() {}</span>
+<span class="fc" id="L62">  public UserGroupFilter() {}</span>
 
   @Override
   protected void doInitialize(FilterDto filter) {
-<span class="fc" id="L60">    super.doInitialize(filter);</span>
-<span class="fc" id="L61">    updateGroupIdentifier(filter);</span>
-<span class="fc" id="L62">    updateCapacityIdentifier(filter);</span>
-<span class="fc" id="L63">    updateIsResponsible(filter);</span>
-<span class="fc" id="L64">    updateUserName(filter);</span>
-<span class="fc" id="L65">  }</span>
+<span class="fc" id="L66">    super.doInitialize(filter);</span>
+<span class="fc" id="L67">    updateGroupIdentifier(filter);</span>
+<span class="fc" id="L68">    updateCapacityIdentifier(filter);</span>
+<span class="fc" id="L69">    updateIsResponsible(filter);</span>
+<span class="fc" id="L70">    updateUserName(filter);</span>
+<span class="fc" id="L71">    updateModuleIdentifier(filter);</span>
+<span class="fc" id="L72">  }</span>
 
   @Override
   protected void toDto(FilterDto filter) {
-<span class="fc" id="L69">    super.toDto(filter);</span>
-<span class="fc" id="L70">    updateFilterGroupIdentifier(filter);</span>
-<span class="fc" id="L71">    updateFilterCapacityIdentifier(filter);</span>
-<span class="fc" id="L72">    updateFilterIsResponsible(filter);</span>
-<span class="fc" id="L73">    updateFilterUserName(filter);</span>
-<span class="fc" id="L74">  }</span>
+<span class="fc" id="L76">    super.toDto(filter);</span>
+<span class="fc" id="L77">    updateFilterGroupIdentifier(filter);</span>
+<span class="fc" id="L78">    updateFilterCapacityIdentifier(filter);</span>
+<span class="fc" id="L79">    updateFilterIsResponsible(filter);</span>
+<span class="fc" id="L80">    updateFilterUserName(filter);</span>
+<span class="fc" id="L81">    updateFilterModuleIdentifier(filter);</span>
+<span class="fc" id="L82">  }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
